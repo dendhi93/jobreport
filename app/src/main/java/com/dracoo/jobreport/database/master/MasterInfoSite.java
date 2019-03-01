@@ -1,0 +1,93 @@
+package com.dracoo.jobreport.database.master;
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+import java.io.Serializable;
+
+@DatabaseTable(tableName = "t_site")
+public class MasterInfoSite implements Serializable {
+
+    @DatabaseField(id = true)
+    private Integer id_site;
+    @DatabaseField(columnName = "customer_name")
+    private String customer_name;
+    @DatabaseField(columnName = "remote_address")
+    private String remote_address;
+    @DatabaseField(columnName = "city")
+    private String city;
+    @DatabaseField(columnName = "kabupaten")
+    private String kabupaten;
+    @DatabaseField(columnName = "prov")
+    private String prov;
+    @DatabaseField(columnName = "lat")
+    private String lat;
+    @DatabaseField(columnName = "longitude")
+    private String longitude;
+    @DatabaseField(columnName = "progress_type")
+    private String progress_type;
+
+    public Integer getId_site() {
+        return id_site;
+    }
+
+    public void setId_site(Integer id_site) {
+        this.id_site = id_site;
+    }
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getRemote_address() {
+        return remote_address;
+    }
+
+    public void setRemote_address(String remote_address) {
+        this.remote_address = remote_address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getKabupaten() {
+        return kabupaten;
+    }
+
+    public void setKabupaten(String kabupaten) {
+        this.kabupaten = kabupaten;
+    }
+
+    public String getProv() {
+        return prov;
+    }
+
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getProgress_type() {
+        return progress_type;
+    }
+
+    public void setProgress_type(String progress_type) {
+        this.progress_type = progress_type;
+    }
+}
