@@ -37,6 +37,7 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".preparation.LoginActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".preparation.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar"
