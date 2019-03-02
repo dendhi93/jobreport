@@ -16,8 +16,6 @@ public class MasterVsatSetup implements Serializable {
     private String sn_modem;
     @DatabaseField(columnName = "sn_adaptor")
     private Integer sn_adaptor;
-    @DatabaseField(columnName = "sn_modem")
-    private String sn_modem;
     @DatabaseField(columnName = "sn_fh")
     private String sn_fh;
     @DatabaseField(columnName = "sn_lnb")
