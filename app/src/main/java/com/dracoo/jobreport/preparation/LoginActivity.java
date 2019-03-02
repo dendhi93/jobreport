@@ -1,7 +1,9 @@
-package com.dracoo.jobreport;
+package com.dracoo.jobreport.preparation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.dracoo.jobreport.R;
 
 public class LoginActivity extends AppCompatActivity {
 

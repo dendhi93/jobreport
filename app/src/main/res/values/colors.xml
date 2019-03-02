@@ -23,5 +23,6 @@
     <color name="colorGray400">#BDBDBD</color>
     <color name="colorGray300">#E0E0E0</color>
     <color name="colorGray200">#EEEEEE</color>
+    <color name="colorBlueMantab">#003d79</color>
 
 </resources>

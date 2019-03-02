@@ -1,9 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGray200"
     tools:context=".preparation.SplashActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_marginTop="@dimen/spacing_large"
+        android:id="@+id/image_splash"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="22dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_logo" />
+
+
+    <ProgressBar
+        android:layout_marginTop="@dimen/alph_size_tiny"
+        android:layout_below="@+id/image_splash"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:indeterminateDrawable="@drawable/progress"
+        android:foregroundGravity="center"
+        android:id="@+id/prg_splash"/>
+
+
+    <TextView
+        android:id="@+id/lbl_splash_note1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prg_splash"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/alph_size_small"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="7dp"
+        android:gravity="center"
+        android:textColor="@color/colorBlack"
+        android:text="@string/notes" />
+
+
+    <TextView
+        android:layout_margin="@dimen/spacing_semi_medium"
+        android:layout_below="@+id/lbl_splash_note1"
+        android:id="@+id/lbl_splash_note1_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
+        android:text="@string/notes_2"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBlueMantab"
+        android:gravity="center">
+
+        <TextView
+            android:padding="@dimen/spacing_tiny_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:text="@string/notes_3"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>

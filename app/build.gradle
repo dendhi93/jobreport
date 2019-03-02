@@ -29,6 +29,12 @@ dependencies {
 
     // Permission: Dexter
     implementation 'com.karumi:dexter:4.1.0'
+
+    //toast
+    implementation 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
+
+    //butterknife
+    implementation 'com.jakewharton:butterknife:8.6.0'
     implementation files('libs/ormlite-android-4.35.jar')
     implementation files('libs/ormlite-core-4.35.jar')
 
