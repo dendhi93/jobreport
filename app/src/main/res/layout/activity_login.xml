@@ -1,15 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBlue300"
     tools:context=".preparation.LoginActivity">
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="125dp"
+        android:layout_alignParentTop="true" />
+
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/colorWhite"
+        android:padding="15dp"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/large2"
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/member_login_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/login_form"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_un"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/username">
+
+                <EditText
+                    android:id="@+id/txt_login_un"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_huge"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:textColorHighlight="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorPrimary"
+                    android:background="@drawable/noborder"
+                    android:gravity="center_vertical"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_service_point"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/servicePoint">
+
+                <EditText
+                    android:id="@+id/txt_login_servicePoint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_huge"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:textColorHighlight="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorPrimary"
+                    android:background="@drawable/noborder"
+                    android:gravity="center_vertical"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_hp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/no_handphone">
+
+                <EditText
+                    android:id="@+id/txt_login_handphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_huge"
+                    android:inputType="number"
+                    android:maxLength="15"
+                    android:textColorHighlight="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorPrimary"
+                    android:background="@drawable/noborder"
+                    android:gravity="center_vertical"/>
+            </android.support.design.widget.TextInputLayout>
 
 
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/ic_blue_button"
+                android:text="@string/login"
+                android:textColor="@color/colorWhite"
+                android:onClick="actClick"
+                android:textSize="20dp" />
 
+            <TextView
+                android:layout_marginTop="15dp"
+                android:id="@+id/lbl_login_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_gravity="center|center_horizontal"
+                android:text=""/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <ImageView
+        android:id="@+id/view_1"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/img_login_user" />
 
 
 </RelativeLayout>

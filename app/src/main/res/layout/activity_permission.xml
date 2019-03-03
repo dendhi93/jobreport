@@ -140,8 +140,9 @@
         android:layout_below="@+id/permission_list_container"
         android:layout_width="match_parent"
         android:text="@string/persmission_button"
-        android:textColor="@color/colorWhite"
         android:onClick="actClick"
+        android:id="@+id/all_permissions_button"
+        android:textColor="@color/colorWhite"
         android:background="@drawable/ic_blue_button"
         android:layout_height="45dp" />
 

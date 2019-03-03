@@ -9,4 +9,8 @@ public class ConfigApps {
     public static final int T_INFO = 4;
     public static final int T_DEFAULT = 5;
     public static final int T_CONFUSING = 6;
+
+    //snackbar
+    public static final int SNACKBAR_NO_BUTTON = 0;
+    public static final int SNACKBAR_WITH_BUTTON = 1;
 }
