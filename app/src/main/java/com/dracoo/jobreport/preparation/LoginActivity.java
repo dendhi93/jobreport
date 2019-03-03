@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         getValidation();
 
 //        PackageInfo pInfo =  getPackageManager().getPackageInfo(getPackageName(), 0);
-//        lbl_login_version.setText(pInfo.versionName);
+        lbl_login_version.setText("");
     }
 
     public void actClick(View view){
