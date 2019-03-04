@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.DatabaseAdapter;
+import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.MessageUtils;
 
 import java.io.File;
 
@@ -19,6 +22,8 @@ public class SplashActivity extends AppCompatActivity {
     @BindView(R.id.prg_splash)
     ProgressBar prgSplash;
     private Handler handler;
+    private DatabaseAdapter databaseAdapter;
+    private MessageUtils messageUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
         handler = new Handler();
+        messageUtils = new MessageUtils(SplashActivity.this);
     }
 
 
@@ -33,6 +39,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         createDirectory();
+        try {
+            databaseAdapter = new DatabaseAdapter(this);
+            databaseAdapter.CreateDatabase();
+        } catch (Exception e) {messageUtils.toastMessage("failed to create Database "+e, ConfigApps.T_ERROR);}
     }
 
 
