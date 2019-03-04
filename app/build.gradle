@@ -12,8 +12,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs{
-        release{repositories
+    signingConfigs {
+        release {
+            repositories
             storeFile file('../JobReport.jks')
             storePassword 'JobReport_2019'
             keyAlias 'key_jobreport'
@@ -29,8 +30,8 @@ android {
         }
     }
 
-    productFlavors{
-        prd{
+    productFlavors {
+        prd {
             versionName "1.0.1"
         }
     }
@@ -44,6 +45,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.android.support:cardview-v7:27.1.1'
 
     // Permission: Dexter
     implementation 'com.karumi:dexter:4.1.0'
