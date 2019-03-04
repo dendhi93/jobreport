@@ -10,9 +10,11 @@ import android.widget.TextView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.dracoo.jobreport.BuildConfig;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
+import com.dracoo.jobreport.util.Preference;
 
 import org.w3c.dom.Text;
 
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private MessageUtils messageUtils;
     private AwesomeValidation awesomeValidation;
+    private Preference preference;
 
 
     @Override
@@ -48,8 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         getValidation();
 
-//        PackageInfo pInfo =  getPackageManager().getPackageInfo(getPackageName(), 0);
-        lbl_login_version.setText("");
+        lbl_login_version.setText(BuildConfig.VERSION_NAME);
+        preference = new Preference(LoginActivity.this);
+
     }
 
     public void actClick(View view){
@@ -62,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
                     LoginActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         } else if(awesomeValidation.validate()){
             messageUtils.snackBar_message("Under Maintenance", LoginActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+            preference.saveUn(un,servicePoint, handphone);
+            //ke menu dashboard
         }
     }
 

@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    flavorDimensions "default"
     defaultConfig {
         applicationId "com.dracoo.jobreport"
         minSdkVersion 19
@@ -10,10 +11,27 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs{
+        release{repositories
+            storeFile file('../JobReport.jks')
+            storePassword 'JobReport_2019'
+            keyAlias 'key_jobreport'
+            keyPassword 'JobReport_2019'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    productFlavors{
+        prd{
+            versionName "1.0.1"
         }
     }
 }
