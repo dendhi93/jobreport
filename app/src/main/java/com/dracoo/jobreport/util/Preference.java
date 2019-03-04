@@ -48,19 +48,19 @@ public class Preference {
     }
 
     public String getUn(){
-        return sharedPreferences.getString(KEY_USERNAME, null);
+        return sharedPreferences.getString(KEY_USERNAME, "");
     }
     public String getServicePoint(){
-        return sharedPreferences.getString(KEY_SERVICEPOINT, null);
+        return sharedPreferences.getString(KEY_SERVICEPOINT, "");
     }
     public String getPhone(){
-        return sharedPreferences.getString(KEY_PHONE, null);
+        return sharedPreferences.getString(KEY_PHONE, "");
     }
     public String getCustID(){
-        return sharedPreferences.getString(KEY_CUST_ID, null);
+        return sharedPreferences.getString(KEY_CUST_ID, "");
     }
-    public String getProgress(){return sharedPreferences.getString(KEY_PROGRESS_TYPE, null);}
-    public String getConnType(){return sharedPreferences.getString(KEY_CONNECTION_TYPE, null);}
+    public String getProgress(){return sharedPreferences.getString(KEY_PROGRESS_TYPE, "");}
+    public String getConnType(){return sharedPreferences.getString(KEY_CONNECTION_TYPE, "");}
 
     public void clearDataTrans(){
         editor.remove(KEY_CUST_ID);
