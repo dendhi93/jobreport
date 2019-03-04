@@ -44,6 +44,10 @@ public class MasterConnectionParameter implements Serializable {
     private String ranging_esno;
     @DatabaseField(columnName = "ranging_cno")
     private String ranging_cno;
+    @DatabaseField(columnName = "insert_date")
+    private String insert_date;
+    @DatabaseField(columnName = "update_date")
+    private String update_date;
 
     public Integer getId_parameter() {
         return id_parameter;
@@ -187,5 +191,22 @@ public class MasterConnectionParameter implements Serializable {
 
     public void setRanging_cno(String ranging_cno) {
         this.ranging_cno = ranging_cno;
+    }
+
+
+    public String getInsert_date() {
+        return insert_date;
+    }
+
+    public void setInsert_date(String insert_date) {
+        this.insert_date = insert_date;
+    }
+
+    public String getUpdate_date() {
+        return update_date;
+    }
+
+    public void setUpdate_date(String update_date) {
+        this.update_date = update_date;
     }
 }

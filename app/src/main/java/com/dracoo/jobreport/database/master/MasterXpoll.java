@@ -32,6 +32,10 @@ public class MasterXpoll implements Serializable {
     private String insert_time;
     @DatabaseField(columnName = "op")
     private String op;
+    @DatabaseField(columnName = "insert_date")
+    private String insert_date;
+    @DatabaseField(columnName = "update_date")
+    private String update_date;
 
     public Integer getId_xpoll() {
         return id_xpoll;
@@ -127,5 +131,21 @@ public class MasterXpoll implements Serializable {
 
     public void setOp(String op) {
         this.op = op;
+    }
+
+    public String getInsert_date() {
+        return insert_date;
+    }
+
+    public void setInsert_date(String insert_date) {
+        this.insert_date = insert_date;
+    }
+
+    public String getUpdate_date() {
+        return update_date;
+    }
+
+    public void setUpdate_date(String update_date) {
+        this.update_date = update_date;
     }
 }
