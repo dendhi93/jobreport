@@ -13,4 +13,14 @@ public class ConfigApps {
     //snackbar
     public static final int SNACKBAR_NO_BUTTON = 0;
     public static final int SNACKBAR_WITH_BUTTON = 1;
+
+    public static final String HOME = "Dashboard";
+    public static final String PROBLEM_DESC = "Problem Desc";
+    public static final String LIGHTNING = "Electrical Env";
+    public static final String MACHINE = "Machine";
+    public static final String CONNECTION = "Check Connection";
+    public static final String DOC = "Dokumentasi";
+    public static final String LOGOUT = "Logout";
+
+
 }
