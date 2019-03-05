@@ -121,7 +121,7 @@
                     android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_below="@+id/ln_dash_2"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
@@ -155,7 +155,7 @@
                     android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_below="@+id/ln_dash_3"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
@@ -188,7 +188,7 @@
                     android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_below="@+id/ln_dash_4"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
@@ -221,7 +221,7 @@
                     android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_below="@+id/ln_dash_5"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
@@ -244,6 +244,72 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="25"
+                            android:maxLines="2" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_dash_7"
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/ln_dash_6"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:hint="@string/jabatan">
+
+                        <EditText
+                            android:id="@+id/txt_dash_name_jabatan"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_user_16"
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_dash_8"
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_below="@+id/ln_dash_7"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:hint="@string/phone_pic">
+
+                        <EditText
+                            android:id="@+id/txt_dash_name_picPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_user_16"
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="number"
+                            android:maxLength="15"
                             android:maxLines="2" />
 
                     </android.support.design.widget.TextInputLayout>
