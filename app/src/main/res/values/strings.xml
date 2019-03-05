@@ -49,5 +49,10 @@
     <string name="phone_pic">No Hp PIC</string>
     <string name="info_site">Info Site</string>
     <string name="location_name">Nama Lokasi</string>
+    <string name="customer">Customer</string>
+    <string name="remote_address">Remote Address</string>
+    <string name="city">Kota</string>
+    <string name="kabupaten">Kabupaten</string>
+    <string name="proviency">Pronvinsi</string>
 
 </resources>
