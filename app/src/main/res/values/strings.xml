@@ -43,5 +43,7 @@
     <string name="job_desc">Job Desc</string>
     <string name="name">Nama Teknisi</string>
     <string name="service_point">Service Point</string>
+    <string name="phone">No Hp</string>
+    <string name="pic">Nama Pic</string>
 
 </resources>
