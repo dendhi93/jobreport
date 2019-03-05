@@ -4,6 +4,6 @@
         android:drawable="@drawable/ic_circle_button_pressed">
     </item>
     <item
-        android:drawable="@drawable/circle_button">
+        android:drawable="@drawable/ic_circle_button">
     </item>
 </selector>
