@@ -72,4 +72,13 @@
     <string name="closed">Closed</string>
     <string name="by">By</string>
 
+    //electrical env content
+    <string name="pln">PLN</string>
+    <string name="ups">ups</string>
+    <string name="ac">AC</string>
+    <string name="tegangan">Tegangan (Vac.)</string>
+    <string name="grounding">Grounding (Vac.)</string>
+    <string name="suhu">Suhu (Celcius.)</string>
+    <string name="notes">AC</string>
+
 </resources>
