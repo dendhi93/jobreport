@@ -80,5 +80,7 @@
     <string name="grounding">Grounding (Vac.)</string>
     <string name="suhu">Suhu (Celcius.)</string>
     <string name="notes">AC</string>
+    <string name="elec_env">Electrical Environtment</string>
+    <string name="machine">Machine</string>
 
 </resources>
