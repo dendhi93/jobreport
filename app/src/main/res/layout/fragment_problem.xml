@@ -1,14 +1,566 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorGray200"
+    android:orientation="vertical"
     tools:context=".feature.problem.ProblemFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_dash_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="4dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="1dp"
+            app:cardBackgroundColor="@color/cardview_light_background"
+            app:cardCornerRadius="7dp"
+            app:cardElevation="1dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:hint="@string/name">
+
+                        <EditText
+                            android:id="@+id/txt_problem_modem"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_wifi"
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:hint="@string/problem_symtoms">
+
+                        <EditText
+                            android:id="@+id/txt_problem_symptom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_text"
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="textMultiLine"
+                            android:maxLength="100"
+                            android:maxLines="4" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:hint="@string/action_taken">
+
+                        <EditText
+                            android:id="@+id/txt_action_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_text"
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="textMultiLine"
+                            android:maxLength="100"
+                            android:maxLines="4" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:layout_toLeftOf="@+id/imgBtn_timer1"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/berangkat"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_problem_berangkat"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:clickable="false"
+                            android:drawableLeft="@drawable/ic_truck"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:layout_marginEnd="@dimen/spacing_tiny_3"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/imgBtn_timer1"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_blue_button"
+                        android:src="@drawable/ic_white_time_24"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:layout_alignParentRight="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:layout_toLeftOf="@+id/imgBtn_timer2"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/ln_problem_1"
+                        android:layout_weight="1"
+                        android:hint="@string/tiba"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_problem_tiba"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:clickable="false"
+                            android:drawableLeft="@drawable/ic_truck"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:layout_marginEnd="@dimen/spacing_tiny_3"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/imgBtn_timer2"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_blue_button"
+                        android:src="@drawable/ic_white_time_24"
+                        android:layout_alignParentRight="true"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:layout_toLeftOf="@+id/imgBtn_timer3"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/start"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_problem_start"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:clickable="false"
+                            android:drawableLeft="@drawable/ic_truck"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:layout_marginEnd="@dimen/spacing_tiny_3"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/imgBtn_timer3"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_blue_button"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:src="@drawable/ic_white_time_24"
+                        android:layout_alignParentRight="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:layout_toLeftOf="@+id/imgBtn_timer4"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/finish"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_problem_finish"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:clickable="false"
+                            android:drawableLeft="@drawable/ic_truck"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:layout_marginEnd="@dimen/spacing_tiny_3"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/imgBtn_timer4"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_blue_button"
+                        android:src="@drawable/ic_white_time_24"
+                        android:layout_alignParentRight="true"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:layout_toLeftOf="@+id/imgBtn_timer5"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/upline"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_problem_upline"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:clickable="false"
+                            android:drawableLeft="@drawable/ic_truck"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:layout_marginEnd="@dimen/spacing_tiny_3"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/imgBtn_timer5"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_blue_button"
+                        android:src="@drawable/ic_white_time_24"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:layout_alignParentRight="true"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:layout_toLeftOf="@+id/imgBtn_timer6"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/online"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_problem_online"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:clickable="false"
+                            android:drawableLeft="@drawable/ic_truck"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:layout_marginRight="@dimen/spacing_tiny"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/imgBtn_timer6"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_blue_button"
+                        android:src="@drawable/ic_white_time_24"
+                        android:layout_marginEnd="@dimen/spacing_tiny_3"
+                        android:layout_alignParentRight="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:hint="@string/pending">
+
+                        <EditText
+                            android:id="@+id/txt_action_pending"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_text"
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:hint="@string/reason_pending">
+
+                        <EditText
+                            android:id="@+id/txt_action_reasonPending"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_text"
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="textMultiLine"
+                            android:maxLength="100"
+                            android:maxLines="4" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:text="@string/closed"
+                        android:layout_gravity="center"/>
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@color/ColorBlue"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:id="@+id/spinner_problem1"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:hint="@string/by">
+
+                        <EditText
+                            android:id="@+id/txt_problem_coloedBy"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_wifi"
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_semi_medium"
+                    android:gravity="right"
+                    android:layout_marginBottom="@dimen/spacing_small_1"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imgB_problem_submit"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginEnd="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_circle_selector"
+                        android:src="@drawable/ic_save_24"/>
+
+                    <ImageButton
+                        android:id="@+id/imgB_problem_cancel"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:background="@drawable/ic_circle_transparent_selector"
+                        android:src="@drawable/ic_cancel"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</ScrollView>

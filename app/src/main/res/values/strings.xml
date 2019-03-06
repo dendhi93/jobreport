@@ -57,4 +57,19 @@
     <string name="lat">Latitude</string>
     <string name="longitude">Longitude</string>
 
+    //problem content
+    <string name="display_modem">Diaplay Modem</string>
+    <string name="problem_symtoms">Problem Symtoms</string>
+    <string name="action_taken">Action Taken</string>
+    <string name="berangkat">Berangkat</string>
+    <string name="tiba">Tiba</string>
+    <string name="start">Start</string>
+    <string name="finish">Finish</string>
+    <string name="upline">Upline</string>
+    <string name="online">Online</string>
+    <string name="pending">Pending</string>
+    <string name="reason_pending">Reason Pending</string>
+    <string name="closed">Closed</string>
+    <string name="by">By</string>
+
 </resources>
