@@ -101,7 +101,7 @@
     <string name="sn_diplexer_idu">S/N Diplexer IDU</string>
     <string name="diameter_antena">Diameter Antena</string>
     <string name="antena_type">Antena Tipe</string>
-    <string name="antena_brancd">Merk Antena</string>
+    <string name="antena_brand">Merk Antena</string>
     <string name="pedestal_type">Pedestal Type</string>
     <string name="access_antena">Akses Antena</string>
 
