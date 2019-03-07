@@ -104,6 +104,8 @@
     <string name="antena_brand">Merk Antena</string>
     <string name="pedestal_type">Pedestal Type</string>
     <string name="access_antena">Akses Antena</string>
+    <string name="brand_type">Brand/Type</string>
+    <string name="m2m_sn">S/N</string>
 
 
 </resources>

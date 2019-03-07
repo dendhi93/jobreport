@@ -74,7 +74,6 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:id="@+id/card_view_conn_vsat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -110,347 +109,435 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ln_conn_vsat"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:baselineAligned="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_modem"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/txt_conn_vsatModem"
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/sn_modem"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_conn_vsatModem"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/sn_adaptor"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_conn_vsatAdaptor"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/sn_fh"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_conn_vsatFh"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/sn_lnb"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_conn_vsatLnb"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/sn_rfu"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_conn_vsatRfu"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/sn_diplexer_odu"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_conn_vsatOdu"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/sn_diplexer_idu"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_conn_vsatIdu"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/diameter_antena"
+                            android:textColor="@color/colorBlack" />
+
+                        <Spinner
+                            android:id="@+id/spinner_conn_antena"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:layout_marginEnd="@dimen/spacing_tiny"
+                            android:background="@color/ColorBlue" />
 
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:baselineAligned="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
-
-                    <android.support.design.widget.TextInputLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_adaptor"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/txt_conn_vsatAdaptor"
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/antena_type"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_conn_vsat_antenaType"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/antena_brand"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_conn_vsat_antenaBrand"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/pedestal_type"
+                            android:textColor="@color/colorBlack" />
+
+                        <Spinner
+                            android:id="@+id/spinner_conn_pedestalType"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:layout_marginEnd="@dimen/spacing_tiny"
+                            android:background="@color/ColorBlue" />
 
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:baselineAligned="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
-
-                    <android.support.design.widget.TextInputLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_fh"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_margin="3dp"
+                        android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/txt_conn_vsatFh"
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/access_antena"
+                            android:textColor="@color/colorBlack" />
+
+                        <Spinner
+                            android:id="@+id/spinner_conn_antenaAccess"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:layout_marginEnd="@dimen/spacing_tiny"
+                            android:background="@color/ColorBlue" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ln_conn_m2m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:baselineAligned="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_lnb"
-                        android:textColorHint="@color/colorBlack">
+                        android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/txt_conn_vsatLnb"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_gravity="left|center_horizontal"
+                            android:layout_marginStart="@dimen/alph_size_tiny"
+                            android:text="@string/m2m"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/alph_size_small_2"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:baselineAligned="false"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:orientation="vertical">
 
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/brand_type"
+                                android:textColorHint="@color/colorBlack">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:baselineAligned="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
+                                <EditText
+                                    android:id="@+id/txt_conn_m2m_brand"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:backgroundTint="@android:color/transparent"
+                                    android:drawableLeft="@drawable/ic_black_setting_16"
+                                    android:inputType="text"
+                                    android:maxLength="25"
+                                    android:maxLines="2"
+                                    android:textColor="@color/colorBlack"
+                                    android:textColorLink="@color/colorWhite" />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_rfu"
-                        android:textColorHint="@color/colorBlack">
+                            </android.support.design.widget.TextInputLayout>
 
-                        <EditText
-                            android:id="@+id/txt_conn_vsatRfu"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/m2m_sn"
+                                android:textColorHint="@color/colorBlack">
 
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
+                                <EditText
+                                    android:id="@+id/txt_conn_m2m_sn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:backgroundTint="@android:color/transparent"
+                                    android:drawableLeft="@drawable/ic_black_setting_16"
+                                    android:inputType="text"
+                                    android:maxLength="25"
+                                    android:maxLines="2"
+                                    android:textColor="@color/colorBlack"
+                                    android:textColorLink="@color/colorWhite" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:baselineAligned="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
+                            </android.support.design.widget.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_diplexer_odu"
-                        android:textColorHint="@color/colorBlack">
+                        </LinearLayout>
 
-                        <EditText
-                            android:id="@+id/txt_conn_vsatOdu"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                    </LinearLayout>
 
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:baselineAligned="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_diplexer_idu"
-                        android:textColorHint="@color/colorBlack">
-
-                        <EditText
-                            android:id="@+id/txt_conn_vsatIdu"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
-
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/diameter_antena"
-                        android:textColor="@color/colorBlack" />
-
-                    <Spinner
-                        android:id="@+id/spinner_conn_antena"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginEnd="@dimen/spacing_tiny"
-                        android:background="@color/ColorBlue" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:baselineAligned="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/antena_type"
-                        android:textColorHint="@color/colorBlack">
-
-                        <EditText
-                            android:id="@+id/txt_conn_vsat_antenaType"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
-
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:baselineAligned="false"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/antena_brand"
-                        android:textColorHint="@color/colorBlack">
-
-                        <EditText
-                            android:id="@+id/txt_conn_vsat_antenaBrand"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
-
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/pedestal_type"
-                        android:textColor="@color/colorBlack" />
-
-                    <Spinner
-                        android:id="@+id/spinner_conn_pedestalType"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginEnd="@dimen/spacing_tiny"
-                        android:background="@color/ColorBlue" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/access_antena"
-                        android:textColor="@color/colorBlack" />
-
-                    <Spinner
-                        android:id="@+id/spinner_conn_antenaAccess"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginEnd="@dimen/spacing_tiny"
-                        android:background="@color/ColorBlue" />
 
                 </LinearLayout>
             </LinearLayout>
