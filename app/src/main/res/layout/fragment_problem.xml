@@ -14,7 +14,6 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/card_view_dash_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -462,7 +461,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="@android:color/transparent"
                             android:textColor="@color/colorBlack"
-                            android:drawableLeft="@drawable/ic_text"
+                            android:drawableEnd="@drawable/ic_text"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="textMultiLine"
                             android:maxLength="100"
@@ -515,7 +514,7 @@
                             android:layout_height="45dp"
                             android:backgroundTint="@android:color/transparent"
                             android:textColor="@color/colorBlack"
-                            android:drawableLeft="@drawable/ic_wifi"
+                            android:drawableEnd="@drawable/ic_wifi"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="25"
@@ -528,11 +527,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/spacing_semi_medium"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:layout_marginBottom="@dimen/spacing_small_1"
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:contentDescription="@string/content_desc"
                         android:id="@+id/imgB_problem_submit"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
@@ -541,15 +541,13 @@
                         android:src="@drawable/ic_save_24"/>
 
                     <ImageButton
+                        android:contentDescription="@string/content_desc"
                         android:id="@+id/imgB_problem_cancel"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:background="@drawable/ic_circle_transparent_selector"
                         android:src="@drawable/ic_cancel"/>
-
-
                 </LinearLayout>
-
             </LinearLayout>
 
 

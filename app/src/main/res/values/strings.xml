@@ -14,6 +14,7 @@
     <string name="servicePoint">Service Point</string>
     <string name="no_handphone">No Handphone</string>
     <string name="login_form">LOGIN JOB REPORT</string>
+    <string name="content_desc"></string>
 
 
     //notes
@@ -74,13 +75,11 @@
 
     //electrical env content
     <string name="pln">PLN</string>
-    <string name="ups">ups</string>
+    <string name="ups">UPS</string>
     <string name="ac">AC</string>
     <string name="tegangan">Tegangan (Vac.)</string>
     <string name="grounding">Grounding (Vac.)</string>
-    <string name="suhu">Suhu (Celcius.)</string>
-    <string name="notes">AC</string>
-    <string name="elec_env">Electrical Environtment</string>
-    <string name="machine">Machine</string>
+    <string name="suhu">Suhu (Celsius.)</string>
+    <string name="notes_env">Catatan</string>
 
 </resources>
