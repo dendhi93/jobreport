@@ -82,4 +82,10 @@
     <string name="suhu">Suhu (Celsius.)</string>
     <string name="notes_env">Catatan</string>
 
+    //machine content
+    <string name="machine_lccation">Lokasi Mesin</string>
+    <string name="machine_qty">Jumlah Mesin</string>
+    <string name="machine_id">Id Mesin</string>
+    <string name="access">Akses</string>
+
 </resources>
