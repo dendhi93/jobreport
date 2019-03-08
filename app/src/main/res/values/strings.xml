@@ -106,6 +106,10 @@
     <string name="access_antena">Akses Antena</string>
     <string name="brand_type">Brand/Type</string>
     <string name="m2m_sn">S/N</string>
+    <string name="m2m_adaptor">M2M Adaptor</string>
+    <string name="sim_card1">SimCard1</string>
+    <string name="sim_card2">SimCard2</string>
+    <string name="puk">PUK</string>
 
 
 </resources>
