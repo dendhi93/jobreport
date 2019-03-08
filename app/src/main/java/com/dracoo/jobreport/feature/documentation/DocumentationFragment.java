@@ -1,4 +1,4 @@
-package com.dracoo.jobreport.feature.env;
+package com.dracoo.jobreport.feature.documentation;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.dracoo.jobreport.R;
 
 
-public class EnvirontmentFragment extends Fragment {
+public class DocumentationFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -20,13 +20,12 @@ public class EnvirontmentFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public EnvirontmentFragment() {
+    public DocumentationFragment() {
         // Required empty public constructor
     }
 
-
-    public static EnvirontmentFragment newInstance(String param1, String param2) {
-        EnvirontmentFragment fragment = new EnvirontmentFragment();
+    public static DocumentationFragment newInstance(String param1, String param2) {
+        DocumentationFragment fragment = new DocumentationFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -47,7 +46,7 @@ public class EnvirontmentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_environtment, container, false);
+        return inflater.inflate(R.layout.fragment_documentation, container, false);
     }
 
     public void onButtonPressed(Uri uri) {
