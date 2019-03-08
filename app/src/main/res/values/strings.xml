@@ -9,12 +9,14 @@
     <string name="permission_rationale_message">Izin ini dibutuhkan untuk mengakses seluruh fitur</string>
     <string name="login">Login</string>
 
-    //content
+    //global content
+    <string name="empty_data">Tidak ada data</string>
     <string name="username">Username</string>
     <string name="servicePoint">Service Point</string>
     <string name="no_handphone">No Handphone</string>
     <string name="login_form">LOGIN JOB REPORT</string>
     <string name="content_desc"></string>
+
 
 
     //notes
@@ -110,6 +112,11 @@
     <string name="sim_card1">SimCard1</string>
     <string name="sim_card2">SimCard2</string>
     <string name="puk">PUK</string>
+
+    //upload content
+
+
+
 
 
 </resources>

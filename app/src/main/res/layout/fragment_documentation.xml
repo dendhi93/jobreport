@@ -8,6 +8,7 @@
     tools:context=".feature.documentation.DocumentationFragment">
 
     <ImageView
+        android:id="@+id/imgV_doc_1"
         android:layout_marginTop="@dimen/icon_medium"
         android:layout_gravity="center"
         android:layout_width="105dp"
@@ -21,11 +22,24 @@
         android:background="@drawable/ic_blue_button"
         />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_doc"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_data"/>
+
+    </RelativeLayout>
+
 
 
 
