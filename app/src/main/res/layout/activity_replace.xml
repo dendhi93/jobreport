@@ -476,7 +476,7 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/imgB_con_submit"
+                        android:id="@+id/imgB_rep_submit"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:layout_marginEnd="@dimen/spacing_small_1"
@@ -484,7 +484,7 @@
                         android:src="@drawable/ic_save_24"/>
 
                     <ImageButton
-                        android:id="@+id/imgB_con_cancel"
+                        android:id="@+id/imgB_rep_cancel"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:layout_marginEnd="@dimen/spacing_small_1"

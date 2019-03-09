@@ -18,7 +18,6 @@
     <string name="content_desc"></string>
 
 
-
     //notes
     <string name="notes">Welcome To Job Report</string>
     <string name="notes_2">JOb Report bertujuan yang untuk memudahkan penyampaian laporan ke admin langsung menggunakan aplikasi</string>
@@ -113,10 +112,16 @@
     <string name="sim_card2">SimCard2</string>
     <string name="puk">PUK</string>
 
-    //upload content
-
-
-
-
+    //data m2m content
+    <string name="password">Password</string>
+    <string name="ip_machine">Ip Machine</string>
+    <string name="m2m_user">User</string>
+    <string name="m2m_remote">Remote</string>
+    <string name="tunnel_id">Tunnel Id</string>
+    <string name="ip_bounding">IP Bounding</string>
+    <string name="ip_vlan">IP LAN</string>
+    <string name="ip_lan">IP Lan</string>
+    <string name="ip_bouding">IP Bounding</string>
+    <string name="agg">AGG</string>
 
 </resources>
