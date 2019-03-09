@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorGray200"
+    android:orientation="vertical"
     tools:context=".feature.datam2m.DataM2mActivity">
 
     <android.support.v7.widget.CardView
@@ -20,7 +20,9 @@
         app:cardElevation="1dp"
         app:cardUseCompatPadding="true">
 
+
         <LinearLayout
+            android:id="@+id/ln_replace_vsat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -29,12 +31,27 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/username"
+                android:textColorHint="@color/colorBlack">
 
+                <EditText
+                    android:id="@+id/txt_dm2m_un"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_user_16"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
 
-
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
-
-
     </android.support.v7.widget.CardView>
-
 </LinearLayout>
