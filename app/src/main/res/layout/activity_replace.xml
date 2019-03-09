@@ -26,25 +26,474 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:id="@+id/ln_replace_vsat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:baselineAligned="false"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/sn_modem"
+                        android:background="@drawable/border_bottom"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_rep_vsatModem"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/sn_adaptor"
+                        android:background="@drawable/border_bottom"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_rep_vsatAdaptor"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/sn_fh"
+                        android:background="@drawable/border_bottom"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_rep_vsatFh"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/sn_lnb"
+                        android:background="@drawable/border_bottom"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_rep_vsatLnb"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/sn_rfu"
+                        android:background="@drawable/border_bottom"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_rep_vsatRfu"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_replace_m2m"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="left|center_horizontal"
+                        android:layout_marginStart="@dimen/alph_size_tiny"
+                        android:text="@string/m2m"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/alph_size_small_2"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/brand_type"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_brand"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/m2m_sn"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_sn"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="left|center_horizontal"
+                        android:layout_marginStart="@dimen/alph_size_tiny"
+                        android:text="@string/m2m_adaptor"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/alph_size_small_2"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/brand_type"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_adaptorBrand"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/m2m_sn"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_adaptorSn"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="left|center_horizontal"
+                        android:layout_marginStart="@dimen/alph_size_tiny"
+                        android:text="@string/sim_card1"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/alph_size_small_2"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/brand_type"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_sc1Brand"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/m2m_sn"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_sc1Sn"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/puk"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_sc1puk"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="left|center_horizontal"
+                        android:layout_marginStart="@dimen/alph_size_tiny"
+                        android:text="@string/sim_card2"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/alph_size_small_2"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:baselineAligned="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/brand_type"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_sc2Brand"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/m2m_sn"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_sc2Sn"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/puk"
+                            android:background="@drawable/border_bottom"
+                            android:textColorHint="@color/colorBlack">
+
+                            <EditText
+                                android:id="@+id/txt_rep_m2m_sc2puk"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:drawableLeft="@drawable/ic_black_setting_16"
+                                android:inputType="text"
+                                android:maxLength="25"
+                                android:maxLines="2"
+                                android:textColor="@color/colorBlack"
+                                android:textColorLink="@color/colorWhite" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_semi_medium"
+                    android:gravity="right"
+                    android:layout_marginBottom="@dimen/spacing_small_1"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imgB_con_submit"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginEnd="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_circle_selector"
+                        android:src="@drawable/ic_save_24"/>
+
+                    <ImageButton
+                        android:id="@+id/imgB_con_cancel"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginEnd="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_circle_transparent_selector"
+                        android:src="@drawable/ic_cancel"/>
+
+                </LinearLayout>
 
             </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardView_m2m_replace"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:padding="1dp"
-            app:cardBackgroundColor="@color/cardview_light_background"
-            app:cardCornerRadius="7dp"
-            app:cardElevation="1dp"
-            app:cardUseCompatPadding="true">
-
         </android.support.v7.widget.CardView>
 
 
