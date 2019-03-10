@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,6 +53,119 @@
                     android:textColorLink="@color/colorWhite" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/password"
+                custom:passwordToggleEnabled="true"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_user_16"
+                    android:inputType="textPassword"
+                    android:maxLength="25"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/ip_machine"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_ipMachine"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_black_setting_16"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/m2m_user"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_black_setting_16"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/m2m_remote"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_remote"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_black_setting_16"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/tunnel_id"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_tunnelId"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_black_setting_16"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>
