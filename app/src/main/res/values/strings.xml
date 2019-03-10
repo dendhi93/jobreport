@@ -125,4 +125,17 @@
     <string name="subnetMask">SubnetMask</string>
     <string name="agg">AGG</string>
 
+    //xpoll content
+    <string name="sat">SAT</string>
+    <string name="transponder">Transponder</string>
+    <string name="lft">LFT</string>
+    <string name="cn">C/N</string>
+    <string name="cpi">CPI</string>
+    <string name="ASI">ASI</string>
+    <string name="date_time">DATE,TIME</string>
+    <string name="op">OP</string>
+    <string name="t3s">T3S</string>
+    <string name="apt6">APT6</string>
+    <string name="apt9">APT9</string>
+
 </resources>

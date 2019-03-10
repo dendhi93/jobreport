@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGray200"
+    tools:context=".feature.xpoll.XpollActivity">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="1dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:text="@string/sat"/>
+
+                <RadioGroup
+                    android:padding="@dimen/spacing_tiny"
+                    android:id="@+id/rg_dash_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_t3s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/t3s"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_apt6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/apt6"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_apt9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/apt9"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ln_replace_vsat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:baselineAligned="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_bottom"
+                    android:hint="@string/transponder"
+                    android:textColorHint="@color/colorBlack">
+
+                    <EditText
+                        android:id="@+id/txt_xpoll_transponder"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_black_setting_16"
+                        android:inputType="text"
+                        android:maxLength="25"
+                        android:maxLines="2"
+                        android:textColor="@color/colorBlack"
+                        android:textColorLink="@color/colorWhite" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_bottom"
+                    android:hint="@string/lft"
+                    android:textColorHint="@color/colorBlack">
+
+                    <EditText
+                        android:id="@+id/txt_xpoll_lft"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_black_setting_16"
+                        android:inputType="text"
+                        android:maxLength="15"
+                        android:maxLines="2"
+                        android:textColor="@color/colorBlack"
+                        android:textColorLink="@color/colorWhite" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_bottom"
+                    android:hint="@string/cn"
+                    android:textColorHint="@color/colorBlack">
+
+                    <EditText
+                        android:id="@+id/txt_xpoll_cn"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_black_setting_16"
+                        android:inputType="text"
+                        android:maxLength="15"
+                        android:maxLines="2"
+                        android:textColor="@color/colorBlack"
+                        android:textColorLink="@color/colorWhite" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_bottom"
+                    android:hint="@string/cpi"
+                    android:textColorHint="@color/colorBlack">
+
+                    <EditText
+                        android:id="@+id/txt_xpoll_cpi"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_black_setting_16"
+                        android:inputType="text"
+                        android:maxLength="15"
+                        android:maxLines="2"
+                        android:textColor="@color/colorBlack"
+                        android:textColorLink="@color/colorWhite" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_bottom"
+                    android:hint="@string/ASI"
+                    android:textColorHint="@color/colorBlack">
+
+                    <EditText
+                        android:id="@+id/txt_xpoll_asi"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_black_setting_16"
+                        android:inputType="text"
+                        android:maxLength="15"
+                        android:maxLines="2"
+                        android:textColor="@color/colorBlack"
+                        android:textColorLink="@color/colorWhite" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:layout_toLeftOf="@+id/imgBtn_timer5"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/date_time"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_xpoll_dateTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:clickable="false"
+                            android:drawableLeft="@drawable/ic_truck"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:layout_marginEnd="@dimen/spacing_tiny_3"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/imgBtn_prob_time1"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:background="@drawable/ic_blue_button"
+                        android:src="@drawable/ic_white_time_24"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:layout_alignParentRight="true"/>
+                </LinearLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_bottom"
+                    android:hint="@string/op"
+                    android:textColorHint="@color/colorBlack">
+
+                    <EditText
+                        android:id="@+id/txt_xpoll_op"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:drawableLeft="@drawable/ic_black_setting_16"
+                        android:inputType="text"
+                        android:maxLength="15"
+                        android:maxLines="2"
+                        android:textColor="@color/colorBlack"
+                        android:textColorLink="@color/colorWhite" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_semi_medium"
+                android:gravity="end"
+                android:layout_marginBottom="@dimen/spacing_small_1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:contentDescription="@string/content_desc"
+                    android:id="@+id/imgB_xpoll_submit"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="@dimen/spacing_small_1"
+                    android:background="@drawable/ic_circle_selector"
+                    android:src="@drawable/ic_save_24"/>
+
+                <ImageButton
+                    android:contentDescription="@string/content_desc"
+                    android:id="@+id/imgB_xpoll_cancel"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/ic_circle_transparent_selector"
+                    android:src="@drawable/ic_cancel"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>
