@@ -166,6 +166,142 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/ip_bounding"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_ipBouding"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_black_setting_16"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/ip_vlan"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_ipVLan"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_black_setting_16"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/ip_lan"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_ipLLan"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_black_setting_16"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/subnetMask"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_dataM2m_subnetMask"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_black_setting_16"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/agg"
+                android:textColorHint="@color/colorBlack">
+
+                <EditText
+                    android:id="@+id/txt_dm2m_dataM2m_agg"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_black_setting_16"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="2"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorWhite" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_semi_medium"
+                android:gravity="right"
+                android:layout_marginBottom="@dimen/spacing_small_1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imgB_dataM2m_submit"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="@dimen/spacing_small_1"
+                    android:background="@drawable/ic_circle_selector"
+                    android:src="@drawable/ic_save_24"/>
+
+                <ImageButton
+                    android:id="@+id/imgB_dataM2m_cancel"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="@dimen/spacing_small_1"
+                    android:background="@drawable/ic_circle_transparent_selector"
+                    android:src="@drawable/ic_cancel"/>
+
+            </LinearLayout>
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

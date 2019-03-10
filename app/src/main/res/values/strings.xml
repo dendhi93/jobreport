@@ -119,9 +119,10 @@
     <string name="m2m_remote">Remote</string>
     <string name="tunnel_id">Tunnel Id</string>
     <string name="ip_bounding">IP Bounding</string>
-    <string name="ip_vlan">IP LAN</string>
+    <string name="ip_vlan">IP VLAN</string>
     <string name="ip_lan">IP Lan</string>
     <string name="ip_bouding">IP Bounding</string>
+    <string name="subnetMask">SubnetMask</string>
     <string name="agg">AGG</string>
 
 </resources>
