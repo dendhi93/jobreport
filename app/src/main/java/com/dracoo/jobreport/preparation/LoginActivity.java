@@ -1,5 +1,6 @@
 package com.dracoo.jobreport.preparation;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.dracoo.jobreport.BuildConfig;
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
@@ -65,8 +67,12 @@ public class LoginActivity extends AppCompatActivity {
             messageUtils.snackBar_message(getString(R.string.emptyString),
                     LoginActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         } else if(awesomeValidation.validate()){
-            messageUtils.snackBar_message("Under Maintenance", LoginActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+//            messageUtils.snackBar_message("Under Maintenance", LoginActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
             preference.saveUn(un,servicePoint, handphone);
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+            startActivity(intent);
+            finish();
             //ke menu dashboard
         }
     }

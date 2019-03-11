@@ -1,12 +1,15 @@
 package com.dracoo.jobreport.feature;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,6 +18,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.feature.action.ActionFragment;
+import com.dracoo.jobreport.feature.connection.ConnectionFragment;
+import com.dracoo.jobreport.feature.dashboard.DashboardFragment;
+import com.dracoo.jobreport.feature.documentation.DocumentationFragment;
+import com.dracoo.jobreport.feature.env.EnvirontmentFragment;
+import com.dracoo.jobreport.feature.machine.MachineFragment;
+import com.dracoo.jobreport.feature.problem.ProblemFragment;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
@@ -36,6 +46,17 @@ public class MenuActivity extends AppCompatActivity
 
     private Preference preference;
     private MessageUtils messageUtils;
+    public static int navItemIndex = 0;
+
+    public static final String EXTRA_CALLER_ACTIVITY = "job.extra_caller_flag";
+
+    public static final int EXTRA_FLAG_DASH = 11;
+    public static final int EXTRA_FLAG_PROBLEM = 12;
+    public static final int EXTRA_FLAG_TRACKING = 13;
+    public static final int EXTRA_FLAG_LIGHTNING = 14;
+    public static final int EXTRA_FLAG_MACHINE_ = 15;
+    public static final int EXTRA_FLAG_DOC = 16;
+    public static final int EXTRA_FLAG_ACTION = 17;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +69,10 @@ public class MenuActivity extends AppCompatActivity
 
         lblName = (TextView) header.findViewById(R.id.lbl_header_name);
         lblPhone = (TextView) header.findViewById(R.id.lbl_header_phone);
+
+        setupToolbarNavDrawer();
+        loadFragment();
+
     }
 
     @Override
@@ -122,6 +147,52 @@ public class MenuActivity extends AppCompatActivity
         }
     }
 
+    private void loadFragment(){
+        int flagMenu = getIntent().getIntExtra(EXTRA_CALLER_ACTIVITY, 0);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        switch (flagMenu) {
+            case EXTRA_FLAG_DASH:
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Dashboard");
+
+                }
+                transaction.replace(R.id.frame_nav_container, new DashboardFragment());
+                break;
+            case EXTRA_FLAG_PROBLEM:
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Problem Desc");
+
+                }
+                transaction.replace(R.id.frame_nav_container, new ProblemFragment());
+                break;
+            case EXTRA_FLAG_LIGHTNING:
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Electrical Environtment");
+
+                }
+                transaction.replace(R.id.frame_nav_container, new EnvirontmentFragment());
+                break;
+            case EXTRA_FLAG_MACHINE_:
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Machine");
+
+                }
+                transaction.replace(R.id.frame_nav_container, new MachineFragment());
+                break;
+            case EXTRA_FLAG_DOC :
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Documentation");
+
+                }
+                transaction.replace(R.id.frame_nav_container, new DocumentationFragment());
+                break;
+            case EXTRA_FLAG_ACTION :
+                break;
+
+        }
+
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -131,22 +202,70 @@ public class MenuActivity extends AppCompatActivity
         Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.nav_home :
+                fragment = new DashboardFragment();
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Dashboard");
+                }
                 break;
             case R.id.nav_problem :
+                fragment = new ProblemFragment();
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Problem Deac");
+                }
                 break;
             case R.id.nav_lightning :
+                fragment = new EnvirontmentFragment();
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Electrical Environtment");
+                }
                 break;
             case R.id.nav_machine :
+                fragment = new MachineFragment();
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Machine");
+                }
                 break;
             case R.id.nav_connection :
+                fragment = new ConnectionFragment();
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Connection");
+                }
                 break;
             case R.id.nav_doc :
+                fragment = new DocumentationFragment();
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Documentation");
+                }
                 break;
             case R.id.nav_action :
+                fragment = new ActionFragment();
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Action");
+                }
                 break;
             case R.id.nav_logout :
+                new AlertDialog.Builder(MenuActivity.this)
+                        .setTitle("Warning")
+                        .setMessage("MOhon selesaikan pekerjaan yang masih tertunda, apakah Anda yakin ingin keluar ?")
+                        .setIcon(R.mipmap.ic_launcher)
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
                 break;
 
+        }
+        if (fragment != null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_nav_container, fragment).commit();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
