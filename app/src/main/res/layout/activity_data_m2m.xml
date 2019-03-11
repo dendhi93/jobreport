@@ -181,7 +181,7 @@
                     android:backgroundTint="@android:color/transparent"
                     android:drawableLeft="@drawable/ic_black_setting_16"
                     android:inputType="text"
-                    android:maxLength="15"
+                    android:maxLength="25"
                     android:maxLines="2"
                     android:textColor="@color/colorBlack"
                     android:textColorLink="@color/colorWhite" />
@@ -225,7 +225,7 @@
                     android:backgroundTint="@android:color/transparent"
                     android:drawableLeft="@drawable/ic_black_setting_16"
                     android:inputType="text"
-                    android:maxLength="15"
+                    android:maxLength="25"
                     android:maxLines="2"
                     android:textColor="@color/colorBlack"
                     android:textColorLink="@color/colorWhite" />
@@ -269,7 +269,7 @@
                     android:backgroundTint="@android:color/transparent"
                     android:drawableLeft="@drawable/ic_black_setting_16"
                     android:inputType="text"
-                    android:maxLength="15"
+                    android:maxLength="25"
                     android:maxLines="2"
                     android:textColor="@color/colorBlack"
                     android:textColorLink="@color/colorWhite" />

@@ -155,6 +155,17 @@
     <string name="apt9">APT9</string>
 
     //parameter content
-
-
+    <string name="lan_parameter">LAN Parameter</string>
+    <string name="sat_parameter">SAT Parameter</string>
+    <string name="manag_parameter">Management Parameter</string>
+    <string name="ranging_parameter">Ranging Parameter</string>
+    <string name="rb_lan_param_1">255.255.255.248</string>
+    <string name="rb_lan_param_2">255.255.255.252</string>
+    <string name="rb_lan_param_3">255.255.255.0</string>
+    <string name="param_long">Long</string>
+    <string name="param_symRate">SymRate</string>
+    <string name="param_freq">Freq</string>
+    <string name="param_esn">ESN</string>
+    <string name="param_gateway">Gateway</string>
+    <string name="param_snmp">SNMP</string>
 </resources>
