@@ -870,19 +870,20 @@
                         android:src="@drawable/ic_save_24"/>
 
                     <ImageButton
-                        android:id="@+id/imgB_con_cancel"
+                        android:id="@+id/imgB_con_menu"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:layout_marginEnd="@dimen/spacing_small_1"
                         android:background="@drawable/ic_circle_transparent_selector"
-                        android:src="@drawable/ic_cancel"/>
+                        android:src="@drawable/ic_black_transparant_menu_32"/>
 
                     <ImageButton
-                        android:id="@+id/imgB_con_menu"
+                        android:id="@+id/imgB_con_cancel"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:background="@drawable/ic_circle_transparent_selector"
-                        android:src="@drawable/ic_black_transparant_menu_32"/>
+                        android:src="@drawable/ic_cancel"/>
+
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
