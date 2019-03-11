@@ -168,4 +168,10 @@
     <string name="param_esn">ESN</string>
     <string name="param_gateway">Gateway</string>
     <string name="param_snmp">SNMP</string>
+    <string name="param_signal">Signal</string>
+    <string name="param_data_rate">Data Rate</string>
+    <string name="param_fec">FEC</string>
+    <string name="param_pow_setting">Final Power Setting</string>
+    <string name="param_ESNO">Final ESNO</string>
+    <string name="param_cno">Final C/NO</string>
 </resources>
