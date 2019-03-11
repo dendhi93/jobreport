@@ -110,7 +110,7 @@
 
                 <LinearLayout
                     android:id="@+id/ln_conn_vsat"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -352,12 +352,35 @@
                             android:text="@string/diameter_antena"
                             android:textColor="@color/colorBlack" />
 
-                        <Spinner
-                            android:id="@+id/spinner_conn_antena"
+                        <RadioGroup
+                            android:padding="@dimen/spacing_tiny"
+                            android:id="@+id/rg_xpoll_conn_antena"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_marginEnd="@dimen/spacing_tiny"
-                            android:background="@color/ColorBlue" />
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RadioButton
+                                android:id="@+id/rb_xpoll_12m"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:text="@string/conn_12m"/>
+
+                            <RadioButton
+                                android:id="@+id/rb_xpoll_idMachine2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:text="@string/conn_18m"/>
+
+                            <RadioButton
+                                android:id="@+id/rb_xpoll_idMachine3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:text="@string/conn_24m"/>
+
+                        </RadioGroup>
 
                     </LinearLayout>
 
@@ -438,12 +461,36 @@
                             android:text="@string/pedestal_type"
                             android:textColor="@color/colorBlack" />
 
-                        <Spinner
-                            android:id="@+id/spinner_conn_pedestalType"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_marginEnd="@dimen/spacing_tiny"
-                            android:background="@color/ColorBlue" />
+                        <!--<RadioGroup-->
+                            <!--android:padding="@dimen/spacing_tiny"-->
+                            <!--android:id="@+id/rg_xpoll_conn_antena"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="vertical">-->
+
+                            <!--<RadioButton-->
+                                <!--android:id="@+id/rb_xpoll_12m"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginEnd="@dimen/spacing_medium"-->
+                                <!--android:text="@string/conn_12m"/>-->
+
+                            <!--<RadioButton-->
+                                <!--android:id="@+id/rb_xpoll_idMachine2"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginEnd="@dimen/spacing_medium"-->
+                                <!--android:text="@string/conn_18m"/>-->
+
+                            <!--<RadioButton-->
+                                <!--android:id="@+id/rb_xpoll_idMachine3"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginEnd="@dimen/spacing_medium"-->
+                                <!--android:text="@string/conn_24m"/>-->
+
+                        <!--</RadioGroup>-->
+
 
                     </LinearLayout>
 
@@ -475,6 +522,7 @@
                     android:id="@+id/ln_conn_m2m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
 

@@ -121,6 +121,13 @@
     <string name="sim_card1">SimCard1</string>
     <string name="sim_card2">SimCard2</string>
     <string name="puk">PUK</string>
+    <string name="conn_12m">1.2 M</string>
+    <string name="conn_18m">1.8 M</string>
+    <string name="conn_24m">2.4 M</string>
+    <!--<string name="puk">PUK</string>-->
+    <!--<string name="puk">PUK</string>-->
+    <!--<string name="puk">PUK</string>-->
+    <!--<string name="puk">PUK</string>-->
 
     //data m2m content
     <string name="password">Password</string>
