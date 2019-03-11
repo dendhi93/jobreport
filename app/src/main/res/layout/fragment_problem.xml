@@ -44,6 +44,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack"
                         android:hint="@string/name">
 
@@ -75,6 +76,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack"
                         android:hint="@string/problem_symtoms">
 
@@ -107,6 +109,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack"
                         android:hint="@string/action_taken">
 
@@ -141,6 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/berangkat"
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -187,6 +191,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/ln_problem_1"
                         android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
                         android:hint="@string/tiba"
                         android:textColorHint="@color/colorBlack">
 
@@ -235,6 +240,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/start"
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -281,6 +287,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/finish"
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -328,6 +335,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/upline"
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -375,6 +383,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/online"
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -420,6 +429,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
+                        android:background="@drawable/border_bottom"
                         android:hint="@string/pending">
 
                         <EditText
@@ -452,6 +462,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
+                        android:background="@drawable/border_bottom"
                         android:hint="@string/reason_pending">
 
                         <EditText
@@ -506,6 +517,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
+                        android:background="@drawable/border_bottom"
                         android:hint="@string/by">
 
                         <EditText

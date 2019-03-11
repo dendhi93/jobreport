@@ -83,10 +83,20 @@
     <string name="notes_env">Catatan</string>
 
     //machine content
-    <string name="machine_lccation">Lokasi Mesin</string>
+    <string name="machine_location">Lokasi Mesin</string>
     <string name="machine_qty">Jumlah Mesin</string>
     <string name="machine_id">Id Mesin</string>
     <string name="access">Akses</string>
+    <string name="rb_sendiri">Sendiri</string>
+    <string name="rb_center">Center</string>
+    <string name="rb_machine_1">1</string>
+    <string name="rb_machine_2">2</string>
+    <string name="rb_machine_3">3</string>
+    <string name="rb_machine_id1">Id Machine 1</string>
+    <string name="rb_machine_id2">Id Machine 2</string>
+    <string name="rb_machine_id3">Id machine 3</string>
+    <string name="rb_machine_24">24 Jam</string>
+    <string name="rb_machine_not24">Tidak 24 Jam</string>
 
     //connection type
     <string name="conn_type">Jenis Koneksi</string>

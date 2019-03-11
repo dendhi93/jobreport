@@ -38,15 +38,32 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorBlack"
-                    android:text="@string/machine_lccation"
+                    android:text="@string/machine_location"
+                    android:layout_marginStart="@dimen/spacing_tiny_2"
                     android:layout_gravity="center"/>
 
-                <Spinner
+                <RadioGroup
+                    android:padding="@dimen/spacing_tiny"
+                    android:id="@+id/rg_xpoll_machine"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:background="@color/ColorBlue"
-                    android:layout_marginEnd="@dimen/spacing_tiny"
-                    android:id="@+id/spinner_machine_location"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_sendiri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_sendiri"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_center"/>
+
+                </RadioGroup>
 
             </LinearLayout>
 
@@ -60,15 +77,39 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorBlack"
+                    android:layout_marginStart="@dimen/spacing_tiny_2"
                     android:text="@string/machine_qty"
                     android:layout_gravity="center"/>
 
-                <Spinner
+                <RadioGroup
+                    android:padding="@dimen/spacing_tiny"
+                    android:id="@+id/rg_xpoll_machine_qty"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:background="@color/ColorBlue"
-                    android:layout_marginEnd="@dimen/spacing_tiny"
-                    android:id="@+id/spinner_machine_qty"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_machine1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_machine_1"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_machine2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_machine_1"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_machine3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_machine_3"/>
+
+                </RadioGroup>
 
             </LinearLayout>
 
@@ -82,15 +123,39 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorBlack"
+                    android:layout_marginStart="@dimen/spacing_tiny_2"
                     android:text="@string/machine_id"
                     android:layout_gravity="center"/>
 
-                <Spinner
+                <RadioGroup
+                    android:padding="@dimen/spacing_tiny"
+                    android:id="@+id/rg_xpoll_machine_id"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:background="@color/ColorBlue"
-                    android:layout_marginEnd="@dimen/spacing_tiny"
-                    android:id="@+id/spinner_machine_id"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_idMachine1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_machine_id1"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_idMachine2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_machine_id2"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_idMachine3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_machine_id3"/>
+
+                </RadioGroup>
 
             </LinearLayout>
 
@@ -104,15 +169,32 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorBlack"
+                    android:layout_marginStart="@dimen/spacing_tiny_2"
                     android:text="@string/access"
                     android:layout_gravity="center"/>
 
-                <Spinner
+                <RadioGroup
+                    android:padding="@dimen/spacing_tiny"
+                    android:id="@+id/rg_xpoll_24"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:background="@color/ColorBlue"
-                    android:layout_marginEnd="@dimen/spacing_tiny"
-                    android:id="@+id/spinner_machine_access"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_machine_24"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_xpoll_not24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/rb_machine_not24"/>
+
+                </RadioGroup>
 
             </LinearLayout>
 

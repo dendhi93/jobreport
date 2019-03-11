@@ -60,6 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorBlack"
+                    android:background="@drawable/border_bottom"
                     android:hint="@string/tegangan">
 
                     <EditText
@@ -91,6 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorBlack"
+                    android:background="@drawable/border_bottom"
                     android:hint="@string/grounding">
 
                     <EditText
@@ -163,6 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorBlack"
+                    android:background="@drawable/border_bottom"
                     android:hint="@string/tegangan">
 
                     <EditText
@@ -194,6 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorBlack"
+                    android:background="@drawable/border_bottom"
                     android:hint="@string/grounding">
 
                     <EditText
@@ -225,6 +229,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorBlack"
+                    android:background="@drawable/border_bottom"
                     android:hint="@string/notes_env">
 
                     <EditText
@@ -295,6 +300,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorBlack"
+                    android:background="@drawable/border_bottom"
                     android:hint="@string/suhu">
 
                     <EditText
@@ -326,6 +332,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorBlack"
+                    android:background="@drawable/border_bottom"
                     android:hint="@string/notes_env">
 
                     <EditText
