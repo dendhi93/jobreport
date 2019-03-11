@@ -3,6 +3,7 @@ package com.dracoo.jobreport.feature;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -126,23 +127,27 @@ public class MenuActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-//            // Handle the camera action
-        } else if (id == R.id.nav_problem) {
-//
+        Fragment fragment = null;
+        switch (item.getItemId()) {
+            case R.id.nav_home :
+                break;
+            case R.id.nav_problem :
+                break;
+            case R.id.nav_lightning :
+                break;
+            case R.id.nav_machine :
+                break;
+            case R.id.nav_connection :
+                break;
+            case R.id.nav_doc :
+                break;
+            case R.id.nav_action :
+                break;
+            case R.id.nav_logout :
+                break;
+
         }
-// else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
