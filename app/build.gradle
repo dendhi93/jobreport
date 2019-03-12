@@ -67,4 +67,6 @@ dependencies {
     implementation files('libs/ormlite-core-4.35.jar')
 
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    implementation 'com.google.android.gms:play-services-location:11.6.0'
 }
