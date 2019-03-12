@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,27 +70,29 @@ public class MenuActivity extends AppCompatActivity
 
         lblName = (TextView) header.findViewById(R.id.lbl_header_name);
         lblPhone = (TextView) header.findViewById(R.id.lbl_header_phone);
+        preference = new Preference(MenuActivity.this);
+        messageUtils = new MessageUtils(MenuActivity.this);
+        try{
+            String prefUn = preference.getUn();
+            messageUtils.toastMessage(prefUn, ConfigApps.T_INFO);
+            String prefPhone = preference.getPhone();
+
+            lblName.setText(prefUn.trim());
+            lblPhone.setText("Phone " +prefPhone.trim());
+
+        }catch (Exception e){
+            Log.d("suram",""+e.toString());
+        }
 
         setupToolbarNavDrawer();
         loadFragment();
 
     }
 
-    @Override
-    protected void onStart(){
-        super.onStart();
-        preference = new Preference(MenuActivity.this);
-        messageUtils = new MessageUtils(MenuActivity.this);
-        try{
-            String prefUn = preference.getUn();
-            String prefPhone = preference.getPhone();
-
-            if (!prefUn.equals("") || !prefPhone.equals("")){
-                lblName.setText(prefUn.trim());
-                lblPhone.setText(prefPhone.trim());
-            }
-        }catch (Exception e){}
-    }
+//    @Override
+//    protected void onStart(){
+//        super.onStart();
+//    }
 
     private void setupToolbarNavDrawer(){
         setSupportActionBar(toolbar);
@@ -103,22 +106,6 @@ public class MenuActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-        final Menu menu = navigationView.getMenu();
-
-        menu.add(Menu.NONE, R.id.nav_home, Menu.NONE, ConfigApps.HOME);
-        menu.findItem(R.id.nav_home).setIcon(R.drawable.nav_home);
-        menu.add(Menu.NONE, R.id.nav_problem, Menu.NONE, ConfigApps.PROBLEM_DESC);
-        menu.findItem(R.id.nav_problem).setIcon(R.drawable.nav_information);
-        menu.add(Menu.NONE, R.id.nav_lightning, Menu.NONE, ConfigApps.LIGHTNING);
-        menu.findItem(R.id.nav_lightning).setIcon(R.drawable.ic_lightning);
-        menu.add(Menu.NONE, R.id.nav_machine, Menu.NONE, ConfigApps.MACHINE);
-        menu.findItem(R.id.nav_machine).setIcon(R.drawable.ic_setting);
-        menu.add(Menu.NONE, R.id.nav_connection, Menu.NONE, ConfigApps.CONNECTION);
-        menu.findItem(R.id.nav_connection).setIcon(R.drawable.ic_tower);
-        menu.add(Menu.NONE, R.id.nav_doc, Menu.NONE, ConfigApps.DOC);
-        menu.findItem(R.id.nav_doc).setIcon(R.drawable.ic_doc);
-        menu.add(Menu.NONE, R.id.nav_logout, Menu.NONE, ConfigApps.LOGOUT);
-        menu.findItem(R.id.nav_logout).setIcon(R.drawable.ic_logout);
 
         navigationView.setItemIconTintList(null);
 
@@ -188,9 +175,16 @@ public class MenuActivity extends AppCompatActivity
                 transaction.replace(R.id.frame_nav_container, new DocumentationFragment());
                 break;
             case EXTRA_FLAG_ACTION :
-                break;
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Action");
 
+                }
+                transaction.replace(R.id.frame_nav_container, new ActionFragment());
+                break;
+            default:
+                break;
         }
+        transaction.commit();
 
     }
 
