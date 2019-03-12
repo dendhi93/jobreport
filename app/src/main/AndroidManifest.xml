@@ -34,7 +34,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.vsatparameter.ParameterActivity"></activity>
+        <activity android:name=".feature.useractivity.UserActivity"></activity>
+        <activity android:name=".feature.vsatparameter.ParameterActivity" />
         <activity android:name=".feature.xpoll.XpollActivity" />
         <activity android:name=".feature.datam2m.DataM2mActivity" />
         <activity android:name=".feature.replace.ReplaceActivity" />
