@@ -494,12 +494,29 @@
                         android:text="@string/closed"
                         android:layout_gravity="center"/>
 
-                    <Spinner
+                    <RadioGroup
+                        android:id="@+id/rg_prob_closedBy"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:background="@color/ColorBlue"
-                        android:layout_marginEnd="@dimen/spacing_tiny"
-                        android:id="@+id/spinner_problem1"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ln_conn_title"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_tiny">
+
+                        <RadioButton
+                            android:id="@+id/rb_prob_eos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/padding_medium2"
+                            android:text="@string/rb_eos" />
+
+                        <RadioButton
+                            android:id="@+id/rb_conn_m2m"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rb_noc" />
+
+                    </RadioGroup>
 
                 </LinearLayout>
 
