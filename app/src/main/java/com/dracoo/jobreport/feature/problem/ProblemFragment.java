@@ -5,11 +5,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -17,6 +20,13 @@ import butterknife.OnClick;
 public class ProblemFragment extends Fragment {
 
     private MessageUtils messageUtils;
+
+    @BindView(R.id.rg_prob_closedBy)
+    RadioGroup rg_prob_closedBy;
+
+    private int selectedRb = 0;
+    private String valueRb = "";
+    private RadioButton radioButtonClosed ;
 
 
     @Override
@@ -34,6 +44,17 @@ public class ProblemFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         messageUtils = new MessageUtils(getActivity());
+        rbListener();
+    }
+
+    private void rbListener(){
+        rg_prob_closedBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                radioButtonClosed =  (RadioButton) getView().findViewById(i);
+                valueRb = radioButtonClosed.getText().toString();
+            }
+        });
     }
 
     @OnClick(R.id.imgB_problem_submit)
