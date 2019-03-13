@@ -44,20 +44,20 @@
 
                 <RadioGroup
                     android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_xpoll_machine"
+                    android:id="@+id/rg_machine_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_sendiri"
+                        android:id="@+id/rb_machine_sendiri"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
                         android:text="@string/rb_sendiri"/>
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_center"
+                        android:id="@+id/rb_machine_center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
@@ -83,27 +83,27 @@
 
                 <RadioGroup
                     android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_xpoll_machine_qty"
+                    android:id="@+id/rg_machine_qty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_machine1"
+                        android:id="@+id/rb_machine1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
                         android:text="@string/rb_machine_1"/>
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_machine2"
+                        android:id="@+id/rb_machine2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
                         android:text="@string/rb_machine_1"/>
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_machine3"
+                        android:id="@+id/rb_machine3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
@@ -129,27 +129,27 @@
 
                 <RadioGroup
                     android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_xpoll_machine_id"
+                    android:id="@+id/rg_machine_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_idMachine1"
+                        android:id="@+id/rb_idMachine1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
                         android:text="@string/rb_machine_id1"/>
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_idMachine2"
+                        android:id="@+id/rb_idMachine2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
                         android:text="@string/rb_machine_id2"/>
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_idMachine3"
+                        android:id="@+id/rb_idMachine3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
@@ -175,20 +175,20 @@
 
                 <RadioGroup
                     android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_xpoll_24"
+                    android:id="@+id/rg_machine_24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_24"
+                        android:id="@+id/rb_machine_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
                         android:text="@string/rb_machine_24"/>
 
                     <RadioButton
-                        android:id="@+id/rb_xpoll_not24"
+                        android:id="@+id/rb_machine_not24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/spacing_medium"
