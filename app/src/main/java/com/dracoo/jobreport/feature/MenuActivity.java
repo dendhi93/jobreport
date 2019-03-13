@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -237,10 +238,10 @@ public class MenuActivity extends AppCompatActivity
                 }
                 break;
             case R.id.nav_logout :
-                new AlertDialog.Builder(MenuActivity.this)
+                new AlertDialog.Builder(MenuActivity.this, R.style.AlertDialog)
                         .setTitle("Warning")
-                        .setMessage("MOhon selesaikan pekerjaan yang masih tertunda, apakah Anda yakin ingin keluar ?")
-                        .setIcon(R.mipmap.ic_launcher)
+                        .setMessage("Mohon selesaikan pekerjaan yang masih tertunda, apakah Anda yakin ingin keluar ?")
+                        .setIcon(R.drawable.ic_logo)
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
