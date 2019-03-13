@@ -39,7 +39,7 @@
 
                 <RadioGroup
                     android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_xpoll_xpoll"
+                    android:id="@+id/rg_xpoll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">

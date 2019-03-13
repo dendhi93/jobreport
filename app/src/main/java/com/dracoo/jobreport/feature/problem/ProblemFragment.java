@@ -24,7 +24,6 @@ public class ProblemFragment extends Fragment {
     @BindView(R.id.rg_prob_closedBy)
     RadioGroup rg_prob_closedBy;
 
-    private int selectedRb = 0;
     private String valueRb = "";
     private RadioButton radioButtonClosed ;
 
