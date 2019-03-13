@@ -20,20 +20,20 @@
 
 
     <ProgressBar
-        android:layout_marginTop="@dimen/alph_size_tiny"
-        android:layout_below="@+id/image_splash"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:indeterminateDrawable="@drawable/progress"
-        android:foregroundGravity="center"
-        android:id="@+id/prg_splash"/>
+        android:id="@+id/prg_splash"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="visible" />
 
 
     <TextView
         android:id="@+id/lbl_splash_note1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/prg_splash"
+        android:layout_below="@+id/image_splash"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/alph_size_small"
         android:layout_marginTop="20dp"

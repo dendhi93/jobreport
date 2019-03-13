@@ -41,7 +41,7 @@ public class ParameterActivity extends AppCompatActivity {
         rg_par_subnetmask.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rbParameter =  (RadioButton) findViewById(i);
+                rbParameter =  findViewById(i);
                 selectedParameter = rbParameter.getText().toString();
             }
         });

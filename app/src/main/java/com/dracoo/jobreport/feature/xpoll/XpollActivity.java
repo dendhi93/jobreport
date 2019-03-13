@@ -39,7 +39,7 @@ public class XpollActivity extends AppCompatActivity {
         rg_xpoll.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rbXpoll =  (RadioButton) findViewById(i);
+                rbXpoll =  findViewById(i);
                 selectedRadio = rbXpoll.getText().toString();
             }
         });
