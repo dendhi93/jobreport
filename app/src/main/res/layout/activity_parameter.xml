@@ -57,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/ip_lan"
                     android:textColorHint="@color/colorBlack">
 
@@ -167,7 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/ip_lan"
                     android:textColorHint="@color/colorBlack">
 
@@ -189,7 +189,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_symRate"
                     android:textColorHint="@color/colorBlack">
 
@@ -211,7 +211,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_freq"
                     android:textColorHint="@color/colorBlack">
 
@@ -277,7 +277,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_esn"
                     android:textColorHint="@color/colorBlack">
 
@@ -299,7 +299,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_gateway"
                     android:textColorHint="@color/colorBlack">
 
@@ -321,7 +321,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_snmp"
                     android:textColorHint="@color/colorBlack">
 
@@ -387,7 +387,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_signal"
                     android:textColorHint="@color/colorBlack">
 
@@ -409,7 +409,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_data_rate"
                     android:textColorHint="@color/colorBlack">
 
@@ -431,7 +431,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_fec"
                     android:textColorHint="@color/colorBlack">
 
@@ -453,7 +453,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_pow_setting"
                     android:textColorHint="@color/colorBlack">
 
@@ -475,7 +475,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_ESNO"
                     android:textColorHint="@color/colorBlack">
 
@@ -497,7 +497,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/param_cno"
                     android:textColorHint="@color/colorBlack">
 

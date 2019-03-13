@@ -129,7 +129,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/sn_modem"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -161,7 +161,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/sn_adaptor"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -191,7 +191,7 @@
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/border_bottom"
+
                             android:layout_weight="1"
                             android:hint="@string/sn_fh"
                             android:textColorHint="@color/colorBlack">
@@ -225,7 +225,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/sn_lnb"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -257,7 +257,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/sn_rfu"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -288,7 +288,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@drawable/border_bottom"
+
                             android:hint="@string/sn_diplexer_odu"
                             android:textColorHint="@color/colorBlack">
 
@@ -320,7 +320,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@drawable/border_bottom"
+
                             android:hint="@string/sn_diplexer_idu"
                             android:textColorHint="@color/colorBlack">
 
@@ -398,7 +398,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/antena_type"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -430,7 +430,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/antena_brand"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -567,7 +567,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/brand_type"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -589,7 +589,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/m2m_sn"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -633,7 +633,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/brand_type"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -655,7 +655,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/m2m_sn"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -699,7 +699,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/brand_type"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -721,7 +721,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/m2m_sn"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -743,7 +743,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/puk"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -788,7 +788,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/brand_type"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -810,7 +810,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/m2m_sn"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -832,7 +832,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/puk"
-                            android:background="@drawable/border_bottom"
+
                             android:textColorHint="@color/colorBlack">
 
                             <EditText

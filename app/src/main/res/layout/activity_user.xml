@@ -132,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/name">
 
                         <EditText
@@ -167,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/service_point">
 
                         <EditText
@@ -201,7 +201,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/phone">
 
                         <EditText
@@ -235,7 +235,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/pic">
 
                         <EditText
@@ -269,7 +269,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/jabatan">
 
                         <EditText
@@ -303,7 +303,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/phone_pic">
 
                         <EditText
@@ -382,7 +382,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/location_name">
 
                         <EditText
@@ -416,7 +416,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/customer">
 
                         <EditText
@@ -450,7 +450,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/remote_address">
 
                         <EditText
@@ -484,7 +484,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/city">
 
                         <EditText
@@ -517,7 +517,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
+
                         android:textColorHint="@color/colorBlack"
                         android:hint="@string/kabupaten">
 
@@ -551,7 +551,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
+
                         android:textColorHint="@color/colorBlack"
                         android:hint="@string/proviency">
 
@@ -586,7 +586,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/lat">
 
                         <EditText
@@ -620,7 +620,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
+
                         android:hint="@string/longitude">
 
                         <EditText

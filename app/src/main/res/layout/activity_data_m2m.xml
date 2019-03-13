@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/username"
                 android:textColorHint="@color/colorBlack">
 
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/password"
                 custom:passwordToggleEnabled="true"
                 android:textColorHint="@color/colorBlack">
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/ip_machine"
                 android:textColorHint="@color/colorBlack">
 
@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/m2m_user"
                 android:textColorHint="@color/colorBlack">
 
@@ -125,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/m2m_remote"
                 android:textColorHint="@color/colorBlack">
 
@@ -148,7 +148,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/tunnel_id"
                 android:textColorHint="@color/colorBlack">
 
@@ -170,7 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/ip_bounding"
                 android:textColorHint="@color/colorBlack">
 
@@ -192,7 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/ip_vlan"
                 android:textColorHint="@color/colorBlack">
 
@@ -214,7 +214,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/ip_lan"
                 android:textColorHint="@color/colorBlack">
 
@@ -236,7 +236,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/subnetMask"
                 android:textColorHint="@color/colorBlack">
 
@@ -258,7 +258,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_bottom"
+
                 android:hint="@string/agg"
                 android:textColorHint="@color/colorBlack">
 

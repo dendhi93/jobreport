@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/transponder"
                     android:textColorHint="@color/colorBlack">
 
@@ -102,7 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/lft"
                     android:textColorHint="@color/colorBlack">
 
@@ -124,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/cn"
                     android:textColorHint="@color/colorBlack">
 
@@ -146,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/cpi"
                     android:textColorHint="@color/colorBlack">
 
@@ -168,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/ASI"
                     android:textColorHint="@color/colorBlack">
 
@@ -237,7 +237,7 @@ ac
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
+
                     android:hint="@string/op"
                     android:textColorHint="@color/colorBlack">
 
