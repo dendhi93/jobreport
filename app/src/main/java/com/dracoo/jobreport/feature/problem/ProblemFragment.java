@@ -45,6 +45,31 @@ public class ProblemFragment extends Fragment {
     void probCancel(){
         messageUtils.toastMessage("coba 2", ConfigApps.T_DEFAULT);
     }
+    @OnClick(R.id.imgBtn_timer1)
+    void displayTime1(){
+        messageUtils.toastMessage("coba 3", ConfigApps.T_DEFAULT);
+    }
+    @OnClick(R.id.imgBtn_timer2)
+    void displayTime2(){
+        messageUtils.toastMessage("coba 4", ConfigApps.T_DEFAULT);
+    }
+    @OnClick(R.id.imgBtn_timer3)
+    void displayTime3(){
+        messageUtils.toastMessage("coba 5", ConfigApps.T_DEFAULT);
+    }
+    @OnClick(R.id.imgBtn_timer4)
+    void displayTime4(){
+        messageUtils.toastMessage("coba 6", ConfigApps.T_DEFAULT);
+    }
+    @OnClick(R.id.imgBtn_timer5)
+    void displayTime5(){
+        messageUtils.toastMessage("coba 7", ConfigApps.T_DEFAULT);
+    }
+    @OnClick(R.id.imgBtn_timer6)
+    void displayTime6(){
+        messageUtils.toastMessage("coba 2", ConfigApps.T_DEFAULT);
+    }
+
 
 
 
