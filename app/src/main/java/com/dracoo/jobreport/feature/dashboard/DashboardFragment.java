@@ -1,6 +1,7 @@
 package com.dracoo.jobreport.feature.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.feature.useractivity.UserActivity;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DashboardFragment extends Fragment {
 
@@ -23,6 +26,12 @@ public class DashboardFragment extends Fragment {
 
         return view;
 
+    }
+
+    @OnClick(R.id.imgB_dash_toActivity)
+    void toActivity (){
+        Intent intent = new Intent(getActivity(), UserActivity.class);
+        startActivity(intent);
     }
 
 
