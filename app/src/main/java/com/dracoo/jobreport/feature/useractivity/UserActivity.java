@@ -6,10 +6,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -43,5 +45,15 @@ public class UserActivity extends AppCompatActivity {
                 selectedProgress = rb_progress.getText().toString();
             }
         });
+    }
+
+    @OnClick(R.id.imgB_userAct_submit)
+    void submitUser(){
+        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+    }
+
+    @OnClick(R.id.imgB_userAct_cancel)
+    void cancelUser(){
+        messageUtils.toastMessage("coba menu", ConfigApps.T_DEFAULT);
     }
 }

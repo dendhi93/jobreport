@@ -6,10 +6,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class XpollActivity extends AppCompatActivity {
 
@@ -44,4 +46,20 @@ public class XpollActivity extends AppCompatActivity {
             }
         });
     }
+
+    @OnClick(R.id.imgB_xpoll_submit)
+    void submitXpoll(){
+        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+    }
+
+    @OnClick(R.id.imgB_xpoll_menu)
+    void menuXpoll(){
+        messageUtils.toastMessage("coba menu", ConfigApps.T_DEFAULT);
+    }
+
+    @OnClick(R.id.imgB_xpoll_cancel)
+    void cancelXpoll(){
+        messageUtils.toastMessage("coba2", ConfigApps.T_DEFAULT);
+    }
+
 }
