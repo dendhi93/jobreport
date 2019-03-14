@@ -34,6 +34,8 @@ public class MasterVsatReplace implements Serializable {
     private String insert_date;
     @DatabaseField(columnName = "update_date")
     private String update_date;
+    @DatabaseField(columnName = "un_user")
+    private String un_user;
 
     public Integer getId_replace() {
         return id_replace;
@@ -137,5 +139,13 @@ public class MasterVsatReplace implements Serializable {
 
     public void setUpdate_date(String update_date) {
         this.update_date = update_date;
+    }
+
+    public String getUn_user() {
+        return un_user;
+    }
+
+    public void setUn_user(String un_user) {
+        this.un_user = un_user;
     }
 }
