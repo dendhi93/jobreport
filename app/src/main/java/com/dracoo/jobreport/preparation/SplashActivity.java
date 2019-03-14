@@ -45,7 +45,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         checkGps();
-        createDirectory();
         try {
             databaseAdapter = new DatabaseAdapter(this);
             databaseAdapter.CreateDatabase();
@@ -62,6 +61,8 @@ public class SplashActivity extends AppCompatActivity {
         if (!isGPSEnabled && !isNetworkEnabled) {
             prgSplash.setVisibility(View.GONE);
             Dialogs.showDialog(handler, SplashActivity.this, "Warning", "Gps OFf, mohon Akrifkan Gps", true);
+        }else{
+            createDirectory();
         }
 
     }

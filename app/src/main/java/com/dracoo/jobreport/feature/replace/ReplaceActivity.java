@@ -12,6 +12,8 @@ import butterknife.OnClick;
 
 public class ReplaceActivity extends AppCompatActivity {
     private MessageUtils messageUtils;
+    public static final String EXTRA_CALLER_CONN = "connection_type";
+    private String intentConnectionType = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

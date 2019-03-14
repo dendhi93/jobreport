@@ -54,11 +54,10 @@ public class MenuActivity extends AppCompatActivity
 
     public static final int EXTRA_FLAG_DASH = 11;
     public static final int EXTRA_FLAG_PROBLEM = 12;
-    public static final int EXTRA_FLAG_TRACKING = 13;
-    public static final int EXTRA_FLAG_LIGHTNING = 14;
-    public static final int EXTRA_FLAG_MACHINE_ = 15;
-    public static final int EXTRA_FLAG_DOC = 16;
-    public static final int EXTRA_FLAG_ACTION = 17;
+    public static final int EXTRA_FLAG_LIGHTNING = 13;
+    public static final int EXTRA_FLAG_MACHINE_ = 14;
+    public static final int EXTRA_FLAG_DOC = 15;
+    public static final int EXTRA_FLAG_ACTION = 16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

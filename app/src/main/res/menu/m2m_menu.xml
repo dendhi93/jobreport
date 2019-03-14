@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mnu_m2m_replace"
+        android:title="replace" />
+    <item
+        android:id="@+id/mnu_data_m2m"
+        android:title="data m2m"/>
+</menu>

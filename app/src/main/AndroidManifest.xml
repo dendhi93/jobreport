@@ -49,12 +49,12 @@
         <activity
             android:name=".preparation.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBarActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".preparation.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBarActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".feature.MenuActivity"
