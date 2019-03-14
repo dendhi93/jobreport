@@ -11,10 +11,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ConnectionFragment extends Fragment {
 
@@ -81,6 +83,21 @@ public class ConnectionFragment extends Fragment {
                 selectedAccess = rb_selectedAccess.getText().toString();
             }
         });
+    }
+
+    @OnClick(R.id.imgB_con_submit)
+    void submitConn(){
+        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+    }
+
+    @OnClick(R.id.imgB_con_menu)
+    void chooseConnMenu(){
+        messageUtils.toastMessage("coba menu", ConfigApps.T_DEFAULT);
+    }
+
+    @OnClick(R.id.imgB_con_cancel)
+    void cancelConn(){
+        messageUtils.toastMessage("coba2", ConfigApps.T_DEFAULT);
     }
 
 
