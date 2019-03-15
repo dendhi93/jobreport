@@ -22,7 +22,6 @@ public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
     public static final String TABLE_EMP = "t_jobdesc";
     private Context mContext;
 
-
     public DatabaseAdapter(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         mContext = context;
@@ -40,7 +39,7 @@ public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
                 throw new Error("Error, Copying database");
             }
         } else {
-            forceUpdate();
+            forceupdate();
         }
     }
 
@@ -48,7 +47,8 @@ public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
         SQLiteDatabase checkDb = null;
         try {
             String mPath = DB_PATH + DB_NAME;
-            checkDb = SQLiteDatabase.openDatabase(mPath, null,SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+            checkDb = SQLiteDatabase.openDatabase(mPath, null,
+                    SQLiteDatabase.NO_LOCALIZED_COLLATORS);
         } catch (SQLException e) {
             Log.e("Error", e.toString());
         }
@@ -72,17 +72,20 @@ public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
             Log.d(null, "####DEBUG#### : " + "Copying form assest");
         }
 
-        String outFileName = DB_PATH + DB_NAME;
-        OutputStream mOutput = new FileOutputStream(outFileName);
+        try {
+            String outFileName = DB_PATH + DB_NAME;
+            OutputStream mOutput = new FileOutputStream(outFileName);
 
-        byte[] buffer = new byte[1024];
-        int length;
-        while ((length = mInput.read(buffer)) > 0) {
-            mOutput.write(buffer, 0, length);
-        }
-        mOutput.flush();
-        mOutput.close();
-        mInput.close();
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = mInput.read(buffer)) > 0) {
+                mOutput.write(buffer, 0, length);
+            }
+            mOutput.flush();
+            mOutput.close();
+            mInput.close();
+        } catch (Exception e) {Log.d("failed to outFileName ", ""+e);}
+
 
         // hapus database yg terdapat pada sdcard
         try {
@@ -99,7 +102,7 @@ public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
     }
 
     // metode update database
-    private void forceUpdate() {
+    private void forceupdate() {
         InputStream mInput;
         try {
             File mFile = new File("/sdcard/data/JobReport/databases/db_report.db");
@@ -127,10 +130,19 @@ public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
         }
     }
 
+    public void updateDatabase() throws IOException {
+        copyDatabase();
+    }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {}
+    public void onCreate(SQLiteDatabase arg0, ConnectionSource arg1) {
+
+    }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int i, int i1) {}
+    public void onUpgrade(SQLiteDatabase arg0, ConnectionSource arg1, int arg2,int arg3) {
+
+    }
+
 }
+
