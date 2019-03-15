@@ -50,7 +50,7 @@ public class ProblemFragment extends Fragment {
         rg_prob_closedBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                radioButtonClosed =  (RadioButton) getView().findViewById(i);
+                radioButtonClosed = getView().findViewById(i);
                 valueRb = radioButtonClosed.getText().toString();
             }
         });

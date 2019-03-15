@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.content.Context;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 

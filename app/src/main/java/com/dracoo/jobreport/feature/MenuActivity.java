@@ -68,8 +68,8 @@ public class MenuActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         setupToolbarNavDrawer();
 
-        lblName = (TextView) header.findViewById(R.id.lbl_header_name);
-        lblPhone = (TextView) header.findViewById(R.id.lbl_header_phone);
+        lblName = header.findViewById(R.id.lbl_header_name);
+        lblPhone = header.findViewById(R.id.lbl_header_phone);
         preference = new Preference(MenuActivity.this);
         messageUtils = new MessageUtils(MenuActivity.this);
         try{

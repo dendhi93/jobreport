@@ -1,5 +1,11 @@
 <resources>
+    //activity
     <string name="app_name">JobReport</string>
+    <string name="customer_site">Customer</string>
+    <string name="vsat_parameter">VSAT Parameter</string>
+    <string name="xpoll">XPOLL</string>
+    <string name="replace_activity">Replace</string>
+    <string name="datam2m_activity">Data M2M</string>
 
     //button
     <string name="persmission_button">Izinkan</string>

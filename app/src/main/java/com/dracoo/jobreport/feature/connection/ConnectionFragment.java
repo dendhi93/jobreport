@@ -140,7 +140,9 @@ public class ConnectionFragment extends Fragment {
     void chooseConnMenu(View view){
         Context wrapper = new ContextThemeWrapper(getActivity(), R.style.PopupMenu);
         PopupMenu popup = new PopupMenu(wrapper, view);
-        if(selectedConn.equals("VSAT")){
+        if (selectedConn.equals("")){
+            messageUtils.toastMessage("Mohon dipilih jenis koneksi", ConfigApps.T_WARNING);
+        } else if(selectedConn.equals("VSAT")){
             popup.getMenuInflater().inflate(R.menu.vsat_menu, popup.getMenu());
         }else {
             popup.getMenuInflater().inflate(R.menu.m2m_menu, popup.getMenu());
