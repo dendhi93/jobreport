@@ -41,6 +41,11 @@ public class DocumentationFragment extends Fragment {
     void getImage(){
         messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
     }
+
+    @OnClick(R.id.imgB_doc_confirm)
+    void getUpload(){
+        messageUtils.toastMessage("coba 2", ConfigApps.T_DEFAULT);
+    }
 }
 
 

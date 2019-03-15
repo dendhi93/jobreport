@@ -44,20 +44,8 @@ public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
     }
 
     private boolean DatabaseExist() {
-        SQLiteDatabase checkDb = null;
-        try {
-            String mPath = DB_PATH + DB_NAME;
-            checkDb = SQLiteDatabase.openDatabase(mPath, null,
-                    SQLiteDatabase.NO_LOCALIZED_COLLATORS);
-        } catch (SQLException e) {
-            Log.e("Error", e.toString());
-        }
-        if (checkDb != null) {
-            checkDb.close();
-            return true;
-        } else {
-            return false;
-        }
+        File databasePath = mContext.getDatabasePath(DB_NAME);
+        return databasePath.exists();
     }
 
     private void copyDatabase() throws IOException {

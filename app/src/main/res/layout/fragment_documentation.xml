@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorGray200"
+    android:gravity="center"
     tools:context=".feature.documentation.DocumentationFragment">
 
-    <ImageView
-        android:id="@+id/imgV_doc_1"
-        android:layout_marginTop="@dimen/icon_medium"
-        android:layout_gravity="center"
-        android:layout_width="105dp"
-        android:layout_height="105dp"
-        android:src="@drawable/ic_upload"/>
+    <LinearLayout
+        android:id="@+id/ln_doc_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgV_doc_1"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/icon_medium"
+            android:foregroundGravity=""
+            android:src="@drawable/ic_upload" />
+    </LinearLayout>
+
+
 
     <View
+        android:layout_below="@+id/ln_doc_1"
+        android:id="@+id/view_1"
         android:layout_marginTop="@dimen/spacing_medium"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -23,6 +36,7 @@
         />
 
     <RelativeLayout
+        android:layout_below="@+id/view_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -34,9 +48,41 @@
             android:scrollbars="vertical" />
 
         <TextView
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/empty_data"/>
+            android:text="@string/empty_data" />
+
+        <RelativeLayout
+            android:id="@+id/rl_dash_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/spacing_small_1"
+            android:background="@color/colorWhite"
+            android:padding="@dimen/spacing_semi_medium">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_tiny"
+                android:layout_toLeftOf="@+id/imgB_doc_confirm"
+                android:gravity="center"
+                android:text="Mohon dilakukan pengecekan kembali sebelum di Upload"
+                android:textColor="@color/colorBlack" />
+
+            <ImageButton
+                android:id="@+id/imgB_doc_confirm"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="@dimen/spacing_small_1"
+                android:background="@drawable/ic_circle_selector"
+                android:contentDescription="@string/content_desc"
+                android:src="@drawable/ic_white_upload_32" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -44,4 +90,4 @@
 
 
 
-</LinearLayout>
+</RelativeLayout>
