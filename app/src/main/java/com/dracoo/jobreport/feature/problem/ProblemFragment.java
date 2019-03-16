@@ -1,16 +1,23 @@
 package com.dracoo.jobreport.feature.problem;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TimePicker;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
+
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,9 +30,24 @@ public class ProblemFragment extends Fragment {
 
     @BindView(R.id.rg_prob_closedBy)
     RadioGroup rg_prob_closedBy;
+    @BindView(R.id.txt_problem_berangkat)
+    EditText txt_problem_berangkat;
+    @BindView(R.id.txt_problem_tiba)
+    EditText txt_problem_tiba;
+    @BindView(R.id.txt_problem_start)
+    EditText txt_problem_start;
+    @BindView(R.id.txt_problem_finish)
+    EditText txt_problem_finish;
+    @BindView(R.id.txt_problem_upline)
+    EditText txt_problem_upline;
+    @BindView(R.id.txt_problem_online)
+    EditText txt_problem_online;
+
 
     private String valueRb = "";
+    private String tempDate = "";
     private RadioButton radioButtonClosed ;
+    private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
 
 
     @Override
@@ -67,27 +89,108 @@ public class ProblemFragment extends Fragment {
     }
     @OnClick(R.id.imgBtn_timer1)
     void displayTime1(){
-        messageUtils.toastMessage("coba 3", ConfigApps.T_DEFAULT);
+        datePicker(1);
     }
     @OnClick(R.id.imgBtn_timer2)
     void displayTime2(){
-        messageUtils.toastMessage("coba 4", ConfigApps.T_DEFAULT);
+        datePicker(3);
     }
     @OnClick(R.id.imgBtn_timer3)
     void displayTime3(){
-        messageUtils.toastMessage("coba 5", ConfigApps.T_DEFAULT);
+        timePicker(2);
     }
     @OnClick(R.id.imgBtn_timer4)
     void displayTime4(){
-        messageUtils.toastMessage("coba 6", ConfigApps.T_DEFAULT);
+        timePicker(4);
     }
     @OnClick(R.id.imgBtn_timer5)
     void displayTime5(){
-        messageUtils.toastMessage("coba 7", ConfigApps.T_DEFAULT);
+        datePicker(5);
     }
     @OnClick(R.id.imgBtn_timer6)
     void displayTime6(){
-        messageUtils.toastMessage("coba 2", ConfigApps.T_DEFAULT);
+        datePicker(7);
+    }
+
+    private void datePicker(final int selectedColumn){
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String selectedMonth, selectedDay;
+                if (month < 10) {
+                    selectedMonth = "0"+month;
+                }else{
+                    selectedMonth = String.valueOf(month);
+                }
+
+                if (dayOfMonth < 10) {
+                    selectedDay = "0"+dayOfMonth;
+                }else {
+                    selectedDay = String.valueOf(dayOfMonth);
+                }
+
+                tempDate = String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay;
+                timePicker(selectedColumn);
+            }
+        }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+    }
+
+    private void timePicker(final int selectedColumn){
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+        mSecond = c.get(Calendar.SECOND);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String selectedHour, selectedMinutes, selectedSecond;
+                if (hourOfDay < 10){
+                    selectedHour = "0"+String.valueOf(hourOfDay);
+                }else{
+                    selectedHour = String.valueOf(hourOfDay);
+                }
+
+                if (minute < 10){
+                    selectedMinutes = "0"+String.valueOf(minute);
+                }else{
+                    selectedMinutes = String.valueOf(minute);
+                }
+
+                if (mSecond < 10){
+                    selectedSecond = "0"+String.valueOf(mSecond);
+                }else{
+                    selectedSecond = String.valueOf(mSecond);
+                }
+
+                String validTime = selectedHour +":"+selectedMinutes+":"+selectedSecond;
+                String validDateTime = "";
+                if (!tempDate.equals("")){
+                    validDateTime = tempDate +","+validTime;
+                }
+                if (selectedColumn == 2){
+                    txt_problem_start.setText(validTime.trim());
+                }else if (selectedColumn == 4){
+                    txt_problem_finish.setText(validTime.trim());
+                }else if (selectedColumn == 1){
+                    txt_problem_berangkat.setText(validDateTime.trim());
+                }else if (selectedColumn == 3){
+                    txt_problem_tiba.setText(validDateTime.trim());
+                }else if (selectedColumn == 5){
+                    txt_problem_upline.setText(validDateTime.trim());
+                }else if (selectedColumn == 7){
+                    txt_problem_online.setText(validDateTime.trim());
+                }
+            }
+        }, mHour, mMinute, true);
+        timePickerDialog.show();
+
     }
 
 
