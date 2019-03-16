@@ -59,7 +59,7 @@ public class SplashActivity extends AppCompatActivity {
         isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         if (!isGPSEnabled && !isNetworkEnabled) {
-            prgSplash.setVisibility(View.GONE);
+            prgSplash.setVisibility(View.INVISIBLE);
             Dialogs.showDialog(handler, SplashActivity.this, "Warning", "Gps OFf, mohon Akrifkan Gps", true);
         }else{
             createDirectory();
@@ -86,7 +86,7 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                prgSplash.setVisibility(View.GONE);
+                prgSplash.setVisibility(View.INVISIBLE);
             }
         }, 1000);
 
