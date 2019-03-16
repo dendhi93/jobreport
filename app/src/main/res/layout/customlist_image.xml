@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/cardview_light_background"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgV_item_image"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/ic_nature_32"
+            android:layout_margin="@dimen/spacing_small"/>
+
+        <TextView
+            android:textColor="@color/colorBlack"
+            android:id="@+id/lbl_item_image_title"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_semi_medium"
+            android:layout_toRightOf="@id/imgV_item_image"
+            android:layout_marginEnd="@dimen/spacing_tiny_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/imgB_item_trash"
+            android:text="test"/>
+
+        <ImageButton
+            android:layout_marginTop="@dimen/spacing_semi_medium"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:id="@+id/imgB_item_trash"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_trash_24"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+
+
+</android.support.v7.widget.CardView >

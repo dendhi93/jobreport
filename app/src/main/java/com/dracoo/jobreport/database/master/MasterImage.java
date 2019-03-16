@@ -21,6 +21,10 @@ public class MasterImage implements Serializable {
     private String insert_date;
     @DatabaseField(columnName = "update_date")
     private String update_date;
+    @DatabaseField(columnName = "image_url")
+    private String image_url;
+
+
 
     public Integer getId_image() {
         return id_image;
@@ -76,5 +80,13 @@ public class MasterImage implements Serializable {
 
     public void setUpdate_date(String update_date) {
         this.update_date = update_date;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 }
