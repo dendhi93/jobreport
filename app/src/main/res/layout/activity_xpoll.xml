@@ -220,7 +220,7 @@ ac
                     </android.support.design.widget.TextInputLayout>
 
                     <ImageButton
-                        android:id="@+id/imgBtn_prob_time1"
+                        android:id="@+id/imgBtn_xpoll_timer"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginTop="@dimen/spacing_small_1"

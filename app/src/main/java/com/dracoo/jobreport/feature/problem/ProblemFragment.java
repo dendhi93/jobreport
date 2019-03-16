@@ -43,7 +43,6 @@ public class ProblemFragment extends Fragment {
     @BindView(R.id.txt_problem_online)
     EditText txt_problem_online;
 
-
     private String valueRb = "";
     private String tempDate = "";
     private RadioButton radioButtonClosed ;
@@ -172,7 +171,7 @@ public class ProblemFragment extends Fragment {
                 String validTime = selectedHour +":"+selectedMinutes+":"+selectedSecond;
                 String validDateTime = "";
                 if (!tempDate.equals("")){
-                    validDateTime = tempDate +","+validTime;
+                    validDateTime = tempDate +", "+validTime;
                 }
                 if (selectedColumn == 2){
                     txt_problem_start.setText(validTime.trim());
