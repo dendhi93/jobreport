@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/sn_modem"
-
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/sn_adaptor"
-
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/sn_fh"
-
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -111,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/sn_lnb"
-
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -134,7 +134,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/sn_rfu"
-
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
@@ -183,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/brand_type"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -205,7 +205,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/m2m_sn"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -249,7 +249,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/brand_type"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -271,7 +271,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/m2m_sn"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -315,7 +315,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/brand_type"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -337,7 +337,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/m2m_sn"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -359,7 +359,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/puk"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -404,7 +404,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/brand_type"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -426,7 +426,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/m2m_sn"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
@@ -448,7 +448,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/puk"
-
+                            android:background="@drawable/border_bottom"
                             android:textColorHint="@color/colorBlack">
 
                             <EditText
