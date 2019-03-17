@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -38,6 +39,7 @@ public class XpollActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xpoll);
         ButterKnife.bind(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -74,8 +76,8 @@ public class XpollActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.imgBtn_xpoll_timer)
-    void timePicker(){
-
+    void clickTimePicker(){
+        datePicker();
     }
 
     private void datePicker(){
@@ -107,7 +109,7 @@ public class XpollActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    private void timePicker(final int selectedColumn){
+    private void timePicker(){
         final Calendar c = Calendar.getInstance();
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
@@ -146,6 +148,20 @@ public class XpollActivity extends AppCompatActivity {
         }, mHour, mMinute, true);
         timePickerDialog.show();
 
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
 

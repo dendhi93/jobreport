@@ -2,6 +2,7 @@ package com.dracoo.jobreport.feature.vsatparameter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -28,6 +29,7 @@ public class ParameterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parameter);
         ButterKnife.bind(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -62,5 +64,18 @@ public class ParameterActivity extends AppCompatActivity {
     @OnClick(R.id.imgB_par_cancel)
     void cancelPar(){
         messageUtils.toastMessage("coba2", ConfigApps.T_DEFAULT);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }

@@ -2,6 +2,7 @@ package com.dracoo.jobreport.feature.datam2m;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.util.ConfigApps;
@@ -18,6 +19,7 @@ public class DataM2mActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_m2m);
         ButterKnife.bind(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -36,5 +38,19 @@ public class DataM2mActivity extends AppCompatActivity {
     @OnClick(R.id.imgB_dataM2m_cancel)
     void cancelM2m(){
         messageUtils.toastMessage("coba1", ConfigApps.T_DEFAULT);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }

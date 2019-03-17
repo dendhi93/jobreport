@@ -2,6 +2,7 @@ package com.dracoo.jobreport.feature.replace;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.util.ConfigApps;
@@ -20,6 +21,7 @@ public class ReplaceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_replace);
         ButterKnife.bind(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -41,5 +43,18 @@ public class ReplaceActivity extends AppCompatActivity {
     @OnClick(R.id.imgB_rep_cancel)
     void cancelRep(){
         messageUtils.toastMessage("coba2", ConfigApps.T_DEFAULT);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }

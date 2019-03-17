@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -157,7 +158,7 @@ public class UserActivity extends AppCompatActivity
 
     @OnClick(R.id.imgB_userAct_cancel)
     void cancelUser() {
-        messageUtils.toastMessage("coba menu", ConfigApps.T_DEFAULT);
+        finish();
     }
 
 
@@ -191,4 +192,17 @@ public class UserActivity extends AppCompatActivity
             }
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 }
