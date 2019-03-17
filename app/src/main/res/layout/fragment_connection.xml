@@ -509,7 +509,7 @@
                             android:id="@+id/rg_conn_access"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/rb_conn_24hours"

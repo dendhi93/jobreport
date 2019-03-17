@@ -85,6 +85,7 @@ public class UserActivity extends AppCompatActivity
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
         mFusedLocation = LocationServices.getFusedLocationProviderClient(getApplicationContext());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupGoogleAPI();
     }
 

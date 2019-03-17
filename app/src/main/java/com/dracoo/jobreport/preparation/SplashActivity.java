@@ -66,7 +66,7 @@ public class SplashActivity extends AppCompatActivity {
         isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         if (!isGPSEnabled && !isNetworkEnabled) {
             prgSplash.setVisibility(View.INVISIBLE);
-            Dialogs.showDialog(handler, SplashActivity.this, "Warning", "Gps OFf, mohon Akrifkan Gps", true);
+            Dialogs.showDialog(handler, SplashActivity.this, "Warning", "Gps Off, mohon akrifkan GPS", true);
         }else{
             createDirectory();
         }

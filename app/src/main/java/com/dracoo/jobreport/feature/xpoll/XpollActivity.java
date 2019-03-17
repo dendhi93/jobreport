@@ -65,10 +65,6 @@ public class XpollActivity extends AppCompatActivity {
         messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
     }
 
-    @OnClick(R.id.imgB_xpoll_menu)
-    void menuXpoll(){
-        messageUtils.toastMessage("coba menu", ConfigApps.T_DEFAULT);
-    }
 
     @OnClick(R.id.imgB_xpoll_cancel)
     void cancelXpoll(){

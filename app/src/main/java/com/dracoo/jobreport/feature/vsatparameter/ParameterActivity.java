@@ -56,10 +56,6 @@ public class ParameterActivity extends AppCompatActivity {
         messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
     }
 
-    @OnClick(R.id.imgB_par_menu)
-    void chooseMenu(){
-        messageUtils.toastMessage("coba menu", ConfigApps.T_DEFAULT);
-    }
 
     @OnClick(R.id.imgB_par_cancel)
     void cancelPar(){

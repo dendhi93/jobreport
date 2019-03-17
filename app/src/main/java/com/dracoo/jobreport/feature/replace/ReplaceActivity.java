@@ -35,10 +35,6 @@ public class ReplaceActivity extends AppCompatActivity {
         messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
     }
 
-    @OnClick(R.id.imgB_rep_menu)
-    void chooseRepMenu(){
-        messageUtils.toastMessage("coba menu", ConfigApps.T_DEFAULT);
-    }
 
     @OnClick(R.id.imgB_rep_cancel)
     void cancelRep(){

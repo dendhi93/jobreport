@@ -73,12 +73,12 @@
         <activity android:name=".feature.datam2m.DataM2mActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"
-            android:label="@string/xpoll"
+            android:label="@string/datam2m_activity"
             />
         <activity android:name=".feature.replace.ReplaceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"
-            android:label="@string/xpoll"/>
+            android:label="@string/replace_activity"/>
     </application>
 
 </manifest>
