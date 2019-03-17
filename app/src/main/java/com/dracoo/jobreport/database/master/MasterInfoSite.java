@@ -32,6 +32,8 @@ public class MasterInfoSite implements Serializable {
     private String update_date;
     @DatabaseField(columnName = "un_user")
     private String un_user;
+    @DatabaseField(columnName = "location_name")
+    private String location_name;
 
     public Integer getId_site() {
         return id_site;
@@ -119,5 +121,13 @@ public class MasterInfoSite implements Serializable {
 
     public void setUn_user(String un_user) {
         this.un_user = un_user;
+    }
+
+    public String getLocation_name() {
+        return location_name;
+    }
+
+    public void setLocation_name(String location_name) {
+        this.location_name = location_name;
     }
 }

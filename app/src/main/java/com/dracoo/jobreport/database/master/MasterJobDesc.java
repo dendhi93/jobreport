@@ -28,6 +28,9 @@ public class MasterJobDesc implements Serializable {
     private String update_date;
     @DatabaseField(columnName = "un_user")
     private String un_user;
+    @DatabaseField(columnName = "id_site")
+    private Integer id_site;
+
 
     public Integer getId_jobdesc() {
         return id_jobdesc;
@@ -107,5 +110,13 @@ public class MasterJobDesc implements Serializable {
 
     public void setUn_user(String un_user) {
         this.un_user = un_user;
+    }
+
+    public Integer getId_site() {
+        return id_site;
+    }
+
+    public void setId_site(Integer id_site) {
+        this.id_site = id_site;
     }
 }

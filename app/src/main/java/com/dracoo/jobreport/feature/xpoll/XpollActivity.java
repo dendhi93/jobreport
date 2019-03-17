@@ -140,7 +140,7 @@ public class XpollActivity extends AppCompatActivity {
                 if (!tempXpollDate.equals("")){
                     validDateTime = tempXpollDate +", "+validTime;
                 }
-                txt_xpoll_dateTime.setText(validTime.trim());
+                txt_xpoll_dateTime.setText(validDateTime.trim());
 
             }
         }, mHour, mMinute, true);

@@ -32,7 +32,7 @@ public class TransHistoryAdapter extends DatabaseAdapter {
 
         while (cursor.moveToNext()) {
             MasterTransHistory mTransHist = new MasterTransHistory();
-            mTransHist.setId_site(cursor.getInt(0));
+            mTransHist.setId_trans(cursor.getInt(0));
             mTransHist.setTrans_step(cursor.getString(1));
 
             transHists.add(mTransHist);
@@ -45,7 +45,7 @@ public class TransHistoryAdapter extends DatabaseAdapter {
     public Cursor load_transCursor(String custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT DISTINCT " +
+        String sql = "SELECT " +
                                 "id_trans, " + //0
                                 "trans_step " + //1
                     "from t_trans_history " +

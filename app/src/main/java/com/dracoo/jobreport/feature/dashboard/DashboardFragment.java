@@ -1,23 +1,32 @@
 package com.dracoo.jobreport.feature.dashboard;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DashboardFragment extends Fragment {
+    @BindView(R.id.lbl_dash_locationName)
+    TextView lbl_dash_locationName;
+    @BindView(R.id.lbl_dash_technician_name)
+    TextView lbl_dash_technician_name;
+    @BindView(R.id.lbl_dash_customer)
+    TextView lbl_dash_customer;
+    @BindView(R.id.lbl_dash_picPhone)
+    TextView lbl_dash_picPhone;
+
     private MessageUtils messageUtils;
 
     @Override
@@ -36,6 +45,7 @@ public class DashboardFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
     }
+
 
     @OnClick(R.id.imgB_dash_toActivity)
     void toActivity (){

@@ -29,8 +29,9 @@ public class SplashActivity extends AppCompatActivity {
     private DatabaseAdapter databaseAdapter;
     private MessageUtils messageUtils;
     private boolean isGPSEnabled = false;
-    private boolean isNetworkEnabled = false;
     private LocationManager locationManager;
+    private boolean isNetworkEnabled = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +45,16 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        checkGps();
         try {
             databaseAdapter = new DatabaseAdapter(this);
             databaseAdapter.CreateDatabase();
         } catch (Exception e) {messageUtils.toastMessage("failed to create Database "+e, ConfigApps.T_ERROR);}
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        checkGps();
     }
 
     private void checkGps(){
