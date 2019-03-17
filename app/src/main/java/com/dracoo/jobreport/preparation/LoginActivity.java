@@ -1,7 +1,9 @@
 package com.dracoo.jobreport.preparation;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -59,26 +61,49 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void actClick(View view){
-        String un = txt_login_un.getText().toString().trim();
-        String servicePoint = txt_login_servicePoint.getText().toString().trim();
-        String handphone = txt_login_handphone.getText().toString().trim();
+        final String un = txt_login_un.getText().toString().trim();
+        final String servicePoint = txt_login_servicePoint.getText().toString().trim();
+        final String handphone = txt_login_handphone.getText().toString().trim();
 
         if(un.equals("") || servicePoint.equals("") || handphone.equals("")){
             messageUtils.snackBar_message(getString(R.string.emptyString),
                     LoginActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         } else if(awesomeValidation.validate()){
-//            messageUtils.snackBar_message("Under Maintenance", LoginActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
-            preference.saveUn(un,servicePoint, handphone);
-            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
-            startActivity(intent);
-            finish();
-            //ke menu dashboard
+            if (!preference.getUn().equals("")){
+                new AlertDialog.Builder(LoginActivity.this)
+                        .setTitle("Warning")
+                        .setMessage("Username sebelumnya adalah " +preference.getUn()+"\nApakah anda ingin ganti user ?")
+                        .setIcon(R.drawable.ic_check)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                preference.clearPreference();
+                                saveloginPref(un, servicePoint, handphone);
+                            }
+                        })
+                        .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }else{
+                saveloginPref(un, servicePoint, handphone);
+            }
         }
     }
 
     private void getValidation(){
         awesomeValidation.addValidation(this,R.id.txt_login_handphone, Patterns.PHONE, R.string.phone_validation);
 //        awesomeValidation.addValidation(this,R.id.txt_login_un, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name_validation);
+    }
+
+    private void saveloginPref(String user, String servicePoint, String userHandphone){
+        preference.saveUn(user,servicePoint, userHandphone);
+        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+        intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+        startActivity(intent);
+        finish();
     }
 }

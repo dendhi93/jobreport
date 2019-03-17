@@ -3,6 +3,8 @@ package com.dracoo.jobreport.feature.dashboard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +13,18 @@ import android.widget.TextView;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
 import com.dracoo.jobreport.database.adapter.JobDescAdapter;
+import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
+import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,11 +39,19 @@ public class DashboardFragment extends Fragment {
     TextView lbl_dash_customer;
     @BindView(R.id.lbl_dash_picPhone)
     TextView lbl_dash_picPhone;
+    @BindView(R.id.rc_dash_activity)
+    RecyclerView rc_dash_activity;
+    @BindView(R.id.lbl_dash_empty)
+    TextView lbl_dash_empty;
 
     private MessageUtils messageUtils;
     private Preference preference;
     private ArrayList<MasterJobDesc> alJobDesc;
     private ArrayList<MasterInfoSite> alInfSite;
+    private ArrayList<MasterTransHistory> alListTrans;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+    ArrayList<MasterTransHistory> alTransHist;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +69,38 @@ public class DashboardFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
+
+    }
+
+    public List<MasterTransHistory> getList_TransHist(){
+        List<MasterTransHistory> list = new ArrayList<>();
+        try {
+            alListTrans = new TransHistoryAdapter(getActivity())
+                    .load_trans(preference.getCustID(), preference.getUn());
+            if (alListTrans.size() > 0){
+                list = alListTrans;
+                rc_dash_activity.setVisibility(View.VISIBLE);
+                lbl_dash_empty.setVisibility(View.GONE);
+            }else{
+                rc_dash_activity.setVisibility(View.GONE);
+                lbl_dash_empty.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            rc_dash_activity.setVisibility(View.GONE);
+            lbl_dash_empty.setVisibility(View.VISIBLE);
+        }
+        return list;
+    }
+
+    private void loadRcTrans(){
+        if (!preference.getCustID().equals("")){
+            rc_dash_activity.setHasFixedSize(true);
+            layoutManager = new LinearLayoutManager(getActivity());
+            rc_dash_activity.setLayoutManager(layoutManager);
+            List<MasterTransHistory> list = getList_TransHist();
+            adapter = new CustomList_Dashboard_Adapter(getActivity(), list);
+            rc_dash_activity.setAdapter(adapter);
+        }
     }
 
 
@@ -73,6 +119,7 @@ public class DashboardFragment extends Fragment {
     public void onResume(){
         super.onResume();
         loadDash();
+        loadRcTrans();
     }
 
     private void loadDash(){

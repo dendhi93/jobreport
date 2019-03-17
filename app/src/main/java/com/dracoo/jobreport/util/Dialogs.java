@@ -43,7 +43,7 @@ public class Dialogs {
         }
     }
 
-    public static void showDialog(final Activity activity, final String title, final String message) {
+    public static void showDismissDialog(final Activity activity, final String title, final String message) {
         if (!activity.isFinishing()) {
             new AlertDialog.Builder(activity)
                     .setTitle(title)
