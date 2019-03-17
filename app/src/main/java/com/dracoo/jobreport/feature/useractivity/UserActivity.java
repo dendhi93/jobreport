@@ -1,6 +1,7 @@
 package com.dracoo.jobreport.feature.useractivity;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,14 +16,20 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.preparation.LoginActivity;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.Dialogs;
 import com.dracoo.jobreport.util.MessageUtils;
+import com.dracoo.jobreport.util.Preference;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -78,6 +85,8 @@ public class UserActivity extends AppCompatActivity
     private boolean isNetworkEnabled = false;
     private LocationManager locationManager;
     private FusedLocationProviderClient mFusedLocation;
+    private AwesomeValidation awesomeValidation;
+    private Preference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +102,18 @@ public class UserActivity extends AppCompatActivity
     public void onStart() {
         super.onStart();
         messageUtils = new MessageUtils(UserActivity.this);
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        preference = new Preference(UserActivity.this);
         rbProgressListener();
+        getUserValidation();
+
+        if (!preference.getUn().equals("")){
+            txt_userAct_name.setText(preference.getUn().trim());
+            txt_userAct_phone.setText(preference.getPhone().trim());
+            txt_userAct_service.setText(preference.getServicePoint().trim());
+        }else{
+            Dialogs.showDismissDialog(this, "Warning", "Username terhapus, mohon keluar aplikasi dan login kembali" );
+        }
     }
 
     @Override
@@ -154,7 +174,16 @@ public class UserActivity extends AppCompatActivity
 
     @OnClick(R.id.imgB_userAct_submit)
     void submitUser() {
-        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        if (txt_userAct_lat.getText().toString().trim().equals("")
+                || txt_userAct_long.getText().toString().trim().equals("")){
+            messageUtils.snackBar_message("Koordinat belum didapatkan, mohon dipastikan gps hidup dan terkoneksi jaringan",
+                    UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+        }else if (txt_userAct_picPhone.getText().length() < 10){
+          messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
+                  UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+        } else{
+            messageUtils.toastMessage("coba", ConfigApps.T_INFO);
+        }
     }
 
     @OnClick(R.id.imgB_userAct_cancel)
@@ -193,6 +222,18 @@ public class UserActivity extends AppCompatActivity
             }
         }
     };
+
+    private void getUserValidation(){
+        awesomeValidation.addValidation(this,R.id.txt_userAct_phone, Patterns.PHONE, R.string.phone_validation);
+        awesomeValidation.addValidation(this,R.id.txt_userAct_picPhone, Patterns.PHONE, R.string.phone_validation);
+        awesomeValidation.addValidation(this,R.id.txt_userAct_name_pic, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name_validation);
+        awesomeValidation.addValidation(this,R.id.txt_userAct_jabatan, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name_validation);
+        awesomeValidation.addValidation(this,R.id.txt_userAct_locationName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name_validation);
+        awesomeValidation.addValidation(this,R.id.txt_userAct_customer, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name_validation);
+        awesomeValidation.addValidation(this,R.id.txt_userAct_city, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name_validation);
+        awesomeValidation.addValidation(this,R.id.txt_userAct_kabupaten, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name_validation);
+        awesomeValidation.addValidation(this,R.id.txt_userAct_proviency, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.name_validation);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

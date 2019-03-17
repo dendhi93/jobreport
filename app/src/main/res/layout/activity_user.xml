@@ -144,6 +144,9 @@
                             android:drawableLeft="@drawable/ic_user_16"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:clickable="false"
                             android:maxLength="25"
                             android:maxLines="2" />
 
@@ -179,6 +182,9 @@
                             android:drawableLeft="@drawable/ic_user_16"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:clickable="false"
                             android:maxLength="15"
                             android:maxLines="3" />
 
@@ -213,6 +219,9 @@
                             android:drawableLeft="@drawable/ic_phone_16"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="number"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:clickable="false"
                             android:maxLength="15"
                             android:maxLines="1" />
 
