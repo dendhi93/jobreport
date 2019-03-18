@@ -130,4 +130,12 @@ public class MasterInfoSite implements Serializable {
     public void setLocation_name(String location_name) {
         this.location_name = location_name;
     }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 }

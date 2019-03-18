@@ -1,7 +1,6 @@
 package com.dracoo.jobreport.feature.useractivity;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,6 +31,7 @@ import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.preparation.LoginActivity;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.Dialogs;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
@@ -207,17 +207,55 @@ public class UserActivity extends AppCompatActivity
           messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
                   UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
         } else{
-//            try{
-////                MasterJobDesc masterJobDesc = jobDescAdapter.queryForEq("")
-////            }catch (Exception e){
-////
-////            }
+            try{
+                MasterInfoSite mInfoSite = infoSiteAdapter.queryForId(preference.getCustID());
+                mInfoSite.setLocation_name(txt_userAct_locationName.toString().trim());
+                mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mInfoSite.setRemote_address(txt_userAct_remoteAddress.getText().toString().trim());
+                mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
+                mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
+                mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
+                mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
+                mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
+                mInfoSite.setProgress_type(selectedProgress.trim());
+                infoSiteAdapter.update(mInfoSite);
+
+                jobDescTrans();
+
+            }catch (Exception e){
+                try {
+                    MasterInfoSite mInfoSite = new MasterInfoSite();
+                    mInfoSite.setCustomer_name(txt_userAct_customer.getText().toString().trim());
+                    mInfoSite.setRemote_address(txt_userAct_remoteAddress.getText().toString().trim());
+                    mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
+                    mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
+                    mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
+                    mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
+                    mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
+                    mInfoSite.setProgress_type(selectedProgress.trim());
+                    mInfoSite.setUn_user(txt_userAct_name.getText().toString().trim());
+                    mInfoSite.setLocation_name(txt_userAct_locationName.toString().trim());
+                    mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
+                    infoSiteAdapter.create(mInfoSite);
+
+                    jobDescTrans();
+                }catch (Exception e2){ Log.d("Err Insert Info ", ""+e2.toString()); }
+            }
         }
     }
 
     @OnClick(R.id.imgB_userAct_cancel)
     void cancelUser() {
         finish();
+    }
+
+    private void jobDescTrans(){
+        try{
+            MasterJobDesc mJobDesc = jobDescAdapter.queryForEq("id_site", preference.getCustID()).get(0);
+        }catch (Exception e){
+
+        }
+
     }
 
 
