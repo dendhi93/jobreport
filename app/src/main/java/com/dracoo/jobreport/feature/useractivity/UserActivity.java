@@ -178,7 +178,17 @@ public class UserActivity extends AppCompatActivity
                 || txt_userAct_long.getText().toString().trim().equals("")){
             messageUtils.snackBar_message("Koordinat belum didapatkan, mohon dipastikan gps hidup dan terkoneksi jaringan",
                     UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
-        }else if (txt_userAct_picPhone.getText().length() < 10){
+        }else if (txt_userAct_name_pic.getText().toString().trim().equals("") ||
+                txt_userAct_jabatan.getText().toString().trim().equals("") ||
+                txt_userAct_picPhone.getText().toString().trim().equals("") ||
+                txt_userAct_locationName.getText().toString().trim().equals("") ||
+                txt_userAct_customer.getText().toString().trim().equals("") ||
+                txt_userAct_remoteAddress.getText().toString().trim().equals("") ||
+                txt_userAct_city.getText().toString().trim().equals("") ||
+                txt_userAct_kabupaten.getText().toString().trim().equals("") ||
+                txt_userAct_proviency.getText().toString().trim().equals("")){
+            messageUtils.snackBar_message(getString(R.string.emptyString), UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+        } else if (txt_userAct_picPhone.getText().length() < 10){
           messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
                   UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
         } else{
