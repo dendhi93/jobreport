@@ -34,6 +34,7 @@ public class TransHistoryAdapter extends DatabaseAdapter {
             MasterTransHistory mTransHist = new MasterTransHistory();
             mTransHist.setId_trans(cursor.getInt(0));
             mTransHist.setTrans_step(cursor.getString(1));
+            mTransHist.setIs_submited(cursor.getString(2));
 
             transHists.add(mTransHist);
         }
@@ -48,6 +49,7 @@ public class TransHistoryAdapter extends DatabaseAdapter {
         String sql = "SELECT " +
                                 "id_trans, " + //0
                                 "trans_step " + //1
+                                "is_submited " + //1
                     "from t_trans_history " +
                     " where id_site like " + custId + "' " +
                     " and un_user = '" +un+ "' ";

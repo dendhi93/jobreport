@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (handphone.length() < 10){
             messageUtils.snackBar_message("No handphone kurang dari 10 angka", LoginActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
         } else if(awesomeValidation.validate()){
-            if (!preference.getUn().equals("")){
+            if (!preference.getUn().equals("") && !preference.getUn().equals(un.trim())){
                 new AlertDialog.Builder(LoginActivity.this)
                         .setTitle("Warning")
                         .setMessage("Username sebelumnya adalah " +preference.getUn()+"\nApakah anda ingin ganti user ?")

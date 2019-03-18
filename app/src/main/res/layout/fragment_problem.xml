@@ -50,15 +50,15 @@
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
                         android:background="@drawable/border_bottom"
-                        android:hint="@string/name">
+                        android:hint="@string/display_modem">
 
                         <EditText
-                            android:id="@+id/txt_prob_nameTec"
+                            android:id="@+id/txt_prob_modemDisplay"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:backgroundTint="@android:color/transparent"
                             android:textColor="@color/colorBlack"
-                            android:drawableLeft="@drawable/ic_lightning_16"
+                            android:drawableLeft="@drawable/ic_user_16"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="number"
                             android:maxLength="5"
