@@ -32,8 +32,8 @@ public class Preference {
         editor.apply();
     }
 
-    public void saveCustId(String custId){
-        editor.putString(KEY_CUST_ID, custId);
+    public void saveCustId(int custId){
+        editor.putInt(KEY_CUST_ID, custId);
         editor.apply();
     }
 
@@ -56,8 +56,8 @@ public class Preference {
     public String getPhone(){
         return sharedPreferences.getString(KEY_PHONE, "");
     }
-    public String getCustID(){
-        return sharedPreferences.getString(KEY_CUST_ID, "");
+    public Integer getCustID(){
+        return sharedPreferences.getInt(KEY_CUST_ID, 0);
     }
     public String getProgress(){return sharedPreferences.getString(KEY_PROGRESS_TYPE, "");}
     public String getConnType(){return sharedPreferences.getString(KEY_CONNECTION_TYPE, "");}

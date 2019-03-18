@@ -24,7 +24,7 @@ public class JobDescAdapter extends DatabaseAdapter{
         return mJobDesc;
     }
 
-    public ArrayList<MasterJobDesc> load_trans(String custId, String un){
+    public ArrayList<MasterJobDesc> load_trans(int custId, String un){
         ArrayList<MasterJobDesc> jobDescs = new ArrayList<>();
         Cursor cursor = null;
 
@@ -44,7 +44,7 @@ public class JobDescAdapter extends DatabaseAdapter{
     }
 
 
-    public Cursor load_JobCursor(String custId, String un){
+    public Cursor load_JobCursor(int custId, String un){
         Cursor cursor;
 
         String sql = "SELECT " +
@@ -52,7 +52,7 @@ public class JobDescAdapter extends DatabaseAdapter{
                     "name_user, " + //1
                     "pic_phone " + //1
                 "from t_jobdesc " +
-                " where id_site like " + custId + "' " +
+                " where id_site " + custId + " " +
                 " and name_user = '" +un+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);

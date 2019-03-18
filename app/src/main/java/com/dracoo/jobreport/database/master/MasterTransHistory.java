@@ -20,7 +20,7 @@ public class MasterTransHistory implements Serializable {
     @DatabaseField(columnName = "update_date")
     private String update_date;
     @DatabaseField(columnName = "is_submited")
-    private String is_submited;
+    private Integer is_submited;
 
 
     public Integer getId_trans() {
@@ -71,11 +71,7 @@ public class MasterTransHistory implements Serializable {
         this.update_date = update_date;
     }
 
-    public String getIs_submited() {
-        return is_submited;
-    }
-
-    public void setIs_submited(String is_submited) {
+    public void setIs_submited(Integer is_submited) {
         this.is_submited = is_submited;
     }
 }

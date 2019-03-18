@@ -23,7 +23,7 @@ public class InfoSiteAdapter extends DatabaseAdapter {
         return mInfo;
     }
 
-    public ArrayList<MasterInfoSite> load_site(String custId, String un){
+    public ArrayList<MasterInfoSite> load_site(int custId, String un){
         ArrayList<MasterInfoSite> infoSites = new ArrayList<>();
         Cursor cursor = null;
 
@@ -42,7 +42,7 @@ public class InfoSiteAdapter extends DatabaseAdapter {
         return infoSites;
     }
 
-    public Cursor load_infoCursor(String custId, String un){
+    public Cursor load_infoCursor(int custId, String un){
         Cursor cursor;
 
         String sql = "SELECT " +
@@ -50,7 +50,7 @@ public class InfoSiteAdapter extends DatabaseAdapter {
                 "location_name, " + //1
                 "customer_name " + //1
                 "from t_site " +
-                " where id_site like " + custId + "' " +
+                " where id_site " + custId + " " +
                 " and un_user = '" +un+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);

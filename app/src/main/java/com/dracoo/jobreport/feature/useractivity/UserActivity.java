@@ -16,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -25,6 +26,10 @@ import android.widget.RadioGroup;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
+import com.dracoo.jobreport.database.adapter.JobDescAdapter;
+import com.dracoo.jobreport.database.master.MasterInfoSite;
+import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.preparation.LoginActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.Dialogs;
@@ -37,6 +42,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.j256.ormlite.dao.Dao;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,6 +93,8 @@ public class UserActivity extends AppCompatActivity
     private FusedLocationProviderClient mFusedLocation;
     private AwesomeValidation awesomeValidation;
     private Preference preference;
+    private Dao<MasterJobDesc, Integer> jobDescAdapter;
+    private Dao<MasterInfoSite, Integer> infoSiteAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +122,13 @@ public class UserActivity extends AppCompatActivity
         }else{
             Dialogs.showDismissDialog(this, "Warning", "Username terhapus, mohon keluar aplikasi dan login kembali" );
         }
+
+        try{
+            jobDescAdapter = new JobDescAdapter(getApplicationContext()).getAdapter();
+            infoSiteAdapter = new InfoSiteAdapter(getApplicationContext()).getAdapter();
+        }catch (Exception e){ Log.d("User err Adapter ",""+e); }
+
+
     }
 
     @Override
@@ -192,7 +207,11 @@ public class UserActivity extends AppCompatActivity
           messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
                   UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
         } else{
-            messageUtils.toastMessage("coba", ConfigApps.T_INFO);
+//            try{
+////                MasterJobDesc masterJobDesc = jobDescAdapter.queryForEq("")
+////            }catch (Exception e){
+////
+////            }
         }
     }
 

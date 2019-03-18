@@ -93,7 +93,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private void loadRcTrans(){
-        if (!preference.getCustID().equals("")){
+        if (preference.getCustID() != 0){
             rc_dash_activity.setHasFixedSize(true);
             layoutManager = new LinearLayoutManager(getActivity());
             rc_dash_activity.setLayoutManager(layoutManager);
@@ -123,7 +123,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private void loadDash(){
-        if (!preference.getCustID().equals("")){
+        if (preference.getCustID() != 0){
             alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
             if (alJobDesc.size() > 0){
                     alInfSite = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
