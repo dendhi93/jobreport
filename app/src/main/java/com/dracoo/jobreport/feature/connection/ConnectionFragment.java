@@ -153,6 +153,7 @@ public class ConnectionFragment extends Fragment {
                 switch (item.getItemId()){
                     case R.id.mnu_vsat_replace :
                         intent = new Intent(getActivity(), ReplaceActivity.class);
+                        intent.putExtra(ReplaceActivity.EXTRA_CALLER_CONN, ReplaceActivity.EXTRA_CALLER_VSATCONN);
 
                         break;
                     case R.id.mnu_xpoll :
@@ -163,6 +164,7 @@ public class ConnectionFragment extends Fragment {
                         break;
                     case R.id.mnu_m2m_replace :
                         intent = new Intent(getActivity(), ReplaceActivity.class);
+                        intent.putExtra(ReplaceActivity.EXTRA_CALLER_CONN, ReplaceActivity.EXTRA_CALLER_M2MCONN);
                         break;
                     case R.id.mnu_data_m2m :
                         intent = new Intent(getActivity(), DataM2mActivity.class);
