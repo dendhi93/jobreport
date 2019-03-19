@@ -1,14 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGray200"
     tools:context=".feature.action.ActionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="1dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ln_rptAbs_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ln_rptAbs_1"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/spacing_tiny_4"
+                    android:textColorHint="@color/colorBlack">
+
+                    <EditText
+                        android:id="@+id/txt_action_beginDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:clickable="true"
+                        android:drawableLeft="@drawable/ic_date_from_24"
+                        android:focusable="false"
+                        android:hint="TGL AWAL"
+                        android:inputType="date"
+                        android:textColor="@color/colorBlack" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/spacing_tiny_4"
+                    android:textColorHint="@color/colorBlack">
+
+                    <EditText
+                        android:id="@+id/txt_rptAbs_endDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:clickable="true"
+                        android:drawableLeft="@drawable/ic_date_to_24"
+                        android:focusable="false"
+                        android:hint="TGL AKHIR"
+                        android:inputType="date"
+                        android:textColor="@color/colorBlack" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_semi_medium"
+                android:gravity="end"
+                android:layout_marginBottom="@dimen/spacing_small_1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:contentDescription="@string/content_desc"
+                    android:id="@+id/imgB_action_search"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="@dimen/spacing_small_1"
+                    android:background="@drawable/ic_circle_selector"
+                    android:src="@drawable/ic_search_48"/>
+
+
+                <ImageButton
+                    android:contentDescription="@string/content_desc"
+                    android:id="@+id/imgB_action_cancel"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/ic_circle_transparent_selector"
+                    android:src="@drawable/ic_cancel"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rc_action_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_margin="4dp" />
+
+        <TextView
+            android:id="@+id/lbl_action_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/alph_size_small"
+            android:text="@string/empty_data" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
