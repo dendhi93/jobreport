@@ -220,6 +220,7 @@ public class UserActivity extends AppCompatActivity
                 mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
                 mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
                 mInfoSite.setProgress_type(selectedProgress.trim());
+                mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
                 infoSiteAdapter.update(mInfoSite);
 
                 ArrayList<MasterInfoSite> al_verifyInfoSite = new InfoSiteAdapter(UserActivity.this)
@@ -242,7 +243,7 @@ public class UserActivity extends AppCompatActivity
                     mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
                     mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
                     mInfoSite.setProgress_type(selectedProgress.trim());
-                    mInfoSite.setUn_user(txt_userAct_name.getText().toString().trim());
+                    mInfoSite.setUn_user(preference.getUn().trim());
                     mInfoSite.setLocation_name(txt_userAct_locationName.toString().trim());
                     mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
                     infoSiteAdapter.create(mInfoSite);
@@ -257,7 +258,7 @@ public class UserActivity extends AppCompatActivity
                         messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
                     }
 
-                }catch (Exception e2){ Log.d("Err Insert Info ", ""+e2.toString()); }
+                }catch (Exception e2){ messageUtils.snackBar_message("err insert info",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
             }
         }
     }
@@ -270,8 +271,31 @@ public class UserActivity extends AppCompatActivity
     private void jobDescTrans(int custId){
         try{
             MasterJobDesc mJobDesc = jobDescAdapter.queryForEq("id_site", preference.getCustID()).get(0);
-        }catch (Exception e){
+            mJobDesc.setName_user(txt_userAct_name.getText().toString().trim());
+            mJobDesc.setUser_phone(txt_userAct_phone.getText().toString().trim());
+            mJobDesc.setName_pic(txt_userAct_name_pic.getText().toString().trim());
+            mJobDesc.setJabatan_desc(txt_userAct_jabatan.getText().toString().trim());
+            mJobDesc.setPic_phone(txt_userAct_picPhone.getText().toString().trim());
+            mJobDesc.setProgress_type(selectedProgress.trim());
+            mJobDesc.setId_site(custId);
+            mJobDesc.setUpdate_date(DateTimeUtils.getCurrentTime());
 
+            messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+        }catch (Exception e){
+            try{
+                MasterJobDesc mJobDesc = new MasterJobDesc();
+                mJobDesc.setName_user(txt_userAct_name.getText().toString().trim());
+                mJobDesc.setUser_phone(txt_userAct_phone.getText().toString().trim());
+                mJobDesc.setName_pic(txt_userAct_name_pic.getText().toString().trim());
+                mJobDesc.setJabatan_desc(txt_userAct_jabatan.getText().toString().trim());
+                mJobDesc.setPic_phone(txt_userAct_picPhone.getText().toString().trim());
+                mJobDesc.setProgress_type(selectedProgress.trim());
+                mJobDesc.setId_site(custId);
+                mJobDesc.setUn_user(preference.getUn());
+                mJobDesc.setInsert_date(DateTimeUtils.getCurrentTime());
+
+                jobDescAdapter.create(mJobDesc);
+            }catch (Exception e2){messageUtils.snackBar_message("err insert info",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
         }
 
     }

@@ -22,12 +22,14 @@
     <string name="no_handphone">No Handphone</string>
     <string name="login_form">LOGIN JOB REPORT</string>
     <string name="content_desc"></string>
+    <string name="transaction_success">Transaksi Berhasil</string>
 
 
     //notes
     <string name="notes">Welcome To Job Report</string>
     <string name="notes_2">JOb Report bertujuan yang untuk memudahkan penyampaian laporan ke admin langsung menggunakan aplikasi</string>
     <string name="notes_3">Copyright @ 2019 dracooCorp</string>
+
 
     //validation
     <string name="emptyString">Mohon diisi data yang kosong</string>
