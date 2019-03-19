@@ -249,6 +249,7 @@ public class UserActivity extends AppCompatActivity
                 MasterInfoSite mInfoSite = new MasterInfoSite();
                 mInfoSite.setCustomer_name(txt_userAct_customer.getText().toString().trim());
                 mInfoSite.setRemote_address(txt_userAct_remoteAddress.getText().toString().trim());
+                //still testing
                 mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
                 mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
                 mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
@@ -270,7 +271,11 @@ public class UserActivity extends AppCompatActivity
                     messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
                 }
 
-            }catch (Exception e2){ messageUtils.snackBar_message("err insert info",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
+            }catch (Exception e2){
+                messageUtils.toastMessage("err insert info" +e2.toString(), ConfigApps.T_ERROR);
+                Log.d("###",""+e2.toString());
+
+            }
         }
     }
     private void jobDescTrans(int custId){
@@ -301,7 +306,7 @@ public class UserActivity extends AppCompatActivity
 
                 jobDescAdapter.create(mJobDesc);
                 transHistoryUser(custId);
-            }catch (Exception e2){messageUtils.snackBar_message("err insert jobDesc",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
+            }catch (Exception e2){messageUtils.toastMessage("err insert job desc" +e2.toString(), ConfigApps.T_ERROR); }
         }
     }
 
@@ -326,7 +331,7 @@ public class UserActivity extends AppCompatActivity
                 transHistAdapter.create(mHist);
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
             }catch (Exception e2){
-                messageUtils.snackBar_message("err insert History",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+                messageUtils.toastMessage("err insert hist" +e2.toString(), ConfigApps.T_ERROR);
             }
         }
     }
