@@ -56,4 +56,34 @@ public class InfoSiteAdapter extends DatabaseAdapter {
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }
+
+    public ArrayList<MasterInfoSite> loadMaxsite(String un){
+        ArrayList<MasterInfoSite> infoSites = new ArrayList<>();
+        Cursor cursor = null;
+
+        cursor = MaxCustid_Cursor(un);
+
+        while (cursor.moveToNext()) {
+            MasterInfoSite infoSite = new MasterInfoSite();
+            infoSite.setId_site(cursor.getInt(0));
+
+            infoSites.add(infoSite);
+        }
+        cursor.close();
+        getReadableDatabase().close();
+        return infoSites;
+    }
+
+
+    public Cursor MaxCustid_Cursor(String un){
+        Cursor cursor;
+
+        String sql = "SELECT " +
+                "max(id_site) " + //0
+                "from t_site " +
+                " where un_user '" + un + "' ";
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        return cursor;
+    }
 }

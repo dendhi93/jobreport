@@ -44,6 +44,8 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.j256.ormlite.dao.Dao;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -220,7 +222,14 @@ public class UserActivity extends AppCompatActivity
                 mInfoSite.setProgress_type(selectedProgress.trim());
                 infoSiteAdapter.update(mInfoSite);
 
-                jobDescTrans();
+                ArrayList<MasterInfoSite> al_verifyInfoSite = new InfoSiteAdapter(UserActivity.this)
+                        .load_site(preference.getCustID(), preference.getUn());
+
+                if (al_verifyInfoSite.size() > 0){
+                    jobDescTrans(al_verifyInfoSite.get(0).getId_site());
+                }else{
+                    messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+                }
 
             }catch (Exception e){
                 try {
@@ -238,7 +247,16 @@ public class UserActivity extends AppCompatActivity
                     mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
                     infoSiteAdapter.create(mInfoSite);
 
-                    jobDescTrans();
+                    ArrayList<MasterInfoSite> al_maxSite = new InfoSiteAdapter(UserActivity.this)
+                            .loadMaxsite(preference.getUn().trim());
+
+                    if (al_maxSite.size() > 0){
+                        preference.saveCustId(al_maxSite.get(0).getId_site());
+                        jobDescTrans(al_maxSite.get(0).getId_site());
+                    }else{
+                        messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+                    }
+
                 }catch (Exception e2){ Log.d("Err Insert Info ", ""+e2.toString()); }
             }
         }
@@ -249,7 +267,7 @@ public class UserActivity extends AppCompatActivity
         finish();
     }
 
-    private void jobDescTrans(){
+    private void jobDescTrans(int custId){
         try{
             MasterJobDesc mJobDesc = jobDescAdapter.queryForEq("id_site", preference.getCustID()).get(0);
         }catch (Exception e){
