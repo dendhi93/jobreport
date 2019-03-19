@@ -27,9 +27,10 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
 import com.dracoo.jobreport.database.adapter.JobDescAdapter;
+import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
-import com.dracoo.jobreport.preparation.LoginActivity;
+import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.Dialogs;
@@ -97,6 +98,7 @@ public class UserActivity extends AppCompatActivity
     private Preference preference;
     private Dao<MasterJobDesc, Integer> jobDescAdapter;
     private Dao<MasterInfoSite, Integer> infoSiteAdapter;
+    private Dao<MasterTransHistory, Integer> transHistAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +130,7 @@ public class UserActivity extends AppCompatActivity
         try{
             jobDescAdapter = new JobDescAdapter(getApplicationContext()).getAdapter();
             infoSiteAdapter = new InfoSiteAdapter(getApplicationContext()).getAdapter();
+            transHistAdapter = new TransHistoryAdapter(getApplicationContext()).getAdapter();
         }catch (Exception e){ Log.d("User err Adapter ",""+e); }
 
 
@@ -209,57 +212,7 @@ public class UserActivity extends AppCompatActivity
           messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
                   UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
         } else{
-            try{
-                MasterInfoSite mInfoSite = infoSiteAdapter.queryForId(preference.getCustID());
-                mInfoSite.setLocation_name(txt_userAct_locationName.toString().trim());
-                mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
-                mInfoSite.setRemote_address(txt_userAct_remoteAddress.getText().toString().trim());
-                mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
-                mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
-                mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
-                mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
-                mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
-                mInfoSite.setProgress_type(selectedProgress.trim());
-                mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
-                infoSiteAdapter.update(mInfoSite);
-
-                ArrayList<MasterInfoSite> al_verifyInfoSite = new InfoSiteAdapter(UserActivity.this)
-                        .load_site(preference.getCustID(), preference.getUn());
-
-                if (al_verifyInfoSite.size() > 0){
-                    jobDescTrans(al_verifyInfoSite.get(0).getId_site());
-                }else{
-                    messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
-                }
-
-            }catch (Exception e){
-                try {
-                    MasterInfoSite mInfoSite = new MasterInfoSite();
-                    mInfoSite.setCustomer_name(txt_userAct_customer.getText().toString().trim());
-                    mInfoSite.setRemote_address(txt_userAct_remoteAddress.getText().toString().trim());
-                    mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
-                    mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
-                    mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
-                    mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
-                    mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
-                    mInfoSite.setProgress_type(selectedProgress.trim());
-                    mInfoSite.setUn_user(preference.getUn().trim());
-                    mInfoSite.setLocation_name(txt_userAct_locationName.toString().trim());
-                    mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
-                    infoSiteAdapter.create(mInfoSite);
-
-                    ArrayList<MasterInfoSite> al_maxSite = new InfoSiteAdapter(UserActivity.this)
-                            .loadMaxsite(preference.getUn().trim());
-
-                    if (al_maxSite.size() > 0){
-                        preference.saveCustId(al_maxSite.get(0).getId_site());
-                        jobDescTrans(al_maxSite.get(0).getId_site());
-                    }else{
-                        messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
-                    }
-
-                }catch (Exception e2){ messageUtils.snackBar_message("err insert info",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
-            }
+            infoSiteTrans();
         }
     }
 
@@ -268,6 +221,58 @@ public class UserActivity extends AppCompatActivity
         finish();
     }
 
+    private void infoSiteTrans(){
+        try{
+            MasterInfoSite mInfoSite = infoSiteAdapter.queryForId(preference.getCustID());
+            mInfoSite.setLocation_name(txt_userAct_locationName.toString().trim());
+            mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
+            mInfoSite.setRemote_address(txt_userAct_remoteAddress.getText().toString().trim());
+            mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
+            mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
+            mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
+            mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
+            mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
+            mInfoSite.setProgress_type(selectedProgress.trim());
+            mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
+            infoSiteAdapter.update(mInfoSite);
+
+            ArrayList<MasterInfoSite> al_verifyInfoSite = new InfoSiteAdapter(UserActivity.this)
+                    .load_site(preference.getCustID(), preference.getUn());
+
+            if (al_verifyInfoSite.size() > 0){
+                jobDescTrans(al_verifyInfoSite.get(0).getId_site());
+            }else{
+                messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+            }
+        }catch (Exception e){
+            try {
+                MasterInfoSite mInfoSite = new MasterInfoSite();
+                mInfoSite.setCustomer_name(txt_userAct_customer.getText().toString().trim());
+                mInfoSite.setRemote_address(txt_userAct_remoteAddress.getText().toString().trim());
+                mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
+                mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
+                mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
+                mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
+                mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
+                mInfoSite.setProgress_type(selectedProgress.trim());
+                mInfoSite.setUn_user(preference.getUn().trim());
+                mInfoSite.setLocation_name(txt_userAct_locationName.toString().trim());
+                mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
+                infoSiteAdapter.create(mInfoSite);
+
+                ArrayList<MasterInfoSite> al_maxSite = new InfoSiteAdapter(UserActivity.this)
+                        .loadMaxsite(preference.getUn().trim());
+
+                if (al_maxSite.size() > 0){
+                    preference.saveCustId(al_maxSite.get(0).getId_site());
+                    jobDescTrans(al_maxSite.get(0).getId_site());
+                }else{
+                    messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+                }
+
+            }catch (Exception e2){ messageUtils.snackBar_message("err insert info",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
+        }
+    }
     private void jobDescTrans(int custId){
         try{
             MasterJobDesc mJobDesc = jobDescAdapter.queryForEq("id_site", preference.getCustID()).get(0);
@@ -280,7 +285,7 @@ public class UserActivity extends AppCompatActivity
             mJobDesc.setId_site(custId);
             mJobDesc.setUpdate_date(DateTimeUtils.getCurrentTime());
 
-            messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+            transHistoryUser(custId);
         }catch (Exception e){
             try{
                 MasterJobDesc mJobDesc = new MasterJobDesc();
@@ -295,9 +300,35 @@ public class UserActivity extends AppCompatActivity
                 mJobDesc.setInsert_date(DateTimeUtils.getCurrentTime());
 
                 jobDescAdapter.create(mJobDesc);
-            }catch (Exception e2){messageUtils.snackBar_message("err insert info",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
+                transHistoryUser(custId);
+            }catch (Exception e2){messageUtils.snackBar_message("err insert jobDesc",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
         }
+    }
 
+    private void transHistoryUser(int custId){
+        try{
+            MasterTransHistory mHist = transHistAdapter.queryForEq("id_site", custId).get(0);
+            mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+            mHist.setTrans_step("Info Site and Job Desc");
+            mHist.setIs_submited(0);
+
+            transHistAdapter.update(mHist);
+            messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+        }catch (Exception e){
+            try{
+                MasterTransHistory mHist = new MasterTransHistory();
+                mHist.setId_site(custId);
+                mHist.setUn_user(preference.getUn());
+                mHist.setInsert_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step("Info Site and Job Desc");
+                mHist.setIs_submited(0);
+
+                transHistAdapter.create(mHist);
+                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+            }catch (Exception e2){
+                messageUtils.snackBar_message("err insert History",UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+            }
+        }
     }
 
 
