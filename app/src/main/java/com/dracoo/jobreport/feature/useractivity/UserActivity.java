@@ -197,9 +197,9 @@ public class UserActivity extends AppCompatActivity
         if (txt_userAct_lat.getText().toString().trim().equals("")
                 || txt_userAct_long.getText().toString().trim().equals("")){
             messageUtils.snackBar_message("Koordinat belum didapatkan, mohon dipastikan gps hidup dan terkoneksi jaringan",
-                    UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+                    UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (selectedProgress.equals("")){
-          messageUtils.snackBar_message("Mohon dipilih progress", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+          messageUtils.snackBar_message("Mohon dipilih progress", UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         } else if (txt_userAct_name_pic.getText().toString().trim().equals("") ||
                 txt_userAct_jabatan.getText().toString().trim().equals("") ||
                 txt_userAct_picPhone.getText().toString().trim().equals("") ||
@@ -209,10 +209,10 @@ public class UserActivity extends AppCompatActivity
                 txt_userAct_city.getText().toString().trim().equals("") ||
                 txt_userAct_kabupaten.getText().toString().trim().equals("") ||
                 txt_userAct_proviency.getText().toString().trim().equals("")){
-            messageUtils.snackBar_message(getString(R.string.emptyString), UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+            messageUtils.snackBar_message(getString(R.string.emptyString), UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         } else if (txt_userAct_picPhone.getText().length() < 10){
           messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
-                  UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+                  UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         } else{
             infoSiteTrans();
         }

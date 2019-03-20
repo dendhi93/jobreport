@@ -61,7 +61,7 @@
                             android:drawableLeft="@drawable/ic_user_16"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
-                            android:maxLength="25"
+                            android:maxLength="50"
                             android:maxLines="2" />
 
                     </android.support.design.widget.TextInputLayout>

@@ -43,10 +43,24 @@ public class ProblemFragment extends Fragment {
     @BindView(R.id.txt_problem_online)
     EditText txt_problem_online;
 
+    @BindView(R.id.txt_prob_modemDisplay)
+    EditText txt_prob_modemDisplay;
+    @BindView(R.id.txt_problem_symptom)
+    EditText txt_problem_symptom;
+    @BindView(R.id.txt_action_text)
+    EditText txt_action_text;
+    @BindView(R.id.txt_action_pending)
+    EditText txt_action_pending;
+    @BindView(R.id.txt_action_reasonPending)
+    EditText txt_action_reasonPending;
+    @BindView(R.id.txt_problem_closedBy)
+    EditText txt_problem_closedBy;
+
     private String valueRb = "";
     private String tempDate = "";
     private RadioButton radioButtonClosed ;
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
+
 
 
     @Override
@@ -79,7 +93,12 @@ public class ProblemFragment extends Fragment {
 
     @OnClick(R.id.imgB_problem_submit)
     void submitProblem (){
-        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+
+        if (!emptyValidation()){
+            messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
+        }else {
+            messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        }
     }
 
     @OnClick(R.id.imgB_problem_cancel)
@@ -190,6 +209,24 @@ public class ProblemFragment extends Fragment {
         }, mHour, mMinute, true);
         timePickerDialog.show();
 
+    }
+
+    private boolean emptyValidation(){
+        if (txt_action_pending.getText().toString().trim().equals("")||
+            txt_action_reasonPending.getText().toString().trim().equals("") ||
+            txt_action_text.getText().toString().trim().equals("") ||
+            txt_prob_modemDisplay.getText().toString().trim().equals("") ||
+            txt_problem_berangkat.getText().toString().trim().equals("") ||
+            txt_problem_closedBy.getText().toString().trim().equals("") ||
+            txt_problem_finish.getText().toString().trim().equals("") ||
+            txt_problem_online.getText().toString().trim().equals("") ||
+            txt_problem_start.getText().toString().trim().equals("") ||
+            txt_problem_symptom.getText().toString().trim().equals("") ||
+            txt_problem_tiba.getText().toString().trim().equals("") ||
+            txt_problem_upline.getText().toString().trim().equals("")){
+            return false;
+        }
+        return true;
     }
 
 
