@@ -203,7 +203,7 @@ public class MenuActivity extends AppCompatActivity
             case R.id.nav_problem :
                 fragment = new ProblemFragment();
                 if (getSupportActionBar() != null) {
-                    getSupportActionBar().setSubtitle("Problem Deac");
+                    getSupportActionBar().setSubtitle("Problem Desc");
                 }
                 break;
             case R.id.nav_lightning :
