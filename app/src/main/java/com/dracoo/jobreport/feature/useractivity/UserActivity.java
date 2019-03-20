@@ -187,7 +187,7 @@ public class UserActivity extends AppCompatActivity
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_progress = findViewById(i);
-                selectedProgress = rb_progress.getText().toString();
+                selectedProgress = ""+rb_progress.getText().toString();
             }
         });
     }
@@ -198,7 +198,9 @@ public class UserActivity extends AppCompatActivity
                 || txt_userAct_long.getText().toString().trim().equals("")){
             messageUtils.snackBar_message("Koordinat belum didapatkan, mohon dipastikan gps hidup dan terkoneksi jaringan",
                     UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
-        }else if (txt_userAct_name_pic.getText().toString().trim().equals("") ||
+        }else if (selectedProgress.equals("")){
+          messageUtils.snackBar_message("Mohon dipilih progress", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+        } else if (txt_userAct_name_pic.getText().toString().trim().equals("") ||
                 txt_userAct_jabatan.getText().toString().trim().equals("") ||
                 txt_userAct_picPhone.getText().toString().trim().equals("") ||
                 txt_userAct_locationName.getText().toString().trim().equals("") ||
@@ -249,7 +251,6 @@ public class UserActivity extends AppCompatActivity
                 MasterInfoSite mInfoSite = new MasterInfoSite();
                 mInfoSite.setCustomer_name(txt_userAct_customer.getText().toString().trim());
                 mInfoSite.setRemote_address(txt_userAct_remoteAddress.getText().toString().trim());
-                //still testing
                 mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
                 mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
                 mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
@@ -258,19 +259,21 @@ public class UserActivity extends AppCompatActivity
                 mInfoSite.setProgress_type(selectedProgress.trim());
                 mInfoSite.setUn_user(preference.getUn().trim());
                 mInfoSite.setLocation_name(txt_userAct_locationName.toString().trim());
-                mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
+                //still testing
+//                mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
                 infoSiteAdapter.create(mInfoSite);
 
-                ArrayList<MasterInfoSite> al_maxSite = new InfoSiteAdapter(UserActivity.this)
-                        .loadMaxsite(preference.getUn().trim());
-
-                if (al_maxSite.size() > 0){
-                    preference.saveCustId(al_maxSite.get(0).getId_site());
-                    jobDescTrans(al_maxSite.get(0).getId_site());
-                }else{
-                    messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
-                }
-
+//                ArrayList<MasterInfoSite> al_maxSite = new InfoSiteAdapter(UserActivity.this)
+//                        .loadMaxsite(preference.getUn().trim());
+//
+//                if (al_maxSite.size() > 0){
+//                    preference.saveCustId(al_maxSite.get(0).getId_site());
+//                    jobDescTrans(al_maxSite.get(0).getId_site());
+//                }else{
+//                    messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+//                }
+                Log.d("###","success");
+                Log.d("###",""+DateTimeUtils.getCurrentTime());
             }catch (Exception e2){
                 messageUtils.toastMessage("err insert info" +e2.toString(), ConfigApps.T_ERROR);
                 Log.d("###",""+e2.toString());
