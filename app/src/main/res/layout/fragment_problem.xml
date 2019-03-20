@@ -60,6 +60,7 @@
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_user_16"
                             android:textColorLink="@color/colorWhite"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
                             android:inputType="text"
                             android:maxLength="50"
                             android:maxLines="2" />
@@ -91,6 +92,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:backgroundTint="@android:color/transparent"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_text"
                             android:textColorLink="@color/colorWhite"
@@ -124,6 +126,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:backgroundTint="@android:color/transparent"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_text"
                             android:textColorLink="@color/colorWhite"
@@ -443,12 +446,13 @@
                             android:layout_height="45dp"
                             android:layout_weight="1"
                             android:backgroundTint="@android:color/transparent"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_text"
                             android:textColorLink="@color/colorWhite"
-                            android:inputType="text"
-                            android:maxLength="25"
-                            android:maxLines="2" />
+                            android:inputType="textMultiLine"
+                            android:maxLength="50"
+                            android:maxLines="3" />
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -479,6 +483,7 @@
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_text"
                             android:textColorLink="@color/colorWhite"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
                             android:inputType="textMultiLine"
                             android:maxLength="100"
                             android:maxLines="4" />
@@ -547,6 +552,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:backgroundTint="@android:color/transparent"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
                             android:textColor="@color/colorBlack"
                             android:drawableStart="@drawable/ic_wifi"
                             android:textColorLink="@color/colorWhite"
