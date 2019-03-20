@@ -31,84 +31,116 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_bottom"
-                android:orientation="horizontal"
-                android:padding="@dimen/spacing_tiny">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_semi_medium"
+                    android:layout_marginBottom="@dimen/spacing_semi_medium"
                     android:textColor="@color/colorBlack"
                     android:text="@string/location_name" />
 
                 <TextView
                     android:id="@+id/lbl_dash_locationName"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_semi_medium"
+                    android:layout_marginBottom="@dimen/spacing_semi_medium"
                     android:textColor="@color/colorBlack"
-                    android:layout_height="35dp" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_bottom"
-                android:orientation="horizontal"
-                android:padding="@dimen/spacing_tiny">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="@color/colorBlack"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_semi_medium"
+                    android:layout_marginBottom="@dimen/spacing_semi_medium"
                     android:text="@string/name" />
 
                 <TextView
                     android:id="@+id/lbl_dash_technician_name"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:textColor="@color/colorBlack"
-                    android:layout_height="35dp" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_semi_medium"
+                    android:layout_marginBottom="@dimen/spacing_semi_medium"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_bottom"
-                android:orientation="horizontal"
-                android:padding="@dimen/spacing_tiny">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="@color/colorBlack"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_semi_medium"
+                    android:layout_marginBottom="@dimen/spacing_semi_medium"
                     android:text="@string/customer" />
 
                 <TextView
                     android:id="@+id/lbl_dash_customer"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:textColor="@color/colorBlack"
-                    android:layout_height="35dp" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_semi_medium"
+                    android:layout_marginBottom="@dimen/spacing_semi_medium"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_bottom"
-                android:orientation="horizontal"
-                android:padding="@dimen/spacing_tiny">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorBlack"
                     android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_semi_medium"
+                    android:layout_marginBottom="@dimen/spacing_semi_medium"
                     android:text="@string/phone_pic" />
 
                 <TextView
                     android:id="@+id/lbl_dash_picPhone"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:textColor="@color/colorBlack"
-                    android:layout_height="35dp" />
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_semi_medium"
+                    android:layout_marginBottom="@dimen/spacing_semi_medium"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
