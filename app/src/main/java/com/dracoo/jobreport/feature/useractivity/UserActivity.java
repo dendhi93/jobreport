@@ -86,7 +86,6 @@ public class UserActivity extends AppCompatActivity
     EditText txt_userAct_long;
 
     private RadioButton rb_progress;
-    private String selectedProgress;
     private MessageUtils messageUtils;
     private Location mLastLocation;
     private GoogleApiClient mGoogleApiClient;
@@ -118,6 +117,8 @@ public class UserActivity extends AppCompatActivity
         preference = new Preference(UserActivity.this);
         rbProgressListener();
         getUserValidation();
+
+
 
         if (!preference.getUn().equals("")){
             txt_userAct_name.setText(preference.getUn().trim());
@@ -187,35 +188,39 @@ public class UserActivity extends AppCompatActivity
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_progress = findViewById(i);
-                selectedProgress = ""+rb_progress.getText().toString();
+//                selectedProgress = ""+rb_progress.getText().toString();
             }
         });
     }
 
     @OnClick(R.id.imgB_userAct_submit)
     void submitUser() {
-        if (txt_userAct_lat.getText().toString().trim().equals("")
-                || txt_userAct_long.getText().toString().trim().equals("")){
-            messageUtils.snackBar_message("Koordinat belum didapatkan, mohon dipastikan gps hidup dan terkoneksi jaringan",
-                    UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-        }else if (selectedProgress.equals("")){
-          messageUtils.snackBar_message("Mohon dipilih progress", UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-        } else if (txt_userAct_name_pic.getText().toString().trim().equals("") ||
-                txt_userAct_jabatan.getText().toString().trim().equals("") ||
-                txt_userAct_picPhone.getText().toString().trim().equals("") ||
-                txt_userAct_locationName.getText().toString().trim().equals("") ||
-                txt_userAct_customer.getText().toString().trim().equals("") ||
-                txt_userAct_remoteAddress.getText().toString().trim().equals("") ||
-                txt_userAct_city.getText().toString().trim().equals("") ||
-                txt_userAct_kabupaten.getText().toString().trim().equals("") ||
-                txt_userAct_proviency.getText().toString().trim().equals("")){
-            messageUtils.snackBar_message(getString(R.string.emptyString), UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-        } else if (txt_userAct_picPhone.getText().length() < 10){
-          messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
-                  UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-        } else{
-            infoSiteTrans();
+        try{
+            if (txt_userAct_lat.getText().toString().trim().equals("")
+                    || txt_userAct_long.getText().toString().trim().equals("")){
+                messageUtils.snackBar_message("Koordinat belum didapatkan, mohon dipastikan gps hidup dan terkoneksi jaringan",
+                        UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
+            } else if (rb_progress.getText().toString().trim().equals("")){}
+            else if (txt_userAct_name_pic.getText().toString().trim().equals("") ||
+                    txt_userAct_jabatan.getText().toString().trim().equals("") ||
+                    txt_userAct_picPhone.getText().toString().trim().equals("") ||
+                    txt_userAct_locationName.getText().toString().trim().equals("") ||
+                    txt_userAct_customer.getText().toString().trim().equals("") ||
+                    txt_userAct_remoteAddress.getText().toString().trim().equals("") ||
+                    txt_userAct_city.getText().toString().trim().equals("") ||
+                    txt_userAct_kabupaten.getText().toString().trim().equals("") ||
+                    txt_userAct_proviency.getText().toString().trim().equals("")){
+                messageUtils.snackBar_message(getString(R.string.emptyString), UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
+            } else if (txt_userAct_picPhone.getText().length() < 10){
+                messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
+                        UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
+            } else{
+                infoSiteTrans();
+            }
+        }catch (Exception e){
+            messageUtils.snackBar_message("Mohon dipilih tipe progress", UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         }
+
     }
 
     @OnClick(R.id.imgB_userAct_cancel)
@@ -234,7 +239,7 @@ public class UserActivity extends AppCompatActivity
             mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
             mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
             mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
-            mInfoSite.setProgress_type(selectedProgress.trim());
+            mInfoSite.setProgress_type(""+rb_progress.getText().toString());
             mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
             infoSiteAdapter.update(mInfoSite);
 
@@ -256,24 +261,22 @@ public class UserActivity extends AppCompatActivity
                 mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
                 mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
                 mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
-                mInfoSite.setProgress_type(selectedProgress.trim());
+                mInfoSite.setProgress_type(""+rb_progress.getText().toString().trim());
                 mInfoSite.setUn_user(preference.getUn().trim());
                 mInfoSite.setLocation_name(txt_userAct_locationName.toString().trim());
-                //still testing
-//                mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
+                mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
                 infoSiteAdapter.create(mInfoSite);
 
-//                ArrayList<MasterInfoSite> al_maxSite = new InfoSiteAdapter(UserActivity.this)
-//                        .loadMaxsite(preference.getUn().trim());
-//
-//                if (al_maxSite.size() > 0){
-//                    preference.saveCustId(al_maxSite.get(0).getId_site());
-//                    jobDescTrans(al_maxSite.get(0).getId_site());
-//                }else{
-//                    messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
-//                }
-                Log.d("###","success");
-                Log.d("###",""+DateTimeUtils.getCurrentTime());
+                ArrayList<MasterInfoSite> al_maxSite = new InfoSiteAdapter(UserActivity.this)
+                        .loadMaxsite(preference.getUn().trim());
+
+                if (al_maxSite.size() > 0){
+                    preference.saveCustId(al_maxSite.get(0).getId_site());
+                    preference.saveProgress(""+rb_progress.getText().toString().trim());
+                    jobDescTrans(al_maxSite.get(0).getId_site());
+                }else{
+                    messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
+                }
             }catch (Exception e2){
                 messageUtils.toastMessage("err insert info" +e2.toString(), ConfigApps.T_ERROR);
                 Log.d("###",""+e2.toString());
@@ -289,9 +292,10 @@ public class UserActivity extends AppCompatActivity
             mJobDesc.setName_pic(txt_userAct_name_pic.getText().toString().trim());
             mJobDesc.setJabatan_desc(txt_userAct_jabatan.getText().toString().trim());
             mJobDesc.setPic_phone(txt_userAct_picPhone.getText().toString().trim());
-            mJobDesc.setProgress_type(selectedProgress.trim());
+            mJobDesc.setProgress_type(""+rb_progress.getText().toString().trim());
             mJobDesc.setId_site(custId);
             mJobDesc.setUpdate_date(DateTimeUtils.getCurrentTime());
+            jobDescAdapter.update(mJobDesc);
 
             transHistoryUser(custId);
         }catch (Exception e){
@@ -302,7 +306,7 @@ public class UserActivity extends AppCompatActivity
                 mJobDesc.setName_pic(txt_userAct_name_pic.getText().toString().trim());
                 mJobDesc.setJabatan_desc(txt_userAct_jabatan.getText().toString().trim());
                 mJobDesc.setPic_phone(txt_userAct_picPhone.getText().toString().trim());
-                mJobDesc.setProgress_type(selectedProgress.trim());
+                mJobDesc.setProgress_type(""+rb_progress.getText().toString().trim());
                 mJobDesc.setId_site(custId);
                 mJobDesc.setUn_user(preference.getUn());
                 mJobDesc.setInsert_date(DateTimeUtils.getCurrentTime());
@@ -321,6 +325,9 @@ public class UserActivity extends AppCompatActivity
             mHist.setIs_submited(0);
 
             transHistAdapter.update(mHist);
+            //still testing
+            Log.d("###","success transhist");
+            Log.d("###",""+DateTimeUtils.getCurrentTime());
             messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
         }catch (Exception e){
             try{
@@ -332,6 +339,9 @@ public class UserActivity extends AppCompatActivity
                 mHist.setIs_submited(0);
 
                 transHistAdapter.create(mHist);
+                //still testing
+                Log.d("###","success jobdesc");
+                Log.d("###",""+DateTimeUtils.getCurrentTime());
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
             }catch (Exception e2){
                 messageUtils.toastMessage("err insert hist" +e2.toString(), ConfigApps.T_ERROR);

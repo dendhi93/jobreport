@@ -109,4 +109,15 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        LoginActivity.this.finish();
+        Intent i = new Intent();
+        i.setAction(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_HOME);
+        LoginActivity.this.startActivity(i);
+        finish();
+    }
 }

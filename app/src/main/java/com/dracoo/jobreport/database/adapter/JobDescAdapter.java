@@ -52,7 +52,7 @@ public class JobDescAdapter extends DatabaseAdapter{
                     "name_user, " + //1
                     "pic_phone " + //1
                 "from t_jobdesc " +
-                " where id_site " + custId + " " +
+                " where id_site = " + custId + " " +
                 " and name_user = '" +un+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);

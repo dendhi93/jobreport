@@ -6,6 +6,6 @@ import java.util.Date;
 public class DateTimeUtils {
 
     public static String getCurrentTime() {
-        return new SimpleDateFormat("dd-MMMM-yyy HH:mm:ss", java.util.Locale.getDefault()).format(new Date());
+        return new SimpleDateFormat("yyy-MM-dd HH:mm:ss", java.util.Locale.getDefault()).format(new Date());
     }
 }

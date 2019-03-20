@@ -2,6 +2,7 @@ package com.dracoo.jobreport.database.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.j256.ormlite.dao.Dao;
@@ -50,7 +51,7 @@ public class InfoSiteAdapter extends DatabaseAdapter {
                 "location_name, " + //1
                 "customer_name " + //1
                 "from t_site " +
-                " where id_site " + custId + " " +
+                " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
@@ -81,7 +82,7 @@ public class InfoSiteAdapter extends DatabaseAdapter {
         String sql = "SELECT " +
                 "max(id_site) " + //0
                 "from t_site " +
-                " where un_user '" + un + "' ";
+                " where un_user = '" + un + "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
