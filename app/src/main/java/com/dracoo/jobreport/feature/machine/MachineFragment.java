@@ -72,7 +72,7 @@ public class MachineFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_machineQty =  getView().findViewById(i);
-                selectedMachineLocation = rb_machineQty.getText().toString();
+                selectedMachineLocation = ""+rb_machineQty.getText().toString();
             }
         });
     }
@@ -82,7 +82,7 @@ public class MachineFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_machineQty =  getView().findViewById(i);
-                selectedMachineQty = rb_machineQty.getText().toString();
+                selectedMachineQty = ""+rb_machineQty.getText().toString();
             }
         });
     }
@@ -92,7 +92,7 @@ public class MachineFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_machineId =  getView().findViewById(i);
-                selectedMachineId = rb_machineId.getText().toString();
+                selectedMachineId = ""+rb_machineId.getText().toString();
             }
         });
     }
@@ -102,7 +102,7 @@ public class MachineFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_machine24 =  getView().findViewById(i);
-                selectedMachine24 = rb_machine24.getText().toString();
+                selectedMachine24 = ""+rb_machine24.getText().toString();
             }
         });
     }

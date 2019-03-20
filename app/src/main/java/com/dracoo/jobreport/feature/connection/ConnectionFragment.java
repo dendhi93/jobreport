@@ -88,7 +88,7 @@ public class ConnectionFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_selectedConn =  getView().findViewById(i);
-                selectedConn = rb_selectedConn.getText().toString();
+                selectedConn = ""+rb_selectedConn.getText().toString();
 
                 if (selectedConn.equals("VSAT")){
                     ln_conn_vsat.setVisibility(View.VISIBLE);
@@ -106,7 +106,7 @@ public class ConnectionFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_selectedAntena =  getView().findViewById(i);
-                selectedAntena = rb_selectedAntena.getText().toString();
+                selectedAntena = ""+rb_selectedAntena.getText().toString();
             }
         });
     }
@@ -116,7 +116,7 @@ public class ConnectionFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_selectedPedestial =  getView().findViewById(i);
-                selectedPedestial = rb_selectedPedestial.getText().toString();
+                selectedPedestial = ""+rb_selectedPedestial.getText().toString();
             }
         });
     }
@@ -126,7 +126,7 @@ public class ConnectionFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rb_selectedAccess =  getView().findViewById(i);
-                selectedAccess = rb_selectedAccess.getText().toString();
+                selectedAccess = ""+rb_selectedAccess.getText().toString();
             }
         });
     }

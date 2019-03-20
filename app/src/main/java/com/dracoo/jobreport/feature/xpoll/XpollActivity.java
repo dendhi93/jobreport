@@ -55,7 +55,7 @@ public class XpollActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rbXpoll =  findViewById(i);
-                selectedRadio = rbXpoll.getText().toString();
+                selectedRadio = ""+rbXpoll.getText().toString();
             }
         });
     }

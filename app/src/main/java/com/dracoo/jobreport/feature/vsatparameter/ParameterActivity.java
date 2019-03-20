@@ -46,7 +46,7 @@ public class ParameterActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 rbParameter =  findViewById(i);
-                selectedParameter = rbParameter.getText().toString();
+                selectedParameter = ""+rbParameter.getText().toString();
             }
         });
     }

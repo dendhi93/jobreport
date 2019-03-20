@@ -72,7 +72,7 @@ public class ProblemFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 radioButtonClosed = getView().findViewById(i);
-                valueRb = radioButtonClosed.getText().toString();
+                valueRb = ""+radioButtonClosed.getText().toString();
             }
         });
     }
