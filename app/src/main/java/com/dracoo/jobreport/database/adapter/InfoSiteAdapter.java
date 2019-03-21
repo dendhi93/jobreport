@@ -49,7 +49,7 @@ public class InfoSiteAdapter extends DatabaseAdapter {
         String sql = "SELECT " +
                 "id_site, " + //0
                 "location_name, " + //1
-                "customer_name " + //1
+                "customer_name " + //2
                 "from t_site " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";

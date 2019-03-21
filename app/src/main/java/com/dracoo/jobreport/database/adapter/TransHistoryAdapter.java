@@ -48,10 +48,10 @@ public class TransHistoryAdapter extends DatabaseAdapter {
 
         String sql = "SELECT " +
                                 "id_trans, " + //0
-                                "trans_step " + //1
-                                "is_submited " + //1
+                                "trans_step, " + //1
+                                "is_submited " + //2
                     "from t_trans_history " +
-                    " where id_site like " + custId + "' " +
+                    " where id_site = " + custId + " " +
                     " and un_user = '" +un+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);

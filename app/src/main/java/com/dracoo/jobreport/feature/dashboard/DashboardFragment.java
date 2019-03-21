@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,6 @@ public class DashboardFragment extends Fragment {
     private ArrayList<MasterTransHistory> alListTrans;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<MasterTransHistory> alTransHist;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,24 +82,29 @@ public class DashboardFragment extends Fragment {
                 rc_dash_activity.setVisibility(View.VISIBLE);
                 lbl_dash_empty.setVisibility(View.GONE);
             }else{
+                messageUtils.toastMessage("ke empty", ConfigApps.T_INFO);
                 rc_dash_activity.setVisibility(View.GONE);
                 lbl_dash_empty.setVisibility(View.VISIBLE);
             }
         }catch (Exception e){
             rc_dash_activity.setVisibility(View.GONE);
             lbl_dash_empty.setVisibility(View.VISIBLE);
+            Log.d("###", "ke catch list " +e.toString());
         }
         return list;
     }
 
     private void loadRcTrans(){
         if (preference.getCustID() != 0){
+            Log.d("###","ke tidak sama dengan 0");
             rc_dash_activity.setHasFixedSize(true);
             layoutManager = new LinearLayoutManager(getActivity());
             rc_dash_activity.setLayoutManager(layoutManager);
             List<MasterTransHistory> list = getList_TransHist();
             adapter = new CustomList_Dashboard_Adapter(getActivity(), list);
             rc_dash_activity.setAdapter(adapter);
+        }else{
+            Log.d("###","ke sama dengan 0");
         }
     }
 
