@@ -51,7 +51,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:backgroundTint="@android:color/transparent"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:drawableLeft="@drawable/ic_user_16"
                         android:inputType="text"
                         android:maxLength="25"
@@ -89,7 +89,7 @@
                         android:drawableStart="@drawable/ic_user_16"
                         android:inputType="textPassword"
                         android:maxLength="25"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
                         android:textColorLink="@color/colorWhite" />
@@ -123,7 +123,7 @@
                         android:drawableLeft="@drawable/ic_black_setting_16"
                         android:inputType="text"
                         android:maxLength="25"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
                         android:textColorLink="@color/colorWhite" />
@@ -156,7 +156,7 @@
                         android:drawableLeft="@drawable/ic_user_16"
                         android:inputType="text"
                         android:maxLength="50"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
                         android:textColorLink="@color/colorWhite" />
@@ -191,7 +191,7 @@
                         android:inputType="text"
                         android:maxLength="25"
                         android:maxLines="2"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:textColor="@color/colorBlack"
                         android:textColorLink="@color/colorWhite" />
 
@@ -223,7 +223,7 @@
                         android:drawableLeft="@drawable/ic_black_setting_16"
                         android:inputType="text"
                         android:maxLength="25"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
                         android:textColorLink="@color/colorWhite" />
@@ -257,7 +257,7 @@
                         android:inputType="text"
                         android:maxLength="25"
                         android:maxLines="2"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:textColor="@color/colorBlack"
                         android:textColorLink="@color/colorWhite" />
 
@@ -287,7 +287,7 @@
                         android:layout_height="45dp"
                         android:backgroundTint="@android:color/transparent"
                         android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:inputType="text"
                         android:maxLength="15"
                         android:maxLines="2"
@@ -322,7 +322,7 @@
                         android:drawableLeft="@drawable/ic_black_setting_16"
                         android:inputType="text"
                         android:maxLength="25"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
                         android:textColorLink="@color/colorWhite" />
@@ -355,7 +355,7 @@
                         android:drawableLeft="@drawable/ic_black_setting_16"
                         android:inputType="text"
                         android:maxLength="15"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
                         android:textColorLink="@color/colorWhite" />
@@ -390,7 +390,7 @@
                     android:drawableLeft="@drawable/ic_black_setting_16"
                     android:inputType="text"
                     android:maxLength="25"
-                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/,.()!?"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                     android:maxLines="2"
                     android:textColor="@color/colorBlack"
                     android:textColorLink="@color/colorWhite" />

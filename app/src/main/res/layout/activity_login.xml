@@ -60,6 +60,7 @@
                     android:maxLength="15"
                     android:textColorHighlight="@color/colorWhite"
                     android:textColor="@color/colorBlack"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                     android:textColorLink="@color/colorPrimary"
                     android:background="@drawable/noborder"
                     android:gravity="center_vertical"/>
@@ -81,6 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/spacing_huge"
                     android:inputType="text"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                     android:maxLength="20"
                     android:textColorHighlight="@color/colorWhite"
                     android:textColor="@color/colorBlack"
@@ -108,6 +110,7 @@
                     android:maxLength="15"
                     android:textColorHighlight="@color/colorWhite"
                     android:textColor="@color/colorBlack"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                     android:textColorLink="@color/colorPrimary"
                     android:background="@drawable/noborder"
                     android:gravity="center_vertical"/>
