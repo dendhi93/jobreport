@@ -88,4 +88,6 @@ public class TransHistoryAdapter extends DatabaseAdapter {
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }
+
+    //TO DO HARUS ADA QUERY VALIDASI PER MENUNYA
 }
