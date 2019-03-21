@@ -55,6 +55,10 @@ public class ProblemFragment extends Fragment {
     EditText txt_action_reasonPending;
     @BindView(R.id.txt_problem_closedBy)
     EditText txt_problem_closedBy;
+    @BindView(R.id.rb_prob_eos)
+    RadioButton rb_prob_eos;
+    @BindView(R.id.rb_conn_m2m)
+    RadioButton rb_conn_m2m;
 
     private String valueRb = "";
     private String tempDate = "";
@@ -86,8 +90,13 @@ public class ProblemFragment extends Fragment {
         rg_prob_closedBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                radioButtonClosed = getView().findViewById(i);
-                valueRb = ""+radioButtonClosed.getText().toString();
+//                radioButtonClosed = getView().findViewById(i);
+//                valueRb = ""+radioButtonClosed.getText().toString();
+                if (i == R.id.rb_prob_eos){
+                    valueRb = rb_prob_eos.getText().toString();
+                }else{
+                    valueRb = rb_conn_m2m.getText().toString();
+                }
             }
         });
     }
@@ -97,7 +106,9 @@ public class ProblemFragment extends Fragment {
 
         if (!emptyValidation()){
             messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
-        }else {
+        }   else if (!rb_prob_eos.isChecked() || !rb_conn_m2m.isChecked()){
+            messageUtils.snackBar_message("Mohon dipilih pilihan closed", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+        } else {
             messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
         }
     }
