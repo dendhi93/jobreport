@@ -185,5 +185,21 @@
     <string name="param_ESNO">Final ESNO</string>
     <string name="param_cno">Final C/NO</string>
 
+    //tranhistory content
+    <string name="jobDesc_trans">Job Desc</string>
+    <string name="infoSite_trans">Info Site</string>
+    <string name="problemDesc_trans">Problem Desc</string>
+    <string name="electEnv_trans">Electrical Environtment</string>
+    <string name="machine_trans">Machine</string>
+    <string name="ioVSAT_trans">IO VSAT</string>
+    <string name="repVSAT_trans">Replace VSAT</string>
+    <string name="ioM2M_trans">IO M2M</string>
+    <string name="repM2M_trans">IO M2M</string>
+    <string name="dataM2m_trans">Data M2M</string>
+    <string name="xpoll_trans">XPOLL</string>
+    <string name="networkParam_trans">NetWork Parameter</string>
+    <string name="doc_trans">Job Desc</string>
+
+
 
 </resources>
