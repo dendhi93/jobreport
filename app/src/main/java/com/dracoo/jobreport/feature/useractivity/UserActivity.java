@@ -119,8 +119,6 @@ public class UserActivity extends AppCompatActivity
         rbProgressListener();
         getUserValidation();
 
-
-
         if (!preference.getUn().equals("")){
             txt_userAct_name.setText(preference.getUn().trim());
             txt_userAct_phone.setText(preference.getPhone().trim());
@@ -135,6 +133,8 @@ public class UserActivity extends AppCompatActivity
             transHistAdapter = new TransHistoryAdapter(getApplicationContext()).getAdapter();
         }catch (Exception e){ Log.d("User err Adapter ",""+e); }
 
+        txt_userAct_lat.setText("0.0");
+        txt_userAct_long.setText("0.0");
 
     }
 
@@ -316,6 +316,7 @@ public class UserActivity extends AppCompatActivity
 
                 jobDescAdapter.create(mJobDesc);
                 transHistoryUser(custId, getString(R.string.jobDesc_trans));
+                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
             }catch (Exception e2){messageUtils.toastMessage("err insert job desc" +e2.toString(), ConfigApps.T_ERROR); }
         }
     }
@@ -334,7 +335,7 @@ public class UserActivity extends AppCompatActivity
 
                 transHistAdapter.update(mHist);
             }catch (Exception e){
-                Log.d("err trans Hist",""+e.toString());
+                Log.d("err trans Hist1",""+e.toString());
             }
         }else{
             try{
@@ -342,12 +343,12 @@ public class UserActivity extends AppCompatActivity
                 mHist.setId_site(custId);
                 mHist.setUn_user(preference.getUn());
                 mHist.setInsert_date(DateTimeUtils.getCurrentTime());
-                mHist.setTrans_step("Info Site");
+                mHist.setTrans_step(transStep);
                 mHist.setIs_submited(0);
 
                 transHistAdapter.create(mHist);
             }catch (Exception e){
-                Log.d("err trans Hist",""+e.toString());
+                Log.d("err trans Hist2",""+e.toString());
             }
         }
     }

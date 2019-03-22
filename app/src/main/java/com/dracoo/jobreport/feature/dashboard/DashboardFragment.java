@@ -82,7 +82,6 @@ public class DashboardFragment extends Fragment {
                 rc_dash_activity.setVisibility(View.VISIBLE);
                 lbl_dash_empty.setVisibility(View.GONE);
             }else{
-                messageUtils.toastMessage("ke empty", ConfigApps.T_INFO);
                 rc_dash_activity.setVisibility(View.GONE);
                 lbl_dash_empty.setVisibility(View.VISIBLE);
             }
@@ -96,7 +95,6 @@ public class DashboardFragment extends Fragment {
 
     private void loadRcTrans(){
         if (preference.getCustID() != 0){
-            Log.d("###","ke tidak sama dengan 0");
             rc_dash_activity.setHasFixedSize(true);
             layoutManager = new LinearLayoutManager(getActivity());
             rc_dash_activity.setLayoutManager(layoutManager);

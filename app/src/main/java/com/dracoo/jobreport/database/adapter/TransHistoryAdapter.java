@@ -79,7 +79,7 @@ public class TransHistoryAdapter extends DatabaseAdapter {
     public Cursor val_transCursor(int custId, String un, String transStep){
         Cursor cursor;
 
-        String sql = "SELECT COUNT(id_trans) " +
+        String sql = "SELECT id_trans " +
                 "from t_trans_history " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' " +
