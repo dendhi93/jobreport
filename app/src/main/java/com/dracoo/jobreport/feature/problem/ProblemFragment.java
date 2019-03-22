@@ -107,7 +107,7 @@ public class ProblemFragment extends Fragment {
         if (!emptyValidation()){
             messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
         }   else if (!rb_prob_eos.isChecked() || !rb_conn_m2m.isChecked()){
-            messageUtils.snackBar_message("Mohon dipilih pilihan closed", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            messageUtils.snackBar_message("Mohon dipilih pilihan pada kolom closed", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         } else {
             messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
         }

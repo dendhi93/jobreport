@@ -18,6 +18,12 @@ public class ParameterActivity extends AppCompatActivity {
 
     @BindView(R.id.rg_par_subnetmask)
     RadioGroup rg_par_subnetmask;
+    @BindView(R.id.rb_param_sub1)
+    RadioButton rb_param_sub1;
+    @BindView(R.id.rb_param_sub2)
+    RadioButton rb_param_sub2;
+    @BindView(R.id.rb_param_sub3)
+    RadioButton rb_param_sub3;
 
     private String selectedParameter = "";
     private RadioButton rbParameter;
@@ -45,15 +51,27 @@ public class ParameterActivity extends AppCompatActivity {
         rg_par_subnetmask.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rbParameter =  findViewById(i);
-                selectedParameter = ""+rbParameter.getText().toString();
+//                rbParameter =  findViewById(i);
+//                selectedParameter = ""+rbParameter.getText().toString();
+                if (i == R.id.rb_param_sub1){
+                    selectedParameter = ""+rb_param_sub1.getText().toString();
+                }else if (i == R.id.rb_param_sub2){
+                    selectedParameter = ""+rb_param_sub2.getText().toString();
+                }else if (i == R.id.rb_param_sub3){
+                    selectedParameter = ""+rb_param_sub3.getText().toString();
+                }
             }
         });
     }
 
     @OnClick(R.id.imgB_par_submit)
     void submitPar(){
-        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        if (!rb_param_sub1.isChecked() || !rb_param_sub2.isChecked() || !rb_param_sub3.isChecked()){
+            messageUtils.toastMessage("Mohon dipilih pilhan pada kolom SubnetMask", ConfigApps.T_WARNING);
+        }else{
+            messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        }
+
     }
 
 
