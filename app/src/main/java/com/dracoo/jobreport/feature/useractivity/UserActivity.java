@@ -248,7 +248,7 @@ public class UserActivity extends AppCompatActivity
                     .load_site(preference.getCustID(), preference.getUn());
 
             if (al_verifyInfoSite.size() > 0){
-                transHistoryUser(al_verifyInfoSite.get(0).getId_site(), 1);
+                transHistoryUser(al_verifyInfoSite.get(0).getId_site(), getString(R.string.infoSite_trans));
                 jobDescTrans(al_verifyInfoSite.get(0).getId_site());
             }else{
                 messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
@@ -275,7 +275,7 @@ public class UserActivity extends AppCompatActivity
                 if (al_maxSite.size() > 0){
                     preference.saveCustId(al_maxSite.get(0).getId_site());
                     preference.saveProgress(""+rb_progress.getText().toString().trim());
-                    transHistoryUser(al_maxSite.get(0).getId_site(), 1);
+                    transHistoryUser(al_maxSite.get(0).getId_site(), getString(R.string.infoSite_trans));
                     jobDescTrans(al_maxSite.get(0).getId_site());
                 }else{
                     messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
@@ -300,7 +300,7 @@ public class UserActivity extends AppCompatActivity
             mJobDesc.setUpdate_date(DateTimeUtils.getCurrentTime());
             jobDescAdapter.update(mJobDesc);
 
-            transHistoryUser(custId, 2);
+            transHistoryUser(custId, getString(R.string.jobDesc_trans));
         }catch (Exception e){
             try{
                 MasterJobDesc mJobDesc = new MasterJobDesc();
@@ -315,54 +315,39 @@ public class UserActivity extends AppCompatActivity
                 mJobDesc.setInsert_date(DateTimeUtils.getCurrentTime());
 
                 jobDescAdapter.create(mJobDesc);
-                transHistoryUser(custId, 2);
+                transHistoryUser(custId, getString(R.string.jobDesc_trans));
             }catch (Exception e2){messageUtils.toastMessage("err insert job desc" +e2.toString(), ConfigApps.T_ERROR); }
         }
     }
 
-    private void transHistoryUser(int custId, int type){
-        try{
-            MasterTransHistory mHist = transHistAdapter.queryForEq("id_site", custId).get(0);
-            if (type == 1){
-                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
-                mHist.setTrans_step("Info Site");
-                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
-                mHist.setIs_submited(0);
+    private void transHistoryUser(int custId, String transStep){
+        ArrayList<MasterTransHistory> al_valTrans = new TransHistoryAdapter(getApplicationContext())
+                .val_trans(custId, preference.getUn(), transStep);
 
-                transHistAdapter.update(mHist);
-            }else{
-                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
-                mHist.setTrans_step("Job Desc");
-                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
-                mHist.setIs_submited(0);
-
-                transHistAdapter.update(mHist);
-                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-            }
-        }catch (Exception e){
+        if (al_valTrans.size() > 0){
             try{
-                if (type == 1){
-                    MasterTransHistory mHist = new MasterTransHistory();
-                    mHist.setId_site(custId);
-                    mHist.setUn_user(preference.getUn());
-                    mHist.setInsert_date(DateTimeUtils.getCurrentTime());
-                    mHist.setTrans_step("Info Site");
-                    mHist.setIs_submited(0);
+                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTrans.get(0).getId_site());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(transStep);
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setIs_submited(0);
 
-                    transHistAdapter.create(mHist);
-                }else{
-                    MasterTransHistory mHist = new MasterTransHistory();
-                    mHist.setId_site(custId);
-                    mHist.setUn_user(preference.getUn());
-                    mHist.setInsert_date(DateTimeUtils.getCurrentTime());
-                    mHist.setTrans_step("Job Desc");
-                    mHist.setIs_submited(0);
+                transHistAdapter.update(mHist);
+            }catch (Exception e){
+                Log.d("err trans Hist",""+e.toString());
+            }
+        }else{
+            try{
+                MasterTransHistory mHist = new MasterTransHistory();
+                mHist.setId_site(custId);
+                mHist.setUn_user(preference.getUn());
+                mHist.setInsert_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step("Info Site");
+                mHist.setIs_submited(0);
 
-                    transHistAdapter.create(mHist);
-                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-                }
-            }catch (Exception e2){
-                messageUtils.toastMessage("err insert hist" +e2.toString(), ConfigApps.T_ERROR);
+                transHistAdapter.create(mHist);
+            }catch (Exception e){
+                Log.d("err trans Hist",""+e.toString());
             }
         }
     }

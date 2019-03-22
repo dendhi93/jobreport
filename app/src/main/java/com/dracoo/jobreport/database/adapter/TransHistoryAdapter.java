@@ -59,11 +59,11 @@ public class TransHistoryAdapter extends DatabaseAdapter {
     }
 
 
-    public ArrayList<MasterTransHistory> val_trans(String custId, String un){
+    public ArrayList<MasterTransHistory> val_trans(int custId, String un, String transStep){
         ArrayList<MasterTransHistory> transHists = new ArrayList<>();
         Cursor cursor = null;
 
-        cursor = val_transCursor(custId, un);
+        cursor = val_transCursor(custId, un, transStep);
 
         while (cursor.moveToNext()) {
             MasterTransHistory mTransHist = new MasterTransHistory();
@@ -76,18 +76,18 @@ public class TransHistoryAdapter extends DatabaseAdapter {
         return transHists;
     }
 
-    public Cursor val_transCursor(String custId, String un){
+    public Cursor val_transCursor(int custId, String un, String transStep){
         Cursor cursor;
 
         String sql = "SELECT COUNT(id_trans) " +
                 "from t_trans_history " +
-                " where id_site like " + custId + "' " +
+                " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' " +
+                " and trans_step = '"+transStep+"' " +
                 " and is_submited = 0 ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }
 
-    //TO DO HARUS ADA QUERY VALIDASI PER MENUNYA
 }
