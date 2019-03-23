@@ -64,14 +64,10 @@ public class ProblemFragment extends Fragment {
     EditText txt_prob_reasonPending;
     @BindView(R.id.txt_problem_closedBy)
     EditText txt_problem_closedBy;
-    @BindView(R.id.rb_prob_eos)
-    RadioButton rb_prob_eos;
-    @BindView(R.id.rb_conn_m2m)
-    RadioButton rb_conn_m2m;
+    private RadioButton radioProbSelected;
 
     private String valueRb = "";
     private String tempDate = "";
-    private RadioButton radioButtonClosed ;
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
     private Dao<MasterProblem, Integer> problemAdapter;
     private Dao<MasterTransHistory, Integer> transAdapter;
@@ -104,14 +100,16 @@ public class ProblemFragment extends Fragment {
 
     @OnClick(R.id.imgB_problem_submit)
     void submitProblem (){
-        if (!emptyValidation()){
-            messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
-        }   else if (!rb_prob_eos.isChecked() || !rb_conn_m2m.isChecked()){
+        try{
+            if (!emptyValidation()){
+                messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
+            }   else if (radioProbSelected.getText().toString().trim().equals("")){ } else {
+                transProblem();
+            }
+        }catch (Exception e){
             messageUtils.snackBar_message("Mohon dipilih pilihan pada kolom closed", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-        } else {
-            transProblem();
-//            messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
         }
+
     }
 
     @OnClick(R.id.imgB_problem_cancel)
@@ -147,65 +145,65 @@ public class ProblemFragment extends Fragment {
         rg_prob_closedBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.rb_prob_eos){
-                    valueRb = rb_prob_eos.getText().toString();
-                }else{
-                    valueRb = rb_conn_m2m.getText().toString();
-                }
+                radioProbSelected = getActivity().findViewById(i);
+//                valueRb = ""+radioProbSelected.getText().toString();
             }
         });
     }
 
     private void transProblem(){
-        ArrayList<MasterProblem> al_valProb = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
-        if (al_valProb.size() > 0){
-            try{
-                MasterProblem mProb = problemAdapter.queryForId(al_valProb.get(0).getId_problem());
-                mProb.setModem(txt_prob_modemDisplay.getText().toString().trim());
-                mProb.setSymptom(txt_problem_symptom.getText().toString().trim());
-                mProb.setAction(txt_prob_action_text.getText().toString().trim());
-                mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
-                mProb.setTiba(txt_problem_tiba.getText().toString().trim());
-                mProb.setFinish(txt_problem_finish.getText().toString().trim());
-                mProb.setUpline(txt_problem_upline.getText().toString().trim());
-                mProb.setOnline(txt_problem_online.getText().toString().trim());
-                mProb.setPending(txt_prob_pending.getText().toString().trim());
-                mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
-                mProb.setClosed(valueRb.trim());
-                mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
-                mProb.setProgress_type(preference.getProgress().trim());
-                mProb.setUpdate_date(DateTimeUtils.getCurrentTime());
-                mProb.setUn_user(preference.getUn().trim());
+        if (preference.getCustID() == 0){
+            messageUtils.snackBar_message("Mohon diinput menu Customer dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+        }else{
+            ArrayList<MasterProblem> al_valProb = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
+            if (al_valProb.size() > 0){
+                try{
+                    MasterProblem mProb = problemAdapter.queryForId(al_valProb.get(0).getId_problem());
+                    mProb.setModem(txt_prob_modemDisplay.getText().toString().trim());
+                    mProb.setSymptom(txt_problem_symptom.getText().toString().trim());
+                    mProb.setAction(txt_prob_action_text.getText().toString().trim());
+                    mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
+                    mProb.setTiba(txt_problem_tiba.getText().toString().trim());
+                    mProb.setFinish(txt_problem_finish.getText().toString().trim());
+                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
+                    mProb.setOnline(txt_problem_online.getText().toString().trim());
+                    mProb.setPending(txt_prob_pending.getText().toString().trim());
+                    mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
+                    mProb.setClosed(""+radioProbSelected.getText().toString().trim());
+                    mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
+                    mProb.setProgress_type(preference.getProgress().trim());
+                    mProb.setUpdate_date(DateTimeUtils.getCurrentTime());
+                    mProb.setUn_user(preference.getUn().trim());
 
-                problemAdapter.update(mProb);
-                transHistProb();
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-            }catch (Exception e){ messageUtils.toastMessage("Err Problem1 " +e.toString(), ConfigApps.T_ERROR); }
-        } else {
-            try{
-                MasterProblem mProb = new MasterProblem();
-                mProb.setModem(txt_prob_modemDisplay.getText().toString().trim());
-                mProb.setSymptom(txt_problem_symptom.getText().toString().trim());
-                mProb.setAction(txt_prob_action_text.getText().toString().trim());
-                mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
-                mProb.setTiba(txt_problem_tiba.getText().toString().trim());
-                mProb.setFinish(txt_problem_finish.getText().toString().trim());
-                mProb.setUpline(txt_problem_upline.getText().toString().trim());
-                mProb.setOnline(txt_problem_online.getText().toString().trim());
-                mProb.setPending(txt_prob_pending.getText().toString().trim());
-                mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
-                mProb.setClosed(valueRb.trim());
-                mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
-                mProb.setProgress_type(preference.getProgress().trim());
-                mProb.setInsert_date(DateTimeUtils.getCurrentTime());
-                mProb.setUn_user(preference.getUn().trim());
-                mProb.setId_site(preference.getCustID());
+                    problemAdapter.update(mProb);
+                    Log.d("###","success update");
+                    transHistProb();
+                }catch (Exception e){ messageUtils.toastMessage("### " +e.toString(), ConfigApps.T_ERROR); }
+            } else {
+                try{
+                    MasterProblem mProb = new MasterProblem();
+                    mProb.setModem(txt_prob_modemDisplay.getText().toString().trim());
+                    mProb.setSymptom(txt_problem_symptom.getText().toString().trim());
+                    mProb.setAction(txt_prob_action_text.getText().toString().trim());
+                    mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
+                    mProb.setTiba(txt_problem_tiba.getText().toString().trim());
+                    mProb.setFinish(txt_problem_finish.getText().toString().trim());
+                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
+                    mProb.setOnline(txt_problem_online.getText().toString().trim());
+                    mProb.setPending(txt_prob_pending.getText().toString().trim());
+                    mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
+                    mProb.setClosed(""+radioProbSelected.getText().toString().trim());
+                    mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
+                    mProb.setProgress_type(preference.getProgress().trim());
+                    mProb.setInsert_date(DateTimeUtils.getCurrentTime());
+                    mProb.setUn_user(preference.getUn().trim());
+                    mProb.setId_site(preference.getCustID());
 
-                problemAdapter.create(mProb);
-                transHistProb();
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-            }catch (Exception e){
-                messageUtils.toastMessage("Err Problem2 " +e.toString(), ConfigApps.T_ERROR);
+                    problemAdapter.create(mProb);
+                    transHistProb();
+                }catch (Exception e){
+                    messageUtils.toastMessage("### " +e.toString(), ConfigApps.T_ERROR);
+                }
             }
         }
     }
@@ -222,6 +220,7 @@ public class ProblemFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transAdapter.update(mHist);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -235,6 +234,7 @@ public class ProblemFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transAdapter.create(mHist);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }

@@ -409,4 +409,15 @@ public class UserActivity extends AppCompatActivity
         }
         return true;
     }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        try{
+            if (mGoogleApiClient != null  &&  mGoogleApiClient.isConnected()) {
+                mFusedLocation.removeLocationUpdates(callback);
+                mGoogleApiClient.disconnect();
+            }
+        }catch (Exception e){}
+    }
 }

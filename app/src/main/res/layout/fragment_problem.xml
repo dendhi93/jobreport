@@ -521,7 +521,7 @@
                             android:text="@string/rb_eos" />
 
                         <RadioButton
-                            android:id="@+id/rb_conn_m2m"
+                            android:id="@+id/rb_prob_noc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/rb_noc" />
