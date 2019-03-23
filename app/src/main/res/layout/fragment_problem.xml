@@ -121,7 +121,7 @@
                         android:hint="@string/action_taken">
 
                         <EditText
-                            android:id="@+id/txt_action_text"
+                            android:id="@+id/txt_prob_action_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -441,7 +441,7 @@
                         android:hint="@string/pending">
 
                         <EditText
-                            android:id="@+id/txt_action_pending"
+                            android:id="@+id/txt_prob_pending"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:layout_weight="1"
@@ -475,7 +475,7 @@
                         android:hint="@string/reason_pending">
 
                         <EditText
-                            android:id="@+id/txt_action_reasonPending"
+                            android:id="@+id/txt_prob_reasonPending"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -554,7 +554,7 @@
                             android:backgroundTint="@android:color/transparent"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                             android:textColor="@color/colorBlack"
-                            android:drawableStart="@drawable/ic_wifi"
+                            android:drawableStart="@drawable/ic_user_16"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="25"
@@ -590,15 +590,8 @@
                 </LinearLayout>
             </LinearLayout>
 
-
         </android.support.v7.widget.CardView>
 
-
     </LinearLayout>
-
-
-
-
-
 
 </ScrollView>

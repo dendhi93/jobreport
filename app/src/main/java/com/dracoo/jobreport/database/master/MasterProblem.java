@@ -14,6 +14,8 @@ public class MasterProblem implements Serializable {
     private Integer id_site;
     @DatabaseField(columnName = "modem")
     private String modem;
+    @DatabaseField(columnName = "symptom")
+    private String symptom;
     @DatabaseField(columnName = "action")
     private String action;
     @DatabaseField(columnName = "berangkat")
@@ -26,6 +28,8 @@ public class MasterProblem implements Serializable {
     private String upline;
     @DatabaseField(columnName = "online")
     private String online;
+    @DatabaseField(columnName = "pending")
+    private String pending;
     @DatabaseField(columnName = "reason")
     private String reason;
     @DatabaseField(columnName = "closed")
@@ -167,5 +171,21 @@ public class MasterProblem implements Serializable {
 
     public void setUn_user(String un_user) {
         this.un_user = un_user;
+    }
+
+    public String getSymptom() {
+        return symptom;
+    }
+
+    public void setSymptom(String symptom) {
+        this.symptom = symptom;
+    }
+
+    public String getPending() {
+        return pending;
+    }
+
+    public void setPending(String pending) {
+        this.pending = pending;
     }
 }

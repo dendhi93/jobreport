@@ -45,6 +45,7 @@ public class DashboardFragment extends Fragment {
     @BindView(R.id.lbl_dash_empty)
     TextView lbl_dash_empty;
 
+
     private MessageUtils messageUtils;
     private Preference preference;
     private ArrayList<MasterJobDesc> alJobDesc;

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,17 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.ProblemAdapter;
+import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
+import com.dracoo.jobreport.database.master.MasterProblem;
+import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
+import com.dracoo.jobreport.util.Preference;
+import com.j256.ormlite.dao.Dao;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -47,12 +56,12 @@ public class ProblemFragment extends Fragment {
     EditText txt_prob_modemDisplay;
     @BindView(R.id.txt_problem_symptom)
     EditText txt_problem_symptom;
-    @BindView(R.id.txt_action_text)
-    EditText txt_action_text;
-    @BindView(R.id.txt_action_pending)
-    EditText txt_action_pending;
-    @BindView(R.id.txt_action_reasonPending)
-    EditText txt_action_reasonPending;
+    @BindView(R.id.txt_prob_action_text)
+    EditText txt_prob_action_text;
+    @BindView(R.id.txt_prob_pending)
+    EditText txt_prob_pending;
+    @BindView(R.id.txt_prob_reasonPending)
+    EditText txt_prob_reasonPending;
     @BindView(R.id.txt_problem_closedBy)
     EditText txt_problem_closedBy;
     @BindView(R.id.rb_prob_eos)
@@ -64,7 +73,9 @@ public class ProblemFragment extends Fragment {
     private String tempDate = "";
     private RadioButton radioButtonClosed ;
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
-
+    private Dao<MasterProblem, Integer> problemAdapter;
+    private Dao<MasterTransHistory, Integer> transAdapter;
+    private Preference preference;
 
 
     @Override
@@ -82,34 +93,24 @@ public class ProblemFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         messageUtils = new MessageUtils(getActivity());
+        preference = new Preference(getActivity());
         rbListener();
-    }
 
-
-    private void rbListener(){
-        rg_prob_closedBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                radioButtonClosed = getView().findViewById(i);
-//                valueRb = ""+radioButtonClosed.getText().toString();
-                if (i == R.id.rb_prob_eos){
-                    valueRb = rb_prob_eos.getText().toString();
-                }else{
-                    valueRb = rb_conn_m2m.getText().toString();
-                }
-            }
-        });
+        try{
+            problemAdapter = new ProblemAdapter(getActivity()).getAdapter();
+            transAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
+        }catch (Exception e){ Log.d("Err Problem adapter ","" +e.toString());}
     }
 
     @OnClick(R.id.imgB_problem_submit)
     void submitProblem (){
-
         if (!emptyValidation()){
             messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
         }   else if (!rb_prob_eos.isChecked() || !rb_conn_m2m.isChecked()){
             messageUtils.snackBar_message("Mohon dipilih pilihan pada kolom closed", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         } else {
-            messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+            transProblem();
+//            messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
         }
     }
 
@@ -140,6 +141,104 @@ public class ProblemFragment extends Fragment {
     @OnClick(R.id.imgBtn_timer6)
     void displayTime6(){
         datePicker(7);
+    }
+
+    private void rbListener(){
+        rg_prob_closedBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (i == R.id.rb_prob_eos){
+                    valueRb = rb_prob_eos.getText().toString();
+                }else{
+                    valueRb = rb_conn_m2m.getText().toString();
+                }
+            }
+        });
+    }
+
+    private void transProblem(){
+        ArrayList<MasterProblem> al_valProb = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
+        if (al_valProb.size() > 0){
+            try{
+                MasterProblem mProb = problemAdapter.queryForId(al_valProb.get(0).getId_problem());
+                mProb.setModem(txt_prob_modemDisplay.getText().toString().trim());
+                mProb.setSymptom(txt_problem_symptom.getText().toString().trim());
+                mProb.setAction(txt_prob_action_text.getText().toString().trim());
+                mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
+                mProb.setTiba(txt_problem_tiba.getText().toString().trim());
+                mProb.setFinish(txt_problem_finish.getText().toString().trim());
+                mProb.setUpline(txt_problem_upline.getText().toString().trim());
+                mProb.setOnline(txt_problem_online.getText().toString().trim());
+                mProb.setPending(txt_prob_pending.getText().toString().trim());
+                mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
+                mProb.setClosed(valueRb.trim());
+                mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
+                mProb.setProgress_type(preference.getProgress().trim());
+                mProb.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mProb.setUn_user(preference.getUn().trim());
+
+                problemAdapter.update(mProb);
+                transHistProb();
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+            }catch (Exception e){ messageUtils.toastMessage("Err Problem1 " +e.toString(), ConfigApps.T_ERROR); }
+        } else {
+            try{
+                MasterProblem mProb = new MasterProblem();
+                mProb.setModem(txt_prob_modemDisplay.getText().toString().trim());
+                mProb.setSymptom(txt_problem_symptom.getText().toString().trim());
+                mProb.setAction(txt_prob_action_text.getText().toString().trim());
+                mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
+                mProb.setTiba(txt_problem_tiba.getText().toString().trim());
+                mProb.setFinish(txt_problem_finish.getText().toString().trim());
+                mProb.setUpline(txt_problem_upline.getText().toString().trim());
+                mProb.setOnline(txt_problem_online.getText().toString().trim());
+                mProb.setPending(txt_prob_pending.getText().toString().trim());
+                mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
+                mProb.setClosed(valueRb.trim());
+                mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
+                mProb.setProgress_type(preference.getProgress().trim());
+                mProb.setInsert_date(DateTimeUtils.getCurrentTime());
+                mProb.setUn_user(preference.getUn().trim());
+                mProb.setId_site(preference.getCustID());
+
+                problemAdapter.create(mProb);
+                transHistProb();
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+            }catch (Exception e){
+                messageUtils.toastMessage("Err Problem2 " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }
+    }
+
+    private void transHistProb(){
+        ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
+                .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.problemDesc_trans));
+        if (al_valTransHist.size() > 0){
+            try{
+                MasterTransHistory mHist = transAdapter.queryForId(al_valTransHist.get(0).getId_site());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getActivity().getString(R.string.problemDesc_trans));
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setIs_submited(0);
+
+                transAdapter.update(mHist);
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }else{
+            try{
+                MasterTransHistory mHist = new MasterTransHistory();
+                mHist.setId_site(preference.getCustID());
+                mHist.setUn_user(preference.getUn());
+                mHist.setInsert_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getActivity().getString(R.string.problemDesc_trans));
+                mHist.setIs_submited(0);
+
+                transAdapter.create(mHist);
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }
     }
 
     private void datePicker(final int selectedColumn){
@@ -224,9 +323,9 @@ public class ProblemFragment extends Fragment {
     }
 
     private boolean emptyValidation(){
-        if (txt_action_pending.getText().toString().trim().equals("")||
-            txt_action_reasonPending.getText().toString().trim().equals("") ||
-            txt_action_text.getText().toString().trim().equals("") ||
+        if (txt_prob_pending.getText().toString().trim().equals("")||
+            txt_prob_reasonPending.getText().toString().trim().equals("") ||
+            txt_prob_action_text.getText().toString().trim().equals("") ||
             txt_prob_modemDisplay.getText().toString().trim().equals("") ||
             txt_problem_berangkat.getText().toString().trim().equals("") ||
             txt_problem_closedBy.getText().toString().trim().equals("") ||

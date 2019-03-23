@@ -335,7 +335,7 @@ public class UserActivity extends AppCompatActivity
 
                 transHistAdapter.update(mHist);
             }catch (Exception e){
-                Log.d("err trans Hist1",""+e.toString());
+                messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
             }
         }else{
             try{
@@ -348,7 +348,7 @@ public class UserActivity extends AppCompatActivity
 
                 transHistAdapter.create(mHist);
             }catch (Exception e){
-                Log.d("err trans Hist2",""+e.toString());
+                messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }
         }
     }
