@@ -51,7 +51,6 @@ public class EnvAdapter extends DatabaseAdapter {
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
 
-
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }
