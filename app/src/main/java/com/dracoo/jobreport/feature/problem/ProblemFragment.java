@@ -114,7 +114,19 @@ public class ProblemFragment extends Fragment {
 
     @OnClick(R.id.imgB_problem_cancel)
     void probCancel(){
-        messageUtils.toastMessage("coba 2", ConfigApps.T_DEFAULT);
+
+        txt_prob_pending.setText("");
+        txt_prob_reasonPending.setText("");
+        txt_prob_action_text.setText("");
+        txt_prob_modemDisplay.setText("");
+        txt_problem_berangkat.setText("");
+        txt_problem_closedBy.setText("");
+        txt_problem_finish.setText("");
+        txt_problem_online.setText("");
+        txt_problem_start.setText("");
+        txt_problem_symptom.setText("");
+        txt_problem_tiba.setText("");
+        txt_problem_upline.setText("");
     }
     @OnClick(R.id.imgBtn_timer1)
     void displayTime1(){

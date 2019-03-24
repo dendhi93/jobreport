@@ -144,11 +144,6 @@ public class UserActivity extends AppCompatActivity
         checkGps();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mGoogleApiClient.disconnect();
-    }
 
     private void checkGps() {
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
@@ -412,12 +407,23 @@ public class UserActivity extends AppCompatActivity
 
     @Override
     public void onDestroy(){
-        super.onDestroy();
         try{
             if (mGoogleApiClient != null  &&  mGoogleApiClient.isConnected()) {
                 mFusedLocation.removeLocationUpdates(callback);
                 mGoogleApiClient.disconnect();
             }
         }catch (Exception e){}
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause(){
+        try{
+            if (mGoogleApiClient != null  &&  mGoogleApiClient.isConnected()) {
+                mFusedLocation.removeLocationUpdates(callback);
+                mGoogleApiClient.disconnect();
+            }
+        }catch (Exception e){}
+        super.onPause();
     }
 }
