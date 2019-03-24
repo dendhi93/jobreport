@@ -1,5 +1,6 @@
 package com.dracoo.jobreport.feature.dashboard;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 
@@ -70,7 +72,6 @@ public class DashboardFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
-
     }
 
     public List<MasterTransHistory> getList_TransHist(){
@@ -124,6 +125,7 @@ public class DashboardFragment extends Fragment {
         super.onResume();
         loadDash();
         loadRcTrans();
+        JobReportUtils.hideKeyboard(getActivity());
     }
 
     private void loadDash(){
@@ -141,7 +143,5 @@ public class DashboardFragment extends Fragment {
             }
         }
     }
-
-
 
 }

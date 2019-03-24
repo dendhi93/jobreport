@@ -84,8 +84,6 @@ public class SplashActivity extends AppCompatActivity {
                     if (!mFile.exists()) {
                         if (!mFile.mkdirs()) {
                             Log.d("####","Gagal create directory");
-                        }else{
-                            messageUtils.toastMessage("sukses directory", ConfigApps.T_SUCCESS);
                         }
                     }
 
