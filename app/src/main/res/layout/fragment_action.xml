@@ -87,18 +87,9 @@
                     android:id="@+id/imgB_action_search"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:layout_marginEnd="@dimen/spacing_small_1"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
                     android:background="@drawable/ic_circle_selector"
                     android:src="@drawable/ic_search_48"/>
-
-
-                <ImageButton
-                    android:contentDescription="@string/content_desc"
-                    android:id="@+id/imgB_action_cancel"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:background="@drawable/ic_circle_transparent_selector"
-                    android:src="@drawable/ic_cancel"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

@@ -46,7 +46,6 @@ import com.google.android.gms.location.LocationServices;
 import com.j256.ormlite.dao.Dao;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -403,17 +402,6 @@ public class UserActivity extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
         }
         return true;
-    }
-
-    @Override
-    public void onDestroy(){
-        try{
-            if (mGoogleApiClient != null  &&  mGoogleApiClient.isConnected()) {
-                mFusedLocation.removeLocationUpdates(callback);
-                mGoogleApiClient.disconnect();
-            }
-        }catch (Exception e){}
-        super.onDestroy();
     }
 
     @Override
