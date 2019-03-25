@@ -24,6 +24,7 @@ import com.dracoo.jobreport.feature.vsatparameter.ParameterActivity;
 import com.dracoo.jobreport.feature.xpoll.XpollActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
+import com.dracoo.jobreport.util.Preference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,8 +51,6 @@ public class ConnectionFragment extends Fragment {
     @BindView(R.id.ln_conn_m2m)
     LinearLayout ln_conn_m2m;
 
-
-
     private MessageUtils messageUtils;
     private RadioButton rb_selectedConn;
     private String selectedConn = "";
@@ -62,6 +61,7 @@ public class ConnectionFragment extends Fragment {
     private RadioButton rb_selectedAccess;
     private String selectedAccess = "";
     private Animation anim_slideDown;
+    private Preference preference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +77,7 @@ public class ConnectionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         messageUtils = new MessageUtils(getActivity());
+        preference = new Preference(getActivity());
         radioConnListener();
         radioAntenaListener();
         radioPedestialListener();
@@ -133,7 +134,12 @@ public class ConnectionFragment extends Fragment {
 
     @OnClick(R.id.imgB_con_submit)
     void submitConn(){
-        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        if (preference.getCustID() == 0){
+            messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_WARNING);
+        }else{
+            messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        }
+
     }
 
     @OnClick(R.id.imgB_con_menu)
@@ -143,9 +149,17 @@ public class ConnectionFragment extends Fragment {
         if (selectedConn.equals("")){
             messageUtils.toastMessage("Mohon dipilih jenis koneksi", ConfigApps.T_WARNING);
         } else if(selectedConn.equals("VSAT")){
-            popup.getMenuInflater().inflate(R.menu.vsat_menu, popup.getMenu());
+            if (preference.getCustID() == 0){
+                messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_WARNING);
+            }else{
+                popup.getMenuInflater().inflate(R.menu.vsat_menu, popup.getMenu());
+            }
         }else {
-            popup.getMenuInflater().inflate(R.menu.m2m_menu, popup.getMenu());
+            if (preference.getCustID() == 0){
+                messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_WARNING);
+            }else{
+                popup.getMenuInflater().inflate(R.menu.m2m_menu, popup.getMenu());
+            }
         }
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
