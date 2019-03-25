@@ -69,7 +69,7 @@
     <string name="longitude">Longitude</string>
 
     //problem content
-    <string name="display_modem">Diaplay Modem</string>
+    <string name="display_modem">Display Modem</string>
     <string name="problem_symtoms">Problem Symtoms</string>
     <string name="action_taken">Action Taken</string>
     <string name="berangkat">Berangkat</string>

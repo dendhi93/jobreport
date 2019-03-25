@@ -90,7 +90,44 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-            }else{
+            }else if (!preference.getServicePoint().equals("") || !preference.getServicePoint().equals(txt_login_servicePoint)){
+                new AlertDialog.Builder(LoginActivity.this)
+                        .setTitle("Warning")
+                        .setMessage("Service Poin sebelumnya adalah " +preference.getServicePoint()+"\nApakah anda ingin update service point ?")
+                        .setIcon(R.drawable.ic_check)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                saveloginPref(un, servicePoint, handphone);
+                            }
+                        })
+                        .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }else if (!preference.getPhone().equals("") || !preference.getPhone().equals(txt_login_handphone.getText().toString().trim())){
+                new AlertDialog.Builder(LoginActivity.this)
+                        .setTitle("Warning")
+                        .setMessage("Handphone sebelumnya adalah " +preference.getPhone()+"\nApakah anda ingin ganti user ?")
+                        .setIcon(R.drawable.ic_check)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                saveloginPref(un, servicePoint, handphone);
+                            }
+                        })
+                        .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+
+            } else{
                 saveloginPref(un, servicePoint, handphone);
             }
 
