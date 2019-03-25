@@ -165,7 +165,7 @@ public class ProblemFragment extends Fragment {
 
     private void transProblem(){
         if (preference.getCustID() == 0){
-            messageUtils.snackBar_message("Mohon diinput menu Customer dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else{
             ArrayList<MasterProblem> al_valProb = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
             if (al_valProb.size() > 0){

@@ -16,17 +16,19 @@
             android:id="@+id/lbl_item_trans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/colorBlack"
-            android:layout_margin="@dimen/padding_medium"
-            android:text="biji kuda"/>
+            android:layout_marginStart="@dimen/padding_medium"
+            android:layout_marginBottom="@dimen/padding_medium"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="item list"
+            android:textColor="@color/colorBlack" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/padding_medium"
-            android:src="@drawable/ic_arrow_32" />
+            android:src="@drawable/ic_arrow_24" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>
