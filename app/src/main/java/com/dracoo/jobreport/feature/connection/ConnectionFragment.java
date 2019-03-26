@@ -2,7 +2,6 @@ package com.dracoo.jobreport.feature.connection;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
@@ -12,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -106,7 +104,6 @@ public class ConnectionFragment extends Fragment {
     private String selectedPedestial = "";
     private RadioButton rb_selectedAccess;
     private String selectedAccess = "";
-    private Animation anim_slideDown;
     private Preference preference;
     private Dao<MasterVsatSetup, Integer> vsatSetupDao;
     private Dao<MasterM2mSetup, Integer> m2mSetupDao;
@@ -188,20 +185,20 @@ public class ConnectionFragment extends Fragment {
     @OnClick(R.id.imgB_con_submit)
     void submitConn(){
         if (preference.getCustID() == 0){
-            messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_WARNING);
-        }else if (selectedConn.equals("null") || selectedConn == null){
-            messageUtils.toastMessage("mohon dipilih jenis koneksi", ConfigApps.T_DEFAULT);
+            messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+        }else if (selectedConn.equals("null") || selectedConn == "null"){
+            messageUtils.snackBar_message("mohon dipilih jenis koneksi", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (selectedConn.equals("VSAT")){
             if (!vsatValidation()){
-                messageUtils.toastMessage(getActivity().getString(R.string.emptyString), ConfigApps.T_WARNING);
+                messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             }else{
-                messageUtils.toastMessage("coba", ConfigApps.T_INFO);
+                vsatTrans();
             }
         }else if(selectedConn.equals("M2M")){
             if (!m2mValidation()){
-                messageUtils.toastMessage(getActivity().getString(R.string.emptyString), ConfigApps.T_WARNING);
+                messageUtils.snackBar_message(getActivity().getString(R.string.emptyString),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             }else {
-                messageUtils.toastMessage("coba", ConfigApps.T_INFO);
+                m2mTrans();
             }
         }
     }
@@ -224,38 +221,53 @@ public class ConnectionFragment extends Fragment {
     }
 
     private void vsatTrans(){
-        ArrayList<MasterVsatSetup> al_vsatSetup = new VsatSetupAdapter(getActivity())
-                .val_vsatSetup(preference.getCustID(), preference.getUn());
-        if (al_vsatSetup.size() > 0){
-            try{
-                MasterVsatSetup mVsatSetup = vsatSetupDao.queryForId(al_vsatSetup.get(0).getId_setup());
-                mVsatSetup.setSn_modem(txt_conn_vsatModem.getText().toString().trim());
-                mVsatSetup.setSn_adaptor(Integer.parseInt(txt_conn_m2m_adaptorSn.getText().toString().trim()));
-                mVsatSetup.setSn_fh(txt_conn_vsatFh.getText().toString().trim());
-                mVsatSetup.setSn_lnb(txt_conn_vsatLnb.getText().toString().trim());
-                mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
-                mVsatSetup.setSn_dip_odu(txt_conn_vsatOdu.getText().toString().trim());
-                mVsatSetup.setSn_dip_idu(txt_conn_vsatIdu.getText().toString().trim());
-                mVsatSetup.setAntena_brand(""+rb_selectedAntena.getText().toString().trim());
-                mVsatSetup.setPedestal_type(""+rb_selectedPedestial.getText().toString().trim());
-                mVsatSetup.setAccess_type(""+rb_selectedAccess.getText().toString().trim());
-                mVsatSetup.setProgress_type(preference.getProgress().trim());
-                mVsatSetup.setUpdate_date(DateTimeUtils.getCurrentTime());
-
-                vsatSetupDao.update(mVsatSetup);
-
-            }catch (Exception e){
-                messageUtils.toastMessage("Err Vsat Setup 1 " +e.toString(), ConfigApps.T_ERROR );
-            }
+        ArrayList<MasterM2mSetup> al_valM2mSetup = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
+        if (al_valM2mSetup.size() > 0){
+            messageUtils.toastMessage("Tipe koneksi M2M sudah diinput, transaksi dibatalkan", ConfigApps.T_INFO);
         }else{
-            try{
+            ArrayList<MasterVsatSetup> al_vsatSetup = new VsatSetupAdapter(getActivity())
+                    .val_vsatSetup(preference.getCustID(), preference.getUn());
+            if (al_vsatSetup.size() > 0){
+                try{
+                    MasterVsatSetup mVsatSetup = vsatSetupDao.queryForId(al_vsatSetup.get(0).getId_setup());
+                    mVsatSetup.setSn_modem(txt_conn_vsatModem.getText().toString().trim());
+                    mVsatSetup.setSn_adaptor(Integer.parseInt(txt_conn_m2m_adaptorSn.getText().toString().trim()));
+                    mVsatSetup.setSn_fh(txt_conn_vsatFh.getText().toString().trim());
+                    mVsatSetup.setSn_lnb(txt_conn_vsatLnb.getText().toString().trim());
+                    mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
+                    mVsatSetup.setSn_dip_odu(txt_conn_vsatOdu.getText().toString().trim());
+                    mVsatSetup.setSn_dip_idu(txt_conn_vsatIdu.getText().toString().trim());
+                    mVsatSetup.setAntena_brand(""+rb_selectedAntena.getText().toString().trim());
+                    mVsatSetup.setPedestal_type(""+rb_selectedPedestial.getText().toString().trim());
+                    mVsatSetup.setAccess_type(""+rb_selectedAccess.getText().toString().trim());
+                    mVsatSetup.setProgress_type(preference.getProgress().trim());
+                    mVsatSetup.setUpdate_date(DateTimeUtils.getCurrentTime());
 
-            }catch (Exception e){
+                    vsatSetupDao.update(mVsatSetup);
+                }catch (Exception e){ messageUtils.toastMessage("Err Vsat Setup 1 " +e.toString(), ConfigApps.T_ERROR ); }
+            }else{
+                try{
+                    MasterVsatSetup mVsatSetup = new MasterVsatSetup();
+                    mVsatSetup.setId_site(preference.getCustID());
+                    mVsatSetup.setUn_user(preference.getUn());
+                    mVsatSetup.setSn_adaptor(Integer.parseInt(txt_conn_m2m_adaptorSn.getText().toString().trim()));
+                    mVsatSetup.setSn_fh(txt_conn_vsatFh.getText().toString().trim());
+                    mVsatSetup.setSn_lnb(txt_conn_vsatLnb.getText().toString().trim());
+                    mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
+                    mVsatSetup.setSn_dip_odu(txt_conn_vsatOdu.getText().toString().trim());
+                    mVsatSetup.setSn_dip_idu(txt_conn_vsatIdu.getText().toString().trim());
+                    mVsatSetup.setAntena_brand(""+rb_selectedAntena.getText().toString().trim());
+                    mVsatSetup.setPedestal_type(""+rb_selectedPedestial.getText().toString().trim());
+                    mVsatSetup.setAccess_type(""+rb_selectedAccess.getText().toString().trim());
+                    mVsatSetup.setProgress_type(preference.getProgress().trim());
+                    mVsatSetup.setUpdate_date(DateTimeUtils.getCurrentTime());
 
+                    vsatSetupDao.create(mVsatSetup);
+                    preference.saveConnection(""+rb_selectedConn.getText().toString());
+                }catch (Exception e){ messageUtils.toastMessage("Err Vsat Setup 2 " +e.toString(), ConfigApps.T_ERROR ); }
             }
         }
     }
-
 
     private boolean m2mValidation(){
         if (txt_conn_m2m_brand.getText().toString().trim().equals("") ||
@@ -274,22 +286,76 @@ public class ConnectionFragment extends Fragment {
         }
     }
 
+    private void m2mTrans(){
+        ArrayList<MasterVsatSetup> al_vsatSetup = new VsatSetupAdapter(getActivity())
+                .val_vsatSetup(preference.getCustID(), preference.getUn());
+        if (al_vsatSetup.size() > 0){
+            messageUtils.toastMessage("Tipe koneksi VSAT sudah diinput, transaksi dibatalkan", ConfigApps.T_INFO);
+        }else{
+            ArrayList<MasterM2mSetup> al_valM2mSetup = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
+            if (al_valM2mSetup.size() > 0){
+                try{
+                    MasterM2mSetup m2mSetup = m2mSetupDao.queryForId(al_valM2mSetup.get(0).getId_setup());
+                    m2mSetup.setBrand_type_m2m(txt_conn_m2m_brand.getText().toString().trim());
+                    m2mSetup.setSn_m2m(txt_conn_m2m_sn.getText().toString().trim());
+                    m2mSetup.setBrand_type_adaptor(txt_conn_m2m_adaptorBrand.getText().toString().trim());
+                    m2mSetup.setSim_card1_type(txt_conn_m2m_sc1Brand.getText().toString().trim());
+                    m2mSetup.setSim_card1_sn(txt_conn_m2m_sc1Sn.getText().toString().trim());
+                    m2mSetup.setSim_card1_puk(txt_conn_m2m_sc1puk.getText().toString().trim());
+                    m2mSetup.setSim_card2_type(txt_conn_m2m_sc2Brand.getText().toString().trim());
+                    m2mSetup.setSim_card2_puk(txt_conn_m2m_sc2puk.getText().toString().trim());
+                    m2mSetup.setSim_card2_sn(txt_conn_m2m_sc2Sn.getText().toString().trim());
+                    m2mSetup.setUpdate_date(DateTimeUtils.getCurrentTime());
+                    m2mSetup.setProgress_type(preference.getProgress().trim());
+
+                    m2mSetupDao.update(m2mSetup);
+                }catch (Exception e){
+                    messageUtils.toastMessage("Err m2m Setup 1 " +e.toString(), ConfigApps.T_ERROR );
+                }
+            }else{
+                try {
+                    MasterM2mSetup m2mSetup = new MasterM2mSetup();
+                    m2mSetup.setId_site(preference.getCustID());
+                    m2mSetup.setUn_user(preference.getUn());
+                    m2mSetup.setConnection_type(""+rb_selectedConn.getText().toString());
+                    m2mSetup.setBrand_type_m2m(txt_conn_m2m_brand.getText().toString().trim());
+                    m2mSetup.setSn_m2m(txt_conn_m2m_sn.getText().toString().trim());
+                    m2mSetup.setBrand_type_adaptor(txt_conn_m2m_adaptorBrand.getText().toString().trim());
+                    m2mSetup.setSim_card1_type(txt_conn_m2m_sc1Brand.getText().toString().trim());
+                    m2mSetup.setSim_card1_sn(txt_conn_m2m_sc1Sn.getText().toString().trim());
+                    m2mSetup.setSim_card1_puk(txt_conn_m2m_sc1puk.getText().toString().trim());
+                    m2mSetup.setSim_card2_type(txt_conn_m2m_sc2Brand.getText().toString().trim());
+                    m2mSetup.setSim_card2_puk(txt_conn_m2m_sc2puk.getText().toString().trim());
+                    m2mSetup.setSim_card2_sn(txt_conn_m2m_sc2Sn.getText().toString().trim());
+                    m2mSetup.setInsert_date(DateTimeUtils.getCurrentTime());
+                    m2mSetup.setProgress_type(preference.getProgress().trim());
+
+                    m2mSetupDao.create(m2mSetup);
+                    preference.saveConnection(""+rb_selectedConn.getText().toString());
+                }catch (Exception e){messageUtils.toastMessage("Err m2m Setup 1 " +e.toString(), ConfigApps.T_ERROR );}
+            }
+        }
+    }
     @OnClick(R.id.imgB_con_menu)
     void chooseConnMenu(View view){
         Context wrapper = new ContextThemeWrapper(getActivity(), R.style.PopupMenu);
         PopupMenu popup = new PopupMenu(wrapper, view);
-        if (selectedConn.equals("")){
-            messageUtils.toastMessage("Mohon dipilih jenis koneksi", ConfigApps.T_WARNING);
+        if (selectedConn.equals("null") || selectedConn == "null"){
+            messageUtils.snackBar_message("Mohon dipilih jenis koneksi", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         } else if(selectedConn.equals("VSAT")){
             if (preference.getCustID() == 0){
-                messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_WARNING);
+                messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            }else if (!preference.getConnType().equals("VSAT")){
+                messageUtils.snackBar_message("Transaksi M2M sudah diinput, mohon pilih jenis koneksi VSAT", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             }else{
                 popup.getMenuInflater().inflate(R.menu.vsat_menu, popup.getMenu());
             }
         }else {
             if (preference.getCustID() == 0){
-                messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_WARNING);
-            }else{
+                messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            }else if (!preference.getConnType().equals("M2M")){
+                messageUtils.snackBar_message("Transaksi VSAT sudah diinput, mohon pilih jenis koneksi M2m", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            } else{
                 popup.getMenuInflater().inflate(R.menu.m2m_menu, popup.getMenu());
             }
         }

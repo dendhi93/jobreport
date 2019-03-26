@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
-import com.dracoo.jobreport.database.master.MasterVsatSetup;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;

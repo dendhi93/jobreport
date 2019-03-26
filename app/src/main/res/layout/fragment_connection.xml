@@ -109,7 +109,7 @@
 
                 <LinearLayout
                     android:id="@+id/ln_conn_vsat"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -543,7 +543,7 @@
                     android:id="@+id/ln_conn_m2m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:orientation="vertical">
 
 
