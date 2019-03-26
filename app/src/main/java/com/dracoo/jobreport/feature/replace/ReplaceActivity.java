@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
+import com.dracoo.jobreport.util.Preference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +23,7 @@ public class ReplaceActivity extends AppCompatActivity {
     LinearLayout ln_replace_m2m;
 
     private MessageUtils messageUtils;
+    private Preference preference;
     public static final String EXTRA_CALLER_CONN = "connection_type";
     public static final Integer EXTRA_CALLER_VSATCONN = 1;
     public static final Integer EXTRA_CALLER_M2MCONN = 2;
@@ -40,8 +42,9 @@ public class ReplaceActivity extends AppCompatActivity {
     public void onStart(){
         super.onStart();
         messageUtils = new MessageUtils(ReplaceActivity.this);
+        preference = new Preference(ReplaceActivity.this);
         try{
-            intentConnectionType = getIntent().getIntExtra(EXTRA_CALLER_CONN, 1);
+            intentConnectionType = getIntent().getIntExtra(EXTRA_CALLER_CONN, 0);
         }catch (Exception e){ Log.d("ReplaceErr ",""+e.toString()); }
 
         if (intentConnectionType == 1){
@@ -50,6 +53,12 @@ public class ReplaceActivity extends AppCompatActivity {
         }else{
             ln_replace_vsat.setVisibility(View.GONE);
             ln_replace_m2m.setVisibility(View.VISIBLE);
+        }
+
+        if (getSupportActionBar() != null && intentConnectionType == 1){
+            getSupportActionBar().setSubtitle("VSAT");
+        }else if (getSupportActionBar() != null && intentConnectionType != 1){
+            getSupportActionBar().setSubtitle("M2M");
         }
 
     }
