@@ -28,9 +28,12 @@ import com.dracoo.jobreport.feature.replace.ReplaceActivity;
 import com.dracoo.jobreport.feature.vsatparameter.ParameterActivity;
 import com.dracoo.jobreport.feature.xpoll.XpollActivity;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -203,6 +206,7 @@ public class ConnectionFragment extends Fragment {
         }
     }
 
+    //vsat
     private boolean vsatValidation(){
         if(txt_conn_vsatModem.getText().toString().trim().equals("") ||
                 txt_conn_vsatAdaptor.getText().toString().trim().equals("") ||
@@ -216,6 +220,39 @@ public class ConnectionFragment extends Fragment {
             return false;
         }else{
             return true;
+        }
+    }
+
+    private void vsatTrans(){
+        ArrayList<MasterVsatSetup> al_vsatSetup = new VsatSetupAdapter(getActivity())
+                .val_vsatSetup(preference.getCustID(), preference.getUn());
+        if (al_vsatSetup.size() > 0){
+            try{
+                MasterVsatSetup mVsatSetup = vsatSetupDao.queryForId(al_vsatSetup.get(0).getId_setup());
+                mVsatSetup.setSn_modem(txt_conn_vsatModem.getText().toString().trim());
+                mVsatSetup.setSn_adaptor(Integer.parseInt(txt_conn_m2m_adaptorSn.getText().toString().trim()));
+                mVsatSetup.setSn_fh(txt_conn_vsatFh.getText().toString().trim());
+                mVsatSetup.setSn_lnb(txt_conn_vsatLnb.getText().toString().trim());
+                mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
+                mVsatSetup.setSn_dip_odu(txt_conn_vsatOdu.getText().toString().trim());
+                mVsatSetup.setSn_dip_idu(txt_conn_vsatIdu.getText().toString().trim());
+                mVsatSetup.setAntena_brand(""+rb_selectedAntena.getText().toString().trim());
+                mVsatSetup.setPedestal_type(""+rb_selectedPedestial.getText().toString().trim());
+                mVsatSetup.setAccess_type(""+rb_selectedAccess.getText().toString().trim());
+                mVsatSetup.setProgress_type(preference.getProgress().trim());
+                mVsatSetup.setUpdate_date(DateTimeUtils.getCurrentTime());
+
+                vsatSetupDao.update(mVsatSetup);
+
+            }catch (Exception e){
+                messageUtils.toastMessage("Err Vsat Setup 1 " +e.toString(), ConfigApps.T_ERROR );
+            }
+        }else{
+            try{
+
+            }catch (Exception e){
+
+            }
         }
     }
 
