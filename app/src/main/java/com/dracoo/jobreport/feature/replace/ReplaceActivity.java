@@ -8,9 +8,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.master.MasterM2mReplace;
+import com.dracoo.jobreport.database.master.MasterVsatReplace;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.j256.ormlite.dao.Dao;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +31,8 @@ public class ReplaceActivity extends AppCompatActivity {
     public static final Integer EXTRA_CALLER_VSATCONN = 1;
     public static final Integer EXTRA_CALLER_M2MCONN = 2;
     private Integer intentConnectionType = 0;
+    private Dao<MasterVsatReplace, Integer> vsatReplaceDao;
+    private Dao<MasterM2mReplace, Integer> m2mReplaceDao;
 
 
     @Override
