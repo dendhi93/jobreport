@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -213,7 +212,10 @@ public class ConnectionFragment extends Fragment {
                 txt_conn_vsatOdu.getText().toString().trim().equals("") ||
                 txt_conn_vsatIdu.getText().toString().trim().equals("") ||
                 txt_conn_vsat_antenaType.getText().toString().trim().equals("") ||
-                txt_conn_vsat_antenaBrand.getText().toString().trim().equals("")){
+                txt_conn_vsat_antenaBrand.getText().toString().trim().equals("") ||
+                selectedAntena == "null" || selectedAntena.equals("null") ||
+                selectedAccess == "null" || selectedAccess.equals("null") ||
+                selectedPedestial == "null" || selectedPedestial.equals("null")){
             return false;
         }else{
             return true;

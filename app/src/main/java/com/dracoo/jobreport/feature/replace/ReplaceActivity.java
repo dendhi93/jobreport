@@ -11,12 +11,16 @@ import android.widget.LinearLayout;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mReplaceAdapter;
 import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
+import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mReplace;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
+import com.dracoo.jobreport.database.master.MasterVsatSetup;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -117,7 +121,7 @@ public class ReplaceActivity extends AppCompatActivity {
             if (!vsatReplaceVal()){
                 messageUtils.snackBar_message(getString(R.string.emptyString), ReplaceActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
             }else{
-
+                vsatReplaceTrans();
             }
         }else if (intentConnectionType == EXTRA_CALLER_M2MCONN){
             if (!m2mReplaceVal()){
@@ -128,12 +132,12 @@ public class ReplaceActivity extends AppCompatActivity {
         }
     }
 
-
     @OnClick(R.id.imgB_rep_cancel)
     void cancelRep(){
         finish();
     }
 
+    //vsat
     public boolean vsatReplaceVal(){
         if(txt_rep_vsatModem.getText().toString().trim().equals("") ||
                 txt_rep_vsatAdaptor.getText().toString().trim().equals("") ||
@@ -143,6 +147,24 @@ public class ReplaceActivity extends AppCompatActivity {
             return false;
         }else{
             return true;
+        }
+    }
+
+    private void vsatReplaceTrans(){
+        ArrayList<MasterVsatSetup> alVsatSetup = new VsatSetupAdapter(getApplicationContext()).val_vsatSetup(preference.getCustID(), preference.getUn());
+        if (alVsatSetup.size() > 0){
+            ArrayList<MasterVsatReplace> alVsatReplace = new VsatReplaceAdapter(ReplaceActivity.this).val_vsatReplace(preference.getCustID(), preference.getUn());
+            if (alVsatReplace.size() > 0){
+                try{
+
+                }catch (Exception e){ messageUtils.toastMessage("err vsatReplace Update " +e.toString(), ConfigApps.T_ERROR); }
+            }else{
+                try{
+
+                }catch (Exception e){ messageUtils.toastMessage("err vsatReplace insert " +e.toString(), ConfigApps.T_ERROR); }
+            }
+        }else{
+            messageUtils.toastMessage("Transaksi pada menu Connection Type belum diinput, transaksi dibatalkan", ConfigApps.T_WARNING);
         }
     }
 
