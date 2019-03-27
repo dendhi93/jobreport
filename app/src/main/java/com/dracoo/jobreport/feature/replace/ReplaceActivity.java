@@ -11,10 +11,12 @@ import android.widget.LinearLayout;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mReplaceAdapter;
 import com.dracoo.jobreport.database.adapter.M2mSetupAdapter;
+import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
 import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mReplace;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
+import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
 import com.dracoo.jobreport.util.ConfigApps;
@@ -80,6 +82,7 @@ public class ReplaceActivity extends AppCompatActivity {
     private Integer intentConnectionType = 0;
     private Dao<MasterVsatReplace, Integer> vsatReplaceDao;
     private Dao<MasterM2mReplace, Integer> m2mReplaceDao;
+    private Dao<MasterTransHistory, Integer> transHistDao;
 
 
     @Override
@@ -118,6 +121,7 @@ public class ReplaceActivity extends AppCompatActivity {
         try {
             vsatReplaceDao = new VsatReplaceAdapter(getApplicationContext()).getAdapter();
             m2mReplaceDao = new M2mReplaceAdapter(getApplicationContext()).getAdapter();
+            transHistDao = new TransHistoryAdapter(getApplicationContext()).getAdapter();
         }catch (Exception e){}
 
     }
@@ -273,6 +277,40 @@ public class ReplaceActivity extends AppCompatActivity {
         }
     }
 
+    //transHist
+    private void transHist(String transType){
+        ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getApplicationContext())
+                .val_trans(preference.getCustID(), preference.getUn(),transType);
+        if (al_valTransHist.size() > 0){
+            try{
+                MasterTransHistory mHist = transHistDao.queryForId(al_valTransHist.get(0).getId_site());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(transType.trim());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setIs_submited(0);
+
+                transHistDao.update(mHist);
+                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }else{
+            try{
+                MasterTransHistory mHist = new MasterTransHistory();
+                mHist.setId_site(preference.getCustID());
+                mHist.setUn_user(preference.getUn());
+                mHist.setInsert_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(transType.trim());
+                mHist.setIs_submited(0);
+
+                transHistDao.create(mHist);
+                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
