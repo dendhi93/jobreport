@@ -158,6 +158,52 @@
                             android:textColorLink="@color/colorWhite" />
 
                     </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/sn_diplexer_odu"
+                        android:background="@drawable/border_bottom"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_rep_vsatDipOdu"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/sn_diplexer_idu"
+                        android:background="@drawable/border_bottom"
+                        android:textColorHint="@color/colorBlack">
+
+                        <EditText
+                            android:id="@+id/txt_rep_vsatDipIdu"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite" />
+
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout

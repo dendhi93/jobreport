@@ -10,12 +10,15 @@ import android.widget.LinearLayout;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mReplaceAdapter;
+import com.dracoo.jobreport.database.adapter.M2mSetupAdapter;
 import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
 import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mReplace;
+import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
@@ -42,6 +45,10 @@ public class ReplaceActivity extends AppCompatActivity {
     EditText txt_rep_vsatLnb;
     @BindView(R.id.txt_rep_vsatRfu)
     EditText txt_rep_vsatRfu;
+    @BindView(R.id.txt_rep_vsatDipIdu)
+    EditText txt_rep_vsatDipIdu;
+    @BindView(R.id.txt_rep_vsatDipOdu)
+    EditText txt_rep_vsatDipOdu;
 
     //m2m
     @BindView(R.id.txt_rep_m2m_brand)
@@ -127,7 +134,7 @@ public class ReplaceActivity extends AppCompatActivity {
             if (!m2mReplaceVal()){
                 messageUtils.snackBar_message(getString(R.string.emptyString), ReplaceActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
             }else{
-
+                m2mRepTrans();
             }
         }
     }
@@ -143,7 +150,9 @@ public class ReplaceActivity extends AppCompatActivity {
                 txt_rep_vsatAdaptor.getText().toString().trim().equals("") ||
                 txt_rep_vsatFh.getText().toString().trim().equals("")||
                 txt_rep_vsatLnb.getText().toString().trim().equals("") ||
-                txt_rep_vsatRfu.getText().toString().trim().equals("")){
+                txt_rep_vsatRfu.getText().toString().trim().equals("") ||
+                txt_rep_vsatDipIdu.getText().toString().trim().equals("") ||
+                txt_rep_vsatDipOdu.getText().toString().trim().equals("")){
             return false;
         }else{
             return true;
@@ -156,18 +165,45 @@ public class ReplaceActivity extends AppCompatActivity {
             ArrayList<MasterVsatReplace> alVsatReplace = new VsatReplaceAdapter(ReplaceActivity.this).val_vsatReplace(preference.getCustID(), preference.getUn());
             if (alVsatReplace.size() > 0){
                 try{
+                    MasterVsatReplace vsatRep = vsatReplaceDao.queryForId(alVsatReplace.get(0).getId_site());
+                    vsatRep.setSn_modem(txt_rep_vsatModem.getText().toString().trim());
+                    vsatRep.setAdaptor(Integer.parseInt(txt_rep_vsatAdaptor.getText().toString().trim()));
+                    vsatRep.setSn_fh(txt_rep_vsatFh.getText().toString().trim());
+                    vsatRep.setSn_lnb(txt_rep_vsatLnb.getText().toString().trim());
+                    vsatRep.setSn_rfu(txt_rep_vsatRfu.getText().toString().trim());
+                    vsatRep.setSn_dip_odu(txt_rep_vsatDipOdu.getText().toString().trim());
+                    vsatRep.setSn_dip_idu(txt_rep_vsatDipIdu.getText().toString().trim());
+                    vsatRep.setUpdate_date(DateTimeUtils.getCurrentTime());
 
+                    vsatReplaceDao.update(vsatRep);
+                    //TO DO addvsatTransHist
                 }catch (Exception e){ messageUtils.toastMessage("err vsatReplace Update " +e.toString(), ConfigApps.T_ERROR); }
             }else{
                 try{
+                    MasterVsatReplace vsatRep = new MasterVsatReplace();
+                    vsatRep.setSn_modem(txt_rep_vsatModem.getText().toString().trim());
+                    vsatRep.setAdaptor(Integer.parseInt(txt_rep_vsatAdaptor.getText().toString().trim()));
+                    vsatRep.setSn_fh(txt_rep_vsatFh.getText().toString().trim());
+                    vsatRep.setSn_lnb(txt_rep_vsatLnb.getText().toString().trim());
+                    vsatRep.setSn_rfu(txt_rep_vsatRfu.getText().toString().trim());
+                    vsatRep.setSn_dip_odu(txt_rep_vsatDipOdu.getText().toString().trim());
+                    vsatRep.setSn_dip_idu(txt_rep_vsatDipIdu.getText().toString().trim());
+                    vsatRep.setInsert_date(DateTimeUtils.getCurrentTime());
+                    vsatRep.setUn_user(preference.getUn());
+                    vsatRep.setId_site(preference.getCustID());
+                    vsatRep.setProgress_type(preference.getProgress());
+                    vsatRep.setConnection_type(preference.getConnType());
 
+                    vsatReplaceDao.create(vsatRep);
+                    //TO DO addvsatTransHist
                 }catch (Exception e){ messageUtils.toastMessage("err vsatReplace insert " +e.toString(), ConfigApps.T_ERROR); }
             }
         }else{
-            messageUtils.toastMessage("Transaksi pada menu Connection Type belum diinput, transaksi dibatalkan", ConfigApps.T_WARNING);
+            messageUtils.toastMessage("Transaksi VSAT pada menu Connection Type belum diinput, transaksi dibatalkan", ConfigApps.T_WARNING);
         }
     }
 
+    //m2m
     public boolean m2mReplaceVal(){
         if (txt_rep_m2m_brand.getText().toString().trim().equals("")||
                 txt_rep_m2m_sn.getText().toString().trim().equals("")||
@@ -182,6 +218,58 @@ public class ReplaceActivity extends AppCompatActivity {
             return false;
         }else{
             return true;
+        }
+    }
+
+    private void m2mRepTrans(){
+        ArrayList<MasterM2mSetup> al_m2mSetup = new M2mSetupAdapter(getApplicationContext()).val_m2mSetup(preference.getCustID(), preference.getUn());
+        if (al_m2mSetup.size() > 0){
+            ArrayList<MasterM2mReplace> al_m2mRep = new M2mReplaceAdapter(ReplaceActivity.this).val_m2mReplace(preference.getCustID(), preference.getUn());
+            if (al_m2mRep.size() > 0){
+                try{
+                    MasterM2mReplace m2mRep = m2mReplaceDao.queryForId(al_m2mRep.get(0).getId_replace());
+                    m2mRep.setBrand_type_replace(txt_rep_m2m_brand.getText().toString().trim());
+                    m2mRep.setSn_replace(txt_rep_m2m_sn.getText().toString().trim());
+                    m2mRep.setBrand_type_adaptor(txt_rep_m2m_adaptorBrand.getText().toString().trim());
+                    m2mRep.setSn_adaptor(txt_rep_m2m_adaptorSn.getText().toString().trim());
+                    m2mRep.setSim_card1_type(txt_rep_m2m_sc1Brand.getText().toString().trim());
+                    m2mRep.setSim_card1_sn(txt_rep_m2m_sc1Sn.getText().toString().trim());
+                    m2mRep.setSim_card1_puk(txt_rep_m2m_sc1puk.getText().toString().trim());
+                    m2mRep.setSim_card2_type(txt_rep_m2m_sc2Brand.getText().toString().trim());
+                    m2mRep.setSim_card2_sn(txt_rep_m2m_sc2Sn.getText().toString().trim());
+                    m2mRep.setSim_card2_puk(txt_rep_m2m_sc2puk.getText().toString().trim());
+                    m2mRep.setUpdate_date(DateTimeUtils.getCurrentTime());
+
+                    m2mReplaceDao.update(m2mRep);
+                    //TO DO add m2mTransHist
+                }catch (Exception e){ messageUtils.toastMessage("err m2mReplace update " +e.toString(), ConfigApps.T_ERROR); }
+            }else{
+                try{
+                    MasterM2mReplace m2mRep = new MasterM2mReplace();
+                    m2mRep.setBrand_type_replace(txt_rep_m2m_brand.getText().toString().trim());
+                    m2mRep.setSn_replace(txt_rep_m2m_sn.getText().toString().trim());
+                    m2mRep.setBrand_type_adaptor(txt_rep_m2m_adaptorBrand.getText().toString().trim());
+                    m2mRep.setSn_adaptor(txt_rep_m2m_adaptorSn.getText().toString().trim());
+                    m2mRep.setSim_card1_type(txt_rep_m2m_sc1Brand.getText().toString().trim());
+                    m2mRep.setSim_card1_sn(txt_rep_m2m_sc1Sn.getText().toString().trim());
+                    m2mRep.setSim_card1_puk(txt_rep_m2m_sc1puk.getText().toString().trim());
+                    m2mRep.setSim_card2_type(txt_rep_m2m_sc2Brand.getText().toString().trim());
+                    m2mRep.setSim_card2_sn(txt_rep_m2m_sc2Sn.getText().toString().trim());
+                    m2mRep.setSim_card2_puk(txt_rep_m2m_sc2puk.getText().toString().trim());
+                    m2mRep.setInsert_date(DateTimeUtils.getCurrentTime().trim());
+                    m2mRep.setId_site(preference.getCustID());
+                    m2mRep.setUn_user(preference.getUn());
+                    m2mRep.setProgress_type(preference.getProgress().trim());
+                    m2mRep.setConnection_type(preference.getConnType().trim());
+
+                    m2mReplaceDao.create(m2mRep);
+                    //TO DO m2mRepTransHIst;
+                }catch (Exception e){
+                    messageUtils.toastMessage("err m2mReplace insert " +e.toString(), ConfigApps.T_ERROR);
+                }
+            }
+        }else{
+            messageUtils.toastMessage("Transaksi M2M pada menu Connection Type belum diinput, transaksi dibatalkan", ConfigApps.T_WARNING);
         }
     }
 

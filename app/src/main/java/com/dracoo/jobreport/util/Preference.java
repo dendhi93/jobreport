@@ -62,6 +62,7 @@ public class Preference {
     public String getProgress(){return sharedPreferences.getString(KEY_PROGRESS_TYPE, "");}
     public String getConnType(){return sharedPreferences.getString(KEY_CONNECTION_TYPE, "");}
 
+    //after submit
     public void clearDataTrans(){
         editor.remove(KEY_CUST_ID);
         editor.remove(KEY_PROGRESS_TYPE);

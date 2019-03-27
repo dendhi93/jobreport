@@ -30,8 +30,8 @@ public class MasterM2mReplace implements Serializable {
     private String sim_card2_type;
     @DatabaseField(columnName = "sim_card2_sn")
     private String sim_card2_sn;
-    @DatabaseField(columnName = "sim_card_puk")
-    private String sim_card_puk;
+    @DatabaseField(columnName = "sim_card2_puk")
+    private String sim_card2_puk;
     @DatabaseField(columnName = "progress_type")
     private String progress_type;
     @DatabaseField(columnName = "connection_type")
@@ -132,14 +132,6 @@ public class MasterM2mReplace implements Serializable {
         this.sim_card2_sn = sim_card2_sn;
     }
 
-    public String getSim_card_puk() {
-        return sim_card_puk;
-    }
-
-    public void setSim_card_puk(String sim_card_puk) {
-        this.sim_card_puk = sim_card_puk;
-    }
-
     public String getProgress_type() {
         return progress_type;
     }
@@ -178,5 +170,13 @@ public class MasterM2mReplace implements Serializable {
 
     public void setUn_user(String un_user) {
         this.un_user = un_user;
+    }
+
+    public String getSim_card2_puk() {
+        return sim_card2_puk;
+    }
+
+    public void setSim_card2_puk(String sim_card2_puk) {
+        this.sim_card2_puk = sim_card2_puk;
     }
 }
