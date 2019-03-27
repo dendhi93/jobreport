@@ -395,7 +395,32 @@ public class ConnectionFragment extends Fragment {
 
     @OnClick(R.id.imgB_con_cancel)
     void cancelConn(){
-        messageUtils.toastMessage("coba2", ConfigApps.T_DEFAULT);
+        txt_conn_vsatModem.setText("");
+        txt_conn_vsatAdaptor.setText("");
+        txt_conn_vsatFh.setText("");
+        txt_conn_vsatLnb.setText("");
+        txt_conn_vsatRfu.setText("");
+        txt_conn_vsatOdu.setText("");
+        txt_conn_vsatIdu.setText("");
+        txt_conn_vsat_antenaType.setText("");
+        txt_conn_vsat_antenaBrand.setText("");
+
+        txt_conn_m2m_brand.setText("");
+        txt_conn_m2m_sn.setText("");
+        txt_conn_m2m_adaptorBrand.setText("");
+        txt_conn_m2m_adaptorSn.setText("");
+        txt_conn_m2m_sc1Sn.setText("");
+        txt_conn_m2m_sc1puk.setText("");
+        txt_conn_m2m_sc2Brand.setText("");
+        txt_conn_m2m_sc2Sn.setText("");
+        txt_conn_m2m_sc2puk.setText("");
+        txt_conn_m2m_sc1Brand.setText("");
+
+        rg_conn_type.clearCheck();
+        rg_conn_antena.clearCheck();
+        rg_conn_pedestial.clearCheck();
+        rg_conn_access.clearCheck();
+
     }
 
 
