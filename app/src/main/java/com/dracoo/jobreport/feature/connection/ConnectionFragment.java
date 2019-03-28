@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,8 +40,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ConnectionFragment extends Fragment {
-
-
     @BindView(R.id.rg_conn_type)
     RadioGroup rg_conn_type;
     @BindView(R.id.rg_conn_antena)
@@ -98,13 +97,13 @@ public class ConnectionFragment extends Fragment {
 
     private MessageUtils messageUtils;
     private RadioButton rb_selectedConn;
-    private String selectedConn = "";
+    private String selectedConn="null";
     private RadioButton rb_selectedAntena;
-    private String selectedAntena = "";
+    private String selectedAntena = "null";
     private RadioButton rb_selectedPedestial;
-    private String selectedPedestial = "";
+    private String selectedPedestial = "null";
     private RadioButton rb_selectedAccess;
-    private String selectedAccess = "";
+    private String selectedAccess = "null";
     private Preference preference;
     private Dao<MasterVsatSetup, Integer> vsatSetupDao;
     private Dao<MasterM2mSetup, Integer> m2mSetupDao;
@@ -187,9 +186,10 @@ public class ConnectionFragment extends Fragment {
 
     @OnClick(R.id.imgB_con_submit)
     void submitConn(){
+        Log.d("###",""+selectedConn.trim());
         if (preference.getCustID() == 0){
             messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-        }else if (selectedConn.equals("null") || selectedConn == "null"){
+        }else if (selectedConn.equals("null") || selectedConn == null){
             messageUtils.snackBar_message("mohon dipilih jenis koneksi", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (selectedConn.equals("VSAT")){
             if (!vsatValidation()){
@@ -243,9 +243,9 @@ public class ConnectionFragment extends Fragment {
                     mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
                     mVsatSetup.setSn_dip_odu(txt_conn_vsatOdu.getText().toString().trim());
                     mVsatSetup.setSn_dip_idu(txt_conn_vsatIdu.getText().toString().trim());
-                    mVsatSetup.setAntena_brand(""+rb_selectedAntena.getText().toString().trim());
-                    mVsatSetup.setPedestal_type(""+rb_selectedPedestial.getText().toString().trim());
-                    mVsatSetup.setAccess_type(""+rb_selectedAccess.getText().toString().trim());
+                    mVsatSetup.setAntena_brand(selectedAntena.trim());
+                    mVsatSetup.setPedestal_type(selectedPedestial.trim());
+                    mVsatSetup.setAccess_type(selectedAccess.trim());
                     mVsatSetup.setProgress_type(preference.getProgress().trim());
                     mVsatSetup.setUpdate_date(DateTimeUtils.getCurrentTime());
 
@@ -263,14 +263,14 @@ public class ConnectionFragment extends Fragment {
                     mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
                     mVsatSetup.setSn_dip_odu(txt_conn_vsatOdu.getText().toString().trim());
                     mVsatSetup.setSn_dip_idu(txt_conn_vsatIdu.getText().toString().trim());
-                    mVsatSetup.setAntena_brand(""+rb_selectedAntena.getText().toString().trim());
-                    mVsatSetup.setPedestal_type(""+rb_selectedPedestial.getText().toString().trim());
-                    mVsatSetup.setAccess_type(""+rb_selectedAccess.getText().toString().trim());
+                    mVsatSetup.setAntena_brand(selectedAntena.trim());
+                    mVsatSetup.setPedestal_type(selectedPedestial.trim());
+                    mVsatSetup.setAccess_type(selectedAccess.trim());
                     mVsatSetup.setProgress_type(preference.getProgress().trim());
                     mVsatSetup.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                     vsatSetupDao.create(mVsatSetup);
-                    preference.saveConnection(""+rb_selectedConn.getText().toString());
+                    preference.saveConnection(selectedConn.trim());
                     transHist(getActivity().getString(R.string.ioVSAT_trans));
                 }catch (Exception e){ messageUtils.toastMessage("Err Vsat Setup 2 " +e.toString(), ConfigApps.T_ERROR ); }
             }
@@ -393,7 +393,7 @@ public class ConnectionFragment extends Fragment {
         } else if(selectedConn.equals("VSAT")){
             if (preference.getCustID() == 0){
                 messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            }else if (!preference.getConnType().equals("VSAT")){
+            }else if (!preference.getConnType().equals("") && !preference.getConnType().equals("VSAT") ){
                 messageUtils.snackBar_message("Transaksi M2M sudah diinput, mohon pilih jenis koneksi VSAT", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             }else{
                 popup.getMenuInflater().inflate(R.menu.vsat_menu, popup.getMenu());
@@ -401,7 +401,7 @@ public class ConnectionFragment extends Fragment {
         }else {
             if (preference.getCustID() == 0){
                 messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            }else if (!preference.getConnType().equals("M2M")){
+            }else if (!preference.getConnType().equals("M2M") && !preference.getConnType().equals("")){
                 messageUtils.snackBar_message("Transaksi VSAT sudah diinput, mohon pilih jenis koneksi M2m", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             } else{
                 popup.getMenuInflater().inflate(R.menu.m2m_menu, popup.getMenu());

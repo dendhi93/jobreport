@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-            }else if (!preference.getServicePoint().equals("") || !preference.getServicePoint().equals(txt_login_servicePoint)){
+            }else if (!preference.getServicePoint().equals("") && !preference.getServicePoint().equals(txt_login_servicePoint.getText().toString().trim())){
                 new AlertDialog.Builder(LoginActivity.this)
                         .setTitle("Warning")
                         .setMessage("Service Poin sebelumnya adalah " +preference.getServicePoint()+"\nApakah anda ingin update service point ?")
@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-            }else if (!preference.getPhone().equals("") || !preference.getPhone().equals(txt_login_handphone.getText().toString().trim())){
+            }else if (!preference.getPhone().equals("") && !preference.getPhone().equals(txt_login_handphone.getText().toString().trim())){
                 new AlertDialog.Builder(LoginActivity.this)
                         .setTitle("Warning")
                         .setMessage("Handphone sebelumnya adalah " +preference.getPhone()+"\nApakah anda ingin ganti user ?")
