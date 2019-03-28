@@ -236,7 +236,7 @@ public class ProblemFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transAdapter.update(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
                 emptyProblemText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);

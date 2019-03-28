@@ -138,7 +138,8 @@ public class EnvirontmentFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.update(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -153,6 +154,7 @@ public class EnvirontmentFragment extends Fragment {
 
                 transHistAdapter.create(mHist);
                 messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -161,14 +163,7 @@ public class EnvirontmentFragment extends Fragment {
 
     @OnClick(R.id.imgB_env_cancel)
     void cancelEnv(){
-        txt_env_plnTegangan.setText("");
-        txt_env_plnGrounding.setText("");
-        txt_env_upsTegangan.setText("");
-        txt_env_upsGrounding.setText("");
-        txt_env_upsNote.setText("");
-        txt_env_acSuhu.setText("");
-        txt_env_acNote.setText("");
-
+        setEmptyText();
     }
 
     private boolean isEmptyField(){
@@ -183,6 +178,16 @@ public class EnvirontmentFragment extends Fragment {
         }else{
             return true;
         }
+    }
+
+    private void setEmptyText(){
+        txt_env_plnTegangan.setText("");
+        txt_env_plnGrounding.setText("");
+        txt_env_upsTegangan.setText("");
+        txt_env_upsGrounding.setText("");
+        txt_env_upsNote.setText("");
+        txt_env_acSuhu.setText("");
+        txt_env_acNote.setText("");
     }
 
 
