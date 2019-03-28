@@ -17,8 +17,10 @@ import android.widget.RadioGroup;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mSetupAdapter;
+import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
+import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
 import com.dracoo.jobreport.feature.datam2m.DataM2mActivity;
 import com.dracoo.jobreport.feature.replace.ReplaceActivity;
@@ -106,6 +108,7 @@ public class ConnectionFragment extends Fragment {
     private Preference preference;
     private Dao<MasterVsatSetup, Integer> vsatSetupDao;
     private Dao<MasterM2mSetup, Integer> m2mSetupDao;
+    private Dao<MasterTransHistory, Integer> transHistAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -130,6 +133,7 @@ public class ConnectionFragment extends Fragment {
         try{
             vsatSetupDao = new VsatSetupAdapter(getActivity()).getAdapter();
             m2mSetupDao = new M2mSetupAdapter(getActivity()).getAdapter();
+            transHistAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){}
     }
 
@@ -246,6 +250,7 @@ public class ConnectionFragment extends Fragment {
                     mVsatSetup.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                     vsatSetupDao.update(mVsatSetup);
+                    transHist(getActivity().getString(R.string.ioVSAT_trans));
                 }catch (Exception e){ messageUtils.toastMessage("Err Vsat Setup 1 " +e.toString(), ConfigApps.T_ERROR ); }
             }else{
                 try{
@@ -266,6 +271,7 @@ public class ConnectionFragment extends Fragment {
 
                     vsatSetupDao.create(mVsatSetup);
                     preference.saveConnection(""+rb_selectedConn.getText().toString());
+                    transHist(getActivity().getString(R.string.ioVSAT_trans));
                 }catch (Exception e){ messageUtils.toastMessage("Err Vsat Setup 2 " +e.toString(), ConfigApps.T_ERROR ); }
             }
         }
@@ -311,6 +317,7 @@ public class ConnectionFragment extends Fragment {
                     m2mSetup.setProgress_type(preference.getProgress().trim());
 
                     m2mSetupDao.update(m2mSetup);
+                    transHist(getActivity().getString(R.string.ioM2M_trans));
                 }catch (Exception e){
                     messageUtils.toastMessage("Err m2m Setup 1 " +e.toString(), ConfigApps.T_ERROR );
                 }
@@ -334,10 +341,49 @@ public class ConnectionFragment extends Fragment {
 
                     m2mSetupDao.create(m2mSetup);
                     preference.saveConnection(""+rb_selectedConn.getText().toString());
+                    transHist(getActivity().getString(R.string.ioM2M_trans));
                 }catch (Exception e){messageUtils.toastMessage("Err m2m Setup 1 " +e.toString(), ConfigApps.T_ERROR );}
             }
         }
     }
+
+    //transHist
+    private void transHist(String transType){
+        ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
+                .val_trans(preference.getCustID(), preference.getUn(),transType);
+        if (al_valTransHist.size() > 0){
+            try{
+                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_site());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(transType.trim());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setIs_submited(0);
+
+                transHistAdapter.update(mHist);
+                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+               setEmptyConText();
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }else{
+            try{
+                MasterTransHistory mHist = new MasterTransHistory();
+                mHist.setId_site(preference.getCustID());
+                mHist.setUn_user(preference.getUn());
+                mHist.setInsert_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(transType.trim());
+                mHist.setIs_submited(0);
+
+                transHistAdapter.create(mHist);
+                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                setEmptyConText();
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }
+
+    }
+
     @OnClick(R.id.imgB_con_menu)
     void chooseConnMenu(View view){
         Context wrapper = new ContextThemeWrapper(getActivity(), R.style.PopupMenu);
@@ -397,6 +443,11 @@ public class ConnectionFragment extends Fragment {
 
     @OnClick(R.id.imgB_con_cancel)
     void cancelConn(){
+        setEmptyConText();
+
+    }
+
+    private void setEmptyConText(){
         txt_conn_vsatModem.setText("");
         txt_conn_vsatAdaptor.setText("");
         txt_conn_vsatFh.setText("");
@@ -422,7 +473,6 @@ public class ConnectionFragment extends Fragment {
         rg_conn_antena.clearCheck();
         rg_conn_pedestial.clearCheck();
         rg_conn_access.clearCheck();
-
     }
 
 
