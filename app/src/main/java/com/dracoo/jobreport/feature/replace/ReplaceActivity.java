@@ -145,8 +145,7 @@ public class ReplaceActivity extends AppCompatActivity {
 
     @OnClick(R.id.imgB_rep_cancel)
     void cancelRep(){
-        finish();
-        //TO DO EMPTY TEXT
+        setEmptyText();
     }
 
     //vsat
@@ -292,6 +291,7 @@ public class ReplaceActivity extends AppCompatActivity {
 
                 transHistDao.update(mHist);
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -306,11 +306,32 @@ public class ReplaceActivity extends AppCompatActivity {
 
                 transHistDao.create(mHist);
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
             }
         }
 
+    }
+
+    private void setEmptyText(){
+        txt_rep_vsatModem.setText("");
+        txt_rep_vsatAdaptor.setText("");
+        txt_rep_vsatFh.setText("");
+        txt_rep_vsatLnb.setText("");
+        txt_rep_vsatRfu.setText("");
+        txt_rep_vsatDipIdu.setText("");
+        txt_rep_vsatDipOdu.setText("");
+        txt_rep_m2m_brand.setText("");
+        txt_rep_m2m_sn.setText("");
+        txt_rep_m2m_adaptorSn.setText("");
+        txt_rep_m2m_adaptorBrand.setText("");
+        txt_rep_m2m_sc1Brand.setText("");
+        txt_rep_m2m_sc1Sn.setText("");
+        txt_rep_m2m_sc1puk.setText("");
+        txt_rep_m2m_sc2Brand.setText("");
+        txt_rep_m2m_sc2Sn.setText("");
+        txt_rep_m2m_sc2puk.setText("");
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
