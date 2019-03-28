@@ -114,7 +114,10 @@ public class ProblemFragment extends Fragment {
 
     @OnClick(R.id.imgB_problem_cancel)
     void probCancel(){
+        emptyProblemText();
+    }
 
+    private void emptyProblemText(){
         txt_prob_pending.setText("");
         txt_prob_reasonPending.setText("");
         txt_prob_action_text.setText("");
@@ -127,6 +130,7 @@ public class ProblemFragment extends Fragment {
         txt_problem_symptom.setText("");
         txt_problem_tiba.setText("");
         txt_problem_upline.setText("");
+        rg_prob_closedBy.clearCheck();
     }
     @OnClick(R.id.imgBtn_timer1)
     void displayTime1(){
@@ -233,6 +237,7 @@ public class ProblemFragment extends Fragment {
 
                 transAdapter.update(mHist);
                 messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                emptyProblemText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -247,6 +252,7 @@ public class ProblemFragment extends Fragment {
 
                 transAdapter.create(mHist);
                 messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                emptyProblemText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }
