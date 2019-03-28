@@ -146,6 +146,7 @@ public class ReplaceActivity extends AppCompatActivity {
     @OnClick(R.id.imgB_rep_cancel)
     void cancelRep(){
         finish();
+        //TO DO EMPTY TEXT
     }
 
     //vsat
@@ -180,7 +181,7 @@ public class ReplaceActivity extends AppCompatActivity {
                     vsatRep.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                     vsatReplaceDao.update(vsatRep);
-                    //TO DO addvsatTransHist
+                    transHist(getString(R.string.repVSAT_trans));
                 }catch (Exception e){ messageUtils.toastMessage("err vsatReplace Update " +e.toString(), ConfigApps.T_ERROR); }
             }else{
                 try{
@@ -199,7 +200,7 @@ public class ReplaceActivity extends AppCompatActivity {
                     vsatRep.setConnection_type(preference.getConnType());
 
                     vsatReplaceDao.create(vsatRep);
-                    //TO DO addvsatTransHist
+                    transHist(getString(R.string.repVSAT_trans));
                 }catch (Exception e){ messageUtils.toastMessage("err vsatReplace insert " +e.toString(), ConfigApps.T_ERROR); }
             }
         }else{
@@ -245,7 +246,7 @@ public class ReplaceActivity extends AppCompatActivity {
                     m2mRep.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                     m2mReplaceDao.update(m2mRep);
-                    //TO DO add m2mTransHist
+                    transHist(getString(R.string.repM2M_trans));
                 }catch (Exception e){ messageUtils.toastMessage("err m2mReplace update " +e.toString(), ConfigApps.T_ERROR); }
             }else{
                 try{
@@ -267,7 +268,7 @@ public class ReplaceActivity extends AppCompatActivity {
                     m2mRep.setConnection_type(preference.getConnType().trim());
 
                     m2mReplaceDao.create(m2mRep);
-                    //TO DO m2mRepTransHIst;
+                    transHist(getString(R.string.repM2M_trans));
                 }catch (Exception e){
                     messageUtils.toastMessage("err m2mReplace insert " +e.toString(), ConfigApps.T_ERROR);
                 }
