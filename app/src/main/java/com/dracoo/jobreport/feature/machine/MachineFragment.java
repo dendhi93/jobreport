@@ -134,6 +134,18 @@ public class MachineFragment extends Fragment {
         }
     }
 
+    @OnClick(R.id.imgB_machine_cancel)
+    void cancelMachine(){
+        setEmptyRb();
+    }
+
+    private void setEmptyRb(){
+        rg_machine_location.clearCheck();
+        rg_machine_qty.clearCheck();
+        rg_machine_id.clearCheck();
+        rg_machine_24.clearCheck();
+    }
+
     private void machineTrans(){
         if(preference.getCustID().equals("")){
             messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_WARNING);
@@ -188,7 +200,8 @@ public class MachineFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.update(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
+                setEmptyRb();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -203,6 +216,7 @@ public class MachineFragment extends Fragment {
 
                 transHistAdapter.create(mHist);
                 messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                setEmptyRb();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }
