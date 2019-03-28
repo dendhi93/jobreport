@@ -222,7 +222,7 @@ public class UserActivity extends AppCompatActivity
 
     @OnClick(R.id.imgB_userAct_cancel)
     void cancelUser() {
-        finish();
+        emptyUserText();
     }
 
     private void infoSiteTrans(){
@@ -297,6 +297,8 @@ public class UserActivity extends AppCompatActivity
             jobDescAdapter.update(mJobDesc);
 
             transHistoryUser(custId, getString(R.string.jobDesc_trans));
+            messageUtils.toastMessage(getString(R.string.transaction_success)+" diupdate", ConfigApps.T_SUCCESS);
+            emptyUserText();
         }catch (Exception e){
             try{
                 MasterJobDesc mJobDesc = new MasterJobDesc();
@@ -313,6 +315,7 @@ public class UserActivity extends AppCompatActivity
                 jobDescAdapter.create(mJobDesc);
                 transHistoryUser(custId, getString(R.string.jobDesc_trans));
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                emptyUserText();
             }catch (Exception e2){messageUtils.toastMessage("err insert job desc" +e2.toString(), ConfigApps.T_ERROR); }
         }
     }
@@ -347,6 +350,22 @@ public class UserActivity extends AppCompatActivity
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }
         }
+    }
+
+    private void emptyUserText(){
+        rg_userAct_progress.clearCheck();
+        txt_userAct_name.setText("");
+        txt_userAct_service.setText("");
+        txt_userAct_phone.setText("");
+        txt_userAct_name_pic.setText("");
+        txt_userAct_jabatan.setText("");
+        txt_userAct_picPhone.setText("");
+        txt_userAct_locationName.setText("");
+        txt_userAct_customer.setText("");
+        txt_userAct_remoteAddress.setText("");
+        txt_userAct_city.setText("");
+        txt_userAct_kabupaten.setText("");
+        txt_userAct_proviency.setText("");
     }
 
 
