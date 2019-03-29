@@ -354,7 +354,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:drawableLeft="@drawable/ic_black_setting_16"
                         android:inputType="text"
-                        android:maxLength="15"
+                        android:maxLength="20"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"

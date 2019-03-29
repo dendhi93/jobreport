@@ -17,6 +17,27 @@ public class DataM2mActivity extends AppCompatActivity {
     private MessageUtils messageUtils;
     @BindView(R.id.txt_dm2m_un)
     EditText txt_dm2m_un;
+    @BindView(R.id.txt_dm2m_password)
+    EditText txt_dm2m_password;
+    @BindView(R.id.txt_dm2m_ipMachine)
+    EditText txt_dm2m_ipMachine;
+    @BindView(R.id.txt_dm2m_remote)
+    EditText txt_dm2m_remote;
+    @BindView(R.id.txt_dm2m_tunnelId)
+    EditText txt_dm2m_tunnelId;
+    @BindView(R.id.txt_dm2m_ipBouding)
+    EditText txt_dm2m_ipBouding;
+    @BindView(R.id.txt_dm2m_ipVLan)
+    EditText txt_dm2m_ipVLan;
+    @BindView(R.id.txt_dm2m_ipLLan)
+    EditText txt_dm2m_ipLLan;
+    @BindView(R.id.txt_dm2m_dataM2m_subnetMask)
+    EditText txt_dm2m_dataM2m_subnetMask;
+    @BindView(R.id.txt_dm2m_dataM2m_agg)
+    EditText txt_dm2m_dataM2m_agg;
+    @BindView(R.id.txt_dm2m_user)
+    EditText txt_dm2m_user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +55,13 @@ public class DataM2mActivity extends AppCompatActivity {
         messageUtils = new MessageUtils(DataM2mActivity.this);
     }
 
-
-
     @OnClick(R.id.imgB_dataM2m_submit)
     void submitM2m(){
-        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        if (!valEmptyText()){
+            messageUtils.snackBar_message(getString(R.string.emptyString), DataM2mActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
+        }else{
+            messageUtils.toastMessage("coba1", ConfigApps.T_DEFAULT);
+        }
     }
 
     @OnClick(R.id.imgB_dataM2m_cancel)
@@ -46,6 +69,24 @@ public class DataM2mActivity extends AppCompatActivity {
         messageUtils.toastMessage("coba1", ConfigApps.T_DEFAULT);
     }
 
+    private boolean valEmptyText(){
+        if (txt_dm2m_un.getText().toString().equals("")||
+                txt_dm2m_password.getText().toString().equals("")||
+                txt_dm2m_ipMachine.getText().toString().equals("") ||
+                txt_dm2m_user.getText().toString().equals("") ||
+                txt_dm2m_remote.getText().toString().equals("") ||
+                txt_dm2m_tunnelId.getText().toString().equals("") ||
+                txt_dm2m_ipBouding.getText().toString().equals("") ||
+                txt_dm2m_ipVLan.getText().toString().equals("") ||
+                txt_dm2m_ipLLan.getText().toString().equals("") ||
+                txt_dm2m_dataM2m_subnetMask.getText().toString().equals("") ||
+                txt_dm2m_dataM2m_agg.getText().toString().equals("")
+        ){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
