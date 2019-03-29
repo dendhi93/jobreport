@@ -401,7 +401,7 @@ public class ConnectionFragment extends Fragment {
             if (preference.getCustID() == 0){
                 messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             }else if (!preference.getConnType().equals("M2M") && !preference.getConnType().equals("")){
-                messageUtils.snackBar_message("Transaksi VSAT sudah diinput, mohon pilih jenis koneksi M2m", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+                messageUtils.snackBar_message("Transaksi VSAT sudah diinput, mohon pilih jenis koneksi VSAT", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             } else{
                 popup.getMenuInflater().inflate(R.menu.m2m_menu, popup.getMenu());
             }
