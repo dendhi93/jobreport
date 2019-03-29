@@ -45,7 +45,7 @@ public class EnvAdapter extends DatabaseAdapter {
     public Cursor val_envCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_env " +
+        String sql = "SELECT id_env, " +
                 " id_site " +
                 "from t_env " +
                 " where id_site = " + custId + " " +

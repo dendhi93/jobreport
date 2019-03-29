@@ -45,7 +45,7 @@ public class ProblemAdapter extends DatabaseAdapter {
     public Cursor val_probCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_problem " +
+        String sql = "SELECT id_problem, " +
                 " id_site " +
                 "from t_problem " +
                 " where id_site = " + custId + " " +

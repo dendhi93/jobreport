@@ -44,7 +44,7 @@ public class M2mReplaceAdapter extends DatabaseAdapter {
     public Cursor val_m2mReplaceCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_replace " +
+        String sql = "SELECT id_replace, " +
                 " id_site " +
                 "from m2m_setup " +
                 " where id_site = " + custId + " " +

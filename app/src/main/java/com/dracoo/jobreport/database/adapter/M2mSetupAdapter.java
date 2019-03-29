@@ -44,7 +44,7 @@ public class M2mSetupAdapter extends DatabaseAdapter {
     public Cursor val_m2mSetupCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_setup " +
+        String sql = "SELECT id_setup, " +
                 " id_site " +
                 "from m2m_setup " +
                 " where id_site = " + custId + " " +

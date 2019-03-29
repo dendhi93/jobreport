@@ -46,7 +46,7 @@ public class MachineAdapter extends DatabaseAdapter {
     public Cursor val_machineCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_machine " +
+        String sql = "SELECT id_machine, " +
                 " id_site " +
                 "from t_machine " +
                 " where id_site = " + custId + " " +

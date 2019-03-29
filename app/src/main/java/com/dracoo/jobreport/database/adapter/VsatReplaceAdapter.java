@@ -45,7 +45,7 @@ public class VsatReplaceAdapter extends DatabaseAdapter {
     public Cursor val_vsatReplaceCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_replace " +
+        String sql = "SELECT id_replace, " +
                 " id_site " +
                 "from m2m_setup " +
                 " where id_site = " + custId + " " +

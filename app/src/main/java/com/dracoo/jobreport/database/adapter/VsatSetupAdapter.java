@@ -44,7 +44,7 @@ public class VsatSetupAdapter extends DatabaseAdapter {
     public Cursor val_vsatSetupCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_setup " +
+        String sql = "SELECT id_setup, " +
                 " id_site " +
                 "from vsat_setup " +
                 " where id_site = " + custId + " " +
