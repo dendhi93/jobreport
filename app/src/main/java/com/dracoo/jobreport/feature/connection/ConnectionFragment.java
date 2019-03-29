@@ -468,10 +468,12 @@ public class ConnectionFragment extends Fragment {
         txt_conn_m2m_sc2puk.setText("");
         txt_conn_m2m_sc1Brand.setText("");
 
-        rg_conn_type.clearCheck();
-        rg_conn_antena.clearCheck();
-        rg_conn_pedestial.clearCheck();
-        rg_conn_access.clearCheck();
+        if (selectedConn.equals("VSAT")){
+            rg_conn_type.clearCheck();
+            rg_conn_antena.clearCheck();
+            rg_conn_pedestial.clearCheck();
+            rg_conn_access.clearCheck();
+        }
     }
 
 
