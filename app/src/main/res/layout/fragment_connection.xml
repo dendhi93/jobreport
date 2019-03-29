@@ -109,7 +109,7 @@
 
                 <LinearLayout
                     android:id="@+id/ln_conn_vsat"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -171,7 +171,7 @@
                                 android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
-                                android:inputType="text"
+                                android:inputType="number"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
@@ -543,7 +543,7 @@
                     android:id="@+id/ln_conn_m2m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
 
@@ -671,7 +671,6 @@
                                 android:layout_height="45dp"
                                 android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
-                                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"

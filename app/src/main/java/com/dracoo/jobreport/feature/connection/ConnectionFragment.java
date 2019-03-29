@@ -186,7 +186,6 @@ public class ConnectionFragment extends Fragment {
 
     @OnClick(R.id.imgB_con_submit)
     void submitConn(){
-        Log.d("###",""+selectedConn.trim());
         if (preference.getCustID() == 0){
             messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (selectedConn.equals("null") || selectedConn == null){
@@ -257,7 +256,7 @@ public class ConnectionFragment extends Fragment {
                     MasterVsatSetup mVsatSetup = new MasterVsatSetup();
                     mVsatSetup.setId_site(preference.getCustID());
                     mVsatSetup.setUn_user(preference.getUn());
-                    mVsatSetup.setSn_adaptor(Integer.parseInt(txt_conn_m2m_adaptorSn.getText().toString().trim()));
+                    mVsatSetup.setSn_adaptor(Integer.parseInt(txt_conn_vsatAdaptor.getText().toString().trim()));
                     mVsatSetup.setSn_fh(txt_conn_vsatFh.getText().toString().trim());
                     mVsatSetup.setSn_lnb(txt_conn_vsatLnb.getText().toString().trim());
                     mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
@@ -326,7 +325,7 @@ public class ConnectionFragment extends Fragment {
                     MasterM2mSetup m2mSetup = new MasterM2mSetup();
                     m2mSetup.setId_site(preference.getCustID());
                     m2mSetup.setUn_user(preference.getUn());
-                    m2mSetup.setConnection_type(""+rb_selectedConn.getText().toString());
+                    m2mSetup.setConnection_type(selectedConn.trim());
                     m2mSetup.setBrand_type_m2m(txt_conn_m2m_brand.getText().toString().trim());
                     m2mSetup.setSn_m2m(txt_conn_m2m_sn.getText().toString().trim());
                     m2mSetup.setBrand_type_adaptor(txt_conn_m2m_adaptorBrand.getText().toString().trim());
