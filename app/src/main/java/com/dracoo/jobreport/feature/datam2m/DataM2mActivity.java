@@ -3,16 +3,20 @@ package com.dracoo.jobreport.feature.datam2m;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DataM2mActivity extends AppCompatActivity {
     private MessageUtils messageUtils;
+    @BindView(R.id.txt_dm2m_un)
+    EditText txt_dm2m_un;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
