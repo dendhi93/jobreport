@@ -236,7 +236,7 @@ public class ConnectionFragment extends Fragment {
                 try{
                     MasterVsatSetup mVsatSetup = vsatSetupDao.queryForId(al_vsatSetup.get(0).getId_setup());
                     mVsatSetup.setSn_modem(txt_conn_vsatModem.getText().toString().trim());
-                    mVsatSetup.setSn_adaptor(Integer.parseInt(txt_conn_m2m_adaptorSn.getText().toString().trim()));
+                    mVsatSetup.setSn_adaptor(txt_conn_m2m_adaptorSn.getText().toString().trim());
                     mVsatSetup.setSn_fh(txt_conn_vsatFh.getText().toString().trim());
                     mVsatSetup.setSn_lnb(txt_conn_vsatLnb.getText().toString().trim());
                     mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
@@ -256,7 +256,7 @@ public class ConnectionFragment extends Fragment {
                     MasterVsatSetup mVsatSetup = new MasterVsatSetup();
                     mVsatSetup.setId_site(preference.getCustID());
                     mVsatSetup.setUn_user(preference.getUn());
-                    mVsatSetup.setSn_adaptor(Integer.parseInt(txt_conn_vsatAdaptor.getText().toString().trim()));
+                    mVsatSetup.setSn_adaptor(txt_conn_vsatAdaptor.getText().toString().trim());
                     mVsatSetup.setSn_fh(txt_conn_vsatFh.getText().toString().trim());
                     mVsatSetup.setSn_lnb(txt_conn_vsatLnb.getText().toString().trim());
                     mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
@@ -468,12 +468,6 @@ public class ConnectionFragment extends Fragment {
         txt_conn_m2m_sc2puk.setText("");
         txt_conn_m2m_sc1Brand.setText("");
 
-        if (selectedConn.equals("VSAT")){
-            rg_conn_type.clearCheck();
-            rg_conn_antena.clearCheck();
-            rg_conn_pedestial.clearCheck();
-            rg_conn_access.clearCheck();
-        }
     }
 
 

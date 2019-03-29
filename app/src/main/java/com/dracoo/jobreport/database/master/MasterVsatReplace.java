@@ -14,8 +14,8 @@ public class MasterVsatReplace implements Serializable {
     private Integer id_site;
     @DatabaseField(columnName = "sn_modem")
     private String sn_modem;
-    @DatabaseField(columnName = "adaptor")
-    private Integer adaptor;
+    @DatabaseField(columnName = "sn_adaptor")
+    private String sn_adaptor;
     @DatabaseField(columnName = "sn_fh")
     private String sn_fh;
     @DatabaseField(columnName = "sn_lnb")
@@ -59,14 +59,6 @@ public class MasterVsatReplace implements Serializable {
 
     public void setSn_modem(String sn_modem) {
         this.sn_modem = sn_modem;
-    }
-
-    public Integer getAdaptor() {
-        return adaptor;
-    }
-
-    public void setAdaptor(Integer adaptor) {
-        this.adaptor = adaptor;
     }
 
     public String getSn_fh() {
@@ -117,14 +109,6 @@ public class MasterVsatReplace implements Serializable {
         this.progress_type = progress_type;
     }
 
-    public String getConnection_type() {
-        return connection_type;
-    }
-
-    public void setConnection_type(String connection_type) {
-        this.connection_type = connection_type;
-    }
-
     public String getInsert_date() {
         return insert_date;
     }
@@ -147,5 +131,22 @@ public class MasterVsatReplace implements Serializable {
 
     public void setUn_user(String un_user) {
         this.un_user = un_user;
+    }
+
+
+    public String getConnection_type() {
+        return connection_type;
+    }
+
+    public void setConnection_type(String connection_type) {
+        this.connection_type = connection_type;
+    }
+
+    public String getSn_adaptor() {
+        return sn_adaptor;
+    }
+
+    public void setSn_adaptor(String sn_adaptor) {
+        this.sn_adaptor = sn_adaptor;
     }
 }

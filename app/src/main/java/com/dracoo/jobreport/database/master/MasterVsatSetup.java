@@ -15,7 +15,7 @@ public class MasterVsatSetup implements Serializable {
     @DatabaseField(columnName = "sn_modem")
     private String sn_modem;
     @DatabaseField(columnName = "sn_adaptor")
-    private Integer sn_adaptor;
+    private String sn_adaptor;
     @DatabaseField(columnName = "sn_fh")
     private String sn_fh;
     @DatabaseField(columnName = "sn_lnb")
@@ -67,14 +67,6 @@ public class MasterVsatSetup implements Serializable {
 
     public void setSn_modem(String sn_modem) {
         this.sn_modem = sn_modem;
-    }
-
-    public Integer getSn_adaptor() {
-        return sn_adaptor;
-    }
-
-    public void setSn_adaptor(Integer sn_adaptor) {
-        this.sn_adaptor = sn_adaptor;
     }
 
     public String getSn_fh() {
@@ -187,5 +179,13 @@ public class MasterVsatSetup implements Serializable {
 
     public void setUn_user(String un_user) {
         this.un_user = un_user;
+    }
+
+    public String getSn_adaptor() {
+        return sn_adaptor;
+    }
+
+    public void setSn_adaptor(String sn_adaptor) {
+        this.sn_adaptor = sn_adaptor;
     }
 }

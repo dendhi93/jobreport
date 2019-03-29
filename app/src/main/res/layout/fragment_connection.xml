@@ -171,7 +171,7 @@
                                 android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
-                                android:inputType="number"
+                                android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"

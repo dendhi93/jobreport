@@ -10,15 +10,11 @@ import android.widget.LinearLayout;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mReplaceAdapter;
-import com.dracoo.jobreport.database.adapter.M2mSetupAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
-import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mReplace;
-import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
-import com.dracoo.jobreport.database.master.MasterVsatSetup;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
@@ -169,7 +165,7 @@ public class ReplaceActivity extends AppCompatActivity {
                 try{
                     MasterVsatReplace vsatRep = vsatReplaceDao.queryForId(alVsatReplace.get(0).getId_site());
                     vsatRep.setSn_modem(txt_rep_vsatModem.getText().toString().trim());
-                    vsatRep.setAdaptor(Integer.parseInt(txt_rep_vsatAdaptor.getText().toString().trim()));
+                    vsatRep.setSn_adaptor(txt_rep_vsatAdaptor.getText().toString().trim());
                     vsatRep.setSn_fh(txt_rep_vsatFh.getText().toString().trim());
                     vsatRep.setSn_lnb(txt_rep_vsatLnb.getText().toString().trim());
                     vsatRep.setSn_rfu(txt_rep_vsatRfu.getText().toString().trim());
@@ -183,22 +179,25 @@ public class ReplaceActivity extends AppCompatActivity {
             }else{
                 try{
                     MasterVsatReplace vsatRep = new MasterVsatReplace();
+                    vsatRep.setId_site(preference.getCustID());
                     vsatRep.setSn_modem(txt_rep_vsatModem.getText().toString().trim());
-                    vsatRep.setAdaptor(Integer.parseInt(txt_rep_vsatAdaptor.getText().toString().trim()));
+                    vsatRep.setSn_adaptor(txt_rep_vsatAdaptor.getText().toString().trim());
                     vsatRep.setSn_fh(txt_rep_vsatFh.getText().toString().trim());
                     vsatRep.setSn_lnb(txt_rep_vsatLnb.getText().toString().trim());
                     vsatRep.setSn_rfu(txt_rep_vsatRfu.getText().toString().trim());
                     vsatRep.setSn_dip_odu(txt_rep_vsatDipOdu.getText().toString().trim());
                     vsatRep.setSn_dip_idu(txt_rep_vsatDipIdu.getText().toString().trim());
-                    vsatRep.setInsert_date(DateTimeUtils.getCurrentTime());
-                    vsatRep.setUn_user(preference.getUn());
-                    vsatRep.setId_site(preference.getCustID());
                     vsatRep.setProgress_type(preference.getProgress());
                     vsatRep.setConnection_type(preference.getConnType());
+                    vsatRep.setInsert_date(DateTimeUtils.getCurrentTime());
+                    vsatRep.setUn_user(preference.getUn());
 
                     vsatReplaceDao.create(vsatRep);
                     transHist(getString(R.string.repVSAT_trans));
-                }catch (Exception e){ messageUtils.toastMessage("err vsatReplace insert " +e.toString(), ConfigApps.T_ERROR); }
+                }catch (Exception e){
+                    messageUtils.toastMessage("err vsatReplace insert " +e.toString(), ConfigApps.T_ERROR);
+                    Log.d("###",""+e.toString());
+                }
             }
     }
 
