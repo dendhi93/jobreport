@@ -47,7 +47,7 @@ public class VsatReplaceAdapter extends DatabaseAdapter {
 
         String sql = "SELECT id_replace, " +
                 " id_site " +
-                "from m2m_setup " +
+                "from vsat_replace " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
 

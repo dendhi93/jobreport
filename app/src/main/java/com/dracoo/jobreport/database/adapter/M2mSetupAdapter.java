@@ -2,6 +2,7 @@ package com.dracoo.jobreport.database.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.j256.ormlite.dao.Dao;
@@ -50,7 +51,7 @@ public class M2mSetupAdapter extends DatabaseAdapter {
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
 
-
+        Log.d("sql",""+sql);
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }

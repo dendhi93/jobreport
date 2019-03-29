@@ -164,8 +164,6 @@ public class ReplaceActivity extends AppCompatActivity {
     }
 
     private void vsatReplaceTrans(){
-        ArrayList<MasterVsatSetup> alVsatSetup = new VsatSetupAdapter(getApplicationContext()).val_vsatSetup(preference.getCustID(), preference.getUn());
-        if (alVsatSetup.size() > 0){
             ArrayList<MasterVsatReplace> alVsatReplace = new VsatReplaceAdapter(ReplaceActivity.this).val_vsatReplace(preference.getCustID(), preference.getUn());
             if (alVsatReplace.size() > 0){
                 try{
@@ -202,9 +200,6 @@ public class ReplaceActivity extends AppCompatActivity {
                     transHist(getString(R.string.repVSAT_trans));
                 }catch (Exception e){ messageUtils.toastMessage("err vsatReplace insert " +e.toString(), ConfigApps.T_ERROR); }
             }
-        }else{
-            messageUtils.toastMessage("Transaksi VSAT pada menu Connection Type belum diinput, transaksi dibatalkan", ConfigApps.T_WARNING);
-        }
     }
 
     //m2m
@@ -226,8 +221,6 @@ public class ReplaceActivity extends AppCompatActivity {
     }
 
     private void m2mRepTrans(){
-        ArrayList<MasterM2mSetup> al_m2mSetup = new M2mSetupAdapter(getApplicationContext()).val_m2mSetup(preference.getCustID(), preference.getUn());
-        if (al_m2mSetup.size() > 0){
             ArrayList<MasterM2mReplace> al_m2mRep = new M2mReplaceAdapter(ReplaceActivity.this).val_m2mReplace(preference.getCustID(), preference.getUn());
             if (al_m2mRep.size() > 0){
                 try{
@@ -272,9 +265,6 @@ public class ReplaceActivity extends AppCompatActivity {
                     messageUtils.toastMessage("err m2mReplace insert " +e.toString(), ConfigApps.T_ERROR);
                 }
             }
-        }else{
-            messageUtils.toastMessage("Transaksi M2M pada menu Connection Type belum diinput, transaksi dibatalkan", ConfigApps.T_WARNING);
-        }
     }
 
     //transHist

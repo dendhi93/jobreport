@@ -353,7 +353,6 @@ public class UserActivity extends AppCompatActivity
     }
 
     private void emptyUserText(){
-        rg_userAct_progress.clearCheck();
         txt_userAct_name.setText("");
         txt_userAct_service.setText("");
         txt_userAct_phone.setText("");
