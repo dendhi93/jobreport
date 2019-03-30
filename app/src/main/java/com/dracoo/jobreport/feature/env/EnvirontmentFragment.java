@@ -82,7 +82,7 @@ public class EnvirontmentFragment extends Fragment {
 
     private void transEnv(){
         if(preference.getCustID() == 0){
-            messageUtils.toastMessage("Mohon diinput menu Customer pada Dashboard", ConfigApps.T_WARNING);
+            messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_WARNING);
         }else{
             ArrayList<MasterEnvirontment> al_valEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
             if (al_valEnv.size() > 0){

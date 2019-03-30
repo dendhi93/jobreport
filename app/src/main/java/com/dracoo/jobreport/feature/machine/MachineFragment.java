@@ -147,7 +147,7 @@ public class MachineFragment extends Fragment {
     }
 
     private void machineTrans(){
-        if(preference.getCustID().equals("")){
+        if(preference.getCustID() == 0){
             messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_WARNING);
         }else{
             ArrayList<MasterMachine> al_valMachine = new MachineAdapter(getActivity()).val_machine(preference.getCustID(), preference.getUn());

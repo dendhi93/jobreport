@@ -127,13 +127,17 @@ public class ReplaceActivity extends AppCompatActivity {
         if (intentConnectionType == EXTRA_CALLER_VSATCONN){
             if (!vsatReplaceVal()){
                 messageUtils.snackBar_message(getString(R.string.emptyString), ReplaceActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-            }else{
+            }else if (preference.getCustID() == 0){
+              messageUtils.snackBar_message(getString(R.string.customer_validation),ReplaceActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
+            } else{
                 vsatReplaceTrans();
             }
         }else if (intentConnectionType == EXTRA_CALLER_M2MCONN){
             if (!m2mReplaceVal()){
                 messageUtils.snackBar_message(getString(R.string.emptyString), ReplaceActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-            }else{
+            }else if (preference.getCustID() == 0){
+                messageUtils.snackBar_message(getString(R.string.customer_validation),ReplaceActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
+            } else{
                 m2mRepTrans();
             }
         }

@@ -78,7 +78,9 @@ public class DataM2mActivity extends AppCompatActivity {
     void submitM2m(){
         if (!valEmptyText()){
             messageUtils.snackBar_message(getString(R.string.emptyString), DataM2mActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-        }else{
+        }else if (preference.getCustID() == 0){
+            messageUtils.snackBar_message(getString(R.string.customer_validation),DataM2mActivity.this , ConfigApps.SNACKBAR_NO_BUTTON);
+        } else{
             transDatam2m();
         }
     }

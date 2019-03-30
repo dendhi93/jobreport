@@ -21,6 +21,7 @@ import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -94,9 +95,35 @@ public class XpollActivity extends AppCompatActivity {
 
     @OnClick(R.id.imgB_xpoll_submit)
     void submitXpoll(){
-        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        if (!validateEmpty()){
+            messageUtils.snackBar_message(getString(R.string.emptyString), XpollActivity.this,ConfigApps.SNACKBAR_NO_BUTTON);
+        }else{
+
+        }
     }
 
+    private boolean validateEmpty(){
+        if (txt_xpoll_dateTime.getText().toString().trim().equals("") ||
+                txt_xpoll_transponder.getText().toString().trim().equals("") ||
+                txt_xpoll_lft.getText().toString().trim().equals("") ||
+                txt_xpoll_cn.getText().toString().trim().equals("") ||
+                txt_xpoll_cpi.getText().toString().trim().equals("") ||
+                txt_xpoll_asi.getText().toString().trim().equals("") ||
+                txt_xpoll_op.getText().toString().trim().equals("")){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    private void xpollTrans(){
+        ArrayList<MasterXpoll> al_valXpoll = new XpollAdapter(getApplicationContext()).val_xpoll(preference.getCustID(), preference.getUn());
+        if (al_valXpoll.size() > 0){
+
+        }else{
+
+        }
+    }
 
     @OnClick(R.id.imgB_xpoll_cancel)
     void cancelXpoll(){
