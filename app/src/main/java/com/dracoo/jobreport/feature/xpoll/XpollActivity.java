@@ -12,8 +12,14 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
+import com.dracoo.jobreport.database.adapter.XpollAdapter;
+import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.database.master.MasterXpoll;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
+import com.dracoo.jobreport.util.Preference;
+import com.j256.ormlite.dao.Dao;
 
 import java.util.Calendar;
 
@@ -27,12 +33,27 @@ public class XpollActivity extends AppCompatActivity {
     RadioGroup rg_xpoll;
     @BindView(R.id.txt_xpoll_dateTime)
     EditText txt_xpoll_dateTime;
+    @BindView(R.id.txt_xpoll_transponder)
+    EditText txt_xpoll_transponder;
+    @BindView(R.id.txt_xpoll_lft)
+    EditText txt_xpoll_lft;
+    @BindView(R.id.txt_xpoll_cn)
+    EditText txt_xpoll_cn;
+    @BindView(R.id.txt_xpoll_cpi)
+    EditText txt_xpoll_cpi;
+    @BindView(R.id.txt_xpoll_asi)
+    EditText txt_xpoll_asi;
+    @BindView(R.id.txt_xpoll_op)
+    EditText txt_xpoll_op;
 
-    private String selectedRadio = "";
+    private String selectedRadio = "null";
     private RadioButton rbXpoll;
     private MessageUtils messageUtils;
     private String tempXpollDate = "";
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
+    private Dao<MasterTransHistory, Integer> transHistAdapter;
+    private Dao<MasterXpoll, Integer> xpollAdapter;
+    private Preference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +71,15 @@ public class XpollActivity extends AppCompatActivity {
         super.onStart();
 
         messageUtils = new MessageUtils(XpollActivity.this);
+        preference = new Preference(XpollActivity.this);
         xpollRadio();
+
+        try{
+            transHistAdapter = new TransHistoryAdapter(getApplicationContext()).getAdapter();
+            xpollAdapter = new XpollAdapter(getApplicationContext()).getAdapter();
+        }catch (Exception e){
+
+        }
     }
 
     private void xpollRadio(){
@@ -71,7 +100,7 @@ public class XpollActivity extends AppCompatActivity {
 
     @OnClick(R.id.imgB_xpoll_cancel)
     void cancelXpoll(){
-        messageUtils.toastMessage("coba2", ConfigApps.T_DEFAULT);
+        setEmptyText();
     }
 
     @OnClick(R.id.imgBtn_xpoll_timer)
@@ -147,6 +176,16 @@ public class XpollActivity extends AppCompatActivity {
         }, mHour, mMinute, true);
         timePickerDialog.show();
 
+    }
+
+    private void setEmptyText(){
+        txt_xpoll_transponder.setText("");
+        txt_xpoll_lft.setText("");
+        txt_xpoll_cn.setText("");
+        txt_xpoll_cpi.setText("");
+        txt_xpoll_asi.setText("");
+        txt_xpoll_op.setText("");
+        txt_xpoll_dateTime.setText("");
     }
 
 
