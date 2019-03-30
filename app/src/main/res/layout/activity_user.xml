@@ -148,7 +148,8 @@
                             android:focusable="false"
                             android:clickable="false"
                             android:maxLength="25"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -186,7 +187,8 @@
                             android:focusable="false"
                             android:clickable="false"
                             android:maxLength="15"
-                            android:maxLines="3" />
+                            android:maxLines="3"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -258,7 +260,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="25"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -293,7 +296,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="25"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -327,7 +331,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="number"
                             android:maxLength="15"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -407,7 +412,8 @@
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                             android:inputType="text"
                             android:maxLength="25"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -442,7 +448,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="25"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -477,7 +484,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="100"
-                            android:maxLines="4" />
+                            android:maxLines="4"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -512,7 +520,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="25"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -547,7 +556,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="25"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -582,7 +592,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
                             android:maxLength="25"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -619,7 +630,8 @@
                             android:focusable="false"
                             android:inputType="text"
                             android:maxLength="25"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -656,7 +668,8 @@
                             android:enabled="false"
                             android:clickable="false"
                             android:focusable="false"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>

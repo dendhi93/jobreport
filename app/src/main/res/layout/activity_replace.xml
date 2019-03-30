@@ -63,7 +63,8 @@
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -86,7 +87,8 @@
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -108,7 +110,8 @@
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -131,7 +134,8 @@
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -155,7 +159,8 @@
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -178,7 +183,8 @@
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -201,7 +207,8 @@
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>

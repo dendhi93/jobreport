@@ -93,7 +93,8 @@
                         android:maxLength="25"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite" />
+                        android:textColorLink="@color/colorWhite"
+                        android:background="@drawable/noborder"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -116,7 +117,8 @@
                         android:maxLength="15"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite" />
+                        android:textColorLink="@color/colorWhite"
+                        android:background="@drawable/noborder"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -139,7 +141,8 @@
                         android:maxLength="25"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite" />
+                        android:textColorLink="@color/colorWhite"
+                        android:background="@drawable/noborder"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -162,7 +165,8 @@
                         android:maxLength="15"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite" />
+                        android:textColorLink="@color/colorWhite"
+                        android:background="@drawable/noborder"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -185,10 +189,11 @@
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite" />
+                        android:textColorLink="@color/colorWhite"
+                        android:background="@drawable/noborder"/>
 
                 </android.support.design.widget.TextInputLayout>
-ac
+
                 <LinearLayout
                     android:baselineAligned="false"
                     android:layout_width="match_parent"

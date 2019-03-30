@@ -63,7 +63,8 @@
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                             android:inputType="text"
                             android:maxLength="50"
-                            android:maxLines="2" />
+                            android:maxLines="2"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -98,7 +99,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="textMultiLine"
                             android:maxLength="100"
-                            android:maxLines="4" />
+                            android:maxLines="4"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -132,7 +134,8 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="textMultiLine"
                             android:maxLength="100"
-                            android:maxLines="4" />
+                            android:maxLines="4"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -169,7 +172,8 @@
                             android:maxLines="2"
                             android:layout_marginEnd="@dimen/spacing_tiny_3"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite" />
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
                     </android.support.design.widget.TextInputLayout>
 
