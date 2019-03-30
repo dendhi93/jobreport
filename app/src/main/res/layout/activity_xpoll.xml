@@ -204,6 +204,7 @@ ac
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/date_time"
+                        android:background="@drawable/border_bottom"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
