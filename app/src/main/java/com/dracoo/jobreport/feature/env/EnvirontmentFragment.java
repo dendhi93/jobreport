@@ -98,7 +98,7 @@ public class EnvirontmentFragment extends Fragment {
                     mEnv.setTegangan_ups(Integer.parseInt(txt_env_upsTegangan.getText().toString().trim()));
 
                     envAdapter.update(mEnv);
-                    transHistEnv();
+                    transHistEnv(ConfigApps.TRANS_HIST_UPDATE);
                 }catch (Exception e){
                     messageUtils.toastMessage("Err mEnv1 " +e.toString(), ConfigApps.T_ERROR);
                 }
@@ -117,7 +117,7 @@ public class EnvirontmentFragment extends Fragment {
                     mEnv.setTegangan_ups(Integer.parseInt(txt_env_upsTegangan.getText().toString().trim()));
 
                     envAdapter.create(mEnv);
-                    transHistEnv();
+                    transHistEnv(ConfigApps.TRANS_HIST_INSERT);
                 }catch (Exception e){
                     messageUtils.toastMessage("Err mEnv2 " +e.toString(), ConfigApps.T_ERROR);
                 }
@@ -126,7 +126,7 @@ public class EnvirontmentFragment extends Fragment {
 
     }
 
-    private void transHistEnv(){
+    private void transHistEnv(int typeTrans){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
                 .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.electEnv_trans));
         if (al_valTransHist.size() > 0){
@@ -138,7 +138,12 @@ public class EnvirontmentFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.update(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (typeTrans == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
+
                 setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
@@ -153,7 +158,11 @@ public class EnvirontmentFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.create(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (typeTrans == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
                 setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
