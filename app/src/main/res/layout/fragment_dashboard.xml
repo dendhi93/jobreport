@@ -155,10 +155,20 @@
                     android:id="@+id/imgB_dash_toActivity"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:layout_marginEnd="@dimen/spacing_small_1"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
                     android:background="@drawable/ic_circle_selector"
                     android:contentDescription="@string/content_desc"
                     android:src="@drawable/ic_truck_32" />
+
+                <ImageButton
+                    android:id="@+id/imgB_dash_confirm"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:background="@drawable/ic_circle_selector"
+                    android:contentDescription="@string/content_desc"
+                    android:src="@drawable/ic_white_upload_32" />
 
             </LinearLayout>
         </LinearLayout>
@@ -187,38 +197,6 @@
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/alph_size_small"
             android:text="@string/empty_data" />
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/rl_dash_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/spacing_small_1"
-        android:background="@color/colorWhite"
-        android:padding="@dimen/spacing_semi_medium">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:layout_marginEnd="@dimen/spacing_tiny"
-            android:layout_toLeftOf="@+id/imgB_dash_confirm"
-            android:gravity="center"
-            android:text="Mohon dilakukan pengecekan kembali sebelum Upload"
-            android:textColor="@color/colorBlack" />
-
-        <ImageButton
-            android:id="@+id/imgB_dash_confirm"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="@dimen/spacing_tiny"
-            android:background="@drawable/ic_circle_selector"
-            android:contentDescription="@string/content_desc"
-            android:src="@drawable/ic_white_upload_32" />
 
     </RelativeLayout>
 

@@ -200,7 +200,7 @@ public class MachineFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.update(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 setEmptyRb();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);

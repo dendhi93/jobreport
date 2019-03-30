@@ -297,7 +297,7 @@ public class UserActivity extends AppCompatActivity
             jobDescAdapter.update(mJobDesc);
 
             transHistoryUser(custId, getString(R.string.jobDesc_trans));
-            messageUtils.toastMessage(getString(R.string.transaction_success)+" diupdate", ConfigApps.T_SUCCESS);
+            messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
             emptyUserText();
         }catch (Exception e){
             try{
