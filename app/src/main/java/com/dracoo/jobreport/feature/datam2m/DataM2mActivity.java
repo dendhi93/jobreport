@@ -146,18 +146,19 @@ public class DataM2mActivity extends AppCompatActivity {
             try{
                 MasterM2mData m2mData = new MasterM2mData();
                 m2mData.setProgress_type(preference.getProgress());
+                m2mData.setId_site(preference.getCustID());
                 m2mData.setUsername(txt_dm2m_user.getText().toString().trim());
                 m2mData.setPassword(txt_dm2m_password.getText().toString().trim());
                 m2mData.setUser(txt_dm2m_user.getText().toString().trim());
                 m2mData.setRemote(txt_dm2m_remote.getText().toString().trim());
                 m2mData.setTunnel_id(txt_dm2m_tunnelId.getText().toString().trim());
                 m2mData.setIp_bonding(txt_dm2m_ipBouding.getText().toString().trim());
-                m2mData.setAgg(txt_dm2m_dataM2m_agg.getText().toString().trim());
-                m2mData.setConnection_type(preference.getConnType().trim());
-                m2mData.setId_site(preference.getCustID());
-                m2mData.setInsert_date(DateTimeUtils.getCurrentTime());
                 m2mData.setIp_lan(txt_dm2m_ipLLan.getText().toString().trim());
                 m2mData.setIp_vlan(txt_dm2m_ipLLan.getText().toString().trim());
+                m2mData.setSubnet_mask(txt_dm2m_dataM2m_subnetMask.getText().toString().trim());
+                m2mData.setAgg(txt_dm2m_dataM2m_agg.getText().toString().trim());
+                m2mData.setConnection_type(preference.getConnType().trim());
+                m2mData.setInsert_date(DateTimeUtils.getCurrentTime());
 
                 dataM2mDao.create(m2mData);
                 transHist();

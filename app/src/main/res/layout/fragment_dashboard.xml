@@ -186,8 +186,7 @@
             android:layout_height="match_parent"
             android:visibility="gone"
             android:layout_marginStart="@dimen/spacing_tiny"
-            android:layout_marginEnd="@dimen/spacing_tiny"
-            android:layout_marginBottom="@dimen/spacing_tiny"/>
+            android:layout_marginEnd="@dimen/spacing_tiny" />
 
         <TextView
             android:id="@+id/lbl_dash_empty"

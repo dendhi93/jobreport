@@ -30,8 +30,8 @@ public class MasterM2mData implements Serializable {
     private String ip_vlan;
     @DatabaseField(columnName = "ip_lan")
     private String ip_lan;
-    @DatabaseField(columnName = "subnet_mas")
-    private String subnet_mas;
+    @DatabaseField(columnName = "subnet_mask")
+    private String subnet_mask;
     @DatabaseField(columnName = "agg")
     private String agg;
     @DatabaseField(columnName = "connection_type")
@@ -131,12 +131,12 @@ public class MasterM2mData implements Serializable {
         this.ip_lan = ip_lan;
     }
 
-    public String getSubnet_mas() {
-        return subnet_mas;
+    public String getSubnet_mask() {
+        return subnet_mask;
     }
 
-    public void setSubnet_mas(String subnet_mas) {
-        this.subnet_mas = subnet_mas;
+    public void setSubnet_mask(String subnet_mask) {
+        this.subnet_mask = subnet_mask;
     }
 
     public String getAgg() {
