@@ -50,74 +50,81 @@
 
                 </LinearLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/ip_lan"
-                    android:textColorHint="@color/colorBlack">
+                    android:orientation="vertical"
+                    android:layout_margin="3dp">
 
-                    <EditText
-                        android:id="@+id/txt_parameter_ipLLan"
+
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/ip_lan"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_ipLLan"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="horizontal">
+                    </android.support.design.widget.TextInputLayout>
 
-                   <TextView
-                       android:layout_width="120dp"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:text="@string/subnetMask"
-                       android:textColor="@color/colorBlack" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                   <RadioGroup
-                       android:padding="@dimen/spacing_tiny"
-                       android:id="@+id/rg_par_subnetmask"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:orientation="vertical">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_tiny_2"
+                            android:layout_gravity="center"
+                            android:text="@string/subnetMask"
+                            android:textColor="@color/colorBlack" />
 
-                       <RadioButton
-                           android:id="@+id/rb_param_sub1"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginEnd="@dimen/spacing_medium"
-                           android:text="@string/rb_lan_param_1"/>
+                        <RadioGroup
+                            android:padding="@dimen/spacing_tiny"
+                            android:id="@+id/rg_par_subnetmask"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                       <RadioButton
-                           android:id="@+id/rb_param_sub2"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginEnd="@dimen/spacing_medium"
-                           android:text="@string/rb_lan_param_2"/>
+                            <RadioButton
+                                android:id="@+id/rb_param_sub1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:text="@string/rb_lan_param_1"/>
 
-                       <RadioButton
-                           android:id="@+id/rb_param_sub3"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginEnd="@dimen/spacing_medium"
-                           android:text="@string/rb_lan_param_3"/>
+                            <RadioButton
+                                android:id="@+id/rb_param_sub2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:text="@string/rb_lan_param_2"/>
 
-                   </RadioGroup>
-               </LinearLayout>
+                            <RadioButton
+                                android:id="@+id/rb_param_sub3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:text="@string/rb_lan_param_3"/>
 
-
+                        </RadioGroup>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -159,87 +166,93 @@
 
                 </LinearLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/ip_lan"
-                    android:textColorHint="@color/colorBlack">
+                    android:orientation="vertical"
+                    android:layout_margin="3dp">
 
-                    <EditText
-                        android:id="@+id/txt_parameter_long"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/ip_lan"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_long"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_symRate"
-                    android:textColorHint="@color/colorBlack">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/txt_parameter_symRate"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_symRate"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_symRate"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_freq"
-                    android:textColorHint="@color/colorBlack">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/txt_parameter_freq"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_freq"
+                        android:layout_marginBottom="@dimen/spacing_small_1"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_freq"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
+                    </android.support.design.widget.TextInputLayout>
+
+
+                </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/card_view_dash_1"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_margin="4dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="1dp"
@@ -253,6 +266,7 @@
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:focusable="true"
+                android:layout_margin="3dp"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical">
 
@@ -275,87 +289,92 @@
 
                 </LinearLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_esn"
-                    android:textColorHint="@color/colorBlack">
+                    android:orientation="vertical"
+                    android:layout_margin="3dp">
 
-                    <EditText
-                        android:id="@+id/txt_parameter_esn"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_esn"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_esn"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_gateway"
-                    android:textColorHint="@color/colorBlack">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/txt_parameter_gateway"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_gateway"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_gateway"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_snmp"
-                    android:textColorHint="@color/colorBlack">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/txt_parameter_snmp"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_snmp"
+                        android:layout_marginBottom="@dimen/spacing_small_1"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_snmp"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/card_view_dash_1"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_margin="4dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="1dp"
@@ -391,174 +410,180 @@
 
                 </LinearLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_signal"
-                    android:textColorHint="@color/colorBlack">
+                    android:orientation="vertical"
+                    android:layout_margin="3dp">
 
-                    <EditText
-                        android:id="@+id/txt_parameter_signal"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_wifi"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_signal"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_signal"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_wifi"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_data_rate"
-                    android:textColorHint="@color/colorBlack">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/txt_parameter_dataRate"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:inputType="text"
-                        android:maxLength="30"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_data_rate"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_dataRate"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="30"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_fec"
-                    android:textColorHint="@color/colorBlack">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/txt_parameter_fec"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_fec"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_fec"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="25"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_pow_setting"
-                    android:textColorHint="@color/colorBlack">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/txt_parameter_powSetting"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:inputType="text"
-                        android:maxLength="50"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_pow_setting"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_powSetting"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="50"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_ESNO"
-                    android:textColorHint="@color/colorBlack">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/txt_parameter_esNo"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:inputType="text"
-                        android:maxLength="15"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_ESNO"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_esNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="15"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/param_cno"
-                    android:textColorHint="@color/colorBlack">
+                    </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/txt_parameter_cNo"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_black_setting_16"
-                        android:inputType="text"
-                        android:maxLength="15"
-                        android:maxLines="2"
-                        android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/param_cno"
+                        android:layout_marginBottom="@dimen/spacing_small_1"
+                        android:textColorHint="@color/colorBlack">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/txt_parameter_cNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:inputType="text"
+                            android:maxLength="15"
+                            android:maxLines="2"
+                            android:textColor="@color/colorBlack"
+                            android:textColorLink="@color/colorWhite"
+                            android:background="@drawable/noborder"/>
 
+                    </android.support.design.widget.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_semi_medium"
+                        android:gravity="right"
+                        android:layout_marginBottom="@dimen/spacing_small_1"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/imgB_par_submit"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_marginEnd="@dimen/spacing_small_1"
+                            android:background="@drawable/ic_circle_selector"
+                            android:src="@drawable/ic_save_24"/>
+
+                        <ImageButton
+                            android:id="@+id/imgB_par_cancel"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:background="@drawable/ic_circle_transparent_selector"
+                            android:src="@drawable/ic_cancel"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_semi_medium"
-            android:gravity="right"
-            android:layout_marginBottom="@dimen/spacing_small_1"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/imgB_par_submit"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginEnd="@dimen/spacing_small_1"
-                android:background="@drawable/ic_circle_selector"
-                android:src="@drawable/ic_save_24"/>
-
-
-            <ImageButton
-                android:id="@+id/imgB_par_cancel"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:background="@drawable/ic_circle_transparent_selector"
-                android:src="@drawable/ic_cancel"/>
-
-        </LinearLayout>
-
-
 
     </LinearLayout>
 
