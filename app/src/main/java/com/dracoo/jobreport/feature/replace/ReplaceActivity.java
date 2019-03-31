@@ -178,7 +178,7 @@ public class ReplaceActivity extends AppCompatActivity {
                     vsatRep.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                     vsatReplaceDao.update(vsatRep);
-                    transHist(getString(R.string.repVSAT_trans));
+                    transHist(getString(R.string.repVSAT_trans), ConfigApps.TRANS_HIST_UPDATE);
                 }catch (Exception e){ messageUtils.toastMessage("err vsatReplace Update " +e.toString(), ConfigApps.T_ERROR); }
             }else{
                 try{
@@ -197,7 +197,7 @@ public class ReplaceActivity extends AppCompatActivity {
                     vsatRep.setUn_user(preference.getUn());
 
                     vsatReplaceDao.create(vsatRep);
-                    transHist(getString(R.string.repVSAT_trans));
+                    transHist(getString(R.string.repVSAT_trans), ConfigApps.TRANS_HIST_INSERT);
                 }catch (Exception e){
                     messageUtils.toastMessage("err vsatReplace insert " +e.toString(), ConfigApps.T_ERROR);
                     Log.d("###",""+e.toString());
@@ -241,7 +241,7 @@ public class ReplaceActivity extends AppCompatActivity {
                     m2mRep.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                     m2mReplaceDao.update(m2mRep);
-                    transHist(getString(R.string.repM2M_trans));
+                    transHist(getString(R.string.repM2M_trans), ConfigApps.TRANS_HIST_UPDATE);
                 }catch (Exception e){ messageUtils.toastMessage("err m2mReplace update " +e.toString(), ConfigApps.T_ERROR); }
             }else{
                 try{
@@ -263,7 +263,7 @@ public class ReplaceActivity extends AppCompatActivity {
                     m2mRep.setConnection_type(preference.getConnType().trim());
 
                     m2mReplaceDao.create(m2mRep);
-                    transHist(getString(R.string.repM2M_trans));
+                    transHist(getString(R.string.repM2M_trans), ConfigApps.TRANS_HIST_INSERT);
                 }catch (Exception e){
                     messageUtils.toastMessage("err m2mReplace insert " +e.toString(), ConfigApps.T_ERROR);
                 }
@@ -271,7 +271,7 @@ public class ReplaceActivity extends AppCompatActivity {
     }
 
     //transHist
-    private void transHist(String transType){
+    private void transHist(String transType, int updateType){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getApplicationContext())
                 .val_trans(preference.getCustID(), preference.getUn(),transType);
         if (al_valTransHist.size() > 0){
@@ -283,7 +283,12 @@ public class ReplaceActivity extends AppCompatActivity {
                 mHist.setIs_submited(0);
 
                 transHistDao.update(mHist);
-                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (updateType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
+
                 setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
@@ -298,7 +303,11 @@ public class ReplaceActivity extends AppCompatActivity {
                 mHist.setIs_submited(0);
 
                 transHistDao.create(mHist);
-                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (updateType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
                 setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
