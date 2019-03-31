@@ -17,6 +17,7 @@ import com.dracoo.jobreport.database.adapter.XpollAdapter;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterXpoll;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
@@ -98,7 +99,7 @@ public class XpollActivity extends AppCompatActivity {
         if (!validateEmpty()){
             messageUtils.snackBar_message(getString(R.string.emptyString), XpollActivity.this,ConfigApps.SNACKBAR_NO_BUTTON);
         }else{
-
+            xpollTrans();
         }
     }
 
@@ -109,7 +110,8 @@ public class XpollActivity extends AppCompatActivity {
                 txt_xpoll_cn.getText().toString().trim().equals("") ||
                 txt_xpoll_cpi.getText().toString().trim().equals("") ||
                 txt_xpoll_asi.getText().toString().trim().equals("") ||
-                txt_xpoll_op.getText().toString().trim().equals("")){
+                txt_xpoll_op.getText().toString().trim().equals("") ||
+                selectedRadio.equals("null") || selectedRadio == "null"){
             return false;
         }else {
             return true;
@@ -119,9 +121,44 @@ public class XpollActivity extends AppCompatActivity {
     private void xpollTrans(){
         ArrayList<MasterXpoll> al_valXpoll = new XpollAdapter(getApplicationContext()).val_xpoll(preference.getCustID(), preference.getUn());
         if (al_valXpoll.size() > 0){
+            try{
+                MasterXpoll masterXpoll = xpollAdapter.queryForId(al_valXpoll.get(0).getId_xpoll());
+                masterXpoll.setSat(selectedRadio.trim());
+                masterXpoll.setTransponder(txt_xpoll_transponder.getText().toString().trim());
+                masterXpoll.setLft(txt_xpoll_lft.getText().toString().trim());
+                masterXpoll.setCn(txt_xpoll_cn.getText().toString().trim());
+                masterXpoll.setCpi(txt_xpoll_cpi.getText().toString().trim());
+                masterXpoll.setAsi(txt_xpoll_asi.getText().toString().trim());
+                masterXpoll.setOp(txt_xpoll_op.getText().toString().trim());
+                masterXpoll.setUpdate_date(DateTimeUtils.getCurrentTime());
 
+                xpollAdapter.update(masterXpoll);
+                //add transHist
+
+            }catch (Exception e){
+                messageUtils.toastMessage("Err xpoll update " +e.toString(), ConfigApps.T_ERROR);
+            }
         }else{
+            try{
+                MasterXpoll masterXpoll = new MasterXpoll();
+                masterXpoll.setProgress_type(preference.getProgress().trim());
+                masterXpoll.setConnection_type(preference.getConnType().trim());
+                masterXpoll.setId_site(preference.getCustID());
+                masterXpoll.setUn_user(preference.getUn());
+                masterXpoll.setInsert_date(DateTimeUtils.getCurrentTime());
+                masterXpoll.setSat(selectedRadio.trim());
+                masterXpoll.setTransponder(txt_xpoll_transponder.getText().toString().trim());
+                masterXpoll.setLft(txt_xpoll_lft.getText().toString().trim());
+                masterXpoll.setCn(txt_xpoll_cn.getText().toString().trim());
+                masterXpoll.setCpi(txt_xpoll_cpi.getText().toString().trim());
+                masterXpoll.setAsi(txt_xpoll_asi.getText().toString().trim());
+                masterXpoll.setOp(txt_xpoll_op.getText().toString().trim());
 
+                xpollAdapter.create(masterXpoll);
+                //add transHist
+            }catch (Exception e){
+                messageUtils.toastMessage("Err xpoll insert " +e.toString(), ConfigApps.T_ERROR);
+            }
         }
     }
 

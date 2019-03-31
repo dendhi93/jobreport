@@ -326,7 +326,7 @@ public class UserActivity extends AppCompatActivity
 
         if (al_valTrans.size() > 0){
             try{
-                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTrans.get(0).getId_site());
+                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTrans.get(0).getId_trans());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setTrans_step(transStep);
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());

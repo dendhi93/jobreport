@@ -249,7 +249,7 @@ public class ConnectionFragment extends Fragment {
                     mVsatSetup.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                     vsatSetupDao.update(mVsatSetup);
-                    transHist(getActivity().getString(R.string.ioVSAT_trans));
+                    transHist(getActivity().getString(R.string.ioVSAT_trans), ConfigApps.TRANS_HIST_UPDATE);
                 }catch (Exception e){ messageUtils.toastMessage("Err Vsat Setup 1 " +e.toString(), ConfigApps.T_ERROR ); }
             }else{
                 try{
@@ -270,7 +270,7 @@ public class ConnectionFragment extends Fragment {
 
                     vsatSetupDao.create(mVsatSetup);
                     preference.saveConnection(selectedConn.trim());
-                    transHist(getActivity().getString(R.string.ioVSAT_trans));
+                    transHist(getActivity().getString(R.string.ioVSAT_trans), ConfigApps.TRANS_HIST_INSERT);
                 }catch (Exception e){ messageUtils.toastMessage("Err Vsat Setup 2 " +e.toString(), ConfigApps.T_ERROR ); }
             }
         }
@@ -316,7 +316,7 @@ public class ConnectionFragment extends Fragment {
                     m2mSetup.setProgress_type(preference.getProgress().trim());
 
                     m2mSetupDao.update(m2mSetup);
-                    transHist(getActivity().getString(R.string.ioM2M_trans));
+                    transHist(getActivity().getString(R.string.ioM2M_trans), ConfigApps.TRANS_HIST_UPDATE);
                 }catch (Exception e){
                     messageUtils.toastMessage("Err m2m Setup 1 " +e.toString(), ConfigApps.T_ERROR );
                 }
@@ -340,26 +340,31 @@ public class ConnectionFragment extends Fragment {
 
                     m2mSetupDao.create(m2mSetup);
                     preference.saveConnection(selectedConn.trim());
-                    transHist(getActivity().getString(R.string.ioM2M_trans));
+                    transHist(getActivity().getString(R.string.ioM2M_trans), ConfigApps.TRANS_HIST_INSERT);
                 }catch (Exception e){messageUtils.toastMessage("Err m2m Setup 1 " +e.toString(), ConfigApps.T_ERROR );}
             }
         }
     }
 
     //transHist
-    private void transHist(String transType){
+    private void transHist(String transType, int updateType){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
                 .val_trans(preference.getCustID(), preference.getUn(),transType);
         if (al_valTransHist.size() > 0){
             try{
-                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_site());
+                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_trans());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setTrans_step(transType.trim());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setIs_submited(0);
 
                 transHistAdapter.update(mHist);
-                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (updateType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
+
                setEmptyConText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
@@ -374,7 +379,11 @@ public class ConnectionFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.create(mHist);
-                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (updateType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
                 setEmptyConText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);

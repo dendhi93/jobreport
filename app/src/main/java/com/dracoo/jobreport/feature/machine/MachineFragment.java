@@ -162,7 +162,7 @@ public class MachineFragment extends Fragment {
                     mMachine.setMachine_qty(Integer.parseInt(""+rb_machineQty.getText().toString().trim()));
 
                     machineAdapter.update(mMachine);
-                    transHistProb();
+                    transHistProb(ConfigApps.TRANS_HIST_UPDATE);
                 }catch (Exception e){
                     messageUtils.toastMessage("Err trans Machine1 " +e.toString(), ConfigApps.T_ERROR);
                 }
@@ -179,7 +179,7 @@ public class MachineFragment extends Fragment {
                     mMachine.setUn_user(preference.getUn());
 
                     machineAdapter.create(mMachine);
-                    transHistProb();
+                    transHistProb(ConfigApps.TRANS_HIST_INSERT);
                 }catch (Exception e){
                     messageUtils.toastMessage("Err trans Machine2 " +e.toString(), ConfigApps.T_ERROR);
                 }
@@ -188,19 +188,24 @@ public class MachineFragment extends Fragment {
     }
 
 
-    private void transHistProb(){
+    private void transHistProb(int transType){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
                 .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.machine_trans));
         if (al_valTransHist.size() > 0){
             try{
-                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_site());
+                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_trans());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setTrans_step(getActivity().getString(R.string.machine_trans));
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setIs_submited(0);
 
                 transHistAdapter.update(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (transType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
+
                 setEmptyRb();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
@@ -215,7 +220,11 @@ public class MachineFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.create(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (transType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
                 setEmptyRb();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);

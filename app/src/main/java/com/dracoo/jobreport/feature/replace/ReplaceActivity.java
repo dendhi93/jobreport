@@ -167,7 +167,7 @@ public class ReplaceActivity extends AppCompatActivity {
             ArrayList<MasterVsatReplace> alVsatReplace = new VsatReplaceAdapter(ReplaceActivity.this).val_vsatReplace(preference.getCustID(), preference.getUn());
             if (alVsatReplace.size() > 0){
                 try{
-                    MasterVsatReplace vsatRep = vsatReplaceDao.queryForId(alVsatReplace.get(0).getId_site());
+                    MasterVsatReplace vsatRep = vsatReplaceDao.queryForId(alVsatReplace.get(0).getId_replace());
                     vsatRep.setSn_modem(txt_rep_vsatModem.getText().toString().trim());
                     vsatRep.setSn_adaptor(txt_rep_vsatAdaptor.getText().toString().trim());
                     vsatRep.setSn_fh(txt_rep_vsatFh.getText().toString().trim());
@@ -276,7 +276,7 @@ public class ReplaceActivity extends AppCompatActivity {
                 .val_trans(preference.getCustID(), preference.getUn(),transType);
         if (al_valTransHist.size() > 0){
             try{
-                MasterTransHistory mHist = transHistDao.queryForId(al_valTransHist.get(0).getId_site());
+                MasterTransHistory mHist = transHistDao.queryForId(al_valTransHist.get(0).getId_trans());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setTrans_step(transType.trim());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());

@@ -140,7 +140,7 @@ public class DataM2mActivity extends AppCompatActivity {
                 m2mData.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                 dataM2mDao.update(m2mData);
-                transHist();
+                transHist(ConfigApps.TRANS_HIST_UPDATE);
             }catch (Exception e){
                 messageUtils.toastMessage("Err datam2m update " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -163,26 +163,31 @@ public class DataM2mActivity extends AppCompatActivity {
                 m2mData.setInsert_date(DateTimeUtils.getCurrentTime());
 
                 dataM2mDao.create(m2mData);
-                transHist();
+                transHist(ConfigApps.TRANS_HIST_INSERT);
             }catch (Exception e){
                 messageUtils.toastMessage("Err datam2m insert " +e.toString(), ConfigApps.T_ERROR);
             }
         }
     }
 
-    private void transHist(){
+    private void transHist(int trsnsType){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getApplicationContext())
                 .val_trans(preference.getCustID(), preference.getUn(),getString(R.string.dataM2m_trans));
         if (al_valTransHist.size() > 0){
             try{
-                MasterTransHistory mHist = transHistDao.queryForId(al_valTransHist.get(0).getId_site());
+                MasterTransHistory mHist = transHistDao.queryForId(al_valTransHist.get(0).getId_trans());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setTrans_step(getString(R.string.dataM2m_trans));
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setIs_submited(0);
 
                 transHistDao.update(mHist);
-                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
+
                 setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
@@ -197,7 +202,11 @@ public class DataM2mActivity extends AppCompatActivity {
                 mHist.setIs_submited(0);
 
                 transHistDao.create(mHist);
-                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
                 setEmptyText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);

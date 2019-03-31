@@ -131,7 +131,7 @@ public class EnvirontmentFragment extends Fragment {
                 .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.electEnv_trans));
         if (al_valTransHist.size() > 0){
             try{
-                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_site());
+                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_trans());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setTrans_step(getActivity().getString(R.string.electEnv_trans));
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());

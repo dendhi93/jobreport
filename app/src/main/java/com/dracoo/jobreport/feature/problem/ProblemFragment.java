@@ -192,8 +192,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setUn_user(preference.getUn().trim());
 
                     problemAdapter.update(mProb);
-                    Log.d("###","success update");
-                    transHistProb();
+                    transHistProb(ConfigApps.TRANS_HIST_UPDATE);
                 }catch (Exception e){ messageUtils.toastMessage("### " +e.toString(), ConfigApps.T_ERROR); }
             } else {
                 try{
@@ -216,7 +215,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setId_site(preference.getCustID());
 
                     problemAdapter.create(mProb);
-                    transHistProb();
+                    transHistProb(ConfigApps.TRANS_HIST_INSERT);
                 }catch (Exception e){
                     messageUtils.toastMessage("### " +e.toString(), ConfigApps.T_ERROR);
                 }
@@ -224,19 +223,24 @@ public class ProblemFragment extends Fragment {
         }
     }
 
-    private void transHistProb(){
+    private void transHistProb(int transType){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
                 .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.problemDesc_trans));
         if (al_valTransHist.size() > 0){
             try{
-                MasterTransHistory mHist = transAdapter.queryForId(al_valTransHist.get(0).getId_site());
+                MasterTransHistory mHist = transAdapter.queryForId(al_valTransHist.get(0).getId_trans());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setTrans_step(getActivity().getString(R.string.problemDesc_trans));
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setIs_submited(0);
 
                 transAdapter.update(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (transType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
+
                 emptyProblemText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
@@ -251,7 +255,11 @@ public class ProblemFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transAdapter.create(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (transType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
                 emptyProblemText();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
