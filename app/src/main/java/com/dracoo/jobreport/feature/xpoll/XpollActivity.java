@@ -133,8 +133,7 @@ public class XpollActivity extends AppCompatActivity {
                 masterXpoll.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                 xpollAdapter.update(masterXpoll);
-                //add transHist
-
+                transHist(ConfigApps.TRANS_HIST_UPDATE);
             }catch (Exception e){
                 messageUtils.toastMessage("Err xpoll update " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -155,9 +154,53 @@ public class XpollActivity extends AppCompatActivity {
                 masterXpoll.setOp(txt_xpoll_op.getText().toString().trim());
 
                 xpollAdapter.create(masterXpoll);
-                //add transHist
+                transHist(ConfigApps.TRANS_HIST_INSERT);
             }catch (Exception e){
                 messageUtils.toastMessage("Err xpoll insert " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }
+    }
+
+    private void transHist(int trsnsType){
+        ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getApplicationContext())
+                .val_trans(preference.getCustID(), preference.getUn(),getString(R.string.dataM2m_trans));
+        if (al_valTransHist.size() > 0){
+            try{
+                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_trans());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getString(R.string.xpoll_trans));
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setIs_submited(0);
+
+                transHistAdapter.update(mHist);
+                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
+
+                setEmptyText();
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }else{
+            try{
+                MasterTransHistory mHist = new MasterTransHistory();
+                mHist.setId_site(preference.getCustID());
+                mHist.setUn_user(preference.getUn());
+                mHist.setInsert_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getString(R.string.xpoll_trans));
+                mHist.setIs_submited(0);
+
+                transHistAdapter.create(mHist);
+                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){
+                    messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
+                }else{
+                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                }
+                setEmptyText();
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
             }
         }
     }
