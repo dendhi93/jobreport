@@ -12,8 +12,8 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.M2mXpollAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
-import com.dracoo.jobreport.database.adapter.XpollAdapter;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterXpoll;
 import com.dracoo.jobreport.util.ConfigApps;
@@ -78,7 +78,7 @@ public class XpollActivity extends AppCompatActivity {
 
         try{
             transHistAdapter = new TransHistoryAdapter(getApplicationContext()).getAdapter();
-            xpollAdapter = new XpollAdapter(getApplicationContext()).getAdapter();
+            xpollAdapter = new M2mXpollAdapter(getApplicationContext()).getAdapter();
         }catch (Exception e){
 
         }
@@ -119,7 +119,7 @@ public class XpollActivity extends AppCompatActivity {
     }
 
     private void xpollTrans(){
-        ArrayList<MasterXpoll> al_valXpoll = new XpollAdapter(getApplicationContext()).val_xpoll(preference.getCustID(), preference.getUn());
+        ArrayList<MasterXpoll> al_valXpoll = new M2mXpollAdapter(getApplicationContext()).val_xpoll(preference.getCustID(), preference.getUn());
         if (al_valXpoll.size() > 0){
             try{
                 MasterXpoll masterXpoll = xpollAdapter.queryForId(al_valXpoll.get(0).getId_xpoll());

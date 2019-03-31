@@ -3,17 +3,16 @@ package com.dracoo.jobreport.database.adapter;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.dracoo.jobreport.database.master.MasterM2mData;
 import com.dracoo.jobreport.database.master.MasterXpoll;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class XpollAdapter extends DatabaseAdapter {
+public class M2mXpollAdapter extends DatabaseAdapter {
     private Dao<MasterXpoll, Integer> xpolL;
 
-    public XpollAdapter(Context context) {
+    public M2mXpollAdapter(Context context) {
         super(context);
     }
 
