@@ -129,7 +129,23 @@ public class ParameterActivity extends AppCompatActivity {
 
     @OnClick(R.id.imgB_par_cancel)
     void cancelPar(){
-        messageUtils.toastMessage("coba2", ConfigApps.T_DEFAULT);
+        setEmptyText();
+    }
+
+    private void setEmptyText(){
+        txt_parameter_ipLLan.setText("");
+        txt_parameter_long.setText("");
+        txt_parameter_symRate.setText("");
+        txt_parameter_freq.setText("");
+        txt_parameter_esn.setText("");
+        txt_parameter_gateway.setText("");
+        txt_parameter_snmp.setText("");
+        txt_parameter_signal.setText("");
+        txt_parameter_dataRate.setText("");
+        txt_parameter_fec.setText("");
+        txt_parameter_powSetting.setText("");
+        txt_parameter_esNo.setText("");
+        txt_parameter_cNo.setText("");
     }
 
     @Override
