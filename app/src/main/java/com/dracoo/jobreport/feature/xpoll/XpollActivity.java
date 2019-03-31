@@ -111,7 +111,7 @@ public class XpollActivity extends AppCompatActivity {
                 txt_xpoll_cpi.getText().toString().trim().equals("") ||
                 txt_xpoll_asi.getText().toString().trim().equals("") ||
                 txt_xpoll_op.getText().toString().trim().equals("") ||
-                selectedRadio.equals("null") || selectedRadio == "null"){
+                selectedRadio.equals("null") || selectedRadio == null){
             return false;
         }else {
             return true;

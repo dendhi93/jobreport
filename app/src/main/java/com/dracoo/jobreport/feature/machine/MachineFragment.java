@@ -1,5 +1,6 @@
 package com.dracoo.jobreport.feature.machine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.dracoo.jobreport.database.adapter.MachineAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterMachine;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
@@ -134,17 +136,6 @@ public class MachineFragment extends Fragment {
         }
     }
 
-    @OnClick(R.id.imgB_machine_cancel)
-    void cancelMachine(){
-        setEmptyRb();
-    }
-
-    private void setEmptyRb(){
-        rg_machine_location.clearCheck();
-        rg_machine_qty.clearCheck();
-        rg_machine_id.clearCheck();
-        rg_machine_24.clearCheck();
-    }
 
     private void machineTrans(){
         if(preference.getCustID() == 0){
@@ -206,7 +197,10 @@ public class MachineFragment extends Fragment {
                     messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
 
-                setEmptyRb();
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+                startActivity(intent);
+
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -225,7 +219,10 @@ public class MachineFragment extends Fragment {
                 }else{
                     messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
-                setEmptyRb();
+
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+                startActivity(intent);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }

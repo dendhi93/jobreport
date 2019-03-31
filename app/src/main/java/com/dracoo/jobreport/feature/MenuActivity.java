@@ -88,10 +88,6 @@ public class MenuActivity extends AppCompatActivity
 
     }
 
-//    @Override
-//    protected void onStart(){
-//        super.onStart();
-//    }
 
     private void setupToolbarNavDrawer(){
         setSupportActionBar(toolbar);

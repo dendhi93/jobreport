@@ -188,7 +188,7 @@ public class ConnectionFragment extends Fragment {
     void submitConn(){
         if (preference.getCustID() == 0){
             messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-        }else if (selectedConn.equals("null") || selectedConn == "null"){
+        }else if (selectedConn.equals("null") || selectedConn == null){
             messageUtils.snackBar_message("mohon dipilih jenis koneksi", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (selectedConn.equals("VSAT")){
             if (!vsatValidation()){
