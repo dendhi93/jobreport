@@ -99,6 +99,7 @@
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
                         android:background="@drawable/border_bottom"
+                        android:layout_marginBottom="@dimen/spacing_small"
                         android:hint="@string/grounding">
 
                         <EditText
@@ -237,12 +238,13 @@
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
                         android:background="@drawable/border_bottom"
+                        android:layout_marginBottom="@dimen/spacing_small"
                         android:hint="@string/notes_env">
 
                         <EditText
                             android:id="@+id/txt_env_upsNote"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="45dp"
                             android:layout_weight="1"
                             android:backgroundTint="@android:color/transparent"
                             android:textColor="@color/colorBlack"
@@ -309,6 +311,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
+                        android:background="@drawable/border_bottom"
                         android:hint="@string/suhu">
 
                         <EditText
@@ -317,7 +320,7 @@
                             android:layout_height="45dp"
                             android:backgroundTint="@android:color/transparent"
                             android:textColor="@color/colorBlack"
-                            android:drawableLeft="@drawable/ic_lightning_16"
+                            android:drawableLeft="@drawable/ic_temperature_16"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="number"
                             android:maxLength="5"
@@ -338,7 +341,7 @@
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
                         android:background="@drawable/border_bottom"
@@ -347,7 +350,7 @@
                         <EditText
                             android:id="@+id/txt_env_acNote"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="45dp"
                             android:layout_weight="1"
                             android:backgroundTint="@android:color/transparent"
                             android:textColor="@color/colorBlack"

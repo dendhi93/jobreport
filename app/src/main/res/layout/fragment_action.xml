@@ -62,7 +62,7 @@
                     android:textColorHint="@color/colorBlack">
 
                     <EditText
-                        android:id="@+id/txt_rptAbs_endDate"
+                        android:id="@+id/txt_action_endDate"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:clickable="true"
