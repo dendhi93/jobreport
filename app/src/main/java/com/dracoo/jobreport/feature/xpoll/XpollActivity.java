@@ -163,7 +163,7 @@ public class XpollActivity extends AppCompatActivity {
         }
     }
 
-    private void transHist(int trsnsType){
+    private void transHist(int transType){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getApplicationContext())
                 .val_trans(preference.getCustID(), preference.getUn(),getString(R.string.dataM2m_trans));
         if (al_valTransHist.size() > 0){
@@ -175,7 +175,7 @@ public class XpollActivity extends AppCompatActivity {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.update(mHist);
-                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){
+                if (transType == ConfigApps.TRANS_HIST_UPDATE){
                     messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
                 }else{
                     messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
@@ -195,7 +195,7 @@ public class XpollActivity extends AppCompatActivity {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.create(mHist);
-                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){
+                if (transType == ConfigApps.TRANS_HIST_UPDATE){
                     messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
                 }else{
                     messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
