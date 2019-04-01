@@ -98,7 +98,9 @@ public class XpollActivity extends AppCompatActivity {
     void submitXpoll(){
         if (!validateEmpty()){
             messageUtils.snackBar_message(getString(R.string.emptyString), XpollActivity.this,ConfigApps.SNACKBAR_NO_BUTTON);
-        }else{
+        }else if (preference.getCustID() == 0){
+            messageUtils.snackBar_message(getString(R.string.customer_validation), XpollActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
+        } else{
             xpollTrans();
         }
     }

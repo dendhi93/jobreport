@@ -107,7 +107,7 @@ public class ParameterActivity extends AppCompatActivity {
         } else if(preference.getCustID() == 0){
             messageUtils.snackBar_message(getString(R.string.customer_validation), ParameterActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         } else{
-            messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+            parTrans();
         }
     }
 
