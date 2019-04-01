@@ -401,15 +401,19 @@ public class ConnectionFragment extends Fragment {
         } else if(selectedConn.equals("VSAT")){
             if (preference.getCustID() == 0){
                 messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            }else if (!preference.getConnType().equals("") && !preference.getConnType().equals("VSAT") ){
+            }else if (preference.getConnType().equals("")){
+                messageUtils.snackBar_message("Mohon diinput dahulu Menu Connection ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            } else if (!preference.getConnType().equals("") && !preference.getConnType().equals("VSAT") ){
                 messageUtils.snackBar_message("Transaksi M2M sudah diinput, mohon pilih jenis koneksi M2M", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            }else{
+            } else{
                 popup.getMenuInflater().inflate(R.menu.vsat_menu, popup.getMenu());
             }
         }else {
             if (preference.getCustID() == 0){
                 messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            }else if (!preference.getConnType().equals("M2M") && !preference.getConnType().equals("")){
+            }else if (preference.getConnType().trim().equals("")){
+                messageUtils.snackBar_message("Mohon diinput dahulu Menu Connection ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            } else if (!preference.getConnType().equals("M2M") && !preference.getConnType().equals("")){
                 messageUtils.snackBar_message("Transaksi VSAT sudah diinput, mohon pilih jenis koneksi VSAT", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             } else{
                 popup.getMenuInflater().inflate(R.menu.m2m_menu, popup.getMenu());
