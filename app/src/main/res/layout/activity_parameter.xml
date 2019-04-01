@@ -177,22 +177,22 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/border_bottom"
-                        android:hint="@string/ip_lan"
+                        android:hint="@string/param_long"
                         android:textColorHint="@color/colorBlack">
 
                         <EditText
                             android:id="@+id/txt_parameter_long"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
+                            android:background="@drawable/noborder"
                             android:backgroundTint="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite" />
 
                     </android.support.design.widget.TextInputLayout>
 

@@ -13,9 +13,12 @@ import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterConnectionParameter;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -101,8 +104,65 @@ public class ParameterActivity extends AppCompatActivity {
             messageUtils.snackBar_message("Mohon dipilih pilhan pada kolom SubnetMask", ParameterActivity.this,ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (!valEmptyText()){
             messageUtils.snackBar_message(getString(R.string.emptyString), ParameterActivity.this,ConfigApps.SNACKBAR_NO_BUTTON);
+        } else if(preference.getCustID() == 0){
+            messageUtils.snackBar_message(getString(R.string.customer_validation), ParameterActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         } else{
             messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        }
+    }
+
+    private void parTrans(){
+        ArrayList<MasterConnectionParameter> al_valPar = new ConnectionParameterAdapter(getApplicationContext()).val_param(preference.getCustID(), preference.getUn());
+        if (al_valPar.size() > 0){
+            try{
+                MasterConnectionParameter mConnPar = connParamAdapter.queryForId(al_valPar.get(0).getId_parameter());
+                mConnPar.setUpdate_date(DateTimeUtils.getCurrentTime().trim());
+                mConnPar.setLan_parameter(txt_parameter_ipLLan.getText().toString().trim());
+                mConnPar.setLan_subnetmask(selectedParameter.trim());
+                mConnPar.setSat_parameter(txt_parameter_long.getText().toString().trim());
+                mConnPar.setSat_symrate(txt_parameter_symRate.getText().toString().trim());
+                mConnPar.setSat_freq(txt_parameter_freq.getText().toString().trim());
+                mConnPar.setManagement_esnmodem(txt_parameter_esn.getText().toString().trim());
+                mConnPar.setManagement_gateway(txt_parameter_gateway.getText().toString().trim());
+                mConnPar.setManagement_snmp(txt_parameter_snmp.getText().toString().trim());
+                mConnPar.setRanging_signal(txt_parameter_signal.getText().toString().trim());
+                mConnPar.setRanging_data_rate(txt_parameter_dataRate.getText().toString().trim());
+                mConnPar.setRanging_fec(txt_parameter_fec.getText().toString().trim());
+                mConnPar.setRanging_power(txt_parameter_powSetting.getText().toString().trim());
+                mConnPar.setRanging_esno(txt_parameter_esNo.getText().toString().trim());
+                mConnPar.setRanging_cno(txt_parameter_cNo.getText().toString().trim());
+
+                connParamAdapter.update(mConnPar);
+                //add transHist
+
+            }catch (Exception e){messageUtils.toastMessage("Err Parr update " +e.toString(), ConfigApps.T_ERROR);}
+        }else{
+            try{
+                MasterConnectionParameter mConnPar = new MasterConnectionParameter();
+                mConnPar.setId_site(preference.getCustID());
+                mConnPar.setProgress_type(preference.getProgress().trim());
+                mConnPar.setConnection_type(preference.getConnType().trim());
+                mConnPar.setInsert_date(DateTimeUtils.getCurrentTime().trim());
+                mConnPar.setUn_user(preference.getUn().trim());
+                mConnPar.setLan_parameter(txt_parameter_ipLLan.getText().toString().trim());
+                mConnPar.setLan_subnetmask(selectedParameter.trim());
+                mConnPar.setSat_parameter(txt_parameter_long.getText().toString().trim());
+                mConnPar.setSat_symrate(txt_parameter_symRate.getText().toString().trim());
+                mConnPar.setSat_freq(txt_parameter_freq.getText().toString().trim());
+                mConnPar.setManagement_esnmodem(txt_parameter_esn.getText().toString().trim());
+                mConnPar.setManagement_gateway(txt_parameter_gateway.getText().toString().trim());
+                mConnPar.setManagement_snmp(txt_parameter_snmp.getText().toString().trim());
+                mConnPar.setRanging_signal(txt_parameter_signal.getText().toString().trim());
+                mConnPar.setRanging_data_rate(txt_parameter_dataRate.getText().toString().trim());
+                mConnPar.setRanging_fec(txt_parameter_fec.getText().toString().trim());
+                mConnPar.setRanging_power(txt_parameter_powSetting.getText().toString().trim());
+                mConnPar.setRanging_esno(txt_parameter_esNo.getText().toString().trim());
+                mConnPar.setRanging_cno(txt_parameter_cNo.getText().toString().trim());
+
+                connParamAdapter.create(mConnPar);
+
+
+            }catch (Exception e){messageUtils.toastMessage("Err Parr insert " +e.toString(), ConfigApps.T_ERROR);}
         }
     }
 
