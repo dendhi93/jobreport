@@ -91,12 +91,14 @@ public class ActionFragment extends Fragment {
                 if (selectedColumn == 1){
                     txt_action_beginDate.setText(String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay);
                 }else{
-                    //TO DO count day
                     String tempEndDate = String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay;
-                    messageUtils.toastMessage("dateDiff"
-                            + DateTimeUtils.getDateDiff(txt_action_beginDate.getText().toString().trim(),
-                            tempEndDate), ConfigApps.T_INFO);
-                    txt_action_endDate.setText(String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay);
+                    int resultDiff = DateTimeUtils.getDateDiff(txt_action_beginDate.getText().toString().trim(), tempEndDate);
+                    if (resultDiff < 0){
+                        messageUtils.snackBar_message("Tanggal akhir lebih besar dari tanggal awal, mohon pilih kembali", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+                        datePicker(2);
+                    }else{
+                        txt_action_endDate.setText(String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay);
+                    }
                 }
 
 
