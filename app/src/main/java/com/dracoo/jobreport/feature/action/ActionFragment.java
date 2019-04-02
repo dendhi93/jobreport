@@ -93,6 +93,9 @@ public class ActionFragment extends Fragment {
                 }else{
                     //TO DO count day
                     String tempEndDate = String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay;
+                    messageUtils.toastMessage("dateDiff"
+                            + DateTimeUtils.getDateDiff(txt_action_beginDate.getText().toString().trim(),
+                            tempEndDate), ConfigApps.T_INFO);
                     txt_action_endDate.setText(String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay);
                 }
 
