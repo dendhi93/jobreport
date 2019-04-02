@@ -95,8 +95,9 @@ public class ActionFragment extends Fragment {
                     int resultDiff = DateTimeUtils.getDateDiff(txt_action_beginDate.getText().toString().trim(), tempEndDate);
                     if (resultDiff < 0){
                         messageUtils.snackBar_message("Tanggal akhir lebih besar dari tanggal awal, mohon pilih kembali", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-                        datePicker(2);
-                    }else{
+                    }else if (resultDiff > 7){
+                        messageUtils.snackBar_message("transaksi hanya bisa dilihat maksimal 7 hari", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+                    } else{
                         txt_action_endDate.setText(String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay);
                     }
                 }
