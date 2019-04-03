@@ -11,8 +11,6 @@ public class MasterImage implements Serializable {
     private Integer id_image;
     @DatabaseField(columnName = "id_site")
     private Integer id_site;
-    @DatabaseField(columnName = "un_image")
-    private String un_image;
     @DatabaseField(columnName = "image_name")
     private String image_name;
     @DatabaseField(columnName = "progress_type")
@@ -23,7 +21,10 @@ public class MasterImage implements Serializable {
     private String update_date;
     @DatabaseField(columnName = "image_url")
     private String image_url;
-
+    @DatabaseField(columnName = "conn_type")
+    private String conn_type;
+    @DatabaseField(columnName = "un_user")
+    private String un_user;
 
 
     public Integer getId_image() {
@@ -40,14 +41,6 @@ public class MasterImage implements Serializable {
 
     public void setId_site(Integer id_site) {
         this.id_site = id_site;
-    }
-
-    public String getUn_image() {
-        return un_image;
-    }
-
-    public void setUn_image(String un_image) {
-        this.un_image = un_image;
     }
 
     public String getImage_name() {
@@ -88,5 +81,21 @@ public class MasterImage implements Serializable {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public String getConn_type() {
+        return conn_type;
+    }
+
+    public void setConn_type(String conn_type) {
+        this.conn_type = conn_type;
+    }
+
+    public String getUn_user() {
+        return un_user;
+    }
+
+    public void setUn_user(String un_user) {
+        this.un_user = un_user;
     }
 }
