@@ -1,8 +1,14 @@
 package com.dracoo.jobreport.feature.documentation;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +26,8 @@ import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -32,6 +40,11 @@ public class DocumentationFragment extends Fragment {
     private Preference preference;
     private String[] arr_imgTitle;
     private String selectedImgTitle;
+    private int selectedImagePosition = 0;
+    private int GALLERY = 1;
+    String filePath;
+    File imageToSave;
+
 
     @BindView(R.id. imgV_doc_1)
     ImageView imgV_doc_1;
@@ -77,7 +90,7 @@ public class DocumentationFragment extends Fragment {
 
     @OnClick(R.id.imgV_doc_1)
     void getImage(){
-        messageUtils.toastMessage("coba", ConfigApps.T_DEFAULT);
+        getImageCamera();
     }
 
     @OnClick(R.id.imgB_doc_confirm)
@@ -103,11 +116,58 @@ public class DocumentationFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int index = spinner_doc.getSelectedItemPosition();
                 selectedImgTitle = arr_imgTitle[index];
+                selectedImagePosition = position;
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
+    }
+
+    private void getImageCamera(){
+        File imagesFolder =new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+selectedImgTitle);
+        if (!imagesFolder.exists()) {
+            if (imagesFolder.mkdirs()) {
+                Log.d("Pembuatan Direktori Suskes ", "ok");
+            }
+        }
+
+        filePath = "/JobReport/images/"
+                + selectedImgTitle + "/"
+                + selectedImgTitle +"_"+selectedImagePosition+ ".jpg";
+        imageToSave = new File(android.os.Environment.getExternalStorageDirectory().getPath(), filePath);
+
+        Intent capIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File image = new File(imageToSave.getAbsolutePath());
+        Uri uriSavedImage = Uri.fromFile(image);
+        capIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
+        capIntent.putExtra("return-data", true);
+        startActivityForResult(capIntent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == getActivity().RESULT_CANCELED) {
+            return;
+        }
+
+        if (requestCode == 1){
+            try {
+                if (filePath != null) {
+                    File imageFile = new File(imageToSave.getAbsolutePath());
+                    Bitmap photo = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+                    Bitmap newBitmap = Bitmap.createScaledBitmap(photo, 350, 350, true);
+                    imgV_doc_1.setImageBitmap(newBitmap);
+                    FileOutputStream out = new FileOutputStream(imageFile);
+                    newBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+
+                }
+            } catch (Exception e) {
+                messageUtils.toastMessage("faile to display image", ConfigApps.T_ERROR);
+            }
+        }
     }
 }
 
