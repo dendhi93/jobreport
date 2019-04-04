@@ -20,11 +20,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.ImageAdapter;
 import com.dracoo.jobreport.database.adapter.ImageConnTypeAdapter;
+import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
+import com.dracoo.jobreport.database.master.MasterImage;
 import com.dracoo.jobreport.database.master.MasterImageConnType;
+import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.j256.ormlite.dao.Dao;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,9 +47,10 @@ public class DocumentationFragment extends Fragment {
     private String selectedImgTitle;
     private int selectedImagePosition = 0;
     private int GALLERY = 1;
-    String filePath;
-    File imageToSave;
-
+    private String filePath;
+    private File imageToSave;
+    private Dao<MasterImage, Integer> imageDao;
+    private Dao<MasterTransHistory, Integer> transHistoryAdapter;
 
     @BindView(R.id. imgV_doc_1)
     ImageView imgV_doc_1;
@@ -85,6 +91,10 @@ public class DocumentationFragment extends Fragment {
             loadSpinner(preference.getConnType().trim());
         }
 
+        try {
+            imageDao = new ImageAdapter(getActivity()).getAdapter();
+            transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
+        }catch (Exception e){}
     }
 
 
@@ -134,7 +144,7 @@ public class DocumentationFragment extends Fragment {
 
         filePath = "/JobReport/images/"
                 + selectedImgTitle + "/"
-                + selectedImgTitle +"_"+selectedImagePosition+ ".jpg";
+                + selectedImgTitle +"_"+preference.getCustID()+ ".jpg";
         imageToSave = new File(android.os.Environment.getExternalStorageDirectory().getPath(), filePath);
 
         Intent capIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -167,6 +177,20 @@ public class DocumentationFragment extends Fragment {
             } catch (Exception e) {
                 messageUtils.toastMessage("faile to display image", ConfigApps.T_ERROR);
             }
+        }
+    }
+
+    private void saveDataImage(){
+        ArrayList<MasterImage> al_valImage = new ImageAdapter(getActivity())
+                .val_dataImage(preference.getCustID(), preference.getUn(),
+                        preference.getConnType(), selectedImagePosition);
+        if (al_valImage.size() > 0){
+            if (imageToSave.exists()){
+                imageToSave.delete();
+                messageUtils.toastMessage("Image sudah ada, transaksi dibatalkan", ConfigApps.T_WARNING);
+            }
+        }else{
+            //add insert image
         }
     }
 }
