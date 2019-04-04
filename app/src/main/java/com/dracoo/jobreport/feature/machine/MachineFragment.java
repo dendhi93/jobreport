@@ -178,7 +178,6 @@ public class MachineFragment extends Fragment {
         }
     }
 
-
     private void transHistProb(int transType){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
                 .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.machine_trans));

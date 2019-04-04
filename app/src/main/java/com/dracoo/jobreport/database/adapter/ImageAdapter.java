@@ -49,12 +49,48 @@ public class ImageAdapter extends DatabaseAdapter {
         String sql = "SELECT id_image, " +
                 " id_site, " +
                 " image_name " +
-                "from m2m_data " +
+                "from t_image " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' "+
                 " and image_position = " +imgPos+ " "+
                 " and conn_type = '" +connType+ "' ";
 
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        return cursor;
+    }
+
+
+    public ArrayList<MasterImage> load_dataImage(int custId, String un){
+        ArrayList<MasterImage> images = new ArrayList<>();
+        Cursor cursor = null;
+
+        cursor = load_imageCursor(custId, un);
+
+        while (cursor.moveToNext()) {
+            MasterImage image = new MasterImage();
+            image.setId_image(cursor.getInt(0));
+            image.setId_site(cursor.getInt(1));
+            image.setImage_name(cursor.getString(2));
+            image.setImage_url(cursor.getString(3));
+
+            images.add(image);
+        }
+        cursor.close();
+        getReadableDatabase().close();
+        return images;
+    }
+
+
+    public Cursor load_imageCursor(int custId, String un){
+        Cursor cursor;
+
+        String sql = "SELECT id_image, " +
+                " id_site, " +
+                " image_name, " +
+                " image_url " +
+                "from t_image " +
+                " where id_site = " + custId + " " +
+                " and un_user = '" +un+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;

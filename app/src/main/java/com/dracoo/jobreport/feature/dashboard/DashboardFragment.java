@@ -1,6 +1,5 @@
 package com.dracoo.jobreport.feature.dashboard;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -46,7 +45,6 @@ public class DashboardFragment extends Fragment {
     RecyclerView rc_dash_activity;
     @BindView(R.id.lbl_dash_empty)
     TextView lbl_dash_empty;
-
 
     private MessageUtils messageUtils;
     private Preference preference;

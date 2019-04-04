@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +27,10 @@ import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterImage;
 import com.dracoo.jobreport.database.master.MasterImageConnType;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
+import com.dracoo.jobreport.feature.documentation.adapter.CustomList_Doc_Adapter;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
@@ -34,6 +38,7 @@ import com.j256.ormlite.dao.Dao;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,11 +51,13 @@ public class DocumentationFragment extends Fragment {
     private String[] arr_imgTitle;
     private String selectedImgTitle;
     private int selectedImagePosition = 0;
-    private int GALLERY = 1;
     private String filePath;
     private File imageToSave;
     private Dao<MasterImage, Integer> imageDao;
     private Dao<MasterTransHistory, Integer> transHistoryAdapter;
+    private ArrayList<MasterImage> al_image;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter adapter;
 
     @BindView(R.id. imgV_doc_1)
     ImageView imgV_doc_1;
@@ -62,7 +69,6 @@ public class DocumentationFragment extends Fragment {
     TextView lbl_doc_empty;
     @BindView(R.id.spinner_doc)
     Spinner spinner_doc;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -169,30 +175,125 @@ public class DocumentationFragment extends Fragment {
                     File imageFile = new File(imageToSave.getAbsolutePath());
                     Bitmap photo = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
                     Bitmap newBitmap = Bitmap.createScaledBitmap(photo, 350, 350, true);
-                    imgV_doc_1.setImageBitmap(newBitmap);
+//                    imgV_doc_1.setImageBitmap(newBitmap);
                     FileOutputStream out = new FileOutputStream(imageFile);
                     newBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-
+                    saveDataImage();
                 }
             } catch (Exception e) {
-                messageUtils.toastMessage("faile to display image", ConfigApps.T_ERROR);
+                messageUtils.toastMessage("failed to display image " +e.toString(), ConfigApps.T_ERROR);
+                Log.d("###","" +e.toString());
             }
         }
     }
 
+//    protected void onResume(){
+//        super.onResume();
+//    }
     private void saveDataImage(){
         ArrayList<MasterImage> al_valImage = new ImageAdapter(getActivity())
                 .val_dataImage(preference.getCustID(), preference.getUn(),
                         preference.getConnType(), selectedImagePosition);
+        ArrayList<MasterImage> al_countImage = new ImageAdapter(getActivity())
+                .load_dataImage(preference.getCustID(), preference.getUn());
         if (al_valImage.size() > 0){
             if (imageToSave.exists()){
-                imageToSave.delete();
                 messageUtils.toastMessage("Image sudah ada, transaksi dibatalkan", ConfigApps.T_WARNING);
             }
-        }else{
-            //add insert image
+        }else if (al_countImage.size() > 5){
+            messageUtils.toastMessage("Jumlah Foto sudah 5, transaksi dibatalkan", ConfigApps.T_WARNING);
+        } else{
+            try{
+                MasterImage mImage = new MasterImage();
+                mImage.setId_site(preference.getCustID());
+                mImage.setConn_type(preference.getConnType().trim());
+                mImage.setImage_name(selectedImgTitle +"_"+preference.getCustID()+ ".jpg");
+                mImage.setImage_position(selectedImagePosition);
+                mImage.setImage_url(filePath.trim());
+                mImage.setInsert_date(DateTimeUtils.getCurrentTime());
+                mImage.setProgress_type(preference.getProgress().trim());
+                mImage.setUn_user(preference.getUn().trim());
+
+                imageDao.create(mImage);
+                loadRcTrans();
+                if (al_countImage.size() == 5){
+                    transHistImage();
+                }
+            }catch (Exception e){
+                messageUtils.toastMessage("Err insert image " +e.toString(), ConfigApps.T_ERROR);
+            }
         }
     }
+
+    private void transHistImage(){
+        ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
+                .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.machine_trans));
+        if (al_valTransHist.size() > 0){
+            try{
+                MasterTransHistory mHist = transHistoryAdapter.queryForId(al_valTransHist.get(0).getId_trans());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getActivity().getString(R.string.machine_trans));
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setIs_submited(0);
+
+                transHistoryAdapter.update(mHist);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }else{
+            try{
+                MasterTransHistory mHist = new MasterTransHistory();
+                mHist.setId_site(preference.getCustID());
+                mHist.setUn_user(preference.getUn());
+                mHist.setInsert_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getActivity().getString(R.string.machine_trans));
+                mHist.setIs_submited(0);
+
+                transHistoryAdapter.create(mHist);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }
+    }
+
+
+    public List<MasterImage> getList_Image(){
+        List<MasterImage> list = new ArrayList<>();
+        try {
+            al_image = new ImageAdapter(getActivity()).load_dataImage(preference.getCustID(), preference.getUn());
+            if (al_image.size() > 0){
+                list = al_image;
+                rv_doc.setVisibility(View.VISIBLE);
+                lbl_doc_empty.setVisibility(View.GONE);
+            }else{
+                rv_doc.setVisibility(View.GONE);
+                lbl_doc_empty.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            rv_doc.setVisibility(View.GONE);
+            lbl_doc_empty.setVisibility(View.VISIBLE);
+            Log.d("###", "ke catch list " +e.toString());
+        }
+        return list;
+    }
+
+    private void loadRcTrans(){
+        if (preference.getCustID() != 0){
+            rv_doc.setHasFixedSize(true);
+            layoutManager = new LinearLayoutManager(getActivity());
+            rv_doc.setLayoutManager(layoutManager);
+            List<MasterImage> list = getList_Image();
+            adapter = new CustomList_Doc_Adapter(getActivity(), list);
+            rv_doc.setAdapter(adapter);
+        }else{
+            Log.d("###","ke sama dengan 0");
+        }
+    }
+
+
+
 }
 
 
