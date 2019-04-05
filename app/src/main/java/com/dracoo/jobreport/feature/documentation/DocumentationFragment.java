@@ -144,7 +144,7 @@ public class DocumentationFragment extends Fragment {
         File imagesFolder =new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+selectedImgTitle);
         if (!imagesFolder.exists()) {
             if (imagesFolder.mkdirs()) {
-                Log.d("Pembuatan Direktori Suskes ", "ok");
+                Log.d("Direktori Sukses ", "ok");
             }
         }
 
@@ -187,9 +187,6 @@ public class DocumentationFragment extends Fragment {
         }
     }
 
-//    protected void onResume(){
-//        super.onResume();
-//    }
     private void saveDataImage(){
         ArrayList<MasterImage> al_valImage = new ImageAdapter(getActivity())
                 .val_dataImage(preference.getCustID(), preference.getUn(),
@@ -199,6 +196,7 @@ public class DocumentationFragment extends Fragment {
         if (al_valImage.size() > 0){
             if (imageToSave.exists()){
                 messageUtils.toastMessage("Image sudah ada, transaksi dibatalkan", ConfigApps.T_WARNING);
+                imageToSave.delete();
             }
         }else if (al_countImage.size() > 5){
             messageUtils.toastMessage("Jumlah Foto sudah 5, transaksi dibatalkan", ConfigApps.T_WARNING);
@@ -215,7 +213,8 @@ public class DocumentationFragment extends Fragment {
                 mImage.setUn_user(preference.getUn().trim());
 
                 imageDao.create(mImage);
-                loadRcTrans();
+                messageUtils.toastMessage("success",ConfigApps.T_SUCCESS);
+                loadRcImage();
                 if (al_countImage.size() == 5){
                     transHistImage();
                 }
@@ -267,20 +266,24 @@ public class DocumentationFragment extends Fragment {
                 list = al_image;
                 rv_doc.setVisibility(View.VISIBLE);
                 lbl_doc_empty.setVisibility(View.GONE);
+                messageUtils.toastMessage("ke size > 0", ConfigApps.T_INFO);
             }else{
                 rv_doc.setVisibility(View.GONE);
                 lbl_doc_empty.setVisibility(View.VISIBLE);
+                messageUtils.toastMessage("ke size 0", ConfigApps.T_INFO);
             }
         }catch (Exception e){
             rv_doc.setVisibility(View.GONE);
             lbl_doc_empty.setVisibility(View.VISIBLE);
             Log.d("###", "ke catch list " +e.toString());
+            messageUtils.toastMessage("err list " +e.toString(), ConfigApps.T_DEFAULT);
         }
         return list;
     }
 
-    private void loadRcTrans(){
+    private void loadRcImage(){
         if (preference.getCustID() != 0){
+            messageUtils.toastMessage("ke 1 ", ConfigApps.T_DEFAULT);
             rv_doc.setHasFixedSize(true);
             layoutManager = new LinearLayoutManager(getActivity());
             rv_doc.setLayoutManager(layoutManager);
@@ -289,9 +292,15 @@ public class DocumentationFragment extends Fragment {
             rv_doc.setAdapter(adapter);
         }else{
             Log.d("###","ke sama dengan 0");
+            messageUtils.toastMessage("ke 0 ", ConfigApps.T_DEFAULT);
         }
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        loadRcImage();
+    }
 
 
 }
