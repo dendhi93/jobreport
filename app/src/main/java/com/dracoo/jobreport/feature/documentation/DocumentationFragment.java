@@ -27,7 +27,6 @@ import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterImage;
 import com.dracoo.jobreport.database.master.MasterImageConnType;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
-import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.documentation.adapter.CustomList_Doc_Adapter;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
@@ -57,7 +56,7 @@ public class DocumentationFragment extends Fragment {
     private Dao<MasterTransHistory, Integer> transHistoryAdapter;
     private ArrayList<MasterImage> al_image;
     RecyclerView.LayoutManager layoutManager;
-    RecyclerView.Adapter adapter;
+    private CustomList_Doc_Adapter adapter;
 
     @BindView(R.id. imgV_doc_1)
     ImageView imgV_doc_1;
@@ -213,7 +212,8 @@ public class DocumentationFragment extends Fragment {
                 mImage.setUn_user(preference.getUn().trim());
 
                 imageDao.create(mImage);
-                messageUtils.toastMessage("success",ConfigApps.T_SUCCESS);
+                filePath = "";
+                imageToSave = null;
                 loadRcImage();
                 if (al_countImage.size() == 5){
                     transHistImage();
@@ -266,11 +266,9 @@ public class DocumentationFragment extends Fragment {
                 list = al_image;
                 rv_doc.setVisibility(View.VISIBLE);
                 lbl_doc_empty.setVisibility(View.GONE);
-                messageUtils.toastMessage("ke size > 0", ConfigApps.T_INFO);
             }else{
                 rv_doc.setVisibility(View.GONE);
                 lbl_doc_empty.setVisibility(View.VISIBLE);
-                messageUtils.toastMessage("ke size 0", ConfigApps.T_INFO);
             }
         }catch (Exception e){
             rv_doc.setVisibility(View.GONE);
@@ -283,16 +281,12 @@ public class DocumentationFragment extends Fragment {
 
     private void loadRcImage(){
         if (preference.getCustID() != 0){
-            messageUtils.toastMessage("ke 1 ", ConfigApps.T_DEFAULT);
             rv_doc.setHasFixedSize(true);
             layoutManager = new LinearLayoutManager(getActivity());
             rv_doc.setLayoutManager(layoutManager);
             List<MasterImage> list = getList_Image();
             adapter = new CustomList_Doc_Adapter(getActivity(), list);
             rv_doc.setAdapter(adapter);
-        }else{
-            Log.d("###","ke sama dengan 0");
-            messageUtils.toastMessage("ke 0 ", ConfigApps.T_DEFAULT);
         }
     }
 
@@ -301,7 +295,6 @@ public class DocumentationFragment extends Fragment {
         super.onResume();
         loadRcImage();
     }
-
 
 }
 

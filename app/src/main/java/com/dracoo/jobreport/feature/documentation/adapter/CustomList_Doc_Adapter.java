@@ -19,6 +19,7 @@ import java.io.File;
 import java.util.List;
 
 public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_Adapter.MyViewHolder> {
+
     private final List<MasterImage> list;
     private Context mContext;
 
@@ -58,24 +59,21 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
         try{
             lbl_item_image_title.setText(list.get(listPosition).getImage_name().trim());
             String pathUrl = list.get(listPosition).getImage_url();
-
-//            File file = new File(pathUrl);
-//            Uri imageUri = Uri.fromFile(file);
-//            Glide.with(mContext)
-//                    .load(imageUri)
-//                    .into(imgV_item_image);
-
+            Log.d("###", ""+pathUrl);
+            File file = new File(android.os.Environment.getExternalStorageDirectory().getPath(),pathUrl);
+            Uri imageUri = Uri.fromFile(file);
+            Glide.with(mContext)
+                    .load(imageUri)
+                    .into(imgV_item_image);
 
         }catch (Exception e){
-            Log.d("image", ""+e.toString());
+            Log.d("###", ""+e.toString());
         }
 
     }
 
-
-
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 }

@@ -18,9 +18,9 @@ public class CustomList_Dashboard_Adapter extends RecyclerView.Adapter<CustomLis
     private final List<MasterTransHistory> list;
     private Context mContext;
 
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView lbl_item_trans;
-
 
         public MyViewHolder(View itemView) {
             super(itemView);

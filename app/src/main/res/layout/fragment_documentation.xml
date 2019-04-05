@@ -32,6 +32,37 @@
             android:layout_marginEnd="@dimen/spacing_semi_medium"
             android:layout_marginBottom="@dimen/spacing_tiny"
             android:background="@color/colorBlue300"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_dash_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_tiny"
+            android:background="@color/colorWhite"
+            android:padding="@dimen/spacing_small_1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_tiny"
+                android:layout_toLeftOf="@+id/imgB_doc_confirm"
+                android:gravity="center"
+                android:text="Mohon dilakukan pengecekan kembali sebelum di Upload"
+                android:textColor="@color/colorBlack" />
+
+            <ImageButton
+                android:id="@+id/imgB_doc_confirm"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="@dimen/spacing_small_1"
+                android:background="@drawable/ic_circle_selector"
+                android:contentDescription="@string/content_desc"
+                android:src="@drawable/ic_white_upload_32" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
     <View
@@ -61,42 +92,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty_data" />
-
-        <RelativeLayout
-            android:id="@+id/rl_dash_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/spacing_tiny"
-            android:background="@color/colorWhite"
-            android:padding="@dimen/spacing_semi_medium">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:layout_marginEnd="@dimen/spacing_tiny"
-                android:layout_toLeftOf="@+id/imgB_doc_confirm"
-                android:gravity="center"
-                android:text="Mohon dilakukan pengecekan kembali sebelum di Upload"
-                android:textColor="@color/colorBlack" />
-
-            <ImageButton
-                android:id="@+id/imgB_doc_confirm"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="@dimen/spacing_small_1"
-                android:background="@drawable/ic_circle_selector"
-                android:contentDescription="@string/content_desc"
-                android:src="@drawable/ic_white_upload_32" />
-
-        </RelativeLayout>
-
     </RelativeLayout>
-
-
-
-
-
 </RelativeLayout>
