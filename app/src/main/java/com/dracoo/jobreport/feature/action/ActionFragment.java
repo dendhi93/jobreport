@@ -57,15 +57,28 @@ public class ActionFragment extends Fragment {
 
     @OnClick(R.id.imgB_action_save)
     void onActionSubmit(){
-        messageUtils.toastMessage("coba", ConfigApps.T_INFO);
+        if (!validateEmpty()){
+            messageUtils.snackBar_message(getActivity().getString(R.string.emptyString),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+        }else{
+            messageUtils.toastMessage("coba", ConfigApps.T_INFO);
+        }
+
+    }
+
+    private boolean validateEmpty(){
+        if (txt_action_time.getText().toString().trim().equals("") || txt_action_desc.getText().toString().trim().equals("")){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     @OnClick(R.id.imgBtn_actionTimer)
     void getDate(){
-        messageUtils.toastMessage("coba 2", ConfigApps.T_INFO);
+        datePicker();
     }
 
-    private void datePicker(final int selectedColumn){
+    private void datePicker(){
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
@@ -88,13 +101,13 @@ public class ActionFragment extends Fragment {
                 }
 
                 tempDate = String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay;
-                timePicker(selectedColumn);
+                timePicker();
             }
         }, mYear, mMonth, mDay);
         datePickerDialog.show();
     }
 
-    private void timePicker(final int selectedColumn){
+    private void timePicker(){
         final Calendar c = Calendar.getInstance();
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
