@@ -23,7 +23,7 @@
             android:textColor="@color/colorBlack"
             android:id="@+id/lbl_item_image_title"
             android:layout_marginStart="@dimen/spacing_small"
-            android:layout_marginTop="@dimen/spacing_semi_medium"
+            android:layout_marginTop="32dp"
             android:layout_toRightOf="@id/imgV_item_image"
             android:layout_marginEnd="@dimen/spacing_tiny_2"
             android:layout_width="wrap_content"

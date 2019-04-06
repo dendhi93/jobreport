@@ -1,7 +1,6 @@
 package com.dracoo.jobreport.feature.dashboard.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ public class CustomList_Dashboard_Adapter extends RecyclerView.Adapter<CustomLis
 
     private final List<MasterTransHistory> list;
     private Context mContext;
-
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView lbl_item_trans;
@@ -41,6 +39,7 @@ public class CustomList_Dashboard_Adapter extends RecyclerView.Adapter<CustomLis
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
+
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {

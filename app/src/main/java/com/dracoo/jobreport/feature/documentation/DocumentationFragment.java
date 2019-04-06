@@ -28,6 +28,7 @@ import com.dracoo.jobreport.database.master.MasterImage;
 import com.dracoo.jobreport.database.master.MasterImageConnType;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.feature.documentation.adapter.CustomList_Doc_Adapter;
+import com.dracoo.jobreport.feature.documentation.contract.ItemCallback;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
@@ -44,7 +45,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class DocumentationFragment extends Fragment {
+public class DocumentationFragment extends Fragment implements ItemCallback {
     private MessageUtils messageUtils;
     private Preference preference;
     private String[] arr_imgTitle;
@@ -286,6 +287,7 @@ public class DocumentationFragment extends Fragment {
             rv_doc.setLayoutManager(layoutManager);
             List<MasterImage> list = getList_Image();
             adapter = new CustomList_Doc_Adapter(getActivity(), list);
+            adapter.theCallBack(this);
             rv_doc.setAdapter(adapter);
         }
     }
@@ -296,6 +298,10 @@ public class DocumentationFragment extends Fragment {
         loadRcImage();
     }
 
+    @Override
+    public void itemSelected(int pos) {
+        messageUtils.toastMessage("coba"+pos,ConfigApps.T_INFO);
+    }
 }
 
 

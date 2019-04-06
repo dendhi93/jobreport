@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.master.MasterImage;
+import com.dracoo.jobreport.feature.documentation.contract.ItemCallback;
 
 import java.io.File;
 import java.util.List;
@@ -22,6 +23,7 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
 
     private final List<MasterImage> list;
     private Context mContext;
+    private ItemCallback callback;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView lbl_item_image_title;
@@ -42,6 +44,10 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
         this.list = list;
     }
 
+    public void theCallBack(ItemCallback callback){
+        this.callback = callback;
+    }
+
     @Override
     public CustomList_Doc_Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -55,6 +61,7 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
     public void onBindViewHolder(final CustomList_Doc_Adapter.MyViewHolder holder, final int listPosition) {
 
         TextView lbl_item_image_title = holder.lbl_item_image_title;
+        ImageButton imgB_item_trash = holder.imgB_item_trash;
         ImageView imgV_item_image = holder.imgV_item_image;
         try{
             lbl_item_image_title.setText(list.get(listPosition).getImage_name().trim());
@@ -65,6 +72,13 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
             Glide.with(mContext)
                     .load(imageUri)
                     .into(imgV_item_image);
+
+            imgB_item_trash.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.itemSelected(listPosition);
+                }
+            });
 
         }catch (Exception e){
             Log.d("###", ""+e.toString());
