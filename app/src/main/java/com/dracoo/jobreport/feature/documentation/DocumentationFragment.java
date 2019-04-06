@@ -19,9 +19,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.ImageAdapter;
 import com.dracoo.jobreport.database.adapter.ImageConnTypeAdapter;
@@ -319,6 +321,34 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                     }
                 })
                 .show();
+    }
+
+    @Override
+    public void selectedImage(String imageUrl) {
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(getActivity());
+        final ImageView imgV = new ImageView(getActivity());
+
+        File file = new File(android.os.Environment.getExternalStorageDirectory().getPath(),imageUrl);
+        Uri imageUri = Uri.fromFile(file);
+        Glide.with(getActivity())
+                .load(imageUri)
+                .into(imgV);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(2, 2, 2, 2);
+        LinearLayout linearImg = new LinearLayout(getActivity());
+        linearImg.setOrientation(LinearLayout.VERTICAL);
+        linearImg.addView(imgV,layoutParams);
+        alertadd.setView(linearImg);
+        alertadd.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = alertadd.create();
+        alert.show();
     }
 
     private void deleteImage(int pos, String imageUrl){

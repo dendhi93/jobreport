@@ -73,6 +73,12 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
                     .load(imageUri)
                     .into(imgV_item_image);
 
+            imgV_item_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.selectedImage(list.get(listPosition).getImage_url());
+                }
+            });
             imgB_item_trash.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
