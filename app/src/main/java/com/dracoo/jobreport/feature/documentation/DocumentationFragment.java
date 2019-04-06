@@ -1,5 +1,6 @@
 package com.dracoo.jobreport.feature.documentation;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -299,8 +301,36 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     }
 
     @Override
-    public void itemSelected(int pos) {
-        messageUtils.toastMessage("coba"+pos,ConfigApps.T_INFO);
+    public void itemSelected(final int pos, final String imageUrl) {
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Warning")
+                .setMessage("Apakah anda yakin ingin hapus gambar ?")
+                .setIcon(R.drawable.ic_check)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteImage(pos, imageUrl);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    private void deleteImage(int pos, String imageUrl){
+        try{
+            File file = new File(android.os.Environment.getExternalStorageDirectory().getPath(),imageUrl);
+            if (file.exists()){
+                file.delete();
+                imageDao.deleteById(pos);
+                messageUtils.toastMessage("Image sukses dihapus", ConfigApps.T_SUCCESS);
+                loadRcImage();
+            }
+        }catch (Exception e){ messageUtils.toastMessage("failed to delete image " +e.toString(), ConfigApps.T_ERROR); }
     }
 }
 
