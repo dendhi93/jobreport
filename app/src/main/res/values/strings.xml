@@ -202,6 +202,8 @@
     <string name="networkParam_trans">NetWork Parameter</string>
     <string name="doc_trans">Job Desc</string>
 
+    //action content
+    <string name="desc_action">Deskripsi</string>
 
 
 </resources>

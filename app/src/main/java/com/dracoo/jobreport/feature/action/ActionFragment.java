@@ -27,10 +27,10 @@ public class ActionFragment extends Fragment {
     private Preference preference;
     private int mYear, mMonth, mDay;
 
-    @BindView(R.id.txt_action_beginDate)
-    EditText txt_action_beginDate;
-    @BindView(R.id.txt_action_endDate)
-    EditText txt_action_endDate;
+//    @BindView(R.id.txt_action_beginDate)
+////    EditText txt_action_beginDate;
+////    @BindView(R.id.txt_action_endDate)
+////    EditText txt_action_endDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,60 +51,60 @@ public class ActionFragment extends Fragment {
     }
 
 
-    @OnClick(R.id.imgB_action_search)
-    void onActionSearch(){
-        messageUtils.toastMessage("coba", ConfigApps.T_INFO);
-    }
-
-    @OnClick(R.id.txt_action_beginDate)
-    void searchBeginDate(){
-        datePicker(1);
-    }
-
-    @OnClick(R.id.txt_action_endDate)
-    void searchEndDate(){
-        datePicker(2);
-    }
-
-    private void datePicker(final int selectedColumn){
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String selectedMonth, selectedDay;
-                if (month < 10) {
-                    selectedMonth = "0"+month;
-                }else{
-                    selectedMonth = String.valueOf(month);
-                }
-
-                if (dayOfMonth < 10) {
-                    selectedDay = "0"+dayOfMonth;
-                }else {
-                    selectedDay = String.valueOf(dayOfMonth);
-                }
-
-                if (selectedColumn == 1){
-                    txt_action_beginDate.setText(String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay);
-                }else{
-                    String tempEndDate = String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay;
-                    int resultDiff = DateTimeUtils.getDateDiff(txt_action_beginDate.getText().toString().trim(), tempEndDate);
-                    if (resultDiff < 0){
-                        messageUtils.snackBar_message("Tanggal akhir lebih besar dari tanggal awal, mohon pilih kembali", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-                    }else if (resultDiff > 7){
-                        messageUtils.snackBar_message("transaksi hanya bisa dilihat maksimal 7 hari", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-                    } else{
-                        txt_action_endDate.setText(String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay);
-                    }
-                }
-
-
-            }
-        }, mYear, mMonth, mDay);
-        datePickerDialog.show();
-    }
+//    @OnClick(R.id.imgB_action_search)
+//    void onActionSearch(){
+//        messageUtils.toastMessage("coba", ConfigApps.T_INFO);
+//    }
+//
+//    @OnClick(R.id.txt_action_beginDate)
+//    void searchBeginDate(){
+//        datePicker(1);
+//    }
+//
+//    @OnClick(R.id.txt_action_endDate)
+//    void searchEndDate(){
+//        datePicker(2);
+//    }
+//
+//    private void datePicker(final int selectedColumn){
+//        final Calendar c = Calendar.getInstance();
+//        mYear = c.get(Calendar.YEAR);
+//        mMonth = c.get(Calendar.MONTH);
+//        mDay = c.get(Calendar.DAY_OF_MONTH);
+//
+//        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                String selectedMonth, selectedDay;
+//                if (month < 10) {
+//                    selectedMonth = "0"+month;
+//                }else{
+//                    selectedMonth = String.valueOf(month);
+//                }
+//
+//                if (dayOfMonth < 10) {
+//                    selectedDay = "0"+dayOfMonth;
+//                }else {
+//                    selectedDay = String.valueOf(dayOfMonth);
+//                }
+//
+//                if (selectedColumn == 1){
+//                    txt_action_beginDate.setText(String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay);
+//                }else{
+//                    String tempEndDate = String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay;
+//                    int resultDiff = DateTimeUtils.getDateDiff(txt_action_beginDate.getText().toString().trim(), tempEndDate);
+//                    if (resultDiff < 0){
+//                        messageUtils.snackBar_message("Tanggal akhir lebih besar dari tanggal awal, mohon pilih kembali", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+//                    }else if (resultDiff > 7){
+//                        messageUtils.snackBar_message("transaksi hanya bisa dilihat maksimal 7 hari", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+//                    } else{
+//                        txt_action_endDate.setText(String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay);
+//                    }
+//                }
+//
+//
+//            }
+//        }, mYear, mMonth, mDay);
+//        datePickerDialog.show();
+//    }
 }
