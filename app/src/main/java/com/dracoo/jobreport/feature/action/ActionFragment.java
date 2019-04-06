@@ -73,6 +73,10 @@ public class ActionFragment extends Fragment {
         }
     }
 
+//    private void getTransAction(){
+//
+//    }
+
     @OnClick(R.id.imgBtn_actionTimer)
     void getDate(){
         datePicker();
