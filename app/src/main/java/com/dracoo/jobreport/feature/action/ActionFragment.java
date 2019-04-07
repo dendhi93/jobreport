@@ -4,8 +4,8 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +19,7 @@ import com.dracoo.jobreport.database.adapter.ActionAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterAction;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.action.adapter.CustomListActionAdapter;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -28,6 +29,7 @@ import com.j256.ormlite.dao.Dao;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +42,9 @@ public class ActionFragment extends Fragment {
     private String tempDate = "";
     private Dao<MasterAction, Integer> actionAdapter;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
+    private ArrayList<MasterAction> al_action;
+    private CustomListActionAdapter adapter;
+    RecyclerView.LayoutManager layoutManager;
 
     @BindView(R.id.txt_action_time)
     EditText txt_action_time;
@@ -72,6 +77,13 @@ public class ActionFragment extends Fragment {
             actionAdapter = new ActionAdapter(getActivity()).getAdapter();
             transHistAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){}
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        if (preference.getCustID() != 0 || !preference.getConnType().equals("")){
+            getDataAction();
+        }
     }
 
     @OnClick(R.id.imgB_action_save)
@@ -122,6 +134,7 @@ public class ActionFragment extends Fragment {
 
                 transHistAdapter.update(mHist);
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                getDataAction();
                 setEmptyText();
                 if (getActivity() != null){
                     JobReportUtils.hideKeyboard(getActivity());
@@ -140,6 +153,7 @@ public class ActionFragment extends Fragment {
 
                 transHistAdapter.create(mHist);
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                getDataAction();
                 setEmptyText();
                 if (getActivity() != null){
                     JobReportUtils.hideKeyboard(getActivity());
@@ -230,4 +244,35 @@ public class ActionFragment extends Fragment {
         timePickerDialog.show();
 
     }
+
+    private List<MasterAction> getListAction(){
+        List<MasterAction> list = new ArrayList<>();
+        try{
+            al_action = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
+            if (al_action.size() > 0){
+                list = al_action;
+                rc_action_activity.setVisibility(View.VISIBLE);
+                lbl_action_empty.setVisibility(View.GONE);
+            }else{
+                rc_action_activity.setVisibility(View.GONE);
+                lbl_action_empty.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            rc_action_activity.setVisibility(View.GONE);
+            lbl_action_empty.setVisibility(View.VISIBLE);
+            messageUtils.toastMessage("err display list " +e.toString(), ConfigApps.T_ERROR);
+        }
+        return list;
+     }
+
+     private void getDataAction(){
+         rc_action_activity.setHasFixedSize(true);
+         layoutManager = new LinearLayoutManager(getActivity());
+         rc_action_activity.setLayoutManager(layoutManager);
+         List<MasterAction> list = getListAction();
+         adapter = new CustomListActionAdapter(getActivity(), list);
+         rc_action_activity.setAdapter(adapter);
+     }
+
+
 }

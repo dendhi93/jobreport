@@ -292,7 +292,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     }
 
     private void loadRcImage(){
-        if (preference.getCustID() != 0){
+        if (preference.getCustID() != 0 || !preference.getConnType().equals("")){
             rv_doc.setHasFixedSize(true);
             layoutManager = new LinearLayoutManager(getActivity());
             rv_doc.setLayoutManager(layoutManager);
