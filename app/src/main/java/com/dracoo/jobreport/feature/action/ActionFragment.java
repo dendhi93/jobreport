@@ -4,12 +4,14 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.dracoo.jobreport.R;
@@ -43,6 +45,10 @@ public class ActionFragment extends Fragment {
     EditText txt_action_time;
     @BindView(R.id.txt_action_desc)
     EditText txt_action_desc;
+    @BindView(R.id.lbl_action_empty)
+    TextView lbl_action_empty;
+    @BindView(R.id.rc_action_activity)
+    RecyclerView rc_action_activity;
 
 
     @Override

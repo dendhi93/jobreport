@@ -10,6 +10,10 @@ public class DateTimeUtils {
         return new SimpleDateFormat("yyy-MM-dd HH:mm:ss", java.util.Locale.getDefault()).format(new Date());
     }
 
+    public static String getCurrentDate() {
+        return new SimpleDateFormat("yyy-MM-dd", java.util.Locale.getDefault()).format(new Date());
+    }
+
     public static int getDateDiff(String beginDate, String endDate){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
