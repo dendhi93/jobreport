@@ -143,11 +143,11 @@ public class ProblemFragment extends Fragment {
     }
     @OnClick(R.id.imgBtn_timer3)
     void displayTime3(){
-        timePicker(2);
+        datePicker(2);
     }
     @OnClick(R.id.imgBtn_timer4)
     void displayTime4(){
-        timePicker(4);
+        datePicker(4);
     }
     @OnClick(R.id.imgBtn_timer5)
     void displayTime5(){
@@ -336,9 +336,9 @@ public class ProblemFragment extends Fragment {
                     validDateTime = tempDate +", "+validTime;
                 }
                 if (selectedColumn == 2){
-                    txt_problem_start.setText(validTime.trim());
+                    txt_problem_start.setText(validDateTime.trim());
                 }else if (selectedColumn == 4){
-                    txt_problem_finish.setText(validTime.trim());
+                    txt_problem_finish.setText(validDateTime.trim());
                 }else if (selectedColumn == 1){
                     txt_problem_berangkat.setText(validDateTime.trim());
                 }else if (selectedColumn == 3){

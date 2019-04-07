@@ -97,7 +97,7 @@
                         android:textColor="@color/colorBlack"
                         android:drawableLeft="@drawable/ic_text"
                         android:textColorLink="@color/colorWhite"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                         android:inputType="textMultiLine"
                         android:maxLength="100"
                         android:maxLines="4"
