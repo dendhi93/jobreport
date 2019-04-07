@@ -23,7 +23,7 @@ public class ActionAdapter extends DatabaseAdapter {
         return mAction;
     }
 
-    public ArrayList<MasterAction> load_dataImage(int custId, String un){
+    public ArrayList<MasterAction> load_dataAction(int custId, String un){
         ArrayList<MasterAction> actions = new ArrayList<>();
         Cursor cursor = null;
 

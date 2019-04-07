@@ -307,7 +307,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         new AlertDialog.Builder(getActivity())
                 .setTitle("Warning")
                 .setMessage("Apakah anda yakin ingin hapus gambar ?")
-                .setIcon(R.drawable.ic_check)
+                .setIcon(R.drawable.ic_exclamation_32)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

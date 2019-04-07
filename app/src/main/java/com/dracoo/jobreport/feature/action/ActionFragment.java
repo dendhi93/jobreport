@@ -13,11 +13,17 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.ActionAdapter;
+import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
+import com.dracoo.jobreport.database.master.MasterAction;
+import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.j256.ormlite.dao.Dao;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -29,6 +35,8 @@ public class ActionFragment extends Fragment {
     private Preference preference;
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
     private String tempDate = "";
+    private Dao<MasterAction, Integer> actionAdapter;
+    private Dao<MasterTransHistory, Integer> transHistAdapter;
 
     @BindView(R.id.txt_action_time)
     EditText txt_action_time;
@@ -52,8 +60,12 @@ public class ActionFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
-    }
 
+        try{
+            actionAdapter = new ActionAdapter(getActivity()).getAdapter();
+            transHistAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
+        }catch (Exception e){}
+    }
 
     @OnClick(R.id.imgB_action_save)
     void onActionSubmit(){
@@ -61,23 +73,74 @@ public class ActionFragment extends Fragment {
             messageUtils.snackBar_message(getActivity().getString(R.string.emptyString),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (preference.getCustID() == 0){
             messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+        } else if (preference.getConnType().equals("")){
+            messageUtils.snackBar_message(getActivity().getString(R.string.connection_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         } else{
-            messageUtils.toastMessage("coba", ConfigApps.T_INFO);
+            getTransAction();
         }
-
     }
 
     private boolean validateEmpty(){
-        if (txt_action_time.getText().toString().trim().equals("") || txt_action_desc.getText().toString().trim().equals("")){
-            return false;
-        }else{
-            return true;
+        return !txt_action_time.getText().toString().trim().equals("") && !txt_action_desc.getText().toString().trim().equals("");
+    }
+
+    private void getTransAction(){
+        try{
+            MasterAction mAction = new MasterAction();
+            mAction.setAction_desc(txt_action_desc.getText().toString().trim());
+            mAction.setAction_date_time(txt_action_time.getText().toString().trim());
+            mAction.setInsert_date(DateTimeUtils.getCurrentTime().trim());
+            mAction.setConn_type(preference.getConnType().trim());
+            mAction.setProgress_type(preference.getProgress().trim());
+            mAction.setId_site(preference.getCustID());
+            mAction.setUn_user(preference.getUn().trim());
+
+            actionAdapter.create(mAction);
+            transHist();
+        }catch (Exception e){
+            messageUtils.toastMessage("err trans action " +e.toString(), ConfigApps.T_ERROR);
         }
     }
 
-//    private void getTransAction(){
-//
-//    }
+    private void transHist(){
+        ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
+                .val_trans(preference.getCustID(), preference.getUn(),getString(R.string.dataM2m_trans));
+        if (al_valTransHist.size() > 0){
+            try{
+                MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_trans());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getString(R.string.action_trans));
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setIs_submited(0);
+
+                transHistAdapter.update(mHist);
+                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                setEmptyText();
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }else{
+            try{
+                MasterTransHistory mHist = new MasterTransHistory();
+                mHist.setId_site(preference.getCustID());
+                mHist.setUn_user(preference.getUn());
+                mHist.setInsert_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getString(R.string.action_trans));
+                mHist.setIs_submited(0);
+
+                transHistAdapter.create(mHist);
+                messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                setEmptyText();
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }
+    }
+
+    private void setEmptyText(){
+        txt_action_time.setText("");
+        txt_action_desc.setText("");
+    }
 
     @OnClick(R.id.imgBtn_actionTimer)
     void getDate(){
