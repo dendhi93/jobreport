@@ -12,9 +12,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.ConnectionParameterAdapter;
+import com.dracoo.jobreport.database.adapter.EnvAdapter;
 import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
 import com.dracoo.jobreport.database.adapter.JobDescAdapter;
+import com.dracoo.jobreport.database.adapter.M2mDataAdapter;
+import com.dracoo.jobreport.database.adapter.M2mReplaceAdapter;
+import com.dracoo.jobreport.database.adapter.M2mXpollAdapter;
+import com.dracoo.jobreport.database.adapter.MachineAdapter;
+import com.dracoo.jobreport.database.adapter.ProblemAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
+import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
@@ -115,7 +123,29 @@ public class DashboardFragment extends Fragment {
 
     @OnClick(R.id.imgB_dash_confirm)
     void submitUpload(){
-        messageUtils.toastMessage("test dulu", ConfigApps.T_INFO);
+        if (preference.getCustID() == 0 || preference.getUn().equals("")){
+            messageUtils.toastMessage(getActivity().getString(R.string.customer_validation), ConfigApps.T_INFO);
+        }else if (!new ProblemAdapter(getActivity()).isProblemEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.toastMessage("Mohon diinput menu Problem desc terlebih dahulu", ConfigApps.T_INFO);
+        }else if (!new EnvAdapter(getActivity()).isEnvEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.toastMessage("Mohon diinput menu Electrical Environtment terlebih dahulu", ConfigApps.T_INFO);
+        }else if (!new MachineAdapter(getActivity()).isMachineEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.toastMessage("Mohon diinput menu Machine terlebih dahulu", ConfigApps.T_INFO);
+        }else if (preference.getConnType().equals("")){
+            messageUtils.toastMessage("Mohon diinput menu Connection terlebih dahulu", ConfigApps.T_INFO);
+        }else if (preference.getConnType().equals("VSAT") && !new VsatReplaceAdapter(getActivity()).isVsatReplaceEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.toastMessage("Mohon diinput menu Vsat Replace terlebih dahulu", ConfigApps.T_INFO);
+        }else if (preference.getConnType().equals("VSAT") && !new M2mXpollAdapter(getActivity()).isVsatXpollEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.toastMessage("Mohon diinput menu Xpoll terlebih dahulu", ConfigApps.T_INFO);
+        }else if (preference.getConnType().equals("VSAT") && !new ConnectionParameterAdapter(getActivity()).isParamEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.toastMessage("Mohon diinput menu Connection Parameter terlebih dahulu", ConfigApps.T_INFO);
+        }else if (preference.getConnType().equals("M2M") && !new M2mReplaceAdapter(getActivity()).isM2mReplaceEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.toastMessage("Mohon diinput menu M2m Replace terlebih dahulu", ConfigApps.T_INFO);
+        }else if (preference.getConnType().equals("M2M") && !new M2mDataAdapter(getActivity()).isM2mDataEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.toastMessage("Mohon diinput menu Data M2M terlebih dahulu", ConfigApps.T_INFO);
+        } else{
+            messageUtils.toastMessage("test dulu", ConfigApps.T_INFO);
+        }
     }
 
     @Override
@@ -141,5 +171,15 @@ public class DashboardFragment extends Fragment {
             }
         }
     }
+
+//    private boolean isConfirm(){
+//        if (preference.getCustID() == 0 || preference.getUn().equals("") ||
+//            !new ProblemAdapter(getActivity()).isProblemEmpty(preference.getUn(), preference.getCustID())){
+//            return  false;
+//        }else{
+//            return true;
+//        }
+//
+//    }
 
 }

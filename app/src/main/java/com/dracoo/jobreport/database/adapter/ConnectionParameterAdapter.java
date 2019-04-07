@@ -53,4 +53,25 @@ public class ConnectionParameterAdapter extends DatabaseAdapter {
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }
+
+    public boolean isParamEmpty(String un, int custId){
+        Cursor cursor;
+
+        String sql = "SELECT id_parameter, " +
+                " id_site " +
+                "from network_parameter " +
+                " where id_site = " + custId + " " +
+                " and un_user = '" +un+ "' ";
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            getReadableDatabase().close();
+            return false;
+        } else {
+            cursor.close();
+            getReadableDatabase().close();
+            return true;
+        }
+    }
 }

@@ -50,8 +50,28 @@ public class VsatReplaceAdapter extends DatabaseAdapter {
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
 
-
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
+    }
+
+    public boolean isVsatReplaceEmpty(String un, int custId){
+        Cursor cursor;
+
+        String sql = "SELECT id_replace, " +
+                " id_site " +
+                "from vsat_replace " +
+                " where id_site = " + custId + " " +
+                " and un_user = '" +un+ "' ";
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            getReadableDatabase().close();
+            return false;
+        } else {
+            cursor.close();
+            getReadableDatabase().close();
+            return true;
+        }
     }
 }

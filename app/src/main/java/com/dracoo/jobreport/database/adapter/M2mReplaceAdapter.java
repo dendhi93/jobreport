@@ -53,4 +53,25 @@ public class M2mReplaceAdapter extends DatabaseAdapter {
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }
+
+    public boolean isM2mReplaceEmpty(String un, int custId){
+        Cursor cursor;
+
+        String sql = " SELECT id_replace, " +
+                " id_site " +
+                " from m2m_replace " +
+                " where id_site = " + custId + " " +
+                " and un_user = '" +un+ "' ";
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            getReadableDatabase().close();
+            return false;
+        } else {
+            cursor.close();
+            getReadableDatabase().close();
+            return true;
+        }
+    }
 }

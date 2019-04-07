@@ -51,8 +51,28 @@ public class M2mDataAdapter extends DatabaseAdapter {
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
 
-
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
+    }
+
+    public boolean isM2mDataEmpty(String un, int custId){
+        Cursor cursor;
+
+        String sql = "SELECT id_data, " +
+                " id_site " +
+                "from m2m_data " +
+                " where id_site = " + custId + " " +
+                " and un_user = '" +un+ "' ";
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            getReadableDatabase().close();
+            return false;
+        } else {
+            cursor.close();
+            getReadableDatabase().close();
+            return true;
+        }
     }
 }

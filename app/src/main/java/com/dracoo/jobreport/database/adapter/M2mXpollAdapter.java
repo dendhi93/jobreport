@@ -54,4 +54,25 @@ public class M2mXpollAdapter extends DatabaseAdapter {
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }
+
+    public boolean isVsatXpollEmpty(String un, int custId){
+        Cursor cursor;
+
+        String sql = "SELECT id_xpoll, " +
+                " id_site " +
+                "from xpoll " +
+                " where id_site = " + custId + " " +
+                " and un_user = '" +un+ "' ";
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            getReadableDatabase().close();
+            return false;
+        } else {
+            cursor.close();
+            getReadableDatabase().close();
+            return true;
+        }
+    }
 }

@@ -56,4 +56,25 @@ public class ProblemAdapter extends DatabaseAdapter {
         return cursor;
     }
 
+    public boolean isProblemEmpty(String un, int custId){
+        Cursor cursor;
+
+        String sql = "SELECT id_problem, " +
+                " id_site " +
+                "from t_problem " +
+                " where id_site = " + custId + " " +
+                " and un_user = '" +un+ "' ";
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            getReadableDatabase().close();
+            return false;
+        } else {
+            cursor.close();
+            getReadableDatabase().close();
+            return true;
+        }
+    }
+
 }
