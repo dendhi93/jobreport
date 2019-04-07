@@ -34,6 +34,7 @@ import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.Dialogs;
+import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.google.android.gms.common.ConnectionResult;
@@ -299,6 +300,7 @@ public class UserActivity extends AppCompatActivity
             transHistoryUser(custId, getString(R.string.jobDesc_trans));
             messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
             emptyUserText();
+            JobReportUtils.hideKeyboard(UserActivity.this);
         }catch (Exception e){
             try{
                 MasterJobDesc mJobDesc = new MasterJobDesc();
@@ -316,6 +318,7 @@ public class UserActivity extends AppCompatActivity
                 transHistoryUser(custId, getString(R.string.jobDesc_trans));
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 emptyUserText();
+                JobReportUtils.hideKeyboard(UserActivity.this);
             }catch (Exception e2){messageUtils.toastMessage("err insert job desc" +e2.toString(), ConfigApps.T_ERROR); }
         }
     }

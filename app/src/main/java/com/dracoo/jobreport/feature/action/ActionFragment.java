@@ -19,6 +19,7 @@ import com.dracoo.jobreport.database.master.MasterAction;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
+import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
@@ -116,6 +117,9 @@ public class ActionFragment extends Fragment {
                 transHistAdapter.update(mHist);
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 setEmptyText();
+                if (getActivity() != null){
+                    JobReportUtils.hideKeyboard(getActivity());
+                }
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -131,6 +135,9 @@ public class ActionFragment extends Fragment {
                 transHistAdapter.create(mHist);
                 messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 setEmptyText();
+                if (getActivity() != null){
+                    JobReportUtils.hideKeyboard(getActivity());
+                }
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
             }

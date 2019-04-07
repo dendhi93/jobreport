@@ -18,6 +18,9 @@ public class ConfigApps {
     public static final int TRANS_HIST_INSERT = 1;
     public static final int TRANS_HIST_UPDATE = 2;
 
+    //alertdialog type
+    public static final int ALERT_WARNING = 1;
+    public static final int ALERT_SUCCESS = 2;
 
 
 

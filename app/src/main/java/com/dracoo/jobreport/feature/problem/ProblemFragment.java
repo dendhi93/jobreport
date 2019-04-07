@@ -21,6 +21,7 @@ import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
+import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
@@ -240,8 +241,10 @@ public class ProblemFragment extends Fragment {
                 }else{
                     messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
-
                 emptyProblemText();
+                if (getActivity() != null){
+                    JobReportUtils.hideKeyboard(getActivity());
+                }
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -261,6 +264,9 @@ public class ProblemFragment extends Fragment {
                     messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
                 emptyProblemText();
+                if (getActivity() != null){
+                    JobReportUtils.hideKeyboard(getActivity());
+                }
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }

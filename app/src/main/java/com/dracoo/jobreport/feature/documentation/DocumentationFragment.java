@@ -35,6 +35,7 @@ import com.dracoo.jobreport.feature.documentation.adapter.CustomList_Doc_Adapter
 import com.dracoo.jobreport.feature.documentation.contract.ItemCallback;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
+import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
@@ -241,7 +242,10 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                 mHist.setIs_submited(0);
 
                 transHistoryAdapter.update(mHist);
-                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (getActivity() != null){
+                    JobReportUtils.hideKeyboard(getActivity());
+                }
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -256,6 +260,9 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
                 transHistoryAdapter.create(mHist);
                 messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (getActivity() != null){
+                    JobReportUtils.hideKeyboard(getActivity());
+                }
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }

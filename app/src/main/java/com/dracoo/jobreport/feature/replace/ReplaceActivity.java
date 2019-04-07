@@ -17,6 +17,7 @@ import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
+import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
@@ -288,8 +289,8 @@ public class ReplaceActivity extends AppCompatActivity {
                 }else{
                     messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
-
                 setEmptyText();
+                JobReportUtils.hideKeyboard(ReplaceActivity.this);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -309,6 +310,7 @@ public class ReplaceActivity extends AppCompatActivity {
                     messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
                 setEmptyText();
+                JobReportUtils.hideKeyboard(ReplaceActivity.this);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
             }
