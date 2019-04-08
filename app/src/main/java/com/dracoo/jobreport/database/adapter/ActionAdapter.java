@@ -58,4 +58,27 @@ public class ActionAdapter extends DatabaseAdapter {
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }
+
+    public boolean isActionEmpty(String un, int custId){
+        Cursor cursor;
+
+        String sql = "SELECT id_action, " +
+                " id_site, " +
+                " action_date_time, " +
+                " action_desc " +
+                "from t_action " +
+                " where id_site = " + custId + " " +
+                " and un_user = '" +un+ "' ";
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            getReadableDatabase().close();
+            return false;
+        } else {
+            cursor.close();
+            getReadableDatabase().close();
+            return true;
+        }
+    }
 }

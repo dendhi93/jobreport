@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.ActionAdapter;
 import com.dracoo.jobreport.database.adapter.ConnectionParameterAdapter;
 import com.dracoo.jobreport.database.adapter.EnvAdapter;
 import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
@@ -143,6 +144,8 @@ public class DashboardFragment extends Fragment {
             messageUtils.toastMessage("Mohon diinput menu M2m Replace terlebih dahulu", ConfigApps.T_INFO);
         }else if (preference.getConnType().equals("M2M") && !new M2mDataAdapter(getActivity()).isM2mDataEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Data M2M terlebih dahulu", ConfigApps.T_INFO);
+        } else if (!preference.getConnType().equals("") && !new ActionAdapter(getActivity()).isActionEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.toastMessage("Mohon diinput menu Action terlebih dahulu", ConfigApps.T_INFO);
         } else{
             messageUtils.toastMessage("test dulu", ConfigApps.T_INFO);
         }

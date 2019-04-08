@@ -210,7 +210,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                 MasterImage mImage = new MasterImage();
                 mImage.setId_site(preference.getCustID());
                 mImage.setConn_type(preference.getConnType().trim());
-                mImage.setImage_name(selectedImgTitle +"_"+preference.getCustID()+ ".jpg");
+                mImage.setImage_name(selectedImgTitle+".jpg");
                 mImage.setImage_position(selectedImagePosition);
                 mImage.setImage_url(filePath.trim());
                 mImage.setInsert_date(DateTimeUtils.getCurrentTime());
@@ -237,7 +237,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
             try{
                 MasterTransHistory mHist = transHistoryAdapter.queryForId(al_valTransHist.get(0).getId_trans());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
-                mHist.setTrans_step(getActivity().getString(R.string.machine_trans));
+                mHist.setTrans_step(getActivity().getString(R.string.doc_trans));
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setIs_submited(0);
 
@@ -255,7 +255,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                 mHist.setId_site(preference.getCustID());
                 mHist.setUn_user(preference.getUn());
                 mHist.setInsert_date(DateTimeUtils.getCurrentTime());
-                mHist.setTrans_step(getActivity().getString(R.string.machine_trans));
+                mHist.setTrans_step(getActivity().getString(R.string.doc_trans));
                 mHist.setIs_submited(0);
 
                 transHistoryAdapter.create(mHist);
