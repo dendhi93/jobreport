@@ -97,4 +97,28 @@ public class ImageAdapter extends DatabaseAdapter {
     }
 
 
+    public boolean isImageEmpty(String un, int custId){
+        Cursor cursor;
+
+        String sql = "SELECT id_image, " +
+                " id_site, " +
+                " image_name, " +
+                " image_url " +
+                "from t_image " +
+                " where id_site = " + custId + " " +
+                " and un_user = '" +un+ "' ";
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            getReadableDatabase().close();
+            return false;
+        } else {
+            cursor.close();
+            getReadableDatabase().close();
+            return true;
+        }
+    }
+
+
 }

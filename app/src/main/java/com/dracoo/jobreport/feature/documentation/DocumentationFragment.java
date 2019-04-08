@@ -27,9 +27,11 @@ import com.bumptech.glide.Glide;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.ImageAdapter;
 import com.dracoo.jobreport.database.adapter.ImageConnTypeAdapter;
+import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterImage;
 import com.dracoo.jobreport.database.master.MasterImageConnType;
+import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.feature.documentation.adapter.CustomList_Doc_Adapter;
 import com.dracoo.jobreport.feature.documentation.contract.ItemCallback;
@@ -38,6 +40,8 @@ import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.j256.ormlite.dao.Dao;
 
 import java.io.File;
@@ -54,6 +58,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     private MessageUtils messageUtils;
     private Preference preference;
     private String[] arr_imgTitle;
+    private String[] arr_imgUrl;
+    private String[] arr_imgName;
     private String selectedImgTitle;
     private int selectedImagePosition = 0;
     private String filePath;
@@ -117,6 +123,49 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     @OnClick(R.id.imgB_doc_confirm)
     void getUpload(){
         messageUtils.toastMessage("coba 2", ConfigApps.T_DEFAULT);
+    }
+
+    private void convertPdf(){
+        if (preference.getCustID() == 0){
+            messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(),ConfigApps.SNACKBAR_NO_BUTTON);
+        }else if (!new ImageAdapter(getActivity()).isImageEmpty(preference.getUn(), preference.getCustID())){
+            messageUtils.snackBar_message("Mohon diambil gambar terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+        } else{
+            ArrayList<MasterInfoSite> alInfo = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
+            if (alInfo.size() > 0){
+                File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name());
+                if (!mFilePdf.exists()) {
+                    if (!mFilePdf.mkdirs()) {
+                        Log.d("####","Gagal create directory");
+                    }
+                }
+
+                Document document = new Document();
+                try{
+                    PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf"));
+                    document.open();
+                    if (al_image.size() > 0){
+                        arr_imgName = new String[al_image.size()];
+                        arr_imgUrl = new String[al_image.size()];
+
+                        int i = 0;
+                        for (MasterImage mImage : al_image){
+                            arr_imgName[i] = mImage.getImage_name().trim();
+                            String imageUrl = mImage.getImage_url().trim();
+                            i++;
+                        }
+                    }
+                }catch (Exception e){
+
+                }
+
+
+
+
+            }else{
+                messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(),ConfigApps.SNACKBAR_NO_BUTTON);
+            }
+        }
     }
 
     private void loadSpinner(String connType){

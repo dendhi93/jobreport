@@ -80,9 +80,16 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 prgSplash.setVisibility(View.VISIBLE);
                 File mFile = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/");
+                File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf");
                 try {
                     if (!mFile.exists()) {
                         if (!mFile.mkdirs()) {
+                            Log.d("####","Gagal create directory");
+                        }
+                    }
+
+                    if (!mFilePdf.exists()) {
+                        if (!mFilePdf.mkdirs()) {
                             Log.d("####","Gagal create directory");
                         }
                     }
