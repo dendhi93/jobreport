@@ -40,7 +40,14 @@ import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.j256.ormlite.dao.Dao;
 
@@ -122,7 +129,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
     @OnClick(R.id.imgB_doc_confirm)
     void getUpload(){
-        messageUtils.toastMessage("coba 2", ConfigApps.T_DEFAULT);
+//        messageUtils.toastMessage("coba 2", ConfigApps.T_DEFAULT);
+        convertPdf();
     }
 
     private void convertPdf(){
@@ -140,20 +148,38 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                     }
                 }
 
-                Document document = new Document();
+                Document document = new Document(PageSize.A4, 50, 50, 50, 50);
                 try{
                     PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf"));
                     document.open();
                     if (al_image.size() > 0){
                         arr_imgName = new String[al_image.size()];
                         arr_imgUrl = new String[al_image.size()];
+                        float mHeadingFontSize = 20.0f;
+                        BaseColor mColorAccent = new BaseColor(0, 153, 204, 255);
+                        BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
+                        Font mOrderIdFont = new Font(urName, mHeadingFontSize, Font.NORMAL, mColorAccent);
 
                         int i = 0;
                         for (MasterImage mImage : al_image){
+                            document.newPage();
                             arr_imgName[i] = mImage.getImage_name().trim();
-                            String imageUrl = mImage.getImage_url().trim();
+                            arr_imgUrl[i] = mImage.getImage_url().trim();
+                            Image image = Image.getInstance(android.os.Environment.getExternalStorageDirectory().getPath()+""+arr_imgUrl[i]);
+                            float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+                                    - document.rightMargin() - 0) / image.getWidth()) * 100; // 0 means you have no indentation. If you have any, change it.
+                            image.scalePercent(scaler);
+                            image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
+
+                            //add title
+                            Chunk mOrderIdChunk = new Chunk("Title Image: " + arr_imgName[i], mOrderIdFont);
+                            Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
+                            document.add(mOrderIdParagraph);
+                            document.add(image);
+
                             i++;
                         }
+                        document.close();
                     }
                 }catch (Exception e){
 
@@ -281,7 +307,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
     private void transHistImage(){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
-                .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.machine_trans));
+                .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.doc_trans));
         if (al_valTransHist.size() > 0){
             try{
                 MasterTransHistory mHist = transHistoryAdapter.queryForId(al_valTransHist.get(0).getId_trans());
@@ -360,23 +386,25 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
     @Override
     public void itemSelected(final int pos, final String imageUrl) {
-        new AlertDialog.Builder(getActivity())
-                .setTitle("Warning")
-                .setMessage("Apakah anda yakin ingin hapus gambar ?")
-                .setIcon(R.drawable.ic_exclamation_32)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        deleteImage(pos, imageUrl);
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
+        if (getActivity() != null){
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Warning")
+                    .setMessage("Apakah anda yakin ingin hapus gambar ?")
+                    .setIcon(R.drawable.ic_exclamation_32)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteImage(pos, imageUrl);
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
+        }
     }
 
     @Override
