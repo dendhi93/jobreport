@@ -15,8 +15,8 @@ public class MasterImageConnType implements Serializable {
     private String image_title;
     @DatabaseField(columnName = "insert_date")
     private String insert_date;
-    @DatabaseField(columnName = "update_date")
-    private String update_date;
+    @DatabaseField(columnName = "image_folder")
+    private String image_folder;
     @DatabaseField(columnName = "image_position")
     private Integer image_position;
 
@@ -52,19 +52,19 @@ public class MasterImageConnType implements Serializable {
         this.insert_date = insert_date;
     }
 
-    public String getUpdate_date() {
-        return update_date;
-    }
-
-    public void setUpdate_date(String update_date) {
-        this.update_date = update_date;
-    }
-
     public Integer getImage_position() {
         return image_position;
     }
 
     public void setImage_position(Integer image_position) {
         this.image_position = image_position;
+    }
+
+    public String getImage_folder() {
+        return image_folder;
+    }
+
+    public void setImage_folder(String image_folder) {
+        this.image_folder = image_folder;
     }
 }

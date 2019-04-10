@@ -36,6 +36,7 @@ public class ImageConnTypeAdapter extends DatabaseAdapter {
             imgConnType.setConnection_type(cursor.getString(1));
             imgConnType.setImage_title(cursor.getString(2));
             imgConnType.setImage_position(cursor.getInt(3));
+            imgConnType.setImage_folder(cursor.getString(4));
 
             imgConnTypes.add(imgConnType);
         }
@@ -51,7 +52,8 @@ public class ImageConnTypeAdapter extends DatabaseAdapter {
                 "id_image, " + //0
                 "connection_type, " + //1
                 "image_title, " + //2
-                "image_position " + //3
+                "image_position, " + //3
+                "image_folder " + //4
                 "from t_image_connection_type " +
                 " where connection_type = '" + connType + "' ";
 
