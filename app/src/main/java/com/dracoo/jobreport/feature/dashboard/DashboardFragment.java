@@ -70,8 +70,6 @@ public class DashboardFragment extends Fragment {
     RecyclerView rc_dash_activity;
     @BindView(R.id.lbl_dash_empty)
     TextView lbl_dash_empty;
-    @BindView(R.id.progress_bar_dash)
-    ContentLoadingProgressBar progress_bar_dash;
 
     private MessageUtils messageUtils;
     private Preference preference;
@@ -79,7 +77,6 @@ public class DashboardFragment extends Fragment {
     private ArrayList<MasterInfoSite> alInfSite;
     private ArrayList<MasterTransHistory> alListTrans;
     private Dao<MasterTransHistory, Integer> transHistoryAdapter;
-    private String custName = "";
     private String[] arr_actionDateTime;
     private String[] arr_actionTrans;
 
@@ -172,10 +169,9 @@ public class DashboardFragment extends Fragment {
             messageUtils.toastMessage("Mohon diinput menu M2m Replace terlebih dahulu", ConfigApps.T_INFO);
         }else if (preference.getConnType().equals("M2M") && !new M2mDataAdapter(getActivity()).isM2mDataEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Data M2M terlebih dahulu", ConfigApps.T_INFO);
-        } else if (!preference.getConnType().equals("") && !new ActionAdapter(getActivity()).isActionEmpty(preference.getUn(), preference.getCustID())){
+        }else if (!preference.getConnType().equals("") && !new ActionAdapter(getActivity()).isActionEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Action terlebih dahulu", ConfigApps.T_INFO);
         } else{
-            //TODO SUBMIT
             convertPdf();
         }
     }
@@ -184,12 +180,9 @@ public class DashboardFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                progress_bar_dash.setVisibility(View.VISIBLE);
-
                 ArrayList<MasterInfoSite> alInfo = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
                 if (alInfo.size() > 0){
                     File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+alInfo.get(0).getCustomer_name());
-                    custName = alInfo.get(0).getCustomer_name().trim();
                     if (!mFilePdf.exists()) {
                         if (!mFilePdf.mkdirs()) {
                             Log.d("####","Gagal create directory");
@@ -267,8 +260,6 @@ public class DashboardFragment extends Fragment {
                         messageUtils.toastMessage("err convert Pdf "+e.toString(), ConfigApps.T_ERROR);
                     }
                 }
-
-                progress_bar_dash.setVisibility(View.INVISIBLE);
             }
         }, 1000);
     }

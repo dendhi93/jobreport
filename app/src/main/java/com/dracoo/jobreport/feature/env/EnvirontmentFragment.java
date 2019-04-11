@@ -116,6 +116,7 @@ public class EnvirontmentFragment extends Fragment {
                     mEnv.setSuhu(Integer.parseInt(txt_env_acSuhu.getText().toString().trim()));
                     mEnv.setTegangan_pln(Integer.parseInt(txt_env_plnTegangan.getText().toString().trim()));
                     mEnv.setTegangan_ups(Integer.parseInt(txt_env_upsTegangan.getText().toString().trim()));
+                    mEnv.setUn_user(preference.getUn());
 
                     envAdapter.create(mEnv);
                     transHistEnv(ConfigApps.TRANS_HIST_INSERT);

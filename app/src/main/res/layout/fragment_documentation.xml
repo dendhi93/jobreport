@@ -42,6 +42,7 @@
             android:padding="@dimen/spacing_small_1">
 
             <TextView
+                android:id="@+id/lbl_doc_note"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
@@ -49,7 +50,8 @@
                 android:layout_toLeftOf="@+id/imgB_doc_confirm"
                 android:gravity="center"
                 android:text="Mohon dilakukan pengecekan kembali sebelum di Upload"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/colorBlack"
+                android:visibility="visible"/>
 
             <ImageButton
                 android:id="@+id/imgB_doc_confirm"
@@ -59,7 +61,8 @@
                 android:layout_marginEnd="@dimen/spacing_small_1"
                 android:background="@drawable/ic_circle_selector"
                 android:contentDescription="@string/content_desc"
-                android:src="@drawable/ic_white_upload_32" />
+                android:src="@drawable/ic_white_upload_32"
+                android:visibility="visible"/>
 
         </RelativeLayout>
 
@@ -92,14 +95,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty_data" />
-
-        <android.support.v4.widget.ContentLoadingProgressBar
-            android:id="@+id/progress_bar_doc"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
 
     </RelativeLayout>
 </RelativeLayout>

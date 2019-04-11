@@ -161,6 +161,7 @@ public class DataM2mActivity extends AppCompatActivity {
                 m2mData.setSubnet_mask(txt_dm2m_dataM2m_subnetMask.getText().toString().trim());
                 m2mData.setAgg(txt_dm2m_dataM2m_agg.getText().toString().trim());
                 m2mData.setConnection_type(preference.getConnType().trim());
+                m2mData.setUn_user(preference.getUn());
                 m2mData.setInsert_date(DateTimeUtils.getCurrentTime());
 
                 dataM2mDao.create(m2mData);

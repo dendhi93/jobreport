@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -81,6 +81,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     private ArrayList<MasterImage> al_image;
     RecyclerView.LayoutManager layoutManager;
     private CustomList_Doc_Adapter adapter;
+    private Handler handler;
 
     @BindView(R.id. imgV_doc_1)
     ImageView imgV_doc_1;
@@ -92,8 +93,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     TextView lbl_doc_empty;
     @BindView(R.id.spinner_doc)
     Spinner spinner_doc;
-    @BindView(R.id.progress_bar_doc)
-    ContentLoadingProgressBar progress_bar_doc;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -146,11 +145,10 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     }
 
     private void convertPdf(){
-        new Handler().postDelayed(new Runnable() {
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                progress_bar_doc.setVisibility(View.VISIBLE);
-
                 ArrayList<MasterImage> al_countImage = new ImageAdapter(getActivity())
                         .load_dataImage(preference.getCustID(), preference.getUn());
                 if (al_countImage.size() == 5){
@@ -231,10 +229,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                 }else{
                     messageUtils.snackBar_message("Mohon dilengkapi foto yang belum diinput", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
                 }
-
-                progress_bar_doc.setVisibility(View.GONE);
             }
-        }, 700);
+        }, 1000);
     }
 
     private void loadSpinner(String connType){
