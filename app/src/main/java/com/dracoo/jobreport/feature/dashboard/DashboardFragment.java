@@ -2,7 +2,9 @@ package com.dracoo.jobreport.feature.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,6 +26,7 @@ import com.dracoo.jobreport.database.adapter.MachineAdapter;
 import com.dracoo.jobreport.database.adapter.ProblemAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
+import com.dracoo.jobreport.database.master.MasterAction;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
@@ -34,8 +37,18 @@ import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.j256.ormlite.dao.Dao;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +70,8 @@ public class DashboardFragment extends Fragment {
     RecyclerView rc_dash_activity;
     @BindView(R.id.lbl_dash_empty)
     TextView lbl_dash_empty;
+    @BindView(R.id.progress_bar_dash)
+    ContentLoadingProgressBar progress_bar_dash;
 
     private MessageUtils messageUtils;
     private Preference preference;
@@ -64,6 +79,9 @@ public class DashboardFragment extends Fragment {
     private ArrayList<MasterInfoSite> alInfSite;
     private ArrayList<MasterTransHistory> alListTrans;
     private Dao<MasterTransHistory, Integer> transHistoryAdapter;
+    private String custName = "";
+    private String[] arr_actionDateTime;
+    private String[] arr_actionTrans;
 
 
     RecyclerView.Adapter adapter;
@@ -158,17 +176,102 @@ public class DashboardFragment extends Fragment {
             messageUtils.toastMessage("Mohon diinput menu Action terlebih dahulu", ConfigApps.T_INFO);
         } else{
             //TODO SUBMIT
-            if (isSubmitReport()){
-                messageUtils.toastMessage("test", ConfigApps.T_INFO);
-                preference.clearDataTrans();
-                loadDash();
-                loadRcTrans();
-            }else{
-                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
-            }
+            convertPdf();
         }
     }
 
+    private void convertPdf(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progress_bar_dash.setVisibility(View.VISIBLE);
+
+                ArrayList<MasterInfoSite> alInfo = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
+                if (alInfo.size() > 0){
+                    File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+alInfo.get(0).getCustomer_name());
+                    custName = alInfo.get(0).getCustomer_name().trim();
+                    if (!mFilePdf.exists()) {
+                        if (!mFilePdf.mkdirs()) {
+                            Log.d("####","Gagal create directory");
+                        }
+                    }
+                    File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf");
+                    if (mFileValidationPdf.exists()){
+                        mFileValidationPdf.delete();
+                    }
+
+                    Document document = new Document(PageSize.A4, 40, 40, 40, 40);
+                    try{
+                        float mcontentFontSize = 20.0f;
+                        float mHeadingFontSize = 30.0f;
+                        BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
+                        Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
+                        Font titleFont = new Font(urName, mHeadingFontSize, Font.UNDERLINE, BaseColor.BLACK);
+
+                        PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf"));
+                        document.open();
+
+                        Paragraph p = new Paragraph(getActivity().getString(R.string.action_trans),titleFont);
+                        p.setAlignment(Element.ALIGN_LEFT);
+                        p.setSpacingAfter(20f);
+                        document.add(p);
+
+                        ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
+                        if (al_listAction.size() > 0){
+                            arr_actionDateTime = new String[al_listAction.size()];
+                            arr_actionTrans = new String[al_listAction.size()];
+
+                            int i = 0;
+                            String actionContent = "";
+                            for (MasterAction action : al_listAction){
+                                arr_actionDateTime[i] = action.getAction_date_time();
+                                arr_actionTrans[i] = action.getAction_desc();
+
+                                String[] split = arr_actionDateTime[i].split(",");
+                                if (DateTimeUtils.getDateDiff(DateTimeUtils.getCurrentDate().trim(), split[0]) > 1){
+                                    if(i==0){
+                                        actionContent = arr_actionDateTime[i]+ "\t: " + arr_actionTrans[i];
+                                    }else{
+                                        actionContent = actionContent +"\n"+arr_actionDateTime[i]+ "\t: " + arr_actionTrans[i];
+                                    }
+                                }else{
+                                    if (i==0){
+                                        actionContent = split[1]+ "\t: " + arr_actionTrans[i];
+                                    }else{
+                                        actionContent = actionContent +"\n"+split[1]+ "\t: " + arr_actionTrans[i];
+                                    }
+                                }
+
+                                i++;
+                            }
+
+                            Paragraph actionParagraph = new Paragraph(actionContent,contentFont);
+                            actionParagraph.setAlignment(Element.ALIGN_LEFT);
+                            actionParagraph.setSpacingAfter(20f);
+                            document.add(actionParagraph);
+
+                            document.close();
+
+                            //klo doc ud ke convert semua
+                            //            if (isSubmitReport()){
+                            //                messageUtils.toastMessage("test", ConfigApps.T_INFO);
+                            //                preference.clearDataTrans();
+                            //                loadDash();
+                            //                loadRcTrans();
+                            //            }else{
+                            //                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+                            //            }
+                        }
+
+                    }catch (Exception e){
+                        messageUtils.toastMessage("err convert Pdf "+e.toString(), ConfigApps.T_ERROR);
+                    }
+                }
+
+                progress_bar_dash.setVisibility(View.INVISIBLE);
+            }
+        }, 1000);
+    }
 
     private boolean isSubmitReport(){
         try{

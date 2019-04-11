@@ -66,7 +66,6 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
         try{
             lbl_item_image_title.setText(list.get(listPosition).getImage_name().trim());
             String pathUrl = list.get(listPosition).getImage_url();
-            Log.d("###", ""+pathUrl);
             File file = new File(android.os.Environment.getExternalStorageDirectory().getPath(),pathUrl);
             Uri imageUri = Uri.fromFile(file);
             Glide.with(mContext)

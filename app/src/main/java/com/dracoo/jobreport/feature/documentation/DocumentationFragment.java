@@ -6,8 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -90,6 +92,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     TextView lbl_doc_empty;
     @BindView(R.id.spinner_doc)
     Spinner spinner_doc;
+    @BindView(R.id.progress_bar_doc)
+    ContentLoadingProgressBar progress_bar_doc;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -132,96 +136,105 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
     @OnClick(R.id.imgB_doc_confirm)
     void getUpload(){
-        convertPdf();
-    }
-
-    private void convertPdf(){
         if (preference.getCustID() == 0){
             messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(),ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (!new ImageAdapter(getActivity()).isImageEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.snackBar_message("Mohon diambil gambar terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         } else{
-            ArrayList<MasterImage> al_countImage = new ImageAdapter(getActivity())
-                    .load_dataImage(preference.getCustID(), preference.getUn());
-            if (al_countImage.size() == 5){
-                ArrayList<MasterInfoSite> alInfo = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
-                if (alInfo.size() > 0){
-                    File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name());
-                    customerName = alInfo.get(0).getCustomer_name().trim();
-                    if (!mFilePdf.exists()) {
-                        if (!mFilePdf.mkdirs()) {
-                            Log.d("####","Gagal create directory");
-                        }
-                    }
-                    File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf");
-                    if (mFileValidationPdf.exists()){
-                        mFileValidationPdf.delete();
-                    }
+            convertPdf();
+        }
+    }
 
-                    Document document = new Document(PageSize.A4, 50, 50, 50, 50);
-                    try{
-                        PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf"));
-                        document.open();
-                        if (al_image.size() > 0){
-                            arr_imgName = new String[al_image.size()];
-                            arr_imgUrl = new String[al_image.size()];
-                        float mHeadingFontSize = 20.0f;
-                        BaseColor mColorAccent = new BaseColor(0, 153, 204, 255);
-                        BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
-                        Font mOrderIdFont = new Font(urName, mHeadingFontSize, Font.NORMAL, mColorAccent);
+    private void convertPdf(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progress_bar_doc.setVisibility(View.VISIBLE);
 
-                            int i = 0;
-                            for (MasterImage mImage : al_image){
-                                document.newPage();
-                                arr_imgName[i] = mImage.getImage_name().trim();
-                                arr_imgUrl[i] = mImage.getImage_url().trim();
-                                String stImageUrl = android.os.Environment.getExternalStorageDirectory().toString()+""+arr_imgUrl[i];
-
-                                Image image = Image.getInstance(stImageUrl);
-                                float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
-                                        - document.rightMargin() - 0) / image.getWidth()) * 100; // 0 means you have no indentation. If you have any, change it.
-                                image.scalePercent(scaler);
-                                image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
-
-                                //add title
-                                Chunk mOrderIdChunk = new Chunk("Title Image: " + arr_imgName[i], mOrderIdFont);
-                                Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
-                                document.add(mOrderIdParagraph);
-                                document.add(image);
-
-                                i++;
+                ArrayList<MasterImage> al_countImage = new ImageAdapter(getActivity())
+                        .load_dataImage(preference.getCustID(), preference.getUn());
+                if (al_countImage.size() == 5){
+                    ArrayList<MasterInfoSite> alInfo = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
+                    if (alInfo.size() > 0){
+                        File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name());
+                        customerName = alInfo.get(0).getCustomer_name().trim();
+                        if (!mFilePdf.exists()) {
+                            if (!mFilePdf.mkdirs()) {
+                                Log.d("####","Gagal create directory");
                             }
-                            document.close();
-                            messageUtils.toastMessage("Dokumen sukses diconvert ke pdf", ConfigApps.T_SUCCESS);
-                            File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf");
-                            String subjectEmail = "Kepada yth,\nBpk/Ibu Admin\n\nBerikut saya lampirkan Report Customer " +customerName+
-                                    "\n\nDemikian yang bisa saya sampaikan\nTerima Kasih\n\n\n " + preference.getUn().
-                                    trim().toLowerCase(java.util.Locale.getDefault());
-                            try {
-                                if (mFilePdf.exists()) {
-                                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                                    shareIntent.setType("text/plain");
-                                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Report Customer " +customerName);
-                                    shareIntent.putExtra(Intent.EXTRA_TEXT, subjectEmail);
-                                    shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileResultPdf));
-                                    startActivity(Intent.createChooser(shareIntent, "choose one"));
-                                }else{
-                                    messageUtils.toastMessage("File Tidak ditemukan", ConfigApps.T_WARNING);
+                        }
+                        File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf");
+                        if (mFileValidationPdf.exists()){
+                            mFileValidationPdf.delete();
+                        }
+
+                        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+                        try{
+                            PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf"));
+                            document.open();
+                            if (al_image.size() > 0){
+                                arr_imgName = new String[al_image.size()];
+                                arr_imgUrl = new String[al_image.size()];
+                                float mHeadingFontSize = 20.0f;
+                                BaseColor mColorAccent = new BaseColor(0, 153, 204, 255);
+                                BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
+                                Font mOrderIdFont = new Font(urName, mHeadingFontSize, Font.NORMAL, mColorAccent);
+
+                                int i = 0;
+                                for (MasterImage mImage : al_image){
+                                    document.newPage();
+                                    arr_imgName[i] = mImage.getImage_name().trim();
+                                    arr_imgUrl[i] = mImage.getImage_url().trim();
+                                    String stImageUrl = android.os.Environment.getExternalStorageDirectory().toString()+""+arr_imgUrl[i];
+
+                                    Image image = Image.getInstance(stImageUrl);
+                                    float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+                                            - document.rightMargin() - 0) / image.getWidth()) * 100; // 0 means you have no indentation. If you have any, change it.
+                                    image.scalePercent(scaler);
+                                    image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
+
+                                    //add title
+                                    Chunk mOrderIdChunk = new Chunk("Title Image: " + arr_imgName[i], mOrderIdFont);
+                                    Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
+                                    document.add(mOrderIdParagraph);
+                                    document.add(image);
+
+                                    i++;
                                 }
-                            } catch(Exception e) {
-                                messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR);
+                                document.close();
+                                messageUtils.toastMessage("Dokumen sukses diconvert ke pdf", ConfigApps.T_SUCCESS);
+                                File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf");
+                                String subjectEmail = "Kepada yth,\nBpk/Ibu Admin\n\nBerikut saya lampirkan Report Customer " +customerName+
+                                        "\n\nDemikian yang bisa saya sampaikan\nTerima Kasih\n\n\n " + preference.getUn().
+                                        trim().toLowerCase(java.util.Locale.getDefault());
+                                try {
+                                    if (mFilePdf.exists()) {
+                                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                                        shareIntent.setType("text/plain");
+                                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Report Customer " +customerName);
+                                        shareIntent.putExtra(Intent.EXTRA_TEXT, subjectEmail);
+                                        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileResultPdf));
+                                        startActivity(Intent.createChooser(shareIntent, "choose one"));
+                                    }else{
+                                        messageUtils.toastMessage("File Tidak ditemukan", ConfigApps.T_WARNING);
+                                    }
+                                } catch(Exception e) {
+                                    messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR);
+                                }
                             }
+                        }catch (Exception e){
+                            messageUtils.toastMessage("err convert image" +e.toString(), ConfigApps.T_ERROR);
                         }
-                    }catch (Exception e){
-                        messageUtils.toastMessage("err convert image" +e.toString(), ConfigApps.T_ERROR);
+                    }else{
+                        messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(),ConfigApps.SNACKBAR_NO_BUTTON);
                     }
                 }else{
-                    messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(),ConfigApps.SNACKBAR_NO_BUTTON);
+                    messageUtils.snackBar_message("Mohon dilengkapi foto yang belum diinput", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
                 }
-            }else{
-                messageUtils.snackBar_message("Mohon dilengkapi foto yang belum diinput", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+
+                progress_bar_doc.setVisibility(View.GONE);
             }
-        }
+        }, 700);
     }
 
     private void loadSpinner(String connType){
