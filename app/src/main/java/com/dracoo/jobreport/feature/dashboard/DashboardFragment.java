@@ -30,10 +30,13 @@ import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.j256.ormlite.dao.Dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +63,9 @@ public class DashboardFragment extends Fragment {
     private ArrayList<MasterJobDesc> alJobDesc;
     private ArrayList<MasterInfoSite> alInfSite;
     private ArrayList<MasterTransHistory> alListTrans;
+    private Dao<MasterTransHistory, Integer> transHistoryAdapter;
+
+
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -79,6 +85,10 @@ public class DashboardFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
+
+        try{
+            transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
+        }catch (Exception e){}
     }
 
     public List<MasterTransHistory> getList_TransHist(){
@@ -147,8 +157,33 @@ public class DashboardFragment extends Fragment {
         } else if (!preference.getConnType().equals("") && !new ActionAdapter(getActivity()).isActionEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Action terlebih dahulu", ConfigApps.T_INFO);
         } else{
-            messageUtils.toastMessage("test dulu", ConfigApps.T_INFO);
+            //TODO SUBMIT
+            if (isSubmitReport()){
+                messageUtils.toastMessage("test", ConfigApps.T_INFO);
+                preference.clearDataTrans();
+                loadDash();
+                loadRcTrans();
+            }else{
+                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+            }
         }
+    }
+
+
+    private boolean isSubmitReport(){
+        try{
+            transHistoryAdapter
+                    .updateRaw("update from t_trans_history " +
+                                  "set is_submited = 1, " +
+                                  "update_date = '"+ DateTimeUtils.getCurrentTime() +"' " +
+                                    " where id_site = "+preference.getCustID()+" " +
+                                    " and un_user = '"+preference.getUn()+"' ");
+            return true;
+        }catch (SQLException e){
+            Log.d("err update ","" +e.toString());
+            return false;
+        }
+
     }
 
     @Override
@@ -175,14 +210,5 @@ public class DashboardFragment extends Fragment {
         }
     }
 
-//    private boolean isConfirm(){
-//        if (preference.getCustID() == 0 || preference.getUn().equals("") ||
-//            !new ProblemAdapter(getActivity()).isProblemEmpty(preference.getUn(), preference.getCustID())){
-//            return  false;
-//        }else{
-//            return true;
-//        }
-//
-//    }
 
 }

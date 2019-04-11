@@ -52,7 +52,8 @@ public class TransHistoryAdapter extends DatabaseAdapter {
                                 "is_submited " + //2
                     "from t_trans_history " +
                     " where id_site = " + custId + " " +
-                    " and un_user = '" +un+ "' ";
+                    " and un_user = '" +un+ "' " +
+                    " and is_submited = 0 ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
