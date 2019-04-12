@@ -57,20 +57,20 @@ public class ProblemAdapter extends DatabaseAdapter {
     public Cursor val_probCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_problem, " +
-                            " id_site " +
-                            " modem, " +
-                            " symptom, " +
-                            " action, " +
-                            " berangkat, " +
-                            " tiba, " +
-                            " finish, " +
-                            " upline, " +
-                            " online, " +
-                            " pending, " +
-                            " reason, " +
-                            " closed, " +
-                            " closed_by " +
+        String sql = "SELECT id_problem, " + //0
+                            " id_site, " + //1
+                            " modem, " + //2
+                            " symptom, " + //3
+                            " action, " + //4
+                            " berangkat, " + //5
+                            " tiba, " + //6
+                            " finish, " + //7
+                            " upline, " + //8
+                            " online, " + //9
+                            " pending, " + //10
+                            " reason, " + //11
+                            " closed, " + //12
+                            " closed_by " + //13
                     "from t_problem " +
                     " where id_site = " + custId + " " +
                     " and un_user = '" +un+ "' ";

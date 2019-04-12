@@ -29,6 +29,7 @@ import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
 import com.dracoo.jobreport.database.master.MasterAction;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
+import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
@@ -192,10 +193,10 @@ public class DashboardFragment extends Fragment {
                         mFileValidationPdf.delete();
                     }
 
-                    Document document = new Document(PageSize.A4, 40, 40, 40, 40);
+                    Document document = new Document(PageSize.A4, 20, 20, 20, 40);
                     try{
-                        float mcontentFontSize = 20.0f;
-                        float mHeadingFontSize = 30.0f;
+                        float mcontentFontSize = 15.0f;
+                        float mHeadingFontSize = 20.0f;
                         BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
                         Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
                         Font titleFont = new Font(urName, mHeadingFontSize, Font.UNDERLINE, BaseColor.BLACK);
@@ -210,19 +211,19 @@ public class DashboardFragment extends Fragment {
 
                         ArrayList<MasterJobDesc> alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
                         if (alJobDesc.size() > 0){
-                            String maintenanceContent = "Progress      = " +preference.getProgress().trim() +"\n" +
-                                                        "Jenis Koneksi = " +preference.getConnType() + "\n"+
-                                                        "Nama Teknisi  = " +preference.getUn() + "\n"+
-                                                        "Service Point = " +preference.getServicePoint() + "\n"+
-                                                        "Nama Lokasi   = " +alInfSite.get(0).getLocation_name().trim() + "\n" +
-                                                        "Alamat        = " +alInfSite.get(0).getRemote_address().trim() + "\n" +
-                                                        "Kota          = " +alInfSite.get(0).getCity().trim() + "\n"+
-                                                        "Kabupaten     = " +alInfSite.get(0).getKabupaten().trim()+ "\n"+
-                                                        "Provinsi      = " +alInfSite.get(0).getProv().trim() + "\n" +
-                                                        "Remote Name   =  Unknown" +
-                                                        "Lat           = " +alInfSite.get(0).getLat().trim()+ "\n"+
-                                                        "Longitude     = " + alInfSite.get(0).getLongitude().trim() + "\n"+
-                                                        "PIC           = " +alJobDesc.get(0).getName_pic() + "\n\n\n\n";
+                            String maintenanceContent = "Progress               = " +preference.getProgress().trim() +"\n" +
+                                                        "Jenis Koneksi      = " +preference.getConnType() + "\n"+
+                                                        "Nama Teknisi       = " +preference.getUn() + "\n"+
+                                                        "Service Point       = " +preference.getServicePoint() + "\n"+
+                                                        "Nama Lokasi     = " +alInfSite.get(0).getLocation_name().trim() + "\n" +
+                                                        "Alamat                = " +alInfSite.get(0).getRemote_address().trim() + "\n" +
+                                                        "Kota                     = " +alInfSite.get(0).getCity().trim() + "\n"+
+                                                        "Kabupaten       = " +alInfSite.get(0).getKabupaten().trim()+ "\n"+
+                                                        "Provinsi            = " +alInfSite.get(0).getProv().trim() + "\n" +
+                                                        "Remote Name =  Unknown\n" +
+                                                        "Latitude             = " +alInfSite.get(0).getLat().trim()+ "\n"+
+                                                        "Longitude          = " + alInfSite.get(0).getLongitude().trim() + "\n"+
+                                                        "PIC                    = " +alJobDesc.get(0).getName_pic() + "\n";
 
                             Paragraph pContent1 = new Paragraph(maintenanceContent,contentFont);
                             pContent1.setAlignment(Element.ALIGN_LEFT);
@@ -236,6 +237,23 @@ public class DashboardFragment extends Fragment {
                         document.add(pTitle2);
 
                         //add transacttion jobdesc
+                        ArrayList<MasterProblem> alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
+                        if (alProblem.size() > 0){
+                            String problemContent = "Berangkat          = " +alProblem.get(0).getBerangkat().trim() +"\n"+
+                                                    "Tiba                     = " +alProblem.get(0).getTiba().trim()+ "\n"+
+                                                    "Finish                  = " +alProblem.get(0).getFinish().trim()+ "\n"+
+                                                    "Delay                  = unknown\n"+
+                                                    "Pending               = " +alProblem.get(0).getPending().trim() +"\n"+
+                                                    "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
+                                                    "Upline                 = " +alProblem.get(0).getUpline().trim() +"\n";
+
+                            Paragraph pContent2 = new Paragraph(problemContent,contentFont);
+                            pContent2.setAlignment(Element.ALIGN_LEFT);
+                            pContent2.setSpacingAfter(20f);
+                            document.add(pContent2);
+
+                        }
+
                         Paragraph pAction = new Paragraph(getActivity().getString(R.string.action_trans),titleFont);
                         pAction.setAlignment(Element.ALIGN_LEFT);
                         pAction.setSpacingAfter(20f);

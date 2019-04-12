@@ -108,7 +108,7 @@ public class ProblemFragment extends Fragment {
                 transProblem();
             }
         }catch (Exception e){
-            messageUtils.snackBar_message("Mohon dipilih pilihan pada kolom closed", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            messageUtils.snackBar_message("Mohon dipilih pilihan pada kolom closed ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }
 
     }
