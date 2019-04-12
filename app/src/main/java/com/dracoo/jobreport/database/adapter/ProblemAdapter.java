@@ -34,6 +34,18 @@ public class ProblemAdapter extends DatabaseAdapter {
             MasterProblem problem = new MasterProblem();
             problem.setId_problem(cursor.getInt(0));
             problem.setId_site(cursor.getInt(1));
+            problem.setModem(cursor.getString(2));
+            problem.setSymptom(cursor.getString(3));
+            problem.setAction(cursor.getString(4));
+            problem.setBerangkat(cursor.getString(5));
+            problem.setTiba(cursor.getString(6));
+            problem.setFinish(cursor.getString(7));
+            problem.setUpline(cursor.getString(8));
+            problem.setOnline(cursor.getString(9));
+            problem.setPending(cursor.getString(10));
+            problem.setReason(cursor.getString(11));
+            problem.setClosed(cursor.getString(12));
+            problem.setClosed_by(cursor.getString(13));
 
             probs.add(problem);
         }
@@ -46,10 +58,22 @@ public class ProblemAdapter extends DatabaseAdapter {
         Cursor cursor;
 
         String sql = "SELECT id_problem, " +
-                " id_site " +
-                "from t_problem " +
-                " where id_site = " + custId + " " +
-                " and un_user = '" +un+ "' ";
+                            " id_site " +
+                            " modem, " +
+                            " symptom, " +
+                            " action, " +
+                            " berangkat, " +
+                            " tiba, " +
+                            " finish, " +
+                            " upline, " +
+                            " online, " +
+                            " pending, " +
+                            " reason, " +
+                            " closed, " +
+                            " closed_by " +
+                    "from t_problem " +
+                    " where id_site = " + custId + " " +
+                    " and un_user = '" +un+ "' ";
 
 
         cursor = getReadableDatabase().rawQuery(sql, null);
