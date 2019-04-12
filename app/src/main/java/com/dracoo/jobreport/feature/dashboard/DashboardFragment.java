@@ -222,19 +222,20 @@ public class DashboardFragment extends Fragment {
                                                         "Remote Name   =  Unknown" +
                                                         "Lat           = " +alInfSite.get(0).getLat().trim()+ "\n"+
                                                         "Longitude     = " + alInfSite.get(0).getLongitude().trim() + "\n"+
-                                                        "PIC           = " +alJobDesc.get(0).getName_pic() + "\n";
+                                                        "PIC           = " +alJobDesc.get(0).getName_pic() + "\n\n\n\n";
 
                             Paragraph pContent1 = new Paragraph(maintenanceContent,contentFont);
                             pContent1.setAlignment(Element.ALIGN_LEFT);
                             pContent1.setSpacingAfter(20f);
                             document.add(pContent1);
                         }
-//
-//                        Paragraph pAction = new Paragraph(getActivity().getString(R.string.action_trans),titleFont);
-//                        pAction.setAlignment(Element.ALIGN_LEFT);
-//                        pAction.setSpacingAfter(20f);
-//                        document.add(pAction);
 
+                        Paragraph pTitle2 = new Paragraph("*Desc*",titleFont);
+                        pTitle2.setAlignment(Element.ALIGN_LEFT);
+                        pTitle2.setSpacingAfter(20f);
+                        document.add(pTitle2);
+
+                        //add transacttion jobdesc
                         Paragraph pAction = new Paragraph(getActivity().getString(R.string.action_trans),titleFont);
                         pAction.setAlignment(Element.ALIGN_LEFT);
                         pAction.setSpacingAfter(20f);
