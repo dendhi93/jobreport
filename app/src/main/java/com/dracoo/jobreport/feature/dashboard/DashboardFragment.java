@@ -27,6 +27,7 @@ import com.dracoo.jobreport.database.adapter.ProblemAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
 import com.dracoo.jobreport.database.master.MasterAction;
+import com.dracoo.jobreport.database.master.MasterEnvirontment;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterProblem;
@@ -231,7 +232,7 @@ public class DashboardFragment extends Fragment {
                             document.add(pContent1);
                         }
 
-                        Paragraph pTitle2 = new Paragraph("*Desc*",titleFont);
+                        Paragraph pTitle2 = new Paragraph("*"+getActivity().getString(R.string.problemDesc_trans)+"*",titleFont);
                         pTitle2.setAlignment(Element.ALIGN_LEFT);
                         pTitle2.setSpacingAfter(20f);
                         document.add(pTitle2);
@@ -254,7 +255,7 @@ public class DashboardFragment extends Fragment {
 
                         }
 
-                        Paragraph pAction = new Paragraph(getActivity().getString(R.string.action_trans),titleFont);
+                        Paragraph pAction = new Paragraph("*"+getActivity().getString(R.string.action_trans)+"*",titleFont);
                         pAction.setAlignment(Element.ALIGN_LEFT);
                         pAction.setSpacingAfter(20f);
                         document.add(pAction);
@@ -292,6 +293,21 @@ public class DashboardFragment extends Fragment {
                             actionParagraph.setAlignment(Element.ALIGN_LEFT);
                             actionParagraph.setSpacingAfter(20f);
                             document.add(actionParagraph);
+
+                            Paragraph envParagraph = new Paragraph("*"+getActivity().getString(R.string.electEnv_trans)+"*",titleFont);
+                            envParagraph.setAlignment(Element.ALIGN_LEFT);
+                            envParagraph.setSpacingAfter(20f);
+                            document.add(actionParagraph);
+
+                            ArrayList<MasterEnvirontment> allEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
+                            if (allEnv.size() > 0){
+                                String envContent = "_PLN_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_pln()+"\n"+
+                                                    "Grounding (Vac) = " +allEnv.get(0).getGrounding_pln()+"\n"+
+                                                    "_UPS_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_ups()+ "\n"+
+                                                    "Grounding (Vac) = " +allEnv.get(0).getGrounding_ups()+"\n"+
+                                                    allEnv.get(0).getNotes().trim() +"\n"+
+                                                    "_AC_";
+                            }
 
                             document.close();
 

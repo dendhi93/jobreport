@@ -34,6 +34,13 @@ public class EnvAdapter extends DatabaseAdapter {
             MasterEnvirontment mEnv = new MasterEnvirontment();
             mEnv.setId_env(cursor.getInt(0));
             mEnv.setId_site(cursor.getInt(1));
+            mEnv.setTegangan_pln(cursor.getInt(2));
+            mEnv.setGrounding_pln(cursor.getInt(3));
+            mEnv.setTegangan_ups(cursor.getInt(4));
+            mEnv.setGrounding_ups(cursor.getInt(5));
+            mEnv.setNotes(cursor.getString(6));
+            mEnv.setSuhu(cursor.getInt(7));
+            mEnv.setNotes_ac(cursor.getString(8));
 
             envs.add(mEnv);
         }
@@ -46,7 +53,14 @@ public class EnvAdapter extends DatabaseAdapter {
         Cursor cursor;
 
         String sql = "SELECT id_env, " +
-                " id_site " +
+                        " id_site, " +
+                        " tegangan_pln, " +
+                        " grounding_pln, " +
+                        " tegangan_ups, " +
+                        " grounding_ups, " +
+                        " notes, " +
+                        " suhu, " +
+                        " notes_ac " +
                 "from t_env " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
