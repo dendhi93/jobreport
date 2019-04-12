@@ -180,15 +180,14 @@ public class DashboardFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ArrayList<MasterInfoSite> alInfo = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
-                if (alInfo.size() > 0){
-                    File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+alInfo.get(0).getCustomer_name());
+                if (alInfSite.size() > 0){
+                    File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+alInfSite.get(0).getCustomer_name());
                     if (!mFilePdf.exists()) {
                         if (!mFilePdf.mkdirs()) {
                             Log.d("####","Gagal create directory");
                         }
                     }
-                    File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf");
+                    File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+alInfSite.get(0).getCustomer_name() + "/"+alInfSite.get(0).getCustomer_name()+".pdf");
                     if (mFileValidationPdf.exists()){
                         mFileValidationPdf.delete();
                     }
@@ -201,13 +200,45 @@ public class DashboardFragment extends Fragment {
                         Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
                         Font titleFont = new Font(urName, mHeadingFontSize, Font.UNDERLINE, BaseColor.BLACK);
 
-                        PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf"));
+                        PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+alInfSite.get(0).getCustomer_name() + "/"+alInfSite.get(0).getCustomer_name()+".pdf"));
                         document.open();
 
-                        Paragraph p = new Paragraph(getActivity().getString(R.string.action_trans),titleFont);
-                        p.setAlignment(Element.ALIGN_LEFT);
-                        p.setSpacingAfter(20f);
-                        document.add(p);
+                        Paragraph pTitle1 = new Paragraph("*Maintenance Report*",titleFont);
+                        pTitle1.setAlignment(Element.ALIGN_LEFT);
+                        pTitle1.setSpacingAfter(20f);
+                        document.add(pTitle1);
+
+                        ArrayList<MasterJobDesc> alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
+                        if (alJobDesc.size() > 0){
+                            String maintenanceContent = "Progress      = " +preference.getProgress().trim() +"\n" +
+                                                        "Jenis Koneksi = " +preference.getConnType() + "\n"+
+                                                        "Nama Teknisi  = " +preference.getUn() + "\n"+
+                                                        "Service Point = " +preference.getServicePoint() + "\n"+
+                                                        "Nama Lokasi   = " +alInfSite.get(0).getLocation_name().trim() + "\n" +
+                                                        "Alamat        = " +alInfSite.get(0).getRemote_address().trim() + "\n" +
+                                                        "Kota          = " +alInfSite.get(0).getCity().trim() + "\n"+
+                                                        "Kabupaten     = " +alInfSite.get(0).getKabupaten().trim()+ "\n"+
+                                                        "Provinsi      = " +alInfSite.get(0).getProv().trim() + "\n" +
+                                                        "Remote Name   =  Unknown" +
+                                                        "Lat           = " +alInfSite.get(0).getLat().trim()+ "\n"+
+                                                        "Longitude     = " + alInfSite.get(0).getLongitude().trim() + "\n"+
+                                                        "PIC           = " +alJobDesc.get(0).getName_pic() + "\n";
+
+                            Paragraph pContent1 = new Paragraph(maintenanceContent,contentFont);
+                            pContent1.setAlignment(Element.ALIGN_LEFT);
+                            pContent1.setSpacingAfter(20f);
+                            document.add(pContent1);
+                        }
+//
+//                        Paragraph pAction = new Paragraph(getActivity().getString(R.string.action_trans),titleFont);
+//                        pAction.setAlignment(Element.ALIGN_LEFT);
+//                        pAction.setSpacingAfter(20f);
+//                        document.add(pAction);
+
+                        Paragraph pAction = new Paragraph(getActivity().getString(R.string.action_trans),titleFont);
+                        pAction.setAlignment(Element.ALIGN_LEFT);
+                        pAction.setSpacingAfter(20f);
+                        document.add(pAction);
 
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
                         if (al_listAction.size() > 0){
@@ -223,15 +254,15 @@ public class DashboardFragment extends Fragment {
                                 String[] split = arr_actionDateTime[i].split(",");
                                 if (DateTimeUtils.getDateDiff(DateTimeUtils.getCurrentDate().trim(), split[0]) > 1){
                                     if(i==0){
-                                        actionContent = arr_actionDateTime[i]+ "\t: " + arr_actionTrans[i];
+                                        actionContent = arr_actionDateTime[i]+ "\t\t\t\t : " + arr_actionTrans[i];
                                     }else{
-                                        actionContent = actionContent +"\n"+arr_actionDateTime[i]+ "\t: " + arr_actionTrans[i];
+                                        actionContent = actionContent +"\n"+arr_actionDateTime[i]+ "\t\t\t\t : " + arr_actionTrans[i];
                                     }
                                 }else{
                                     if (i==0){
-                                        actionContent = split[1]+ "\t: " + arr_actionTrans[i];
+                                        actionContent = split[1]+ "\t\t\t\t : " + arr_actionTrans[i];
                                     }else{
-                                        actionContent = actionContent +"\n"+split[1]+ "\t: " + arr_actionTrans[i];
+                                        actionContent = actionContent +"\n"+split[1]+ "\t\t\t\t : " + arr_actionTrans[i];
                                     }
                                 }
 

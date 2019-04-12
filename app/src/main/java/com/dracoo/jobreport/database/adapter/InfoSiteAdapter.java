@@ -35,6 +35,12 @@ public class InfoSiteAdapter extends DatabaseAdapter {
             infoSite.setId_site(cursor.getInt(0));
             infoSite.setLocation_name(cursor.getString(1));
             infoSite.setCustomer_name(cursor.getString(2));
+            infoSite.setRemote_address(cursor.getString(3));
+            infoSite.setCity(cursor.getString(4));
+            infoSite.setKabupaten(cursor.getString(5));
+            infoSite.setProv(cursor.getString(6));
+            infoSite.setLat(cursor.getString(7));
+            infoSite.setLongitude(cursor.getString(8));
 
             infoSites.add(infoSite);
         }
@@ -47,9 +53,15 @@ public class InfoSiteAdapter extends DatabaseAdapter {
         Cursor cursor;
 
         String sql = "SELECT " +
-                "id_site, " + //0
-                "location_name, " + //1
-                "customer_name " + //2
+                            "id_site, " + //0
+                            "location_name, " + //1
+                            "customer_name, " + //2
+                            "remote_address, " + //3
+                            "city, " + //4
+                            "kabupaten, " + //5
+                            "prov, " + //6
+                            "lat, " + //7
+                            "longitude " +  //8
                 "from t_site " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
