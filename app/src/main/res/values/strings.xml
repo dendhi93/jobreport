@@ -208,6 +208,8 @@
 
     //action content
     <string name="desc_action">Deskripsi</string>
+    <string name="action_start">Dari tanggal</string>
+    <string name="action_end">Sampai tanggal</string>
 
 
 </resources>

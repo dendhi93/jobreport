@@ -81,8 +81,7 @@ public class DashboardFragment extends Fragment {
     private Dao<MasterTransHistory, Integer> transHistoryAdapter;
     private String[] arr_actionDateTime;
     private String[] arr_actionTrans;
-
-
+    private String[] arr_actionEndTime;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -264,25 +263,28 @@ public class DashboardFragment extends Fragment {
                         if (al_listAction.size() > 0){
                             arr_actionDateTime = new String[al_listAction.size()];
                             arr_actionTrans = new String[al_listAction.size()];
+                            arr_actionEndTime = new String[al_listAction.size()];
 
                             int i = 0;
                             String actionContent = "";
                             for (MasterAction action : al_listAction){
                                 arr_actionDateTime[i] = action.getAction_date_time();
                                 arr_actionTrans[i] = action.getAction_desc();
+                                arr_actionEndTime[i] = action.getAction_end_time();
 
                                 String[] split = arr_actionDateTime[i].split(",");
-                                if (DateTimeUtils.getDateDiff(DateTimeUtils.getCurrentDate().trim(), split[0]) > 1){
+                                String[] splitEndTime = arr_actionEndTime[i].split(",");
+                                if (DateTimeUtils.getDateDiff(split[0], splitEndTime[0]) > 1){
                                     if(i==0){
-                                        actionContent = arr_actionDateTime[i]+ "\t\t\t\t : " + arr_actionTrans[i];
+                                        actionContent = split[0] + "-"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
                                     }else{
-                                        actionContent = actionContent +"\n"+arr_actionDateTime[i]+ "\t\t\t\t : " + arr_actionTrans[i];
+                                        actionContent = actionContent +"\n"+split[0] + "-"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
                                     }
                                 }else{
                                     if (i==0){
-                                        actionContent = split[1]+ "\t\t\t\t : " + arr_actionTrans[i];
+                                        actionContent = split[1]+ "-" +splitEndTime[1] + " : " + arr_actionTrans[i];
                                     }else{
-                                        actionContent = actionContent +"\n"+split[1]+ "\t\t\t\t : " + arr_actionTrans[i];
+                                        actionContent = actionContent +"\n"+split[1]+ "-" +splitEndTime[1] + " : " + arr_actionTrans[i];
                                     }
                                 }
 

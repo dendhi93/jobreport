@@ -26,6 +26,8 @@ public class MasterAction implements Serializable {
     private String conn_type;
     @DatabaseField(columnName = "un_user")
     private String un_user;
+    @DatabaseField(columnName = "action_end_time")
+    private String action_end_time;
 
     public Integer getId_action() {
         return id_action;
@@ -97,5 +99,13 @@ public class MasterAction implements Serializable {
 
     public void setUn_user(String un_user) {
         this.un_user = un_user;
+    }
+
+    public String getAction_end_time() {
+        return action_end_time;
+    }
+
+    public void setAction_end_time(String action_end_time) {
+        this.action_end_time = action_end_time;
     }
 }

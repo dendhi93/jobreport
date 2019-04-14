@@ -25,7 +25,6 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/ln_rptAbs_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ln_rptAbs_1"
@@ -37,7 +36,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="@string/berangkat"
+                    android:hint="@string/action_start"
                     android:background="@drawable/border_bottom"
                     android:textColorHint="@color/colorBlack">
 
@@ -62,6 +61,52 @@
 
                 <ImageButton
                     android:id="@+id/imgBtn_actionTimer"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="@dimen/spacing_small_1"
+                    android:background="@drawable/ic_blue_button"
+                    android:src="@drawable/ic_white_time_24"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_alignParentRight="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ln_rptAbs_1"
+                android:layout_margin="@dimen/spacing_tiny_2"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/action_start"
+                    android:background="@drawable/border_bottom"
+                    android:textColorHint="@color/colorBlack">
+
+                    <EditText
+                        android:id="@+id/txt_action_endTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:clickable="false"
+                        android:drawableLeft="@drawable/ic_truck"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="2"
+                        android:layout_marginEnd="@dimen/spacing_tiny_3"
+                        android:textColor="@color/colorBlack"
+                        android:textColorLink="@color/colorWhite"
+                        android:background="@drawable/noborder"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/imgBtn_actionEndTimer"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginTop="@dimen/spacing_small_1"

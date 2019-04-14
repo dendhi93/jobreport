@@ -49,21 +49,26 @@ public class CustomListActionAdapter extends RecyclerView.Adapter<CustomListActi
 
         TextView lbl_item_desc = holder.lbl_item_desc;
         TextView lbl_item_dateTime = holder.lbl_item_dateTime;
+
         try{
             lbl_item_desc.setText(list.get(listPosition).getAction_desc().trim());
             String transDateTime = list.get(listPosition).getAction_date_time();
-            String dateNow = DateTimeUtils.getCurrentDate().trim();
+            String dateEndDate = list.get(listPosition).getAction_end_time();
+
             String[] split = transDateTime.split(",");
             String transDate = split[0];
-            if(DateTimeUtils.getDateDiff(dateNow, transDate) > 1){
-                lbl_item_dateTime.setText(transDateTime.trim());
-            }else{
-                lbl_item_dateTime.setText(split[1].trim());
-            }
-        }catch (Exception e){
-            Log.d("###","" +e.toString());
-        }
+            String[] splitEndTime = dateEndDate.split(",");
+            String endDate = split[0];
 
+            String finalActionTime;
+            if(DateTimeUtils.getDateDiff(endDate,transDate) > 1){
+                finalActionTime = transDate +"-"+endDate +" : " + split[1] + "-" + splitEndTime[1];
+                lbl_item_dateTime.setText(finalActionTime);
+            }else{
+                finalActionTime = transDate + ":" + split[1] + "-" +splitEndTime[1];
+                lbl_item_dateTime.setText(finalActionTime);
+            }
+        }catch (Exception e){ Log.d("###","" +e.toString()); }
     }
 
     @Override

@@ -50,11 +50,12 @@ public class ActionFragment extends Fragment {
     EditText txt_action_time;
     @BindView(R.id.txt_action_desc)
     EditText txt_action_desc;
+    @BindView(R.id.txt_action_endTime)
+    EditText txt_action_endTime;
     @BindView(R.id.lbl_action_empty)
     TextView lbl_action_empty;
     @BindView(R.id.rc_action_activity)
     RecyclerView rc_action_activity;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,7 +101,9 @@ public class ActionFragment extends Fragment {
     }
 
     private boolean validateEmpty(){
-        return !txt_action_time.getText().toString().trim().equals("") && !txt_action_desc.getText().toString().trim().equals("");
+        return !txt_action_time.getText().toString().trim().equals("")
+                || !txt_action_desc.getText().toString().trim().equals("")
+                || !txt_action_endTime.getText().toString().trim().equals("");
     }
 
     private void getTransAction(){
@@ -108,6 +111,7 @@ public class ActionFragment extends Fragment {
             MasterAction mAction = new MasterAction();
             mAction.setAction_desc(txt_action_desc.getText().toString().trim());
             mAction.setAction_date_time(txt_action_time.getText().toString().trim());
+            mAction.setAction_end_time(txt_action_endTime.getText().toString().trim());
             mAction.setInsert_date(DateTimeUtils.getCurrentTime().trim());
             mAction.setConn_type(preference.getConnType().trim());
             mAction.setProgress_type(preference.getProgress().trim());
@@ -174,6 +178,15 @@ public class ActionFragment extends Fragment {
         datePicker();
     }
 
+    @OnClick(R.id.imgBtn_actionEndTimer)
+    void endDate(){
+        if (txt_action_time.getText().toString().trim().equals("")){
+            messageUtils.snackBar_message("Mohon diisi tanggal Awal", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+        }else{
+            datePicker();
+        }
+    }
+
     private void datePicker(){
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
@@ -237,12 +250,14 @@ public class ActionFragment extends Fragment {
                     validDateTime = tempDate +", "+validTime;
                 }
 
-                txt_action_time.setText(validDateTime.trim());
-
+                if (txt_action_time.getText().toString().trim().equals("")){
+                    txt_action_time.setText(validDateTime.trim());
+                }else{
+                    txt_action_endTime.setText(validDateTime.trim());
+                }
             }
         }, mHour, mMinute, true);
         timePickerDialog.show();
-
     }
 
     private List<MasterAction> getListAction(){
@@ -273,6 +288,4 @@ public class ActionFragment extends Fragment {
          adapter = new CustomListActionAdapter(getActivity(), list);
          rc_action_activity.setAdapter(adapter);
      }
-
-
 }

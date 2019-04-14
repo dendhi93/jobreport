@@ -35,6 +35,7 @@ public class ActionAdapter extends DatabaseAdapter {
             action.setId_site(cursor.getInt(1));
             action.setAction_date_time(cursor.getString(2));
             action.setAction_desc(cursor.getString(3));
+            action.setAction_end_time(cursor.getString(4));
 
             actions.add(action);
         }
@@ -43,17 +44,17 @@ public class ActionAdapter extends DatabaseAdapter {
         return actions;
     }
 
-
     public Cursor load_actionCursor(int custId, String un){
         Cursor cursor;
 
         String sql = "SELECT id_action, " +
-                " id_site, " +
-                " action_date_time, " +
-                " action_desc " +
-                "from t_action " +
-                " where id_site = " + custId + " " +
-                " and un_user = '" +un+ "' ";
+                            " id_site, " +
+                            " action_date_time, " +
+                            " action_desc, " +
+                            " action_end_time " +
+                    "from t_action " +
+                    " where id_site = " + custId + " " +
+                    " and un_user = '" +un+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
