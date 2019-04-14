@@ -442,20 +442,21 @@
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
                         android:background="@drawable/border_bottom"
-                        android:hint="@string/pending">
+                        android:hint="@string/delay">
 
                         <EditText
-                            android:id="@+id/txt_prob_pending"
+                            android:id="@+id/txt_prob_delay"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:layout_weight="1"
                             android:backgroundTint="@android:color/transparent"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:textColor="@color/colorBlack"
-                            android:drawableLeft="@drawable/ic_text"
+                            android:drawableLeft="@drawable/ic_clock_wait_16"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="textMultiLine"
-                            android:maxLength="50"
+                            android:maxLength="70"
+                            android:background="@drawable/noborder"
                             android:maxLines="3" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -476,6 +477,41 @@
                         android:layout_weight="1"
                         android:textColorHint="@color/colorBlack"
                         android:background="@drawable/border_bottom"
+                        android:hint="@string/pending">
+
+                        <EditText
+                            android:id="@+id/txt_prob_pending"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@android:color/transparent"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_text"
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="textMultiLine"
+                            android:maxLength="70"
+                            android:background="@drawable/noborder"
+                            android:maxLines="3" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:background="@drawable/border_bottom"
                         android:hint="@string/reason_pending">
 
                         <EditText
@@ -490,6 +526,7 @@
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:inputType="textMultiLine"
                             android:maxLength="100"
+                            android:background="@drawable/noborder"
                             android:maxLines="4" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -561,6 +598,7 @@
                             android:drawableStart="@drawable/ic_user_16"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="text"
+                            android:background="@drawable/noborder"
                             android:maxLength="25"
                             android:maxLines="2" />
 

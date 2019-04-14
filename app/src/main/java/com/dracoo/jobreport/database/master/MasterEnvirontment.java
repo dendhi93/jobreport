@@ -15,11 +15,11 @@ public class MasterEnvirontment implements Serializable {
     @DatabaseField(columnName = "tegangan_pln")
     private Integer tegangan_pln;
     @DatabaseField(columnName = "grounding_pln")
-    private Integer grounding_pln;
+    private String grounding_pln;
     @DatabaseField(columnName = "tegangan_ups")
     private Integer tegangan_ups;
     @DatabaseField(columnName = "grounding_ups")
-    private Integer grounding_ups;
+    private String grounding_ups;
     @DatabaseField(columnName = "notes")
     private String notes;
     @DatabaseField(columnName = "suhu")
@@ -34,6 +34,7 @@ public class MasterEnvirontment implements Serializable {
     private String update_date;
     @DatabaseField(columnName = "un_user")
     private String un_user;
+
 
     public Integer getId_env() {
         return id_env;
@@ -59,11 +60,11 @@ public class MasterEnvirontment implements Serializable {
         this.tegangan_pln = tegangan_pln;
     }
 
-    public Integer getGrounding_pln() {
+    public String getGrounding_pln() {
         return grounding_pln;
     }
 
-    public void setGrounding_pln(Integer grounding_pln) {
+    public void setGrounding_pln(String grounding_pln) {
         this.grounding_pln = grounding_pln;
     }
 
@@ -75,11 +76,11 @@ public class MasterEnvirontment implements Serializable {
         this.tegangan_ups = tegangan_ups;
     }
 
-    public Integer getGrounding_ups() {
+    public String getGrounding_ups() {
         return grounding_ups;
     }
 
-    public void setGrounding_ups(Integer grounding_ups) {
+    public void setGrounding_ups(String grounding_ups) {
         this.grounding_ups = grounding_ups;
     }
 
@@ -114,7 +115,6 @@ public class MasterEnvirontment implements Serializable {
     public void setProgress_type(String progress_type) {
         this.progress_type = progress_type;
     }
-
 
     public String getInsert_date() {
         return insert_date;

@@ -14,6 +14,8 @@ public class MasterInfoSite implements Serializable {
     private String customer_name;
     @DatabaseField(columnName = "remote_address")
     private String remote_address;
+    @DatabaseField(columnName = "remote_name")
+    private String remote_name;
     @DatabaseField(columnName = "city")
     private String city;
     @DatabaseField(columnName = "kabupaten")
@@ -137,5 +139,13 @@ public class MasterInfoSite implements Serializable {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getRemote_name() {
+        return remote_name;
+    }
+
+    public void setRemote_name(String remote_name) {
+        this.remote_name = remote_name;
     }
 }

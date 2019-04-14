@@ -493,11 +493,47 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ln_userAct_13"
+                    android:id="@+id/ln_userAct_99"
                     android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ln_userAct_12"
+                    android:layout_margin="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/remote_name">
+
+                        <EditText
+                            android:id="@+id/txt_userAct_remoteName"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_black_home_16"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                            android:textColorLink="@color/colorWhite"
+                            android:inputType="text"
+                            android:maxLength="100"
+                            android:maxLines="4"
+                            android:background="@drawable/noborder"/>
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_userAct_13"
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ln_userAct_99"
                     android:layout_margin="3dp"
                     android:focusable="true"
                     android:focusableInTouchMode="true"

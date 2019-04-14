@@ -35,9 +35,9 @@ public class EnvAdapter extends DatabaseAdapter {
             mEnv.setId_env(cursor.getInt(0));
             mEnv.setId_site(cursor.getInt(1));
             mEnv.setTegangan_pln(cursor.getInt(2));
-            mEnv.setGrounding_pln(cursor.getInt(3));
+            mEnv.setGrounding_pln(cursor.getString(3));
             mEnv.setTegangan_ups(cursor.getInt(4));
-            mEnv.setGrounding_ups(cursor.getInt(5));
+            mEnv.setGrounding_ups(cursor.getString(5));
             mEnv.setNotes(cursor.getString(6));
             mEnv.setSuhu(cursor.getInt(7));
             mEnv.setNotes_ac(cursor.getString(8));

@@ -85,6 +85,9 @@ public class UserActivity extends AppCompatActivity
     EditText txt_userAct_lat;
     @BindView(R.id.txt_userAct_long)
     EditText txt_userAct_long;
+    @BindView(R.id.txt_userAct_remoteName)
+    EditText txt_userAct_remoteName;
+
 
     private RadioButton rb_progress;
     private MessageUtils messageUtils;
@@ -207,7 +210,8 @@ public class UserActivity extends AppCompatActivity
                     txt_userAct_remoteAddress.getText().toString().trim().equals("") ||
                     txt_userAct_city.getText().toString().trim().equals("") ||
                     txt_userAct_kabupaten.getText().toString().trim().equals("") ||
-                    txt_userAct_proviency.getText().toString().trim().equals("")){
+                    txt_userAct_proviency.getText().toString().trim().equals("") ||
+                    txt_userAct_remoteName.getText().toString().trim().equals("")){
                 messageUtils.snackBar_message(getString(R.string.emptyString), UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
             } else if (txt_userAct_picPhone.getText().length() < 10){
                 messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
@@ -239,6 +243,7 @@ public class UserActivity extends AppCompatActivity
             mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
             mInfoSite.setProgress_type(""+rb_progress.getText().toString());
             mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
+            mInfoSite.setRemote_name(txt_userAct_remoteName.getText().toString().trim());
             infoSiteAdapter.update(mInfoSite);
 
             ArrayList<MasterInfoSite> al_verifyInfoSite = new InfoSiteAdapter(UserActivity.this)
@@ -264,6 +269,7 @@ public class UserActivity extends AppCompatActivity
                 mInfoSite.setUn_user(preference.getUn().trim());
                 mInfoSite.setLocation_name(txt_userAct_locationName.getText().toString().trim());
                 mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
+                mInfoSite.setRemote_name(txt_userAct_remoteName.getText().toString().trim());
                 infoSiteAdapter.create(mInfoSite);
 
                 ArrayList<MasterInfoSite> al_maxSite = new InfoSiteAdapter(UserActivity.this)

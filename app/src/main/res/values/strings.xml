@@ -63,6 +63,7 @@
     <string name="location_name">Nama Lokasi</string>
     <string name="customer">Customer</string>
     <string name="remote_address">Remote Address</string>
+    <string name="remote_name">Remote Name</string>
     <string name="city">Kota</string>
     <string name="kabupaten">Kabupaten</string>
     <string name="proviency">Propinsi</string>
@@ -80,6 +81,7 @@
     <string name="upline">Upline</string>
     <string name="online">Online</string>
     <string name="pending">Pending</string>
+    <string name="delay">Delay</string>
     <string name="reason_pending">Reason Pending</string>
     <string name="closed">Closed</string>
     <string name="by">By</string>

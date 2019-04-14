@@ -221,7 +221,7 @@ public class DashboardFragment extends Fragment {
                                                         "Kota                     = " +alInfSite.get(0).getCity().trim() + "\n"+
                                                         "Kabupaten       = " +alInfSite.get(0).getKabupaten().trim()+ "\n"+
                                                         "Provinsi            = " +alInfSite.get(0).getProv().trim() + "\n" +
-                                                        "Remote Name =  Unknown\n" +
+                                                        "Remote Name = " +alInfSite.get(0).getRemote_name().trim() + "\n" +
                                                         "Latitude             = " +alInfSite.get(0).getLat().trim()+ "\n"+
                                                         "Longitude          = " + alInfSite.get(0).getLongitude().trim() + "\n"+
                                                         "PIC                    = " +alJobDesc.get(0).getName_pic() + "\n";
@@ -243,7 +243,7 @@ public class DashboardFragment extends Fragment {
                             String problemContent = "Berangkat          = " +alProblem.get(0).getBerangkat().trim() +"\n"+
                                                     "Tiba                     = " +alProblem.get(0).getTiba().trim()+ "\n"+
                                                     "Finish                  = " +alProblem.get(0).getFinish().trim()+ "\n"+
-                                                    "Delay                  = unknown\n"+
+                                                    "Delay                  = " +alProblem.get(0).getDelay_reason().trim() + "\n" +
                                                     "Pending               = " +alProblem.get(0).getPending().trim() +"\n"+
                                                     "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
                                                     "Upline                 = " +alProblem.get(0).getUpline().trim() +"\n";

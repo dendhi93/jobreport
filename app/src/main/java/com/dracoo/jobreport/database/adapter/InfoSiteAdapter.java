@@ -41,6 +41,7 @@ public class InfoSiteAdapter extends DatabaseAdapter {
             infoSite.setProv(cursor.getString(6));
             infoSite.setLat(cursor.getString(7));
             infoSite.setLongitude(cursor.getString(8));
+            infoSite.setRemote_name(cursor.getString(9));
 
             infoSites.add(infoSite);
         }
@@ -61,7 +62,8 @@ public class InfoSiteAdapter extends DatabaseAdapter {
                             "kabupaten, " + //5
                             "prov, " + //6
                             "lat, " + //7
-                            "longitude " +  //8
+                            "longitude, " +  //8
+                            "remote_name " +  //9
                 "from t_site " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";

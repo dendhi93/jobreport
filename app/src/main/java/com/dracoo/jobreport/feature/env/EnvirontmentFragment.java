@@ -89,8 +89,8 @@ public class EnvirontmentFragment extends Fragment {
             if (al_valEnv.size() > 0){
                 try{
                     MasterEnvirontment mEnv = envAdapter.queryForId(al_valEnv.get(0).getId_env());
-                    mEnv.setGrounding_pln(Integer.parseInt(txt_env_plnGrounding.getText().toString().trim()));
-                    mEnv.setGrounding_ups(Integer.parseInt(txt_env_upsGrounding.getText().toString().trim()));
+                    mEnv.setGrounding_pln(txt_env_plnGrounding.getText().toString().trim());
+                    mEnv.setGrounding_ups(txt_env_upsGrounding.getText().toString().trim());
                     mEnv.setUpdate_date(DateTimeUtils.getCurrentTime());
                     mEnv.setNotes(txt_env_upsNote.getText().toString().trim());
                     mEnv.setNotes_ac(txt_env_acNote.getText().toString().trim());
@@ -106,8 +106,8 @@ public class EnvirontmentFragment extends Fragment {
             }else{
                 try {
                     MasterEnvirontment mEnv = new MasterEnvirontment();
-                    mEnv.setGrounding_pln(Integer.parseInt(txt_env_plnGrounding.getText().toString().trim()));
-                    mEnv.setGrounding_ups(Integer.parseInt(txt_env_upsGrounding.getText().toString().trim()));
+                    mEnv.setGrounding_pln(txt_env_plnGrounding.getText().toString().trim());
+                    mEnv.setGrounding_ups(txt_env_upsGrounding.getText().toString().trim());
                     mEnv.setId_site(preference.getCustID());
                     mEnv.setInsert_date(DateTimeUtils.getCurrentTime());
                     mEnv.setNotes(txt_env_upsNote.getText().toString().trim());

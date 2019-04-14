@@ -52,6 +52,8 @@ public class ProblemFragment extends Fragment {
     EditText txt_problem_upline;
     @BindView(R.id.txt_problem_online)
     EditText txt_problem_online;
+    @BindView(R.id.txt_prob_delay)
+    EditText txt_prob_delay;
 
     @BindView(R.id.txt_prob_modemDisplay)
     EditText txt_prob_modemDisplay;
@@ -131,6 +133,7 @@ public class ProblemFragment extends Fragment {
         txt_problem_symptom.setText("");
         txt_problem_tiba.setText("");
         txt_problem_upline.setText("");
+        txt_prob_delay.setText("");
         rg_prob_closedBy.clearCheck();
     }
     @OnClick(R.id.imgBtn_timer1)
@@ -191,6 +194,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setProgress_type(preference.getProgress().trim());
                     mProb.setUpdate_date(DateTimeUtils.getCurrentTime());
                     mProb.setUn_user(preference.getUn().trim());
+                    mProb.setDelay_reason(txt_prob_delay.getText().toString().trim());
 
                     problemAdapter.update(mProb);
                     transHistProb(ConfigApps.TRANS_HIST_UPDATE);
@@ -214,6 +218,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setInsert_date(DateTimeUtils.getCurrentTime());
                     mProb.setUn_user(preference.getUn().trim());
                     mProb.setId_site(preference.getCustID());
+                    mProb.setDelay_reason(txt_prob_delay.getText().toString().trim());
 
                     problemAdapter.create(mProb);
                     transHistProb(ConfigApps.TRANS_HIST_INSERT);
@@ -366,7 +371,8 @@ public class ProblemFragment extends Fragment {
             txt_problem_start.getText().toString().trim().equals("") ||
             txt_problem_symptom.getText().toString().trim().equals("") ||
             txt_problem_tiba.getText().toString().trim().equals("") ||
-            txt_problem_upline.getText().toString().trim().equals("")){
+            txt_problem_upline.getText().toString().trim().equals("") ||
+            txt_prob_delay.getText().toString().trim().equals("")){
             return false;
         }
         return true;

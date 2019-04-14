@@ -44,6 +44,9 @@ public class MasterProblem implements Serializable {
     private String update_date;
     @DatabaseField(columnName = "un_user")
     private String un_user;
+    @DatabaseField(columnName = "delay_reason")
+    private String delay_reason;
+
 
     public Integer getId_problem() {
         return id_problem;
@@ -187,5 +190,13 @@ public class MasterProblem implements Serializable {
 
     public void setPending(String pending) {
         this.pending = pending;
+    }
+
+    public String getDelay_reason() {
+        return delay_reason;
+    }
+
+    public void setDelay_reason(String delay_reason) {
+        this.delay_reason = delay_reason;
     }
 }
