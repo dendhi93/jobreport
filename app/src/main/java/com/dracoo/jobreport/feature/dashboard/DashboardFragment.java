@@ -194,10 +194,10 @@ public class DashboardFragment extends Fragment {
                         mFileValidationPdf.delete();
                     }
 
-                    Document document = new Document(PageSize.A4, 20, 20, 20, 40);
+                    Document document = new Document(PageSize.A4, 30, 30, 30, 30);
                     try{
-                        float mcontentFontSize = 15.0f;
-                        float mHeadingFontSize = 20.0f;
+                        float mcontentFontSize = 11.0f;
+                        float mHeadingFontSize = 13.0f;
                         BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
                         Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
                         Font titleFont = new Font(urName, mHeadingFontSize, Font.UNDERLINE, BaseColor.BLACK);
