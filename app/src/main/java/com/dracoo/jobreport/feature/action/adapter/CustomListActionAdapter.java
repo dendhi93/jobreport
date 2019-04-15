@@ -65,7 +65,7 @@ public class CustomListActionAdapter extends RecyclerView.Adapter<CustomListActi
                 finalActionTime = transDate +"-"+endDate +" : " + split[1] + "-" + splitEndTime[1];
                 lbl_item_dateTime.setText(finalActionTime);
             }else{
-                finalActionTime = transDate + ":" + split[1] + "-" +splitEndTime[1];
+                finalActionTime = transDate + " : " + split[1] + "-" +splitEndTime[1];
                 lbl_item_dateTime.setText(finalActionTime);
             }
         }catch (Exception e){ Log.d("###","" +e.toString()); }

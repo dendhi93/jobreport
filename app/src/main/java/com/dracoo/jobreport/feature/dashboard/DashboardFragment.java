@@ -195,8 +195,8 @@ public class DashboardFragment extends Fragment {
 
                     Document document = new Document(PageSize.A4, 30, 30, 30, 30);
                     try{
-                        float mcontentFontSize = 11.0f;
-                        float mHeadingFontSize = 13.0f;
+                        float mcontentFontSize = 8.0f;
+                        float mHeadingFontSize = 10.0f;
                         BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
                         Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
                         Font titleFont = new Font(urName, mHeadingFontSize, Font.UNDERLINE, BaseColor.BLACK);
@@ -206,7 +206,7 @@ public class DashboardFragment extends Fragment {
 
                         Paragraph pTitle1 = new Paragraph("*Maintenance Report*",titleFont);
                         pTitle1.setAlignment(Element.ALIGN_LEFT);
-                        pTitle1.setSpacingAfter(20f);
+                        pTitle1.setSpacingAfter(8f);
                         document.add(pTitle1);
 
                         ArrayList<MasterJobDesc> alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
@@ -227,13 +227,13 @@ public class DashboardFragment extends Fragment {
 
                             Paragraph pContent1 = new Paragraph(maintenanceContent,contentFont);
                             pContent1.setAlignment(Element.ALIGN_LEFT);
-                            pContent1.setSpacingAfter(20f);
+                            pContent1.setSpacingAfter(8f);
                             document.add(pContent1);
                         }
 
                         Paragraph pTitle2 = new Paragraph("*"+getActivity().getString(R.string.problemDesc_trans)+"*",titleFont);
                         pTitle2.setAlignment(Element.ALIGN_LEFT);
-                        pTitle2.setSpacingAfter(20f);
+                        pTitle2.setSpacingAfter(8f);
                         document.add(pTitle2);
 
                         //add transacttion jobdesc
@@ -249,14 +249,14 @@ public class DashboardFragment extends Fragment {
 
                             Paragraph pContent2 = new Paragraph(problemContent,contentFont);
                             pContent2.setAlignment(Element.ALIGN_LEFT);
-                            pContent2.setSpacingAfter(20f);
+                            pContent2.setSpacingAfter(8f);
                             document.add(pContent2);
 
                         }
 
                         Paragraph pAction = new Paragraph("*"+getActivity().getString(R.string.action_trans)+"*",titleFont);
                         pAction.setAlignment(Element.ALIGN_LEFT);
-                        pAction.setSpacingAfter(20f);
+                        pAction.setSpacingAfter(8f);
                         document.add(pAction);
 
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
@@ -274,17 +274,21 @@ public class DashboardFragment extends Fragment {
 
                                 String[] split = arr_actionDateTime[i].split(",");
                                 String[] splitEndTime = arr_actionEndTime[i].split(",");
-                                if (DateTimeUtils.getDateDiff(split[0], splitEndTime[0]) > 1){
+                                if (DateTimeUtils.getDateDiff(splitEndTime[0],split[0] ) > 1){
                                     if(i==0){
-                                        actionContent = split[0] + "-"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
-                                    }else{
-                                        actionContent = actionContent +"\n"+split[0] + "-"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
+                                        actionContent = split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
+                                    }else if (i == al_listAction.size()){
+                                        actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i] + "\n";
+                                    } else{
+                                        actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
                                     }
                                 }else{
                                     if (i==0){
-                                        actionContent = split[1]+ "-" +splitEndTime[1] + " : " + arr_actionTrans[i];
-                                    }else{
-                                        actionContent = actionContent +"\n"+split[1]+ "-" +splitEndTime[1] + " : " + arr_actionTrans[i];
+                                        actionContent = split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i];
+                                    }else if (i == al_listAction.size()){
+                                        actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i] + "\n";
+                                    } else{
+                                        actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i];
                                     }
                                 }
 
@@ -293,26 +297,36 @@ public class DashboardFragment extends Fragment {
 
                             Paragraph actionParagraph = new Paragraph(actionContent,contentFont);
                             actionParagraph.setAlignment(Element.ALIGN_LEFT);
-                            actionParagraph.setSpacingAfter(20f);
                             document.add(actionParagraph);
 
                             Paragraph envParagraph = new Paragraph("*"+getActivity().getString(R.string.electEnv_trans)+"*",titleFont);
                             envParagraph.setAlignment(Element.ALIGN_LEFT);
-                            envParagraph.setSpacingAfter(20f);
+                            envParagraph.setSpacingAfter(8f);
                             document.add(actionParagraph);
 
                             ArrayList<MasterEnvirontment> allEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
                             if (allEnv.size() > 0){
-                                String envContent = "_PLN_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_pln()+"\n"+
+                                String environtmentContent = "_PLN_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_pln()+"\n"+
                                                     "Grounding (Vac) = " +allEnv.get(0).getGrounding_pln()+"\n"+
                                                     "_UPS_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_ups()+ "\n"+
                                                     "Grounding (Vac) = " +allEnv.get(0).getGrounding_ups()+"\n"+
                                                     allEnv.get(0).getNotes().trim() +"\n"+
-                                                    "_AC_";
+                                                    "_AC_\n" +allEnv.get(0).getNotes_ac().trim() +"\n"+
+                                                    "Suhu " +allEnv.get(0).getSuhu();
+
+                                Paragraph envContentParagraph = new Paragraph(environtmentContent,titleFont);
+                                envContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                envContentParagraph.setSpacingAfter(8f);
+                                document.add(envContentParagraph);
                             }
 
-                            document.close();
+                            Paragraph ioParagraph = new Paragraph("*I/0 Equipment*",titleFont);
+                            ioParagraph.setAlignment(Element.ALIGN_LEFT);
+                            ioParagraph.setSpacingAfter(8f);
+                            document.add(ioParagraph);
 
+                            document.close();
+                            messageUtils.toastMessage("report sukses di buat", ConfigApps.T_SUCCESS);
                             //klo doc ud ke convert semua
                             //            if (isSubmitReport()){
                             //                messageUtils.toastMessage("test", ConfigApps.T_INFO);
