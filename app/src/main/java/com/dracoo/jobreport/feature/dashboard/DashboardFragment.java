@@ -326,7 +326,7 @@ public class DashboardFragment extends Fragment {
                                     "_AC_\n" +allEnv.get(0).getNotes_ac().trim() +"\n"+
                                     "Suhu " +allEnv.get(0).getSuhu();
 
-                            Paragraph envContentParagraph = new Paragraph(environtmentContent,titleFont);
+                            Paragraph envContentParagraph = new Paragraph(environtmentContent,contentFont);
                             envContentParagraph.setAlignment(Element.ALIGN_LEFT);
                             envContentParagraph.setSpacingAfter(8f);
                             document.add(envContentParagraph);
@@ -340,16 +340,16 @@ public class DashboardFragment extends Fragment {
                         if(preference.getConnType().equals("VSAT")){
                             ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
                             if (alVsat.size() > 0){
-                                String vsatSetup = "_OLD_\nS/N Modem = " +alVsat.get(0).getSn_modem().trim()+"\n";
-//                                                    "S/N Adaptor = " +alVsat.get(0).getSn_adaptor().trim()+"\n"+
-//                                                    "S/N LNB = " +alVsat.get(0).getSn_lnb().trim()+"\n"+
-//                                                    "S/N RFU = " +alVsat.get(0).getSn_rfu().trim()+"\n"+
-//                                                    "S/N DIPLEXER ODU = " +alVsat.get(0).getSn_dip_odu().trim() +"\n"+
-//                                                    "S/N DIPLEXER IDU = " +alVsat.get(0).getSn_dip_idu().trim() +"\n"+
-//                                                    "Diameter Antena = " + alVsat.get(0).getAntena_size() + "\n"+
-//                                                    "Type Antena = " +alVsat.get(0).getAntena_type().trim() + "\n" +
-//                                                    "Pedestal Type = "+alVsat.get(0).getPedestal_type().trim()+ "\n"+
-//                                                    "Akses Antena = " +alVsat.get(0).getAccess_type().trim();
+                                String vsatSetup = "_OLD_\nS/N Modem = " +alVsat.get(0).getSn_modem().trim()+"\n"+
+                                                    "S/N Adaptor = " +alVsat.get(0).getSn_adaptor().trim()+"\n"+
+                                                    "S/N LNB = " +alVsat.get(0).getSn_lnb().trim()+"\n"+
+                                                    "S/N RFU = " +alVsat.get(0).getSn_rfu().trim()+"\n"+
+                                                    "S/N DIPLEXER ODU = " +alVsat.get(0).getSn_dip_odu().trim() +"\n"+
+                                                    "S/N DIPLEXER IDU = " +alVsat.get(0).getSn_dip_idu().trim() +"\n"+
+                                                    "Diameter Antena = " + alVsat.get(0).getAntena_size() + "\n"+
+                                                    "Type Antena = " +alVsat.get(0).getAntena_type().trim() + "\n" +
+                                                    "Pedestal Type = "+alVsat.get(0).getPedestal_type().trim()+ "\n"+
+                                                    "Akses Antena = " +alVsat.get(0).getAccess_type().trim();
 
                                 Paragraph ioContentParagraph = new Paragraph(vsatSetup,contentFont);
                                 ioContentParagraph.setAlignment(Element.ALIGN_LEFT);
