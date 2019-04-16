@@ -26,12 +26,14 @@ import com.dracoo.jobreport.database.adapter.MachineAdapter;
 import com.dracoo.jobreport.database.adapter.ProblemAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
+import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterAction;
 import com.dracoo.jobreport.database.master.MasterEnvirontment;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.database.master.MasterVsatSetup;
 import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
 import com.dracoo.jobreport.util.ConfigApps;
@@ -324,6 +326,15 @@ public class DashboardFragment extends Fragment {
                             ioParagraph.setAlignment(Element.ALIGN_LEFT);
                             ioParagraph.setSpacingAfter(8f);
                             document.add(ioParagraph);
+
+                            if(preference.getConnType().equals("VSAT")){
+                                ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
+                                if (alVsat.size() > 0){
+
+                                }
+                            }else if (preference.getConnType().equals("M2M")){
+
+                            }
 
                             document.close();
                             messageUtils.toastMessage("report sukses di buat", ConfigApps.T_SUCCESS);
