@@ -140,7 +140,6 @@ public class UserActivity extends AppCompatActivity
 
         txt_userAct_lat.setText("0.0");
         txt_userAct_long.setText("0.0");
-
     }
 
     @Override

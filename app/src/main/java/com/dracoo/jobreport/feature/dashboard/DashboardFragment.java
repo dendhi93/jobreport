@@ -281,17 +281,21 @@ public class DashboardFragment extends Fragment {
                                 if (DateTimeUtils.getDateDiff(splitEndTime[0],split[0] ) > 1){
                                     if(i==0){
                                         actionContent = split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
-                                    }else if (i == al_listAction.size()){
-                                        actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i] + "\n";
-                                    } else{
+                                    }
+//                                    else if (i == al_listAction.size()){
+//                                        actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i] + "\n";
+//                                    }
+                                    else{
                                         actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
                                     }
                                 }else{
                                     if (i==0){
                                         actionContent = split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i];
-                                    }else if (i == al_listAction.size()){
-                                        actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i] + "\n";
-                                    } else{
+                                    }
+//                                    else if (i == al_listAction.size()){
+//                                        actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i] + "\n";
+//                                    }
+                                    else{
                                         actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i];
                                     }
                                 }
@@ -336,19 +340,21 @@ public class DashboardFragment extends Fragment {
                         if(preference.getConnType().equals("VSAT")){
                             ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
                             if (alVsat.size() > 0){
-                                String vsatSetup = "_OLD_\nS/N Modem = " +alVsat.get(0).getSn_modem().trim()+"\n"+
-                                                    "S/N Adaptor = " +alVsat.get(0).getSn_adaptor().trim()+"\n"+
-                                                    "S/N LNB = " +alVsat.get(0).getSn_lnb().trim()+"\n"+
-                                                    "S/N RFU = " +alVsat.get(0).getSn_rfu().trim()+"\n"+
-                                                    "S/N DIPLEXER ODU = " +alVsat.get(0).getSn_dip_odu().trim() +"\n"+
-                                                    "S/N DIPLEXER IDU = " +alVsat.get(0).getSn_dip_idu().trim() +"\n"+
-                                                    "Diameter Antena = " + alVsat.get(0).getAntena_size() + "\n"+
-                                                    "Type Antena = " +alVsat.get(0).getAntena_type().trim() + "\n" +
-                                                    "Pedestal Type = "+alVsat.get(0).getPedestal_type().trim()+ "\n"+
-                                                    "Akses Antena = " +alVsat.get(0).getAccess_type().trim();
+                                String vsatSetup = "_OLD_\nS/N Modem = " +alVsat.get(0).getSn_modem().trim()+"\n";
+//                                                    "S/N Adaptor = " +alVsat.get(0).getSn_adaptor().trim()+"\n"+
+//                                                    "S/N LNB = " +alVsat.get(0).getSn_lnb().trim()+"\n"+
+//                                                    "S/N RFU = " +alVsat.get(0).getSn_rfu().trim()+"\n"+
+//                                                    "S/N DIPLEXER ODU = " +alVsat.get(0).getSn_dip_odu().trim() +"\n"+
+//                                                    "S/N DIPLEXER IDU = " +alVsat.get(0).getSn_dip_idu().trim() +"\n"+
+//                                                    "Diameter Antena = " + alVsat.get(0).getAntena_size() + "\n"+
+//                                                    "Type Antena = " +alVsat.get(0).getAntena_type().trim() + "\n" +
+//                                                    "Pedestal Type = "+alVsat.get(0).getPedestal_type().trim()+ "\n"+
+//                                                    "Akses Antena = " +alVsat.get(0).getAccess_type().trim();
 
-                                //TODO TAMBAH ANTENA TYPE DI DBSQLITE
-
+                                Paragraph ioContentParagraph = new Paragraph(vsatSetup,contentFont);
+                                ioContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                ioContentParagraph.setSpacingAfter(8f);
+                                document.add(ioContentParagraph);
                             }
                         }else if (preference.getConnType().equals("M2M")){
                             ArrayList<MasterM2mSetup> alM2m = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());

@@ -170,6 +170,7 @@ public class ActionFragment extends Fragment {
 
     private void setEmptyText(){
         txt_action_time.setText("");
+        txt_action_endTime.setText("");
         txt_action_desc.setText("");
     }
 
