@@ -21,6 +21,7 @@ import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
 import com.dracoo.jobreport.database.adapter.JobDescAdapter;
 import com.dracoo.jobreport.database.adapter.M2mDataAdapter;
 import com.dracoo.jobreport.database.adapter.M2mReplaceAdapter;
+import com.dracoo.jobreport.database.adapter.M2mSetupAdapter;
 import com.dracoo.jobreport.database.adapter.M2mXpollAdapter;
 import com.dracoo.jobreport.database.adapter.MachineAdapter;
 import com.dracoo.jobreport.database.adapter.ProblemAdapter;
@@ -31,6 +32,7 @@ import com.dracoo.jobreport.database.master.MasterAction;
 import com.dracoo.jobreport.database.master.MasterEnvirontment;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
+import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
@@ -297,57 +299,76 @@ public class DashboardFragment extends Fragment {
                                 i++;
                             }
 
-                            Paragraph actionParagraph = new Paragraph(actionContent,contentFont);
-                            actionParagraph.setAlignment(Element.ALIGN_LEFT);
-                            document.add(actionParagraph);
-
-                            Paragraph envParagraph = new Paragraph("*"+getActivity().getString(R.string.electEnv_trans)+"*",titleFont);
-                            envParagraph.setAlignment(Element.ALIGN_LEFT);
-                            envParagraph.setSpacingAfter(8f);
-                            document.add(actionParagraph);
-
-                            ArrayList<MasterEnvirontment> allEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
-                            if (allEnv.size() > 0){
-                                String environtmentContent = "_PLN_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_pln()+"\n"+
-                                                    "Grounding (Vac) = " +allEnv.get(0).getGrounding_pln()+"\n"+
-                                                    "_UPS_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_ups()+ "\n"+
-                                                    "Grounding (Vac) = " +allEnv.get(0).getGrounding_ups()+"\n"+
-                                                    allEnv.get(0).getNotes().trim() +"\n"+
-                                                    "_AC_\n" +allEnv.get(0).getNotes_ac().trim() +"\n"+
-                                                    "Suhu " +allEnv.get(0).getSuhu();
-
-                                Paragraph envContentParagraph = new Paragraph(environtmentContent,titleFont);
-                                envContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                envContentParagraph.setSpacingAfter(8f);
-                                document.add(envContentParagraph);
+                            if (i == al_listAction.size()){
+                                Paragraph actionParagraph = new Paragraph(actionContent,contentFont);
+                                actionParagraph.setAlignment(Element.ALIGN_LEFT);
+                                actionParagraph.setSpacingAfter(8f);
+                                document.add(actionParagraph);
                             }
-
-                            Paragraph ioParagraph = new Paragraph("*I/0 Equipment*",titleFont);
-                            ioParagraph.setAlignment(Element.ALIGN_LEFT);
-                            ioParagraph.setSpacingAfter(8f);
-                            document.add(ioParagraph);
-
-                            if(preference.getConnType().equals("VSAT")){
-                                ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
-                                if (alVsat.size() > 0){
-
-                                }
-                            }else if (preference.getConnType().equals("M2M")){
-
-                            }
-
-                            document.close();
-                            messageUtils.toastMessage("report sukses di buat", ConfigApps.T_SUCCESS);
-                            //klo doc ud ke convert semua
-                            //            if (isSubmitReport()){
-                            //                messageUtils.toastMessage("test", ConfigApps.T_INFO);
-                            //                preference.clearDataTrans();
-                            //                loadDash();
-                            //                loadRcTrans();
-                            //            }else{
-                            //                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
-                            //            }
                         }
+
+                        Paragraph envParagraph = new Paragraph("*"+getActivity().getString(R.string.electEnv_trans)+"*",titleFont);
+                        envParagraph.setAlignment(Element.ALIGN_LEFT);
+                        envParagraph.setSpacingAfter(8f);
+                        document.add(envParagraph);
+
+                        ArrayList<MasterEnvirontment> allEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
+                        if (allEnv.size() > 0){
+                            String environtmentContent = "_PLN_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_pln()+"\n"+
+                                    "Grounding (Vac) = " +allEnv.get(0).getGrounding_pln()+"\n"+
+                                    "_UPS_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_ups()+ "\n"+
+                                    "Grounding (Vac) = " +allEnv.get(0).getGrounding_ups()+"\n"+
+                                    allEnv.get(0).getNotes().trim() +"\n"+
+                                    "_AC_\n" +allEnv.get(0).getNotes_ac().trim() +"\n"+
+                                    "Suhu " +allEnv.get(0).getSuhu();
+
+                            Paragraph envContentParagraph = new Paragraph(environtmentContent,titleFont);
+                            envContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                            envContentParagraph.setSpacingAfter(8f);
+                            document.add(envContentParagraph);
+                        }
+
+                        Paragraph ioParagraph = new Paragraph("*I/0 Equipment*",titleFont);
+                        ioParagraph.setAlignment(Element.ALIGN_LEFT);
+                        ioParagraph.setSpacingAfter(8f);
+                        document.add(ioParagraph);
+
+                        if(preference.getConnType().equals("VSAT")){
+                            ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
+                            if (alVsat.size() > 0){
+                                String vsatSetup = "_OLD_\nS/N Modem = " +alVsat.get(0).getSn_modem().trim()+"\n"+
+                                                    "S/N Adaptor = " +alVsat.get(0).getSn_adaptor().trim()+"\n"+
+                                                    "S/N LNB = " +alVsat.get(0).getSn_lnb().trim()+"\n"+
+                                                    "S/N RFU = " +alVsat.get(0).getSn_rfu().trim()+"\n"+
+                                                    "S/N DIPLEXER ODU = " +alVsat.get(0).getSn_dip_odu().trim() +"\n"+
+                                                    "S/N DIPLEXER IDU = " +alVsat.get(0).getSn_dip_idu().trim() +"\n"+
+                                                    "Diameter Antena = " + alVsat.get(0).getAntena_size() + "\n"+
+                                                    "Type Antena = " +alVsat.get(0).getAntena_type().trim() + "\n" +
+                                                    "Pedestal Type = "+alVsat.get(0).getPedestal_type().trim()+ "\n"+
+                                                    "Akses Antena = " +alVsat.get(0).getAccess_type().trim();
+
+                                //TODO TAMBAH ANTENA TYPE DI DBSQLITE
+
+                            }
+                        }else if (preference.getConnType().equals("M2M")){
+                            ArrayList<MasterM2mSetup> alM2m = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
+                            if(alM2m.size() > 0){
+
+                            }
+                        }
+
+                        document.close();
+                        messageUtils.toastMessage("report sukses di buat", ConfigApps.T_SUCCESS);
+
+                        //klo doc ud ke convert semua
+                        //            if (isSubmitReport()){
+                        //                messageUtils.toastMessage("test", ConfigApps.T_INFO);
+                        //                preference.clearDataTrans();
+                        //                loadDash();
+                        //                loadRcTrans();
+                        //            }else{
+                        //                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+                        //            }
 
                     }catch (Exception e){
                         messageUtils.toastMessage("err convert Pdf "+e.toString(), ConfigApps.T_ERROR);

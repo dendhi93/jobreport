@@ -44,6 +44,7 @@ public class VsatSetupAdapter extends DatabaseAdapter {
             setup.setAntena_brand(cursor.getString(10));
             setup.setPedestal_type(cursor.getString(11));
             setup.setAccess_type(cursor.getString(12));
+            setup.setAntena_type(cursor.getString(13));
 
             setups.add(setup);
         }
@@ -67,7 +68,8 @@ public class VsatSetupAdapter extends DatabaseAdapter {
                             " antena_size, " + //9
                             " antena_brand, " + //10
                             " pedestal_type, " + //11
-                            " access_type " + // 12
+                            " access_type, " + // 12
+                            " antena_type " +
                 "from vsat_setup " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";

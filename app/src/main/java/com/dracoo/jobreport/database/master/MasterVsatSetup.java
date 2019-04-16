@@ -28,6 +28,8 @@ public class MasterVsatSetup implements Serializable {
     private String sn_dip_idu;
     @DatabaseField(columnName = "antena_size")
     private String antena_size;
+    @DatabaseField(columnName = "antena_type")
+    private String antena_type;
     @DatabaseField(columnName = "antena_brand")
     private String antena_brand;
     @DatabaseField(columnName = "pedestal_type")
@@ -187,5 +189,13 @@ public class MasterVsatSetup implements Serializable {
 
     public void setSn_adaptor(String sn_adaptor) {
         this.sn_adaptor = sn_adaptor;
+    }
+
+    public String getAntena_type() {
+        return antena_type;
+    }
+
+    public void setAntena_type(String antena_type) {
+        this.antena_type = antena_type;
     }
 }
