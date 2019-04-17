@@ -255,6 +255,11 @@ public class UserActivity extends AppCompatActivity
                 messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
             }
         }catch (Exception e){
+            String custName = txt_userAct_customer.getText().toString().trim();
+            if (custName.contains(" ")){
+                String[] split = custName.split(" ");
+                custName = split[0]+""+split[1];
+            }
             try {
                 MasterInfoSite mInfoSite = new MasterInfoSite();
                 mInfoSite.setCustomer_name(txt_userAct_customer.getText().toString().trim());
@@ -275,7 +280,7 @@ public class UserActivity extends AppCompatActivity
                         .loadMaxsite(preference.getUn().trim());
 
                 if (al_maxSite.size() > 0){
-                    preference.saveCustId(al_maxSite.get(0).getId_site());
+                    preference.saveCustId(al_maxSite.get(0).getId_site(), custName);
                     preference.saveProgress(""+rb_progress.getText().toString().trim());
                     transHistoryUser(al_maxSite.get(0).getId_site(), getString(R.string.infoSite_trans));
                     jobDescTrans(al_maxSite.get(0).getId_site());

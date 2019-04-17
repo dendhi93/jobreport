@@ -11,6 +11,7 @@ public class Preference {
     public static final String KEY_PHONE = "phone";
     public static final String KEY_PROGRESS_TYPE = "progress_type";
     public static final String KEY_CUST_ID = "cust_id";
+    public static final String KEY_CUST_NAME = "cust_name";
     public static final String KEY_CONNECTION_TYPE = "Connection_type";
 
 
@@ -32,8 +33,9 @@ public class Preference {
         editor.apply();
     }
 
-    public void saveCustId(int custId){
+    public void saveCustId(int custId, String custName){
         editor.putInt(KEY_CUST_ID, custId);
+        editor.putString(KEY_CUST_NAME, custName);
         editor.apply();
     }
 
@@ -59,6 +61,7 @@ public class Preference {
     public Integer getCustID(){
         return sharedPreferences.getInt(KEY_CUST_ID, 0);
     }
+    public String getCustName(){return sharedPreferences.getString(KEY_CUST_NAME, "");}
     public String getProgress(){return sharedPreferences.getString(KEY_PROGRESS_TYPE, "");}
     public String getConnType(){return sharedPreferences.getString(KEY_CONNECTION_TYPE, "");}
 
@@ -67,6 +70,7 @@ public class Preference {
         editor.remove(KEY_CUST_ID);
         editor.remove(KEY_PROGRESS_TYPE);
         editor.remove(KEY_CONNECTION_TYPE);
+        editor.remove(KEY_CUST_NAME);
 
         editor.commit();
     }

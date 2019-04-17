@@ -35,6 +35,7 @@ import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.database.master.MasterVsatReplace;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
 import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
@@ -186,13 +187,13 @@ public class DashboardFragment extends Fragment {
             @Override
             public void run() {
                 if (alInfSite.size() > 0){
-                    File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+alInfSite.get(0).getCustomer_name());
+                    File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName());
                     if (!mFilePdf.exists()) {
                         if (!mFilePdf.mkdirs()) {
                             Log.d("####","Gagal create directory");
                         }
                     }
-                    File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+alInfSite.get(0).getCustomer_name() + "/"+alInfSite.get(0).getCustomer_name()+".pdf");
+                    File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
                     if (mFileValidationPdf.exists()){
                         mFileValidationPdf.delete();
                     }
@@ -205,7 +206,7 @@ public class DashboardFragment extends Fragment {
                         Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
                         Font titleFont = new Font(urName, mHeadingFontSize, Font.UNDERLINE, BaseColor.BLACK);
 
-                        PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+alInfSite.get(0).getCustomer_name() + "/"+alInfSite.get(0).getCustomer_name()+".pdf"));
+                        PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                         document.open();
 
                         Paragraph pTitle1 = new Paragraph("*Maintenance Report*",titleFont);
@@ -240,7 +241,6 @@ public class DashboardFragment extends Fragment {
                         pTitle2.setSpacingAfter(8f);
                         document.add(pTitle2);
 
-                        //add transacttion jobdesc
                         ArrayList<MasterProblem> alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
                         if (alProblem.size() > 0){
                             String problemContent = "Berangkat          = " +alProblem.get(0).getBerangkat().trim() +"\n"+
@@ -281,21 +281,13 @@ public class DashboardFragment extends Fragment {
                                 if (DateTimeUtils.getDateDiff(splitEndTime[0],split[0] ) > 1){
                                     if(i==0){
                                         actionContent = split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
-                                    }
-//                                    else if (i == al_listAction.size()){
-//                                        actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i] + "\n";
-//                                    }
-                                    else{
+                                    } else{
                                         actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
                                     }
                                 }else{
                                     if (i==0){
                                         actionContent = split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i];
-                                    }
-//                                    else if (i == al_listAction.size()){
-//                                        actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i] + "\n";
-//                                    }
-                                    else{
+                                    } else{
                                         actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i];
                                     }
                                 }
@@ -356,6 +348,37 @@ public class DashboardFragment extends Fragment {
                                 ioContentParagraph.setSpacingAfter(8f);
                                 document.add(ioContentParagraph);
                             }
+
+                            ArrayList<MasterVsatReplace> alReplace = new VsatReplaceAdapter(getActivity()).val_vsatReplace(preference.getCustID(), preference.getUn());
+                            if (alReplace.size() > 0){
+                                String snModem = alReplace.get(0).getSn_modem().trim();
+                                String snAdaptor = alReplace.get(0).getSn_adaptor().trim();
+                                String lnb = alReplace.get(0).getSn_lnb().trim();
+                                String rfu = alReplace.get(0).getSn_rfu().trim();
+                                String dipOdu = alReplace.get(0).getSn_dip_odu().trim();
+                                String dipIdu = alReplace.get(0).getSn_dip_idu().trim();
+
+                                if (snModem.equals("-")){snModem = "";}
+                                if (snAdaptor.equals("-")){snAdaptor = "";}
+                                if (lnb.equals("-")){lnb = "";}
+                                if (rfu.equals("-")){rfu = "";}
+                                if (dipOdu.equals("-")){dipOdu = "";}
+                                if (dipIdu.equals("-")){dipIdu = "";}
+
+                                String vsatReplace = "_NEW_\nS/N Modem = " +snModem+"\n"+
+                                        "S/N Adaptor = " +snAdaptor+"\n"+
+                                        "S/N LNB = " +lnb+"\n"+
+                                        "S/N RFU = " +rfu+"\n"+
+                                        "S/N DIPLEXER ODU = " +dipOdu +"\n"+
+                                        "S/N DIPLEXER IDU = " +dipIdu +"\n";
+
+                                Paragraph replaceParagraph = new Paragraph(vsatReplace,contentFont);
+                                replaceParagraph.setAlignment(Element.ALIGN_LEFT);
+                                replaceParagraph.setSpacingAfter(8f);
+                                document.add(replaceParagraph);
+                            }
+
+
                         }else if (preference.getConnType().equals("M2M")){
                             ArrayList<MasterM2mSetup> alM2m = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
                             if(alM2m.size() > 0){
@@ -423,6 +446,5 @@ public class DashboardFragment extends Fragment {
             }
         }
     }
-
 
 }

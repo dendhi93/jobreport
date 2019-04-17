@@ -33,6 +33,13 @@ public class VsatReplaceAdapter extends DatabaseAdapter {
             MasterVsatReplace replace = new MasterVsatReplace();
             replace.setId_replace(cursor.getInt(0));
             replace.setId_site(cursor.getInt(1));
+            replace.setSn_modem(cursor.getString(2));
+            replace.setSn_adaptor(cursor.getString(3));
+            replace.setSn_fh(cursor.getString(4));
+            replace.setSn_lnb(cursor.getString(5));
+            replace.setSn_rfu(cursor.getString(7));
+            replace.setSn_dip_odu(cursor.getString(8));
+            replace.setSn_dip_idu(cursor.getString(9));
 
             replaces.add(replace);
         }
@@ -44,8 +51,15 @@ public class VsatReplaceAdapter extends DatabaseAdapter {
     public Cursor val_vsatReplaceCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_replace, " +
-                " id_site " +
+        String sql = "SELECT id_replace, " + //0
+                            " id_site, " + //1
+                            " sn_modem, " + //2
+                            " sn_adaptor, " + //3
+                            " sn_fh, " + //4
+                            " sn_lnb, " + //5
+                            " sn_rfu, " + //7
+                            " sn_dip_odu, " + //8
+                            " sn_dip_idu " + //9
                 "from vsat_replace " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";

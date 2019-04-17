@@ -266,7 +266,6 @@
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:focusable="true"
-                android:layout_margin="3dp"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical">
 
