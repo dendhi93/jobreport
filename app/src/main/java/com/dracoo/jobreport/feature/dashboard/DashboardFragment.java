@@ -36,6 +36,7 @@ import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
+import com.dracoo.jobreport.database.master.MasterXpoll;
 import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
 import com.dracoo.jobreport.util.ConfigApps;
@@ -109,6 +110,22 @@ public class DashboardFragment extends Fragment {
         try{
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){ Log.d("###","failed create adapter " +e.toString());}
+
+//        try{
+//            ArrayList<MasterXpoll> alXpoll = new M2mXpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
+//            if (alXpoll.size() > 0){
+//                messageUtils.toastMessage("1 " +alXpoll.get(0).getSat(), ConfigApps.T_INFO);
+//                messageUtils.toastMessage("2 " +alXpoll.get(0).getTransponder(), ConfigApps.T_INFO);
+//                messageUtils.toastMessage("3 " +alXpoll.get(0).getLft(), ConfigApps.T_INFO);
+//                messageUtils.toastMessage("4 " +alXpoll.get(0).getCn(), ConfigApps.T_INFO);
+//                messageUtils.toastMessage("5 " +alXpoll.get(0).getCpi(), ConfigApps.T_INFO);
+//                messageUtils.toastMessage("6 " +alXpoll.get(0).getAsi(), ConfigApps.T_INFO);
+//                messageUtils.toastMessage("7 " +alXpoll.get(0).getInsert_time(), ConfigApps.T_INFO);
+//                messageUtils.toastMessage("8 " +alXpoll.get(0).getOp(), ConfigApps.T_INFO);
+//            }
+//        }catch (Exception e){
+//            messageUtils.toastMessage("err "+e.toString(), ConfigApps.T_INFO);
+//        }
 
     }
 
@@ -376,6 +393,27 @@ public class DashboardFragment extends Fragment {
                                 replaceParagraph.setAlignment(Element.ALIGN_LEFT);
                                 replaceParagraph.setSpacingAfter(8f);
                                 document.add(replaceParagraph);
+                            }
+
+                            Paragraph xpollParagraph = new Paragraph("*XPOLL ITEM*",titleFont);
+                            xpollParagraph.setAlignment(Element.ALIGN_LEFT);
+                            xpollParagraph.setSpacingAfter(8f);
+                            document.add(xpollParagraph);
+
+                            ArrayList<MasterXpoll> alXpoll = new M2mXpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
+                            if (alXpoll.size() > 0){
+                                String xpollContent = "SAT = " +alXpoll.get(0).getSat().trim() +"\n"+
+                                                      "LFT = " +alXpoll.get(0).getLft().trim() +"\n"+
+                                                      "C/N = " +alXpoll.get(0).getCn().trim() + "\n"+
+                                                      "CPI = " +alXpoll.get(0).getCpi().trim()+ "\n"+
+                                                      "ASI = " +alXpoll.get(0).getAsi().trim()+ "\n"+
+                                                      "DATE, TIME = " +alXpoll.get(0).getInsert_time().trim()+"\n"+
+                                                      "OP = " +alXpoll.get(0).getOp().trim();
+
+                                Paragraph xpollContentParagraph = new Paragraph(xpollContent,contentFont);
+                                xpollContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                xpollContentParagraph.setSpacingAfter(8f);
+                                document.add(xpollContentParagraph);
                             }
 
                         }else if (preference.getConnType().equals("M2M")){

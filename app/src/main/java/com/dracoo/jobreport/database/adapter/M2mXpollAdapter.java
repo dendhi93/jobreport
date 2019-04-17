@@ -30,11 +30,19 @@ public class M2mXpollAdapter extends DatabaseAdapter {
         cursor = val_xpollCursor(custId, un);
 
         while (cursor.moveToNext()) {
-            MasterXpoll datam2m = new MasterXpoll();
-            datam2m.setId_xpoll(cursor.getInt(0));
-            datam2m.setId_site(cursor.getInt(1));
+            MasterXpoll xpoll = new MasterXpoll();
+            xpoll.setId_xpoll(cursor.getInt(0));
+            xpoll.setId_site(cursor.getInt(1));
+            xpoll.setSat(cursor.getString(2));
+            xpoll.setTransponder(cursor.getString(3));
+            xpoll.setLft(cursor.getString(4));
+            xpoll.setCn(cursor.getString(5));
+            xpoll.setCpi(cursor.getString(6));
+            xpoll.setAsi(cursor.getString(7));
+            xpoll.setInsert_time(cursor.getString(8));
+            xpoll.setOp(cursor.getString(9));
 
-            xpolls.add(datam2m);
+            xpolls.add(xpoll);
         }
         cursor.close();
         getReadableDatabase().close();
@@ -44,8 +52,16 @@ public class M2mXpollAdapter extends DatabaseAdapter {
     public Cursor val_xpollCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_xpoll, " +
-                " id_site " +
+        String sql = "SELECT id_xpoll, " + //0
+                            " id_site, " + //1
+                            " sat, " + //2
+                            " transponder, " + //3
+                            " lft, " + //4
+                            " cn, " + //5
+                            " cpi, " + //6
+                            " asi, " + //7
+                            " insert_time, " + //8
+                            " op " + //9
                 "from xpoll " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";

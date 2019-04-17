@@ -133,6 +133,7 @@ public class XpollActivity extends AppCompatActivity {
                 masterXpoll.setCpi(txt_xpoll_cpi.getText().toString().trim());
                 masterXpoll.setAsi(txt_xpoll_asi.getText().toString().trim());
                 masterXpoll.setOp(txt_xpoll_op.getText().toString().trim());
+                masterXpoll.setInsert_time(txt_xpoll_dateTime.getText().toString().trim());
                 masterXpoll.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                 xpollAdapter.update(masterXpoll);
@@ -148,6 +149,7 @@ public class XpollActivity extends AppCompatActivity {
                 masterXpoll.setId_site(preference.getCustID());
                 masterXpoll.setUn_user(preference.getUn());
                 masterXpoll.setInsert_date(DateTimeUtils.getCurrentTime());
+                masterXpoll.setInsert_time(txt_xpoll_dateTime.getText().toString().trim());
                 masterXpoll.setSat(selectedRadio.trim());
                 masterXpoll.setTransponder(txt_xpoll_transponder.getText().toString().trim());
                 masterXpoll.setLft(txt_xpoll_lft.getText().toString().trim());
