@@ -14,6 +14,21 @@ public class DateTimeUtils {
         return new SimpleDateFormat("yyy-MM-dd", java.util.Locale.getDefault()).format(new Date());
     }
 
+    public static String getChangeDateFormat(String dateTime){
+        try {
+            SimpleDateFormat source = new SimpleDateFormat("yyy-MM-dd, HH:mm:ss", java.util.Locale.getDefault());
+            Date dateSource = source.parse(dateTime);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy; HH:mm:ss", java.util.Locale.getDefault());
+            if (dateSource != null){
+                return dateFormat.format(dateSource);
+            }else{
+                return "";
+            }
+        }catch (Exception e){
+            return "";
+        }
+    }
+
     public static int getDateDiff(String beginDate, String endDate){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 

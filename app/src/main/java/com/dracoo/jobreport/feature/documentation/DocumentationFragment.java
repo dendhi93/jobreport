@@ -153,21 +153,21 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                 if (al_countImage.size() == 5){
                     ArrayList<MasterInfoSite> alInfo = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
                     if (alInfo.size() > 0){
-                        File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name());
+                        File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName());
                         customerName = alInfo.get(0).getCustomer_name().trim();
                         if (!mFilePdf.exists()) {
                             if (!mFilePdf.mkdirs()) {
                                 Log.d("####","Gagal create directory");
                             }
                         }
-                        File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf");
+                        File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
                         if (mFileValidationPdf.exists()){
                             mFileValidationPdf.delete();
                         }
 
                         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
                         try{
-                            PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf"));
+                            PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                             document.open();
                             if (al_image.size() > 0){
                                 arr_imgName = new String[al_image.size()];
@@ -200,7 +200,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                 }
                                 document.close();
                                 messageUtils.toastMessage("Dokumen sukses diconvert ke pdf", ConfigApps.T_SUCCESS);
-                                File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/ImagePdf/"+alInfo.get(0).getCustomer_name() + "/"+alInfo.get(0).getCustomer_name()+".pdf");
+                                File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
                                 String subjectEmail = "Kepada yth,\nBpk/Ibu Admin\n\nBerikut saya lampirkan Report Customer " +customerName+
                                         "\n\nDemikian yang bisa saya sampaikan\nTerima Kasih\n\n\n " + preference.getUn().
                                         trim().toLowerCase(java.util.Locale.getDefault());

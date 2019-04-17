@@ -1,6 +1,7 @@
 package com.dracoo.jobreport.feature.dashboard;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,7 @@ import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
 import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterAction;
+import com.dracoo.jobreport.database.master.MasterConnectionParameter;
 import com.dracoo.jobreport.database.master.MasterEnvirontment;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
@@ -260,13 +262,13 @@ public class DashboardFragment extends Fragment {
 
                         ArrayList<MasterProblem> alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
                         if (alProblem.size() > 0){
-                            String problemContent = "Berangkat          = " +alProblem.get(0).getBerangkat().trim() +"\n"+
-                                                    "Tiba                     = " +alProblem.get(0).getTiba().trim()+ "\n"+
-                                                    "Finish                  = " +alProblem.get(0).getFinish().trim()+ "\n"+
+                            String problemContent = "Berangkat          = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()) +"\n"+
+                                                    "Tiba                     = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim())+ "\n"+
+                                                    "Finish                  = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim())+ "\n"+
                                                     "Delay                  = " +alProblem.get(0).getDelay_reason().trim() + "\n" +
                                                     "Pending               = " +alProblem.get(0).getPending().trim() +"\n"+
                                                     "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
-                                                    "Upline                 = " +alProblem.get(0).getUpline().trim() +"\n";
+                                                    "Upline                 = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()) +"\n";
 
                             Paragraph pContent2 = new Paragraph(problemContent,contentFont);
                             pContent2.setAlignment(Element.ALIGN_LEFT);
@@ -416,6 +418,26 @@ public class DashboardFragment extends Fragment {
                                 document.add(xpollContentParagraph);
                             }
 
+                            ArrayList<MasterConnectionParameter> alParam = new ConnectionParameterAdapter(getActivity()).val_param(preference.getCustID(), preference.getUn());
+                            if (alParam.size() > 0){
+                                String paramContent = "*LAN PARAMETER*\n\nIP Lan = " +alParam.get(0).getLan_parameter().trim() +" \n"+
+                                                      "Subnet Mask = "+ alParam.get(0).getLan_subnetmask().trim() + "\n\n"+
+                                                      "*MANAGEMENT PARAMETER*\n\nESN Modem = " +alParam.get(0).getManagement_esnmodem().trim() + "\n"+
+                                                      "Gateway = " +alParam.get(0).getManagement_gateway().trim()+"\n"+
+                                                      "SNMP = " +alParam.get(0).getManagement_snmp().trim()+"\n\n"+
+                                                      "*RANGING PARAMETER*\n\nSIGNAL = " +alParam.get(0).getRanging_signal().trim()+ "\n"+
+                                                      "DATA RATE = " +alParam.get(0).getRanging_data_rate().trim()+"\n"+
+                                                      "FEC = " +alParam.get(0).getRanging_fec().trim() + "\n"+
+                                                      "FINAL POWER SETTING = " +alParam.get(0).getRanging_power().trim()+"\n"+
+                                                      "FINAL ESNO = " +alParam.get(0).getRanging_esno().trim() + "\n"+
+                                                      "FINAL C/NO = " +alParam.get(0).getRanging_esno().trim() + "\n";
+
+                                Paragraph paramContentParagraph = new Paragraph(paramContent,contentFont);
+                                paramContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                paramContentParagraph.setSpacingAfter(8f);
+                                document.add(paramContentParagraph);
+                            }
+
                         }else if (preference.getConnType().equals("M2M")){
                             ArrayList<MasterM2mSetup> alM2m = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
                             if(alM2m.size() > 0){
@@ -424,18 +446,8 @@ public class DashboardFragment extends Fragment {
                         }
 
                         document.close();
-                        messageUtils.toastMessage("report sukses di buat", ConfigApps.T_SUCCESS);
-
                         //klo doc ud ke convert semua
-                        //            if (isSubmitReport()){
-                        //                messageUtils.toastMessage("test", ConfigApps.T_INFO);
-                        //                preference.clearDataTrans();
-                        //                loadDash();
-                        //                loadRcTrans();
-                        //            }else{
-                        //                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
-                        //            }
-
+                        submitReport();
                     }catch (Exception e){
                         messageUtils.toastMessage("err convert Pdf "+e.toString(), ConfigApps.T_ERROR);
                     }
@@ -458,6 +470,36 @@ public class DashboardFragment extends Fragment {
             return false;
         }
 
+    }
+
+    private void submitReport(){
+        //if (isSubmitReport()){
+            File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
+            String subjectEmail = "Kepada yth,\nBpk/Ibu Admin\n\nBerikut saya lampirkan Report Customer " +preference.getCustName()+
+                    "\n\nDemikian yang bisa saya sampaikan\nTerima Kasih\n\n\n " + preference.getUn().
+                    trim().toLowerCase(java.util.Locale.getDefault());
+            try {
+                if (mFileResultPdf.exists()) {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Report Customer " +preference.getCustName());
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, subjectEmail);
+                    shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileResultPdf));
+                    startActivity(Intent.createChooser(shareIntent, "choose one"));
+                }else{
+                    messageUtils.toastMessage("File Tidak ditemukan", ConfigApps.T_WARNING);
+                }
+            } catch(Exception e) {
+                messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR);
+            }
+
+            messageUtils.toastMessage("Data Sukses tersubmit ", ConfigApps.T_INFO);
+           //preference.clearDataTrans();
+            loadDash();
+            loadRcTrans();
+//        }else{
+//            messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+//        }
     }
 
     @Override
