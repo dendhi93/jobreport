@@ -2,8 +2,10 @@ package com.dracoo.jobreport.feature.action;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import com.dracoo.jobreport.database.adapter.ActionAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterAction;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.action.contract.ActionItemCallback;
 import com.dracoo.jobreport.feature.action.adapter.CustomListActionAdapter;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
@@ -35,7 +38,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ActionFragment extends Fragment {
+public class ActionFragment extends Fragment implements ActionItemCallback {
     private MessageUtils messageUtils;
     private Preference preference;
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
@@ -101,9 +104,13 @@ public class ActionFragment extends Fragment {
     }
 
     private boolean validateEmpty(){
-        return !txt_action_time.getText().toString().trim().equals("")
-                || !txt_action_desc.getText().toString().trim().equals("")
-                || !txt_action_endTime.getText().toString().trim().equals("");
+        if(txt_action_time.getText().toString().trim().equals("") ||
+            txt_action_endTime.getText().toString().trim().equals("") ||
+            txt_action_desc.getText().toString().trim().equals("")){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     private void getTransAction(){
@@ -287,6 +294,40 @@ public class ActionFragment extends Fragment {
          rc_action_activity.setLayoutManager(layoutManager);
          List<MasterAction> list = getListAction();
          adapter = new CustomListActionAdapter(getActivity(), list);
+         adapter.theCallBack(this);
          rc_action_activity.setAdapter(adapter);
      }
+
+    @Override
+    public void selectedItem(final int id) {
+        if (getActivity() != null){
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Warning")
+                    .setMessage("Apakah anda yakin ingin hapus data action ?")
+                    .setIcon(R.drawable.ic_exclamation_32)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteAction(id);
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    private void deleteAction(int pos){
+        try {
+            actionAdapter.deleteById(pos);
+            messageUtils.toastMessage("Sukses didelete " , ConfigApps.T_SUCCESS);
+            getDataAction();
+        }catch (Exception e){
+            messageUtils.toastMessage("err delete action " +e.toString(), ConfigApps.T_ERROR);
+        }
+    }
 }
