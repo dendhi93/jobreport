@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -109,7 +108,8 @@ public class DashboardFragment extends Fragment {
 
         try{
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
-        }catch (Exception e){}
+        }catch (Exception e){ Log.d("###","failed create adapter " +e.toString());}
+
     }
 
     public List<MasterTransHistory> getList_TransHist(){
@@ -365,12 +365,12 @@ public class DashboardFragment extends Fragment {
                                 if (dipOdu.equals("-")){dipOdu = "";}
                                 if (dipIdu.equals("-")){dipIdu = "";}
 
-                                String vsatReplace = "_NEW_\nS/N Modem = " +snModem+"\n";
-//                                        "S/N Adaptor = " +snAdaptor+"\n"+
-//                                        "S/N LNB = " +lnb+"\n"+
-//                                        "S/N RFU = " +rfu+"\n"+
-//                                        "S/N DIPLEXER ODU = " +dipOdu +"\n"+
-//                                        "S/N DIPLEXER IDU = " +dipIdu +"\n";
+                                String vsatReplace = "_NEW_\nS/N Modem = " +snModem+"\n"+
+                                        "S/N Adaptor = " +snAdaptor+"\n"+
+                                        "S/N LNB = " +lnb+"\n"+
+                                        "S/N RFU = " +rfu+"\n"+
+                                        "S/N DIPLEXER ODU = " +dipOdu +"\n"+
+                                        "S/N DIPLEXER IDU = " +dipIdu +"\n";
 
                                 Paragraph replaceParagraph = new Paragraph(vsatReplace,contentFont);
                                 replaceParagraph.setAlignment(Element.ALIGN_LEFT);

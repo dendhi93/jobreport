@@ -37,9 +37,9 @@ public class VsatReplaceAdapter extends DatabaseAdapter {
             replace.setSn_adaptor(cursor.getString(3));
             replace.setSn_fh(cursor.getString(4));
             replace.setSn_lnb(cursor.getString(5));
-            replace.setSn_rfu(cursor.getString(7));
-            replace.setSn_dip_odu(cursor.getString(8));
-            replace.setSn_dip_idu(cursor.getString(9));
+            replace.setSn_rfu(cursor.getString(6));
+            replace.setSn_dip_odu(cursor.getString(7));
+            replace.setSn_dip_idu(cursor.getString(8));
 
             replaces.add(replace);
         }
@@ -57,10 +57,10 @@ public class VsatReplaceAdapter extends DatabaseAdapter {
                             " sn_adaptor, " + //3
                             " sn_fh, " + //4
                             " sn_lnb, " + //5
-                            " sn_rfu, " + //7
-                            " sn_dip_odu, " + //8
-                            " sn_dip_idu " + //9
-                "from vsat_replace " +
+                            " sn_rfu, " + //6
+                            " sn_dip_odu, " + //7
+                            " sn_dip_idu " + //8
+                " from vsat_replace " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
 

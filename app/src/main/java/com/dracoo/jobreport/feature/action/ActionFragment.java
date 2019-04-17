@@ -134,7 +134,7 @@ public class ActionFragment extends Fragment implements ActionItemCallback {
 
     private void transHist(){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
-                .val_trans(preference.getCustID(), preference.getUn(),getString(R.string.dataM2m_trans));
+                .val_trans(preference.getCustID(), preference.getUn(),getString(R.string.action_trans));
         if (al_valTransHist.size() > 0){
             try{
                 MasterTransHistory mHist = transHistAdapter.queryForId(al_valTransHist.get(0).getId_trans());
