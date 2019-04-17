@@ -365,19 +365,18 @@ public class DashboardFragment extends Fragment {
                                 if (dipOdu.equals("-")){dipOdu = "";}
                                 if (dipIdu.equals("-")){dipIdu = "";}
 
-                                String vsatReplace = "_NEW_\nS/N Modem = " +snModem+"\n"+
-                                        "S/N Adaptor = " +snAdaptor+"\n"+
-                                        "S/N LNB = " +lnb+"\n"+
-                                        "S/N RFU = " +rfu+"\n"+
-                                        "S/N DIPLEXER ODU = " +dipOdu +"\n"+
-                                        "S/N DIPLEXER IDU = " +dipIdu +"\n";
+                                String vsatReplace = "_NEW_\nS/N Modem = " +snModem+"\n";
+//                                        "S/N Adaptor = " +snAdaptor+"\n"+
+//                                        "S/N LNB = " +lnb+"\n"+
+//                                        "S/N RFU = " +rfu+"\n"+
+//                                        "S/N DIPLEXER ODU = " +dipOdu +"\n"+
+//                                        "S/N DIPLEXER IDU = " +dipIdu +"\n";
 
                                 Paragraph replaceParagraph = new Paragraph(vsatReplace,contentFont);
                                 replaceParagraph.setAlignment(Element.ALIGN_LEFT);
                                 replaceParagraph.setSpacingAfter(8f);
                                 document.add(replaceParagraph);
                             }
-
 
                         }else if (preference.getConnType().equals("M2M")){
                             ArrayList<MasterM2mSetup> alM2m = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
