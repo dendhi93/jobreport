@@ -1,10 +1,12 @@
 package com.dracoo.jobreport.feature.dashboard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -508,8 +510,7 @@ public class DashboardFragment extends Fragment {
                         }
 
                         document.close();
-                        //klo doc ud ke convert semua
-                        submitReport();
+                        alertChoose();
                     }catch (Exception e){
                         messageUtils.toastMessage("err convert Pdf "+e.toString(), ConfigApps.T_ERROR);
                     }
@@ -534,8 +535,32 @@ public class DashboardFragment extends Fragment {
 
     }
 
+    private void alertChoose(){
+        String[] listItems = {"Send File Pdf", "Copy into whatsapp"};
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Send via")
+                .setItems(listItems, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == 0){
+                            submitReport();
+                        }else{
+                            //send via WA
+                            //if (isSubmitReport()){
+                            //preference.clearDataTrans();
+                            loadDash();
+                            loadRcTrans();
+                            messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_INFO);
+                            //}else{
+                            //   messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+                            //}
+                        }
+                    }
+                })
+                .show();
+
+    }
     private void submitReport(){
-        //if (isSubmitReport()){
             File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
             String subjectEmail = "Kepada yth,\nBpk/Ibu Admin\n\nBerikut saya lampirkan Report Customer " +preference.getCustName()+
                     "\n\nDemikian yang bisa saya sampaikan\nTerima Kasih\n\n\n " + preference.getUn().
@@ -556,12 +581,13 @@ public class DashboardFragment extends Fragment {
             }
 
             messageUtils.toastMessage("Data Sukses tersubmit ", ConfigApps.T_INFO);
-           //preference.clearDataTrans();
-            loadDash();
-            loadRcTrans();
-//        }else{
-//            messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
-//        }
+            //if (isSubmitReport()){
+            //preference.clearDataTrans();
+                loadDash();
+                loadRcTrans();
+            //}else{
+            //   messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+            //}
     }
 
     @Override
