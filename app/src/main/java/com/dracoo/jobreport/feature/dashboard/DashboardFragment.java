@@ -33,6 +33,7 @@ import com.dracoo.jobreport.database.master.MasterConnectionParameter;
 import com.dracoo.jobreport.database.master.MasterEnvirontment;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
+import com.dracoo.jobreport.database.master.MasterM2mData;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
@@ -439,8 +440,32 @@ public class DashboardFragment extends Fragment {
                             }
 
                         }else if (preference.getConnType().equals("M2M")){
+                            Paragraph ioM2mParagraph = new Paragraph("*"+getActivity().getString(R.string.ioM2M_trans)+"*",titleFont);
+                            ioM2mParagraph.setAlignment(Element.ALIGN_LEFT);
+                            ioM2mParagraph.setSpacingAfter(8f);
+                            document.add(ioM2mParagraph);
+
                             ArrayList<MasterM2mSetup> alM2m = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
                             if(alM2m.size() > 0){
+                                String m2mSetupContent = "_OLD_\nM2M\nBrand / Type = " +alM2m.get(0).getBrand_type_m2m() +"\n"+
+                                                         "S/N = "+alM2m.get(0).getSn_m2m().trim()+"\n\n"+
+                                                         "ADAPTOR\nBrand / Type = " +alM2m.get(0).getBrand_type_adaptor().trim()+"\n"+
+                                                         "S/N = " +alM2m.get(0).getSn_adaptor().trim() + "\n\n"+
+                                                         "SIMCARD 1\nBrand / Type = " +alM2m.get(0).getSim_card1_type()+"\n"+
+                                                         "S/N = " +alM2m.get(0).getSim_card1_sn() +"\n"+
+                                                         "PUK = " +alM2m.get(0).getSim_card1_puk() + "\n\n"+
+                                                         "SIMCARD 2 \nBrand / Type = " + alM2m.get(0).getSim_card2_type().trim() + "\n"+
+                                                         "S/N = " +alM2m.get(0).getSim_card2_sn() + "\n"+
+                                                         "PUK = " +alM2m.get(0).getSim_card2_puk() + "\n";
+
+                                Paragraph m2mSetupContentParagraph = new Paragraph(m2mSetupContent,contentFont);
+                                m2mSetupContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                m2mSetupContentParagraph.setSpacingAfter(8f);
+                                document.add(m2mSetupContentParagraph);
+                            }
+
+                            ArrayList<MasterM2mData> alM2mData = new M2mDataAdapter(getActivity()).val_dataM2m(preference.getCustID(), preference.getUn());
+                            if (alM2mData.size() > 0){
 
                             }
                         }

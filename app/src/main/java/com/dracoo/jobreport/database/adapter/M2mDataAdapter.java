@@ -45,8 +45,18 @@ public class M2mDataAdapter extends DatabaseAdapter {
     public Cursor val_m2mDataCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_data, " +
-                " id_site " +
+        String sql = "SELECT id_data, " + //0
+                            " id_site, " + //1
+                            " username, " + //2
+                            " password, " + //3
+                            " user, " + //4
+                            " remote, " + //5
+                            " tunnel_id, " + //6
+                            " ip_bonding, " + //7
+                            " ip_vlan, " + //8
+                            " ip_lan, " + //9
+                            " subnet_mask, " + //10
+                            " agg " + //11
                 "from m2m_data " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";

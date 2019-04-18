@@ -45,7 +45,6 @@ public class M2mSetupAdapter extends DatabaseAdapter {
             setup.setSim_card2_sn(cursor.getString(10));
             setup.setSim_card2_puk(cursor.getString(11));
 
-
             setups.add(setup);
         }
         cursor.close();
