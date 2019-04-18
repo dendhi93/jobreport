@@ -34,6 +34,7 @@ import com.dracoo.jobreport.database.master.MasterEnvirontment;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterM2mData;
+import com.dracoo.jobreport.database.master.MasterM2mReplace;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
@@ -113,23 +114,6 @@ public class DashboardFragment extends Fragment {
         try{
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){ Log.d("###","failed create adapter " +e.toString());}
-
-//        try{
-//            ArrayList<MasterXpoll> alXpoll = new M2mXpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
-//            if (alXpoll.size() > 0){
-//                messageUtils.toastMessage("1 " +alXpoll.get(0).getSat(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("2 " +alXpoll.get(0).getTransponder(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("3 " +alXpoll.get(0).getLft(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("4 " +alXpoll.get(0).getCn(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("5 " +alXpoll.get(0).getCpi(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("6 " +alXpoll.get(0).getAsi(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("7 " +alXpoll.get(0).getInsert_time(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("8 " +alXpoll.get(0).getOp(), ConfigApps.T_INFO);
-//            }
-//        }catch (Exception e){
-//            messageUtils.toastMessage("err "+e.toString(), ConfigApps.T_INFO);
-//        }
-
     }
 
     public List<MasterTransHistory> getList_TransHist(){
@@ -161,9 +145,7 @@ public class DashboardFragment extends Fragment {
             List<MasterTransHistory> list = getList_TransHist();
             adapter = new CustomList_Dashboard_Adapter(getActivity(), list);
             rc_dash_activity.setAdapter(adapter);
-        }else{
-            Log.d("###","ke sama dengan 0");
-        }
+        }else{ Log.d("###","ke sama dengan 0"); }
     }
 
 
@@ -209,9 +191,7 @@ public class DashboardFragment extends Fragment {
                 if (alInfSite.size() > 0){
                     File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName());
                     if (!mFilePdf.exists()) {
-                        if (!mFilePdf.mkdirs()) {
-                            Log.d("####","Gagal create directory");
-                        }
+                        if (!mFilePdf.mkdirs()) { Log.d("####","Gagal create directory"); }
                     }
                     File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
                     if (mFileValidationPdf.exists()){
@@ -482,6 +462,47 @@ public class DashboardFragment extends Fragment {
                                 m2mDataContentParagraph.setAlignment(Element.ALIGN_LEFT);
                                 m2mDataContentParagraph.setSpacingAfter(8f);
                                 document.add(m2mDataContentParagraph);
+                            }
+
+                            ArrayList<MasterM2mReplace> alm2mReplace = new M2mReplaceAdapter(getActivity()).val_m2mReplace(preference.getCustID(), preference.getUn());
+                            if (alm2mReplace.size() > 0){
+                                String m2mType = alm2mReplace.get(0).getBrand_type_replace().trim();
+                                String m2mSn = alm2mReplace.get(0).getBrand_type_adaptor().trim();
+                                String adaptorType = alm2mReplace.get(0).getBrand_type_adaptor().trim();
+                                String adaptorSn = alm2mReplace.get(0).getSn_adaptor().trim();
+                                String simCard1Type = alm2mReplace.get(0).getSim_card1_type().trim();
+                                String simCard1SN = alm2mReplace.get(0).getSim_card1_sn().trim();
+                                String simcard1Puk = alm2mReplace.get(0).getSim_card1_puk().trim();
+                                String simCard2Type = alm2mReplace.get(0).getSim_card2_type().trim();
+                                String simCard2SN = alm2mReplace.get(0).getSim_card2_sn().trim();
+                                String simcard2Puk = alm2mReplace.get(0).getSim_card2_puk().trim();
+
+                                if (m2mType.equals("-")){m2mType = "";}
+                                if (m2mSn.equals("-")){m2mSn = "";}
+                                if (adaptorType.equals("-")){adaptorType = "";}
+                                if (adaptorSn.equals("-")){adaptorSn = "";}
+                                if (simCard1Type.equals("-")){simCard1Type = "";}
+                                if (simCard1SN.equals("-")){simCard1SN = "";}
+                                if (simcard1Puk.equals("-")){simcard1Puk = "";}
+                                if (simCard2Type.equals("-")){simCard2Type = "";}
+                                if (simCard2SN.equals("-")){simCard2SN = "";}
+                                if (simcard2Puk.equals("-")){simcard2Puk = "";}
+
+                                String m2mReplace = "_NEW_\nM2M\nBrand / Type = " +m2mType.trim()+"\n"+
+                                                    "S/N = " +m2mSn.trim() +"\n\n"+
+                                                    "ADAPTOR\nBrand / Type = "+adaptorType.trim() +"\n"+
+                                                    "S/N = " +adaptorSn.trim() +"\n\n"+
+                                                    "SIMCARD 1\nBrand / Type = " +simCard1Type.trim() +"\n"+
+                                                    "S/N = " +simCard1SN.trim() + "\n" +
+                                                    "PUK = " +simcard1Puk.trim() + "\n\n" +
+                                                    "SIMCARD 2\nBrand / Type = " +simCard2Type.trim() + "\n"+
+                                                    "S/N = " +simCard2SN.trim() + "\n" +
+                                                    "PUK = " +simcard2Puk.trim();
+
+                                Paragraph m2mReplaceContentParagraph = new Paragraph(m2mReplace,contentFont);
+                                m2mReplaceContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                m2mReplaceContentParagraph.setSpacingAfter(8f);
+                                document.add(m2mReplaceContentParagraph);
 
                             }
                         }
