@@ -472,7 +472,6 @@ public class DashboardFragment extends Fragment {
                                                         "User = " +alM2mData.get(0).getUser().trim()+ "\n"+
                                                         "Remote = " +alM2mData.get(0).getRemote().trim()+"\n"+
                                                         "Tunnel ID 1 = " +alM2mData.get(0).getTunnel_id().trim()+"\n"+
-                                                        "Tunnel ID 2 = unknown "+
                                                         "IP Bounding = " +alM2mData.get(0).getIp_bonding().trim()+"\n"+
                                                         "IP VLAN = " +alM2mData.get(0).getIp_vlan().trim()+"\n"+
                                                         "IP LAN = " +alM2mData.get(0).getIp_lan().trim()+"\n"+
