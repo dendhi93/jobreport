@@ -294,19 +294,12 @@ public class DashboardFragment extends Fragment {
                                 String[] split = arr_actionDateTime[i].split(",");
                                 String[] splitEndTime = arr_actionEndTime[i].split(",");
                                 if (DateTimeUtils.getDateDiff(splitEndTime[0],split[0] ) > 1){
-                                    if(i==0){
-                                        actionContent = split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
-                                    } else{
-                                        actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i];
-                                    }
+                                    if(i==0){ actionContent = split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i]; }
+                                    else{ actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i]; }
                                 }else{
-                                    if (i==0){
-                                        actionContent = split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i];
-                                    } else{
-                                        actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i];
-                                    }
+                                    if (i==0){ actionContent = split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
+                                    else{ actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
                                 }
-
                                 i++;
                             }
 
@@ -399,7 +392,7 @@ public class DashboardFragment extends Fragment {
                                 stCopyClipBoard.append(vsatReplace+"\n\n");
                             }
 
-                            Paragraph xpollParagraph = new Paragraph("*XPOLL ITEM*",titleFont);
+                            Paragraph xpollParagraph = new Paragraph("\n*XPOLL ITEM*",titleFont);
                             xpollParagraph.setAlignment(Element.ALIGN_LEFT);
                             xpollParagraph.setSpacingAfter(8f);
                             document.add(xpollParagraph);
@@ -412,7 +405,7 @@ public class DashboardFragment extends Fragment {
                                                       "C/N = " +alXpoll.get(0).getCn().trim() + "\n"+
                                                       "CPI = " +alXpoll.get(0).getCpi().trim()+ "\n"+
                                                       "ASI = " +alXpoll.get(0).getAsi().trim()+ "\n"+
-                                                      "DATE, TIME = " +alXpoll.get(0).getInsert_time().trim()+"\n"+
+                                                      "DATE, TIME = " +DateTimeUtils.getChangeDateFormat(alXpoll.get(0).getInsert_time().trim())+"\n"+
                                                       "OP = " +alXpoll.get(0).getOp().trim();
 
                                 Paragraph xpollContentParagraph = new Paragraph(xpollContent,contentFont);
