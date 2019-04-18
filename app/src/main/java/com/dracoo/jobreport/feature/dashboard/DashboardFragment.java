@@ -1,5 +1,7 @@
 package com.dracoo.jobreport.feature.dashboard;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -70,6 +72,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.content.Context.CLIPBOARD_SERVICE;
+
 public class DashboardFragment extends Fragment {
     @BindView(R.id.lbl_dash_locationName)
     TextView lbl_dash_locationName;
@@ -93,6 +97,7 @@ public class DashboardFragment extends Fragment {
     private String[] arr_actionDateTime;
     private String[] arr_actionTrans;
     private String[] arr_actionEndTime;
+    private StringBuilder stCopyClipBoard;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -216,6 +221,9 @@ public class DashboardFragment extends Fragment {
                         pTitle1.setSpacingAfter(8f);
                         document.add(pTitle1);
 
+                        stCopyClipBoard = new StringBuilder();
+                        stCopyClipBoard.append("*Maintenance Report*\n\n");
+
                         ArrayList<MasterJobDesc> alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
                         if (alJobDesc.size() > 0){
                             String maintenanceContent = "Progress               = " +preference.getProgress().trim() +"\n" +
@@ -236,12 +244,14 @@ public class DashboardFragment extends Fragment {
                             pContent1.setAlignment(Element.ALIGN_LEFT);
                             pContent1.setSpacingAfter(8f);
                             document.add(pContent1);
+                            stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
 
                         Paragraph pTitle2 = new Paragraph("*"+getActivity().getString(R.string.problemDesc_trans)+"*",titleFont);
                         pTitle2.setAlignment(Element.ALIGN_LEFT);
                         pTitle2.setSpacingAfter(8f);
                         document.add(pTitle2);
+                        stCopyClipBoard.append("*"+getActivity().getString(R.string.problemDesc_trans)+"*\n\n");
 
                         ArrayList<MasterProblem> alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
                         if (alProblem.size() > 0){
@@ -257,6 +267,7 @@ public class DashboardFragment extends Fragment {
                             pContent2.setAlignment(Element.ALIGN_LEFT);
                             pContent2.setSpacingAfter(8f);
                             document.add(pContent2);
+                            stCopyClipBoard.append(problemContent+"\n\n");
 
                         }
 
@@ -264,6 +275,7 @@ public class DashboardFragment extends Fragment {
                         pAction.setAlignment(Element.ALIGN_LEFT);
                         pAction.setSpacingAfter(8f);
                         document.add(pAction);
+                        //TO DO ADD STRING BUILDER
 
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
                         if (al_listAction.size() > 0){
@@ -547,10 +559,13 @@ public class DashboardFragment extends Fragment {
                         }else{
                             //send via WA
                             //if (isSubmitReport()){
-                            //preference.clearDataTrans();
                             loadDash();
                             loadRcTrans();
+                            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+                            ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
+                            clipboard.setPrimaryClip(clip);
                             messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_INFO);
+                            //preference.clearDataTrans();
                             //}else{
                             //   messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
                             //}
