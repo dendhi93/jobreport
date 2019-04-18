@@ -275,7 +275,8 @@ public class DashboardFragment extends Fragment {
                         pAction.setAlignment(Element.ALIGN_LEFT);
                         pAction.setSpacingAfter(8f);
                         document.add(pAction);
-                        //TO DO ADD STRING BUILDER
+                        stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
+
 
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
                         if (al_listAction.size() > 0){
@@ -314,6 +315,7 @@ public class DashboardFragment extends Fragment {
                                 actionParagraph.setAlignment(Element.ALIGN_LEFT);
                                 actionParagraph.setSpacingAfter(8f);
                                 document.add(actionParagraph);
+                                stCopyClipBoard.append(actionContent+"\n\n");
                             }
                         }
 
@@ -321,6 +323,7 @@ public class DashboardFragment extends Fragment {
                         envParagraph.setAlignment(Element.ALIGN_LEFT);
                         envParagraph.setSpacingAfter(8f);
                         document.add(envParagraph);
+                        stCopyClipBoard.append("*"+getActivity().getString(R.string.electEnv_trans)+"*\n\n");
 
                         ArrayList<MasterEnvirontment> allEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
                         if (allEnv.size() > 0){
@@ -336,12 +339,14 @@ public class DashboardFragment extends Fragment {
                             envContentParagraph.setAlignment(Element.ALIGN_LEFT);
                             envContentParagraph.setSpacingAfter(8f);
                             document.add(envContentParagraph);
+                            stCopyClipBoard.append(environtmentContent+"\n\n");
                         }
 
                         Paragraph ioParagraph = new Paragraph("*I/0 Equipment*",titleFont);
                         ioParagraph.setAlignment(Element.ALIGN_LEFT);
                         ioParagraph.setSpacingAfter(8f);
                         document.add(ioParagraph);
+                        stCopyClipBoard.append("*I/0 Equipment*\n\n");
 
                         if(preference.getConnType().equals("VSAT")){
                             ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
@@ -361,6 +366,7 @@ public class DashboardFragment extends Fragment {
                                 ioContentParagraph.setAlignment(Element.ALIGN_LEFT);
                                 ioContentParagraph.setSpacingAfter(8f);
                                 document.add(ioContentParagraph);
+                                stCopyClipBoard.append(vsatSetup+"\n\n");
                             }
 
                             ArrayList<MasterVsatReplace> alReplace = new VsatReplaceAdapter(getActivity()).val_vsatReplace(preference.getCustID(), preference.getUn());
@@ -390,12 +396,14 @@ public class DashboardFragment extends Fragment {
                                 replaceParagraph.setAlignment(Element.ALIGN_LEFT);
                                 replaceParagraph.setSpacingAfter(8f);
                                 document.add(replaceParagraph);
+                                stCopyClipBoard.append(vsatReplace+"\n\n");
                             }
 
                             Paragraph xpollParagraph = new Paragraph("*XPOLL ITEM*",titleFont);
                             xpollParagraph.setAlignment(Element.ALIGN_LEFT);
                             xpollParagraph.setSpacingAfter(8f);
                             document.add(xpollParagraph);
+                            stCopyClipBoard.append("*XPOLL ITEM*\n\n");
 
                             ArrayList<MasterXpoll> alXpoll = new M2mXpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
                             if (alXpoll.size() > 0){
@@ -411,6 +419,7 @@ public class DashboardFragment extends Fragment {
                                 xpollContentParagraph.setAlignment(Element.ALIGN_LEFT);
                                 xpollContentParagraph.setSpacingAfter(8f);
                                 document.add(xpollContentParagraph);
+                                stCopyClipBoard.append(xpollContentParagraph+"\n\n");
                             }
 
                             ArrayList<MasterConnectionParameter> alParam = new ConnectionParameterAdapter(getActivity()).val_param(preference.getCustID(), preference.getUn());
@@ -431,6 +440,7 @@ public class DashboardFragment extends Fragment {
                                 paramContentParagraph.setAlignment(Element.ALIGN_LEFT);
                                 paramContentParagraph.setSpacingAfter(8f);
                                 document.add(paramContentParagraph);
+                                stCopyClipBoard.append(paramContent+"\n\n");
                             }
 
                         }else if (preference.getConnType().equals("M2M")){
@@ -438,6 +448,7 @@ public class DashboardFragment extends Fragment {
                             ioM2mParagraph.setAlignment(Element.ALIGN_LEFT);
                             ioM2mParagraph.setSpacingAfter(8f);
                             document.add(ioM2mParagraph);
+                            stCopyClipBoard.append("*"+getActivity().getString(R.string.ioM2M_trans)+"*\n\n");
 
                             ArrayList<MasterM2mSetup> alM2m = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
                             if(alM2m.size() > 0){
@@ -456,6 +467,7 @@ public class DashboardFragment extends Fragment {
                                 m2mSetupContentParagraph.setAlignment(Element.ALIGN_LEFT);
                                 m2mSetupContentParagraph.setSpacingAfter(8f);
                                 document.add(m2mSetupContentParagraph);
+                                //TODO ADD builder in here
                             }
 
                             ArrayList<MasterM2mData> alM2mData = new M2mDataAdapter(getActivity()).val_dataM2m(preference.getCustID(), preference.getUn());
@@ -559,12 +571,12 @@ public class DashboardFragment extends Fragment {
                         }else{
                             //send via WA
                             //if (isSubmitReport()){
-                            loadDash();
-                            loadRcTrans();
-                            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
-                            ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
-                            clipboard.setPrimaryClip(clip);
-                            messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_INFO);
+                                loadDash();
+                                loadRcTrans();
+                                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+                                ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
+                                clipboard.setPrimaryClip(clip);
+                                messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_INFO);
                             //preference.clearDataTrans();
                             //}else{
                             //   messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
