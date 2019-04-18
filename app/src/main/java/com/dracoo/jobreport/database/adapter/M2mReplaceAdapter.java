@@ -45,10 +45,20 @@ public class M2mReplaceAdapter extends DatabaseAdapter {
         Cursor cursor;
 
         String sql = " SELECT id_replace, " +
-                " id_site " +
-                " from m2m_replace " +
-                " where id_site = " + custId + " " +
-                " and un_user = '" +un+ "' ";
+                            " id_site, " +
+                            " brand_type_replace, " +
+                            " sn_replace, " +
+                            " brand_type_adaptor, " +
+                            " sn_adaptor, " +
+                            " sim_card1_type, " +
+                            " sim_card1_sn, " +
+                            " sim_card1_puk, " +
+                            " sim_card2_type, " +
+                            " sim_card2_sn, " +
+                            " sim_card2_puk " +
+                    " from m2m_replace " +
+                    " where id_site = " + custId + " " +
+                    " and un_user = '" +un+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;

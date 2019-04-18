@@ -18,6 +18,8 @@ public class MasterM2mData implements Serializable {
     private String username;
     @DatabaseField(columnName = "password")
     private String password;
+    @DatabaseField(columnName = "ip_machine")
+    private String ip_machine;
     @DatabaseField(columnName = "user")
     private String user;
     @DatabaseField(columnName = "remote")
@@ -177,5 +179,13 @@ public class MasterM2mData implements Serializable {
 
     public void setUn_user(String un_user) {
         this.un_user = un_user;
+    }
+
+    public String getIp_machine() {
+        return ip_machine;
+    }
+
+    public void setIp_machine(String ip_machine) {
+        this.ip_machine = ip_machine;
     }
 }

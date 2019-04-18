@@ -1,10 +1,14 @@
 package com.dracoo.jobreport.feature.dashboard;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +37,8 @@ import com.dracoo.jobreport.database.master.MasterConnectionParameter;
 import com.dracoo.jobreport.database.master.MasterEnvirontment;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
+import com.dracoo.jobreport.database.master.MasterM2mData;
+import com.dracoo.jobreport.database.master.MasterM2mReplace;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
@@ -66,6 +72,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.content.Context.CLIPBOARD_SERVICE;
+
 public class DashboardFragment extends Fragment {
     @BindView(R.id.lbl_dash_locationName)
     TextView lbl_dash_locationName;
@@ -89,6 +97,7 @@ public class DashboardFragment extends Fragment {
     private String[] arr_actionDateTime;
     private String[] arr_actionTrans;
     private String[] arr_actionEndTime;
+    private StringBuilder stCopyClipBoard;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -112,23 +121,6 @@ public class DashboardFragment extends Fragment {
         try{
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){ Log.d("###","failed create adapter " +e.toString());}
-
-//        try{
-//            ArrayList<MasterXpoll> alXpoll = new M2mXpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
-//            if (alXpoll.size() > 0){
-//                messageUtils.toastMessage("1 " +alXpoll.get(0).getSat(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("2 " +alXpoll.get(0).getTransponder(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("3 " +alXpoll.get(0).getLft(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("4 " +alXpoll.get(0).getCn(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("5 " +alXpoll.get(0).getCpi(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("6 " +alXpoll.get(0).getAsi(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("7 " +alXpoll.get(0).getInsert_time(), ConfigApps.T_INFO);
-//                messageUtils.toastMessage("8 " +alXpoll.get(0).getOp(), ConfigApps.T_INFO);
-//            }
-//        }catch (Exception e){
-//            messageUtils.toastMessage("err "+e.toString(), ConfigApps.T_INFO);
-//        }
-
     }
 
     public List<MasterTransHistory> getList_TransHist(){
@@ -160,9 +152,7 @@ public class DashboardFragment extends Fragment {
             List<MasterTransHistory> list = getList_TransHist();
             adapter = new CustomList_Dashboard_Adapter(getActivity(), list);
             rc_dash_activity.setAdapter(adapter);
-        }else{
-            Log.d("###","ke sama dengan 0");
-        }
+        }else{ Log.d("###","ke sama dengan 0"); }
     }
 
 
@@ -208,9 +198,7 @@ public class DashboardFragment extends Fragment {
                 if (alInfSite.size() > 0){
                     File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName());
                     if (!mFilePdf.exists()) {
-                        if (!mFilePdf.mkdirs()) {
-                            Log.d("####","Gagal create directory");
-                        }
+                        if (!mFilePdf.mkdirs()) { Log.d("####","Gagal create directory"); }
                     }
                     File mFileValidationPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
                     if (mFileValidationPdf.exists()){
@@ -233,6 +221,9 @@ public class DashboardFragment extends Fragment {
                         pTitle1.setSpacingAfter(8f);
                         document.add(pTitle1);
 
+                        stCopyClipBoard = new StringBuilder();
+                        stCopyClipBoard.append("*Maintenance Report*\n\n");
+
                         ArrayList<MasterJobDesc> alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
                         if (alJobDesc.size() > 0){
                             String maintenanceContent = "Progress               = " +preference.getProgress().trim() +"\n" +
@@ -253,12 +244,14 @@ public class DashboardFragment extends Fragment {
                             pContent1.setAlignment(Element.ALIGN_LEFT);
                             pContent1.setSpacingAfter(8f);
                             document.add(pContent1);
+                            stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
 
                         Paragraph pTitle2 = new Paragraph("*"+getActivity().getString(R.string.problemDesc_trans)+"*",titleFont);
                         pTitle2.setAlignment(Element.ALIGN_LEFT);
                         pTitle2.setSpacingAfter(8f);
                         document.add(pTitle2);
+                        stCopyClipBoard.append("*"+getActivity().getString(R.string.problemDesc_trans)+"*\n\n");
 
                         ArrayList<MasterProblem> alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
                         if (alProblem.size() > 0){
@@ -274,6 +267,7 @@ public class DashboardFragment extends Fragment {
                             pContent2.setAlignment(Element.ALIGN_LEFT);
                             pContent2.setSpacingAfter(8f);
                             document.add(pContent2);
+                            stCopyClipBoard.append(problemContent+"\n\n");
 
                         }
 
@@ -281,6 +275,8 @@ public class DashboardFragment extends Fragment {
                         pAction.setAlignment(Element.ALIGN_LEFT);
                         pAction.setSpacingAfter(8f);
                         document.add(pAction);
+                        stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
+
 
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
                         if (al_listAction.size() > 0){
@@ -319,6 +315,7 @@ public class DashboardFragment extends Fragment {
                                 actionParagraph.setAlignment(Element.ALIGN_LEFT);
                                 actionParagraph.setSpacingAfter(8f);
                                 document.add(actionParagraph);
+                                stCopyClipBoard.append(actionContent+"\n\n");
                             }
                         }
 
@@ -326,6 +323,7 @@ public class DashboardFragment extends Fragment {
                         envParagraph.setAlignment(Element.ALIGN_LEFT);
                         envParagraph.setSpacingAfter(8f);
                         document.add(envParagraph);
+                        stCopyClipBoard.append("*"+getActivity().getString(R.string.electEnv_trans)+"*\n\n");
 
                         ArrayList<MasterEnvirontment> allEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
                         if (allEnv.size() > 0){
@@ -341,12 +339,14 @@ public class DashboardFragment extends Fragment {
                             envContentParagraph.setAlignment(Element.ALIGN_LEFT);
                             envContentParagraph.setSpacingAfter(8f);
                             document.add(envContentParagraph);
+                            stCopyClipBoard.append(environtmentContent+"\n\n");
                         }
 
                         Paragraph ioParagraph = new Paragraph("*I/0 Equipment*",titleFont);
                         ioParagraph.setAlignment(Element.ALIGN_LEFT);
                         ioParagraph.setSpacingAfter(8f);
                         document.add(ioParagraph);
+                        stCopyClipBoard.append("*I/0 Equipment*\n\n");
 
                         if(preference.getConnType().equals("VSAT")){
                             ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
@@ -366,6 +366,7 @@ public class DashboardFragment extends Fragment {
                                 ioContentParagraph.setAlignment(Element.ALIGN_LEFT);
                                 ioContentParagraph.setSpacingAfter(8f);
                                 document.add(ioContentParagraph);
+                                stCopyClipBoard.append(vsatSetup+"\n\n");
                             }
 
                             ArrayList<MasterVsatReplace> alReplace = new VsatReplaceAdapter(getActivity()).val_vsatReplace(preference.getCustID(), preference.getUn());
@@ -395,12 +396,14 @@ public class DashboardFragment extends Fragment {
                                 replaceParagraph.setAlignment(Element.ALIGN_LEFT);
                                 replaceParagraph.setSpacingAfter(8f);
                                 document.add(replaceParagraph);
+                                stCopyClipBoard.append(vsatReplace+"\n\n");
                             }
 
                             Paragraph xpollParagraph = new Paragraph("*XPOLL ITEM*",titleFont);
                             xpollParagraph.setAlignment(Element.ALIGN_LEFT);
                             xpollParagraph.setSpacingAfter(8f);
                             document.add(xpollParagraph);
+                            stCopyClipBoard.append("*XPOLL ITEM*\n\n");
 
                             ArrayList<MasterXpoll> alXpoll = new M2mXpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
                             if (alXpoll.size() > 0){
@@ -416,6 +419,7 @@ public class DashboardFragment extends Fragment {
                                 xpollContentParagraph.setAlignment(Element.ALIGN_LEFT);
                                 xpollContentParagraph.setSpacingAfter(8f);
                                 document.add(xpollContentParagraph);
+                                stCopyClipBoard.append(xpollContentParagraph+"\n\n");
                             }
 
                             ArrayList<MasterConnectionParameter> alParam = new ConnectionParameterAdapter(getActivity()).val_param(preference.getCustID(), preference.getUn());
@@ -436,18 +440,101 @@ public class DashboardFragment extends Fragment {
                                 paramContentParagraph.setAlignment(Element.ALIGN_LEFT);
                                 paramContentParagraph.setSpacingAfter(8f);
                                 document.add(paramContentParagraph);
+                                stCopyClipBoard.append(paramContent+"\n\n");
                             }
 
                         }else if (preference.getConnType().equals("M2M")){
+                            Paragraph ioM2mParagraph = new Paragraph("*"+getActivity().getString(R.string.ioM2M_trans)+"*",titleFont);
+                            ioM2mParagraph.setAlignment(Element.ALIGN_LEFT);
+                            ioM2mParagraph.setSpacingAfter(8f);
+                            document.add(ioM2mParagraph);
+                            stCopyClipBoard.append("*"+getActivity().getString(R.string.ioM2M_trans)+"*\n\n");
+
                             ArrayList<MasterM2mSetup> alM2m = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
                             if(alM2m.size() > 0){
+                                String m2mSetupContent = "_OLD_\nM2M\nBrand / Type = " +alM2m.get(0).getBrand_type_m2m() +"\n"+
+                                                         "S/N = "+alM2m.get(0).getSn_m2m().trim()+"\n\n"+
+                                                         "ADAPTOR\nBrand / Type = " +alM2m.get(0).getBrand_type_adaptor().trim()+"\n"+
+                                                         "S/N = " +alM2m.get(0).getSn_adaptor().trim() + "\n\n"+
+                                                         "SIMCARD 1\nBrand / Type = " +alM2m.get(0).getSim_card1_type()+"\n"+
+                                                         "S/N = " +alM2m.get(0).getSim_card1_sn() +"\n"+
+                                                         "PUK = " +alM2m.get(0).getSim_card1_puk() + "\n\n"+
+                                                         "SIMCARD 2 \nBrand / Type = " + alM2m.get(0).getSim_card2_type().trim() + "\n"+
+                                                         "S/N = " +alM2m.get(0).getSim_card2_sn() + "\n"+
+                                                         "PUK = " +alM2m.get(0).getSim_card2_puk() + "\n";
+
+                                Paragraph m2mSetupContentParagraph = new Paragraph(m2mSetupContent,contentFont);
+                                m2mSetupContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                m2mSetupContentParagraph.setSpacingAfter(8f);
+                                document.add(m2mSetupContentParagraph);
+                                //TODO ADD builder in here
+                            }
+
+                            ArrayList<MasterM2mData> alM2mData = new M2mDataAdapter(getActivity()).val_dataM2m(preference.getCustID(), preference.getUn());
+                            if (alM2mData.size() > 0){
+                                String dataM2mContent = "Username = " +alM2mData.get(0).getUsername().trim()+ "\n"+
+                                                        "Password = " +alM2mData.get(0).getPassword().trim() + "\n"+
+                                                        "Ip machine = "+alM2mData.get(0).getIp_machine().trim() + "\n"+
+                                                        "User = " +alM2mData.get(0).getUser().trim()+ "\n"+
+                                                        "Remote = " +alM2mData.get(0).getRemote().trim()+"\n"+
+                                                        "Tunnel ID 1 = " +alM2mData.get(0).getTunnel_id().trim()+"\n"+
+                                                        "IP Bounding = " +alM2mData.get(0).getIp_bonding().trim()+"\n"+
+                                                        "IP VLAN = " +alM2mData.get(0).getIp_vlan().trim()+"\n"+
+                                                        "IP LAN = " +alM2mData.get(0).getIp_lan().trim()+"\n"+
+                                                        "Subnetmask = " +alM2mData.get(0).getSubnet_mask().trim() +"\n"+
+                                                        "AGG = " +alM2mData.get(0).getAgg().trim();
+
+                                Paragraph m2mDataContentParagraph = new Paragraph(dataM2mContent,contentFont);
+                                m2mDataContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                m2mDataContentParagraph.setSpacingAfter(8f);
+                                document.add(m2mDataContentParagraph);
+                            }
+
+                            ArrayList<MasterM2mReplace> alm2mReplace = new M2mReplaceAdapter(getActivity()).val_m2mReplace(preference.getCustID(), preference.getUn());
+                            if (alm2mReplace.size() > 0){
+                                String m2mType = alm2mReplace.get(0).getBrand_type_replace().trim();
+                                String m2mSn = alm2mReplace.get(0).getBrand_type_adaptor().trim();
+                                String adaptorType = alm2mReplace.get(0).getBrand_type_adaptor().trim();
+                                String adaptorSn = alm2mReplace.get(0).getSn_adaptor().trim();
+                                String simCard1Type = alm2mReplace.get(0).getSim_card1_type().trim();
+                                String simCard1SN = alm2mReplace.get(0).getSim_card1_sn().trim();
+                                String simcard1Puk = alm2mReplace.get(0).getSim_card1_puk().trim();
+                                String simCard2Type = alm2mReplace.get(0).getSim_card2_type().trim();
+                                String simCard2SN = alm2mReplace.get(0).getSim_card2_sn().trim();
+                                String simcard2Puk = alm2mReplace.get(0).getSim_card2_puk().trim();
+
+                                if (m2mType.equals("-")){m2mType = "";}
+                                if (m2mSn.equals("-")){m2mSn = "";}
+                                if (adaptorType.equals("-")){adaptorType = "";}
+                                if (adaptorSn.equals("-")){adaptorSn = "";}
+                                if (simCard1Type.equals("-")){simCard1Type = "";}
+                                if (simCard1SN.equals("-")){simCard1SN = "";}
+                                if (simcard1Puk.equals("-")){simcard1Puk = "";}
+                                if (simCard2Type.equals("-")){simCard2Type = "";}
+                                if (simCard2SN.equals("-")){simCard2SN = "";}
+                                if (simcard2Puk.equals("-")){simcard2Puk = "";}
+
+                                String m2mReplace = "_NEW_\nM2M\nBrand / Type = " +m2mType.trim()+"\n"+
+                                                    "S/N = " +m2mSn.trim() +"\n\n"+
+                                                    "ADAPTOR\nBrand / Type = "+adaptorType.trim() +"\n"+
+                                                    "S/N = " +adaptorSn.trim() +"\n\n"+
+                                                    "SIMCARD 1\nBrand / Type = " +simCard1Type.trim() +"\n"+
+                                                    "S/N = " +simCard1SN.trim() + "\n" +
+                                                    "PUK = " +simcard1Puk.trim() + "\n\n" +
+                                                    "SIMCARD 2\nBrand / Type = " +simCard2Type.trim() + "\n"+
+                                                    "S/N = " +simCard2SN.trim() + "\n" +
+                                                    "PUK = " +simcard2Puk.trim();
+
+                                Paragraph m2mReplaceContentParagraph = new Paragraph(m2mReplace,contentFont);
+                                m2mReplaceContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                m2mReplaceContentParagraph.setSpacingAfter(8f);
+                                document.add(m2mReplaceContentParagraph);
 
                             }
                         }
 
                         document.close();
-                        //klo doc ud ke convert semua
-                        submitReport();
+                        alertChoose();
                     }catch (Exception e){
                         messageUtils.toastMessage("err convert Pdf "+e.toString(), ConfigApps.T_ERROR);
                     }
@@ -472,8 +559,35 @@ public class DashboardFragment extends Fragment {
 
     }
 
+    private void alertChoose(){
+        String[] listItems = {"Send File Pdf", "Copy into whatsapp"};
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Send via")
+                .setItems(listItems, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == 0){
+                            submitReport();
+                        }else{
+                            //send via WA
+                            //if (isSubmitReport()){
+                                loadDash();
+                                loadRcTrans();
+                                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+                                ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
+                                clipboard.setPrimaryClip(clip);
+                                messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_INFO);
+                            //preference.clearDataTrans();
+                            //}else{
+                            //   messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+                            //}
+                        }
+                    }
+                })
+                .show();
+
+    }
     private void submitReport(){
-        //if (isSubmitReport()){
             File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
             String subjectEmail = "Kepada yth,\nBpk/Ibu Admin\n\nBerikut saya lampirkan Report Customer " +preference.getCustName()+
                     "\n\nDemikian yang bisa saya sampaikan\nTerima Kasih\n\n\n " + preference.getUn().
@@ -494,12 +608,13 @@ public class DashboardFragment extends Fragment {
             }
 
             messageUtils.toastMessage("Data Sukses tersubmit ", ConfigApps.T_INFO);
-           //preference.clearDataTrans();
-            loadDash();
-            loadRcTrans();
-//        }else{
-//            messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
-//        }
+            //if (isSubmitReport()){
+            //preference.clearDataTrans();
+                loadDash();
+                loadRcTrans();
+            //}else{
+            //   messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+            //}
     }
 
     @Override

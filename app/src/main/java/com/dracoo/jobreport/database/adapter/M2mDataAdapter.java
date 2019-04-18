@@ -34,6 +34,17 @@ public class M2mDataAdapter extends DatabaseAdapter {
             MasterM2mData datam2m = new MasterM2mData();
             datam2m.setId_data(cursor.getInt(0));
             datam2m.setId_site(cursor.getInt(1));
+            datam2m.setUsername(cursor.getString(2));
+            datam2m.setPassword(cursor.getString(3));
+            datam2m.setUser(cursor.getString(4));
+            datam2m.setRemote(cursor.getString(5));
+            datam2m.setTunnel_id(cursor.getString(6));
+            datam2m.setIp_bonding(cursor.getString(7));
+            datam2m.setIp_vlan(cursor.getString(8));
+            datam2m.setIp_lan(cursor.getString(9));
+            datam2m.setSubnet_mask(cursor.getString(10));
+            datam2m.setAgg(cursor.getString(11));
+            datam2m.setIp_machine(cursor.getString(12));
 
             datam2ms.add(datam2m);
         }
@@ -45,8 +56,19 @@ public class M2mDataAdapter extends DatabaseAdapter {
     public Cursor val_m2mDataCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = "SELECT id_data, " +
-                " id_site " +
+        String sql = "SELECT id_data, " + //0
+                            " id_site, " + //1
+                            " username, " + //2
+                            " password, " + //3
+                            " user, " + //4
+                            " remote, " + //5
+                            " tunnel_id, " + //6
+                            " ip_bonding, " + //7
+                            " ip_vlan, " + //8
+                            " ip_lan, " + //9
+                            " subnet_mask, " + //10
+                            " agg, " + //11
+                            " ip_machine "+ //12
                 "from m2m_data " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";

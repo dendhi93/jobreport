@@ -131,6 +131,7 @@ public class DataM2mActivity extends AppCompatActivity {
                 MasterM2mData m2mData = dataM2mDao.queryForId(al_valDatam2m.get(0).getId_data());
                 m2mData.setUsername(txt_dm2m_user.getText().toString().trim());
                 m2mData.setPassword(txt_dm2m_password.getText().toString().trim());
+                m2mData.setIp_machine(txt_dm2m_ipMachine.getText().toString().trim());
                 m2mData.setUser(txt_dm2m_user.getText().toString().trim());
                 m2mData.setRemote(txt_dm2m_remote.getText().toString().trim());
                 m2mData.setTunnel_id(txt_dm2m_tunnelId.getText().toString().trim());
@@ -152,6 +153,7 @@ public class DataM2mActivity extends AppCompatActivity {
                 m2mData.setId_site(preference.getCustID());
                 m2mData.setUsername(txt_dm2m_user.getText().toString().trim());
                 m2mData.setPassword(txt_dm2m_password.getText().toString().trim());
+                m2mData.setIp_machine(txt_dm2m_ipMachine.getText().toString().trim());
                 m2mData.setUser(txt_dm2m_user.getText().toString().trim());
                 m2mData.setRemote(txt_dm2m_remote.getText().toString().trim());
                 m2mData.setTunnel_id(txt_dm2m_tunnelId.getText().toString().trim());

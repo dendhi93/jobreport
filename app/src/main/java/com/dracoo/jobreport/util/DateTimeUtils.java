@@ -10,10 +10,6 @@ public class DateTimeUtils {
         return new SimpleDateFormat("yyy-MM-dd HH:mm:ss", java.util.Locale.getDefault()).format(new Date());
     }
 
-    public static String getCurrentDate() {
-        return new SimpleDateFormat("yyy-MM-dd", java.util.Locale.getDefault()).format(new Date());
-    }
-
     public static String getChangeDateFormat(String dateTime){
         try {
             SimpleDateFormat source = new SimpleDateFormat("yyy-MM-dd, HH:mm:ss", java.util.Locale.getDefault());
