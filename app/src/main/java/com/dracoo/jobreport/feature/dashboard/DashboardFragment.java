@@ -117,10 +117,25 @@ public class DashboardFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
-
         try{
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){ Log.d("###","failed create adapter " +e.toString());}
+
+        try{
+            ArrayList<MasterM2mReplace> alm2mReplace = new M2mReplaceAdapter(getActivity()).val_m2mReplace(preference.getCustID(), preference.getUn());
+            if (alm2mReplace.size() > 0){
+                Log.d("###",""+alm2mReplace.get(0).getBrand_type_replace().trim());
+                Log.d("###",""+alm2mReplace.get(0).getBrand_type_adaptor().trim());
+                Log.d("###",""+alm2mReplace.get(0).getBrand_type_adaptor().trim());
+                Log.d("###",""+alm2mReplace.get(0).getSn_adaptor().trim());
+                Log.d("###",""+alm2mReplace.get(0).getSim_card1_type().trim());
+                Log.d("###",""+alm2mReplace.get(0).getSim_card1_sn().trim());
+                Log.d("###",""+alm2mReplace.get(0).getSim_card1_puk().trim());
+                Log.d("###",""+alm2mReplace.get(0).getSim_card2_type().trim());
+                Log.d("###",""+alm2mReplace.get(0).getSim_card2_sn().trim());
+                Log.d("###",""+alm2mReplace.get(0).getSim_card2_puk().trim());
+            }
+        }catch (Exception e){Log.d("###",""+e.toString());}
     }
 
     public List<MasterTransHistory> getList_TransHist(){
@@ -335,13 +350,13 @@ public class DashboardFragment extends Fragment {
                             stCopyClipBoard.append(environtmentContent+"\n\n");
                         }
 
-                        Paragraph ioParagraph = new Paragraph("*I/0 Equipment*",titleFont);
-                        ioParagraph.setAlignment(Element.ALIGN_LEFT);
-                        ioParagraph.setSpacingAfter(8f);
-                        document.add(ioParagraph);
-                        stCopyClipBoard.append("*I/0 Equipment*\n\n");
-
                         if(preference.getConnType().equals("VSAT")){
+                            Paragraph ioParagraph = new Paragraph("*I/0 Equipment*",titleFont);
+                            ioParagraph.setAlignment(Element.ALIGN_LEFT);
+                            ioParagraph.setSpacingAfter(8f);
+                            document.add(ioParagraph);
+                            stCopyClipBoard.append("*I/0 Equipment*\n\n");
+
                             ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
                             if (alVsat.size() > 0){
                                 String vsatSetup = "_OLD_\nS/N Modem = " +alVsat.get(0).getSn_modem().trim()+"\n"+

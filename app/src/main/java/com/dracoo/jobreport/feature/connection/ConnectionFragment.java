@@ -312,6 +312,7 @@ public class ConnectionFragment extends Fragment {
                     m2mSetup.setBrand_type_m2m(txt_conn_m2m_brand.getText().toString().trim());
                     m2mSetup.setSn_m2m(txt_conn_m2m_sn.getText().toString().trim());
                     m2mSetup.setBrand_type_adaptor(txt_conn_m2m_adaptorBrand.getText().toString().trim());
+                    m2mSetup.setSn_adaptor(txt_conn_m2m_adaptorSn.getText().toString().trim());
                     m2mSetup.setSim_card1_type(txt_conn_m2m_sc1Brand.getText().toString().trim());
                     m2mSetup.setSim_card1_sn(txt_conn_m2m_sc1Sn.getText().toString().trim());
                     m2mSetup.setSim_card1_puk(txt_conn_m2m_sc1puk.getText().toString().trim());
@@ -335,6 +336,7 @@ public class ConnectionFragment extends Fragment {
                     m2mSetup.setBrand_type_m2m(txt_conn_m2m_brand.getText().toString().trim());
                     m2mSetup.setSn_m2m(txt_conn_m2m_sn.getText().toString().trim());
                     m2mSetup.setBrand_type_adaptor(txt_conn_m2m_adaptorBrand.getText().toString().trim());
+                    m2mSetup.setSn_adaptor(txt_conn_m2m_adaptorSn.getText().toString().trim());
                     m2mSetup.setSim_card1_type(txt_conn_m2m_sc1Brand.getText().toString().trim());
                     m2mSetup.setSim_card1_sn(txt_conn_m2m_sc1Sn.getText().toString().trim());
                     m2mSetup.setSim_card1_puk(txt_conn_m2m_sc1puk.getText().toString().trim());
