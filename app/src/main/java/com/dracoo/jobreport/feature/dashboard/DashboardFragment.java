@@ -466,6 +466,23 @@ public class DashboardFragment extends Fragment {
 
                             ArrayList<MasterM2mData> alM2mData = new M2mDataAdapter(getActivity()).val_dataM2m(preference.getCustID(), preference.getUn());
                             if (alM2mData.size() > 0){
+                                String dataM2mContent = "Username = " +alM2mData.get(0).getUsername().trim()+ "\n"+
+                                                        "Password = " +alM2mData.get(0).getPassword().trim() + "\n"+
+                                                        "Ip machine = "+alM2mData.get(0).getIp_machine().trim() + "\n"+
+                                                        "User = " +alM2mData.get(0).getUser().trim()+ "\n"+
+                                                        "Remote = " +alM2mData.get(0).getRemote().trim()+"\n"+
+                                                        "Tunnel ID 1 = " +alM2mData.get(0).getTunnel_id().trim()+"\n"+
+                                                        "Tunnel ID 2 = unknown "+
+                                                        "IP Bounding = " +alM2mData.get(0).getIp_bonding().trim()+"\n"+
+                                                        "IP VLAN = " +alM2mData.get(0).getIp_vlan().trim()+"\n"+
+                                                        "IP LAN = " +alM2mData.get(0).getIp_lan().trim()+"\n"+
+                                                        "Subnetmask = " +alM2mData.get(0).getSubnet_mask().trim() +"\n"+
+                                                        "AGG = " +alM2mData.get(0).getAgg().trim();
+
+                                Paragraph m2mDataContentParagraph = new Paragraph(dataM2mContent,contentFont);
+                                m2mDataContentParagraph.setAlignment(Element.ALIGN_LEFT);
+                                m2mDataContentParagraph.setSpacingAfter(8f);
+                                document.add(m2mDataContentParagraph);
 
                             }
                         }
