@@ -120,22 +120,6 @@ public class DashboardFragment extends Fragment {
         try{
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){ Log.d("###","failed create adapter " +e.toString());}
-
-        try{
-            ArrayList<MasterM2mReplace> alm2mReplace = new M2mReplaceAdapter(getActivity()).val_m2mReplace(preference.getCustID(), preference.getUn());
-            if (alm2mReplace.size() > 0){
-                Log.d("###",""+alm2mReplace.get(0).getBrand_type_replace().trim());
-                Log.d("###",""+alm2mReplace.get(0).getBrand_type_adaptor().trim());
-                Log.d("###",""+alm2mReplace.get(0).getBrand_type_adaptor().trim());
-                Log.d("###",""+alm2mReplace.get(0).getSn_adaptor().trim());
-                Log.d("###",""+alm2mReplace.get(0).getSim_card1_type().trim());
-                Log.d("###",""+alm2mReplace.get(0).getSim_card1_sn().trim());
-                Log.d("###",""+alm2mReplace.get(0).getSim_card1_puk().trim());
-                Log.d("###",""+alm2mReplace.get(0).getSim_card2_type().trim());
-                Log.d("###",""+alm2mReplace.get(0).getSim_card2_sn().trim());
-                Log.d("###",""+alm2mReplace.get(0).getSim_card2_puk().trim());
-            }
-        }catch (Exception e){Log.d("###",""+e.toString());}
     }
 
     public List<MasterTransHistory> getList_TransHist(){
@@ -222,8 +206,8 @@ public class DashboardFragment extends Fragment {
 
                     Document document = new Document(PageSize.A4, 30, 30, 30, 30);
                     try{
-                        float mcontentFontSize = 8.0f;
-                        float mHeadingFontSize = 10.0f;
+                        float mcontentFontSize = 6.0f;
+                        float mHeadingFontSize = 8.0f;
                         BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
                         Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
                         Font titleFont = new Font(urName, mHeadingFontSize, Font.UNDERLINE, BaseColor.BLACK);
@@ -233,7 +217,7 @@ public class DashboardFragment extends Fragment {
 
                         Paragraph pTitle1 = new Paragraph("*Maintenance Report*",titleFont);
                         pTitle1.setAlignment(Element.ALIGN_LEFT);
-                        pTitle1.setSpacingAfter(8f);
+                        pTitle1.setSpacingAfter(3f);
                         document.add(pTitle1);
 
                         stCopyClipBoard = new StringBuilder();
@@ -257,14 +241,14 @@ public class DashboardFragment extends Fragment {
 
                             Paragraph pContent1 = new Paragraph(maintenanceContent,contentFont);
                             pContent1.setAlignment(Element.ALIGN_LEFT);
-                            pContent1.setSpacingAfter(8f);
+                            pContent1.setSpacingAfter(3f);
                             document.add(pContent1);
                             stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
 
                         Paragraph pTitle2 = new Paragraph("*"+getActivity().getString(R.string.problemDesc_trans)+"*",titleFont);
                         pTitle2.setAlignment(Element.ALIGN_LEFT);
-                        pTitle2.setSpacingAfter(8f);
+                        pTitle2.setSpacingAfter(3f);
                         document.add(pTitle2);
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.problemDesc_trans)+"*\n\n");
 
@@ -280,7 +264,7 @@ public class DashboardFragment extends Fragment {
 
                             Paragraph pContent2 = new Paragraph(problemContent,contentFont);
                             pContent2.setAlignment(Element.ALIGN_LEFT);
-                            pContent2.setSpacingAfter(8f);
+                            pContent2.setSpacingAfter(3f);
                             document.add(pContent2);
                             stCopyClipBoard.append(problemContent+"\n\n");
 
@@ -288,7 +272,7 @@ public class DashboardFragment extends Fragment {
 
                         Paragraph pAction = new Paragraph("*"+getActivity().getString(R.string.action_trans)+"*",titleFont);
                         pAction.setAlignment(Element.ALIGN_LEFT);
-                        pAction.setSpacingAfter(8f);
+                        pAction.setSpacingAfter(3f);
                         document.add(pAction);
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
 
@@ -321,7 +305,7 @@ public class DashboardFragment extends Fragment {
                             if (i == al_listAction.size()){
                                 Paragraph actionParagraph = new Paragraph(actionContent,contentFont);
                                 actionParagraph.setAlignment(Element.ALIGN_LEFT);
-                                actionParagraph.setSpacingAfter(8f);
+                                actionParagraph.setSpacingAfter(3f);
                                 document.add(actionParagraph);
                                 stCopyClipBoard.append(actionContent+"\n\n");
                             }
@@ -329,7 +313,7 @@ public class DashboardFragment extends Fragment {
 
                         Paragraph envParagraph = new Paragraph("*"+getActivity().getString(R.string.electEnv_trans)+"*",titleFont);
                         envParagraph.setAlignment(Element.ALIGN_LEFT);
-                        envParagraph.setSpacingAfter(8f);
+                        envParagraph.setSpacingAfter(3f);
                         document.add(envParagraph);
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.electEnv_trans)+"*\n\n");
 
@@ -345,7 +329,7 @@ public class DashboardFragment extends Fragment {
 
                             Paragraph envContentParagraph = new Paragraph(environtmentContent,contentFont);
                             envContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                            envContentParagraph.setSpacingAfter(8f);
+                            envContentParagraph.setSpacingAfter(3f);
                             document.add(envContentParagraph);
                             stCopyClipBoard.append(environtmentContent+"\n\n");
                         }
@@ -353,7 +337,7 @@ public class DashboardFragment extends Fragment {
                         if(preference.getConnType().equals("VSAT")){
                             Paragraph ioParagraph = new Paragraph("*I/0 Equipment*",titleFont);
                             ioParagraph.setAlignment(Element.ALIGN_LEFT);
-                            ioParagraph.setSpacingAfter(8f);
+                            ioParagraph.setSpacingAfter(3f);
                             document.add(ioParagraph);
                             stCopyClipBoard.append("*I/0 Equipment*\n\n");
 
@@ -372,7 +356,7 @@ public class DashboardFragment extends Fragment {
 
                                 Paragraph ioContentParagraph = new Paragraph(vsatSetup,contentFont);
                                 ioContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                ioContentParagraph.setSpacingAfter(8f);
+                                ioContentParagraph.setSpacingAfter(3f);
                                 document.add(ioContentParagraph);
                                 stCopyClipBoard.append(vsatSetup+"\n\n");
                             }
@@ -402,14 +386,14 @@ public class DashboardFragment extends Fragment {
 
                                 Paragraph replaceParagraph = new Paragraph(vsatReplace,contentFont);
                                 replaceParagraph.setAlignment(Element.ALIGN_LEFT);
-                                replaceParagraph.setSpacingAfter(8f);
+                                replaceParagraph.setSpacingAfter(3f);
                                 document.add(replaceParagraph);
                                 stCopyClipBoard.append(vsatReplace+"\n\n");
                             }
 
                             Paragraph xpollParagraph = new Paragraph("\n*XPOLL ITEM*",titleFont);
                             xpollParagraph.setAlignment(Element.ALIGN_LEFT);
-                            xpollParagraph.setSpacingAfter(8f);
+                            xpollParagraph.setSpacingAfter(3f);
                             document.add(xpollParagraph);
                             stCopyClipBoard.append("*XPOLL ITEM*\n\n");
 
@@ -425,7 +409,7 @@ public class DashboardFragment extends Fragment {
 
                                 Paragraph xpollContentParagraph = new Paragraph(xpollContent,contentFont);
                                 xpollContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                xpollContentParagraph.setSpacingAfter(8f);
+                                xpollContentParagraph.setSpacingAfter(3f);
                                 document.add(xpollContentParagraph);
                                 stCopyClipBoard.append(xpollContentParagraph+"\n\n");
                             }
@@ -446,7 +430,7 @@ public class DashboardFragment extends Fragment {
 
                                 Paragraph paramContentParagraph = new Paragraph(paramContent,contentFont);
                                 paramContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                paramContentParagraph.setSpacingAfter(8f);
+                                paramContentParagraph.setSpacingAfter(3f);
                                 document.add(paramContentParagraph);
                                 stCopyClipBoard.append(paramContent+"\n\n");
                             }
@@ -454,7 +438,7 @@ public class DashboardFragment extends Fragment {
                         }else if (preference.getConnType().equals("M2M")){
                             Paragraph ioM2mParagraph = new Paragraph("*"+getActivity().getString(R.string.ioM2M_trans)+"*",titleFont);
                             ioM2mParagraph.setAlignment(Element.ALIGN_LEFT);
-                            ioM2mParagraph.setSpacingAfter(8f);
+                            ioM2mParagraph.setSpacingAfter(3f);
                             document.add(ioM2mParagraph);
                             stCopyClipBoard.append("*"+getActivity().getString(R.string.ioM2M_trans)+"*\n\n");
 
@@ -473,7 +457,7 @@ public class DashboardFragment extends Fragment {
 
                                 Paragraph m2mSetupContentParagraph = new Paragraph(m2mSetupContent,contentFont);
                                 m2mSetupContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                m2mSetupContentParagraph.setSpacingAfter(8f);
+                                m2mSetupContentParagraph.setSpacingAfter(3f);
                                 document.add(m2mSetupContentParagraph);
                                 //TODO ADD builder in here
                             }
@@ -494,7 +478,7 @@ public class DashboardFragment extends Fragment {
 
                                 Paragraph m2mDataContentParagraph = new Paragraph(dataM2mContent,contentFont);
                                 m2mDataContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                m2mDataContentParagraph.setSpacingAfter(8f);
+                                m2mDataContentParagraph.setSpacingAfter(3f);
                                 document.add(m2mDataContentParagraph);
                             }
 
@@ -535,7 +519,7 @@ public class DashboardFragment extends Fragment {
 
                                 Paragraph m2mReplaceContentParagraph = new Paragraph(m2mReplace,contentFont);
                                 m2mReplaceContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                m2mReplaceContentParagraph.setSpacingAfter(8f);
+                                m2mReplaceContentParagraph.setSpacingAfter(3f);
                                 document.add(m2mReplaceContentParagraph);
 
                             }
@@ -571,6 +555,7 @@ public class DashboardFragment extends Fragment {
         String[] listItems = {"Send File Pdf", "Copy into whatsapp"};
         new AlertDialog.Builder(getActivity())
                 .setTitle("Send via")
+                .setCancelable(false)
                 .setItems(listItems, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

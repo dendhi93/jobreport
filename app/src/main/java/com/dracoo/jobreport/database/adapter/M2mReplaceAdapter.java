@@ -33,6 +33,16 @@ public class M2mReplaceAdapter extends DatabaseAdapter {
             MasterM2mReplace replace = new MasterM2mReplace();
             replace.setId_replace(cursor.getInt(0));
             replace.setId_site(cursor.getInt(1));
+            replace.setBrand_type_replace(cursor.getString(2));
+            replace.setSn_replace(cursor.getString(3));
+            replace.setBrand_type_adaptor(cursor.getString(4));
+            replace.setSn_adaptor(cursor.getString(5));
+            replace.setSim_card1_type(cursor.getString(6));
+            replace.setSim_card1_sn(cursor.getString(7));
+            replace.setSim_card1_puk(cursor.getString(8));
+            replace.setSim_card2_type(cursor.getString(9));
+            replace.setSim_card2_sn(cursor.getString(10));
+            replace.setSim_card2_puk(cursor.getString(11));
 
             replaces.add(replace);
         }
@@ -44,18 +54,18 @@ public class M2mReplaceAdapter extends DatabaseAdapter {
     public Cursor val_m2mReplaceCursor(int custId, String un){
         Cursor cursor;
 
-        String sql = " SELECT id_replace, " +
-                            " id_site, " +
-                            " brand_type_replace, " +
-                            " sn_replace, " +
-                            " brand_type_adaptor, " +
-                            " sn_adaptor, " +
-                            " sim_card1_type, " +
-                            " sim_card1_sn, " +
-                            " sim_card1_puk, " +
-                            " sim_card2_type, " +
-                            " sim_card2_sn, " +
-                            " sim_card2_puk " +
+        String sql = " SELECT id_replace, " + //0
+                            " id_site, " + //1
+                            " brand_type_replace, " + //2
+                            " sn_replace, " + //3
+                            " brand_type_adaptor, " + //4
+                            " sn_adaptor, " + //5
+                            " sim_card1_type, " + //6
+                            " sim_card1_sn, " + //7
+                            " sim_card1_puk, " + //8
+                            " sim_card2_type, " + //9
+                            " sim_card2_sn, " + //10
+                            " sim_card2_puk " + //11
                     " from m2m_replace " +
                     " where id_site = " + custId + " " +
                     " and un_user = '" +un+ "' ";
