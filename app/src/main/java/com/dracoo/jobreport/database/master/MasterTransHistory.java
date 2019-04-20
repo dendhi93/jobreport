@@ -71,6 +71,10 @@ public class MasterTransHistory implements Serializable {
         this.update_date = update_date;
     }
 
+    public Integer getIs_submited() {
+        return is_submited;
+    }
+
     public void setIs_submited(Integer is_submited) {
         this.is_submited = is_submited;
     }
