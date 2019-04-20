@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -92,6 +93,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     TextView lbl_doc_empty;
     @BindView(R.id.spinner_doc)
     Spinner spinner_doc;
+    @BindView(R.id.prd_doc)
+    ProgressBar prd_doc;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,6 +112,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
+        prd_doc.setVisibility(View.GONE);
 
         if (preference.getConnType().equals("")){
             messageUtils.snackBar_message("Mohon diinput Menu Connection terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
@@ -139,6 +143,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         }else if (!new ImageAdapter(getActivity()).isImageEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.snackBar_message("Mohon diambil gambar terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         } else{
+            prd_doc.setVisibility(View.VISIBLE);
             convertPdf();
         }
     }
@@ -199,6 +204,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                     i++;
                                 }
                                 document.close();
+                                prd_doc.setVisibility(View.GONE);
+
                                 messageUtils.toastMessage("Dokumen sukses diconvert ke pdf", ConfigApps.T_SUCCESS);
                                 File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
                                 String subjectEmail = "Kepada yth,\nBpk/Ibu Admin\n\nBerikut saya lampirkan Report Customer " +customerName+
@@ -214,19 +221,24 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                         startActivity(Intent.createChooser(shareIntent, "choose one"));
                                     }else{
                                         messageUtils.toastMessage("File Tidak ditemukan", ConfigApps.T_WARNING);
+                                        prd_doc.setVisibility(View.GONE);
                                     }
                                 } catch(Exception e) {
                                     messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR);
+                                    prd_doc.setVisibility(View.GONE);
                                 }
                             }
                         }catch (Exception e){
                             messageUtils.toastMessage("err convert image" +e.toString(), ConfigApps.T_ERROR);
+                            prd_doc.setVisibility(View.GONE);
                         }
                     }else{
                         messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(),ConfigApps.SNACKBAR_NO_BUTTON);
+                        prd_doc.setVisibility(View.GONE);
                     }
                 }else{
                     messageUtils.snackBar_message("Mohon dilengkapi foto yang belum diinput", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+                    prd_doc.setVisibility(View.GONE);
                 }
             }
         }, 1000);
@@ -424,6 +436,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     public void onResume(){
         super.onResume();
         loadRcImage();
+        prd_doc.setVisibility(View.GONE);
     }
 
     @Override

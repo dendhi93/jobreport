@@ -47,11 +47,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:layout_marginEnd="@dimen/spacing_tiny"
-                android:layout_toLeftOf="@+id/imgB_doc_confirm"
+                android:layout_toLeftOf="@+id/prd_doc"
                 android:gravity="center"
                 android:text="Mohon dilakukan pengecekan kembali sebelum di Upload"
                 android:textColor="@color/colorBlack"
                 android:visibility="visible"/>
+            
+            <ProgressBar
+                android:id="@+id/prd_doc"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="@dimen/spacing_small_1"
+                android:layout_toLeftOf="@+id/imgB_doc_confirm"/>
 
             <ImageButton
                 android:id="@+id/imgB_doc_confirm"
