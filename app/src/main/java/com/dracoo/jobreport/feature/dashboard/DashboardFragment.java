@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dracoo.jobreport.R;
@@ -87,6 +88,8 @@ public class DashboardFragment extends Fragment {
     RecyclerView rc_dash_activity;
     @BindView(R.id.lbl_dash_empty)
     TextView lbl_dash_empty;
+    @BindView(R.id.prg_dash)
+    ProgressBar prg_dash;
 
     private MessageUtils messageUtils;
     private Preference preference;
@@ -119,6 +122,7 @@ public class DashboardFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
+        prg_dash.setVisibility(View.GONE);
         try{
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){ Log.d("###","failed create adapter " +e.toString());}
@@ -187,6 +191,7 @@ public class DashboardFragment extends Fragment {
         }else if (!preference.getConnType().equals("") && !new ActionAdapter(getActivity()).isActionEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Action terlebih dahulu", ConfigApps.T_INFO);
         } else{
+            prg_dash.setVisibility(View.VISIBLE);
             convertPdf();
         }
     }
@@ -528,8 +533,10 @@ public class DashboardFragment extends Fragment {
                         }
 
                         document.close();
+                        prg_dash.setVisibility(View.GONE);
                         alertChoose();
                     }catch (Exception e){
+                        prg_dash.setVisibility(View.GONE);
                         messageUtils.toastMessage("err convert Pdf "+e.toString(), ConfigApps.T_ERROR);
                     }
                 }

@@ -152,6 +152,12 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/spacing_semi_medium">
 
+                <ProgressBar
+                    android:id="@+id/prg_dash"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="@dimen/spacing_tiny"/>
+
                 <ImageButton
                     android:id="@+id/imgB_dash_toActivity"
                     android:layout_width="75dp"
