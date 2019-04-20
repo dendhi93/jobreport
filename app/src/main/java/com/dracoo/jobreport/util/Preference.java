@@ -72,7 +72,7 @@ public class Preference {
         editor.remove(KEY_CONNECTION_TYPE);
         editor.remove(KEY_CUST_NAME);
 
-        editor.commit();
+        editor.apply();
     }
     public void clearPreference(){
         editor.clear();

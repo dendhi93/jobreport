@@ -98,6 +98,8 @@ public class DashboardFragment extends Fragment {
     private String[] arr_actionTrans;
     private String[] arr_actionEndTime;
     private StringBuilder stCopyClipBoard;
+    private String stCustname = "";
+    private String stUn  = "";
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -561,12 +563,19 @@ public class DashboardFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0){
-                            submitReport();
+                            if (isSubmitReport()) {
+                                stCustname = preference.getCustName().trim();
+                                stUn = preference.getUn().trim();
+                                preference.clearDataTrans();
+                                emptyView();
+                                submitReport();
+                            }else{
+                                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+                            }
                         }else{
                             //send via WA
-                            if (isSubmitReport() == true){
-                                loadDash();
-                                loadRcTrans();
+                            if (isSubmitReport()){
+                                emptyView();
                                 ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
                                 ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
                                 clipboard.setPrimaryClip(clip);
@@ -582,33 +591,31 @@ public class DashboardFragment extends Fragment {
 
     }
     private void submitReport(){
-            File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf");
-            String subjectEmail = "Kepada yth,\nBpk/Ibu Admin\n\nBerikut saya lampirkan Report Customer " +preference.getCustName()+
-                    "\n\nDemikian yang bisa saya sampaikan\nTerima Kasih\n\n\n " + preference.getUn().
-                    trim().toLowerCase(java.util.Locale.getDefault());
-            try {
-                if (mFileResultPdf.exists()) {
-                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                    shareIntent.setType("text/plain");
-                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Report Customer " +preference.getCustName());
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, subjectEmail);
-                    shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileResultPdf));
-                    startActivity(Intent.createChooser(shareIntent, "choose one"));
-                }else{
-                    messageUtils.toastMessage("File Tidak ditemukan", ConfigApps.T_WARNING);
-                }
-            } catch(Exception e) {
-                messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR);
-            }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                File mFileResultPdf = new File(android.os.Environment.getExternalStorageDirectory().getPath(), "/JobReport/ReportPdf/DataPdf/"+stCustname + "/"+stCustname+".pdf");
+                String subjectEmail = "Kepada yth,\nBpk/Ibu Admin\n\nBerikut saya lampirkan Report Customer " +stCustname+
+                        "\n\nDemikian yang bisa saya sampaikan\nTerima Kasih\n\n\n " + stUn.
+                        trim().toLowerCase(java.util.Locale.getDefault());
 
-            messageUtils.toastMessage("Data Sukses tersubmit ", ConfigApps.T_SUCCESS);
-            if (isSubmitReport() == true){
-                preference.clearDataTrans();
-                loadDash();
-                loadRcTrans();
-            }else{
-               messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+                try {
+                    if (mFileResultPdf.exists()) {
+                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                        shareIntent.setType("text/plain");
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Report Customer " +stCustname);
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, subjectEmail);
+                        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileResultPdf));
+                        startActivity(Intent.createChooser(shareIntent, "choose one"));
+                        messageUtils.toastMessage("Data Sukses tersubmit ", ConfigApps.T_SUCCESS);
+                    }else{
+                        messageUtils.toastMessage("File Tidak ditemukan", ConfigApps.T_WARNING);
+                    }
+                } catch(Exception e) {
+                    messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR);
+                }
             }
+        }, 1000);
     }
 
     @Override
@@ -617,6 +624,9 @@ public class DashboardFragment extends Fragment {
         loadDash();
         loadRcTrans();
         JobReportUtils.hideKeyboard(getActivity());
+        if (preference.getCustID() == 0){
+            emptyView();
+        }
     }
 
     private void loadDash(){
@@ -632,7 +642,21 @@ public class DashboardFragment extends Fragment {
                         lbl_dash_picPhone.setText(alJobDesc.get(0).getPic_phone().trim());
                     }
             }
+        }else{
+            lbl_dash_locationName.setText("");
+            lbl_dash_technician_name.setText("");
+            lbl_dash_customer.setText("");
+            lbl_dash_picPhone.setText("");
         }
+    }
+
+    private void emptyView(){
+        rc_dash_activity.setVisibility(View.GONE);
+        lbl_dash_empty.setVisibility(View.VISIBLE);
+        lbl_dash_locationName.setText("");
+        lbl_dash_technician_name.setText("");
+        lbl_dash_customer.setText("");
+        lbl_dash_picPhone.setText("");
     }
 
 }

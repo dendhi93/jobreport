@@ -266,6 +266,7 @@
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
+                            android:background="@drawable/noborder"
                             android:textColorLink="@color/colorWhite" />
 
                     </android.support.design.widget.TextInputLayout>
