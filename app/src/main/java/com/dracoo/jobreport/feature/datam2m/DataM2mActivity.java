@@ -77,13 +77,9 @@ public class DataM2mActivity extends AppCompatActivity {
 
     @OnClick(R.id.imgB_dataM2m_submit)
     void submitM2m(){
-        if (!valEmptyText()){
-            messageUtils.snackBar_message(getString(R.string.emptyString), DataM2mActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-        }else if (preference.getCustID() == 0){
-            messageUtils.snackBar_message(getString(R.string.customer_validation),DataM2mActivity.this , ConfigApps.SNACKBAR_NO_BUTTON);
-        } else{
-            transDatam2m();
-        }
+        if (!valEmptyText()){ messageUtils.snackBar_message(getString(R.string.emptyString), DataM2mActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
+        }else if (preference.getCustID() == 0){ messageUtils.snackBar_message(getString(R.string.customer_validation),DataM2mActivity.this , ConfigApps.SNACKBAR_NO_BUTTON);
+        } else{ transDatam2m(); }
     }
 
     @OnClick(R.id.imgB_dataM2m_cancel)
@@ -116,12 +112,9 @@ public class DataM2mActivity extends AppCompatActivity {
                 txt_dm2m_ipVLan.getText().toString().equals("") ||
                 txt_dm2m_ipLLan.getText().toString().equals("") ||
                 txt_dm2m_dataM2m_subnetMask.getText().toString().equals("") ||
-                txt_dm2m_dataM2m_agg.getText().toString().equals("")
-        ){
+                txt_dm2m_dataM2m_agg.getText().toString().equals("")){
             return false;
-        }else{
-            return true;
-        }
+        }else{ return true; }
     }
 
     private void transDatam2m(){

@@ -42,7 +42,6 @@ public class ImageAdapter extends DatabaseAdapter {
         return images;
     }
 
-
     public Cursor val_imageCursor(int custId, String un, String connType, int imgPos){
         Cursor cursor;
 
@@ -58,7 +57,6 @@ public class ImageAdapter extends DatabaseAdapter {
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;
     }
-
 
     public ArrayList<MasterImage> load_dataImage(int custId, String un){
         ArrayList<MasterImage> images = new ArrayList<>();
