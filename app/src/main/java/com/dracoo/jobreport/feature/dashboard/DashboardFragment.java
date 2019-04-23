@@ -60,7 +60,10 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.j256.ormlite.dao.Dao;
 
@@ -224,11 +227,6 @@ public class DashboardFragment extends Fragment {
                         PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                         document.open();
 
-                        Paragraph pTitle1 = new Paragraph("*Maintenance Report*",titleFont);
-                        pTitle1.setAlignment(Element.ALIGN_LEFT);
-                        pTitle1.setSpacingAfter(3f);
-                        document.add(pTitle1);
-
                         stCopyClipBoard = new StringBuilder();
                         stCopyClipBoard.append("*Maintenance Report*\n\n");
 
@@ -248,10 +246,25 @@ public class DashboardFragment extends Fragment {
                                                         "Longitude          = " + alInfSite.get(0).getLongitude().trim() + "\n"+
                                                         "PIC                    = " +alJobDesc.get(0).getName_pic() + "\n";
 
-                            Paragraph pContent1 = new Paragraph(maintenanceContent,contentFont);
-                            pContent1.setAlignment(Element.ALIGN_LEFT);
-                            pContent1.setSpacingAfter(3f);
-                            document.add(pContent1);
+//                            Paragraph pContent1 = new Paragraph(maintenanceContent,contentFont);
+//                            pContent1.setAlignment(Element.ALIGN_LEFT);
+//                            pContent1.setSpacingAfter(3f);
+//                            document.add(pContent1);
+                            PdfPTable table = new PdfPTable(2);
+                            PdfPCell cell = new PdfPCell(new Phrase("*Maintenance Report*"));
+                            cell.setColspan(2);
+                            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                            table.addCell(cell);
+                            cell = new PdfPCell(new Phrase("Progress"));
+                            cell.setRowspan(1);
+                            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                            table.addCell(cell);
+                            table.addCell(preference.getProgress().trim());
+                            cell = new PdfPCell(new Phrase("Jenis Koneksi "));
+                            cell.setRowspan(1);
+                            table.addCell(cell);
+                            table.addCell(preference.getConnType());
+                            document.add(table);
                             stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
 
