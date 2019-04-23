@@ -246,24 +246,20 @@ public class DashboardFragment extends Fragment {
                                                         "Longitude          = " + alInfSite.get(0).getLongitude().trim() + "\n"+
                                                         "PIC                    = " +alJobDesc.get(0).getName_pic() + "\n";
 
-//                            Paragraph pContent1 = new Paragraph(maintenanceContent,contentFont);
-//                            pContent1.setAlignment(Element.ALIGN_LEFT);
-//                            pContent1.setSpacingAfter(3f);
-//                            document.add(pContent1);
                             PdfPTable table = new PdfPTable(2);
-                            PdfPCell cell = new PdfPCell(new Phrase("*Maintenance Report*"));
+                            PdfPCell cell = new PdfPCell(new Phrase(new Paragraph("*Maintenance Report*",titleFont)));
                             cell.setColspan(2);
-                            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                             table.addCell(cell);
-                            cell = new PdfPCell(new Phrase("Progress"));
+                            cell = new PdfPCell(new Phrase(new Paragraph("Progress", contentFont)));
                             cell.setRowspan(1);
                             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                             table.addCell(cell);
-                            table.addCell(preference.getProgress().trim());
-                            cell = new PdfPCell(new Phrase("Jenis Koneksi "));
+                            table.addCell(new Paragraph(preference.getProgress().trim(), contentFont));
+                            cell = new PdfPCell(new Phrase(new Paragraph("Jenis Koneksi ", contentFont)));
                             cell.setRowspan(1);
                             table.addCell(cell);
-                            table.addCell(preference.getConnType());
+                            table.addCell(new Paragraph(preference.getConnType(), contentFont));
                             document.add(table);
                             stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
@@ -590,7 +586,7 @@ public class DashboardFragment extends Fragment {
                                 stCustname = preference.getCustName().trim();
                                 stUn = preference.getUn().trim();
                                 preference.clearDataTrans();
-                                emptyView();
+                                emptyView(1);
                                 submitReport();
                             }else{
                                 messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
@@ -598,7 +594,7 @@ public class DashboardFragment extends Fragment {
                         }else{
                             //send via WA
                             if (isSubmitReport()){
-                                emptyView();
+                                emptyView(1);
                                 ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
                                 ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
                                 clipboard.setPrimaryClip(clip);
@@ -648,7 +644,7 @@ public class DashboardFragment extends Fragment {
         loadRcTrans();
         JobReportUtils.hideKeyboard(getActivity());
         if (preference.getCustID() == 0){
-            emptyView();
+            emptyView(1);
         }
     }
 
@@ -666,16 +662,15 @@ public class DashboardFragment extends Fragment {
                     }
             }
         }else{
-            lbl_dash_locationName.setText("");
-            lbl_dash_technician_name.setText("");
-            lbl_dash_customer.setText("");
-            lbl_dash_picPhone.setText("");
+            emptyView(0);
         }
     }
 
-    private void emptyView(){
-        rc_dash_activity.setVisibility(View.GONE);
-        lbl_dash_empty.setVisibility(View.VISIBLE);
+    private void emptyView(int type){
+        if (type == 1){
+            rc_dash_activity.setVisibility(View.GONE);
+            lbl_dash_empty.setVisibility(View.VISIBLE);
+        }
         lbl_dash_locationName.setText("");
         lbl_dash_technician_name.setText("");
         lbl_dash_customer.setText("");
