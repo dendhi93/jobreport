@@ -257,6 +257,10 @@ public class DashboardFragment extends Fragment {
                             table.addCell(new Paragraph(preference.getConnType(), contentFont));
                             table.addCell(createCell("Nama Teknisi ", contentFont));
                             table.addCell(new Paragraph(preference.getUn(), contentFont));
+                            table.addCell(createCell("Service Point ", contentFont));
+                            table.addCell(new Paragraph(preference.getServicePoint().trim(), contentFont));
+                            table.addCell(createCell("Nama Lokasi ", contentFont));
+                            table.addCell(new Paragraph(alInfSite.get(0).getLocation_name().trim(), contentFont));
                             float[] columnWidths = new float[]{40f, 100f};
                             table.setWidths(columnWidths);
                             document.add(table);
@@ -678,7 +682,7 @@ public class DashboardFragment extends Fragment {
 
     private PdfPCell createCell(String title, Font fontType){
         PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fontType)));
-        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setVerticalAlignment(Element.ALIGN_LEFT);
         cell.setRowspan(1);
 
         return cell;
