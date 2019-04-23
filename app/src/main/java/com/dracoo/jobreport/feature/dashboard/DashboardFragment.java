@@ -573,7 +573,7 @@ public class DashboardFragment extends Fragment {
                     }
                 }
             }
-        }, 1000);
+        }, 1500);
     }
 
     private boolean isSubmitReport(){
