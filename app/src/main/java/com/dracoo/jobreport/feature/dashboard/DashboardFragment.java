@@ -78,6 +78,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
+import static com.dracoo.jobreport.util.JobReportUtils.createCell;
 
 public class DashboardFragment extends Fragment {
     @BindView(R.id.lbl_dash_locationName)
@@ -678,14 +679,6 @@ public class DashboardFragment extends Fragment {
         lbl_dash_technician_name.setText("");
         lbl_dash_customer.setText("");
         lbl_dash_picPhone.setText("");
-    }
-
-    private PdfPCell createCell(String title, Font fontType){
-        PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fontType)));
-        cell.setVerticalAlignment(Element.ALIGN_LEFT);
-        cell.setRowspan(1);
-
-        return cell;
     }
 
 }
