@@ -251,15 +251,14 @@ public class DashboardFragment extends Fragment {
                             cell.setColspan(2);
                             cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                             table.addCell(cell);
-                            cell = new PdfPCell(new Phrase(new Paragraph("Progress", contentFont)));
-                            cell.setRowspan(1);
-                            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                            table.addCell(cell);
+                            table.addCell(createCell("Progress ", contentFont));
                             table.addCell(new Paragraph(preference.getProgress().trim(), contentFont));
-                            cell = new PdfPCell(new Phrase(new Paragraph("Jenis Koneksi ", contentFont)));
-                            cell.setRowspan(1);
-                            table.addCell(cell);
+                            table.addCell(createCell("Jenis Koneksi ", contentFont));
                             table.addCell(new Paragraph(preference.getConnType(), contentFont));
+                            table.addCell(createCell("Nama Teknisi ", contentFont));
+                            table.addCell(new Paragraph(preference.getUn(), contentFont));
+                            float[] columnWidths = new float[]{40f, 100f};
+                            table.setWidths(columnWidths);
                             document.add(table);
                             stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
@@ -582,15 +581,15 @@ public class DashboardFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0){
-                            if (isSubmitReport()) {
-                                stCustname = preference.getCustName().trim();
-                                stUn = preference.getUn().trim();
-                                preference.clearDataTrans();
-                                emptyView(1);
-                                submitReport();
-                            }else{
-                                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
-                            }
+//                            if (isSubmitReport()) {
+//                                stCustname = preference.getCustName().trim();
+//                                stUn = preference.getUn().trim();
+//                                preference.clearDataTrans();
+//                                emptyView(1);
+//                                submitReport();
+//                            }else{
+//                                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
+//                            }
                         }else{
                             //send via WA
                             if (isSubmitReport()){
@@ -675,6 +674,14 @@ public class DashboardFragment extends Fragment {
         lbl_dash_technician_name.setText("");
         lbl_dash_customer.setText("");
         lbl_dash_picPhone.setText("");
+    }
+
+    private PdfPCell createCell(String title, Font fontType){
+        PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fontType)));
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setRowspan(1);
+
+        return cell;
     }
 
 }
