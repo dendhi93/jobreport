@@ -513,7 +513,7 @@ public class DashboardFragment extends Fragment {
                                 float[] columnWidths = new float[]{20f, 100f};
                                 document.add(ioM2mParagraph);
                                 table4.setWidths(columnWidths);
-                                document.add(ioM2mParagraph);
+                                document.add(table4);
                                 stCopyClipBoard.append(m2mSetupContent+"\n\n");
                             }
 
@@ -531,10 +531,35 @@ public class DashboardFragment extends Fragment {
                                                         "Subnetmask = " +alM2mData.get(0).getSubnet_mask().trim() +"\n"+
                                                         "AGG = " +alM2mData.get(0).getAgg().trim();
 
-                                Paragraph m2mDataContentParagraph = new Paragraph(dataM2mContent,contentFont);
-                                m2mDataContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                m2mDataContentParagraph.setSpacingAfter(3f);
-                                document.add(m2mDataContentParagraph);
+                                PdfPTable table5 = new PdfPTable(2);
+                                table5.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.dataM2m_trans)+"*", titleFont));
+                                table5.addCell(createCell("Username ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getUsername().trim(), contentFont));
+                                table5.addCell(createCell("Password ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getPassword().trim(), contentFont));
+                                table5.addCell(createCell("Ip machine ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getIp_machine().trim(), contentFont));
+                                table5.addCell(createCell("User ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getUser().trim(), contentFont));
+                                table5.addCell(createCell("Remote ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getRemote().trim(), contentFont));
+                                table5.addCell(createCell("Tunnel ID 1 ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getTunnel_id().trim(), contentFont));
+                                table5.addCell(createCell("IP Bounding ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getIp_bonding().trim(), contentFont));
+                                table5.addCell(createCell("IP VLAN ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getIp_vlan().trim(), contentFont));
+                                table5.addCell(createCell("IP LAN ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getIp_lan().trim(), contentFont));
+                                table5.addCell(createCell("Subnetmask ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getSubnet_mask().trim(), contentFont));
+                                table5.addCell(createCell("AGG ", contentFont));
+                                table5.addCell(new Paragraph(alM2mData.get(0).getAgg().trim(), contentFont));
+                                table5.setHorizontalAlignment(Element.ALIGN_LEFT);
+                                float[] columnWidths = new float[]{20f, 100f};
+                                document.add(ioM2mParagraph);
+                                table5.setWidths(columnWidths);
+                                document.add(table5);
                                 stCopyClipBoard.append(dataM2mContent+"\n\n");
                             }
 
