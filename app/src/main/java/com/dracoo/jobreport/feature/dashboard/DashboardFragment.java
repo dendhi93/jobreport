@@ -60,9 +60,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.j256.ormlite.dao.Dao;
@@ -248,10 +246,7 @@ public class DashboardFragment extends Fragment {
                                                         "PIC                    = " +alJobDesc.get(0).getName_pic() + "\n";
 
                             PdfPTable table = new PdfPTable(2);
-                            PdfPCell cell = new PdfPCell(new Phrase(new Paragraph("*Maintenance Report*",titleFont)));
-                            cell.setColspan(2);
-                            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                            table.addCell(cell);
+                            table.addCell(JobReportUtils.headTitleCell("*Maintenance Report*", titleFont));
                             table.addCell(createCell("Progress ", contentFont));
                             table.addCell(new Paragraph(preference.getProgress().trim(), contentFont));
                             table.addCell(createCell("Jenis Koneksi ", contentFont));
@@ -302,10 +297,7 @@ public class DashboardFragment extends Fragment {
                                                     "Upline                 = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()) +"\n";
 
                             PdfPTable table2 = new PdfPTable(2);
-                            PdfPCell cell2 = new PdfPCell(new Phrase(new Paragraph("*"+getActivity().getString(R.string.problemDesc_trans)+"*",titleFont)));
-                            cell2.setColspan(2);
-                            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
-                            table2.addCell(cell2);
+                            table2.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.problemDesc_trans)+"*", titleFont));
                             table2.addCell(createCell("Berangkat ", contentFont));
                             table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()), contentFont));
                             table2.addCell(createCell("Tiba ", contentFont));
@@ -344,15 +336,32 @@ public class DashboardFragment extends Fragment {
                                     "_AC_\n" +allEnv.get(0).getNotes_ac().trim() +"\n"+
                                     "Suhu " +allEnv.get(0).getSuhu();
 
-                            Paragraph envContentParagraph = new Paragraph(environtmentContent,contentFont);
-                            envContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                            envContentParagraph.setSpacingAfter(3f);
-                            document.add(envContentParagraph);
+                            PdfPTable table3 = new PdfPTable(2);
+                            table3.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.electEnv_trans)+"*", titleFont));
+                            table3.addCell(JobReportUtils.titleCell("PLN", titleFont));
+                            table3.addCell(createCell("Berangkat ", contentFont));
+                            table3.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()), contentFont));
+                            table3.addCell(createCell("Tiba ", contentFont));
+                            table3.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim()), contentFont));
+                            table3.addCell(createCell("Finish ", contentFont));
+                            table3.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
+                            table3.addCell(createCell("Delay ", contentFont));
+                            table3.addCell(new Paragraph(alProblem.get(0).getDelay_reason().trim(), contentFont));
+                            table3.addCell(createCell("Pending ", contentFont));
+                            table3.addCell(new Paragraph(alProblem.get(0).getPending().trim(), contentFont));
+                            table3.addCell(createCell("Reason Pending ", contentFont));
+                            table3.addCell(new Paragraph(alProblem.get(0).getReason().trim(), contentFont));
+                            table3.addCell(createCell("Upline ", contentFont));
+                            table3.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()), contentFont));
+                            table3.setHorizontalAlignment(Element.ALIGN_LEFT);
+                            float[] columnWidths = new float[]{20f, 100f};
+                            table3.setWidths(columnWidths);
+                            document.add(table3);
                             stCopyClipBoard.append(environtmentContent+"\n\n");
                         }
 
                         if(preference.getConnType().equals("VSAT")){
-                            Paragraph ioParagraph = new Paragraph("*I/0 Equipment*",titleFont);
+                            Paragraph ioParagraph = new Paragraph("\n",titleFont);
                             ioParagraph.setAlignment(Element.ALIGN_LEFT);
                             ioParagraph.setSpacingAfter(3f);
                             document.add(ioParagraph);

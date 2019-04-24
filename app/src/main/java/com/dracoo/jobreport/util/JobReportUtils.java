@@ -30,4 +30,20 @@ public class JobReportUtils {
 
         return cell;
     }
+
+    public static PdfPCell titleCell(String title, Font fontType){
+        PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fontType)));
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        cell.setColspan(2);
+
+        return cell;
+    }
+
+    public static PdfPCell headTitleCell(String title, Font fontType){
+        PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fontType)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setColspan(2);
+
+        return cell;
+    }
 }
