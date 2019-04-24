@@ -483,10 +483,37 @@ public class DashboardFragment extends Fragment {
                                                          "S/N = " +alM2m.get(0).getSim_card2_sn() + "\n"+
                                                          "PUK = " +alM2m.get(0).getSim_card2_puk() + "\n";
 
-                                Paragraph m2mSetupContentParagraph = new Paragraph(m2mSetupContent,contentFont);
-                                m2mSetupContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                m2mSetupContentParagraph.setSpacingAfter(3f);
-                                document.add(m2mSetupContentParagraph);
+                                PdfPTable table4 = new PdfPTable(2);
+                                table4.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.ioM2M_trans)+"*", titleFont));
+                                table4.addCell(JobReportUtils.titleCell("M2M", contentFont));
+                                table4.addCell(createCell("Brand / Type ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getSn_m2m().trim(), contentFont));
+                                table4.addCell(createCell("S/N ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getSn_adaptor().trim(), contentFont));
+                                table4.addCell(JobReportUtils.titleCell("ADAPTOR", contentFont));
+                                table4.addCell(createCell("Brand / Type ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getBrand_type_adaptor().trim(), contentFont));
+                                table4.addCell(createCell("S/N ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getSn_adaptor().trim(), contentFont));
+                                table4.addCell(JobReportUtils.titleCell("SIMCARD 1", contentFont));
+                                table4.addCell(createCell("Brand / Type ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getSim_card1_type().trim(), contentFont));
+                                table4.addCell(createCell("S/N ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getSim_card1_sn().trim(), contentFont));
+                                table4.addCell(createCell("PUK ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getSim_card1_puk().trim(), contentFont));
+                                table4.addCell(JobReportUtils.titleCell("SIMCARD 2", contentFont));
+                                table4.addCell(createCell("Brand / Type ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getSim_card2_type().trim(), contentFont));
+                                table4.addCell(createCell("S/N ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getSim_card2_sn().trim(), contentFont));
+                                table4.addCell(createCell("PUK ", contentFont));
+                                table4.addCell(new Paragraph(alM2m.get(0).getSim_card2_puk().trim(), contentFont));
+                                table4.setHorizontalAlignment(Element.ALIGN_LEFT);
+                                float[] columnWidths = new float[]{20f, 100f};
+                                document.add(ioM2mParagraph);
+                                table4.setWidths(columnWidths);
+                                document.add(ioM2mParagraph);
                                 stCopyClipBoard.append(m2mSetupContent+"\n\n");
                             }
 
