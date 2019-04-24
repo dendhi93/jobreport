@@ -511,7 +511,6 @@ public class DashboardFragment extends Fragment {
                                 table4.addCell(new Paragraph(alM2m.get(0).getSim_card2_puk().trim(), contentFont));
                                 table4.setHorizontalAlignment(Element.ALIGN_LEFT);
                                 float[] columnWidths = new float[]{20f, 100f};
-                                document.add(ioM2mParagraph);
                                 table4.setWidths(columnWidths);
                                 document.add(table4);
                                 stCopyClipBoard.append(m2mSetupContent+"\n\n");
@@ -557,7 +556,6 @@ public class DashboardFragment extends Fragment {
                                 table5.addCell(new Paragraph(alM2mData.get(0).getAgg().trim(), contentFont));
                                 table5.setHorizontalAlignment(Element.ALIGN_LEFT);
                                 float[] columnWidths = new float[]{20f, 100f};
-                                document.add(ioM2mParagraph);
                                 table5.setWidths(columnWidths);
                                 document.add(table5);
                                 stCopyClipBoard.append(dataM2mContent+"\n\n");
@@ -598,10 +596,36 @@ public class DashboardFragment extends Fragment {
                                                     "S/N = " +simCard2SN.trim() + "\n" +
                                                     "PUK = " +simcard2Puk.trim();
 
-                                Paragraph m2mReplaceContentParagraph = new Paragraph(m2mReplace,contentFont);
-                                m2mReplaceContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                m2mReplaceContentParagraph.setSpacingAfter(3f);
-                                document.add(m2mReplaceContentParagraph);
+                                PdfPTable table6 = new PdfPTable(2);
+                                table6.addCell(JobReportUtils.headTitleCell("NEW", titleFont));
+                                table6.addCell(JobReportUtils.titleCell("M2M", contentFont));
+                                table6.addCell(createCell("Brand / Type ", contentFont));
+                                table6.addCell(new Paragraph(m2mType.trim().trim(), contentFont));
+                                table6.addCell(createCell("S/N ", contentFont));
+                                table6.addCell(new Paragraph(m2mSn.trim(), contentFont));
+                                table6.addCell(JobReportUtils.titleCell("ADAPTOR", contentFont));
+                                table6.addCell(createCell("Brand / Type ", contentFont));
+                                table6.addCell(new Paragraph(adaptorType.trim(), contentFont));
+                                table6.addCell(createCell("S/N ", contentFont));
+                                table6.addCell(new Paragraph(adaptorSn.trim(), contentFont));
+                                table6.addCell(JobReportUtils.titleCell("SIMCARD 1", contentFont));
+                                table6.addCell(createCell("Brand / Type  ", contentFont));
+                                table6.addCell(new Paragraph(simCard1Type.trim(), contentFont));
+                                table6.addCell(createCell("S/N ", contentFont));
+                                table6.addCell(new Paragraph(simCard1SN.trim(), contentFont));
+                                table6.addCell(createCell("PUK ", contentFont));
+                                table6.addCell(new Paragraph(simcard1Puk.trim(), contentFont));
+                                table6.addCell(JobReportUtils.titleCell("SIMCARD 2", contentFont));
+                                table6.addCell(createCell("Brand / Type ", contentFont));
+                                table6.addCell(new Paragraph(simCard2Type.trim(), contentFont));
+                                table6.addCell(createCell("S/N", contentFont));
+                                table6.addCell(new Paragraph(simCard2SN.trim(), contentFont));
+                                table6.addCell(createCell("PUK ", contentFont));
+                                table6.addCell(new Paragraph(simcard2Puk.trim(), contentFont));
+                                table6.setHorizontalAlignment(Element.ALIGN_LEFT);
+                                float[] columnWidths = new float[]{20f, 100f};
+                                table6.setWidths(columnWidths);
+                                document.add(table6);
                                 stCopyClipBoard.append(m2mReplace+"\n\n");
                             }
                         }
