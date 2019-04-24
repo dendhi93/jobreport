@@ -600,7 +600,7 @@ public class DashboardFragment extends Fragment {
                                 table6.addCell(JobReportUtils.headTitleCell("NEW", titleFont));
                                 table6.addCell(JobReportUtils.titleCell("M2M", contentFont));
                                 table6.addCell(createCell("Brand / Type ", contentFont));
-                                table6.addCell(new Paragraph(m2mType.trim().trim(), contentFont));
+                                table6.addCell(new Paragraph(m2mType.trim(), contentFont));
                                 table6.addCell(createCell("S/N ", contentFont));
                                 table6.addCell(new Paragraph(m2mSn.trim(), contentFont));
                                 table6.addCell(JobReportUtils.titleCell("ADAPTOR", contentFont));
@@ -631,10 +631,8 @@ public class DashboardFragment extends Fragment {
                         }
 
                         document.newPage();
-                        Paragraph pAction = new Paragraph("*"+getActivity().getString(R.string.action_trans)+"*",titleFont);
-                        pAction.setAlignment(Element.ALIGN_LEFT);
-                        pAction.setSpacingAfter(3f);
-                        document.add(pAction);
+                        PdfPTable table7 = new PdfPTable(2);
+                        table7.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.action_trans)+"*", titleFont));
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
 
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
@@ -645,6 +643,7 @@ public class DashboardFragment extends Fragment {
 
                             int i = 0;
                             String actionContent = "";
+
                             for (MasterAction action : al_listAction){
                                 arr_actionDateTime[i] = action.getAction_date_time();
                                 arr_actionTrans[i] = action.getAction_desc();
@@ -655,18 +654,24 @@ public class DashboardFragment extends Fragment {
                                 if (DateTimeUtils.getDateDiff(splitEndTime[0],split[0] ) > 1){
                                     if(i==0){ actionContent = split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i]; }
                                     else{ actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i]; }
+
+                                    table7.addCell(createCell(split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1], contentFont));
+                                    table7.addCell(new Paragraph(arr_actionTrans[i].trim(), contentFont));
                                 }else{
                                     if (i==0){ actionContent = split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
                                     else{ actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
+
+                                    table7.addCell(createCell(split[1]+ " -" +splitEndTime[1], contentFont));
+                                    table7.addCell(new Paragraph(arr_actionTrans[i].trim(), contentFont));
                                 }
                                 i++;
                             }
 
                             if (i == al_listAction.size()){
-                                Paragraph actionParagraph = new Paragraph(actionContent,contentFont);
-                                actionParagraph.setAlignment(Element.ALIGN_LEFT);
-                                actionParagraph.setSpacingAfter(3f);
-                                document.add(actionParagraph);
+                                table7.setHorizontalAlignment(Element.ALIGN_LEFT);
+                                float[] columnWidths = new float[]{20f, 100f};
+                                table7.setWidths(columnWidths);
+                                document.add(table7);
                                 stCopyClipBoard.append(actionContent+"\n\n");
                             }
                         }
