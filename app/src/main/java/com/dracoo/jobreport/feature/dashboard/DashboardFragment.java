@@ -217,8 +217,8 @@ public class DashboardFragment extends Fragment {
 
                     Document document = new Document(PageSize.A4, 30, 30, 30, 30);
                     try{
-                        float mcontentFontSize = 6.0f;
-                        float mHeadingFontSize = 8.0f;
+                        float mcontentFontSize = 5.7f;
+                        float mHeadingFontSize = 7.0f;
                         BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
                         Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
                         Font titleFont = new Font(urName, mHeadingFontSize, Font.NORMAL, BaseColor.BLACK);
@@ -338,21 +338,23 @@ public class DashboardFragment extends Fragment {
 
                             PdfPTable table3 = new PdfPTable(2);
                             table3.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.electEnv_trans)+"*", titleFont));
-                            table3.addCell(JobReportUtils.titleCell("PLN", titleFont));
-                            table3.addCell(createCell("Berangkat ", contentFont));
-                            table3.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()), contentFont));
-                            table3.addCell(createCell("Tiba ", contentFont));
-                            table3.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim()), contentFont));
-                            table3.addCell(createCell("Finish ", contentFont));
-                            table3.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
-                            table3.addCell(createCell("Delay ", contentFont));
-                            table3.addCell(new Paragraph(alProblem.get(0).getDelay_reason().trim(), contentFont));
-                            table3.addCell(createCell("Pending ", contentFont));
-                            table3.addCell(new Paragraph(alProblem.get(0).getPending().trim(), contentFont));
-                            table3.addCell(createCell("Reason Pending ", contentFont));
-                            table3.addCell(new Paragraph(alProblem.get(0).getReason().trim(), contentFont));
-                            table3.addCell(createCell("Upline ", contentFont));
-                            table3.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()), contentFont));
+                            table3.addCell(JobReportUtils.titleCell("PLN", contentFont));
+                            table3.addCell(createCell("Tegangan (Vac) ", contentFont));
+                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getTegangan_pln()), contentFont));
+                            table3.addCell(createCell("Grounding (Vac) ", contentFont));
+                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getTegangan_ups()), contentFont));
+                            table3.addCell(JobReportUtils.titleCell("UPS", contentFont));
+                            table3.addCell(createCell("Tegangan (Vac) ", contentFont));
+                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getTegangan_ups()), contentFont));
+                            table3.addCell(createCell("Grounding (Vac) ", contentFont));
+                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getGrounding_ups()), contentFont));
+                            table3.addCell(createCell("Notes ", contentFont));
+                            table3.addCell(new Paragraph(allEnv.get(0).getNotes().trim(), contentFont));
+                            table3.addCell(JobReportUtils.titleCell("AC", contentFont));
+                            table3.addCell(createCell("Notes ", contentFont));
+                            table3.addCell(new Paragraph(allEnv.get(0).getNotes_ac().trim(), contentFont));
+                            table3.addCell(createCell("Suhu ", contentFont));
+                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getSuhu()) , contentFont));
                             table3.setHorizontalAlignment(Element.ALIGN_LEFT);
                             float[] columnWidths = new float[]{20f, 100f};
                             table3.setWidths(columnWidths);
