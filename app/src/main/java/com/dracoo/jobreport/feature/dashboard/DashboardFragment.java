@@ -223,7 +223,7 @@ public class DashboardFragment extends Fragment {
                         float mHeadingFontSize = 8.0f;
                         BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
                         Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
-                        Font titleFont = new Font(urName, mHeadingFontSize, Font.UNDERLINE, BaseColor.BLACK);
+                        Font titleFont = new Font(urName, mHeadingFontSize, Font.NORMAL, BaseColor.BLACK);
 
                         PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                         document.open();
@@ -250,7 +250,7 @@ public class DashboardFragment extends Fragment {
                             PdfPTable table = new PdfPTable(2);
                             PdfPCell cell = new PdfPCell(new Phrase(new Paragraph("*Maintenance Report*",titleFont)));
                             cell.setColspan(2);
-                            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+                            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                             table.addCell(cell);
                             table.addCell(createCell("Progress ", contentFont));
                             table.addCell(new Paragraph(preference.getProgress().trim(), contentFont));
@@ -278,13 +278,14 @@ public class DashboardFragment extends Fragment {
                             table.addCell(new Paragraph(alInfSite.get(0).getLongitude().trim(), contentFont));
                             table.addCell(createCell("PIC", contentFont));
                             table.addCell(new Paragraph(alJobDesc.get(0).getName_pic().trim() , contentFont));
-                            float[] columnWidths = new float[]{40f, 100f};
+                            table.setHorizontalAlignment(Element.ALIGN_LEFT);
+                            float[] columnWidths = new float[]{20f, 100f};
                             table.setWidths(columnWidths);
                             document.add(table);
                             stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
 
-                        Paragraph pTitle2 = new Paragraph("*"+getActivity().getString(R.string.problemDesc_trans)+"*",titleFont);
+                        Paragraph pTitle2 = new Paragraph("\n",titleFont);
                         pTitle2.setAlignment(Element.ALIGN_LEFT);
                         pTitle2.setSpacingAfter(3f);
                         document.add(pTitle2);
@@ -300,17 +301,36 @@ public class DashboardFragment extends Fragment {
                                                     "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
                                                     "Upline                 = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()) +"\n";
 
-                            Paragraph pContent2 = new Paragraph(problemContent,contentFont);
-                            pContent2.setAlignment(Element.ALIGN_LEFT);
-                            pContent2.setSpacingAfter(3f);
-                            document.add(pContent2);
+                            PdfPTable table2 = new PdfPTable(2);
+                            PdfPCell cell2 = new PdfPCell(new Phrase(new Paragraph("*"+getActivity().getString(R.string.problemDesc_trans)+"*",titleFont)));
+                            cell2.setColspan(2);
+                            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                            table2.addCell(cell2);
+                            table2.addCell(createCell("Berangkat ", contentFont));
+                            table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()), contentFont));
+                            table2.addCell(createCell("Tiba ", contentFont));
+                            table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim()), contentFont));
+                            table2.addCell(createCell("Finish ", contentFont));
+                            table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
+                            table2.addCell(createCell("Delay ", contentFont));
+                            table2.addCell(new Paragraph(alProblem.get(0).getDelay_reason().trim(), contentFont));
+                            table2.addCell(createCell("Pending ", contentFont));
+                            table2.addCell(new Paragraph(alProblem.get(0).getPending().trim(), contentFont));
+                            table2.addCell(createCell("Reason Pending ", contentFont));
+                            table2.addCell(new Paragraph(alProblem.get(0).getReason().trim(), contentFont));
+                            table2.addCell(createCell("Upline ", contentFont));
+                            table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()), contentFont));
+                            table2.setHorizontalAlignment(Element.ALIGN_LEFT);
+                            float[] columnWidths = new float[]{20f, 100f};
+                            table2.setWidths(columnWidths);
+                            document.add(table2);
                             stCopyClipBoard.append(problemContent+"\n\n");
 
                         }
 
-                        Paragraph envParagraph = new Paragraph("*"+getActivity().getString(R.string.electEnv_trans)+"*",titleFont);
+                        Paragraph envParagraph = new Paragraph("\n",titleFont);
                         envParagraph.setAlignment(Element.ALIGN_LEFT);
-                        envParagraph.setSpacingAfter(3f);
+                        envParagraph.setSpacingAfter(1f);
                         document.add(envParagraph);
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.electEnv_trans)+"*\n\n");
 
