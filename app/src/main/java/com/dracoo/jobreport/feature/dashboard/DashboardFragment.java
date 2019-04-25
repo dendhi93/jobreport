@@ -376,7 +376,6 @@ public class DashboardFragment extends Fragment {
                             table3.setHorizontalAlignment(Element.ALIGN_LEFT);
                             float[] columnWidths = new float[]{40f, 100f};
                             table3.setWidths(columnWidths);
-                            table3.setTotalWidth(170f);
                             document.add(table3);
                             stCopyClipBoard.append(environtmentContent+"\n\n");
                         }
@@ -483,10 +482,6 @@ public class DashboardFragment extends Fragment {
                             }
 
                         }else if (preference.getConnType().equals("M2M")){
-                            Paragraph ioM2mParagraph = new Paragraph("*"+getActivity().getString(R.string.ioM2M_trans)+"*",titleFont);
-                            ioM2mParagraph.setAlignment(Element.ALIGN_LEFT);
-                            ioM2mParagraph.setSpacingAfter(3f);
-                            document.add(ioM2mParagraph);
                             stCopyClipBoard.append("*"+getActivity().getString(R.string.ioM2M_trans)+"*\n");
 
                             ArrayList<MasterM2mSetup> alM2m = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
@@ -531,11 +526,20 @@ public class DashboardFragment extends Fragment {
                                 table4.setHorizontalAlignment(Element.ALIGN_LEFT);
                                 float[] columnWidths = new float[]{40f, 100f};
                                 table4.setWidths(columnWidths);
-                                table4.setTotalWidth(170f);
                                 document.add(table4);
                                 stCopyClipBoard.append(m2mSetupContent+"\n\n");
                             }
 
+                            Paragraph spaceParagraph1 = new Paragraph("\n");
+                            spaceParagraph1.setAlignment(Element.ALIGN_LEFT);
+                            spaceParagraph1.setSpacingAfter(3f);
+                            document.add(spaceParagraph1);
+
+                            PdfPTable mainTable1 = new PdfPTable(2);
+                            mainTable1.setWidthPercentage(90.0f);
+                            mainTable1.setHorizontalAlignment(Element.ALIGN_LEFT);
+                            PdfPCell cell1 = new PdfPCell();
+                            cell1.setBorder(PdfPCell.NO_BORDER);
                             ArrayList<MasterM2mData> alM2mData = new M2mDataAdapter(getActivity()).val_dataM2m(preference.getCustID(), preference.getUn());
                             if (alM2mData.size() > 0){
                                 String dataM2mContent = "Username = " +alM2mData.get(0).getUsername().trim()+ "\n"+
@@ -578,7 +582,9 @@ public class DashboardFragment extends Fragment {
                                 float[] columnWidths = new float[]{40f, 100f};
                                 table5.setWidths(columnWidths);
                                 table5.setTotalWidth(170f);
-                                document.add(table5);
+                                table5.setLockedWidth(true);
+                                cell1.addElement(table5);
+                                mainTable1.addCell(cell1);
                                 stCopyClipBoard.append(dataM2mContent+"\n\n");
                             }
 
@@ -617,6 +623,8 @@ public class DashboardFragment extends Fragment {
                                                     "S/N = " +simCard2SN.trim() + "\n" +
                                                     "PUK = " +simcard2Puk.trim();
 
+                                PdfPCell cell2 = new PdfPCell();
+                                cell2.setBorder(PdfPCell.NO_BORDER);
                                 PdfPTable table6 = new PdfPTable(2);
                                 table6.addCell(JobReportUtils.headTitleCell("NEW", titleFont));
                                 table6.addCell(JobReportUtils.titleCell("M2M", contentFont));
@@ -647,7 +655,12 @@ public class DashboardFragment extends Fragment {
                                 float[] columnWidths = new float[]{40f, 100f};
                                 table6.setWidths(columnWidths);
                                 table6.setTotalWidth(170f);
-                                document.add(table6);
+                                table6.setLockedWidth(true);
+                                cell2.addElement(table6);
+                                mainTable1.addCell(cell2);
+                                Paragraph paragraph2 = new Paragraph();
+                                paragraph2.add(mainTable1);
+                                document.add(paragraph2);
                                 stCopyClipBoard.append(m2mReplace+"\n\n");
                             }
                         }
