@@ -61,6 +61,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.j256.ormlite.dao.Dao;
@@ -229,6 +230,11 @@ public class DashboardFragment extends Fragment {
                         stCopyClipBoard = new StringBuilder();
                         stCopyClipBoard.append("*Maintenance Report*\n\n");
 
+                        PdfPTable mainTable = new PdfPTable(2);
+                        mainTable.setWidthPercentage(90.0f);
+                        mainTable.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        PdfPCell firstTableCell = new PdfPCell();
+                        firstTableCell.setBorder(PdfPCell.NO_BORDER);
                         ArrayList<MasterJobDesc> alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
                         if (alJobDesc.size() > 0){
                             String maintenanceContent = "Progress               = " +preference.getProgress().trim() +"\n" +
@@ -274,9 +280,12 @@ public class DashboardFragment extends Fragment {
                             table.addCell(createCell("PIC", contentFont));
                             table.addCell(new Paragraph(alJobDesc.get(0).getName_pic().trim() , contentFont));
                             table.setHorizontalAlignment(Element.ALIGN_LEFT);
-                            float[] columnWidths = new float[]{20f, 100f};
+                            float[] columnWidths = new float[]{40f, 100f};
                             table.setWidths(columnWidths);
-                            document.add(table);
+                            table.setTotalWidth(170f);
+                            table.setLockedWidth(true);
+                            firstTableCell.addElement(table);
+                            mainTable.addCell(firstTableCell);
                             stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
 
@@ -296,6 +305,8 @@ public class DashboardFragment extends Fragment {
                                                     "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
                                                     "Upline                 = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()) +"\n";
 
+                            PdfPCell secondTableCell = new PdfPCell();
+                            secondTableCell.setBorder(PdfPCell.NO_BORDER);
                             PdfPTable table2 = new PdfPTable(2);
                             table2.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.problemDesc_trans)+"*", titleFont));
                             table2.addCell(createCell("Berangkat ", contentFont));
@@ -313,9 +324,16 @@ public class DashboardFragment extends Fragment {
                             table2.addCell(createCell("Upline ", contentFont));
                             table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()), contentFont));
                             table2.setHorizontalAlignment(Element.ALIGN_LEFT);
-                            float[] columnWidths = new float[]{20f, 100f};
+                            float[] columnWidths = new float[]{40f, 100f};
                             table2.setWidths(columnWidths);
-                            document.add(table2);
+                            table2.setTotalWidth(170f);
+                            table2.setLockedWidth(true);
+
+                            secondTableCell.addElement(table2);
+                            mainTable.addCell(secondTableCell);
+                            Paragraph paragraph1 = new Paragraph();
+                            paragraph1.add(mainTable);
+                            document.add(paragraph1);
                             stCopyClipBoard.append(problemContent+"\n\n");
 
                         }
