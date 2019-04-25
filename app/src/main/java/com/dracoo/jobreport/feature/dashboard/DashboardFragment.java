@@ -374,8 +374,9 @@ public class DashboardFragment extends Fragment {
                             table3.addCell(createCell("Suhu ", contentFont));
                             table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getSuhu()) , contentFont));
                             table3.setHorizontalAlignment(Element.ALIGN_LEFT);
-                            float[] columnWidths = new float[]{20f, 100f};
+                            float[] columnWidths = new float[]{40f, 100f};
                             table3.setWidths(columnWidths);
+                            table3.setTotalWidth(170f);
                             document.add(table3);
                             stCopyClipBoard.append(environtmentContent+"\n\n");
                         }
@@ -528,8 +529,9 @@ public class DashboardFragment extends Fragment {
                                 table4.addCell(createCell("PUK ", contentFont));
                                 table4.addCell(new Paragraph(alM2m.get(0).getSim_card2_puk().trim(), contentFont));
                                 table4.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                float[] columnWidths = new float[]{20f, 100f};
+                                float[] columnWidths = new float[]{40f, 100f};
                                 table4.setWidths(columnWidths);
+                                table4.setTotalWidth(170f);
                                 document.add(table4);
                                 stCopyClipBoard.append(m2mSetupContent+"\n\n");
                             }
@@ -573,8 +575,9 @@ public class DashboardFragment extends Fragment {
                                 table5.addCell(createCell("AGG ", contentFont));
                                 table5.addCell(new Paragraph(alM2mData.get(0).getAgg().trim(), contentFont));
                                 table5.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                float[] columnWidths = new float[]{20f, 100f};
+                                float[] columnWidths = new float[]{40f, 100f};
                                 table5.setWidths(columnWidths);
+                                table5.setTotalWidth(170f);
                                 document.add(table5);
                                 stCopyClipBoard.append(dataM2mContent+"\n\n");
                             }
@@ -641,8 +644,9 @@ public class DashboardFragment extends Fragment {
                                 table6.addCell(createCell("PUK ", contentFont));
                                 table6.addCell(new Paragraph(simcard2Puk.trim(), contentFont));
                                 table6.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                float[] columnWidths = new float[]{20f, 100f};
+                                float[] columnWidths = new float[]{40f, 100f};
                                 table6.setWidths(columnWidths);
+                                table6.setTotalWidth(170f);
                                 document.add(table6);
                                 stCopyClipBoard.append(m2mReplace+"\n\n");
                             }
@@ -687,8 +691,9 @@ public class DashboardFragment extends Fragment {
 
                             if (i == al_listAction.size()){
                                 table7.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                float[] columnWidths = new float[]{20f, 100f};
+                                float[] columnWidths = new float[]{40f, 100f};
                                 table7.setWidths(columnWidths);
+                                table7.setTotalWidth(170f);
                                 document.add(table7);
                                 stCopyClipBoard.append(actionContent+"\n\n");
                             }
