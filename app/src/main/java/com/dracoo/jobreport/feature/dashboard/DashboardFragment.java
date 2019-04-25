@@ -344,6 +344,11 @@ public class DashboardFragment extends Fragment {
                         document.add(envParagraph);
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.electEnv_trans)+"*\n\n");
 
+                        PdfPTable mainTable3 = new PdfPTable(2);
+                        mainTable3.setWidthPercentage(90.0f);
+                        mainTable3.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        PdfPCell cell4 = new PdfPCell();
+                        cell4.setBorder(PdfPCell.NO_BORDER);
                         ArrayList<MasterEnvirontment> allEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
                         if (allEnv.size() > 0){
                             String environtmentContent = "_PLN_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_pln()+"\n"+
@@ -376,7 +381,8 @@ public class DashboardFragment extends Fragment {
                             table3.setHorizontalAlignment(Element.ALIGN_LEFT);
                             float[] columnWidths = new float[]{40f, 100f};
                             table3.setWidths(columnWidths);
-                            document.add(table3);
+                            cell4.addElement(table3);
+                            mainTable3.addCell(cell4);
                             stCopyClipBoard.append(environtmentContent+"\n\n");
                         }
 
@@ -497,6 +503,8 @@ public class DashboardFragment extends Fragment {
                                                          "S/N = " +alM2m.get(0).getSim_card2_sn() + "\n"+
                                                          "PUK = " +alM2m.get(0).getSim_card2_puk() + "\n";
 
+                                PdfPCell secondCell = new PdfPCell();
+                                secondCell.setBorder(PdfPCell.NO_BORDER);
                                 PdfPTable table4 = new PdfPTable(2);
                                 table4.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.ioM2M_trans)+"*", titleFont));
                                 table4.addCell(JobReportUtils.titleCell("M2M", contentFont));
@@ -526,7 +534,11 @@ public class DashboardFragment extends Fragment {
                                 table4.setHorizontalAlignment(Element.ALIGN_LEFT);
                                 float[] columnWidths = new float[]{40f, 100f};
                                 table4.setWidths(columnWidths);
-                                document.add(table4);
+                                secondCell.addElement(table4);
+                                mainTable3.addCell(secondCell);
+                                Paragraph paragraph3 = new Paragraph();
+                                paragraph3.add(mainTable3);
+                                document.add(paragraph3);
                                 stCopyClipBoard.append(m2mSetupContent+"\n\n");
                             }
 
@@ -623,8 +635,8 @@ public class DashboardFragment extends Fragment {
                                                     "S/N = " +simCard2SN.trim() + "\n" +
                                                     "PUK = " +simcard2Puk.trim();
 
-                                PdfPCell cell2 = new PdfPCell();
-                                cell2.setBorder(PdfPCell.NO_BORDER);
+                                PdfPCell cell3 = new PdfPCell();
+                                cell3.setBorder(PdfPCell.NO_BORDER);
                                 PdfPTable table6 = new PdfPTable(2);
                                 table6.addCell(JobReportUtils.headTitleCell("NEW", titleFont));
                                 table6.addCell(JobReportUtils.titleCell("M2M", contentFont));
@@ -656,8 +668,8 @@ public class DashboardFragment extends Fragment {
                                 table6.setWidths(columnWidths);
                                 table6.setTotalWidth(170f);
                                 table6.setLockedWidth(true);
-                                cell2.addElement(table6);
-                                mainTable1.addCell(cell2);
+                                cell3.addElement(table6);
+                                mainTable1.addCell(cell3);
                                 Paragraph paragraph2 = new Paragraph();
                                 paragraph2.add(mainTable1);
                                 document.add(paragraph2);
