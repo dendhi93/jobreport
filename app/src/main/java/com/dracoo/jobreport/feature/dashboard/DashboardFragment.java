@@ -387,10 +387,6 @@ public class DashboardFragment extends Fragment {
                         }
 
                         if(preference.getConnType().equals("VSAT")){
-                            Paragraph ioParagraph = new Paragraph("\n",titleFont);
-                            ioParagraph.setAlignment(Element.ALIGN_LEFT);
-                            ioParagraph.setSpacingAfter(3f);
-                            document.add(ioParagraph);
                             stCopyClipBoard.append("*I/0 Equipment*\n\n");
 
                             ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
@@ -406,10 +402,22 @@ public class DashboardFragment extends Fragment {
                                                     "Pedestal Type = "+alVsat.get(0).getPedestal_type().trim()+ "\n"+
                                                     "Akses Antena = " +alVsat.get(0).getAccess_type().trim();
 
-                                Paragraph ioContentParagraph = new Paragraph(vsatSetup,contentFont);
-                                ioContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                ioContentParagraph.setSpacingAfter(3f);
-                                document.add(ioContentParagraph);
+                                PdfPTable table8 = new PdfPTable(2);
+                                table8.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.ioVSAT_trans)+"*", titleFont));
+                                table8.addCell(JobReportUtils.titleCell("OLD", contentFont));
+                                table8.addCell(createCell("S/N Modem ", contentFont));
+                                table8.addCell(new Paragraph(alVsat.get(0).getSn_modem().trim(), contentFont));
+                                table8.addCell(createCell("S/N Adaptor ", contentFont));
+                                table8.addCell(new Paragraph(alVsat.get(0).getSn_adaptor().trim(), contentFont));
+                                table8.addCell(createCell("S/N LNB ", contentFont));
+                                table8.addCell(new Paragraph(alVsat.get(0).getSn_lnb().trim(), contentFont));
+                                table8.addCell(createCell("S/N RFU ", contentFont));
+                                table8.addCell(new Paragraph(alVsat.get(0).getSn_rfu().trim(), contentFont));
+                                table8.addCell(createCell("S/N DIPLEXER ODU ", contentFont));
+                                table8.addCell(new Paragraph(alVsat.get(0).getSn_dip_odu().trim(), contentFont));
+                                table8.addCell(createCell("S/N DIPLEXER IDU ", contentFont));
+                                table8.addCell(new Paragraph(alVsat.get(0).getSn_dip_idu().trim(), contentFont));
+
                                 stCopyClipBoard.append(vsatSetup+"\n\n");
                             }
 
