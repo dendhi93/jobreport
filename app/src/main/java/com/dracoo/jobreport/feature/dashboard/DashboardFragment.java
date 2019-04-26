@@ -332,6 +332,7 @@ public class DashboardFragment extends Fragment {
                             secondTableCell.addElement(table2);
                             mainTable.addCell(secondTableCell);
                             Paragraph paragraph1 = new Paragraph();
+                            paragraph1.setAlignment(Element.ALIGN_LEFT);
                             paragraph1.add(mainTable);
                             document.add(paragraph1);
                             stCopyClipBoard.append(problemContent+"\n\n");
@@ -402,6 +403,8 @@ public class DashboardFragment extends Fragment {
                                                     "Pedestal Type = "+alVsat.get(0).getPedestal_type().trim()+ "\n"+
                                                     "Akses Antena = " +alVsat.get(0).getAccess_type().trim();
 
+                                PdfPCell secondCellVsat = new PdfPCell();
+                                secondCellVsat.setBorder(PdfPCell.NO_BORDER);
                                 PdfPTable table8 = new PdfPTable(2);
                                 table8.addCell(JobReportUtils.headTitleCell("*"+getActivity().getString(R.string.ioVSAT_trans)+"*", titleFont));
                                 table8.addCell(JobReportUtils.titleCell("OLD", contentFont));
@@ -417,7 +420,20 @@ public class DashboardFragment extends Fragment {
                                 table8.addCell(new Paragraph(alVsat.get(0).getSn_dip_odu().trim(), contentFont));
                                 table8.addCell(createCell("S/N DIPLEXER IDU ", contentFont));
                                 table8.addCell(new Paragraph(alVsat.get(0).getSn_dip_idu().trim(), contentFont));
-
+                                table8.addCell(createCell("Diameter Antena ", contentFont));
+                                table8.addCell(new Paragraph(alVsat.get(0).getAntena_size().trim(), contentFont));
+                                table8.addCell(createCell("Pedestal Type ", contentFont));
+                                table8.addCell(new Paragraph(alVsat.get(0).getPedestal_type().trim(), contentFont));
+                                table8.addCell(createCell("Akses Antena  ", contentFont));
+                                table8.addCell(new Paragraph(alVsat.get(0).getAccess_type().trim(), contentFont));
+                                float[] columnWidths = new float[]{40f, 100f};
+                                table8.setWidths(columnWidths);
+                                secondCellVsat.addElement(table8);
+                                mainTable3.addCell(secondCellVsat);
+                                Paragraph paragraph3 = new Paragraph();
+                                paragraph3.add(mainTable3);
+                                paragraph3.setAlignment(Element.ALIGN_LEFT);
+                                document.add(paragraph3);
                                 stCopyClipBoard.append(vsatSetup+"\n\n");
                             }
 
@@ -546,6 +562,7 @@ public class DashboardFragment extends Fragment {
                                 mainTable3.addCell(secondCell);
                                 Paragraph paragraph3 = new Paragraph();
                                 paragraph3.add(mainTable3);
+                                paragraph3.setAlignment(Element.ALIGN_LEFT);
                                 document.add(paragraph3);
                                 stCopyClipBoard.append(m2mSetupContent+"\n\n");
                             }
@@ -679,6 +696,7 @@ public class DashboardFragment extends Fragment {
                                 cell3.addElement(table6);
                                 mainTable1.addCell(cell3);
                                 Paragraph paragraph2 = new Paragraph();
+                                paragraph2.setAlignment(Element.ALIGN_LEFT);
                                 paragraph2.add(mainTable1);
                                 document.add(paragraph2);
                                 stCopyClipBoard.append(m2mReplace+"\n\n");
