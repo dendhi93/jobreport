@@ -79,6 +79,7 @@ import butterknife.OnClick;
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static com.dracoo.jobreport.util.JobReportUtils.createCell;
 import static com.dracoo.jobreport.util.JobReportUtils.headTitleCell;
+import static com.dracoo.jobreport.util.JobReportUtils.titleCell;
 
 public class DashboardFragment extends Fragment {
     @BindView(R.id.lbl_dash_locationName)
@@ -550,6 +551,11 @@ public class DashboardFragment extends Fragment {
                                 stCopyClipBoard.append(xpollContent+"\n\n");
                             }
 
+                            Paragraph spaceParagraph4 = new Paragraph("\n");
+                            spaceParagraph4.setAlignment(Element.ALIGN_LEFT);
+                            spaceParagraph4.setSpacingAfter(3f);
+                            document.add(spaceParagraph4);
+
                             ArrayList<MasterConnectionParameter> alParam = new ConnectionParameterAdapter(getActivity()).val_param(preference.getCustID(), preference.getUn());
                             if (alParam.size() > 0){
                                 String paramContent = "*LAN PARAMETER*\nIP Lan = " +alParam.get(0).getLan_parameter().trim() +" \n"+
@@ -564,10 +570,21 @@ public class DashboardFragment extends Fragment {
                                                       "FINAL ESNO = " +alParam.get(0).getRanging_esno().trim() + "\n"+
                                                       "FINAL C/NO = " +alParam.get(0).getRanging_esno().trim() + "\n";
 
-                                Paragraph paramContentParagraph = new Paragraph(paramContent,contentFont);
-                                paramContentParagraph.setAlignment(Element.ALIGN_LEFT);
-                                paramContentParagraph.setSpacingAfter(3f);
-                                document.add(paramContentParagraph);
+//                                Paragraph paramContentParagraph = new Paragraph(paramContent,contentFont);
+//                                paramContentParagraph.setAlignment(Element.ALIGN_LEFT);
+//                                paramContentParagraph.setSpacingAfter(3f);
+//                                document.add(paramContentParagraph);;
+                                PdfPTable table11 = new PdfPTable(2);
+                                table11.addCell(headTitleCell("*"+getActivity().getString(R.string.networkParam_trans)+"*", titleFont));
+                                table11.addCell(titleCell("LAN PARAMETER", titleFont));
+                                table11.addCell(createCell("IP Lan ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getLan_parameter().trim(), contentFont));
+                                table11.addCell(createCell("Subnet Mask ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getLan_subnetmask().trim(), contentFont));
+                                float[] columnWidths = new float[]{40f, 100f};
+                                table11.setHorizontalAlignment(Element.ALIGN_LEFT);
+                                table11.setWidths(columnWidths);
+                                document.add(table11);
                                 stCopyClipBoard.append(paramContent+"\n\n");
                             }
 
