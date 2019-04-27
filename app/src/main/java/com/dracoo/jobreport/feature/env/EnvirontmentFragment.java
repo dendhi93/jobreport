@@ -94,9 +94,9 @@ public class EnvirontmentFragment extends Fragment {
                     mEnv.setUpdate_date(DateTimeUtils.getCurrentTime());
                     mEnv.setNotes(txt_env_upsNote.getText().toString().trim());
                     mEnv.setNotes_ac(txt_env_acNote.getText().toString().trim());
-                    mEnv.setSuhu(Integer.parseInt(txt_env_acSuhu.getText().toString().trim()));
-                    mEnv.setTegangan_pln(Integer.parseInt(txt_env_plnTegangan.getText().toString().trim()));
-                    mEnv.setTegangan_ups(Integer.parseInt(txt_env_upsTegangan.getText().toString().trim()));
+                    mEnv.setSuhu(txt_env_acSuhu.getText().toString().trim());
+                    mEnv.setTegangan_pln(txt_env_plnTegangan.getText().toString().trim());
+                    mEnv.setTegangan_ups(txt_env_upsTegangan.getText().toString().trim());
 
                     envAdapter.update(mEnv);
                     transHistEnv(ConfigApps.TRANS_HIST_UPDATE);
@@ -113,9 +113,9 @@ public class EnvirontmentFragment extends Fragment {
                     mEnv.setNotes(txt_env_upsNote.getText().toString().trim());
                     mEnv.setNotes_ac(txt_env_acNote.getText().toString().trim());
                     mEnv.setProgress_type(preference.getProgress().trim());
-                    mEnv.setSuhu(Integer.parseInt(txt_env_acSuhu.getText().toString().trim()));
-                    mEnv.setTegangan_pln(Integer.parseInt(txt_env_plnTegangan.getText().toString().trim()));
-                    mEnv.setTegangan_ups(Integer.parseInt(txt_env_upsTegangan.getText().toString().trim()));
+                    mEnv.setSuhu(txt_env_acSuhu.getText().toString().trim());
+                    mEnv.setTegangan_pln(txt_env_plnTegangan.getText().toString().trim());
+                    mEnv.setTegangan_ups(txt_env_upsTegangan.getText().toString().trim());
                     mEnv.setUn_user(preference.getUn());
 
                     envAdapter.create(mEnv);

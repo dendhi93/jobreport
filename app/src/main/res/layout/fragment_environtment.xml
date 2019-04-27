@@ -76,8 +76,9 @@
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_lightning_16"
                             android:textColorLink="@color/colorWhite"
-                            android:inputType="number"
-                            android:maxLength="5"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                            android:inputType="text"
+                            android:maxLength="15"
                             android:maxLines="2"
                             android:background="@drawable/noborder"/>
 
@@ -183,8 +184,9 @@
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_lightning_16"
                             android:textColorLink="@color/colorWhite"
-                            android:inputType="number"
-                            android:maxLength="5"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                            android:inputType="text"
+                            android:maxLength="15"
                             android:maxLines="2"
                             android:background="@drawable/noborder"/>
 
@@ -324,8 +326,9 @@
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_temperature_16"
                             android:textColorLink="@color/colorWhite"
-                            android:inputType="number"
-                            android:maxLength="5"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                            android:inputType="text"
+                            android:maxLength="15"
                             android:maxLines="2"
                             android:background="@drawable/noborder"/>
 

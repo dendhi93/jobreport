@@ -13,17 +13,17 @@ public class MasterEnvirontment implements Serializable {
     @DatabaseField(columnName = "id_site")
     private Integer id_site;
     @DatabaseField(columnName = "tegangan_pln")
-    private Integer tegangan_pln;
+    private String tegangan_pln;
     @DatabaseField(columnName = "grounding_pln")
     private String grounding_pln;
     @DatabaseField(columnName = "tegangan_ups")
-    private Integer tegangan_ups;
+    private String tegangan_ups;
     @DatabaseField(columnName = "grounding_ups")
     private String grounding_ups;
     @DatabaseField(columnName = "notes")
     private String notes;
     @DatabaseField(columnName = "suhu")
-    private Integer suhu;
+    private String suhu;
     @DatabaseField(columnName = "notes_ac")
     private String notes_ac;
     @DatabaseField(columnName = "progress_type")
@@ -52,11 +52,11 @@ public class MasterEnvirontment implements Serializable {
         this.id_site = id_site;
     }
 
-    public Integer getTegangan_pln() {
+    public String getTegangan_pln() {
         return tegangan_pln;
     }
 
-    public void setTegangan_pln(Integer tegangan_pln) {
+    public void setTegangan_pln(String tegangan_pln) {
         this.tegangan_pln = tegangan_pln;
     }
 
@@ -68,11 +68,11 @@ public class MasterEnvirontment implements Serializable {
         this.grounding_pln = grounding_pln;
     }
 
-    public Integer getTegangan_ups() {
+    public String getTegangan_ups() {
         return tegangan_ups;
     }
 
-    public void setTegangan_ups(Integer tegangan_ups) {
+    public void setTegangan_ups(String tegangan_ups) {
         this.tegangan_ups = tegangan_ups;
     }
 
@@ -92,11 +92,11 @@ public class MasterEnvirontment implements Serializable {
         this.notes = notes;
     }
 
-    public Integer getSuhu() {
+    public String getSuhu() {
         return suhu;
     }
 
-    public void setSuhu(Integer suhu) {
+    public void setSuhu(String suhu) {
         this.suhu = suhu;
     }
 
