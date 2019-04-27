@@ -229,6 +229,10 @@ public class DashboardFragment extends Fragment {
                         PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                         document.open();
 
+                        Paragraph titleParagraph = new Paragraph("RESULT REPORT");
+                        titleParagraph.setAlignment(Element.ALIGN_CENTER);
+                        titleParagraph.setSpacingAfter(6f);
+                        document.add(titleParagraph);
                         stCopyClipBoard = new StringBuilder();
                         stCopyClipBoard.append("*Maintenance Report*\n\n");
 
@@ -479,7 +483,8 @@ public class DashboardFragment extends Fragment {
                                         "S/N DIPLEXER IDU = " +dipIdu +"\n";
 
                                 PdfPTable table9 = new PdfPTable(2);
-                                table9.addCell(headTitleCell("New", titleFont));
+                                table9.addCell(headTitleCell(getActivity().getString(R.string.repVSAT_trans), titleFont));
+                                table9.addCell(titleCell("NEW", contentFont));
                                 table9.addCell(createCell("S/N Modem ", contentFont));
                                 table9.addCell(new Paragraph(snModem, contentFont));
                                 table9.addCell(createCell("S/N Modem ", contentFont));
@@ -568,22 +573,40 @@ public class DashboardFragment extends Fragment {
                                                       "FEC = " +alParam.get(0).getRanging_fec().trim() + "\n"+
                                                       "FINAL POWER SETTING = " +alParam.get(0).getRanging_power().trim()+"\n"+
                                                       "FINAL ESNO = " +alParam.get(0).getRanging_esno().trim() + "\n"+
-                                                      "FINAL C/NO = " +alParam.get(0).getRanging_esno().trim() + "\n";
+                                                      "FINAL C/NO = " +alParam.get(0).getRanging_cno().trim() + "\n";
 
-//                                Paragraph paramContentParagraph = new Paragraph(paramContent,contentFont);
-//                                paramContentParagraph.setAlignment(Element.ALIGN_LEFT);
-//                                paramContentParagraph.setSpacingAfter(3f);
-//                                document.add(paramContentParagraph);;
                                 PdfPTable table11 = new PdfPTable(2);
                                 table11.addCell(headTitleCell("*"+getActivity().getString(R.string.networkParam_trans)+"*", titleFont));
-                                table11.addCell(titleCell("LAN PARAMETER", titleFont));
+                                table11.addCell(titleCell("LAN PARAMETER", contentFont));
                                 table11.addCell(createCell("IP Lan ", contentFont));
                                 table11.addCell(new Paragraph(alParam.get(0).getLan_parameter().trim(), contentFont));
                                 table11.addCell(createCell("Subnet Mask ", contentFont));
                                 table11.addCell(new Paragraph(alParam.get(0).getLan_subnetmask().trim(), contentFont));
+                                table11.addCell(titleCell("MANAGEMENT PARAMETER", contentFont));
+                                table11.addCell(createCell("ESN Modem ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getManagement_esnmodem().trim(), contentFont));
+                                table11.addCell(createCell("Gateway ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getManagement_gateway().trim(), contentFont));
+                                table11.addCell(createCell("SNMP ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getManagement_snmp().trim(), contentFont));
+                                table11.addCell(titleCell("RANGING PARAMETER", contentFont));
+                                table11.addCell(createCell("SIGNAL ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getRanging_signal().trim(), contentFont));
+                                table11.addCell(createCell("DATA RATE ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getRanging_data_rate().trim(), contentFont));
+                                table11.addCell(createCell("FEC ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getRanging_fec().trim(), contentFont));
+                                table11.addCell(createCell("FINAL POWER SETTING ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getRanging_power().trim(), contentFont));
+                                table11.addCell(createCell("FINAL ESNO ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getRanging_esno().trim(), contentFont));
+                                table11.addCell(createCell("FINAL C/NO ", contentFont));
+                                table11.addCell(new Paragraph(alParam.get(0).getRanging_cno().trim(), contentFont));
                                 float[] columnWidths = new float[]{40f, 100f};
                                 table11.setHorizontalAlignment(Element.ALIGN_LEFT);
                                 table11.setWidths(columnWidths);
+                                table11.setTotalWidth(200f);
+                                table11.setLockedWidth(true);
                                 document.add(table11);
                                 stCopyClipBoard.append(paramContent+"\n\n");
                             }
@@ -743,7 +766,8 @@ public class DashboardFragment extends Fragment {
                                 PdfPCell cell3 = new PdfPCell();
                                 cell3.setBorder(PdfPCell.NO_BORDER);
                                 PdfPTable table6 = new PdfPTable(2);
-                                table6.addCell(headTitleCell("NEW", titleFont));
+                                table6.addCell(headTitleCell(getActivity().getString(R.string.repM2M_trans), titleFont));
+                                table6.addCell(titleCell("NEW", contentFont));
                                 table6.addCell(JobReportUtils.titleCell("M2M", contentFont));
                                 table6.addCell(createCell("Brand / Type ", contentFont));
                                 table6.addCell(new Paragraph(m2mType.trim(), contentFont));
@@ -825,7 +849,7 @@ public class DashboardFragment extends Fragment {
                                 table7.setHorizontalAlignment(Element.ALIGN_LEFT);
                                 float[] columnWidths = new float[]{40f, 100f};
                                 table7.setWidths(columnWidths);
-                                table7.setTotalWidth(170f);
+                                table7.setTotalWidth(200f);
                                 table7.setLockedWidth(true);
                                 document.add(table7);
                                 stCopyClipBoard.append(actionContent+"\n\n");
@@ -841,7 +865,7 @@ public class DashboardFragment extends Fragment {
                     }
                 }
             }
-        }, 1500);
+        }, 1550);
     }
 
     private boolean isSubmitReport(){
