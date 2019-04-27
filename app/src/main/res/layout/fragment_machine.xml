@@ -116,50 +116,38 @@
             </LinearLayout>
 
             <LinearLayout
+                android:baselineAligned="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:background="@drawable/border_bottom"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="100dp"
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:layout_marginStart="@dimen/spacing_tiny_2"
-                    android:text="@string/machine_id"
-                    android:layout_gravity="center"/>
+                    android:layout_weight="1"
+                    android:background="@drawable/border_bottom"
+                    android:textColorHint="@color/colorBlack"
+                    android:hint="@string/machine_id">
 
-                <RadioGroup
-                    android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_machine_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    <EditText
+                        android:id="@+id/txt_machine_idMachine"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@android:color/transparent"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                        android:textColor="@color/colorBlack"
+                        android:drawableLeft="@drawable/ic_black_setting_16"
+                        android:textColorLink="@color/colorWhite"
+                        android:inputType="text"
+                        android:maxLength="45"
+                        android:maxLines="2"
+                        android:background="@drawable/noborder"/>
 
-                    <RadioButton
-                        android:id="@+id/rb_idMachine1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_machine_id1"/>
-
-                    <RadioButton
-                        android:id="@+id/rb_idMachine2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_machine_id2"/>
-
-                    <RadioButton
-                        android:id="@+id/rb_idMachine3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_machine_id3"/>
-
-                </RadioGroup>
-
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout

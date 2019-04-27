@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -33,25 +34,21 @@ public class MachineFragment extends Fragment {
 
     @BindView(R.id.rg_machine_location)
     RadioGroup rg_machine_location;
-
     @BindView(R.id.rg_machine_qty)
     RadioGroup rg_machine_qty;
-
-    @BindView(R.id.rg_machine_id)
-    RadioGroup rg_machine_id;
-
     @BindView(R.id.rg_machine_24)
     RadioGroup rg_machine_24;
+    @BindView(R.id.txt_machine_idMachine)
+    EditText txt_machine_idMachine;
 
     private MessageUtils messageUtils;
     private RadioButton rb_machineLocation;
     private RadioButton rb_machineQty;
-    private RadioButton rb_machineId;
     private RadioButton rb_machine24;
     private Preference preference;
     private Dao<MasterMachine, Integer> machineAdapter;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
-    private String selectedMachineLoc, selectedMachineQty, selectedMachineId, selectedMachine24;
+    private String selectedMachineLoc, selectedMachineQty, selectedMachine24;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,7 +68,6 @@ public class MachineFragment extends Fragment {
         preference = new Preference(getActivity());
         rbMachineLocation();
         rbMachineQty();
-        rbMachineId();
         rbMachine24();
 
         try{
@@ -100,16 +96,6 @@ public class MachineFragment extends Fragment {
         });
     }
 
-    private void rbMachineId(){
-        rg_machine_id.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rb_machineId =  getView().findViewById(i);
-                selectedMachineId = ""+rb_machineId.getText().toString().trim();
-            }
-        });
-    }
-
     private void rbMachine24(){
         rg_machine_24.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -125,8 +111,8 @@ public class MachineFragment extends Fragment {
         try{
             if (selectedMachineLoc == null || selectedMachineLoc.equals("null") ||
                 selectedMachineQty == null || selectedMachineQty.equals("null") ||
-                selectedMachineId == null || selectedMachineId.equals("null") ||
-                selectedMachine24 == null || selectedMachine24.equals("null")){
+                txt_machine_idMachine.getText().toString().trim().equals("") ||
+                    selectedMachine24 == null || selectedMachine24.equals("null")){
                 messageUtils.toastMessage("Mohon dipilih pilihan yang belum dipilih", ConfigApps.T_WARNING);
             }else{
                 machineTrans();
@@ -149,7 +135,7 @@ public class MachineFragment extends Fragment {
                     mMachine.setUpdate_date(DateTimeUtils.getCurrentTime());
                     mMachine.setAccess_type(""+rb_machine24.getText().toString().trim());
                     mMachine.setMachine_type(""+rb_machineLocation.getText().toString().trim());
-                    mMachine.setMachine_no(""+rb_machineId.getText().toString().trim());
+                    mMachine.setMachine_no(txt_machine_idMachine.getText().toString().trim());
                     mMachine.setMachine_qty(Integer.parseInt(""+rb_machineQty.getText().toString().trim()));
 
                     machineAdapter.update(mMachine);
@@ -164,7 +150,7 @@ public class MachineFragment extends Fragment {
                     mMachine.setInsert_date(DateTimeUtils.getCurrentTime());
                     mMachine.setAccess_type(""+rb_machine24.getText().toString().trim());
                     mMachine.setMachine_type(""+rb_machineLocation.getText().toString().trim());
-                    mMachine.setMachine_no(""+rb_machineId.getText().toString().trim());
+                    mMachine.setMachine_no(txt_machine_idMachine.getText().toString().trim());
                     mMachine.setMachine_qty(Integer.parseInt(""+rb_machineQty.getText().toString().trim()));
                     mMachine.setId_site(preference.getCustID());
                     mMachine.setUn_user(preference.getUn());

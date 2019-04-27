@@ -70,9 +70,9 @@ public class ParameterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_parameter);
         ButterKnife.bind(this);
 
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        if(getSupportActionBar() != null){ getSupportActionBar().setDisplayHomeAsUpEnabled(true); }
+
+        if (getSupportActionBar() != null){ getSupportActionBar().setSubtitle("VSAT"); }
     }
 
     @Override
