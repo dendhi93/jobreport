@@ -49,13 +49,23 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny_2"
+            android:layout_marginEnd="@dimen/spacing_tiny_2"
+            android:textColor="@color/colorRed"
+            android:textStyle="bold"
+            android:textSize="@dimen/alph_size_tiny2"
+            android:text="@string/notes_4"/>
+
         <ImageView
             android:id="@+id/imgV_doc_1"
             android:layout_width="95dp"
             android:layout_height="95dp"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/spacing_medium"
-            android:layout_marginTop="@dimen/padding_medium"
+            android:layout_marginTop="@dimen/padding_medium3"
             android:foregroundGravity="center"
             android:src="@drawable/ic_upload" />
 

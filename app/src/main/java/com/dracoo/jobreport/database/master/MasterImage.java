@@ -25,8 +25,6 @@ public class MasterImage implements Serializable {
     private String conn_type;
     @DatabaseField(columnName = "un_user")
     private String un_user;
-    @DatabaseField(columnName = "image_position")
-    private Integer image_position;
 
 
     public Integer getId_image() {
@@ -101,11 +99,5 @@ public class MasterImage implements Serializable {
         this.un_user = un_user;
     }
 
-    public Integer getImage_position() {
-        return image_position;
-    }
 
-    public void setImage_position(Integer image_position) {
-        this.image_position = image_position;
-    }
 }

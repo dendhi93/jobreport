@@ -26,11 +26,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.ImageAdapter;
-import com.dracoo.jobreport.database.adapter.ImageConnTypeAdapter;
 import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterImage;
-import com.dracoo.jobreport.database.master.MasterImageConnType;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.feature.documentation.adapter.CustomList_Doc_Adapter;
@@ -102,6 +100,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         ButterKnife.bind(this, view);
 
         return view;
+        //TODO DROP COLUMN T_IMAGE_POSITION
     }
 
     @Override
@@ -131,7 +130,12 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
     @OnClick(R.id.imgV_doc_1)
     void getImage(){
-        getImageCamera();
+        if (txt_doc_docType.getText().toString().trim().equals("")){
+            messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+        }else{
+            selectedImgFolder = txt_doc_docType.getText().toString().trim();
+            getImageCamera();
+        }
     }
 
     @OnClick(R.id.imgB_doc_confirm)
@@ -242,36 +246,12 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         }, 1000);
     }
 
-//    private void loadSpinner(String connType){
-//        ArrayList<MasterImageConnType> al_imgConn = new ImageConnTypeAdapter(getActivity()).load_imgConn(connType);
-//        arr_imgTitle = new String[al_imgConn.size()];
-//        arr_imgFolder = new String[al_imgConn.size()];
-//
-//        int i = 0;
-//        for (MasterImageConnType mImgConn : al_imgConn){
-//            arr_imgTitle[i] = mImgConn.getImage_title().trim();
-//            arr_imgFolder[i] = mImgConn.getImage_folder();
-//            i++;
-//        }
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arr_imgTitle);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-//        spinner_doc.setAdapter(adapter);
-//        spinner_doc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                int index = spinner_doc.getSelectedItemPosition();
-//                selectedImgTitle = arr_imgTitle[index];
-//                selectedImgFolder = arr_imgFolder[index];
-//                selectedImagePosition = position;
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {}
-//        });
-//    }
-
     private void getImageCamera(){
+        if (selectedImgFolder.contains("")){
+            String[] split = selectedImgFolder.split(" ");
+            selectedImgFolder = split[0]+""+split[1];
+            selectedImgTitle = selectedImgFolder+""+preference.getCustID();
+        }
         File imagesFolder =new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+selectedImgFolder);
         if (!imagesFolder.exists()) {
             if (imagesFolder.mkdirs()) {
@@ -337,7 +317,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                 mImage.setId_site(preference.getCustID());
                 mImage.setConn_type(preference.getConnType().trim());
                 mImage.setImage_name(selectedImgTitle+".jpg");
-                mImage.setImage_position(selectedImagePosition);
                 mImage.setImage_url(filePath.trim());
                 mImage.setInsert_date(DateTimeUtils.getCurrentTime());
                 mImage.setProgress_type(preference.getProgress().trim());
