@@ -16,13 +16,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -91,8 +89,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     RecyclerView rv_doc;
     @BindView(R.id.lbl_doc_empty)
     TextView lbl_doc_empty;
-    @BindView(R.id.spinner_doc)
-    Spinner spinner_doc;
+    @BindView(R.id.txt_doc_docType)
+    EditText txt_doc_docType;
     @BindView(R.id.prd_doc)
     ProgressBar prd_doc;
 
@@ -121,7 +119,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         }else{
             imgB_doc_confirm.setEnabled(true);
             imgV_doc_1.setEnabled(true);
-            loadSpinner(preference.getConnType().trim());
+            //loadSpinner(preference.getConnType().trim());
         }
 
         try {
@@ -244,34 +242,34 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         }, 1000);
     }
 
-    private void loadSpinner(String connType){
-        ArrayList<MasterImageConnType> al_imgConn = new ImageConnTypeAdapter(getActivity()).load_imgConn(connType);
-        arr_imgTitle = new String[al_imgConn.size()];
-        arr_imgFolder = new String[al_imgConn.size()];
-
-        int i = 0;
-        for (MasterImageConnType mImgConn : al_imgConn){
-            arr_imgTitle[i] = mImgConn.getImage_title().trim();
-            arr_imgFolder[i] = mImgConn.getImage_folder();
-            i++;
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arr_imgTitle);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinner_doc.setAdapter(adapter);
-        spinner_doc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int index = spinner_doc.getSelectedItemPosition();
-                selectedImgTitle = arr_imgTitle[index];
-                selectedImgFolder = arr_imgFolder[index];
-                selectedImagePosition = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
-    }
+//    private void loadSpinner(String connType){
+//        ArrayList<MasterImageConnType> al_imgConn = new ImageConnTypeAdapter(getActivity()).load_imgConn(connType);
+//        arr_imgTitle = new String[al_imgConn.size()];
+//        arr_imgFolder = new String[al_imgConn.size()];
+//
+//        int i = 0;
+//        for (MasterImageConnType mImgConn : al_imgConn){
+//            arr_imgTitle[i] = mImgConn.getImage_title().trim();
+//            arr_imgFolder[i] = mImgConn.getImage_folder();
+//            i++;
+//        }
+//
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arr_imgTitle);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+//        spinner_doc.setAdapter(adapter);
+//        spinner_doc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                int index = spinner_doc.getSelectedItemPosition();
+//                selectedImgTitle = arr_imgTitle[index];
+//                selectedImgFolder = arr_imgFolder[index];
+//                selectedImagePosition = position;
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {}
+//        });
+//    }
 
     private void getImageCamera(){
         File imagesFolder =new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+selectedImgFolder);

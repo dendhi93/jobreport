@@ -206,6 +206,9 @@
     <string name="doc_trans">Documentation</string>
     <string name="action_trans">Action</string>
 
+    //doc_content
+    <string name="imageType">Tipe Image</string>
+
     //action content
     <string name="desc_action">Deskripsi</string>
     <string name="action_start">Dari tanggal</string>

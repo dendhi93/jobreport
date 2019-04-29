@@ -12,17 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/colorWhite"
         android:gravity="center">
 
-        <Spinner
-            android:id="@+id/spinner_doc"
+        <LinearLayout
+            android:baselineAligned="false"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="@dimen/padding_medium"
-            android:layout_marginStart="@dimen/spacing_semi_medium"
-            android:layout_marginEnd="@dimen/spacing_semi_medium"
-            android:layout_marginBottom="@dimen/spacing_tiny"
-            android:background="@color/colorBlue300"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColorHint="@color/colorBlack"
+                android:background="@drawable/border_bottom"
+                android:hint="@string/imageType">
+
+                <EditText
+                    android:id="@+id/txt_doc_docType"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textColor="@color/colorBlack"
+                    android:drawableLeft="@drawable/ic_black_doc_16"
+                    android:textColorLink="@color/colorWhite"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:maxLines="2"
+                    android:background="@drawable/noborder"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imgV_doc_1"
