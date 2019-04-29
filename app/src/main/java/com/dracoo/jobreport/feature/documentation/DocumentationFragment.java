@@ -62,10 +62,10 @@ import butterknife.OnClick;
 public class DocumentationFragment extends Fragment implements ItemCallback {
     private MessageUtils messageUtils;
     private Preference preference;
-    private String[] arr_imgTitle;
+//    private String[] arr_imgTitle;
     private String[] arr_imgUrl;
     private String[] arr_imgName;
-    private String[] arr_imgFolder;
+//    private String[] arr_imgFolder;
     private String selectedImgTitle;
     private String selectedImgFolder;
     private String customerName = "";
@@ -134,6 +134,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
             messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else{
             selectedImgFolder = txt_doc_docType.getText().toString().trim();
+            selectedImgTitle = txt_doc_docType.getText().toString().trim();
             getImageCamera();
         }
     }
@@ -250,7 +251,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         if (selectedImgFolder.contains("")){
             String[] split = selectedImgFolder.split(" ");
             selectedImgFolder = split[0]+""+split[1];
-            selectedImgTitle = selectedImgFolder+""+preference.getCustID();
         }
         File imagesFolder =new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+selectedImgFolder);
         if (!imagesFolder.exists()) {
@@ -301,17 +301,17 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     private void saveDataImage(){
         ArrayList<MasterImage> al_valImage = new ImageAdapter(getActivity())
                 .val_dataImage(preference.getCustID(), preference.getUn(),
-                        preference.getConnType(), selectedImagePosition);
+                        preference.getConnType(), selectedImgTitle);
         ArrayList<MasterImage> al_countImage = new ImageAdapter(getActivity())
                 .load_dataImage(preference.getCustID(), preference.getUn());
-        if (al_valImage.size() > 0){
+        if (al_countImage.size() > 5){
+            messageUtils.toastMessage("Jumlah Foto sudah 5, transaksi dibatalkan", ConfigApps.T_WARNING);
+        }else if (al_valImage.size() > 0){
             if (imageToSave.exists()){
                 messageUtils.toastMessage("Image sudah ada, transaksi dibatalkan", ConfigApps.T_WARNING);
                 imageToSave.delete();
             }
-        }else if (al_countImage.size() > 5){
-            messageUtils.toastMessage("Jumlah Foto sudah 5, transaksi dibatalkan", ConfigApps.T_WARNING);
-        } else{
+        }else{
             try{
                 MasterImage mImage = new MasterImage();
                 mImage.setId_site(preference.getCustID());

@@ -23,11 +23,11 @@ public class ImageAdapter extends DatabaseAdapter {
         return mImage;
     }
 
-    public ArrayList<MasterImage> val_dataImage(int custId, String un, String connType, int imgPos){
+    public ArrayList<MasterImage> val_dataImage(int custId, String un, String connType, String imageName){
         ArrayList<MasterImage> images = new ArrayList<>();
         Cursor cursor = null;
 
-        cursor = val_imageCursor(custId, un, connType, imgPos);
+        cursor = val_imageCursor(custId, un, connType, imageName);
 
         while (cursor.moveToNext()) {
             MasterImage image = new MasterImage();
@@ -42,7 +42,7 @@ public class ImageAdapter extends DatabaseAdapter {
         return images;
     }
 
-    public Cursor val_imageCursor(int custId, String un, String connType, int imgPos){
+    public Cursor val_imageCursor(int custId, String un, String connType, String imageName){
         Cursor cursor;
 
         String sql = "SELECT id_image, " +
@@ -50,8 +50,8 @@ public class ImageAdapter extends DatabaseAdapter {
                 " image_name " +
                 "from t_image " +
                 " where id_site = " + custId + " " +
+                " and image_name = '"+imageName+"' " +
                 " and un_user = '" +un+ "' "+
-                " and image_position = " +imgPos+ " "+
                 " and conn_type = '" +connType+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
