@@ -248,7 +248,11 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     }
 
     private void getImageCamera(){
-        if (selectedImgFolder.contains("")){
+        if (getActivity() != null){
+            JobReportUtils.hideKeyboard(getActivity());
+        }
+
+        if (selectedImgFolder.contains(" ")){
             String[] split = selectedImgFolder.split(" ");
             selectedImgFolder = split[0]+""+split[1];
         }
@@ -329,6 +333,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                 selectedImgTitle = "";
                 transHistImage();
                 loadRcImage();
+                txt_doc_docType.setText("");
 
             }catch (Exception e){
                 messageUtils.toastMessage("Err insert image " +e.toString(), ConfigApps.T_ERROR);
