@@ -69,7 +69,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     private String selectedImgTitle;
     private String selectedImgFolder;
     private String customerName = "";
-    private int selectedImagePosition = 0;
     private String filePath;
     private File imageToSave;
     private Dao<MasterImage, Integer> imageDao;
@@ -89,6 +88,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     TextView lbl_doc_empty;
     @BindView(R.id.txt_doc_docType)
     EditText txt_doc_docType;
+    @BindView(R.id.txt_doc_docDescription)
+    EditText txt_doc_docDescription;
     @BindView(R.id.prd_doc)
     ProgressBar prd_doc;
 
@@ -100,7 +101,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         ButterKnife.bind(this, view);
 
         return view;
-        //TODO DROP COLUMN T_IMAGE_POSITION
     }
 
     @Override
@@ -130,7 +130,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
     @OnClick(R.id.imgV_doc_1)
     void getImage(){
-        if (txt_doc_docType.getText().toString().trim().equals("")){
+        if (txt_doc_docType.getText().toString().trim().equals("") || txt_doc_docDescription.getText().toString().trim().equals("")){
             messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else{
             selectedImgFolder = txt_doc_docType.getText().toString().trim();
@@ -156,9 +156,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ArrayList<MasterImage> al_countImage = new ImageAdapter(getActivity())
-                        .load_dataImage(preference.getCustID(), preference.getUn());
-                if (al_countImage.size() == 5){
+                if (al_image.size() == 5){
                     ArrayList<MasterInfoSite> alInfo = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
                     if (alInfo.size() > 0){
                         File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName());
@@ -306,9 +304,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         ArrayList<MasterImage> al_valImage = new ImageAdapter(getActivity())
                 .val_dataImage(preference.getCustID(), preference.getUn(),
                         preference.getConnType(), selectedImgTitle);
-        ArrayList<MasterImage> al_countImage = new ImageAdapter(getActivity())
-                .load_dataImage(preference.getCustID(), preference.getUn());
-        if (al_countImage.size() > 5){
+        if (al_image.size() > 5){
             messageUtils.toastMessage("Jumlah Foto sudah 5, transaksi dibatalkan", ConfigApps.T_WARNING);
         }else if (al_valImage.size() > 0){
             if (imageToSave.exists()){
@@ -325,6 +321,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                 mImage.setInsert_date(DateTimeUtils.getCurrentTime());
                 mImage.setProgress_type(preference.getProgress().trim());
                 mImage.setUn_user(preference.getUn().trim());
+                mImage.setImage_description(txt_doc_docDescription.getText().toString().trim());
 
                 imageDao.create(mImage);
                 filePath = "";
@@ -334,6 +331,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                 transHistImage();
                 loadRcImage();
                 txt_doc_docType.setText("");
+                txt_doc_docDescription.setText("");
+                txt_doc_docDescription.clearFocus();
 
             }catch (Exception e){
                 messageUtils.toastMessage("Err insert image " +e.toString(), ConfigApps.T_ERROR);

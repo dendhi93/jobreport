@@ -19,17 +19,32 @@
             android:src="@drawable/ic_nature_32"
             android:layout_margin="@dimen/spacing_small"/>
 
-        <TextView
-            android:textColor="@color/colorBlack"
-            android:id="@+id/lbl_item_image_title"
-            android:layout_marginStart="@dimen/spacing_small"
-            android:layout_marginTop="32dp"
-            android:layout_toRightOf="@id/imgV_item_image"
-            android:layout_marginEnd="@dimen/spacing_tiny_2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_toRightOf="@id/imgV_item_image"
             android:layout_toLeftOf="@+id/imgB_item_trash"
-            android:text="test"/>
+            >
+            <TextView
+                android:textColor="@color/colorBlack"
+                android:id="@+id/lbl_item_image_title"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:layout_marginEnd="@dimen/spacing_tiny_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test"/>
+
+            <TextView
+                android:textColor="@color/colorBlack"
+                android:id="@+id/lbl_item_image_desc"
+                android:layout_marginTop="@dimen/spacing_tiny_2"
+                android:layout_marginEnd="@dimen/spacing_tiny_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test"/>
+        </LinearLayout>
 
         <ImageButton
             android:layout_marginTop="@dimen/icon_medium"

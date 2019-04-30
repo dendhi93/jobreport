@@ -25,13 +25,11 @@
     <string name="transaction_success">Transaksi Berhasil</string>
     <string name="transaction_success_updated">Transaksi Berhasil diupdate</string>
 
-
     //notes
     <string name="notes">Welcome To Job Report</string>
     <string name="notes_2">JOb Report bertujuan yang untuk memudahkan penyampaian laporan ke admin langsung menggunakan aplikasi</string>
     <string name="notes_3">Copyright @ 2019 dracooCorp</string>
-    <string name="notes_4">* Mohon nama File tidak lebih dari dua suku kata</string>
-
+    <string name="notes_4">* Mohon nama tipe image tidak lebih dari dua suku kata</string>
 
     //validation
     <string name="emptyString">Mohon diisi data yang kosong</string>
@@ -46,8 +44,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     //dash_content
     <string name="pm_radio">PM</string>
@@ -209,6 +205,7 @@
 
     //doc_content
     <string name="imageType">Tipe Image</string>
+    <string name="description">Deskripsi</string>
 
     //action content
     <string name="desc_action">Deskripsi</string>

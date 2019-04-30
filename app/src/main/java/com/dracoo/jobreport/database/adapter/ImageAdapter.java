@@ -70,6 +70,7 @@ public class ImageAdapter extends DatabaseAdapter {
             image.setId_site(cursor.getInt(1));
             image.setImage_name(cursor.getString(2));
             image.setImage_url(cursor.getString(3));
+            image.setImage_description(cursor.getString(4));
 
             images.add(image);
         }
@@ -83,12 +84,13 @@ public class ImageAdapter extends DatabaseAdapter {
         Cursor cursor;
 
         String sql = "SELECT id_image, " +
-                " id_site, " +
-                " image_name, " +
-                " image_url " +
+                            " id_site, " +
+                            " image_name, " +
+                            " image_url, " +
+                            " image_description " +
                 "from t_image " +
-                " where id_site = " + custId + " " +
-                " and un_user = '" +un+ "' ";
+                            " where id_site = " + custId + " " +
+                            " and un_user = '" +un+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
         return cursor;

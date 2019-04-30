@@ -25,6 +25,8 @@ public class MasterImage implements Serializable {
     private String conn_type;
     @DatabaseField(columnName = "un_user")
     private String un_user;
+    @DatabaseField(columnName = "image_description")
+    private String image_description;
 
 
     public Integer getId_image() {
@@ -100,4 +102,11 @@ public class MasterImage implements Serializable {
     }
 
 
+    public String getImage_description() {
+        return image_description;
+    }
+
+    public void setImage_description(String image_description) {
+        this.image_description = image_description;
+    }
 }

@@ -26,7 +26,7 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
     private ItemCallback callback;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView lbl_item_image_title;
+        TextView lbl_item_image_title, lbl_item_image_desc;
         ImageButton imgB_item_trash;
         ImageView imgV_item_image;
 
@@ -36,6 +36,7 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
             this.lbl_item_image_title = itemView.findViewById(R.id.lbl_item_image_title);
             this.imgB_item_trash = itemView.findViewById(R.id.imgB_item_trash);
             this.imgV_item_image = itemView.findViewById(R.id.imgV_item_image);
+            this.lbl_item_image_desc = itemView.findViewById(R.id.lbl_item_image_desc);
         }
     }
 
@@ -61,10 +62,12 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
     public void onBindViewHolder(final CustomList_Doc_Adapter.MyViewHolder holder, final int listPosition) {
 
         TextView lbl_item_image_title = holder.lbl_item_image_title;
+        TextView lbl_item_image_desc = holder.lbl_item_image_desc;
         ImageButton imgB_item_trash = holder.imgB_item_trash;
         ImageView imgV_item_image = holder.imgV_item_image;
         try{
             lbl_item_image_title.setText(list.get(listPosition).getImage_name().trim());
+            lbl_item_image_desc.setText(list.get(listPosition).getImage_description());
             String pathUrl = list.get(listPosition).getImage_url();
             File file = new File(android.os.Environment.getExternalStorageDirectory().getPath(),pathUrl);
             Uri imageUri = Uri.fromFile(file);

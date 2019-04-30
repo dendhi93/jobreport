@@ -7,120 +7,151 @@
     android:gravity="center"
     tools:context=".feature.documentation.DocumentationFragment">
 
-    <LinearLayout
-        android:id="@+id/ln_doc_1"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/colorWhite"
-        android:gravity="center">
+        android:id="@+id/sc_doc_1">
 
         <LinearLayout
-            android:baselineAligned="false"
+            android:id="@+id/ln_doc_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+            android:orientation="vertical"
+            android:background="@color/colorWhite"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:orientation="horizontal">
+            android:gravity="center">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
+            <LinearLayout
+                android:baselineAligned="false"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColorHint="@color/colorBlack"
-                android:background="@drawable/border_bottom"
-                android:hint="@string/imageType">
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/txt_doc_docType"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:textColor="@color/colorBlack"
-                    android:drawableLeft="@drawable/ic_black_doc_16"
-                    android:textColorLink="@color/colorWhite"
-                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
-                    android:inputType="text"
-                    android:maxLength="20"
-                    android:maxLines="2"
-                    android:background="@drawable/noborder"/>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorBlack"
+                    android:background="@drawable/border_bottom"
+                    android:hint="@string/imageType">
 
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
+                    <EditText
+                        android:id="@+id/txt_doc_docType"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColor="@color/colorBlack"
+                        android:drawableLeft="@drawable/ic_black_doc_16"
+                        android:textColorLink="@color/colorWhite"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                        android:inputType="textMultiLine"
+                        android:maxLength="160"
+                        android:maxLines="2"
+                        android:background="@drawable/noborder"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_tiny_2"
-            android:layout_marginEnd="@dimen/spacing_tiny_2"
-            android:textColor="@color/colorRed"
-            android:textStyle="bold"
-            android:textSize="@dimen/alph_size_tiny2"
-            android:text="@string/notes_4"/>
-
-        <ImageView
-            android:id="@+id/imgV_doc_1"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/spacing_medium"
-            android:layout_marginTop="@dimen/padding_medium3"
-            android:foregroundGravity="center"
-            android:src="@drawable/ic_upload" />
-
-        <RelativeLayout
-            android:id="@+id/rl_dash_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:padding="@dimen/spacing_small_1">
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/lbl_doc_note"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:layout_marginEnd="@dimen/spacing_tiny"
-                android:layout_toLeftOf="@+id/prd_doc"
-                android:gravity="center"
-                android:text="Mohon dilakukan pengecekan kembali sebelum di Upload"
-                android:textColor="@color/colorBlack"
-                android:visibility="visible"/>
-            
-            <ProgressBar
-                android:id="@+id/prd_doc"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginEnd="@dimen/spacing_small_1"
-                android:layout_toLeftOf="@+id/imgB_doc_confirm"/>
+                android:layout_marginStart="@dimen/spacing_tiny_2"
+                android:layout_marginEnd="@dimen/spacing_tiny_2"
+                android:textColor="@color/colorRed"
+                android:textStyle="bold"
+                android:textSize="@dimen/alph_size_tiny2"
+                android:text="@string/notes_4"/>
 
-            <ImageButton
-                android:id="@+id/imgB_doc_confirm"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="@dimen/spacing_small_1"
-                android:background="@drawable/ic_circle_selector"
-                android:contentDescription="@string/content_desc"
-                android:src="@drawable/ic_white_upload_32"
-                android:visibility="visible"/>
+            <LinearLayout
+                android:baselineAligned="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal">
 
-        </RelativeLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorBlack"
+                    android:background="@drawable/border_bottom"
+                    android:hint="@string/description">
 
-    </LinearLayout>
+                    <EditText
+                        android:id="@+id/txt_doc_docDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColor="@color/colorBlack"
+                        android:drawableLeft="@drawable/ic_black_doc_16"
+                        android:textColorLink="@color/colorWhite"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:maxLines="2"
+                        android:background="@drawable/noborder"/>
 
-    <View
-        android:layout_below="@+id/ln_doc_1"
-        android:id="@+id/view_1"
-        android:layout_marginTop="@dimen/spacing_tiny"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/colorPrimaryDark"
-        />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgV_doc_1"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/spacing_semi_medium"
+                android:layout_marginTop="@dimen/padding_medium3"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_upload" />
+
+            <RelativeLayout
+                android:id="@+id/rl_dash_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:padding="@dimen/spacing_small_1">
+
+                <TextView
+                    android:id="@+id/lbl_doc_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_toLeftOf="@+id/prd_doc"
+                    android:gravity="center"
+                    android:text="Mohon dilakukan pengecekan kembali sebelum di Upload"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="visible"/>
+
+                <ProgressBar
+                    android:id="@+id/prd_doc"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="@dimen/spacing_small_1"
+                    android:layout_toLeftOf="@+id/imgB_doc_confirm"/>
+
+                <ImageButton
+                    android:id="@+id/imgB_doc_confirm"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="@dimen/spacing_small_1"
+                    android:background="@drawable/ic_circle_selector"
+                    android:contentDescription="@string/content_desc"
+                    android:src="@drawable/ic_white_upload_32"
+                    android:visibility="visible"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <RelativeLayout
-        android:layout_below="@+id/view_1"
+        android:layout_below="@+id/sc_doc_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
