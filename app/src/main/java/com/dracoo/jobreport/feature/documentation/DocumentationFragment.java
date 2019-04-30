@@ -201,6 +201,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                     Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
                                     document.add(mOrderIdParagraph);
                                     document.add(image);
+                                    //TODO ADD DESCRIPTION IN REPORT PDF
 
                                     i++;
                                 }
