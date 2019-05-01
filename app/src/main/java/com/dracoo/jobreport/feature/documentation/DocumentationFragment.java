@@ -41,6 +41,7 @@ import com.dracoo.jobreport.util.Preference;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
@@ -179,9 +180,11 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                 arr_imgName = new String[al_image.size()];
                                 arr_imgUrl = new String[al_image.size()];
                                 float mHeadingFontSize = 20.0f;
+                                float mcontentFontSize = 10.0f;
                                 BaseColor mColorAccent = new BaseColor(0, 153, 204, 255);
                                 BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
                                 Font mOrderIdFont = new Font(urName, mHeadingFontSize, Font.NORMAL, mColorAccent);
+                                Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
 
                                 int i = 0;
                                 for (MasterImage mImage : al_image){
@@ -195,13 +198,19 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                             - document.rightMargin() - 0) / image.getWidth()) * 100; // 0 means you have no indentation. If you have any, change it.
                                     image.scalePercent(scaler);
                                     image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
+                                    image.setSpacingAfter(4f);
 
                                     //add title
                                     Chunk mOrderIdChunk = new Chunk("Title Image: " + arr_imgName[i], mOrderIdFont);
                                     Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
+                                    mOrderIdParagraph.setSpacingAfter(3f);
                                     document.add(mOrderIdParagraph);
                                     document.add(image);
-                                    //TODO ADD DESCRIPTION IN REPORT PDF
+
+                                    Paragraph pDesc = new Paragraph("Deskripsi : "+mImage.getImage_description(),contentFont);
+                                    pDesc.setAlignment(Element.ALIGN_LEFT);
+                                    pDesc.setSpacingAfter(3f);
+                                    document.add(pDesc);
 
                                     i++;
                                 }
