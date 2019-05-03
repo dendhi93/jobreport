@@ -193,9 +193,11 @@ public class DashboardFragment extends Fragment {
 //        }
         else if (preference.getConnType().equals("VSAT") && !new ConnectionParameterAdapter(getActivity()).isParamEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Connection Parameter terlebih dahulu", ConfigApps.T_INFO);
-        }else if (preference.getConnType().equals("M2M") && !new M2mReplaceAdapter(getActivity()).isM2mReplaceEmpty(preference.getUn(), preference.getCustID())){
-            messageUtils.toastMessage("Mohon diinput menu M2m Replace terlebih dahulu", ConfigApps.T_INFO);
-        }else if (preference.getConnType().equals("M2M") && !new M2mDataAdapter(getActivity()).isM2mDataEmpty(preference.getUn(), preference.getCustID())){
+        }
+//        else if (preference.getConnType().equals("M2M") && !new M2mReplaceAdapter(getActivity()).isM2mReplaceEmpty(preference.getUn(), preference.getCustID())){
+//            messageUtils.toastMessage("Mohon diinput menu M2m Replace terlebih dahulu", ConfigApps.T_INFO);
+//        }
+        else if (preference.getConnType().equals("M2M") && !new M2mDataAdapter(getActivity()).isM2mDataEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Data M2M terlebih dahulu", ConfigApps.T_INFO);
         }else if (!preference.getConnType().equals("") && !new ImageAdapter(getActivity()).isImageEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Document terlebih dahulu", ConfigApps.T_INFO);
@@ -758,17 +760,18 @@ public class DashboardFragment extends Fragment {
                             }
 
                             ArrayList<MasterM2mReplace> alm2mReplace = new M2mReplaceAdapter(getActivity()).val_m2mReplace(preference.getCustID(), preference.getUn());
+                            String m2mType, m2mSn, adaptorType, adaptorSn, simCard1Type, simCard1SN, simcard1Puk, simCard2Type, simCard2SN, simcard2Puk;
                             if (alm2mReplace.size() > 0){
-                                String m2mType = alm2mReplace.get(0).getBrand_type_replace().trim();
-                                String m2mSn = alm2mReplace.get(0).getBrand_type_adaptor().trim();
-                                String adaptorType = alm2mReplace.get(0).getBrand_type_adaptor().trim();
-                                String adaptorSn = alm2mReplace.get(0).getSn_adaptor().trim();
-                                String simCard1Type = alm2mReplace.get(0).getSim_card1_type().trim();
-                                String simCard1SN = alm2mReplace.get(0).getSim_card1_sn().trim();
-                                String simcard1Puk = alm2mReplace.get(0).getSim_card1_puk().trim();
-                                String simCard2Type = alm2mReplace.get(0).getSim_card2_type().trim();
-                                String simCard2SN = alm2mReplace.get(0).getSim_card2_sn().trim();
-                                String simcard2Puk = alm2mReplace.get(0).getSim_card2_puk().trim();
+                                m2mType = alm2mReplace.get(0).getBrand_type_replace().trim();
+                                m2mSn = alm2mReplace.get(0).getBrand_type_adaptor().trim();
+                                adaptorType = alm2mReplace.get(0).getBrand_type_adaptor().trim();
+                                adaptorSn = alm2mReplace.get(0).getSn_adaptor().trim();
+                                simCard1Type = alm2mReplace.get(0).getSim_card1_type().trim();
+                                simCard1SN = alm2mReplace.get(0).getSim_card1_sn().trim();
+                                simcard1Puk = alm2mReplace.get(0).getSim_card1_puk().trim();
+                                simCard2Type = alm2mReplace.get(0).getSim_card2_type().trim();
+                                simCard2SN = alm2mReplace.get(0).getSim_card2_sn().trim();
+                                simcard2Puk = alm2mReplace.get(0).getSim_card2_puk().trim();
 
                                 if (m2mType.equals("-")){m2mType = "";}
                                 if (m2mSn.equals("-")){m2mSn = "";}
@@ -780,61 +783,72 @@ public class DashboardFragment extends Fragment {
                                 if (simCard2Type.equals("-")){simCard2Type = "";}
                                 if (simCard2SN.equals("-")){simCard2SN = "";}
                                 if (simcard2Puk.equals("-")){simcard2Puk = "";}
-
-                                String m2mReplace = "_NEW_\nM2M\nBrand / Type = " +m2mType.trim()+"\n"+
-                                                    "S/N = " +m2mSn.trim() +"\n"+
-                                                    "ADAPTOR\nBrand / Type = "+adaptorType.trim() +"\n"+
-                                                    "S/N = " +adaptorSn.trim() +"\n"+
-                                                    "SIMCARD 1\nBrand / Type = " +simCard1Type.trim() +"\n"+
-                                                    "S/N = " +simCard1SN.trim() + "\n" +
-                                                    "PUK = " +simcard1Puk.trim() + "\n" +
-                                                    "SIMCARD 2\nBrand / Type = " +simCard2Type.trim() + "\n"+
-                                                    "S/N = " +simCard2SN.trim() + "\n" +
-                                                    "PUK = " +simcard2Puk.trim();
-
-                                PdfPCell cell3 = new PdfPCell();
-                                cell3.setBorder(PdfPCell.NO_BORDER);
-                                PdfPTable table6 = new PdfPTable(2);
-                                table6.addCell(headTitleCell(getActivity().getString(R.string.repM2M_trans), titleFont));
-                                table6.addCell(titleCell("NEW", contentFont));
-                                table6.addCell(JobReportUtils.titleCell("M2M", contentFont));
-                                table6.addCell(createCell("Brand / Type ", contentFont));
-                                table6.addCell(new Paragraph(m2mType.trim(), contentFont));
-                                table6.addCell(createCell("S/N ", contentFont));
-                                table6.addCell(new Paragraph(m2mSn.trim(), contentFont));
-                                table6.addCell(JobReportUtils.titleCell("ADAPTOR", contentFont));
-                                table6.addCell(createCell("Brand / Type ", contentFont));
-                                table6.addCell(new Paragraph(adaptorType.trim(), contentFont));
-                                table6.addCell(createCell("S/N ", contentFont));
-                                table6.addCell(new Paragraph(adaptorSn.trim(), contentFont));
-                                table6.addCell(JobReportUtils.titleCell("SIMCARD 1", contentFont));
-                                table6.addCell(createCell("Brand / Type  ", contentFont));
-                                table6.addCell(new Paragraph(simCard1Type.trim(), contentFont));
-                                table6.addCell(createCell("S/N ", contentFont));
-                                table6.addCell(new Paragraph(simCard1SN.trim(), contentFont));
-                                table6.addCell(createCell("PUK ", contentFont));
-                                table6.addCell(new Paragraph(simcard1Puk.trim(), contentFont));
-                                table6.addCell(JobReportUtils.titleCell("SIMCARD 2", contentFont));
-                                table6.addCell(createCell("Brand / Type ", contentFont));
-                                table6.addCell(new Paragraph(simCard2Type.trim(), contentFont));
-                                table6.addCell(createCell("S/N", contentFont));
-                                table6.addCell(new Paragraph(simCard2SN.trim(), contentFont));
-                                table6.addCell(createCell("PUK ", contentFont));
-                                table6.addCell(new Paragraph(simcard2Puk.trim(), contentFont));
-                                table6.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                float[] columnWidths = new float[]{40f, 100f};
-                                table6.setWidths(columnWidths);
-                                table6.setTotalWidth(170f);
-                                table6.setLockedWidth(true);
-
-                                cell3.addElement(table6);
-                                mainTable1.addCell(cell3);
-                                Paragraph paragraph2 = new Paragraph();
-                                paragraph2.setAlignment(Element.ALIGN_LEFT);
-                                paragraph2.add(mainTable1);
-                                document.add(paragraph2);
-                                stCopyClipBoard.append(m2mReplace+"\n\n");
+                            }else{
+                                m2mType = "";
+                                m2mSn = "";
+                                adaptorType = "";
+                                adaptorSn = "";
+                                simCard1Type = "";
+                                simCard1SN = "";
+                                simcard1Puk = "";
+                                simCard2Type = "";
+                                simCard2SN = "";
+                                simcard2Puk = "";
                             }
+
+                            String m2mReplace = "_NEW_\nM2M\nBrand / Type = " +m2mType.trim()+"\n"+
+                                    "S/N = " +m2mSn.trim() +"\n"+
+                                    "ADAPTOR\nBrand / Type = "+adaptorType.trim() +"\n"+
+                                    "S/N = " +adaptorSn.trim() +"\n"+
+                                    "SIMCARD 1\nBrand / Type = " +simCard1Type.trim() +"\n"+
+                                    "S/N = " +simCard1SN.trim() + "\n" +
+                                    "PUK = " +simcard1Puk.trim() + "\n" +
+                                    "SIMCARD 2\nBrand / Type = " +simCard2Type.trim() + "\n"+
+                                    "S/N = " +simCard2SN.trim() + "\n" +
+                                    "PUK = " +simcard2Puk.trim();
+
+                            PdfPCell cell3 = new PdfPCell();
+                            cell3.setBorder(PdfPCell.NO_BORDER);
+                            PdfPTable table6 = new PdfPTable(2);
+                            table6.addCell(headTitleCell(getActivity().getString(R.string.repM2M_trans), titleFont));
+                            table6.addCell(titleCell("NEW", contentFont));
+                            table6.addCell(JobReportUtils.titleCell("M2M", contentFont));
+                            table6.addCell(createCell("Brand / Type ", contentFont));
+                            table6.addCell(new Paragraph(m2mType.trim(), contentFont));
+                            table6.addCell(createCell("S/N ", contentFont));
+                            table6.addCell(new Paragraph(m2mSn.trim(), contentFont));
+                            table6.addCell(JobReportUtils.titleCell("ADAPTOR", contentFont));
+                            table6.addCell(createCell("Brand / Type ", contentFont));
+                            table6.addCell(new Paragraph(adaptorType.trim(), contentFont));
+                            table6.addCell(createCell("S/N ", contentFont));
+                            table6.addCell(new Paragraph(adaptorSn.trim(), contentFont));
+                            table6.addCell(JobReportUtils.titleCell("SIMCARD 1", contentFont));
+                            table6.addCell(createCell("Brand / Type  ", contentFont));
+                            table6.addCell(new Paragraph(simCard1Type.trim(), contentFont));
+                            table6.addCell(createCell("S/N ", contentFont));
+                            table6.addCell(new Paragraph(simCard1SN.trim(), contentFont));
+                            table6.addCell(createCell("PUK ", contentFont));
+                            table6.addCell(new Paragraph(simcard1Puk.trim(), contentFont));
+                            table6.addCell(JobReportUtils.titleCell("SIMCARD 2", contentFont));
+                            table6.addCell(createCell("Brand / Type ", contentFont));
+                            table6.addCell(new Paragraph(simCard2Type.trim(), contentFont));
+                            table6.addCell(createCell("S/N", contentFont));
+                            table6.addCell(new Paragraph(simCard2SN.trim(), contentFont));
+                            table6.addCell(createCell("PUK ", contentFont));
+                            table6.addCell(new Paragraph(simcard2Puk.trim(), contentFont));
+                            table6.setHorizontalAlignment(Element.ALIGN_LEFT);
+                            float[] columnWidths = new float[]{40f, 100f};
+                            table6.setWidths(columnWidths);
+                            table6.setTotalWidth(170f);
+                            table6.setLockedWidth(true);
+
+                            cell3.addElement(table6);
+                            mainTable1.addCell(cell3);
+                            Paragraph paragraph2 = new Paragraph();
+                            paragraph2.setAlignment(Element.ALIGN_LEFT);
+                            paragraph2.add(mainTable1);
+                            document.add(paragraph2);
+                            stCopyClipBoard.append(m2mReplace+"\n\n");
                         }
 
                         document.newPage();
