@@ -184,9 +184,11 @@ public class DashboardFragment extends Fragment {
             messageUtils.toastMessage("Mohon diinput menu Machine terlebih dahulu", ConfigApps.T_INFO);
         }else if (preference.getConnType().equals("")){
             messageUtils.toastMessage("Mohon diinput menu Connection terlebih dahulu", ConfigApps.T_INFO);
-        }else if (preference.getConnType().equals("VSAT") && !new VsatReplaceAdapter(getActivity()).isVsatReplaceEmpty(preference.getUn(), preference.getCustID())){
-            messageUtils.toastMessage("Mohon diinput menu Vsat Replace terlebih dahulu", ConfigApps.T_INFO);
-        }else if (preference.getConnType().equals("VSAT") && !new M2mXpollAdapter(getActivity()).isVsatXpollEmpty(preference.getUn(), preference.getCustID())){
+        }
+//        else if (preference.getConnType().equals("VSAT") && !new VsatReplaceAdapter(getActivity()).isVsatReplaceEmpty(preference.getUn(), preference.getCustID())){
+//            messageUtils.toastMessage("Mohon diinput menu Vsat Replace terlebih dahulu", ConfigApps.T_INFO);
+//        }
+        else if (preference.getConnType().equals("VSAT") && !new M2mXpollAdapter(getActivity()).isVsatXpollEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Xpoll terlebih dahulu", ConfigApps.T_INFO);
         }else if (preference.getConnType().equals("VSAT") && !new ConnectionParameterAdapter(getActivity()).isParamEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Connection Parameter terlebih dahulu", ConfigApps.T_INFO);
@@ -460,13 +462,15 @@ public class DashboardFragment extends Fragment {
                             PdfPCell vsatCell1 = new PdfPCell();
                             vsatCell1.setBorder(PdfPCell.NO_BORDER);
                             ArrayList<MasterVsatReplace> alReplace = new VsatReplaceAdapter(getActivity()).val_vsatReplace(preference.getCustID(), preference.getUn());
+                            String snModem, snAdaptor, lnb, rfu, dipOdu, dipIdu;
+
                             if (alReplace.size() > 0){
-                                String snModem = alReplace.get(0).getSn_modem().trim();
-                                String snAdaptor = alReplace.get(0).getSn_adaptor().trim();
-                                String lnb = alReplace.get(0).getSn_lnb().trim();
-                                String rfu = alReplace.get(0).getSn_rfu().trim();
-                                String dipOdu = alReplace.get(0).getSn_dip_odu().trim();
-                                String dipIdu = alReplace.get(0).getSn_dip_idu().trim();
+                                snModem = alReplace.get(0).getSn_modem().trim();
+                                snAdaptor = alReplace.get(0).getSn_adaptor().trim();
+                                lnb = alReplace.get(0).getSn_lnb().trim();
+                                rfu = alReplace.get(0).getSn_rfu().trim();
+                                dipOdu = alReplace.get(0).getSn_dip_odu().trim();
+                                dipIdu = alReplace.get(0).getSn_dip_idu().trim();
 
                                 if (snModem.equals("-")){snModem = "";}
                                 if (snAdaptor.equals("-")){snAdaptor = "";}
@@ -475,40 +479,49 @@ public class DashboardFragment extends Fragment {
                                 if (dipOdu.equals("-")){dipOdu = "";}
                                 if (dipIdu.equals("-")){dipIdu = "";}
 
-                                String vsatReplace = "_NEW_\nS/N Modem = " +snModem+"\n"+
-                                        "S/N Adaptor = " +snAdaptor+"\n"+
-                                        "S/N LNB = " +lnb+"\n"+
-                                        "S/N RFU = " +rfu+"\n"+
-                                        "S/N DIPLEXER ODU = " +dipOdu +"\n"+
-                                        "S/N DIPLEXER IDU = " +dipIdu +"\n";
-
-                                PdfPTable table9 = new PdfPTable(2);
-                                table9.addCell(headTitleCell(getActivity().getString(R.string.repVSAT_trans), titleFont));
-                                table9.addCell(titleCell("NEW", contentFont));
-                                table9.addCell(createCell("S/N Modem ", contentFont));
-                                table9.addCell(new Paragraph(snModem, contentFont));
-                                table9.addCell(createCell("S/N Modem ", contentFont));
-                                table9.addCell(new Paragraph(snModem, contentFont));
-                                table9.addCell(createCell("S/N Adaptor", contentFont));
-                                table9.addCell(new Paragraph(snAdaptor, contentFont));
-                                table9.addCell(createCell("S/N LNB", contentFont));
-                                table9.addCell(new Paragraph(lnb, contentFont));
-                                table9.addCell(createCell("S/N RFU", contentFont));
-                                table9.addCell(new Paragraph(rfu, contentFont));
-                                table9.addCell(createCell("S/N DIPLEXER ODU", contentFont));
-                                table9.addCell(new Paragraph(dipOdu, contentFont));
-                                table9.addCell(createCell("S/N DIPLEXER IDU", contentFont));
-                                table9.addCell(new Paragraph(dipIdu, contentFont));
-                                float[] columnWidths = new float[]{40f, 100f};
-                                table9.setWidths(columnWidths);
-                                table9.setTotalWidth(170f);
-                                table9.setLockedWidth(true);
-                                table9.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                vsatCell1.addElement(table9);
-                                mainTableVsatX.addCell(vsatCell1);
-
-                                stCopyClipBoard.append(vsatReplace+"\n\n");
+                            }else{
+                                snModem = "";
+                                snAdaptor = "";
+                                lnb = "";
+                                rfu = "";
+                                dipOdu = "";
+                                dipIdu = "";
                             }
+
+                            String vsatReplace = "_NEW_\nS/N Modem = " +snModem+"\n"+
+                                    "S/N Adaptor = " +snAdaptor+"\n"+
+                                    "S/N LNB = " +lnb+"\n"+
+                                    "S/N RFU = " +rfu+"\n"+
+                                    "S/N DIPLEXER ODU = " +dipOdu +"\n"+
+                                    "S/N DIPLEXER IDU = " +dipIdu +"\n";
+
+                            PdfPTable table9 = new PdfPTable(2);
+                            table9.addCell(headTitleCell(getActivity().getString(R.string.repVSAT_trans), titleFont));
+                            table9.addCell(titleCell("NEW", contentFont));
+                            table9.addCell(createCell("S/N Modem ", contentFont));
+                            table9.addCell(new Paragraph(snModem, contentFont));
+                            table9.addCell(createCell("S/N Modem ", contentFont));
+                            table9.addCell(new Paragraph(snModem, contentFont));
+                            table9.addCell(createCell("S/N Adaptor", contentFont));
+                            table9.addCell(new Paragraph(snAdaptor, contentFont));
+                            table9.addCell(createCell("S/N LNB", contentFont));
+                            table9.addCell(new Paragraph(lnb, contentFont));
+                            table9.addCell(createCell("S/N RFU", contentFont));
+                            table9.addCell(new Paragraph(rfu, contentFont));
+                            table9.addCell(createCell("S/N DIPLEXER ODU", contentFont));
+                            table9.addCell(new Paragraph(dipOdu, contentFont));
+                            table9.addCell(createCell("S/N DIPLEXER IDU", contentFont));
+                            table9.addCell(new Paragraph(dipIdu, contentFont));
+                            float[] columnWidths = new float[]{40f, 100f};
+                            table9.setWidths(columnWidths);
+                            table9.setTotalWidth(170f);
+                            table9.setLockedWidth(true);
+                            table9.setHorizontalAlignment(Element.ALIGN_LEFT);
+                            vsatCell1.addElement(table9);
+                            mainTableVsatX.addCell(vsatCell1);
+
+                            stCopyClipBoard.append(vsatReplace+"\n\n");
+
 
                             stCopyClipBoard.append("*XPOLL ITEM*\n");
 
@@ -540,8 +553,8 @@ public class DashboardFragment extends Fragment {
                                 table10.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alXpoll.get(0).getInsert_time().trim()), contentFont));
                                 table10.addCell(createCell("OP", contentFont));
                                 table10.addCell(new Paragraph(alXpoll.get(0).getOp().trim(), contentFont));
-                                float[] columnWidths = new float[]{40f, 100f};
-                                table10.setWidths(columnWidths);
+                                float[] columnWidths10 = new float[]{40f, 100f};
+                                table10.setWidths(columnWidths10);
                                 table10.setTotalWidth(170f);
                                 table10.setLockedWidth(true);
                                 table10.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -602,9 +615,9 @@ public class DashboardFragment extends Fragment {
                                 table11.addCell(new Paragraph(alParam.get(0).getRanging_esno().trim(), contentFont));
                                 table11.addCell(createCell("FINAL C/NO ", contentFont));
                                 table11.addCell(new Paragraph(alParam.get(0).getRanging_cno().trim(), contentFont));
-                                float[] columnWidths = new float[]{40f, 100f};
+                                float[] columnWidths11 = new float[]{40f, 100f};
                                 table11.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                table11.setWidths(columnWidths);
+                                table11.setWidths(columnWidths11);
                                 table11.setTotalWidth(200f);
                                 table11.setLockedWidth(true);
                                 document.add(table11);
