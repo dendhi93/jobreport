@@ -188,9 +188,10 @@ public class DashboardFragment extends Fragment {
 //        else if (preference.getConnType().equals("VSAT") && !new VsatReplaceAdapter(getActivity()).isVsatReplaceEmpty(preference.getUn(), preference.getCustID())){
 //            messageUtils.toastMessage("Mohon diinput menu Vsat Replace terlebih dahulu", ConfigApps.T_INFO);
 //        }
-        else if (preference.getConnType().equals("VSAT") && !new M2mXpollAdapter(getActivity()).isVsatXpollEmpty(preference.getUn(), preference.getCustID())){
-            messageUtils.toastMessage("Mohon diinput menu Xpoll terlebih dahulu", ConfigApps.T_INFO);
-        }else if (preference.getConnType().equals("VSAT") && !new ConnectionParameterAdapter(getActivity()).isParamEmpty(preference.getUn(), preference.getCustID())){
+//        else if (preference.getConnType().equals("VSAT") && !new M2mXpollAdapter(getActivity()).isVsatXpollEmpty(preference.getUn(), preference.getCustID())){
+//            messageUtils.toastMessage("Mohon diinput menu Xpoll terlebih dahulu", ConfigApps.T_INFO);
+//        }
+        else if (preference.getConnType().equals("VSAT") && !new ConnectionParameterAdapter(getActivity()).isParamEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Connection Parameter terlebih dahulu", ConfigApps.T_INFO);
         }else if (preference.getConnType().equals("M2M") && !new M2mReplaceAdapter(getActivity()).isM2mReplaceEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu M2m Replace terlebih dahulu", ConfigApps.T_INFO);
@@ -260,7 +261,7 @@ public class DashboardFragment extends Fragment {
                                                         "PIC                    = " +alJobDesc.get(0).getName_pic() + "\n";
 
                             PdfPTable table = new PdfPTable(2);
-                            table.addCell(headTitleCell("*Maintenance Report*", titleFont));
+                            table.addCell(headTitleCell("Maintenance Report", titleFont));
                             table.addCell(createCell("Progress ", contentFont));
                             table.addCell(new Paragraph(preference.getProgress().trim(), contentFont));
                             table.addCell(createCell("Jenis Koneksi ", contentFont));
@@ -316,7 +317,7 @@ public class DashboardFragment extends Fragment {
                             PdfPCell secondTableCell = new PdfPCell();
                             secondTableCell.setBorder(PdfPCell.NO_BORDER);
                             PdfPTable table2 = new PdfPTable(2);
-                            table2.addCell(headTitleCell("*"+getActivity().getString(R.string.problemDesc_trans)+"*", titleFont));
+                            table2.addCell(headTitleCell(getActivity().getString(R.string.problemDesc_trans), titleFont));
                             table2.addCell(createCell("Berangkat ", contentFont));
                             table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()), contentFont));
                             table2.addCell(createCell("Tiba ", contentFont));
@@ -369,7 +370,7 @@ public class DashboardFragment extends Fragment {
                                     "Suhu " +allEnv.get(0).getSuhu();
 
                             PdfPTable table3 = new PdfPTable(2);
-                            table3.addCell(headTitleCell("*"+getActivity().getString(R.string.electEnv_trans)+"*", titleFont));
+                            table3.addCell(headTitleCell(getActivity().getString(R.string.electEnv_trans), titleFont));
                             table3.addCell(JobReportUtils.titleCell("PLN", contentFont));
                             table3.addCell(createCell("Tegangan (Vac) ", contentFont));
                             table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getTegangan_pln()), contentFont));
@@ -417,7 +418,7 @@ public class DashboardFragment extends Fragment {
                                 PdfPCell secondCellVsat = new PdfPCell();
                                 secondCellVsat.setBorder(PdfPCell.NO_BORDER);
                                 PdfPTable table8 = new PdfPTable(2);
-                                table8.addCell(headTitleCell("*"+getActivity().getString(R.string.ioVSAT_trans)+"*", titleFont));
+                                table8.addCell(headTitleCell(getActivity().getString(R.string.ioVSAT_trans), titleFont));
                                 table8.addCell(JobReportUtils.titleCell("OLD", contentFont));
                                 table8.addCell(createCell("S/N Modem ", contentFont));
                                 table8.addCell(new Paragraph(alVsat.get(0).getSn_modem().trim(), contentFont));
@@ -521,53 +522,68 @@ public class DashboardFragment extends Fragment {
                             mainTableVsatX.addCell(vsatCell1);
 
                             stCopyClipBoard.append(vsatReplace+"\n\n");
-
-
                             stCopyClipBoard.append("*XPOLL ITEM*\n");
 
                             ArrayList<MasterXpoll> alXpoll = new M2mXpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
+                            String xpollSat, xpolllft, xpollCn, xpollCpi, xpollAsi,xpollDateTime, xpollOp;
                             if (alXpoll.size() > 0){
-                                String xpollContent = "SAT = " +alXpoll.get(0).getSat().trim() +"\n"+
-                                                      "LFT = " +alXpoll.get(0).getLft().trim() +"\n"+
-                                                      "C/N = " +alXpoll.get(0).getCn().trim() + "\n"+
-                                                      "CPI = " +alXpoll.get(0).getCpi().trim()+ "\n"+
-                                                      "ASI = " +alXpoll.get(0).getAsi().trim()+ "\n"+
-                                                      "DATE, TIME = " +DateTimeUtils.getChangeDateFormat(alXpoll.get(0).getInsert_time().trim())+"\n"+
-                                                      "OP = " +alXpoll.get(0).getOp().trim();
-
-                                PdfPCell vsatCell2 = new PdfPCell();
-                                vsatCell2.setBorder(PdfPCell.NO_BORDER);
-                                PdfPTable table10 = new PdfPTable(2);
-                                table10.addCell(headTitleCell("*"+getActivity().getString(R.string.xpoll_trans)+"*", titleFont));
-                                table10.addCell(createCell("SAT", contentFont));
-                                table10.addCell(new Paragraph(alXpoll.get(0).getSat().trim(), contentFont));
-                                table10.addCell(createCell("LFT", contentFont));
-                                table10.addCell(new Paragraph(alXpoll.get(0).getLft().trim(), contentFont));
-                                table10.addCell(createCell("C/N", contentFont));
-                                table10.addCell(new Paragraph(alXpoll.get(0).getCn().trim(), contentFont));
-                                table10.addCell(createCell("CPI", contentFont));
-                                table10.addCell(new Paragraph(alXpoll.get(0).getCpi().trim(), contentFont));
-                                table10.addCell(createCell("ASI", contentFont));
-                                table10.addCell(new Paragraph(alXpoll.get(0).getAsi().trim(), contentFont));
-                                table10.addCell(createCell("DATE, TIME", contentFont));
-                                table10.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alXpoll.get(0).getInsert_time().trim()), contentFont));
-                                table10.addCell(createCell("OP", contentFont));
-                                table10.addCell(new Paragraph(alXpoll.get(0).getOp().trim(), contentFont));
-                                float[] columnWidths10 = new float[]{40f, 100f};
-                                table10.setWidths(columnWidths10);
-                                table10.setTotalWidth(170f);
-                                table10.setLockedWidth(true);
-                                table10.setHorizontalAlignment(Element.ALIGN_LEFT);
-
-                                vsatCell2.addElement(table10);
-                                mainTableVsatX.addCell(vsatCell2);
-                                Paragraph paragraph5 = new Paragraph();
-                                paragraph5.setAlignment(Element.ALIGN_LEFT);
-                                paragraph5.add(mainTableVsatX);
-                                document.add(paragraph5);
-
-                                stCopyClipBoard.append(xpollContent+"\n\n");
+                                xpollSat = alXpoll.get(0).getSat().trim();
+                                xpolllft = alXpoll.get(0).getLft().trim();
+                                xpollCn = alXpoll.get(0).getCn().trim();
+                                xpollCpi = alXpoll.get(0).getCpi().trim();
+                                xpollAsi = alXpoll.get(0).getAsi().trim();
+                                xpollDateTime = DateTimeUtils.getChangeDateFormat(alXpoll.get(0).getInsert_time().trim());
+                                xpollOp = alXpoll.get(0).getOp().trim();
+                            }else{
+                                xpollSat = "";
+                                xpolllft = "";
+                                xpollCn = "";
+                                xpollCpi = "";
+                                xpollAsi = "";
+                                xpollDateTime = "";
+                                xpollOp = "";
                             }
+
+                            String xpollContent = "SAT = " +xpollSat +"\n"+
+                                    "LFT = " +xpolllft +"\n"+
+                                    "C/N = " +xpollCn + "\n"+
+                                    "CPI = " +xpollCpi+ "\n"+
+                                    "ASI = " +xpollAsi + "\n"+
+                                    "DATE, TIME = " +xpollDateTime+"\n"+
+                                    "OP = " +xpollOp;
+
+                            PdfPCell vsatCell2 = new PdfPCell();
+                            vsatCell2.setBorder(PdfPCell.NO_BORDER);
+                            PdfPTable table10 = new PdfPTable(2);
+                            table10.addCell(headTitleCell(getActivity().getString(R.string.xpoll_trans), titleFont));
+                            table10.addCell(createCell("SAT", contentFont));
+                            table10.addCell(new Paragraph(xpollSat, contentFont));
+                            table10.addCell(createCell("LFT", contentFont));
+                            table10.addCell(new Paragraph(xpolllft, contentFont));
+                            table10.addCell(createCell("C/N", contentFont));
+                            table10.addCell(new Paragraph(xpollCn, contentFont));
+                            table10.addCell(createCell("CPI", contentFont));
+                            table10.addCell(new Paragraph(xpollCpi, contentFont));
+                            table10.addCell(createCell("ASI", contentFont));
+                            table10.addCell(new Paragraph(xpollAsi, contentFont));
+                            table10.addCell(createCell("DATE, TIME", contentFont));
+                            table10.addCell(new Paragraph(xpollDateTime, contentFont));
+                            table10.addCell(createCell("OP", contentFont));
+                            table10.addCell(new Paragraph(xpollOp, contentFont));
+                            float[] columnWidths10 = new float[]{40f, 100f};
+                            table10.setWidths(columnWidths10);
+                            table10.setTotalWidth(170f);
+                            table10.setLockedWidth(true);
+                            table10.setHorizontalAlignment(Element.ALIGN_LEFT);
+
+                            vsatCell2.addElement(table10);
+                            mainTableVsatX.addCell(vsatCell2);
+                            Paragraph paragraph5 = new Paragraph();
+                            paragraph5.setAlignment(Element.ALIGN_LEFT);
+                            paragraph5.add(mainTableVsatX);
+                            document.add(paragraph5);
+
+                            stCopyClipBoard.append(xpollContent+"\n\n");
 
                             Paragraph spaceParagraph4 = new Paragraph("\n");
                             spaceParagraph4.setAlignment(Element.ALIGN_LEFT);
@@ -589,7 +605,7 @@ public class DashboardFragment extends Fragment {
                                                       "FINAL C/NO = " +alParam.get(0).getRanging_cno().trim() + "\n";
 
                                 PdfPTable table11 = new PdfPTable(2);
-                                table11.addCell(headTitleCell("*"+getActivity().getString(R.string.networkParam_trans)+"*", titleFont));
+                                table11.addCell(headTitleCell(getActivity().getString(R.string.networkParam_trans), titleFont));
                                 table11.addCell(titleCell("LAN PARAMETER", contentFont));
                                 table11.addCell(createCell("IP Lan ", contentFont));
                                 table11.addCell(new Paragraph(alParam.get(0).getLan_parameter().trim(), contentFont));
@@ -643,7 +659,7 @@ public class DashboardFragment extends Fragment {
                                 PdfPCell secondCell = new PdfPCell();
                                 secondCell.setBorder(PdfPCell.NO_BORDER);
                                 PdfPTable table4 = new PdfPTable(2);
-                                table4.addCell(headTitleCell("*"+getActivity().getString(R.string.ioM2M_trans)+"*", titleFont));
+                                table4.addCell(headTitleCell(getActivity().getString(R.string.ioM2M_trans), titleFont));
                                 table4.addCell(JobReportUtils.titleCell("M2M", contentFont));
                                 table4.addCell(createCell("Brand / Type ", contentFont));
                                 table4.addCell(new Paragraph(alM2m.get(0).getSn_m2m().trim(), contentFont));
@@ -708,7 +724,7 @@ public class DashboardFragment extends Fragment {
                                                         "AGG = " +alM2mData.get(0).getAgg().trim();
 
                                 PdfPTable table5 = new PdfPTable(2);
-                                table5.addCell(headTitleCell("*"+getActivity().getString(R.string.dataM2m_trans)+"*", titleFont));
+                                table5.addCell(headTitleCell(getActivity().getString(R.string.dataM2m_trans), titleFont));
                                 table5.addCell(createCell("Username ", contentFont));
                                 table5.addCell(new Paragraph(alM2mData.get(0).getUsername().trim(), contentFont));
                                 table5.addCell(createCell("Password ", contentFont));
@@ -823,7 +839,7 @@ public class DashboardFragment extends Fragment {
 
                         document.newPage();
                         PdfPTable table7 = new PdfPTable(2);
-                        table7.addCell(headTitleCell("*"+getActivity().getString(R.string.action_trans)+"*", titleFont));
+                        table7.addCell(headTitleCell(getActivity().getString(R.string.action_trans), titleFont));
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
 
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
