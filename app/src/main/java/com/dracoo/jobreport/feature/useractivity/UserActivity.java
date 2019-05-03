@@ -375,6 +375,7 @@ public class UserActivity extends AppCompatActivity
         txt_userAct_locationName.setText("");
         txt_userAct_customer.setText("");
         txt_userAct_remoteAddress.setText("");
+        txt_userAct_remoteName.setText("");
         txt_userAct_city.setText("");
         txt_userAct_kabupaten.setText("");
         txt_userAct_proviency.setText("");
