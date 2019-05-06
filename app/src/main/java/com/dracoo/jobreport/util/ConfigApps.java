@@ -22,6 +22,11 @@ public class ConfigApps {
     public static final int ALERT_WARNING = 1;
     public static final int ALERT_SUCCESS = 2;
 
+    //send type
+    public static final int EMAIL_TYPE = 1;
+    public static final int WA_TYPE = 2;
+    public static final int SUBMIT_SEND = 1;
+
 
 
 }

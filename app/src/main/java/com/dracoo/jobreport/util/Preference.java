@@ -14,6 +14,9 @@ public class Preference {
     public static final String KEY_CUST_NAME = "cust_name";
     public static final String KEY_CONNECTION_TYPE = "Connection_type";
 
+    public static final String KEY_SEND_WA = "send_wa";
+    public static final String KEY_SEND_EMAIL = "send_email";
+
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -44,8 +47,17 @@ public class Preference {
         editor.apply();
     }
 
-    public void saveConnection(String connectionype){
-        editor.putString(KEY_CONNECTION_TYPE, connectionype);
+    public void saveConnection(String connectionType){
+        editor.putString(KEY_CONNECTION_TYPE, connectionType);
+        editor.apply();
+    }
+
+    public void saveSend(int sendType){
+        if (sendType == ConfigApps.EMAIL_TYPE){
+            editor.putInt(KEY_SEND_EMAIL, ConfigApps.SUBMIT_SEND);
+        }else if (sendType == ConfigApps.WA_TYPE){
+            editor.putInt(KEY_SEND_WA, ConfigApps.SUBMIT_SEND);
+        }
         editor.apply();
     }
 
@@ -64,6 +76,8 @@ public class Preference {
     public String getCustName(){return sharedPreferences.getString(KEY_CUST_NAME, "");}
     public String getProgress(){return sharedPreferences.getString(KEY_PROGRESS_TYPE, "");}
     public String getConnType(){return sharedPreferences.getString(KEY_CONNECTION_TYPE, "");}
+    public Integer getSendEmail(){return sharedPreferences.getInt(KEY_SEND_EMAIL, 0);}
+    public Integer getSendWA(){return sharedPreferences.getInt(KEY_SEND_WA, 0);}
 
     //after submit
     public void clearDataTrans(){
@@ -71,6 +85,8 @@ public class Preference {
         editor.remove(KEY_PROGRESS_TYPE);
         editor.remove(KEY_CONNECTION_TYPE);
         editor.remove(KEY_CUST_NAME);
+        editor.remove(KEY_SEND_WA);
+        editor.remove(KEY_SEND_EMAIL);
 
         editor.apply();
     }

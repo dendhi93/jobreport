@@ -922,7 +922,6 @@ public class DashboardFragment extends Fragment {
             return true;
         }catch (SQLException e){
             Log.d("err update ","" +e.toString());
-            Log.d("### ","ke false " +e.toString());
             return false;
         }
 
@@ -937,26 +936,35 @@ public class DashboardFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0){
-//                            if (isSubmitReport()) {
-//                                stCustname = preference.getCustName().trim();
-//                                stUn = preference.getUn().trim();
-//                                preference.clearDataTrans();
-//                                emptyView(1);
-//                                submitReport();
-//                            }else{
-//                                messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
-//                            }
+                            if (preference.getSendWA() == ConfigApps.SUBMIT_SEND){
+                                if (isSubmitReport()) {
+                                        stCustname = preference.getCustName().trim();
+                                        stUn = preference.getUn().trim();
+                                        preference.clearDataTrans();
+                                        emptyView(1);
+                                        submitReport();
+                                    }else{ messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR); }
+                            }else{
+                                preference.saveSend(ConfigApps.EMAIL_TYPE);
+                                submitReport();
+                            }
                         }else{
                             //send via WA
-                            if (isSubmitReport()){
-                                emptyView(1);
+                            if (preference.getSendEmail() == ConfigApps.SUBMIT_SEND){
+                                if (isSubmitReport()){
+                                    emptyView(1);
+                                    ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+                                    ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
+                                    clipboard.setPrimaryClip(clip);
+                                    messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_SUCCESS);
+                                    preference.clearDataTrans();
+                                }else{ messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR); }
+                            }else{
+                                preference.saveSend(ConfigApps.WA_TYPE);
                                 ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
                                 ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
                                 clipboard.setPrimaryClip(clip);
                                 messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_SUCCESS);
-                                preference.clearDataTrans();
-                            }else{
-                               messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR);
                             }
                         }
                     }
@@ -982,12 +990,8 @@ public class DashboardFragment extends Fragment {
                         shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileResultPdf));
                         startActivity(Intent.createChooser(shareIntent, "choose one"));
                         messageUtils.toastMessage("Data Sukses tersubmit ", ConfigApps.T_SUCCESS);
-                    }else{
-                        messageUtils.toastMessage("File Tidak ditemukan", ConfigApps.T_WARNING);
-                    }
-                } catch(Exception e) {
-                    messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR);
-                }
+                    }else{ messageUtils.toastMessage("File Tidak ditemukan", ConfigApps.T_WARNING); }
+                } catch(Exception e) { messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR); }
             }
         }, 1000);
     }
@@ -998,9 +1002,7 @@ public class DashboardFragment extends Fragment {
         loadDash();
         loadRcTrans();
         JobReportUtils.hideKeyboard(getActivity());
-        if (preference.getCustID() == 0){
-            emptyView(1);
-        }
+        if (preference.getCustID() == 0){ emptyView(1); }
     }
 
     private void loadDash(){
@@ -1016,9 +1018,7 @@ public class DashboardFragment extends Fragment {
                         lbl_dash_picPhone.setText(alJobDesc.get(0).getPic_phone().trim());
                     }
             }
-        }else{
-            emptyView(0);
-        }
+        }else{ emptyView(0); }
     }
 
     private void emptyView(int type){
