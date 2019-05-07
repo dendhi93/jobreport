@@ -36,6 +36,8 @@ public class MasterInfoSite implements Serializable {
     private String un_user;
     @DatabaseField(columnName = "location_name")
     private String location_name;
+    @DatabaseField(columnName = "ttwo")
+    private String ttwo;
 
     public Integer getId_site() {
         return id_site;
@@ -147,5 +149,13 @@ public class MasterInfoSite implements Serializable {
 
     public void setRemote_name(String remote_name) {
         this.remote_name = remote_name;
+    }
+
+    public String getTtwo() {
+        return ttwo;
+    }
+
+    public void setTtwo(String ttwo) {
+        this.ttwo = ttwo;
     }
 }

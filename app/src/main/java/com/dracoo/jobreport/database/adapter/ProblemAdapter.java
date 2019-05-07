@@ -47,6 +47,7 @@ public class ProblemAdapter extends DatabaseAdapter {
             problem.setClosed(cursor.getString(12));
             problem.setClosed_by(cursor.getString(13));
             problem.setDelay_reason(cursor.getString(14));
+            problem.setDelay_activity(cursor.getString(15));
 
             probs.add(problem);
         }
@@ -72,7 +73,8 @@ public class ProblemAdapter extends DatabaseAdapter {
                             " reason, " + //11
                             " closed, " + //12
                             " closed_by, " + //13
-                            " delay_reason " + //14
+                            " delay_reason, " + //14
+                            " delay_activity " + //15
                     "from t_problem " +
                     " where id_site = " + custId + " " +
                     " and un_user = '" +un+ "' ";

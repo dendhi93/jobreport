@@ -46,6 +46,8 @@ public class MasterProblem implements Serializable {
     private String un_user;
     @DatabaseField(columnName = "delay_reason")
     private String delay_reason;
+    @DatabaseField(columnName = "delay_activity")
+    private String delay_activity;
 
 
     public Integer getId_problem() {
@@ -198,5 +200,13 @@ public class MasterProblem implements Serializable {
 
     public void setDelay_reason(String delay_reason) {
         this.delay_reason = delay_reason;
+    }
+
+    public String getDelay_activity() {
+        return delay_activity;
+    }
+
+    public void setDelay_activity(String delay_activity) {
+        this.delay_activity = delay_activity;
     }
 }

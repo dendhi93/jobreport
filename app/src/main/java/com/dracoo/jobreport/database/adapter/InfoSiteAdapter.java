@@ -42,6 +42,7 @@ public class InfoSiteAdapter extends DatabaseAdapter {
             infoSite.setLat(cursor.getString(7));
             infoSite.setLongitude(cursor.getString(8));
             infoSite.setRemote_name(cursor.getString(9));
+            infoSite.setTtwo(cursor.getString(10));
 
             infoSites.add(infoSite);
         }
@@ -63,7 +64,8 @@ public class InfoSiteAdapter extends DatabaseAdapter {
                             "prov, " + //6
                             "lat, " + //7
                             "longitude, " +  //8
-                            "remote_name " +  //9
+                            "remote_name, " +  //9
+                            "ttwo " +  //10
                 "from t_site " +
                 " where id_site = " + custId + " " +
                 " and un_user = '" +un+ "' ";
