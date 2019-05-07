@@ -66,6 +66,7 @@
     <string name="proviency">Propinsi</string>
     <string name="lat">Latitude</string>
     <string name="longitude">Longitude</string>
+    <string name="ttwo">TT / WO</string>
 
     //problem content
     <string name="display_modem">Display Modem</string>

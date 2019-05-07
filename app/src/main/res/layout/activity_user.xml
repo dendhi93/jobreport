@@ -72,6 +72,46 @@
                         android:text="@string/cm_radio"/>
 
                 </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/ln_userAct_98"
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rg_userAct_progress"
+                    android:layout_marginBottom="@dimen/spacing_tiny_2"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorBlack"
+                        android:background="@drawable/border_bottom"
+                        android:hint="@string/ttwo">
+
+                        <EditText
+                            android:id="@+id/txt_userAct_ttwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="@color/colorBlack"
+                            android:drawableLeft="@drawable/ic_black_setting_16"
+                            android:textColorLink="@color/colorWhite"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                            android:inputType="text"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:maxLength="20"
+                            android:maxLines="3"
+                            android:background="@drawable/noborder"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 

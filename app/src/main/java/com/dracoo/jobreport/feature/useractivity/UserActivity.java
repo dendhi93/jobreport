@@ -87,6 +87,8 @@ public class UserActivity extends AppCompatActivity
     EditText txt_userAct_long;
     @BindView(R.id.txt_userAct_remoteName)
     EditText txt_userAct_remoteName;
+    @BindView(R.id.txt_userAct_ttwo)
+    EditText txt_userAct_ttwo;
 
 
     private RadioButton rb_progress;
@@ -210,7 +212,8 @@ public class UserActivity extends AppCompatActivity
                     txt_userAct_city.getText().toString().trim().equals("") ||
                     txt_userAct_kabupaten.getText().toString().trim().equals("") ||
                     txt_userAct_proviency.getText().toString().trim().equals("") ||
-                    txt_userAct_remoteName.getText().toString().trim().equals("")){
+                    txt_userAct_remoteName.getText().toString().trim().equals("") ||
+                    txt_userAct_ttwo.getText().toString().trim().equals("")){
                 messageUtils.snackBar_message(getString(R.string.emptyString), UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
             } else if (txt_userAct_picPhone.getText().length() < 10){
                 messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
@@ -241,6 +244,7 @@ public class UserActivity extends AppCompatActivity
             mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
             mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
             mInfoSite.setProgress_type(""+rb_progress.getText().toString());
+            mInfoSite.setTtwo(txt_userAct_ttwo.getText().toString().trim());
             mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
             mInfoSite.setRemote_name(txt_userAct_remoteName.getText().toString().trim());
             infoSiteAdapter.update(mInfoSite);
@@ -270,6 +274,7 @@ public class UserActivity extends AppCompatActivity
                 mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
                 mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
                 mInfoSite.setProgress_type(""+rb_progress.getText().toString().trim());
+                mInfoSite.setTtwo(txt_userAct_ttwo.getText().toString().trim());
                 mInfoSite.setUn_user(preference.getUn().trim());
                 mInfoSite.setLocation_name(txt_userAct_locationName.getText().toString().trim());
                 mInfoSite.setInsert_date(DateTimeUtils.getCurrentTime());
@@ -359,9 +364,7 @@ public class UserActivity extends AppCompatActivity
                 mHist.setIs_submited(0);
 
                 transHistAdapter.create(mHist);
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
-            }
+            }catch (Exception e){messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR); }
         }
     }
 
@@ -379,6 +382,7 @@ public class UserActivity extends AppCompatActivity
         txt_userAct_city.setText("");
         txt_userAct_kabupaten.setText("");
         txt_userAct_proviency.setText("");
+        txt_userAct_ttwo.setText("");
     }
 
 
