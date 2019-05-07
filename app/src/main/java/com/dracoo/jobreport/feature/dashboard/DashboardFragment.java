@@ -936,10 +936,10 @@ public class DashboardFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0){
+                            stCustname = preference.getCustName().trim();
+                            stUn = preference.getUn().trim();
                             if (preference.getSendWA() == ConfigApps.SUBMIT_SEND){
                                 if (isSubmitReport()) {
-                                        stCustname = preference.getCustName().trim();
-                                        stUn = preference.getUn().trim();
                                         preference.clearDataTrans();
                                         emptyView(1);
                                         submitReport();
