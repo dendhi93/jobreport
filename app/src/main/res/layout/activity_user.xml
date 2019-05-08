@@ -73,13 +73,20 @@
 
                 </RadioGroup>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_tiny_2"
+                    android:layout_margin="@dimen/spacing_tiny_2"
+                    android:background="@drawable/border_bottom"
+                    android:layout_below="@+id/rg_userAct_progress"/>
+
                 <LinearLayout
                     android:id="@+id/ln_userAct_98"
                     android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rg_userAct_progress"
-                    android:layout_marginBottom="@dimen/spacing_tiny_2"
+                    android:layout_margin="@dimen/spacing_tiny_2"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
@@ -100,11 +107,8 @@
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:textColorLink="@color/colorWhite"
-                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/-_,.()!? "
                             android:inputType="text"
-                            android:enabled="false"
-                            android:focusable="false"
-                            android:clickable="false"
                             android:maxLength="20"
                             android:maxLines="3"
                             android:background="@drawable/noborder"/>

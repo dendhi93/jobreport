@@ -81,6 +81,7 @@
     <string name="pending">Pending</string>
     <string name="delay">Delay</string>
     <string name="reason_pending">Reason Pending</string>
+    <string name="activity_pending">Pending Kegiatan</string>
     <string name="closed">Closed</string>
     <string name="by">By</string>
     <string name="rb_eos">EOS</string>

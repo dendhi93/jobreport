@@ -54,6 +54,8 @@ public class ProblemFragment extends Fragment {
     EditText txt_problem_online;
     @BindView(R.id.txt_prob_delay)
     EditText txt_prob_delay;
+    @BindView(R.id.txt_prob_actPending)
+    EditText txt_prob_actPending;
 
     @BindView(R.id.txt_prob_modemDisplay)
     EditText txt_prob_modemDisplay;
@@ -94,7 +96,6 @@ public class ProblemFragment extends Fragment {
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
         rbListener();
-
         try{
             problemAdapter = new ProblemAdapter(getActivity()).getAdapter();
             transAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
@@ -104,14 +105,9 @@ public class ProblemFragment extends Fragment {
     @OnClick(R.id.imgB_problem_submit)
     void submitProblem (){
         try{
-            if (!emptyValidation()){
-                messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
-            }   else if (radioProbSelected.getText().toString().trim().equals("")){ } else {
-                transProblem();
-            }
-        }catch (Exception e){
-            messageUtils.snackBar_message("Mohon dipilih pilihan pada kolom closed ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-        }
+            if (!emptyValidation()){ messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
+            }   else if (radioProbSelected.getText().toString().trim().equals("")){ } else { transProblem(); }
+        }catch (Exception e){ messageUtils.snackBar_message("Mohon dipilih pilihan pada kolom closed ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON); }
 
     }
 
@@ -134,6 +130,7 @@ public class ProblemFragment extends Fragment {
         txt_problem_tiba.setText("");
         txt_problem_upline.setText("");
         txt_prob_delay.setText("");
+        txt_prob_actPending.setText("");
         rg_prob_closedBy.clearCheck();
     }
     @OnClick(R.id.imgBtn_timer1)
@@ -160,6 +157,8 @@ public class ProblemFragment extends Fragment {
     void displayTime6(){
         datePicker(7);
     }
+    @OnClick(R.id.imgBtn_timer7)
+    void displayTime7(){datePicker(9);}
 
     private void rbListener(){
         rg_prob_closedBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -195,6 +194,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setUpdate_date(DateTimeUtils.getCurrentTime());
                     mProb.setUn_user(preference.getUn().trim());
                     mProb.setDelay_reason(txt_prob_delay.getText().toString().trim());
+                    mProb.setDelay_activity(txt_prob_actPending.getText().toString().trim());
 
                     problemAdapter.update(mProb);
                     transHistProb(ConfigApps.TRANS_HIST_UPDATE);
@@ -219,12 +219,11 @@ public class ProblemFragment extends Fragment {
                     mProb.setUn_user(preference.getUn().trim());
                     mProb.setId_site(preference.getCustID());
                     mProb.setDelay_reason(txt_prob_delay.getText().toString().trim());
+                    mProb.setDelay_activity(txt_prob_actPending.getText().toString().trim());
 
                     problemAdapter.create(mProb);
                     transHistProb(ConfigApps.TRANS_HIST_INSERT);
-                }catch (Exception e){
-                    messageUtils.toastMessage("### " +e.toString(), ConfigApps.T_ERROR);
-                }
+                }catch (Exception e){ messageUtils.toastMessage("### " +e.toString(), ConfigApps.T_ERROR); }
             }
         }
     }
@@ -241,18 +240,12 @@ public class ProblemFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transAdapter.update(mHist);
-                if (transType == ConfigApps.TRANS_HIST_UPDATE){
-                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
-                }else{
-                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-                }
+                if (transType == ConfigApps.TRANS_HIST_UPDATE){ messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{ messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS); }
+
                 emptyProblemText();
-                if (getActivity() != null){
-                    JobReportUtils.hideKeyboard(getActivity());
-                }
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
-            }
+                if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR); }
         }else{
             try{
                 MasterTransHistory mHist = new MasterTransHistory();
@@ -263,18 +256,12 @@ public class ProblemFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transAdapter.create(mHist);
-                if (transType == ConfigApps.TRANS_HIST_UPDATE){
-                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
-                }else{
-                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-                }
+                if (transType == ConfigApps.TRANS_HIST_UPDATE){ messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{ messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS); }
+
                 emptyProblemText();
-                if (getActivity() != null){
-                    JobReportUtils.hideKeyboard(getActivity());
-                }
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
-            }
+                if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR); }
         }
     }
 
@@ -288,19 +275,13 @@ public class ProblemFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String selectedMonth, selectedDay;
-                if (month < 10) {
-                    selectedMonth = "0"+month;
-                }else{
-                    selectedMonth = String.valueOf(month);
-                }
+                if (month < 10) { selectedMonth = "0"+month;
+                }else{ selectedMonth = String.valueOf(month); }
 
-                if (dayOfMonth < 10) {
-                    selectedDay = "0"+dayOfMonth;
-                }else {
-                    selectedDay = String.valueOf(dayOfMonth);
-                }
+                if (dayOfMonth < 10) { selectedDay = "0"+dayOfMonth;
+                }else { selectedDay = String.valueOf(dayOfMonth); }
 
-                tempDate = String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay;
+                tempDate = year +"-"+ selectedMonth +"-"+selectedDay;
                 timePicker(selectedColumn);
             }
         }, mYear, mMonth, mDay);
@@ -317,42 +298,25 @@ public class ProblemFragment extends Fragment {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 String selectedHour, selectedMinutes, selectedSecond;
-                if (hourOfDay < 10){
-                    selectedHour = "0"+String.valueOf(hourOfDay);
-                }else{
-                    selectedHour = String.valueOf(hourOfDay);
-                }
+                if (hourOfDay < 10){ selectedHour = "0"+ hourOfDay;
+                }else{ selectedHour = String.valueOf(hourOfDay); }
 
-                if (minute < 10){
-                    selectedMinutes = "0"+String.valueOf(minute);
-                }else{
-                    selectedMinutes = String.valueOf(minute);
-                }
+                if (minute < 10){ selectedMinutes = "0"+ minute;
+                }else{ selectedMinutes = String.valueOf(minute); }
 
-                if (mSecond < 10){
-                    selectedSecond = "0"+String.valueOf(mSecond);
-                }else{
-                    selectedSecond = String.valueOf(mSecond);
-                }
+                if (mSecond < 10){ selectedSecond = "0"+ mSecond; }
+                else{ selectedSecond = String.valueOf(mSecond); }
 
                 String validTime = selectedHour +":"+selectedMinutes+":"+selectedSecond;
                 String validDateTime = "";
-                if (!tempDate.equals("")){
-                    validDateTime = tempDate +", "+validTime;
-                }
-                if (selectedColumn == 2){
-                    txt_problem_start.setText(validDateTime.trim());
-                }else if (selectedColumn == 4){
-                    txt_problem_finish.setText(validDateTime.trim());
-                }else if (selectedColumn == 1){
-                    txt_problem_berangkat.setText(validDateTime.trim());
-                }else if (selectedColumn == 3){
-                    txt_problem_tiba.setText(validDateTime.trim());
-                }else if (selectedColumn == 5){
-                    txt_problem_upline.setText(validDateTime.trim());
-                }else if (selectedColumn == 7){
-                    txt_problem_online.setText(validDateTime.trim());
-                }
+                if (!tempDate.equals("")) validDateTime = tempDate + ", " + validTime;
+                if (selectedColumn == 2){ txt_problem_start.setText(validDateTime.trim());
+                }else if (selectedColumn == 4){ txt_problem_finish.setText(validDateTime.trim());
+                }else if (selectedColumn == 1){ txt_problem_berangkat.setText(validDateTime.trim());
+                }else if (selectedColumn == 3){ txt_problem_tiba.setText(validDateTime.trim());
+                }else if (selectedColumn == 5){ txt_problem_upline.setText(validDateTime.trim());
+                }else if (selectedColumn == 7){ txt_problem_online.setText(validDateTime.trim());
+                }else if (selectedColumn == 9){ txt_prob_actPending.setText(validDateTime.trim()); }
             }
         }, mHour, mMinute, true);
         timePickerDialog.show();
@@ -372,18 +336,10 @@ public class ProblemFragment extends Fragment {
             txt_problem_symptom.getText().toString().trim().equals("") ||
             txt_problem_tiba.getText().toString().trim().equals("") ||
             txt_problem_upline.getText().toString().trim().equals("") ||
-            txt_prob_delay.getText().toString().trim().equals("")){
+            txt_prob_delay.getText().toString().trim().equals("") ||
+            txt_prob_actPending.getText().toString().trim().equals("")){
             return false;
         }
         return true;
     }
-
-
-
-
-
-
-
-
-
 }
