@@ -16,6 +16,7 @@ public class Preference {
 
     public static final String KEY_SEND_WA = "send_wa";
     public static final String KEY_SEND_EMAIL = "send_email";
+    public static final String KEY_SEND_GFORM = "post_data_gform";
 
 
     SharedPreferences sharedPreferences;
@@ -57,6 +58,8 @@ public class Preference {
             editor.putInt(KEY_SEND_EMAIL, ConfigApps.SUBMIT_SEND);
         }else if (sendType == ConfigApps.WA_TYPE){
             editor.putInt(KEY_SEND_WA, ConfigApps.SUBMIT_SEND);
+        }else if (sendType == ConfigApps.GFORM_TYPE){
+            editor.putInt(KEY_SEND_GFORM, ConfigApps.SUBMIT_SEND);
         }
         editor.apply();
     }

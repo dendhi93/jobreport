@@ -928,7 +928,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private void alertChoose(){
-        String[] listItems = {"Send File Pdf", "Copy into whatsapp"};
+        String[] listItems = {"Send File Pdf", "Copy into whatsapp", "Post data into google form"};
         new AlertDialog.Builder(getActivity())
                 .setTitle("Send via")
                 .setCancelable(false)
@@ -948,7 +948,7 @@ public class DashboardFragment extends Fragment {
                                 preference.saveSend(ConfigApps.EMAIL_TYPE);
                                 submitReport();
                             }
-                        }else{
+                        }else if (i == 1){
                             //send via WA
                             if (preference.getSendEmail() == ConfigApps.SUBMIT_SEND){
                                 if (isSubmitReport()){
@@ -966,6 +966,8 @@ public class DashboardFragment extends Fragment {
                                 clipboard.setPrimaryClip(clip);
                                 messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_SUCCESS);
                             }
+                        }else if (i == 2){
+                            messageUtils.toastMessage("coba", ConfigApps.T_INFO);
                         }
                     }
                 })
