@@ -369,27 +369,27 @@ public class DashboardFragment extends Fragment {
                                     "Grounding (Vac) = " +allEnv.get(0).getGrounding_ups()+"\n"+
                                     allEnv.get(0).getNotes().trim() +"\n"+
                                     "_AC_\n" +allEnv.get(0).getNotes_ac().trim() +"\n"+
-                                    "Suhu " +allEnv.get(0).getSuhu();
+                                    "Suhu " +allEnv.get(0).getSuhu() + " \u00b0";
 
                             PdfPTable table3 = new PdfPTable(2);
                             table3.addCell(headTitleCell(getActivity().getString(R.string.electEnv_trans), titleFont));
                             table3.addCell(JobReportUtils.titleCell("PLN", contentFont));
                             table3.addCell(createCell("Tegangan (Vac) ", contentFont));
-                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getTegangan_pln()), contentFont));
+                            table3.addCell(new Paragraph(allEnv.get(0).getTegangan_pln(), contentFont));
                             table3.addCell(createCell("Grounding (Vac) ", contentFont));
-                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getTegangan_ups()), contentFont));
+                            table3.addCell(new Paragraph(allEnv.get(0).getTegangan_ups(), contentFont));
                             table3.addCell(JobReportUtils.titleCell("UPS", contentFont));
                             table3.addCell(createCell("Tegangan (Vac) ", contentFont));
-                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getTegangan_ups()), contentFont));
+                            table3.addCell(new Paragraph(allEnv.get(0).getTegangan_ups(), contentFont));
                             table3.addCell(createCell("Grounding (Vac) ", contentFont));
-                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getGrounding_ups()), contentFont));
+                            table3.addCell(new Paragraph(allEnv.get(0).getGrounding_ups(), contentFont));
                             table3.addCell(createCell("Notes ", contentFont));
                             table3.addCell(new Paragraph(allEnv.get(0).getNotes().trim(), contentFont));
                             table3.addCell(JobReportUtils.titleCell("AC", contentFont));
                             table3.addCell(createCell("Notes ", contentFont));
                             table3.addCell(new Paragraph(allEnv.get(0).getNotes_ac().trim(), contentFont));
                             table3.addCell(createCell("Suhu ", contentFont));
-                            table3.addCell(new Paragraph(String.valueOf(allEnv.get(0).getSuhu()) , contentFont));
+                            table3.addCell(new Paragraph(allEnv.get(0).getSuhu() + " derajat" , contentFont));
                             table3.setHorizontalAlignment(Element.ALIGN_LEFT);
                             float[] columnWidths = new float[]{40f, 100f};
                             table3.setWidths(columnWidths);
