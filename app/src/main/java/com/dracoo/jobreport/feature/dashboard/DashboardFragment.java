@@ -18,6 +18,13 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.ActionAdapter;
 import com.dracoo.jobreport.database.adapter.ConnectionParameterAdapter;
@@ -70,7 +77,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -109,6 +118,7 @@ public class DashboardFragment extends Fragment {
     private StringBuilder stCopyClipBoard;
     private String stCustname = "";
     private String stUn  = "";
+    private RequestQueue queue;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -203,10 +213,10 @@ public class DashboardFragment extends Fragment {
             messageUtils.toastMessage("Mohon diinput menu Document terlebih dahulu", ConfigApps.T_INFO);
         } else if (!preference.getConnType().equals("") && !new ActionAdapter(getActivity()).isActionEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Action terlebih dahulu", ConfigApps.T_INFO);
-        } else{
+        } else if (MessageUtils.isConnected()){
             prg_dash.setVisibility(View.VISIBLE);
             convertPdf();
-        }
+        } else{ messageUtils.toastMessage("Tidak terkoneksi dengan internet", ConfigApps.T_INFO); }
     }
 
     private void convertPdf(){
@@ -996,6 +1006,48 @@ public class DashboardFragment extends Fragment {
                 } catch(Exception e) { messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR); }
             }
         }, 1000);
+    }
+
+    //TODO POST GFORM
+    private void sendData(){
+        prg_dash.setVisibility(View.VISIBLE);
+        queue = Volley.newRequestQueue(getActivity());
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                ConfigApps.gformUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("TAG", "Response: " + response);
+                        if (response.length() > 0) {
+                            //TODO SEND DATA
+//                            Snackbar.make(fab, "Successfully Posted", Snackbar.LENGTH_LONG).show();
+//                            edtName.setText(null);
+//                            edtPhone.setText(null);
+                        } else { messageUtils.toastMessage("please try again ", ConfigApps.T_INFO); }
+                        prg_dash.setVisibility(View.GONE);
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                prg_dash.setVisibility(View.GONE);
+                messageUtils.toastMessage("failed post Data ", ConfigApps.T_ERROR);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+//                params.put(Constants.nameField, name);
+//                params.put(Constants.phoneField, phone);
+                return params;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                50000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(request);
     }
 
     @Override
