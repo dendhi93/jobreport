@@ -977,7 +977,7 @@ public class DashboardFragment extends Fragment {
                                 messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_SUCCESS);
                             }
                         }else if (i == 2){
-                            messageUtils.toastMessage("coba", ConfigApps.T_INFO);
+                            sendData();
                         }
                     }
                 })
@@ -1013,19 +1013,19 @@ public class DashboardFragment extends Fragment {
         prg_dash.setVisibility(View.VISIBLE);
         queue = Volley.newRequestQueue(getActivity());
         StringRequest request = new StringRequest(
-                Request.Method.POST,
+                Request.Method.GET,
                 ConfigApps.gformUrl,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("TAG", "Response: " + response);
                         if (response.length() > 0) {
-                            //TODO SEND DATA
-//                            Snackbar.make(fab, "Successfully Posted", Snackbar.LENGTH_LONG).show();
-//                            edtName.setText(null);
-//                            edtPhone.setText(null);
-                        } else { messageUtils.toastMessage("please try again ", ConfigApps.T_INFO); }
-                        prg_dash.setVisibility(View.GONE);
+                              prg_dash.setVisibility(View.GONE);
+                              messageUtils.toastMessage("Transaksi berhasil diinput", ConfigApps.T_SUCCESS);
+                        } else {
+                            messageUtils.toastMessage("please try again ", ConfigApps.T_INFO);
+                            prg_dash.setVisibility(View.GONE);
+                        }
                     }
                 }, new Response.ErrorListener() {
 
@@ -1038,8 +1038,11 @@ public class DashboardFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-//                params.put(Constants.nameField, name);
-//                params.put(Constants.phoneField, phone);
+                params.put(ConfigApps.techNameInput, preference.getUn().trim());
+                params.put(ConfigApps.serviceInput, preference.getServicePoint().trim());
+                params.put(ConfigApps.ttwoInput, alInfSite.get(0).getTtwo().trim());
+                params.put(ConfigApps.remoteNameInput, alInfSite.get(0).getRemote_name().trim());
+                params.put(ConfigApps.customerInput, alInfSite.get(0).getCustomer_name().trim());
                 return params;
             }
         };
