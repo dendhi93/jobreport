@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBlue300"
     tools:context=".preparation.LoginActivity">
 
@@ -64,6 +65,30 @@
                     android:textColorLink="@color/colorPrimary"
                     android:background="@drawable/noborder"
                     android:gravity="center_vertical"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_huge"
+                custom:passwordToggleEnabled="true"
+                android:hint="@string/password"
+                android:background="@drawable/border_bottom">
+
+                <EditText
+                    android:id="@+id/txt_login_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:textColorHighlight="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
+                    android:textColorLink="@color/colorPrimary"
+                    android:background="@drawable/noborder"/>
             </android.support.design.widget.TextInputLayout>
 
             <View

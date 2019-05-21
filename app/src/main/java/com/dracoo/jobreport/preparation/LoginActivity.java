@@ -34,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText txt_login_handphone;
     @BindView(R.id.lbl_login_version)
     TextView lbl_login_version;
+    @BindView(R.id.txt_login_pass)
+    TextView txt_login_pass;
 
     private MessageUtils messageUtils;
     private AwesomeValidation awesomeValidation;
