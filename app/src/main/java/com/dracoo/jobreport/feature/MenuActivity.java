@@ -73,7 +73,7 @@ public class MenuActivity extends AppCompatActivity
         preference = new Preference(MenuActivity.this);
         messageUtils = new MessageUtils(MenuActivity.this);
         try{
-            String prefUn = preference.getUn();
+            String prefUn = preference.getTechName();
             String prefPhone = preference.getPhone();
 
             lblName.setText(prefUn.trim());

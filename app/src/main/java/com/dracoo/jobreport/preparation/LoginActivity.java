@@ -15,12 +15,16 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.dracoo.jobreport.BuildConfig;
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.UserAccessAdapter;
+import com.dracoo.jobreport.database.master.MasterUserAccess;
 import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,7 +77,12 @@ public class LoginActivity extends AppCompatActivity {
         } else if (handphone.length() < 10){
             messageUtils.snackBar_message("No handphone kurang dari 10 angka", LoginActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
         } else if(awesomeValidation.validate()){
-            if (!preference.getUn().equals("") && !preference.getUn().equals(un.trim())){
+            //TODO NAMBAH VALIDASI
+            boolean valUn = new UserAccessAdapter(getApplicationContext())
+                    .valLogin(txt_login_un.getText().toString().trim(), txt_login_pass.getText().toString().trim());
+            if(!valUn){
+                messageUtils.toastMessage("username atau password tidak valid", ConfigApps.T_WARNING);
+            }else if (!preference.getUn().equals("") && !preference.getUn().equals(un.trim())){
                 new AlertDialog.Builder(LoginActivity.this)
                         .setTitle("Warning")
                         .setMessage("Username sebelumnya adalah " +preference.getUn()+"\nApakah anda ingin ganti user ?")
@@ -142,7 +151,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void saveloginPref(String user, String servicePoint, String userHandphone){
-        preference.saveUn(user,servicePoint, userHandphone);
+        ArrayList<MasterUserAccess> alUser = new UserAccessAdapter(getApplicationContext())
+                .userList(txt_login_un.getText().toString().trim(), txt_login_pass.getText().toString().trim());
+        String techName;
+        if (alUser.size() > 0){ techName = alUser.get(0).getUa_name();
+        }else{ techName = "FULAN"; }
+        preference.saveUn(user,servicePoint, userHandphone, techName);
         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
         intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
         startActivity(intent);

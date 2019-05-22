@@ -125,7 +125,7 @@ public class UserActivity extends AppCompatActivity
         getUserValidation();
 
         if (!preference.getUn().equals("")){
-            txt_userAct_name.setText(preference.getUn().trim());
+            txt_userAct_name.setText(preference.getTechName().trim());
             txt_userAct_phone.setText(preference.getPhone().trim());
             txt_userAct_service.setText(preference.getServicePoint().trim());
         }else{

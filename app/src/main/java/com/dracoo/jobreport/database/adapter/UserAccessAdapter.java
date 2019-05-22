@@ -7,6 +7,7 @@ import com.dracoo.jobreport.database.master.MasterUserAccess;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserAccessAdapter extends DatabaseAdapter {
     private Dao<MasterUserAccess, Integer> mUserAccess;
@@ -23,7 +24,7 @@ public class UserAccessAdapter extends DatabaseAdapter {
     }
 
 
-    public boolean valUsername(String un){
+    public boolean valLogin(String un, String pass){
         Cursor cursor;
 
         String sql = "SELECT id_user_list, " +
@@ -31,7 +32,8 @@ public class UserAccessAdapter extends DatabaseAdapter {
                 " ua_password, " +
                 " ua_name " +
                 "from t_user_access " +
-                " where ua_username = '" +un+ "' ";
+                " where ua_username = '" +un+ "' "+
+                " and ua_password = '" +pass+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
         if (cursor.getCount() == 0) {
@@ -45,25 +47,40 @@ public class UserAccessAdapter extends DatabaseAdapter {
         }
     }
 
-    public boolean valPassword(String pass){
+    public ArrayList<MasterUserAccess> userList(String un, String pass){
+        ArrayList<MasterUserAccess> users = new ArrayList<>();
+        Cursor cursor = null;
+
+        cursor = userCursor(un, pass);
+
+        while (cursor.moveToNext()) {
+            MasterUserAccess mUser = new MasterUserAccess();
+            mUser.setId_user_list(cursor.getInt(0));
+            mUser.setUa_username(cursor.getString(1));
+            mUser.setUa_password(cursor.getString(2));
+            mUser.setUa_name(cursor.getString(3));
+
+            users.add(mUser);
+        }
+        cursor.close();
+        getReadableDatabase().close();
+        return users;
+    }
+
+    public Cursor userCursor(String un, String pass){
         Cursor cursor;
 
-        String sql = "SELECT id_user_list, " +
-                " ua_username, " +
-                " ua_password, " +
-                " ua_name " +
-                "from t_user_access " +
-                " where ua_password = '" +pass+ "' ";
+        String sql = "SELECT " +
+                                " id_user_list, " +
+                                " ua_username, " +
+                                " ua_password, " +
+                                " ua_name " +
+                    "from t_user_access " +
+                    " where ua_username = '" + un + "' " +
+                    " and ua_password = '" +pass+ "' ";
 
         cursor = getReadableDatabase().rawQuery(sql, null);
-        if (cursor.getCount() == 0) {
-            cursor.close();
-            getReadableDatabase().close();
-            return false;
-        } else {
-            cursor.close();
-            getReadableDatabase().close();
-            return true;
-        }
+        return cursor;
     }
+
 }

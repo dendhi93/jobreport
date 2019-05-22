@@ -236,7 +236,7 @@ public class DashboardFragment extends Fragment {
                         if (alJobDesc.size() > 0){
                             String maintenanceContent = "Progress               = " +preference.getProgress().trim() +"\n" +
                                                         "Jenis Koneksi      = " +preference.getConnType() + "\n"+
-                                                        "Nama Teknisi       = " +preference.getUn() + "\n"+
+                                                        "Nama Teknisi       = " +preference.getTechName() + "\n"+
                                                         "Service Point       = " +preference.getServicePoint() + "\n"+
                                                         "Nama Lokasi     = " +alInfSite.get(0).getLocation_name().trim() + "\n" +
                                                         "Alamat                = " +alInfSite.get(0).getRemote_address().trim() + "\n" +
@@ -575,7 +575,7 @@ public class DashboardFragment extends Fragment {
                         if (i == 0){
                             if (isSubmitReport()) {
                                 stCustname = preference.getCustName().trim();
-                                stUn = preference.getUn().trim();
+                                stUn = preference.getTechName().trim();
                                 preference.clearDataTrans();
                                 emptyView();
                                 submitReport();
