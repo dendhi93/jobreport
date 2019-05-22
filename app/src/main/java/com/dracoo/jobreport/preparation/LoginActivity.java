@@ -77,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
         } else if (handphone.length() < 10){
             messageUtils.snackBar_message("No handphone kurang dari 10 angka", LoginActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
         } else if(awesomeValidation.validate()){
-            //TODO NAMBAH VALIDASI
             boolean valUn = new UserAccessAdapter(getApplicationContext())
                     .valLogin(txt_login_un.getText().toString().trim(), txt_login_pass.getText().toString().trim());
             if(!valUn){
