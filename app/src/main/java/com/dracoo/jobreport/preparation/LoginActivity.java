@@ -81,66 +81,69 @@ public class LoginActivity extends AppCompatActivity {
                     .valLogin(txt_login_un.getText().toString().trim(), txt_login_pass.getText().toString().trim());
             if(!valUn){
                 messageUtils.toastMessage("username atau password tidak valid", ConfigApps.T_WARNING);
-            }else if (!preference.getUn().equals("") && !preference.getUn().equals(un.trim())){
-                new AlertDialog.Builder(LoginActivity.this)
-                        .setTitle("Warning")
-                        .setMessage("Username sebelumnya adalah " +preference.getUn()+"\nApakah anda ingin ganti user ?")
-                        .setIcon(R.drawable.ic_check)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                preference.clearPreference();
-                                saveloginPref(un, servicePoint, handphone);
-                            }
-                        })
-                        .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
-            }else if (!preference.getServicePoint().equals("") && !preference.getServicePoint().equals(txt_login_servicePoint.getText().toString().trim())){
-                new AlertDialog.Builder(LoginActivity.this)
-                        .setTitle("Warning")
-                        .setMessage("Service Poin sebelumnya adalah " +preference.getServicePoint()+"\nApakah anda ingin update service point ?")
-                        .setIcon(R.drawable.ic_check)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                saveloginPref(un, servicePoint, handphone);
-                            }
-                        })
-                        .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
-            }else if (!preference.getPhone().equals("") && !preference.getPhone().equals(txt_login_handphone.getText().toString().trim())){
-                new AlertDialog.Builder(LoginActivity.this)
-                        .setTitle("Warning")
-                        .setMessage("Handphone sebelumnya adalah " +preference.getPhone()+"\nApakah anda ingin ganti user ?")
-                        .setIcon(R.drawable.ic_check)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                saveloginPref(un, servicePoint, handphone);
-                            }
-                        })
-                        .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
+            }else{
+                if (txt_login_un.getText().toString().trim().equals("admin")){
+                    //TODO ADD ALERT FOR ADD USER
+                } else if (!preference.getUn().equals("") && !preference.getUn().equals(un.trim())){
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setTitle("Warning")
+                            .setMessage("Username sebelumnya adalah " +preference.getUn()+"\nApakah anda ingin ganti user ?")
+                            .setIcon(R.drawable.ic_check)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    preference.clearPreference();
+                                    saveloginPref(un, servicePoint, handphone);
+                                }
+                            })
+                            .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .show();
+                }else if (!preference.getServicePoint().equals("") && !preference.getServicePoint().equals(txt_login_servicePoint.getText().toString().trim())){
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setTitle("Warning")
+                            .setMessage("Service Poin sebelumnya adalah " +preference.getServicePoint()+"\nApakah anda ingin update service point ?")
+                            .setIcon(R.drawable.ic_check)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    saveloginPref(un, servicePoint, handphone);
+                                }
+                            })
+                            .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .show();
+                }else if (!preference.getPhone().equals("") && !preference.getPhone().equals(txt_login_handphone.getText().toString().trim())){
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setTitle("Warning")
+                            .setMessage("Handphone sebelumnya adalah " +preference.getPhone()+"\nApakah anda ingin ganti user ?")
+                            .setIcon(R.drawable.ic_check)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    saveloginPref(un, servicePoint, handphone);
+                                }
+                            })
+                            .setNegativeButton("Cancel",  new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .show();
 
-            } else{
-                saveloginPref(un, servicePoint, handphone);
+                } else{
+                    saveloginPref(un, servicePoint, handphone);
+                }
             }
-
         }
     }
 
