@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private MessageUtils messageUtils;
     private AwesomeValidation awesomeValidation;
     private Preference preference;
-
+    private EditText txt_alert_un,txt_alert_pass, txt_alert_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,28 @@ public class LoginActivity extends AppCompatActivity {
                 messageUtils.toastMessage("username atau password tidak valid", ConfigApps.T_WARNING);
             }else{
                 if (txt_login_un.getText().toString().trim().equals("admin")){
-                    //TODO ADD ALERT FOR ADD USER
+                    AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                    LayoutInflater inflater = getLayoutInflater();
+                    View alertView = inflater.inflate(R.layout.alert_add_user, null);
+                    alert.setView(view);
+                    txt_alert_un    = alertView.findViewById(R.id.txt_alert_un);
+                    txt_alert_pass    = alertView.findViewById(R.id.txt_alert_pass);
+                    txt_alert_name  = alertView.findViewById(R.id.txt_alert_name);
+
+                    alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //TODO SAVE USER
+                        }
+                    });
+                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    alert.show();
                 } else if (!preference.getUn().equals("") && !preference.getUn().equals(un.trim())){
                     new AlertDialog.Builder(LoginActivity.this)
                             .setTitle("Warning")

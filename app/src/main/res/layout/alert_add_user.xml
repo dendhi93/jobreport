@@ -58,7 +58,7 @@
             android:background="@drawable/border_bottom">
 
             <EditText
-                android:id="@+id/txt_login_pass"
+                android:id="@+id/txt_alert_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -95,33 +95,5 @@
 
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_medium">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:id="@+id/btn_alert_submit"
-            android:background="@drawable/ic_blue_button_alert"
-            android:text="@string/add_user_title"
-            android:textColor="@color/colorWhite"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:id="@+id/btn_alert_cancel"
-            android:background="@drawable/ic_white_button"
-            android:text="@string/add_user_title"
-            android:textColor="@color/colorBlack"/>
-    </LinearLayout>
-
-
-
-
 
 </LinearLayout>
