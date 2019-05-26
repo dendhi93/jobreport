@@ -211,7 +211,7 @@
     <string name="action_end">Sampai tanggal</string>
 
     //add user content
-    <string name="add_user_title">Add User</string>
+    <string name="add_user_title">Add User / Change Password</string>
     <string name="name_user">Nama User</string>
 
 </resources>

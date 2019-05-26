@@ -83,4 +83,40 @@ public class UserAccessAdapter extends DatabaseAdapter {
         return cursor;
     }
 
+
+    public Cursor valUserCursor(String un){
+        Cursor cursor;
+
+        String sql = "SELECT " +
+                " id_user_list, " +
+                " ua_username, " +
+                " ua_password, " +
+                " ua_name " +
+                "from t_user_access " +
+                " where ua_username = '" + un + "' " ;
+
+        cursor = getReadableDatabase().rawQuery(sql, null);
+        return cursor;
+    }
+
+    public ArrayList<MasterUserAccess> valUserAccess(String un){
+        ArrayList<MasterUserAccess> users = new ArrayList<>();
+        Cursor cursor = null;
+
+        cursor = valUserCursor(un);
+
+        while (cursor.moveToNext()) {
+            MasterUserAccess mUser = new MasterUserAccess();
+            mUser.setId_user_list(cursor.getInt(0));
+            mUser.setUa_username(cursor.getString(1));
+            mUser.setUa_password(cursor.getString(2));
+            mUser.setUa_name(cursor.getString(3));
+
+            users.add(mUser);
+        }
+        cursor.close();
+        getReadableDatabase().close();
+        return users;
+    }
+
 }

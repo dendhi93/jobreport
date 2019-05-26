@@ -20,8 +20,10 @@ import com.dracoo.jobreport.database.adapter.UserAccessAdapter;
 import com.dracoo.jobreport.database.master.MasterUserAccess;
 import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.j256.ormlite.dao.Dao;
 
 import org.w3c.dom.Text;
 
@@ -46,12 +48,16 @@ public class LoginActivity extends AppCompatActivity {
     private AwesomeValidation awesomeValidation;
     private Preference preference;
     private EditText txt_alert_un,txt_alert_pass, txt_alert_name;
+    private Dao<MasterUserAccess, Integer> userAccessAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        try{
+            userAccessAdapter = new UserAccessAdapter(getApplicationContext()).getAdapter();
+        }catch (Exception e){}
     }
 
     @Override
@@ -84,28 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                 messageUtils.toastMessage("username atau password tidak valid", ConfigApps.T_WARNING);
             }else{
                 if (txt_login_un.getText().toString().trim().equals("admin")){
-                    AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-                    LayoutInflater inflater = getLayoutInflater();
-                    View alertView = inflater.inflate(R.layout.alert_add_user, null);
-                    alert.setView(view);
-                    txt_alert_un    = alertView.findViewById(R.id.txt_alert_un);
-                    txt_alert_pass    = alertView.findViewById(R.id.txt_alert_pass);
-                    txt_alert_name  = alertView.findViewById(R.id.txt_alert_name);
-
-                    alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //TODO SAVE USER
-                        }
-                    });
-                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-
-                    alert.show();
+                    displayAlert();
                 } else if (!preference.getUn().equals("") && !preference.getUn().equals(un.trim())){
                     new AlertDialog.Builder(LoginActivity.this)
                             .setTitle("Warning")
@@ -187,6 +172,71 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
+    private void displayAlert(){
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View alertView = inflater.inflate(R.layout.alert_add_user, null);
+        alert.setView(alertView);
+        txt_alert_un    = alertView.findViewById(R.id.txt_alert_un);
+        txt_alert_pass    = alertView.findViewById(R.id.txt_alert_pass);
+        txt_alert_name  = alertView.findViewById(R.id.txt_alert_name);
+
+        alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (txt_alert_un.getText().toString().trim().equals("")
+                        || txt_alert_pass.getText().toString().trim().equals("") ||
+                        txt_alert_name.getText().toString().trim().equals("")){
+                    messageUtils.toastMessage(getString(R.string.emptyString), ConfigApps.T_WARNING);
+                    displayAlert();
+                }else{
+                    try{
+                        ArrayList<MasterUserAccess> alValUser = new UserAccessAdapter(LoginActivity.this)
+                                .valUserAccess(txt_alert_un.getText().toString().trim());
+                        if (alValUser.size() > 0) {
+                            if (txt_alert_un.getText().toString().trim().equals("admin")){
+                                messageUtils.toastMessage("User admin tidak bisa diubah password", ConfigApps.T_WARNING);
+                            }else{
+                                MasterUserAccess mUserAccess = userAccessAdapter.queryForId(alValUser.get(0).getId_user_list());
+                                mUserAccess.setUa_password(txt_alert_pass.getText().toString().trim());
+                                mUserAccess.setUa_name(txt_alert_name.getText().toString().trim());
+                                mUserAccess.setUa_update_date(DateTimeUtils.getCurrentTime().trim());
+                                userAccessAdapter.update(mUserAccess);
+                                messageUtils.toastMessage("ubah password success",ConfigApps.T_SUCCESS);
+                                setEmptyText();
+                            }
+                        }else{
+                            //ADD USER
+                            MasterUserAccess mUserAccess = new MasterUserAccess();
+                            mUserAccess.setUa_username(txt_alert_un.getText().toString().trim());
+                            mUserAccess.setUa_password(txt_alert_pass.getText().toString().trim());
+                            mUserAccess.setUa_name(txt_alert_name.getText().toString().trim());
+                            mUserAccess.setUa_insert_date(DateTimeUtils.getCurrentTime().trim());
+                            userAccessAdapter.create(mUserAccess);
+                            messageUtils.toastMessage("Add user Success",ConfigApps.T_SUCCESS);
+                            setEmptyText();
+                        }
+                    }catch (Exception e){ messageUtils.toastMessage("failed to save user " +e.toString(), ConfigApps.T_ERROR); }
+                    dialog.dismiss();
+                }
+            }
+        });
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        alert.show();
+    }
+
+    private void setEmptyText(){
+        txt_login_un.setText("");
+        txt_login_pass.setText("");
+        txt_login_servicePoint.setText("");
+        txt_login_handphone.setText("");
+    }
     @Override
     public void onBackPressed(){
         super.onBackPressed();
