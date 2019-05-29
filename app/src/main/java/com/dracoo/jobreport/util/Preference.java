@@ -9,7 +9,7 @@ public class Preference {
     public static final String KEY_USERNAME = "usernama";
     public static final String KEY_SERVICEPOINT = "service_points";
     public static final String KEY_PHONE = "phone";
-    public static final String KEY_NAMEUSER = "nameuser";
+    public static final String KEY_TECH_NAME = "tech_name";
     public static final String KEY_PROGRESS_TYPE = "progress_type";
     public static final String KEY_CUST_ID = "cust_id";
     public static final String KEY_CUST_NAME = "cust_name";
@@ -30,11 +30,11 @@ public class Preference {
         editor = sharedPreferences.edit();
     }
 
-    public void saveUn(String un, String sp, String phone, String nameUser){
+    public void saveUn(String un, String sp, String phone, String techName){
         editor.putString(KEY_USERNAME, un);
         editor.putString(KEY_SERVICEPOINT, sp);
         editor.putString(KEY_PHONE, phone);
-        editor.putString(KEY_NAMEUSER, nameUser);
+        editor.putString(KEY_TECH_NAME, techName);
 
         editor.apply();
     }
@@ -83,6 +83,7 @@ public class Preference {
     public String getConnType(){return sharedPreferences.getString(KEY_CONNECTION_TYPE, "");}
     public Integer getSendEmail(){return sharedPreferences.getInt(KEY_SEND_EMAIL, 0);}
     public Integer getSendWA(){return sharedPreferences.getInt(KEY_SEND_WA, 0);}
+    public String getTechName(){return sharedPreferences.getString(KEY_TECH_NAME, "");}
 
     //after submit
     public void clearDataTrans(){
