@@ -9,6 +9,7 @@ public class Preference {
     public static final String KEY_USERNAME = "usernama";
     public static final String KEY_SERVICEPOINT = "service_points";
     public static final String KEY_PHONE = "phone";
+    public static final String KEY_NAMEUSER = "nameuser";
     public static final String KEY_PROGRESS_TYPE = "progress_type";
     public static final String KEY_CUST_ID = "cust_id";
     public static final String KEY_CUST_NAME = "cust_name";
@@ -29,10 +30,11 @@ public class Preference {
         editor = sharedPreferences.edit();
     }
 
-    public void saveUn(String un, String sp, String phone){
+    public void saveUn(String un, String sp, String phone, String nameUser){
         editor.putString(KEY_USERNAME, un);
         editor.putString(KEY_SERVICEPOINT, sp);
         editor.putString(KEY_PHONE, phone);
+        editor.putString(KEY_NAMEUSER, nameUser);
 
         editor.apply();
     }

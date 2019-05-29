@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBlue300"
     tools:context=".preparation.LoginActivity">
 
@@ -69,6 +70,40 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:baselineAligned="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_bottom"
+                    android:hint="@string/password"
+                    custom:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/txt_login_pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:inputType="textPassword"
+                        android:maxLength="25"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
+                        android:maxLines="2"
+                        android:textColor="@color/colorBlack"
+                        android:textColorLink="@color/colorWhite"
+                        android:background="@drawable/noborder"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/layout_service_point"
