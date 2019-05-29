@@ -260,7 +260,7 @@ public class DashboardFragment extends Fragment {
                         if (alJobDesc.size() > 0){
                             String maintenanceContent = "Progress               = " +preference.getProgress().trim() +"\n" +
                                                         "Jenis Koneksi      = " +preference.getConnType() + "\n"+
-                                                        "Nama Teknisi       = " +preference.getUn() + "\n"+
+                                                        "Nama Teknisi       = " +preference.getTechName() + "\n"+
                                                         "Service Point       = " +preference.getServicePoint() + "\n"+
                                                         "Nama Lokasi     = " +alInfSite.get(0).getLocation_name().trim() + "\n" +
                                                         "Alamat                = " +alInfSite.get(0).getRemote_address().trim() + "\n" +
@@ -279,7 +279,7 @@ public class DashboardFragment extends Fragment {
                             table.addCell(createCell("Jenis Koneksi ", contentFont));
                             table.addCell(new Paragraph(preference.getConnType(), contentFont));
                             table.addCell(createCell("Nama Teknisi ", contentFont));
-                            table.addCell(new Paragraph(preference.getUn(), contentFont));
+                            table.addCell(new Paragraph(preference.getTechName(), contentFont));
                             table.addCell(createCell("Service Point ", contentFont));
                             table.addCell(new Paragraph(preference.getServicePoint().trim(), contentFont));
                             table.addCell(createCell("Nama Lokasi ", contentFont));
@@ -938,7 +938,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private void alertChoose(){
-        String[] listItems = {"Send File Pdf", "Copy into whatsapp", "Post data into google form"};
+        String[] listItems = {"Send File Pdf", "Copy into whatsapp"};
         new AlertDialog.Builder(getActivity())
                 .setTitle("Send via")
                 .setCancelable(false)
@@ -947,7 +947,7 @@ public class DashboardFragment extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0){
                             stCustname = preference.getCustName().trim();
-                            stUn = preference.getUn().trim();
+                            stUn = preference.getTechName().trim();
                             if (preference.getSendWA() == ConfigApps.SUBMIT_SEND){
                                 if (isSubmitReport()) {
                                         preference.clearDataTrans();
@@ -976,8 +976,6 @@ public class DashboardFragment extends Fragment {
                                 clipboard.setPrimaryClip(clip);
                                 messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_SUCCESS);
                             }
-                        }else if (i == 2){
-                            sendData();
                         }
                     }
                 })
@@ -1006,51 +1004,6 @@ public class DashboardFragment extends Fragment {
                 } catch(Exception e) { messageUtils.toastMessage("err share message " +e.toString(), ConfigApps.T_ERROR); }
             }
         }, 1000);
-    }
-
-    //TODO POST GFORM
-    private void sendData(){
-        prg_dash.setVisibility(View.VISIBLE);
-        queue = Volley.newRequestQueue(getActivity());
-        StringRequest request = new StringRequest(
-                Request.Method.GET,
-                ConfigApps.gformUrl,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("TAG", "Response: " + response);
-                        if (response.length() > 0) {
-                              prg_dash.setVisibility(View.GONE);
-                              messageUtils.toastMessage("Transaksi berhasil diinput", ConfigApps.T_SUCCESS);
-                        } else {
-                            messageUtils.toastMessage("please try again ", ConfigApps.T_INFO);
-                            prg_dash.setVisibility(View.GONE);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                prg_dash.setVisibility(View.GONE);
-                messageUtils.toastMessage("failed post Data ", ConfigApps.T_ERROR);
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put(ConfigApps.techNameInput, preference.getUn().trim());
-                params.put(ConfigApps.serviceInput, preference.getServicePoint().trim());
-                params.put(ConfigApps.ttwoInput, alInfSite.get(0).getTtwo().trim());
-                params.put(ConfigApps.remoteNameInput, alInfSite.get(0).getRemote_name().trim());
-                params.put(ConfigApps.customerInput, alInfSite.get(0).getCustomer_name().trim());
-                return params;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                50000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(request);
     }
 
     @Override
