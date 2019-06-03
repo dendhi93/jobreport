@@ -157,7 +157,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (al_image.size() == 5){
+                if (al_image.size() == 6){
                     ArrayList<MasterInfoSite> alInfo = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
                     if (alInfo.size() > 0){
                         File mFilePdf = new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName());
@@ -314,8 +314,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         ArrayList<MasterImage> al_valImage = new ImageAdapter(getActivity())
                 .val_dataImage(preference.getCustID(), preference.getUn(),
                         preference.getConnType(), selectedImgTitle);
-        if (al_image.size() > 5){
-            messageUtils.toastMessage("Jumlah Foto sudah 5, transaksi dibatalkan", ConfigApps.T_WARNING);
+        if (al_image.size() > 6){
+            messageUtils.toastMessage("Jumlah Foto sudah 6, transaksi dibatalkan", ConfigApps.T_WARNING);
         }else if (al_valImage.size() > 0){
             if (imageToSave.exists()){
                 messageUtils.toastMessage("Image sudah ada, transaksi dibatalkan", ConfigApps.T_WARNING);
