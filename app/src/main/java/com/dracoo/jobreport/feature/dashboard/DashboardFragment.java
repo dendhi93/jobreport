@@ -258,19 +258,19 @@ public class DashboardFragment extends Fragment {
                         firstTableCell.setBorder(PdfPCell.NO_BORDER);
                         ArrayList<MasterJobDesc> alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
                         if (alJobDesc.size() > 0){
-                            String maintenanceContent = "Progress               = " +preference.getProgress().trim() +"\n" +
-                                                        "Jenis Koneksi      = " +preference.getConnType() + "\n"+
-                                                        "Nama Teknisi       = " +preference.getTechName() + "\n"+
-                                                        "Service Point       = " +preference.getServicePoint() + "\n"+
-                                                        "Nama Lokasi     = " +alInfSite.get(0).getLocation_name().trim() + "\n" +
-                                                        "Alamat                = " +alInfSite.get(0).getRemote_address().trim() + "\n" +
-                                                        "Kota                     = " +alInfSite.get(0).getCity().trim() + "\n"+
-                                                        "Kabupaten       = " +alInfSite.get(0).getKabupaten().trim()+ "\n"+
-                                                        "Provinsi            = " +alInfSite.get(0).getProv().trim() + "\n" +
+                            String maintenanceContent = "Progress = " +preference.getProgress().trim() +"\n" +
+                                                        "Jenis Koneksi = " +preference.getConnType() + "\n"+
+                                                        "Nama Teknisi = " +preference.getTechName() + "\n"+
+                                                        "Service Point = " +preference.getServicePoint() + "\n"+
+                                                        "Nama Lokasi = " +alInfSite.get(0).getLocation_name().trim() + "\n" +
+                                                        "Alamat = " +alInfSite.get(0).getRemote_address().trim() + "\n" +
+                                                        "Kota = " +alInfSite.get(0).getCity().trim() + "\n"+
+                                                        "Kabupaten = " +alInfSite.get(0).getKabupaten().trim()+ "\n"+
+                                                        "Provinsi = " +alInfSite.get(0).getProv().trim() + "\n" +
                                                         "Remote Name = " +alInfSite.get(0).getRemote_name().trim() + "\n" +
-                                                        "Latitude             = " +alInfSite.get(0).getLat().trim()+ "\n"+
-                                                        "Longitude          = " + alInfSite.get(0).getLongitude().trim() + "\n"+
-                                                        "PIC                    = " +alJobDesc.get(0).getName_pic() + "\n";
+                                                        "Latitude = " +alInfSite.get(0).getLat().trim()+ "\n"+
+                                                        "Longitude = " + alInfSite.get(0).getLongitude().trim() + "\n"+
+                                                        "PIC = " +alJobDesc.get(0).getName_pic() + "\n";
 
                             PdfPTable table = new PdfPTable(2);
                             table.addCell(headTitleCell("Maintenance Report", titleFont));
@@ -318,13 +318,13 @@ public class DashboardFragment extends Fragment {
 
                         ArrayList<MasterProblem> alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
                         if (alProblem.size() > 0){
-                            String problemContent = "Berangkat          = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()) +"\n"+
-                                                    "Tiba                     = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim())+ "\n"+
-                                                    "Finish                  = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim())+ "\n"+
-                                                    "Delay                  = " +alProblem.get(0).getDelay_reason().trim() + "\n" +
-                                                    "Pending               = " +alProblem.get(0).getPending().trim() +"\n"+
-                                                    "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
-                                                    "Upline                 = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()) +"\n";
+                            String problemContent = "Berangkat = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()) +"\n"+
+                                                    "Tiba = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim())+ "\n"+
+                                                    "Finish = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim())+ "\n"+
+                                                    "Delay = " +alProblem.get(0).getDelay_reason().trim() + "\n" +
+//                                                    "Pending               = " +alProblem.get(0).getPending().trim() +"\n"+
+                                                    "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n";
+//                                                    "Upline                 = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()) +"\n";
 
                             PdfPCell secondTableCell = new PdfPCell();
                             secondTableCell.setBorder(PdfPCell.NO_BORDER);
@@ -338,12 +338,12 @@ public class DashboardFragment extends Fragment {
                             table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
                             table2.addCell(createCell("Delay ", contentFont));
                             table2.addCell(new Paragraph(alProblem.get(0).getDelay_reason().trim(), contentFont));
-                            table2.addCell(createCell("Pending ", contentFont));
-                            table2.addCell(new Paragraph(alProblem.get(0).getPending().trim(), contentFont));
+//                            table2.addCell(createCell("Pending ", contentFont));
+//                            table2.addCell(new Paragraph(alProblem.get(0).getPending().trim(), contentFont));
                             table2.addCell(createCell("Reason Pending ", contentFont));
                             table2.addCell(new Paragraph(alProblem.get(0).getReason().trim(), contentFont));
-                            table2.addCell(createCell("Upline ", contentFont));
-                            table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()), contentFont));
+//                            table2.addCell(createCell("Upline ", contentFont));
+//                            table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()), contentFont));
                             table2.setHorizontalAlignment(Element.ALIGN_LEFT);
                             float[] columnWidths = new float[]{40f, 100f};
                             table2.setWidths(columnWidths);
