@@ -377,9 +377,9 @@ public class DashboardFragment extends Fragment {
                                     "Grounding (Vac) = " +allEnv.get(0).getGrounding_pln()+"\n"+
                                     "_UPS_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_ups()+ "\n"+
                                     "Grounding (Vac) = " +allEnv.get(0).getGrounding_ups()+"\n"+
-                                    allEnv.get(0).getNotes().trim() +"\n"+
-                                    "_AC_\n" +allEnv.get(0).getNotes_ac().trim() +"\n"+
-                                    "Suhu " +allEnv.get(0).getSuhu() + " \u00b0";
+                                    "Catatan  = " +allEnv.get(0).getNotes().trim() +"\n"+
+                                    "_AC_\nSuhu = " + allEnv.get(0).getSuhu() +" \u00b0 \n"+
+                                    "Catatan = " +allEnv.get(0).getNotes_ac().trim();
 
                             PdfPTable table3 = new PdfPTable(2);
                             table3.addCell(headTitleCell(getActivity().getString(R.string.electEnv_trans), titleFont));
