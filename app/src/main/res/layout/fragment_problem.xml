@@ -337,6 +337,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
+                    android:visibility="gone"
                     android:focusable="true"
                     android:layout_toLeftOf="@+id/imgBtn_timer5"
                     android:focusableInTouchMode="true"
@@ -516,6 +517,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:focusable="true"
+                    android:visibility="gone"
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 

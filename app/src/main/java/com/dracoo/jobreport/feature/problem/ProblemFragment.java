@@ -48,8 +48,8 @@ public class ProblemFragment extends Fragment {
     EditText txt_problem_start;
     @BindView(R.id.txt_problem_finish)
     EditText txt_problem_finish;
-    @BindView(R.id.txt_problem_upline)
-    EditText txt_problem_upline;
+//    @BindView(R.id.txt_problem_upline)
+//    EditText txt_problem_upline;
     @BindView(R.id.txt_problem_online)
     EditText txt_problem_online;
     @BindView(R.id.txt_prob_delay)
@@ -63,8 +63,8 @@ public class ProblemFragment extends Fragment {
     EditText txt_problem_symptom;
     @BindView(R.id.txt_prob_action_text)
     EditText txt_prob_action_text;
-    @BindView(R.id.txt_prob_pending)
-    EditText txt_prob_pending;
+//    @BindView(R.id.txt_prob_pending)
+//    EditText txt_prob_pending;
     @BindView(R.id.txt_prob_reasonPending)
     EditText txt_prob_reasonPending;
     @BindView(R.id.txt_problem_closedBy)
@@ -117,7 +117,7 @@ public class ProblemFragment extends Fragment {
     }
 
     private void emptyProblemText(){
-        txt_prob_pending.setText("");
+//        txt_prob_pending.setText("");
         txt_prob_reasonPending.setText("");
         txt_prob_action_text.setText("");
         txt_prob_modemDisplay.setText("");
@@ -128,7 +128,7 @@ public class ProblemFragment extends Fragment {
         txt_problem_start.setText("");
         txt_problem_symptom.setText("");
         txt_problem_tiba.setText("");
-        txt_problem_upline.setText("");
+//        txt_problem_upline.setText("");
         txt_prob_delay.setText("");
         txt_prob_actPending.setText("");
         rg_prob_closedBy.clearCheck();
@@ -184,9 +184,9 @@ public class ProblemFragment extends Fragment {
                     mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
                     mProb.setTiba(txt_problem_tiba.getText().toString().trim());
                     mProb.setFinish(txt_problem_finish.getText().toString().trim());
-                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
+//                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
                     mProb.setOnline(txt_problem_online.getText().toString().trim());
-                    mProb.setPending(txt_prob_pending.getText().toString().trim());
+//                    mProb.setPending(txt_prob_pending.getText().toString().trim());
                     mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
                     mProb.setClosed(""+radioProbSelected.getText().toString().trim());
                     mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
@@ -208,9 +208,9 @@ public class ProblemFragment extends Fragment {
                     mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
                     mProb.setTiba(txt_problem_tiba.getText().toString().trim());
                     mProb.setFinish(txt_problem_finish.getText().toString().trim());
-                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
+//                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
                     mProb.setOnline(txt_problem_online.getText().toString().trim());
-                    mProb.setPending(txt_prob_pending.getText().toString().trim());
+//                    mProb.setPending(txt_prob_pending.getText().toString().trim());
                     mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
                     mProb.setClosed(""+radioProbSelected.getText().toString().trim());
                     mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
@@ -314,7 +314,7 @@ public class ProblemFragment extends Fragment {
                 }else if (selectedColumn == 4){ txt_problem_finish.setText(validDateTime.trim());
                 }else if (selectedColumn == 1){ txt_problem_berangkat.setText(validDateTime.trim());
                 }else if (selectedColumn == 3){ txt_problem_tiba.setText(validDateTime.trim());
-                }else if (selectedColumn == 5){ txt_problem_upline.setText(validDateTime.trim());
+//                }else if (selectedColumn == 5){ txt_problem_upline.setText(validDateTime.trim());
                 }else if (selectedColumn == 7){ txt_problem_online.setText(validDateTime.trim());
                 }else if (selectedColumn == 9){ txt_prob_actPending.setText(validDateTime.trim()); }
             }
@@ -324,8 +324,8 @@ public class ProblemFragment extends Fragment {
     }
 
     private boolean emptyValidation(){
-        if (txt_prob_pending.getText().toString().trim().equals("")||
-            txt_prob_reasonPending.getText().toString().trim().equals("") ||
+//        if (txt_prob_pending.getText().toString().trim().equals("")||
+        if (txt_prob_reasonPending.getText().toString().trim().equals("") ||
             txt_prob_action_text.getText().toString().trim().equals("") ||
             txt_prob_modemDisplay.getText().toString().trim().equals("") ||
             txt_problem_berangkat.getText().toString().trim().equals("") ||
@@ -335,7 +335,7 @@ public class ProblemFragment extends Fragment {
             txt_problem_start.getText().toString().trim().equals("") ||
             txt_problem_symptom.getText().toString().trim().equals("") ||
             txt_problem_tiba.getText().toString().trim().equals("") ||
-            txt_problem_upline.getText().toString().trim().equals("") ||
+//            txt_problem_upline.getText().toString().trim().equals("") ||
             txt_prob_delay.getText().toString().trim().equals("") ||
             txt_prob_actPending.getText().toString().trim().equals("")){
             return false;
