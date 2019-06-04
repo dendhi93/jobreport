@@ -47,6 +47,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.j256.ormlite.dao.Dao;
 
@@ -172,7 +173,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                             mFileValidationPdf.delete();
                         }
 
-                        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+                        Document document = new Document(PageSize.A4, 30, 30, 30, 30);
                         try{
                             PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                             document.open();
@@ -186,9 +187,20 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                 Font mOrderIdFont = new Font(urName, mHeadingFontSize, Font.NORMAL, mColorAccent);
                                 Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
 
+                                PdfPTable tableTitle = new PdfPTable(1);
+                                tableTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                                tableTitle.addCell(JobReportUtils.bottomLineCell("Documentation", mOrderIdFont));
+                                document.add(tableTitle);
+                                document.add(JobReportUtils.singleSpace());
+                                PdfPTable tableTitle2 = new PdfPTable(2);
+                                tableTitle2.setHorizontalAlignment(Element.ALIGN_LEFT);
+                                tableTitle2.addCell(JobReportUtils.borderlessCell("Documentation : ______________________", contentFont));
+                                tableTitle2.addCell(JobReportUtils.borderlessCell("Date : _______ / _______ / ___________", contentFont));
+                                document.add(tableTitle2);
+
                                 int i = 0;
                                 for (MasterImage mImage : al_image){
-                                    document.newPage();
+                                    if (i > 0){document.newPage(); }
                                     arr_imgName[i] = mImage.getImage_name().trim();
                                     arr_imgUrl[i] = mImage.getImage_url().trim();
                                     String stImageUrl = android.os.Environment.getExternalStorageDirectory().toString()+""+arr_imgUrl[i];

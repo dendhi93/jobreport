@@ -9,6 +9,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 
 
@@ -46,4 +47,27 @@ public class JobReportUtils {
 
         return cell;
     }
+
+    public static  PdfPCell bottomLineCell(String title, Font fonType){
+        PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fonType)));
+        cell.setBorder(Rectangle.BOTTOM);
+
+        return cell;
+    }
+
+    public static  PdfPCell borderlessCell(String title, Font fonType){
+        PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fonType)));
+        cell.setBorder(Rectangle.NO_BORDER);
+
+        return cell;
+    }
+
+    public static Paragraph singleSpace(){
+        Paragraph paragraph = new Paragraph();
+        paragraph.setAlignment(Element.ALIGN_LEFT);
+        paragraph.setSpacingAfter(1f);
+
+        return paragraph;
+    }
+
 }
