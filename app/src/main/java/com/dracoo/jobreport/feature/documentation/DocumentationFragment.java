@@ -39,7 +39,6 @@ import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -47,6 +46,8 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.j256.ormlite.dao.Dao;
@@ -175,7 +176,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
                         Document document = new Document(PageSize.A4, 30, 30, 30, 30);
                         try{
-                            PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
+                            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                             document.open();
                             if (al_image.size() > 0){
                                 arr_imgName = new String[al_image.size()];
@@ -197,35 +198,50 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                 tableTitle2.addCell(JobReportUtils.borderlessCell("Documentation : ______________________", contentFont));
                                 tableTitle2.addCell(JobReportUtils.borderlessCell("Date : _______ / _______ / ___________", contentFont));
                                 document.add(tableTitle2);
+                                document.add(JobReportUtils.singleSpace());
 
                                 int i = 0;
+                                PdfPTable contentTable = new PdfPTable(2);
                                 for (MasterImage mImage : al_image){
-                                    if (i > 0){document.newPage(); }
-                                    arr_imgName[i] = mImage.getImage_name().trim();
+                                    arr_imgName[i] = mImage.getImage_description().trim();
                                     arr_imgUrl[i] = mImage.getImage_url().trim();
                                     String stImageUrl = android.os.Environment.getExternalStorageDirectory().toString()+""+arr_imgUrl[i];
-
                                     Image image = Image.getInstance(stImageUrl);
-                                    float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
-                                            - document.rightMargin() - 0) / image.getWidth()) * 100; // 0 means you have no indentation. If you have any, change it.
-                                    image.scalePercent(scaler);
-                                    image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
-                                    image.setSpacingAfter(4f);
+                                    image.setAbsolutePosition(100, 150);
 
-                                    //add title
-                                    Chunk mOrderIdChunk = new Chunk("Title Image: " + arr_imgName[i], mOrderIdFont);
-                                    Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
-                                    mOrderIdParagraph.setSpacingAfter(3f);
-                                    document.add(mOrderIdParagraph);
-                                    document.add(image);
-
-                                    Paragraph pDesc = new Paragraph("Deskripsi : "+mImage.getImage_description(),contentFont);
-                                    pDesc.setAlignment(Element.ALIGN_LEFT);
-                                    pDesc.setSpacingAfter(3f);
-                                    document.add(pDesc);
-
+                                    PdfPCell cell = new PdfPCell();
+                                    cell.addElement(Image.getInstance(stImageUrl));
+                                    Paragraph p = new Paragraph(arr_imgName[i], contentFont);
+                                    p.setAlignment(Element.ALIGN_CENTER);
+                                    cell.addElement(p);
+                                    contentTable.addCell(cell);
+                                    document.add(contentTable);
                                     i++;
                                 }
+
+//                                    if (i > 0){document.newPage(); }
+//
+//                                    Image image = Image.getInstance(stImageUrl);
+//                                    float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+//                                            - document.rightMargin() - 0) / image.getWidth()) * 100; // 0 means you have no indentation. If you have any, change it.
+//                                    image.scalePercent(scaler);
+//                                    image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
+//                                    image.setSpacingAfter(4f);
+//
+//                                    //add title
+//                                    Chunk mOrderIdChunk = new Chunk("Title Image: " + arr_imgName[i], mOrderIdFont);
+//                                    Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
+//                                    mOrderIdParagraph.setSpacingAfter(3f);
+//                                    document.add(mOrderIdParagraph);
+//                                    document.add(image);
+//
+//                                    Paragraph pDesc = new Paragraph("Deskripsi : "+mImage.getImage_description(),contentFont);
+//                                    pDesc.setAlignment(Element.ALIGN_LEFT);
+//                                    pDesc.setSpacingAfter(3f);
+//                                    document.add(pDesc);
+//
+//                                    i++;
+//                                }
                                 document.close();
                                 prd_doc.setVisibility(View.GONE);
 
