@@ -202,6 +202,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
                                 int i = 0;
                                 PdfPTable contentTable = new PdfPTable(2);
+                                contentTable.setHorizontalAlignment(Element.ALIGN_LEFT);
                                 for (MasterImage mImage : al_image){
                                     arr_imgName[i] = mImage.getImage_description().trim();
                                     arr_imgUrl[i] = mImage.getImage_url().trim();
@@ -215,9 +216,9 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                     p.setAlignment(Element.ALIGN_CENTER);
                                     cell.addElement(p);
                                     contentTable.addCell(cell);
-                                    document.add(contentTable);
                                     i++;
                                 }
+                                document.add(contentTable);
 
 //                                    if (i > 0){document.newPage(); }
 //
