@@ -864,7 +864,7 @@ public class DashboardFragment extends Fragment {
 
                         PdfPTable tableTitl3 = new PdfPTable(1);
                         tableTitl3.setHorizontalAlignment(Element.ALIGN_LEFT);
-                        tableTitl3.addCell(JobReportUtils.bottomLineCell("Detail Activities", titleFont));
+                        tableTitl3.addCell(JobReportUtils.bottomLineCell("Detail Activities", contentFont));
                         document.add(tableTitl3);
                         document.add(JobReportUtils.singleSpace());
 
