@@ -205,7 +205,7 @@
     <string name="xpoll_trans">XPOLL</string>
     <string name="networkParam_trans">Network Parameter</string>
     <string name="doc_trans">Documentation</string>
-    <string name="action_trans">Action</string>
+    <string name="action_trans">ACTIVITY REPORT</string>
 
     //doc_content
     <string name="imageType">Tipe Image</string>

@@ -862,8 +862,14 @@ public class DashboardFragment extends Fragment {
                         }
 
                         document.newPage();
+                        PdfPTable tableTitle = new PdfPTable(1);
+                        tableTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tableTitle.addCell(JobReportUtils.bottomLineCell(getActivity().getString(R.string.action_trans), titleFont));
+                        document.add(tableTitle);
+                        document.add(JobReportUtils.singleSpace());
+                        //TODO NAME FROM LOCATION NAME, ACTIVITY FROM CM / PM
+
                         PdfPTable table7 = new PdfPTable(2);
-                        table7.addCell(headTitleCell(getActivity().getString(R.string.action_trans), titleFont));
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
 
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
