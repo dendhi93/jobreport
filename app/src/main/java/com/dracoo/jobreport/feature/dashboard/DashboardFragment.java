@@ -867,11 +867,18 @@ public class DashboardFragment extends Fragment {
                         tableTitle.addCell(JobReportUtils.bottomLineCell(getActivity().getString(R.string.action_trans), titleFont));
                         document.add(tableTitle);
                         document.add(JobReportUtils.singleSpace());
-                        //TODO NAME FROM LOCATION NAME, ACTIVITY FROM CM / PM
+
+                        PdfPTable tableTitle2 = new PdfPTable(2);
+                        tableTitle2.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tableTitle2.addCell(JobReportUtils.createBorderLessCellRow("Name", contentFont));
+                        tableTitle2.addCell(new Paragraph(":" +alInfSite.get(0).getLocation_name().trim(), contentFont));
+                        tableTitle2.addCell(JobReportUtils.createBorderLessCellRow("Aktivitas", contentFont));
+                        tableTitle2.addCell(new Paragraph(":" +alInfSite.get(0).getProgress_type(), contentFont));
+                        document.add(tableTitle2);
+                        document.add(JobReportUtils.singleSpace());
 
                         PdfPTable table7 = new PdfPTable(2);
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
-
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
                         if (al_listAction.size() > 0){
                             arr_actionDateTime = new String[al_listAction.size()];

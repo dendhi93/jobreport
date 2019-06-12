@@ -58,6 +58,16 @@ public class JobReportUtils {
     public static  PdfPCell borderlessCell(String title, Font fonType){
         PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fonType)));
         cell.setBorder(Rectangle.NO_BORDER);
+        cell.setVerticalAlignment(Element.ALIGN_LEFT);
+
+        return cell;
+    }
+
+    public static PdfPCell createBorderLessCellRow(String title, Font fontType){
+        PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fontType)));
+        cell.setVerticalAlignment(Element.ALIGN_LEFT);
+        cell.setBorder(Rectangle.NO_BORDER);
+        cell.setRowspan(1);
 
         return cell;
     }
