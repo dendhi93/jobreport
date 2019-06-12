@@ -245,9 +245,7 @@ public class DashboardFragment extends Fragment {
                         document.open();
 
                         Paragraph titleParagraph = new Paragraph("RESULT REPORT");
-                        titleParagraph.setAlignment(Element.ALIGN_CENTER);
-                        titleParagraph.setSpacingAfter(6f);
-                        document.add(titleParagraph);
+                        document.add(JobReportUtils.singleSpace());
                         stCopyClipBoard = new StringBuilder();
                         stCopyClipBoard.append("*Maintenance Report*\n\n");
 
@@ -310,10 +308,7 @@ public class DashboardFragment extends Fragment {
                             stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
 
-                        Paragraph pTitle2 = new Paragraph("\n",titleFont);
-                        pTitle2.setAlignment(Element.ALIGN_LEFT);
-                        pTitle2.setSpacingAfter(3f);
-                        document.add(pTitle2);
+                        document.add(JobReportUtils.singleSpace());
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.problemDesc_trans)+"*\n\n");
 
                         ArrayList<MasterProblem> alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
@@ -360,10 +355,7 @@ public class DashboardFragment extends Fragment {
 
                         }
 
-                        Paragraph envParagraph = new Paragraph("\n",titleFont);
-                        envParagraph.setAlignment(Element.ALIGN_LEFT);
-                        envParagraph.setSpacingAfter(1f);
-                        document.add(envParagraph);
+                        document.add(JobReportUtils.singleSpace());
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.electEnv_trans)+"*\n\n");
 
                         PdfPTable mainTable3 = new PdfPTable(2);
@@ -464,10 +456,7 @@ public class DashboardFragment extends Fragment {
                                 document.add(paragraph3);
                                 stCopyClipBoard.append(vsatSetup+"\n\n");
                             }
-                            Paragraph spaceParagraph3 = new Paragraph("\n");
-                            spaceParagraph3.setAlignment(Element.ALIGN_LEFT);
-                            spaceParagraph3.setSpacingAfter(3f);
-                            document.add(spaceParagraph3);
+                            document.add(JobReportUtils.singleSpace());
 
                             PdfPTable mainTableVsatX = new PdfPTable(2);
                             mainTableVsatX.setWidthPercentage(90.0f);
@@ -597,11 +586,7 @@ public class DashboardFragment extends Fragment {
 
                             stCopyClipBoard.append(xpollContent+"\n\n");
 
-                            Paragraph spaceParagraph4 = new Paragraph("\n");
-                            spaceParagraph4.setAlignment(Element.ALIGN_LEFT);
-                            spaceParagraph4.setSpacingAfter(3f);
-                            document.add(spaceParagraph4);
-
+                            document.add(JobReportUtils.singleSpace());
                             ArrayList<MasterConnectionParameter> alParam = new ConnectionParameterAdapter(getActivity()).val_param(preference.getCustID(), preference.getUn());
                             if (alParam.size() > 0){
                                 String paramContent = "*LAN PARAMETER*\nIP Lan = " +alParam.get(0).getLan_parameter().trim() +" \n"+
@@ -711,11 +696,7 @@ public class DashboardFragment extends Fragment {
                                 stCopyClipBoard.append(m2mSetupContent+"\n\n");
                             }
 
-                            Paragraph spaceParagraph1 = new Paragraph("\n");
-                            spaceParagraph1.setAlignment(Element.ALIGN_LEFT);
-                            spaceParagraph1.setSpacingAfter(3f);
-                            document.add(spaceParagraph1);
-
+                            document.add(JobReportUtils.singleSpace());
                             PdfPTable mainTable1 = new PdfPTable(2);
                             mainTable1.setWidthPercentage(90.0f);
                             mainTable1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -879,6 +860,12 @@ public class DashboardFragment extends Fragment {
                         tableTitle2.setTotalWidth(200f);
                         tableTitle2.setLockedWidth(true);
                         document.add(tableTitle2);
+                        document.add(JobReportUtils.singleSpace());
+
+                        PdfPTable tableTitl3 = new PdfPTable(1);
+                        tableTitl3.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tableTitl3.addCell(JobReportUtils.bottomLineCell("Detail Activities", titleFont));
+                        document.add(tableTitl3);
                         document.add(JobReportUtils.singleSpace());
 
                         PdfPTable table7 = new PdfPTable(2);
