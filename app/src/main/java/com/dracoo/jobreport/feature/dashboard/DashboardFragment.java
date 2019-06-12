@@ -871,9 +871,13 @@ public class DashboardFragment extends Fragment {
                         PdfPTable tableTitle2 = new PdfPTable(2);
                         tableTitle2.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tableTitle2.addCell(JobReportUtils.createBorderLessCellRow("Name", contentFont));
-                        tableTitle2.addCell(new Paragraph(":" +alInfSite.get(0).getLocation_name().trim(), contentFont));
+                        tableTitle2.addCell(JobReportUtils.createBorderLessCellRow(":  " +alInfSite.get(0).getLocation_name().trim(), contentFont));
                         tableTitle2.addCell(JobReportUtils.createBorderLessCellRow("Aktivitas", contentFont));
-                        tableTitle2.addCell(new Paragraph(":" +alInfSite.get(0).getProgress_type(), contentFont));
+                        tableTitle2.addCell(JobReportUtils.createBorderLessCellRow(":  " +alInfSite.get(0).getProgress_type(), contentFont));
+                        float[] columnWidths = new float[]{30f, 170f};
+                        tableTitle2.setWidths(columnWidths);
+                        tableTitle2.setTotalWidth(200f);
+                        tableTitle2.setLockedWidth(true);
                         document.add(tableTitle2);
                         document.add(JobReportUtils.singleSpace());
 
@@ -913,8 +917,8 @@ public class DashboardFragment extends Fragment {
 
                             if (i == al_listAction.size()){
                                 table7.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                float[] columnWidths = new float[]{40f, 100f};
-                                table7.setWidths(columnWidths);
+                                float[] columnWidths7 = new float[]{40f, 100f};
+                                table7.setWidths(columnWidths7);
                                 table7.setTotalWidth(200f);
                                 table7.setLockedWidth(true);
                                 document.add(table7);
