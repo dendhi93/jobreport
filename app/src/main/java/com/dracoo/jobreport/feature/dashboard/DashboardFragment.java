@@ -18,13 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.ActionAdapter;
 import com.dracoo.jobreport.database.adapter.ConnectionParameterAdapter;
@@ -77,9 +71,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -868,7 +860,7 @@ public class DashboardFragment extends Fragment {
                         document.add(tableTitl3);
                         document.add(JobReportUtils.singleSpace());
 
-                        PdfPTable table7 = new PdfPTable(2);
+                        PdfPTable table7 = new PdfPTable(4);
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
                         if (al_listAction.size() > 0){
@@ -878,6 +870,10 @@ public class DashboardFragment extends Fragment {
 
                             int i = 0;
                             String actionContent = "";
+                            table7.addCell(createCell("No", contentFont));
+                            table7.addCell(createCell("Tanggal", contentFont));
+                            table7.addCell(createCell("Jam", contentFont));
+                            table7.addCell(createCell("Kegiatan", contentFont));
 
                             for (MasterAction action : al_listAction){
                                 arr_actionDateTime[i] = action.getAction_date_time();
@@ -890,24 +886,28 @@ public class DashboardFragment extends Fragment {
                                     if(i==0){ actionContent = split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i]; }
                                     else{ actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i]; }
 
-                                    table7.addCell(createCell(split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1], contentFont));
-                                    table7.addCell(new Paragraph(arr_actionTrans[i].trim(), contentFont));
+                                    table7.addCell(createCell(String.valueOf(i), contentFont));
+                                    table7.addCell(createCell(split[0] +" - " + splitEndTime[0] , contentFont));
+                                    table7.addCell(createCell(split[1] + "-" +splitEndTime[1], contentFont));
+                                    table7.addCell(createCell(arr_actionTrans[i].trim(), contentFont));
                                 }else{
                                     if (i==0){ actionContent = split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
                                     else{ actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
 
+                                    table7.addCell(createCell(String.valueOf(i), contentFont));table7.addCell(createCell(String.valueOf(i), contentFont));
+                                    table7.addCell(createCell(split[0], contentFont));
                                     table7.addCell(createCell(split[1]+ " -" +splitEndTime[1], contentFont));
-                                    table7.addCell(new Paragraph(arr_actionTrans[i].trim(), contentFont));
+                                    table7.addCell(createCell(arr_actionTrans[i].trim(), contentFont));
                                 }
                                 i++;
                             }
 
                             if (i == al_listAction.size()){
                                 table7.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                float[] columnWidths7 = new float[]{40f, 100f};
-                                table7.setWidths(columnWidths7);
-                                table7.setTotalWidth(200f);
-                                table7.setLockedWidth(true);
+                                float[] columnWidths7 = new float[]{10f, 35f, 35f,300f};
+                                tableTitle2.setWidths(columnWidths7);
+                                tableTitle2.setTotalWidth(400f);
+                                tableTitle2.setLockedWidth(true);
                                 document.add(table7);
                                 stCopyClipBoard.append(actionContent+"\n\n");
                             }
