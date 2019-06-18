@@ -48,7 +48,7 @@ public class ConfigApps {
 //========================================
 
     //url gform v2
-    public static final String gformUrl_v2 = "https://docs.google.com/forms/d/e/1FAIpQLSez80JkKJOjqaqha2rhidv81U-Mdpc35OHbunVYR--Qm5tSGQ/viewform?vc=0&c=0&w=1";
+    public static final String gformUrl_v2 = "https://docs.google.com/forms/d/e/1FAIpQLSez80JkKJOjqaqha2rhidv81U-Mdpc35OHbunVYR--Qm5tSGQ/formResponse";
 
     public static final String techNameInputv2 = "entry.821468160";
     public static final String serviceInputv2 = "entry.1471984630";

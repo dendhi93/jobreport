@@ -1013,8 +1013,8 @@ public class DashboardFragment extends Fragment {
         prg_dash.setVisibility(View.VISIBLE);
         queue = Volley.newRequestQueue(getActivity());
         StringRequest request = new StringRequest(
-                Request.Method.GET,
-                ConfigApps.gformUrl,
+                Request.Method.POST,
+                ConfigApps.gformUrl_v2,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -1038,11 +1038,19 @@ public class DashboardFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put(ConfigApps.techNameInput, preference.getUn().trim());
-                params.put(ConfigApps.serviceInput, preference.getServicePoint().trim());
-                params.put(ConfigApps.ttwoInput, alInfSite.get(0).getTtwo().trim());
-                params.put(ConfigApps.remoteNameInput, alInfSite.get(0).getRemote_name().trim());
-                params.put(ConfigApps.customerInput, alInfSite.get(0).getCustomer_name().trim());
+                params.put(ConfigApps.techNameInputv2, preference.getUn().trim());
+                params.put(ConfigApps.serviceInputv2, preference.getServicePoint().trim());
+                params.put(ConfigApps.ttwoInputv2, alInfSite.get(0).getTtwo().trim());
+                params.put(ConfigApps.remoteNameInputv2, alInfSite.get(0).getRemote_name().trim());
+                params.put(ConfigApps.customerInputv2, alInfSite.get(0).getCustomer_name().trim());
+                params.put(ConfigApps.remoteLocationInputv2, alInfSite.get(0).getLocation_name().trim());
+                params.put(ConfigApps.addressInputv2, alInfSite.get(0).getRemote_address().trim());
+                params.put(ConfigApps.cityInputv2, alInfSite.get(0).getCity().trim());
+                params.put(ConfigApps.kabupatenInputv2, alInfSite.get(0).getKabupaten().trim());
+                params.put(ConfigApps.provInputv2, alInfSite.get(0).getProv().trim());
+                params.put(ConfigApps.latInputv2, alInfSite.get(0).getLat().trim());
+                params.put(ConfigApps.longitudeInputv2, alInfSite.get(0).getLongitude().trim());
+                params.put(ConfigApps.connTypeInputv2, alInfSite.get(0).getCustomer_name().trim());
                 return params;
             }
         };
