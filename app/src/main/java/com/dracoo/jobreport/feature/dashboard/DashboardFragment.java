@@ -1018,7 +1018,7 @@ public class DashboardFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("TAG", "Response: " + response);
+                        Log.d("###", "Response: " + response);
                         if (response.length() > 0) {
                               prg_dash.setVisibility(View.GONE);
                               messageUtils.toastMessage("Transaksi berhasil diinput", ConfigApps.T_SUCCESS);
@@ -1043,7 +1043,7 @@ public class DashboardFragment extends Fragment {
                 params.put(ConfigApps.ttwoInputv2, alInfSite.get(0).getTtwo().trim());
                 params.put(ConfigApps.remoteNameInputv2, alInfSite.get(0).getRemote_name().trim());
                 params.put(ConfigApps.customerInputv2, alInfSite.get(0).getCustomer_name().trim());
-                params.put(ConfigApps.remoteLocationInputv2, alInfSite.get(0).getLocation_name().trim());
+                params.put(ConfigApps.remoteLocationInputv2, alInfSite.get(0).getRemote_name().trim());
                 params.put(ConfigApps.addressInputv2, alInfSite.get(0).getRemote_address().trim());
                 params.put(ConfigApps.cityInputv2, alInfSite.get(0).getCity().trim());
                 params.put(ConfigApps.kabupatenInputv2, alInfSite.get(0).getKabupaten().trim());
