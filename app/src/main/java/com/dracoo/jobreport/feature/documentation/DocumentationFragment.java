@@ -65,10 +65,8 @@ import butterknife.OnClick;
 public class DocumentationFragment extends Fragment implements ItemCallback {
     private MessageUtils messageUtils;
     private Preference preference;
-//    private String[] arr_imgTitle;
     private String[] arr_imgUrl;
     private String[] arr_imgName;
-//    private String[] arr_imgFolder;
     private String selectedImgTitle;
     private String selectedImgFolder;
     private String customerName = "";
@@ -121,7 +119,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
         }else{
             imgB_doc_confirm.setEnabled(true);
             imgV_doc_1.setEnabled(true);
-            //loadSpinner(preference.getConnType().trim());
         }
 
         try {
@@ -219,30 +216,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                     i++;
                                 }
                                 document.add(contentTable);
-
-//                                    if (i > 0){document.newPage(); }
-//
-//                                    Image image = Image.getInstance(stImageUrl);
-//                                    float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
-//                                            - document.rightMargin() - 0) / image.getWidth()) * 100; // 0 means you have no indentation. If you have any, change it.
-//                                    image.scalePercent(scaler);
-//                                    image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
-//                                    image.setSpacingAfter(4f);
-//
-//                                    //add title
-//                                    Chunk mOrderIdChunk = new Chunk("Title Image: " + arr_imgName[i], mOrderIdFont);
-//                                    Paragraph mOrderIdParagraph = new Paragraph(mOrderIdChunk);
-//                                    mOrderIdParagraph.setSpacingAfter(3f);
-//                                    document.add(mOrderIdParagraph);
-//                                    document.add(image);
-//
-//                                    Paragraph pDesc = new Paragraph("Deskripsi : "+mImage.getImage_description(),contentFont);
-//                                    pDesc.setAlignment(Element.ALIGN_LEFT);
-//                                    pDesc.setSpacingAfter(3f);
-//                                    document.add(pDesc);
-//
-//                                    i++;
-//                                }
                                 document.close();
                                 prd_doc.setVisibility(View.GONE);
 
