@@ -237,7 +237,9 @@ public class DashboardFragment extends Fragment {
                         document.open();
 
                         Paragraph titleParagraph = new Paragraph("RESULT REPORT");
-                        document.add(JobReportUtils.singleSpace());
+                        titleParagraph.setAlignment(Element.ALIGN_CENTER);
+                        titleParagraph.setSpacingAfter(6f);
+                        document.add(titleParagraph);
                         stCopyClipBoard = new StringBuilder();
                         stCopyClipBoard.append("*Maintenance Report*\n\n");
 
@@ -249,6 +251,7 @@ public class DashboardFragment extends Fragment {
                         ArrayList<MasterJobDesc> alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
                         if (alJobDesc.size() > 0){
                             String maintenanceContent = "Progress = " +preference.getProgress().trim() +"\n" +
+                                                        "TT / WO = " +alInfSite.get(0).getTtwo().trim() + "\n"+
                                                         "Jenis Koneksi = " +preference.getConnType() + "\n"+
                                                         "Nama Teknisi = " +preference.getTechName() + "\n"+
                                                         "Service Point = " +preference.getServicePoint() + "\n"+
@@ -266,6 +269,8 @@ public class DashboardFragment extends Fragment {
                             table.addCell(headTitleCell("Maintenance Report", titleFont));
                             table.addCell(createCell("Progress ", contentFont));
                             table.addCell(new Paragraph(preference.getProgress().trim(), contentFont));
+                            table.addCell(createCell("TT / WO ", contentFont));
+                            table.addCell(new Paragraph(alInfSite.get(0).getTtwo().trim(), contentFont));
                             table.addCell(createCell("Jenis Koneksi ", contentFont));
                             table.addCell(new Paragraph(preference.getConnType(), contentFont));
                             table.addCell(createCell("Nama Teknisi ", contentFont));
@@ -300,7 +305,7 @@ public class DashboardFragment extends Fragment {
                             stCopyClipBoard.append(maintenanceContent+"\n\n");
                         }
 
-                        document.add(JobReportUtils.singleSpace());
+                        document.add(JobReportUtils.singleSpace(titleFont));
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.problemDesc_trans)+"*\n\n");
 
                         ArrayList<MasterProblem> alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
@@ -347,7 +352,7 @@ public class DashboardFragment extends Fragment {
 
                         }
 
-                        document.add(JobReportUtils.singleSpace());
+                        document.add(JobReportUtils.singleSpace(titleFont));
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.electEnv_trans)+"*\n\n");
 
                         PdfPTable mainTable3 = new PdfPTable(2);
@@ -448,7 +453,7 @@ public class DashboardFragment extends Fragment {
                                 document.add(paragraph3);
                                 stCopyClipBoard.append(vsatSetup+"\n\n");
                             }
-                            document.add(JobReportUtils.singleSpace());
+                            document.add(JobReportUtils.singleSpace(titleFont));
 
                             PdfPTable mainTableVsatX = new PdfPTable(2);
                             mainTableVsatX.setWidthPercentage(90.0f);
@@ -578,7 +583,7 @@ public class DashboardFragment extends Fragment {
 
                             stCopyClipBoard.append(xpollContent+"\n\n");
 
-                            document.add(JobReportUtils.singleSpace());
+                            document.add(JobReportUtils.singleSpace(titleFont));
                             ArrayList<MasterConnectionParameter> alParam = new ConnectionParameterAdapter(getActivity()).val_param(preference.getCustID(), preference.getUn());
                             if (alParam.size() > 0){
                                 String paramContent = "*LAN PARAMETER*\nIP Lan = " +alParam.get(0).getLan_parameter().trim() +" \n"+
@@ -688,7 +693,7 @@ public class DashboardFragment extends Fragment {
                                 stCopyClipBoard.append(m2mSetupContent+"\n\n");
                             }
 
-                            document.add(JobReportUtils.singleSpace());
+                            document.add(JobReportUtils.singleSpace(titleFont));
                             PdfPTable mainTable1 = new PdfPTable(2);
                             mainTable1.setWidthPercentage(90.0f);
                             mainTable1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -835,11 +840,15 @@ public class DashboardFragment extends Fragment {
                         }
 
                         document.newPage();
+                        Paragraph paragraphAction = null;
                         PdfPTable tableTitle = new PdfPTable(1);
                         tableTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tableTitle.addCell(JobReportUtils.bottomLineCell(getActivity().getString(R.string.action_trans), titleFont));
                         document.add(tableTitle);
-                        document.add(JobReportUtils.singleSpace());
+                        paragraphAction = new Paragraph("\n", contentFont);
+                        paragraphAction.setAlignment(Element.ALIGN_LEFT);
+                        paragraphAction.setSpacingAfter(1f);
+                        document.add(paragraphAction);
 
                         PdfPTable tableTitle2 = new PdfPTable(2);
                         tableTitle2.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -852,13 +861,13 @@ public class DashboardFragment extends Fragment {
                         tableTitle2.setTotalWidth(200f);
                         tableTitle2.setLockedWidth(true);
                         document.add(tableTitle2);
-                        document.add(JobReportUtils.singleSpace());
+                        document.add(JobReportUtils.singleSpace(contentFont));
 
                         PdfPTable tableTitl3 = new PdfPTable(1);
                         tableTitl3.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tableTitl3.addCell(JobReportUtils.bottomLineCell("Detail Activities", contentFont));
                         document.add(tableTitl3);
-                        document.add(JobReportUtils.singleSpace());
+                        document.add(paragraphAction);
 
                         PdfPTable table7 = new PdfPTable(4);
                         stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
@@ -894,7 +903,7 @@ public class DashboardFragment extends Fragment {
                                     if (i==0){ actionContent = split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
                                     else{ actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
 
-                                    table7.addCell(createCell(String.valueOf(i), contentFont));table7.addCell(createCell(String.valueOf(i), contentFont));
+                                    table7.addCell(createCell(String.valueOf(i), contentFont));
                                     table7.addCell(createCell(split[0], contentFont));
                                     table7.addCell(createCell(split[1]+ " -" +splitEndTime[1], contentFont));
                                     table7.addCell(createCell(arr_actionTrans[i].trim(), contentFont));
@@ -904,10 +913,10 @@ public class DashboardFragment extends Fragment {
 
                             if (i == al_listAction.size()){
                                 table7.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                float[] columnWidths7 = new float[]{10f, 35f, 35f,300f};
-                                tableTitle2.setWidths(columnWidths7);
-                                tableTitle2.setTotalWidth(400f);
-                                tableTitle2.setLockedWidth(true);
+                                float[] columnWidths7 = new float[]{20f, 40f, 60f,310f};
+                                table7.setWidths(columnWidths7);
+                                table7.setTotalWidth(420f);
+                                table7.setLockedWidth(true);
                                 document.add(table7);
                                 stCopyClipBoard.append(actionContent+"\n\n");
                             }
