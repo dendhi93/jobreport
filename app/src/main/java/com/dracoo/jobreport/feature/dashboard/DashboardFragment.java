@@ -922,6 +922,22 @@ public class DashboardFragment extends Fragment {
                             }
                         }
 
+                        //TODO CREATE BERITA ACARA
+                        document.newPage();
+                        PdfPTable tblTitleNews = new PdfPTable(1);
+                        tblTitleNews.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblTitleNews.addCell(JobReportUtils.bottomLineCell("BERITA ACARA", titleFont));
+                        document.add(tblTitleNews);
+                        paragraphAction = new Paragraph("\n", contentFont);
+                        paragraphAction.setAlignment(Element.ALIGN_LEFT);
+                        paragraphAction.setSpacingAfter(1f);
+                        document.add(paragraphAction);
+
+//                        PdfPTable tblTitleNewsNo = new PdfPTable(7);
+//                        tblTitleNewsNo.setHorizontalAlignment(Element.ALIGN_RIGHT);
+//                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("No  :", titleFont));
+
+
                         document.close();
                         prg_dash.setVisibility(View.GONE);
                         alertChoose();
