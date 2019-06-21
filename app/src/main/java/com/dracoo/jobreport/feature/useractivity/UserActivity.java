@@ -18,9 +18,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -55,8 +57,6 @@ import butterknife.OnClick;
 public class UserActivity extends AppCompatActivity
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    @BindView(R.id.rg_userAct_progress)
-    RadioGroup rg_userAct_progress;
     @BindView(R.id.txt_userAct_name)
     EditText txt_userAct_name;
     @BindView(R.id.txt_userAct_service)
@@ -89,9 +89,9 @@ public class UserActivity extends AppCompatActivity
     EditText txt_userAct_remoteName;
     @BindView(R.id.txt_userAct_ttwo)
     EditText txt_userAct_ttwo;
+    @BindView(R.id.sp_user_connType)
+    Spinner sp_user_connType;
 
-
-    private RadioButton rb_progress;
     private MessageUtils messageUtils;
     private Location mLastLocation;
     private GoogleApiClient mGoogleApiClient;
@@ -104,6 +104,8 @@ public class UserActivity extends AppCompatActivity
     private Dao<MasterJobDesc, Integer> jobDescAdapter;
     private Dao<MasterInfoSite, Integer> infoSiteAdapter;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
+    private String[] arrConnType;
+    private String selectedConnType = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,8 +125,8 @@ public class UserActivity extends AppCompatActivity
         messageUtils = new MessageUtils(UserActivity.this);
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         preference = new Preference(UserActivity.this);
-        rbProgressListener();
         getUserValidation();
+        displaySpinner();
 
         if (!preference.getUn().equals("")){
             txt_userAct_name.setText(preference.getUn().trim());
@@ -148,6 +150,21 @@ public class UserActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         checkGps();
+    }
+
+    private void displaySpinner(){
+        arrConnType  = new String[]{"CM", "PM"};
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrConnType);
+        sp_user_connType.setAdapter(adapter);
+        sp_user_connType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedConnType  = adapter.getItem(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
     }
 
 
@@ -185,15 +202,6 @@ public class UserActivity extends AppCompatActivity
                 .build();
     }
 
-    private void rbProgressListener() {
-        rg_userAct_progress.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rb_progress = findViewById(i);
-//                selectedProgress = ""+rb_progress.getText().toString();
-            }
-        });
-    }
 
     @OnClick(R.id.imgB_userAct_submit)
     void submitUser() {
@@ -202,7 +210,7 @@ public class UserActivity extends AppCompatActivity
                     || txt_userAct_long.getText().toString().trim().equals("")){
                 messageUtils.snackBar_message("Koordinat belum didapatkan, mohon dipastikan gps hidup dan terkoneksi jaringan",
                         UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-            } else if (rb_progress.getText().toString().trim().equals("")){}
+            } else if (selectedConnType.trim().equals("")){}
             else if (txt_userAct_name_pic.getText().toString().trim().equals("") ||
                     txt_userAct_jabatan.getText().toString().trim().equals("") ||
                     txt_userAct_picPhone.getText().toString().trim().equals("") ||
@@ -243,7 +251,7 @@ public class UserActivity extends AppCompatActivity
             mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
             mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
             mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
-            mInfoSite.setProgress_type(""+rb_progress.getText().toString());
+            mInfoSite.setProgress_type(selectedConnType.trim());
             mInfoSite.setTtwo(txt_userAct_ttwo.getText().toString().trim());
             mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
             mInfoSite.setRemote_name(txt_userAct_remoteName.getText().toString().trim());
@@ -273,7 +281,7 @@ public class UserActivity extends AppCompatActivity
                 mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
                 mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
                 mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
-                mInfoSite.setProgress_type(""+rb_progress.getText().toString().trim());
+                mInfoSite.setProgress_type(selectedConnType.trim());
                 mInfoSite.setTtwo(txt_userAct_ttwo.getText().toString().trim());
                 mInfoSite.setUn_user(preference.getUn().trim());
                 mInfoSite.setLocation_name(txt_userAct_locationName.getText().toString().trim());
@@ -286,7 +294,7 @@ public class UserActivity extends AppCompatActivity
 
                 if (al_maxSite.size() > 0){
                     preference.saveCustId(al_maxSite.get(0).getId_site(), custName);
-                    preference.saveProgress(""+rb_progress.getText().toString().trim());
+                    preference.saveProgress(selectedConnType.trim());
                     transHistoryUser(al_maxSite.get(0).getId_site(), getString(R.string.infoSite_trans));
                     jobDescTrans(al_maxSite.get(0).getId_site());
                 }else{
@@ -307,7 +315,7 @@ public class UserActivity extends AppCompatActivity
             mJobDesc.setName_pic(txt_userAct_name_pic.getText().toString().trim());
             mJobDesc.setJabatan_desc(txt_userAct_jabatan.getText().toString().trim());
             mJobDesc.setPic_phone(txt_userAct_picPhone.getText().toString().trim());
-            mJobDesc.setProgress_type(""+rb_progress.getText().toString().trim());
+            mJobDesc.setProgress_type(selectedConnType.trim());
             mJobDesc.setId_site(custId);
             mJobDesc.setUpdate_date(DateTimeUtils.getCurrentTime());
             jobDescAdapter.update(mJobDesc);
@@ -324,7 +332,7 @@ public class UserActivity extends AppCompatActivity
                 mJobDesc.setName_pic(txt_userAct_name_pic.getText().toString().trim());
                 mJobDesc.setJabatan_desc(txt_userAct_jabatan.getText().toString().trim());
                 mJobDesc.setPic_phone(txt_userAct_picPhone.getText().toString().trim());
-                mJobDesc.setProgress_type(""+rb_progress.getText().toString().trim());
+                mJobDesc.setProgress_type(selectedConnType.trim());
                 mJobDesc.setId_site(custId);
                 mJobDesc.setUn_user(preference.getUn());
                 mJobDesc.setInsert_date(DateTimeUtils.getCurrentTime());

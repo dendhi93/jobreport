@@ -51,43 +51,27 @@
 
                 </LinearLayout>
 
-                <RadioGroup
-                    android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_userAct_progress"
+                <Spinner
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:id="@+id/sp_user_connType"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_below="@+id/ln_userAct_1">
-
-                    <RadioButton
-                        android:id="@+id/rb_userAct_pm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/pm_radio"/>
-
-                    <RadioButton
-                        android:id="@+id/rb_userAct_cm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cm_radio"/>
-
-                </RadioGroup>
+                    android:layout_below="@+id/ln_userAct_1"
+                    android:layout_height="45dp"
+                    />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/spacing_tiny_2"
                     android:layout_margin="@dimen/spacing_tiny_2"
                     android:background="@drawable/border_bottom"
-                    android:layout_below="@+id/rg_userAct_progress"/>
+                    android:layout_below="@+id/sp_user_connType"/>
 
                 <LinearLayout
                     android:id="@+id/ln_userAct_98"
                     android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/rg_userAct_progress"
+                    android:layout_below="@+id/sp_user_connType"
                     android:layout_margin="@dimen/spacing_tiny_2"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
