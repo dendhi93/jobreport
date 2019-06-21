@@ -933,10 +933,16 @@ public class DashboardFragment extends Fragment {
                         paragraphAction.setSpacingAfter(1f);
                         document.add(paragraphAction);
 
-//                        PdfPTable tblTitleNewsNo = new PdfPTable(7);
-//                        tblTitleNewsNo.setHorizontalAlignment(Element.ALIGN_RIGHT);
-//                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("No  :", titleFont));
-
+                        PdfPTable tblTitleNewsNo = new PdfPTable(7);
+                        tblTitleNewsNo.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("No  :", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell(" ________ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("BA- ______ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("_________", titleFont));
+                        document.add(tblTitleNewsNo);
 
                         document.close();
                         prg_dash.setVisibility(View.GONE);
