@@ -75,7 +75,7 @@ public class JobReportUtils {
     public static Paragraph singleSpace(Font font){
         Paragraph paragraph = new Paragraph("\n", font);
         paragraph.setAlignment(Element.ALIGN_LEFT);
-        paragraph.setSpacingAfter(0.5f);
+        paragraph.setSpacingAfter(0.1f);
 
         return paragraph;
     }

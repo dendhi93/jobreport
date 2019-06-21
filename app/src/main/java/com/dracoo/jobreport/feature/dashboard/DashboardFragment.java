@@ -943,6 +943,12 @@ public class DashboardFragment extends Fragment {
                         tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
                         tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("_________", titleFont));
                         document.add(tblTitleNewsNo);
+                        document.add(JobReportUtils.singleSpace(contentFont));
+
+                        PdfPTable tblDescNews = new PdfPTable(1);
+                        tblDescNews.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblDescNews.addCell(JobReportUtils.bottomLineCell("JENIS KEGIATAN", titleFont));
+                        document.add(tblDescNews);
 
                         document.close();
                         prg_dash.setVisibility(View.GONE);
