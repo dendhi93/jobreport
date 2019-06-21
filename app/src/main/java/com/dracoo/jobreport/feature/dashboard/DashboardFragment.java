@@ -314,7 +314,7 @@ public class DashboardFragment extends Fragment {
                                                     "Tiba = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim())+ "\n"+
                                                     "Finish = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim())+ "\n"+
                                                     "Delay = " +alProblem.get(0).getDelay_reason().trim() + "\n" +
-//                                                    "Pending               = " +alProblem.get(0).getPending().trim() +"\n"+
+                                                    "Pending  = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) +"\n"+
                                                     "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n";
 //                                                    "Upline                 = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()) +"\n";
 
@@ -330,8 +330,8 @@ public class DashboardFragment extends Fragment {
                             table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
                             table2.addCell(createCell("Delay ", contentFont));
                             table2.addCell(new Paragraph(alProblem.get(0).getDelay_reason().trim(), contentFont));
-//                            table2.addCell(createCell("Pending ", contentFont));
-//                            table2.addCell(new Paragraph(alProblem.get(0).getPending().trim(), contentFont));
+                            table2.addCell(createCell("Pending Kegiatan", contentFont));
+                            table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()), contentFont));
                             table2.addCell(createCell("Reason Pending ", contentFont));
                             table2.addCell(new Paragraph(alProblem.get(0).getReason().trim(), contentFont));
 //                            table2.addCell(createCell("Upline ", contentFont));
