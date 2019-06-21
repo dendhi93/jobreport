@@ -6,15 +6,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mSetupAdapter;
@@ -41,14 +41,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ConnectionFragment extends Fragment {
-    @BindView(R.id.rg_conn_type)
-    RadioGroup rg_conn_type;
-    @BindView(R.id.rg_conn_antena)
-    RadioGroup rg_conn_antena;
-    @BindView(R.id.rg_conn_pedestial)
-    RadioGroup rg_conn_pedestial;
-    @BindView(R.id.rg_conn_access)
-    RadioGroup rg_conn_access;
+    @BindView(R.id.sp_conn_connType)
+    Spinner sp_conn_connType;
+    @BindView(R.id.sp_conn_antena)
+    Spinner sp_conn_antena;
+    @BindView(R.id.sp_conn_pedestial)
+    Spinner sp_conn_pedestial;
+    @BindView(R.id.sp_conn_antenaAccess)
+    Spinner sp_conn_antenaAccess;
     @BindView(R.id.ln_conn_vsat)
     LinearLayout ln_conn_vsat;
     @BindView(R.id.ln_conn_m2m)
@@ -97,18 +97,18 @@ public class ConnectionFragment extends Fragment {
     EditText txt_conn_m2m_sc1Brand;
 
     private MessageUtils messageUtils;
-    private RadioButton rb_selectedConn;
     private String selectedConn="null";
-    private RadioButton rb_selectedAntena;
     private String selectedAntena = "null";
-    private RadioButton rb_selectedPedestial;
     private String selectedPedestial = "null";
-    private RadioButton rb_selectedAccess;
     private String selectedAccess = "null";
     private Preference preference;
     private Dao<MasterVsatSetup, Integer> vsatSetupDao;
     private Dao<MasterM2mSetup, Integer> m2mSetupDao;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
+    private String[] arrConnectionType;
+    private String[] arrAntenaType;
+    private String[] arrPedestialType;
+    private String[] arrAntenaAccess;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,11 +125,7 @@ public class ConnectionFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
-        radioConnListener();
-        radioAntenaListener();
-        radioPedestialListener();
-        radioAccessListener();
-
+        displayAllSpinner();
         try{
             vsatSetupDao = new VsatSetupAdapter(getActivity()).getAdapter();
             m2mSetupDao = new M2mSetupAdapter(getActivity()).getAdapter();
@@ -137,51 +133,68 @@ public class ConnectionFragment extends Fragment {
         }catch (Exception e){}
     }
 
-    private void radioConnListener(){
-        rg_conn_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    private void displayAllSpinner(){
+        arrConnectionType  = new String[]{"Jenis Koneksi",getActivity().getString(R.string.vsat), getActivity().getString(R.string.m2m)};
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrConnectionType);
+        sp_conn_connType.setAdapter(adapter);
+        sp_conn_connType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rb_selectedConn =  getView().findViewById(i);
-                selectedConn = ""+rb_selectedConn.getText().toString();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0){
+                    selectedConn = adapter.getItem(position);
 
-                if (selectedConn.equals("VSAT")){
-                    ln_conn_vsat.setVisibility(View.VISIBLE);
-                    ln_conn_m2m.setVisibility(View.GONE);
-                }else{
-                    ln_conn_vsat.setVisibility(View.GONE);
-                    ln_conn_m2m.setVisibility(View.VISIBLE);
+                    if (selectedConn.equals("VSAT")){
+                        ln_conn_vsat.setVisibility(View.VISIBLE);
+                        ln_conn_m2m.setVisibility(View.GONE);
+                    }else{
+                        ln_conn_vsat.setVisibility(View.GONE);
+                        ln_conn_m2m.setVisibility(View.VISIBLE);
+                    }
+
                 }
             }
-        });
-    }
 
-    private void radioAntenaListener(){
-        rg_conn_antena.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rb_selectedAntena =  getView().findViewById(i);
-                selectedAntena = ""+rb_selectedAntena.getText().toString();
-            }
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
-    }
 
-    private void radioPedestialListener(){
-        rg_conn_pedestial.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        arrAntenaType = new String[]{getActivity().getString(R.string.diameter_antena),"1.2", "1.8","2.4"};
+        final ArrayAdapter<String> adapterAntena = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrAntenaType);
+        sp_conn_antena.setAdapter(adapterAntena);
+        sp_conn_antena.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rb_selectedPedestial =  getView().findViewById(i);
-                selectedPedestial = ""+rb_selectedPedestial.getText().toString();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0){ selectedAntena = adapterAntena.getItem(position); }
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
-    }
 
-    private void radioAccessListener(){
-        rg_conn_access.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        arrPedestialType = new String[]{getActivity().getString(R.string.pedestal_type),getActivity().getString(R.string.rb_nprm), getActivity().getString(R.string.rb_wallmount),getActivity().getString(R.string.rb_groundmount)};
+        final ArrayAdapter<String> adapterPedestial = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrPedestialType);
+        sp_conn_pedestial.setAdapter(adapterPedestial);
+        sp_conn_pedestial.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rb_selectedAccess =  getView().findViewById(i);
-                selectedAccess = ""+rb_selectedAccess.getText().toString();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0){selectedPedestial = adapterPedestial.getItem(position);}
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        arrAntenaAccess = new String[]{getActivity().getString(R.string.access_antena),getActivity().getString(R.string.rb_machine_24), getActivity().getString(R.string.rb_machine_not24)};
+        final ArrayAdapter<String> adapterAccessAntena = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrAntenaAccess);
+        sp_conn_antenaAccess.setAdapter(adapterAccessAntena);
+        sp_conn_antenaAccess.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0){selectedAccess = adapterAccessAntena.getItem(position);}
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
     }
 

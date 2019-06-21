@@ -46,29 +46,13 @@
 
                 </LinearLayout>
 
-                <RadioGroup
-                    android:id="@+id/rg_conn_type"
+                <Spinner
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:id="@+id/sp_conn_connType"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_below="@+id/ln_conn_title"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/spacing_tiny">
-
-                    <RadioButton
-                        android:id="@+id/rb_conn_vsat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/vsat" />
-
-                    <RadioButton
-                        android:id="@+id/rb_conn_m2m"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/m2m" />
-
-                </RadioGroup>
+                    android:layout_height="45dp"
+                    />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
@@ -356,45 +340,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/diameter_antena"
-                            android:textColor="@color/colorBlack" />
-
-                        <RadioGroup
-                            android:padding="@dimen/spacing_tiny"
-                            android:id="@+id/rg_conn_antena"
+                        <Spinner
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:id="@+id/sp_conn_antena"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_height="45dp" />
 
-                            <RadioButton
-                                android:id="@+id/rb_conn_12m"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/spacing_medium"
-                                android:text="@string/conn_12m"/>
-
-                            <RadioButton
-                                android:id="@+id/rb_conn_18m"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/spacing_medium"
-                                android:text="@string/conn_18m"/>
-
-                            <RadioButton
-                                android:id="@+id/rb_conn_24m"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/spacing_medium"
-                                android:text="@string/conn_24m"/>
-
-                        </RadioGroup>
-
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/spacing_tiny_2"
+                            android:layout_margin="@dimen/spacing_tiny_2"
+                            android:background="@drawable/border_bottom" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -469,80 +427,67 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/pedestal_type"
-                            android:textColor="@color/colorBlack" />
-
-                        <RadioGroup
-                            android:padding="@dimen/spacing_tiny"
-                            android:id="@+id/rg_conn_pedestial"
+                        <Spinner
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:id="@+id/sp_conn_pedestial"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_height="45dp" />
 
-                            <RadioButton
-                                android:id="@+id/rb_conn_nprm"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/spacing_medium"
-                                android:text="@string/rb_nprm"/>
-
-                            <RadioButton
-                                android:id="@+id/rb_conn_willmount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/spacing_medium"
-                                android:text="@string/rb_wallmount"/>
-
-                            <RadioButton
-                                android:id="@+id/rb_conn_grountmount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/spacing_medium"
-                                android:text="@string/rb_groundmount"/>
-
-                        </RadioGroup>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/spacing_tiny_2"
+                            android:layout_margin="@dimen/spacing_tiny_2"
+                            android:background="@drawable/border_bottom" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/access_antena"
-                            android:textColor="@color/colorBlack" />
-
-                        <RadioGroup
-                            android:padding="@dimen/spacing_tiny"
-                            android:id="@+id/rg_conn_access"
+                        <Spinner
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:id="@+id/sp_conn_antenaAccess"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_height="45dp" />
 
-                            <RadioButton
-                                android:id="@+id/rb_conn_24hours"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/spacing_medium"
-                                android:text="@string/rb_machine_24"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/spacing_tiny_2"
+                            android:layout_margin="@dimen/spacing_tiny_2"
+                            android:background="@drawable/border_bottom" />
 
-                            <RadioButton
-                                android:id="@+id/rb_conn_not24"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/spacing_medium"
-                                android:text="@string/rb_machine_not24"/>
-                        </RadioGroup>
+                        <!--<TextView-->
+                            <!--android:layout_width="120dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:text="@string/access_antena"-->
+                            <!--android:textColor="@color/colorBlack" />-->
+
+                        <!--<RadioGroup-->
+                            <!--android:padding="@dimen/spacing_tiny"-->
+                            <!--android:id="@+id/rg_conn_access"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="vertical">-->
+
+                            <!--<RadioButton-->
+                                <!--android:id="@+id/rb_conn_24hours"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginEnd="@dimen/spacing_medium"-->
+                                <!--android:text="@string/rb_machine_24"/>-->
+
+                            <!--<RadioButton-->
+                                <!--android:id="@+id/rb_conn_not24"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginEnd="@dimen/spacing_medium"-->
+                                <!--android:text="@string/rb_machine_not24"/>-->
+                        <!--</RadioGroup>-->
 
                     </LinearLayout>
 
