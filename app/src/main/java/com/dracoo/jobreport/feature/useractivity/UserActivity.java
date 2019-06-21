@@ -153,13 +153,15 @@ public class UserActivity extends AppCompatActivity
     }
 
     private void displaySpinner(){
-        arrConnType  = new String[]{"CM", "PM"};
+        arrConnType  = new String[]{"Jenis Progress","CM", "PM"};
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrConnType);
         sp_user_connType.setAdapter(adapter);
         sp_user_connType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedConnType  = adapter.getItem(position);
+                if (position > 0){
+                    selectedConnType  = adapter.getItem(position);
+                }
             }
 
             @Override
