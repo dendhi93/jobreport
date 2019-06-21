@@ -8,10 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import com.dracoo.jobreport.R;
@@ -38,8 +41,8 @@ public class ProblemFragment extends Fragment {
 
     private MessageUtils messageUtils;
 
-    @BindView(R.id.rg_prob_closedBy)
-    RadioGroup rg_prob_closedBy;
+    @BindView(R.id.sp_prob_closedBy)
+    Spinner sp_prob_closedBy;
     @BindView(R.id.txt_problem_berangkat)
     EditText txt_problem_berangkat;
     @BindView(R.id.txt_problem_tiba)
@@ -69,14 +72,14 @@ public class ProblemFragment extends Fragment {
     EditText txt_prob_reasonPending;
     @BindView(R.id.txt_problem_closedBy)
     EditText txt_problem_closedBy;
-    private RadioButton radioProbSelected;
 
-    private String valueRb = "";
     private String tempDate = "";
+    private String selectedClosedBy  = "";
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
     private Dao<MasterProblem, Integer> problemAdapter;
     private Dao<MasterTransHistory, Integer> transAdapter;
     private Preference preference;
+    private String[] arrClosedBy;
 
 
     @Override
@@ -95,7 +98,7 @@ public class ProblemFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
-        rbListener();
+        displayClosedSpinner();
         try{
             problemAdapter = new ProblemAdapter(getActivity()).getAdapter();
             transAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
@@ -106,7 +109,7 @@ public class ProblemFragment extends Fragment {
     void submitProblem (){
         try{
             if (!emptyValidation()){ messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
-            }   else if (radioProbSelected.getText().toString().trim().equals("")){ } else { transProblem(); }
+            }   else if (selectedClosedBy.trim().equals("")){ } else { transProblem(); }
         }catch (Exception e){ messageUtils.snackBar_message("Mohon dipilih pilihan pada kolom closed ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON); }
 
     }
@@ -131,7 +134,6 @@ public class ProblemFragment extends Fragment {
 //        txt_problem_upline.setText("");
         txt_prob_delay.setText("");
         txt_prob_actPending.setText("");
-        rg_prob_closedBy.clearCheck();
     }
     @OnClick(R.id.imgBtn_timer1)
     void displayTime1(){
@@ -160,13 +162,18 @@ public class ProblemFragment extends Fragment {
     @OnClick(R.id.imgBtn_timer7)
     void displayTime7(){datePicker(9);}
 
-    private void rbListener(){
-        rg_prob_closedBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    private void displayClosedSpinner(){
+        arrClosedBy  = new String[]{"EOS", "NOC"};
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrClosedBy);
+        sp_prob_closedBy.setAdapter(adapter);
+        sp_prob_closedBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                radioProbSelected = getActivity().findViewById(i);
-//                valueRb = ""+radioProbSelected.getText().toString();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedClosedBy = adapter.getItem(position);
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
     }
 
@@ -188,7 +195,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setOnline(txt_problem_online.getText().toString().trim());
 //                    mProb.setPending(txt_prob_pending.getText().toString().trim());
                     mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
-                    mProb.setClosed(""+radioProbSelected.getText().toString().trim());
+                    mProb.setClosed(selectedClosedBy.trim());
                     mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
                     mProb.setProgress_type(preference.getProgress().trim());
                     mProb.setUpdate_date(DateTimeUtils.getCurrentTime());
@@ -212,7 +219,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setOnline(txt_problem_online.getText().toString().trim());
 //                    mProb.setPending(txt_prob_pending.getText().toString().trim());
                     mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
-                    mProb.setClosed(""+radioProbSelected.getText().toString().trim());
+                    mProb.setClosed(selectedClosedBy.trim());
                     mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
                     mProb.setProgress_type(preference.getProgress().trim());
                     mProb.setInsert_date(DateTimeUtils.getCurrentTime());

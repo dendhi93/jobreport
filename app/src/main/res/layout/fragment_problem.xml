@@ -582,44 +582,56 @@
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
-                <LinearLayout
+                <Spinner
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:id="@+id/sp_prob_closedBy"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:orientation="horizontal">
+                    android:layout_height="45dp"/>
 
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorBlack"
-                        android:text="@string/closed"
-                        android:layout_gravity="center"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_tiny_2"
+                    android:layout_margin="@dimen/spacing_tiny_2"
+                    android:background="@drawable/border_bottom"/>
 
-                    <RadioGroup
-                        android:id="@+id/rg_prob_closedBy"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ln_conn_title"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/spacing_tiny">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="3dp"-->
+                    <!--android:orientation="horizontal">-->
 
-                        <RadioButton
-                            android:id="@+id/rb_prob_eos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/padding_medium2"
-                            android:text="@string/rb_eos" />
+                    <!--<TextView-->
+                        <!--android:layout_width="100dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@color/colorBlack"-->
+                        <!--android:text="@string/closed"-->
+                        <!--android:layout_gravity="center"/>-->
 
-                        <RadioButton
-                            android:id="@+id/rb_prob_noc"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/rb_noc" />
+                    <!--<RadioGroup-->
+                        <!--android:id="@+id/rg_prob_closedBy"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/ln_conn_title"-->
+                        <!--android:gravity="center"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:padding="@dimen/spacing_tiny">-->
 
-                    </RadioGroup>
+                        <!--<RadioButton-->
+                            <!--android:id="@+id/rb_prob_eos"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginEnd="@dimen/padding_medium2"-->
+                            <!--android:text="@string/rb_eos" />-->
 
-                </LinearLayout>
+                        <!--<RadioButton-->
+                            <!--android:id="@+id/rb_prob_noc"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="@string/rb_noc" />-->
+
+                    <!--</RadioGroup>-->
+
+                <!--</LinearLayout>-->
 
                 <LinearLayout
                     android:baselineAligned="false"
