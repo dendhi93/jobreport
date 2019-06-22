@@ -104,7 +104,7 @@ public class MachineFragment extends Fragment {
         sp_machine_qty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0){selectedMachineLoc = adapterMachineQty.getItem(position);}
+                if (position > 0){selectedMachineQty = adapterMachineQty.getItem(position);}
             }
 
             @Override
