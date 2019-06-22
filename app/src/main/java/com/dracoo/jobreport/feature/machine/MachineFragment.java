@@ -7,9 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.MachineAdapter;
@@ -32,23 +35,25 @@ import butterknife.OnClick;
 
 public class MachineFragment extends Fragment {
 
-    @BindView(R.id.rg_machine_location)
-    RadioGroup rg_machine_location;
-    @BindView(R.id.rg_machine_qty)
-    RadioGroup rg_machine_qty;
-    @BindView(R.id.rg_machine_24)
-    RadioGroup rg_machine_24;
+    @BindView(R.id.sp_machine_location)
+    Spinner sp_machine_location;
+    @BindView(R.id.sp_machine_qty)
+    Spinner sp_machine_qty;
+    @BindView(R.id.sp_machine_24)
+    Spinner sp_machine_24;
     @BindView(R.id.txt_machine_idMachine)
     EditText txt_machine_idMachine;
 
     private MessageUtils messageUtils;
-    private RadioButton rb_machineLocation;
-    private RadioButton rb_machineQty;
-    private RadioButton rb_machine24;
     private Preference preference;
     private Dao<MasterMachine, Integer> machineAdapter;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
-    private String selectedMachineLoc, selectedMachineQty, selectedMachine24;
+    private String selectedMachineLoc = "";
+    private String selectedMachineQty = "";
+    private String selectedMachine24 = "";
+    private String[] arrMachineLoc;
+    private String[] arrMachineQty;
+    private String[] arrMachine24;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,53 +71,67 @@ public class MachineFragment extends Fragment {
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
-        rbMachineLocation();
-        rbMachineQty();
-        rbMachine24();
-
+        displayAllMachineForm();
         try{
             machineAdapter = new MachineAdapter(getActivity()).getAdapter();
             transHistAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){}
     }
 
-    private void rbMachineLocation(){
-        rg_machine_location.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    private void displayAllMachineForm(){
+        arrMachineLoc = new String[]{getActivity().getString(R.string.machine_location),
+                getActivity().getString(R.string.rb_sendiri),
+                getActivity().getString(R.string.rb_center)};
+        final ArrayAdapter<String> adapterMachineLoc = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrMachineLoc);
+        sp_machine_location.setAdapter(adapterMachineLoc);
+        sp_machine_location.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rb_machineLocation =  getView().findViewById(i);
-                selectedMachineLoc = ""+rb_machineLocation.getText().toString().trim();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0){selectedMachineLoc = adapterMachineLoc.getItem(position);}
             }
-        });
-    }
 
-    private void rbMachineQty(){
-        rg_machine_qty.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rb_machineQty =  getView().findViewById(i);
-                selectedMachineQty = ""+rb_machineQty.getText().toString().trim();
-            }
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
-    }
 
-    private void rbMachine24(){
-        rg_machine_24.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        arrMachineQty = new String[]{getActivity().getString(R.string.machine_qty),
+                getActivity().getString(R.string.rb_machine_1),
+                getActivity().getString(R.string.rb_machine_2),
+                getActivity().getString(R.string.rb_machine_3)};
+
+        final ArrayAdapter<String> adapterMachineQty = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrMachineQty);
+        sp_machine_qty.setAdapter(adapterMachineQty);
+        sp_machine_qty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rb_machine24 =  getView().findViewById(i);
-                selectedMachine24 = ""+rb_machine24.getText().toString().trim();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0){selectedMachineLoc = adapterMachineQty.getItem(position);}
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        arrMachine24 = new String[]{getActivity().getString(R.string.access),
+                getActivity().getString(R.string.rb_machine_24),
+                getActivity().getString(R.string.rb_machine_not24)};
+        final ArrayAdapter<String> adapterMachine24 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrMachine24);
+        sp_machine_24.setAdapter(adapterMachine24);
+        sp_machine_24.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0) {selectedMachine24 = adapterMachine24.getItem(position);}
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
     }
 
     @OnClick(R.id.imgB_machine_submit)
     void submitMachine(){
         try{
-            if (selectedMachineLoc == null || selectedMachineLoc.equals("null") ||
-                selectedMachineQty == null || selectedMachineQty.equals("null") ||
-                txt_machine_idMachine.getText().toString().trim().equals("") ||
-                    selectedMachine24 == null || selectedMachine24.equals("null")){
+            if (selectedMachineLoc.equals("") || selectedMachineQty.equals("") ||
+                txt_machine_idMachine.getText().toString().trim().equals("") || selectedMachine24.equals("")){
                 messageUtils.toastMessage("Mohon dipilih pilihan yang belum dipilih", ConfigApps.T_WARNING);
             }else{
                 machineTrans();
@@ -133,10 +152,10 @@ public class MachineFragment extends Fragment {
                     MasterMachine mMachine = machineAdapter.queryForId(al_valMachine.get(0).getId_machine());
                     mMachine.setProgress_type(preference.getProgress().trim());
                     mMachine.setUpdate_date(DateTimeUtils.getCurrentTime());
-                    mMachine.setAccess_type(""+rb_machine24.getText().toString().trim());
-                    mMachine.setMachine_type(""+rb_machineLocation.getText().toString().trim());
+                    mMachine.setAccess_type(selectedMachine24.trim());
+                    mMachine.setMachine_type(selectedMachineLoc.trim());
                     mMachine.setMachine_no(txt_machine_idMachine.getText().toString().trim());
-                    mMachine.setMachine_qty(Integer.parseInt(""+rb_machineQty.getText().toString().trim()));
+                    mMachine.setMachine_qty(Integer.parseInt(selectedMachineLoc.trim()));
 
                     machineAdapter.update(mMachine);
                     transHistProb(ConfigApps.TRANS_HIST_UPDATE);
@@ -148,10 +167,10 @@ public class MachineFragment extends Fragment {
                     MasterMachine mMachine = new MasterMachine();
                     mMachine.setProgress_type(preference.getProgress().trim());
                     mMachine.setInsert_date(DateTimeUtils.getCurrentTime());
-                    mMachine.setAccess_type(""+rb_machine24.getText().toString().trim());
-                    mMachine.setMachine_type(""+rb_machineLocation.getText().toString().trim());
+                    mMachine.setAccess_type(selectedMachine24.trim());
+                    mMachine.setMachine_type(selectedMachineLoc.trim());
                     mMachine.setMachine_no(txt_machine_idMachine.getText().toString().trim());
-                    mMachine.setMachine_qty(Integer.parseInt(""+rb_machineQty.getText().toString().trim()));
+                    mMachine.setMachine_qty(Integer.parseInt(selectedMachineLoc.trim()));
                     mMachine.setId_site(preference.getCustID());
                     mMachine.setUn_user(preference.getUn());
 

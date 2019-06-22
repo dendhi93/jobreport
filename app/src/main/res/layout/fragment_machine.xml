@@ -33,39 +33,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:background="@drawable/border_bottom"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:text="@string/machine_location"
-                    android:layout_marginStart="@dimen/spacing_tiny_2"
-                    android:layout_gravity="center"/>
-
-                <RadioGroup
-                    android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_machine_location"
+                <Spinner
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:id="@+id/sp_machine_location"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rb_machine_sendiri"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_sendiri"/>
-
-                    <RadioButton
-                        android:id="@+id/rb_machine_center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_center"/>
-
-                </RadioGroup>
-
+                    android:layout_height="45dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -73,45 +47,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:background="@drawable/border_bottom"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:layout_marginStart="@dimen/spacing_tiny_2"
-                    android:text="@string/machine_qty"
-                    android:layout_gravity="center"/>
-
-                <RadioGroup
-                    android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_machine_qty"
+                <Spinner
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:id="@+id/sp_machine_qty"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rb_machine1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_machine_1"/>
-
-                    <RadioButton
-                        android:id="@+id/rb_machine2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_machine_2"/>
-
-                    <RadioButton
-                        android:id="@+id/rb_machine3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_machine_3"/>
-
-                </RadioGroup>
+                    android:layout_height="45dp" />
 
             </LinearLayout>
 
@@ -155,38 +97,44 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:background="@drawable/border_bottom"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:layout_marginStart="@dimen/spacing_tiny_2"
-                    android:text="@string/access"
-                    android:layout_gravity="center"/>
-
-                <RadioGroup
-                    android:padding="@dimen/spacing_tiny"
-                    android:id="@+id/rg_machine_24"
+                <Spinner
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:id="@+id/sp_machine_24"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="45dp" />
 
-                    <RadioButton
-                        android:id="@+id/rb_machine_24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_machine_24"/>
+                <!--<TextView-->
+                    <!--android:layout_width="100dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@color/colorBlack"-->
+                    <!--android:layout_marginStart="@dimen/spacing_tiny_2"-->
+                    <!--android:text="@string/access"-->
+                    <!--android:layout_gravity="center"/>-->
 
-                    <RadioButton
-                        android:id="@+id/rb_machine_not24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_medium"
-                        android:text="@string/rb_machine_not24"/>
+                <!--<RadioGroup-->
+                    <!--android:padding="@dimen/spacing_tiny"-->
+                    <!--android:id="@+id/rg_machine_24"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
 
-                </RadioGroup>
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/rb_machine_24"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginEnd="@dimen/spacing_medium"-->
+                        <!--android:text="@string/rb_machine_24"/>-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/rb_machine_not24"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginEnd="@dimen/spacing_medium"-->
+                        <!--android:text="@string/rb_machine_not24"/>-->
+
+                <!--</RadioGroup>-->
 
             </LinearLayout>
 
