@@ -192,6 +192,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setAction(txt_prob_action_text.getText().toString().trim());
                     mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
                     mProb.setTiba(txt_problem_tiba.getText().toString().trim());
+                    mProb.setStart(txt_problem_start.getText().toString().trim());
                     mProb.setFinish(txt_problem_finish.getText().toString().trim());
 //                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
                     mProb.setOnline(txt_problem_online.getText().toString().trim());
@@ -216,6 +217,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setAction(txt_prob_action_text.getText().toString().trim());
                     mProb.setBerangkat(txt_problem_berangkat.getText().toString().trim());
                     mProb.setTiba(txt_problem_tiba.getText().toString().trim());
+                    mProb.setStart(txt_problem_start.getText().toString().trim());
                     mProb.setFinish(txt_problem_finish.getText().toString().trim());
 //                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
                     mProb.setOnline(txt_problem_online.getText().toString().trim());

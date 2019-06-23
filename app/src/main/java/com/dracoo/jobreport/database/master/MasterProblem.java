@@ -22,6 +22,8 @@ public class MasterProblem implements Serializable {
     private String berangkat;
     @DatabaseField(columnName = "tiba")
     private String tiba;
+    @DatabaseField(columnName = "start")
+    private String start;
     @DatabaseField(columnName = "finish")
     private String finish;
     @DatabaseField(columnName = "upline")
@@ -208,5 +210,13 @@ public class MasterProblem implements Serializable {
 
     public void setDelay_activity(String delay_activity) {
         this.delay_activity = delay_activity;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
     }
 }

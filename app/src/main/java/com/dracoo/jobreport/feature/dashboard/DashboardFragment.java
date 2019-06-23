@@ -241,7 +241,7 @@ public class DashboardFragment extends Fragment {
                         titleParagraph.setSpacingAfter(6f);
                         document.add(titleParagraph);
                         stCopyClipBoard = new StringBuilder();
-                        stCopyClipBoard.append("*Maintenance Report*\n\n");
+                        stCopyClipBoard.append("Report\n\n");
 
                         PdfPTable mainTable = new PdfPTable(2);
                         mainTable.setWidthPercentage(90.0f);
@@ -263,7 +263,8 @@ public class DashboardFragment extends Fragment {
                                                         "Remote Name = " +alInfSite.get(0).getRemote_name().trim() + "\n" +
                                                         "Latitude = " +alInfSite.get(0).getLat().trim()+ "\n"+
                                                         "Longitude = " + alInfSite.get(0).getLongitude().trim() + "\n"+
-                                                        "PIC = " +alJobDesc.get(0).getName_pic() + "\n";
+                                                        "PIC = " +alJobDesc.get(0).getName_pic() + "\n"+
+                                                        "No PIC = " +alJobDesc.get(0).getPic_phone() + "\n";
 
                             PdfPTable table = new PdfPTable(2);
                             table.addCell(headTitleCell("Maintenance Report", titleFont));
@@ -306,12 +307,13 @@ public class DashboardFragment extends Fragment {
                         }
 
                         document.add(JobReportUtils.singleSpace(titleFont));
-                        stCopyClipBoard.append("*"+getActivity().getString(R.string.problemDesc_trans)+"*\n\n");
+                        stCopyClipBoard.append(getActivity().getString(R.string.problemDesc_trans)+"\n");
 
                         ArrayList<MasterProblem> alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
                         if (alProblem.size() > 0){
                             String problemContent = "Berangkat = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()) +"\n"+
                                                     "Tiba = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim())+ "\n"+
+                                                    "Start = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getStart().trim())+ "\n"+
                                                     "Finish = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim())+ "\n"+
                                                     "Delay = " +alProblem.get(0).getDelay_reason().trim() + "\n" +
                                                     "Pending  = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) +"\n"+
