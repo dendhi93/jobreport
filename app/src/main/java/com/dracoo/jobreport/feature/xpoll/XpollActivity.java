@@ -67,7 +67,7 @@ public class XpollActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         if (getSupportActionBar() != null){ getSupportActionBar().setDisplayHomeAsUpEnabled(true); }
 
-        if (getSupportActionBar() != null){ getSupportActionBar().setSubtitle("VSAT"); }
+        if (getSupportActionBar() != null){ getSupportActionBar().setSubtitle(getString(R.string.vsat)); }
     }
 
     @Override
