@@ -170,7 +170,7 @@ public class MachineFragment extends Fragment {
                     mMachine.setAccess_type(selectedMachine24.trim());
                     mMachine.setMachine_type(selectedMachineLoc.trim());
                     mMachine.setMachine_no(txt_machine_idMachine.getText().toString().trim());
-                    mMachine.setMachine_qty(Integer.parseInt(selectedMachineLoc.trim()));
+                    mMachine.setMachine_qty(Integer.parseInt(selectedMachineQty.trim()));
                     mMachine.setId_site(preference.getCustID());
                     mMachine.setUn_user(preference.getUn());
 
