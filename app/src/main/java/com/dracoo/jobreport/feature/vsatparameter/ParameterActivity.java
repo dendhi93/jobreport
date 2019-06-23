@@ -3,9 +3,11 @@ package com.dracoo.jobreport.feature.vsatparameter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.ConnectionParameterAdapter;
@@ -27,8 +29,8 @@ import butterknife.OnClick;
 
 public class ParameterActivity extends AppCompatActivity {
 
-    @BindView(R.id.rg_par_subnetmask)
-    RadioGroup rg_par_subnetmask;
+    @BindView(R.id.sp_param_subnet)
+    Spinner sp_param_subnet;
     @BindView(R.id.txt_parameter_ipLLan)
     EditText txt_parameter_ipLLan;
     @BindView(R.id.txt_parameter_long)
@@ -56,12 +58,12 @@ public class ParameterActivity extends AppCompatActivity {
     @BindView(R.id.txt_parameter_cNo)
     EditText txt_parameter_cNo;
 
-    private String selectedParameter = "null";
-    private RadioButton rbParameter;
+    private String selectedParameter = "";
     private MessageUtils messageUtils;
     private Preference preference;
     private Dao<MasterConnectionParameter, Integer> connParamAdapter;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
+    private String[] arrParamSubnet;
 
 
     @Override
@@ -81,7 +83,7 @@ public class ParameterActivity extends AppCompatActivity {
 
         messageUtils = new MessageUtils(ParameterActivity.this);
         preference = new Preference(ParameterActivity.this);
-        displayParamRadio();
+        displaySpinnerSubnet();
         try{
             connParamAdapter = new ConnectionParameterAdapter(getApplicationContext()).getAdapter();
             transHistAdapter = new TransHistoryAdapter(getApplicationContext()).getAdapter();
@@ -89,19 +91,27 @@ public class ParameterActivity extends AppCompatActivity {
 
     }
 
-    private void displayParamRadio(){
-        rg_par_subnetmask.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    private void displaySpinnerSubnet(){
+        arrParamSubnet = new String[]{getString(R.string.subnetMask),
+                getString(R.string.rb_lan_param_1),
+                getString(R.string.rb_lan_param_2),
+                getString(R.string.rb_lan_param_3)};
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrParamSubnet);
+        sp_param_subnet.setAdapter(adapter);
+        sp_param_subnet.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rbParameter =  findViewById(i);
-                selectedParameter = ""+rbParameter.getText().toString();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0){selectedParameter = adapter.getItem(position);}
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
     }
 
     @OnClick(R.id.imgB_par_submit)
     void submitPar(){
-        if (selectedParameter.equals("null") || selectedParameter == null){
+        if (selectedParameter.equals("")){
             messageUtils.snackBar_message("Mohon dipilih pilhan pada kolom SubnetMask", ParameterActivity.this,ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (!valEmptyText()){
             messageUtils.snackBar_message(getString(R.string.emptyString), ParameterActivity.this,ConfigApps.SNACKBAR_NO_BUTTON);
