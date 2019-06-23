@@ -5,10 +5,14 @@ import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import com.dracoo.jobreport.R;
@@ -32,8 +36,8 @@ import butterknife.OnClick;
 
 public class XpollActivity extends AppCompatActivity {
 
-    @BindView(R.id.rg_xpoll)
-    RadioGroup rg_xpoll;
+    @BindView(R.id.sp_xpoll_choose)
+    Spinner sp_xpoll_choose;
     @BindView(R.id.txt_xpoll_dateTime)
     EditText txt_xpoll_dateTime;
     @BindView(R.id.txt_xpoll_transponder)
@@ -49,14 +53,14 @@ public class XpollActivity extends AppCompatActivity {
     @BindView(R.id.txt_xpoll_op)
     EditText txt_xpoll_op;
 
-    private String selectedRadio = "null";
-    private RadioButton rbXpoll;
+    private String selectedRadio = "";
     private MessageUtils messageUtils;
     private String tempXpollDate = "";
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
     private Dao<MasterXpoll, Integer> xpollAdapter;
     private Preference preference;
+    private String[] arrXpoll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +78,7 @@ public class XpollActivity extends AppCompatActivity {
 
         messageUtils = new MessageUtils(XpollActivity.this);
         preference = new Preference(XpollActivity.this);
-        xpollRadio();
+        displaySpinnerXpoll();
 
         try{
             transHistAdapter = new TransHistoryAdapter(getApplicationContext()).getAdapter();
@@ -84,13 +88,21 @@ public class XpollActivity extends AppCompatActivity {
         }
     }
 
-    private void xpollRadio(){
-        rg_xpoll.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    private void displaySpinnerXpoll(){
+        arrXpoll = new String[]{getString(R.string.sat),
+                getString(R.string.t3s),
+                getString(R.string.apt6),
+                getString(R.string.apt9)};
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrXpoll);
+        sp_xpoll_choose.setAdapter(adapter);
+        sp_xpoll_choose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                rbXpoll =  findViewById(i);
-                selectedRadio = ""+rbXpoll.getText().toString();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0){selectedRadio = adapter.getItem(position);}
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
     }
 
@@ -113,7 +125,7 @@ public class XpollActivity extends AppCompatActivity {
                 txt_xpoll_cpi.getText().toString().trim().equals("") ||
                 txt_xpoll_asi.getText().toString().trim().equals("") ||
                 txt_xpoll_op.getText().toString().trim().equals("") ||
-                selectedRadio.equals("null") || selectedRadio == null){
+                selectedRadio.equals("")){
             return false;
         }else {
             return true;

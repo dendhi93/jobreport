@@ -97,10 +97,10 @@ public class ConnectionFragment extends Fragment {
     EditText txt_conn_m2m_sc1Brand;
 
     private MessageUtils messageUtils;
-    private String selectedConn="null";
-    private String selectedAntena = "null";
-    private String selectedPedestial = "null";
-    private String selectedAccess = "null";
+    private String selectedConn="";
+    private String selectedAntena = "";
+    private String selectedPedestial = "";
+    private String selectedAccess = "";
     private Preference preference;
     private Dao<MasterVsatSetup, Integer> vsatSetupDao;
     private Dao<MasterM2mSetup, Integer> m2mSetupDao;
@@ -202,7 +202,7 @@ public class ConnectionFragment extends Fragment {
     void submitConn(){
         if (preference.getCustID() == 0){
             messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-        }else if (selectedConn.equals("null") || selectedConn == null){
+        }else if (selectedConn.equals("")){
             messageUtils.snackBar_message("mohon dipilih jenis koneksi", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (selectedConn.equals("VSAT")){
             if (!vsatValidation()){
@@ -230,9 +230,8 @@ public class ConnectionFragment extends Fragment {
                 txt_conn_vsatIdu.getText().toString().trim().equals("") ||
                 txt_conn_vsat_antenaType.getText().toString().trim().equals("") ||
                 txt_conn_vsat_antenaBrand.getText().toString().trim().equals("") ||
-                selectedAntena == "null" || selectedAntena.equals("null") ||
-                selectedAccess == "null" || selectedAccess.equals("null") ||
-                selectedPedestial == "null" || selectedPedestial.equals("null")){
+                selectedAntena.equals("") || selectedAccess.equals("") ||
+                selectedPedestial.equals("")){
             return false;
         }else{
             return true;
@@ -423,7 +422,7 @@ public class ConnectionFragment extends Fragment {
     void chooseConnMenu(View view){
         Context wrapper = new ContextThemeWrapper(getActivity(), R.style.PopupMenu);
         PopupMenu popup = new PopupMenu(wrapper, view);
-        if (selectedConn.equals("null") || selectedConn == "null"){
+        if (selectedConn.equals("")){
             messageUtils.snackBar_message("Mohon dipilih jenis koneksi", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         } else if(selectedConn.equals("VSAT")){
             if (preference.getCustID() == 0){
