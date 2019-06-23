@@ -14,7 +14,7 @@ public class DateTimeUtils {
         try {
             SimpleDateFormat source = new SimpleDateFormat("yyy-MM-dd, HH:mm:ss", java.util.Locale.getDefault());
             Date dateSource = source.parse(dateTime);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy; HH:mm:ss", java.util.Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy; HH:mm", java.util.Locale.getDefault());
             if (dateSource != null){
                 return dateFormat.format(dateSource);
             }else{

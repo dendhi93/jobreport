@@ -110,6 +110,7 @@ public class DashboardFragment extends Fragment {
     private StringBuilder stCopyClipBoard;
     private String stCustname = "";
     private String stUn  = "";
+    private String vsatTemp ="";
     private RequestQueue queue;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
@@ -264,7 +265,7 @@ public class DashboardFragment extends Fragment {
                                                         "Latitude = " +alInfSite.get(0).getLat().trim()+ "\n"+
                                                         "Longitude = " + alInfSite.get(0).getLongitude().trim() + "\n"+
                                                         "PIC = " +alJobDesc.get(0).getName_pic() + "\n"+
-                                                        "No PIC = " +alJobDesc.get(0).getPic_phone() + "\n";
+                                                        "No PIC = " +alJobDesc.get(0).getPic_phone();
 
                             PdfPTable table = new PdfPTable(2);
                             table.addCell(headTitleCell("Maintenance Report", titleFont));
@@ -316,8 +317,13 @@ public class DashboardFragment extends Fragment {
                                                     "Start = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getStart().trim())+ "\n"+
                                                     "Finish = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim())+ "\n"+
                                                     "Delay = " +alProblem.get(0).getDelay_reason().trim() + "\n" +
-                                                    "Pending  = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) +"\n"+
-                                                    "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n";
+                                                    "Pending Kegiatan  = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) +"\n"+
+                                                    "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
+                                                    //TODO NAMBAH START ULANG
+                                                    "Online = " +alProblem.get(0).getOnline().trim() +"\n"+
+                                                    "Closed = " +alProblem.get(0).getClosed().trim() +"\n"+
+                                                    "By = " +alProblem.get(0).getClosed_by().trim();
+
 //                                                    "Upline                 = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getUpline().trim()) +"\n";
 
                             PdfPCell secondTableCell = new PdfPCell();
@@ -355,7 +361,7 @@ public class DashboardFragment extends Fragment {
                         }
 
                         document.add(JobReportUtils.singleSpace(titleFont));
-                        stCopyClipBoard.append("*"+getActivity().getString(R.string.electEnv_trans)+"*\n\n");
+                        stCopyClipBoard.append(getActivity().getString(R.string.electEnv_trans)+"\n");
 
                         PdfPTable mainTable3 = new PdfPTable(2);
                         mainTable3.setWidthPercentage(90.0f);
@@ -364,12 +370,12 @@ public class DashboardFragment extends Fragment {
                         cell4.setBorder(PdfPCell.NO_BORDER);
                         ArrayList<MasterEnvirontment> allEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
                         if (allEnv.size() > 0){
-                            String environtmentContent = "_PLN_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_pln()+"\n"+
-                                    "Grounding (Vac) = " +allEnv.get(0).getGrounding_pln()+"\n"+
-                                    "_UPS_\nTegangan (Vac) = "+allEnv.get(0).getTegangan_ups()+ "\n"+
+                            String environtmentContent = "PLN\nTegangan (Vac) = "+allEnv.get(0).getTegangan_pln()+"\n"+
+                                    "Grounding (Vac) = " +allEnv.get(0).getGrounding_pln()+"\n\n"+
+                                    "UPS\nTegangan (Vac) = "+allEnv.get(0).getTegangan_ups()+ "\n"+
                                     "Grounding (Vac) = " +allEnv.get(0).getGrounding_ups()+"\n"+
-                                    "Catatan  = " +allEnv.get(0).getNotes().trim() +"\n"+
-                                    "_AC_\nSuhu = " + allEnv.get(0).getSuhu() +" \u00b0 \n"+
+                                    "Catatan  = " +allEnv.get(0).getNotes().trim() +"\n\n"+
+                                    "AC\nSuhu = " + allEnv.get(0).getSuhu() +" \u00b0 \n"+
                                     "Catatan = " +allEnv.get(0).getNotes_ac().trim();
 
                             PdfPTable table3 = new PdfPTable(2);
@@ -403,18 +409,20 @@ public class DashboardFragment extends Fragment {
                         }
 
                         if(preference.getConnType().equals("VSAT")){
-                            stCopyClipBoard.append("*I/0 Equipment*\n\n");
+                            stCopyClipBoard.append("I/0 Equipment*\n");
 
                             ArrayList<MasterVsatSetup> alVsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
                             if (alVsat.size() > 0){
-                                String vsatSetup = "_OLD_\nS/N Modem = " +alVsat.get(0).getSn_modem().trim()+"\n"+
+                                String vsatSetup = "OLD\nS/N Modem = " +alVsat.get(0).getSn_modem().trim()+"\n"+
                                                     "S/N Adaptor = " +alVsat.get(0).getSn_adaptor().trim()+"\n"+
                                                     "S/N LNB = " +alVsat.get(0).getSn_lnb().trim()+"\n"+
                                                     "S/N RFU = " +alVsat.get(0).getSn_rfu().trim()+"\n"+
                                                     "S/N DIPLEXER ODU = " +alVsat.get(0).getSn_dip_odu().trim() +"\n"+
-                                                    "S/N DIPLEXER IDU = " +alVsat.get(0).getSn_dip_idu().trim() +"\n"+
-                                                    "Diameter Antena = " + alVsat.get(0).getAntena_size() + "\n"+
+                                                    "S/N DIPLEXER IDU = " +alVsat.get(0).getSn_dip_idu().trim() +"\n";
+
+                                vsatTemp  =         "Diameter Antena = " + alVsat.get(0).getAntena_size() + "\n"+
                                                     "Type Antena = " +alVsat.get(0).getAntena_type().trim() + "\n" +
+                                                    "Antena Brand = " +alVsat.get(0).getAntena_brand().trim() + "\n" +
                                                     "Pedestal Type = "+alVsat.get(0).getPedestal_type().trim()+ "\n"+
                                                     "Akses Antena = " +alVsat.get(0).getAccess_type().trim();
 
@@ -489,12 +497,12 @@ public class DashboardFragment extends Fragment {
                                 dipIdu = "";
                             }
 
-                            String vsatReplace = "_NEW_\nS/N Modem = " +snModem+"\n"+
+                            String vsatReplace = "NEW\nS/N Modem = " +snModem+"\n"+
                                     "S/N Adaptor = " +snAdaptor+"\n"+
                                     "S/N LNB = " +lnb+"\n"+
                                     "S/N RFU = " +rfu+"\n"+
                                     "S/N DIPLEXER ODU = " +dipOdu +"\n"+
-                                    "S/N DIPLEXER IDU = " +dipIdu +"\n";
+                                    "S/N DIPLEXER IDU = " +dipIdu ;
 
                             PdfPTable table9 = new PdfPTable(2);
                             table9.addCell(headTitleCell(getActivity().getString(R.string.repVSAT_trans), titleFont));
@@ -522,7 +530,8 @@ public class DashboardFragment extends Fragment {
                             mainTableVsatX.addCell(vsatCell1);
 
                             stCopyClipBoard.append(vsatReplace+"\n\n");
-                            stCopyClipBoard.append("*XPOLL ITEM*\n");
+                            stCopyClipBoard.append(vsatTemp +"\n\n");
+                            stCopyClipBoard.append("XPOLL ITEM\n");
 
                             ArrayList<MasterXpoll> alXpoll = new M2mXpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
                             String xpollSat, xpolllft, xpollCn, xpollCpi, xpollAsi,xpollDateTime, xpollOp;
@@ -588,17 +597,17 @@ public class DashboardFragment extends Fragment {
                             document.add(JobReportUtils.singleSpace(titleFont));
                             ArrayList<MasterConnectionParameter> alParam = new ConnectionParameterAdapter(getActivity()).val_param(preference.getCustID(), preference.getUn());
                             if (alParam.size() > 0){
-                                String paramContent = "*LAN PARAMETER*\nIP Lan = " +alParam.get(0).getLan_parameter().trim() +" \n"+
-                                                      "Subnet Mask = "+ alParam.get(0).getLan_subnetmask().trim() + "\n"+
-                                                      "*MANAGEMENT PARAMETER*\nESN Modem = " +alParam.get(0).getManagement_esnmodem().trim() + "\n"+
+                                String paramContent = "LAN PARAMETER\nIP Lan = " +alParam.get(0).getLan_parameter().trim() +" \n"+
+                                                      "Subnet Mask = "+ alParam.get(0).getLan_subnetmask().trim() + "\n\n"+
+                                                      "MANAGEMENT PARAMETER\nESN Modem = " +alParam.get(0).getManagement_esnmodem().trim() + "\n"+
                                                       "Gateway = " +alParam.get(0).getManagement_gateway().trim()+"\n"+
-                                                      "SNMP = " +alParam.get(0).getManagement_snmp().trim()+"\n"+
-                                                      "*RANGING PARAMETER*\nSIGNAL = " +alParam.get(0).getRanging_signal().trim()+ "\n"+
+                                                      "SNMP = " +alParam.get(0).getManagement_snmp().trim()+"\n\n"+
+                                                      "RANGING PARAMETER\nSIGNAL = " +alParam.get(0).getRanging_signal().trim()+ "\n"+
                                                       "DATA RATE = " +alParam.get(0).getRanging_data_rate().trim()+"\n"+
                                                       "FEC = " +alParam.get(0).getRanging_fec().trim() + "\n"+
                                                       "FINAL POWER SETTING = " +alParam.get(0).getRanging_power().trim()+"\n"+
                                                       "FINAL ESNO = " +alParam.get(0).getRanging_esno().trim() + "\n"+
-                                                      "FINAL C/NO = " +alParam.get(0).getRanging_cno().trim() + "\n";
+                                                      "FINAL C/NO = " +alParam.get(0).getRanging_cno().trim();
 
                                 PdfPTable table11 = new PdfPTable(2);
                                 table11.addCell(headTitleCell(getActivity().getString(R.string.networkParam_trans), titleFont));
@@ -635,6 +644,7 @@ public class DashboardFragment extends Fragment {
                                 document.add(table11);
                                 stCopyClipBoard.append(paramContent+"\n\n");
                             }
+                            //TODO NAMBAH MESIN
 
                         }else if (preference.getConnType().equals("M2M")){
                             stCopyClipBoard.append("*"+getActivity().getString(R.string.ioM2M_trans)+"*\n");
@@ -872,7 +882,7 @@ public class DashboardFragment extends Fragment {
                         document.add(paragraphAction);
 
                         PdfPTable table7 = new PdfPTable(4);
-                        stCopyClipBoard.append("*"+getActivity().getString(R.string.action_trans)+"*\n\n");
+                        stCopyClipBoard.append("ACTION\n");
                         ArrayList<MasterAction> al_listAction = new ActionAdapter(getActivity()).load_dataAction(preference.getCustID(), preference.getUn());
                         if (al_listAction.size() > 0){
                             arr_actionDateTime = new String[al_listAction.size()];
