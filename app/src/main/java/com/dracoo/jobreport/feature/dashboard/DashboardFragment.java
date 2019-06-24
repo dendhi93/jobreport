@@ -237,6 +237,33 @@ public class DashboardFragment extends Fragment {
                         PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                         document.open();
 
+                        PdfPTable tblTitleNews = new PdfPTable(1);
+                        tblTitleNews.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblTitleNews.addCell(JobReportUtils.bottomLineCell("BERITA ACARA", titleFont));
+                        document.add(tblTitleNews);
+                        Paragraph paragraphNews = new Paragraph("\n", contentFont);
+                        paragraphNews.setAlignment(Element.ALIGN_LEFT);
+                        paragraphNews.setSpacingAfter(1f);
+                        document.add(paragraphNews);
+
+                        PdfPTable tblTitleNewsNo = new PdfPTable(7);
+                        tblTitleNewsNo.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("No  :", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell(" ________ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("BA- ______ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
+                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("_________", titleFont));
+                        document.add(tblTitleNewsNo);
+                        document.add(JobReportUtils.singleSpace(contentFont));
+
+                        PdfPTable tblDescNews = new PdfPTable(1);
+                        tblDescNews.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblDescNews.addCell(JobReportUtils.bottomLineCell("JENIS KEGIATAN", titleFont));
+                        document.add(tblDescNews);
+
+                        document.newPage();
                         Paragraph titleParagraph = new Paragraph("RESULT REPORT");
                         titleParagraph.setAlignment(Element.ALIGN_CENTER);
                         titleParagraph.setSpacingAfter(6f);
@@ -933,34 +960,6 @@ public class DashboardFragment extends Fragment {
                                 stCopyClipBoard.append(actionContent+"\n\n");
                             }
                         }
-
-                        //TODO CREATE BERITA ACARA
-                        document.newPage();
-                        PdfPTable tblTitleNews = new PdfPTable(1);
-                        tblTitleNews.setHorizontalAlignment(Element.ALIGN_LEFT);
-                        tblTitleNews.addCell(JobReportUtils.bottomLineCell("BERITA ACARA", titleFont));
-                        document.add(tblTitleNews);
-                        paragraphAction = new Paragraph("\n", contentFont);
-                        paragraphAction.setAlignment(Element.ALIGN_LEFT);
-                        paragraphAction.setSpacingAfter(1f);
-                        document.add(paragraphAction);
-
-                        PdfPTable tblTitleNewsNo = new PdfPTable(7);
-                        tblTitleNewsNo.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("No  :", titleFont));
-                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell(" ________ / ", titleFont));
-                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("BA- ______ / ", titleFont));
-                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
-                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
-                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("________ / ", titleFont));
-                        tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("_________", titleFont));
-                        document.add(tblTitleNewsNo);
-                        document.add(JobReportUtils.singleSpace(contentFont));
-
-                        PdfPTable tblDescNews = new PdfPTable(1);
-                        tblDescNews.setHorizontalAlignment(Element.ALIGN_LEFT);
-                        tblDescNews.addCell(JobReportUtils.bottomLineCell("JENIS KEGIATAN", titleFont));
-                        document.add(tblDescNews);
 
                         document.close();
                         prg_dash.setVisibility(View.GONE);
