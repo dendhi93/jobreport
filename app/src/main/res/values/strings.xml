@@ -88,6 +88,7 @@
     <string name="by">By</string>
     <string name="rb_eos">EOS</string>
     <string name="rb_noc">NOC</string>
+    <string name="restart">Start Ulang</string>
 
     //electrical env content
     <string name="pln">PLN</string>

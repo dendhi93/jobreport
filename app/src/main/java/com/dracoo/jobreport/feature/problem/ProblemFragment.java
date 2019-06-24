@@ -59,6 +59,8 @@ public class ProblemFragment extends Fragment {
     EditText txt_prob_delay;
     @BindView(R.id.txt_prob_actPending)
     EditText txt_prob_actPending;
+    @BindView(R.id.txt_problem_restart)
+    EditText txt_problem_restart;
 
     @BindView(R.id.txt_prob_modemDisplay)
     EditText txt_prob_modemDisplay;
@@ -161,6 +163,8 @@ public class ProblemFragment extends Fragment {
     }
     @OnClick(R.id.imgBtn_timer7)
     void displayTime7(){datePicker(9);}
+    @OnClick(R.id.imgBtn_timer8)
+    void displayTime8(){datePicker(11);}
 
     private void displayClosedSpinner(){
         arrClosedBy  = new String[]{"Closed By","EOS", "NOC"};
@@ -183,6 +187,10 @@ public class ProblemFragment extends Fragment {
         if (preference.getCustID() == 0){
             messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else{
+            String stRestart;
+            if (txt_problem_restart.getText().toString().trim().equals("")){
+                stRestart = "-";
+            }else{stRestart = txt_problem_restart.getText().toString().trim();}
             ArrayList<MasterProblem> al_valProb = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
             if (al_valProb.size() > 0){
                 try{
@@ -205,6 +213,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setUn_user(preference.getUn().trim());
                     mProb.setDelay_reason(txt_prob_delay.getText().toString().trim());
                     mProb.setDelay_activity(txt_prob_actPending.getText().toString().trim());
+                    mProb.setRestart(stRestart.trim());
 
                     problemAdapter.update(mProb);
                     transHistProb(ConfigApps.TRANS_HIST_UPDATE);
@@ -231,6 +240,7 @@ public class ProblemFragment extends Fragment {
                     mProb.setId_site(preference.getCustID());
                     mProb.setDelay_reason(txt_prob_delay.getText().toString().trim());
                     mProb.setDelay_activity(txt_prob_actPending.getText().toString().trim());
+                    mProb.setRestart(stRestart.trim());
 
                     problemAdapter.create(mProb);
                     transHistProb(ConfigApps.TRANS_HIST_INSERT);
@@ -327,7 +337,8 @@ public class ProblemFragment extends Fragment {
                 }else if (selectedColumn == 3){ txt_problem_tiba.setText(validDateTime.trim());
 //                }else if (selectedColumn == 5){ txt_problem_upline.setText(validDateTime.trim());
                 }else if (selectedColumn == 7){ txt_problem_online.setText(validDateTime.trim());
-                }else if (selectedColumn == 9){ txt_prob_actPending.setText(validDateTime.trim()); }
+                }else if (selectedColumn == 9){ txt_prob_actPending.setText(validDateTime.trim());
+                }else if (selectedColumn == 11){ txt_problem_restart.setText(validDateTime.trim());}
             }
         }, mHour, mMinute, true);
         timePickerDialog.show();

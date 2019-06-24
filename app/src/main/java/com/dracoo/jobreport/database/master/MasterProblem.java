@@ -50,6 +50,8 @@ public class MasterProblem implements Serializable {
     private String delay_reason;
     @DatabaseField(columnName = "delay_activity")
     private String delay_activity;
+    @DatabaseField(columnName = "restart")
+    private String restart;
 
 
     public Integer getId_problem() {
@@ -218,5 +220,13 @@ public class MasterProblem implements Serializable {
 
     public void setStart(String start) {
         this.start = start;
+    }
+
+    public String getRestart() {
+        return restart;
+    }
+
+    public void setRestart(String restart) {
+        this.restart = restart;
     }
 }
