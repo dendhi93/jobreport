@@ -40,7 +40,6 @@ public class MachineAdapter extends DatabaseAdapter {
             mEnv.setMachine_no(cursor.getString(4));
             mEnv.setAccess_type(cursor.getString(5));
 
-
             envs.add(mEnv);
         }
         cursor.close();

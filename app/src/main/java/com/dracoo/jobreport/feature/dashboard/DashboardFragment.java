@@ -43,6 +43,7 @@ import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterM2mData;
 import com.dracoo.jobreport.database.master.MasterM2mReplace;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
+import com.dracoo.jobreport.database.master.MasterMachine;
 import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
@@ -671,7 +672,6 @@ public class DashboardFragment extends Fragment {
                                 document.add(table11);
                                 stCopyClipBoard.append(paramContent+"\n\n");
                             }
-                            //TODO NAMBAH MESIN
 
                         }else if (preference.getConnType().equals("M2M")){
                             stCopyClipBoard.append("*"+getActivity().getString(R.string.ioM2M_trans)+"*\n");
@@ -876,6 +876,15 @@ public class DashboardFragment extends Fragment {
                             paragraph2.add(mainTable1);
                             document.add(paragraph2);
                             stCopyClipBoard.append(m2mReplace+"\n\n");
+                        }
+
+                        ArrayList<MasterMachine> al_dataMachine  = new MachineAdapter(getActivity()).val_machine(preference.getCustID(), preference.getUn());
+                        if (al_dataMachine.size() > 0){
+                            String machineData = "ATM Machine\nLokasi ATM = " +al_dataMachine.get(0).getMachine_type().trim() +"\n"+
+                                    "Jumlah Mesin ATM = " +al_dataMachine.get(0).getMachine_qty() + "\n"+
+                                    "ID ATM = " +al_dataMachine.get(0).getId_machine() + "\n"+
+                                    "Akses ATM = " +al_dataMachine.get(0).getAccess_type().trim();
+                            stCopyClipBoard.append(machineData+"\n\n");
                         }
 
                         document.newPage();
