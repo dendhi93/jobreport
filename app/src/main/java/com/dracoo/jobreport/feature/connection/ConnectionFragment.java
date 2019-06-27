@@ -256,7 +256,7 @@ public class ConnectionFragment extends Fragment {
                     mVsatSetup.setSn_dip_odu(txt_conn_vsatOdu.getText().toString().trim());
                     mVsatSetup.setSn_dip_idu(txt_conn_vsatIdu.getText().toString().trim());
                     mVsatSetup.setAntena_size(selectedAntena.trim());
-                    mVsatSetup.setAntena_brand(txt_conn_vsat_antenaBrand.toString().trim());
+                    mVsatSetup.setAntena_brand(txt_conn_vsat_antenaBrand.getText().toString().trim());
                     mVsatSetup.setAntena_type(txt_conn_vsat_antenaType.getText().toString().trim());
                     mVsatSetup.setPedestal_type(selectedPedestial.trim());
                     mVsatSetup.setAccess_type(selectedAccess.trim());

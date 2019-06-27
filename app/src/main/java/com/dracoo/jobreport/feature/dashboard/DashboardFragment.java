@@ -56,6 +56,7 @@ import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.google.android.gms.dynamic.IFragmentWrapper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -305,49 +306,242 @@ public class DashboardFragment extends Fragment {
     }
 
     private void sendViaWA(){
+        prg_dash.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 stCopyClipBoard = new StringBuilder();
                 stCopyClipBoard.append("Report\n\n");
-                String maintenanceContent = "";
-                if (alJobDesc.size() > 0){
-                    maintenanceContent = "Progress = " +preference.getProgress().trim() +"\n" +
-                            "TT / WO = " +alInfSite.get(0).getTtwo().trim() + "\n"+
-                            "Jenis Koneksi = " +preference.getConnType() + "\n"+
-                            "Nama Teknisi = " +preference.getTechName() + "\n"+
-                            "Service Point = " +preference.getServicePoint() + "\n"+
-                            "Nama Lokasi = " +alInfSite.get(0).getLocation_name().trim() + "\n" +
-                            "Alamat = " +alInfSite.get(0).getRemote_address().trim() + "\n" +
-                            "Kota = " +alInfSite.get(0).getCity().trim() + "\n"+
-                            "Kabupaten = " +alInfSite.get(0).getKabupaten().trim()+ "\n"+
-                            "Provinsi = " +alInfSite.get(0).getProv().trim() + "\n" +
-                            "Remote Name = " +alInfSite.get(0).getRemote_name().trim() + "\n" +
-                            "Latitude = " +alInfSite.get(0).getLat().trim()+ "\n"+
-                            "Longitude = " + alInfSite.get(0).getLongitude().trim() + "\n"+
-                            "PIC = " +alJobDesc.get(0).getName_pic() + "\n"+
-                            "No PIC = " +alJobDesc.get(0).getPic_phone();
-                }
-                stCopyClipBoard.append(maintenanceContent+"\n\n");
-                String problemContent="";
-                if (alProblem.size() > 0){
-                    String stProbRestart = alProblem.get(0).getRestart().trim();
-                    if (stProbRestart.equals("-")){ stProbRestart = ""; }
+                try{
+                    String maintenanceContent;
+                    if (alJobDesc.size() > 0){
+                        maintenanceContent = "Progress = " +preference.getProgress().trim() +"\n" +
+                                "TT / WO = " +alInfSite.get(0).getTtwo().trim() + "\n"+
+                                "Jenis Koneksi = " +preference.getConnType() + "\n"+
+                                "Nama Teknisi = " +preference.getTechName() + "\n"+
+                                "Service Point = " +preference.getServicePoint() + "\n"+
+                                "Nama Lokasi = " +alInfSite.get(0).getLocation_name().trim() + "\n" +
+                                "Alamat = " +alInfSite.get(0).getRemote_address().trim() + "\n" +
+                                "Kota = " +alInfSite.get(0).getCity().trim() + "\n"+
+                                "Kabupaten = " +alInfSite.get(0).getKabupaten().trim()+ "\n"+
+                                "Provinsi = " +alInfSite.get(0).getProv().trim() + "\n" +
+                                "Remote Name = " +alInfSite.get(0).getRemote_name().trim() + "\n" +
+                                "Latitude = " +alInfSite.get(0).getLat().trim()+ "\n"+
+                                "Longitude = " + alInfSite.get(0).getLongitude().trim() + "\n"+
+                                "PIC = " +alJobDesc.get(0).getName_pic() + "\n"+
+                                "No PIC = " +alJobDesc.get(0).getPic_phone();
+                        stCopyClipBoard.append(maintenanceContent+"\n\n");
+                    }
 
-                    problemContent = "Berangkat = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()) +"\n"+
-                            "Tiba = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim())+ "\n"+
-                            "Start = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getStart().trim())+ "\n"+
-                            "Finish = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim())+ "\n"+
-                            "Delay = " +alProblem.get(0).getDelay_reason().trim() + "\n" +
-                            "Pending Kegiatan  = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) +"\n"+
-                            "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
-                            "Start Ulang = " +stProbRestart +"\n" +
-                            "Online = " +alProblem.get(0).getOnline().trim() +"\n"+
-                            "Closed = " +alProblem.get(0).getClosed().trim() +"\n"+
-                            "By = " +alProblem.get(0).getClosed_by().trim();
-                }
-                stCopyClipBoard.append(problemContent+"\n\n");
 
+                    stCopyClipBoard.append(getActivity().getString(R.string.problemDesc_trans)+"\n");
+                    String problemContent;
+                    if (alProblem.size() > 0){
+                        String stProbRestart = alProblem.get(0).getRestart().trim();
+                        if (stProbRestart.equals("-")){ stProbRestart = ""; }
+
+                        problemContent = "Berangkat = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()) +"\n"+
+                                "Tiba = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim())+ "\n"+
+                                "Start = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getStart().trim())+ "\n"+
+                                "Finish = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim())+ "\n"+
+                                "Delay = " +alProblem.get(0).getDelay_reason().trim() + "\n" +
+                                "Pending Kegiatan  = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) +"\n"+
+                                "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
+                                "Start Ulang = " +stProbRestart +"\n" +
+                                "Online = " +alProblem.get(0).getOnline().trim() +"\n"+
+                                "Closed = " +alProblem.get(0).getClosed().trim() +"\n"+
+                                "By = " +alProblem.get(0).getClosed_by().trim();
+                        stCopyClipBoard.append(problemContent+"\n\n");
+                    }
+
+
+                    stCopyClipBoard.append(getActivity().getString(R.string.electEnv_trans)+"\n");
+                    String environtmentContent;
+                    if (alEnv.size() > 0){
+                        environtmentContent = "PLN\nTegangan (Vac) = "+alEnv.get(0).getTegangan_pln()+"\n"+
+                                "Grounding (Vac) = " +alEnv.get(0).getGrounding_pln()+"\n\n"+
+                                "UPS\nTegangan (Vac) = "+alEnv.get(0).getTegangan_ups()+ "\n"+
+                                "Grounding (Vac) = " +alEnv.get(0).getGrounding_ups()+"\n"+
+                                "Catatan  = " +alEnv.get(0).getNotes().trim() +"\n\n"+
+                                "AC\nSuhu = " + alEnv.get(0).getSuhu() +" \u00b0 \n"+
+                                "Catatan = " +alEnv.get(0).getNotes_ac().trim();
+                        stCopyClipBoard.append(environtmentContent+"\n\n");
+                    }
+
+
+                    if (preference.getConnType().equals("VSAT")){
+                        stCopyClipBoard.append("I/0 Equipment*\n");
+                        String vsatSetup;
+                        if (alVsatSetup.size() > 0){
+                            vsatSetup = "OLD\nS/N Modem = " +alVsatSetup.get(0).getSn_modem().trim()+"\n"+
+                                    "S/N Adaptor = " +alVsatSetup.get(0).getSn_adaptor().trim()+"\n"+
+                                    "S/N LNB = " +alVsatSetup.get(0).getSn_lnb().trim()+"\n"+
+                                    "S/N RFU = " +alVsatSetup.get(0).getSn_rfu().trim()+"\n"+
+                                    "S/N DIPLEXER ODU = " +alVsatSetup.get(0).getSn_dip_odu().trim() +"\n"+
+                                    "S/N DIPLEXER IDU = " +alVsatSetup.get(0).getSn_dip_idu().trim() +"\n";
+
+                            vsatTemp  = "Diameter Antena = " + alVsatSetup.get(0).getAntena_size() + "\n"+
+                                    "Type Antena = " +alVsatSetup.get(0).getAntena_type().trim() + "\n" +
+                                    "Antena Brand = " +alVsatSetup.get(0).getAntena_brand().trim() + "\n" +
+                                    "Pedestal Type = "+alVsatSetup.get(0).getPedestal_type().trim()+ "\n"+
+                                    "Akses Antena = " +alVsatSetup.get(0).getAccess_type().trim();
+
+                            stCopyClipBoard.append(vsatSetup+"\n\n");
+                        }
+
+
+                        String snModem, snAdaptor, lnb, rfu, dipOdu, dipIdu;
+                        if (alVsatReplace.size() > 0){
+                            snModem = alVsatReplace.get(0).getSn_modem().trim();
+                            snAdaptor = alVsatReplace.get(0).getSn_adaptor().trim();
+                            lnb = alVsatReplace.get(0).getSn_lnb().trim();
+                            rfu = alVsatReplace.get(0).getSn_rfu().trim();
+                            dipOdu = alVsatReplace.get(0).getSn_dip_odu().trim();
+                            dipIdu = alVsatReplace.get(0).getSn_dip_idu().trim();
+                        }else{
+                            snModem = "";
+                            snAdaptor = "";
+                            lnb = "";
+                            rfu = "";
+                            dipOdu = "";
+                            dipIdu = "";
+                        }
+                        String vsatReplace = "NEW\nS/N Modem = " +snModem+"\n"+
+                                "S/N Adaptor = " +snAdaptor+"\n"+
+                                "S/N LNB = " +lnb+"\n"+
+                                "S/N RFU = " +rfu+"\n"+
+                                "S/N DIPLEXER ODU = " +dipOdu +"\n"+
+                                "S/N DIPLEXER IDU = " +dipIdu ;
+                        stCopyClipBoard.append(vsatReplace+"\n\n");
+                        stCopyClipBoard.append(vsatTemp +"\n\n");
+                        stCopyClipBoard.append("XPOLL ITEM\n");
+                        String xpollSat, xpolllft, xpollCn, xpollCpi, xpollAsi,xpollDateTime, xpollOp;
+                        if(alXpoll.size() > 0){
+                            xpollSat = alXpoll.get(0).getSat().trim();
+                            xpolllft = alXpoll.get(0).getLft().trim();
+                            xpollCn = alXpoll.get(0).getCn().trim();
+                            xpollCpi = alXpoll.get(0).getCpi().trim();
+                            xpollAsi = alXpoll.get(0).getAsi().trim();
+                            xpollDateTime = DateTimeUtils.getChangeDateFormat(alXpoll.get(0).getInsert_time().trim());
+                            xpollOp = alXpoll.get(0).getOp().trim();
+                        }else{
+                            xpollSat = "";
+                            xpolllft = "";
+                            xpollCn = "";
+                            xpollCpi = "";
+                            xpollAsi = "";
+                            xpollDateTime = "";
+                            xpollOp = "";
+                        }
+                        String xpollContent = "SAT = " +xpollSat +"\n"+
+                                "LFT = " +xpolllft +"\n"+
+                                "C/N = " +xpollCn + "\n"+
+                                "CPI = " +xpollCpi+ "\n"+
+                                "ASI = " +xpollAsi + "\n"+
+                                "DATE, TIME = " +xpollDateTime+"\n"+
+                                "OP = " +xpollOp;
+                        stCopyClipBoard.append(xpollContent+"\n\n");
+
+                        String paramContent;
+                        if (alConnParam.size() > 0){
+                            paramContent = "LAN PARAMETER\nIP Lan = " +alConnParam.get(0).getLan_parameter().trim() +" \n"+
+                                    "Subnet Mask = "+ alConnParam.get(0).getLan_subnetmask().trim() + "\n\n"+
+                                    "MANAGEMENT PARAMETER\nESN Modem = " +alConnParam.get(0).getManagement_esnmodem().trim() + "\n"+
+                                    "Gateway = " +alConnParam.get(0).getManagement_gateway().trim()+"\n"+
+                                    "SNMP = " +alConnParam.get(0).getManagement_snmp().trim()+"\n\n"+
+                                    "RANGING PARAMETER\nSIGNAL = " +alConnParam.get(0).getRanging_signal().trim()+ "\n"+
+                                    "DATA RATE = " +alConnParam.get(0).getRanging_data_rate().trim()+"\n"+
+                                    "FEC = " +alConnParam.get(0).getRanging_fec().trim() + "\n"+
+                                    "FINAL POWER SETTING = " +alConnParam.get(0).getRanging_power().trim()+"\n"+
+                                    "FINAL ESNO = " +alConnParam.get(0).getRanging_esno().trim() + "\n"+
+                                    "FINAL C/NO = " +alConnParam.get(0).getRanging_cno().trim();
+
+                            stCopyClipBoard.append(paramContent+"\n\n");
+                        }
+                    }else{
+                        stCopyClipBoard.append("*"+getActivity().getString(R.string.ioM2M_trans)+"*\n");
+                        String m2mSetupContent;
+                        if (alM2mSetup.size() > 0){
+                            m2mSetupContent = "_OLD_\nM2M\nBrand / Type = " +alM2mSetup.get(0).getBrand_type_m2m() +"\n"+
+                                    "S/N = "+alM2mSetup.get(0).getSn_m2m().trim()+"\n"+
+                                    "ADAPTOR\nBrand / Type = " +alM2mSetup.get(0).getBrand_type_adaptor().trim()+"\n"+
+                                    "S/N = " +alM2mSetup.get(0).getSn_adaptor().trim() + "\n"+
+                                    "SIMCARD 1\nBrand / Type = " +alM2mSetup.get(0).getSim_card1_type()+"\n"+
+                                    "S/N = " +alM2mSetup.get(0).getSim_card1_sn() +"\n"+
+                                    "PUK = " +alM2mSetup.get(0).getSim_card1_puk() + "\n"+
+                                    "SIMCARD 2 \nBrand / Type = " + alM2mSetup.get(0).getSim_card2_type().trim() + "\n"+
+                                    "S/N = " +alM2mSetup.get(0).getSim_card2_sn() + "\n"+
+                                    "PUK = " +alM2mSetup.get(0).getSim_card2_puk() + "\n";
+                            stCopyClipBoard.append(m2mSetupContent+"\n\n");
+                        }
+
+                        String dataM2mContent;
+                        if (alM2mData.size() > 0){
+                            dataM2mContent = "Username = " +alM2mData.get(0).getUsername().trim()+ "\n"+
+                                    "Password = " +alM2mData.get(0).getPassword().trim() + "\n"+
+                                    "Ip machine = "+alM2mData.get(0).getIp_machine().trim() + "\n"+
+                                    "User = " +alM2mData.get(0).getUser().trim()+ "\n"+
+                                    "Remote = " +alM2mData.get(0).getRemote().trim()+"\n"+
+                                    "Tunnel ID 1 = " +alM2mData.get(0).getTunnel_id().trim()+"\n"+
+                                    "IP Bounding = " +alM2mData.get(0).getIp_bonding().trim()+"\n"+
+                                    "IP VLAN = " +alM2mData.get(0).getIp_vlan().trim()+"\n"+
+                                    "IP LAN = " +alM2mData.get(0).getIp_lan().trim()+"\n"+
+                                    "Subnetmask = " +alM2mData.get(0).getSubnet_mask().trim() +"\n"+
+                                    "AGG = " +alM2mData.get(0).getAgg().trim();
+                            stCopyClipBoard.append(dataM2mContent+"\n\n");
+                        }
+
+                        String m2mType, m2mSn, adaptorType, adaptorSn, simCard1Type, simCard1SN, simcard1Puk, simCard2Type, simCard2SN, simcard2Puk;
+                        if (alM2mReplace.size() > 0){
+                            m2mType = alM2mReplace.get(0).getBrand_type_replace().trim();
+                            m2mSn = alM2mReplace.get(0).getBrand_type_adaptor().trim();
+                            adaptorType = alM2mReplace.get(0).getBrand_type_adaptor().trim();
+                            adaptorSn = alM2mReplace.get(0).getSn_adaptor().trim();
+                            simCard1Type = alM2mReplace.get(0).getSim_card1_type().trim();
+                            simCard1SN = alM2mReplace.get(0).getSim_card1_sn().trim();
+                            simcard1Puk = alM2mReplace.get(0).getSim_card1_puk().trim();
+                            simCard2Type = alM2mReplace.get(0).getSim_card2_type().trim();
+                            simCard2SN = alM2mReplace.get(0).getSim_card2_sn().trim();
+                            simcard2Puk = alM2mReplace.get(0).getSim_card2_puk().trim();
+                        }else{
+                            m2mType = "";
+                            m2mSn = "";
+                            adaptorType = "";
+                            adaptorSn = "";
+                            simCard1Type = "";
+                            simCard1SN = "";
+                            simcard1Puk = "";
+                            simCard2Type = "";
+                            simCard2SN = "";
+                            simcard2Puk = "";
+                        }
+                        String m2mReplace = "_NEW_\nM2M\nBrand / Type = " +m2mType.trim()+"\n"+
+                                "S/N = " +m2mSn.trim() +"\n"+
+                                "ADAPTOR\nBrand / Type = "+adaptorType.trim() +"\n"+
+                                "S/N = " +adaptorSn.trim() +"\n"+
+                                "SIMCARD 1\nBrand / Type = " +simCard1Type.trim() +"\n"+
+                                "S/N = " +simCard1SN.trim() + "\n" +
+                                "PUK = " +simcard1Puk.trim() + "\n" +
+                                "SIMCARD 2\nBrand / Type = " +simCard2Type.trim() + "\n"+
+                                "S/N = " +simCard2SN.trim() + "\n" +
+                                "PUK = " +simcard2Puk.trim();
+                        stCopyClipBoard.append(m2mReplace+"\n\n");
+                    }
+
+                    String machineData;
+                    if (alMachine.size() > 0){
+                        machineData = "ATM Machine\nLokasi ATM = " +alMachine.get(0).getMachine_type().trim() +"\n"+
+                                "Jumlah Mesin ATM = " +alMachine.get(0).getMachine_qty() + "\n"+
+                                "ID ATM = " +alMachine.get(0).getId_machine() + "\n"+
+                                "Akses ATM = " +alMachine.get(0).getAccess_type().trim();
+                        stCopyClipBoard.append(machineData+"\n\n");
+                    }
+                    prg_dash.setVisibility(View.GONE);
+                    chooseWA();
+                }catch (Exception e){
+                    prg_dash.setVisibility(View.GONE);
+                    messageUtils.toastMessage("err Send WA " +e.toString(), ConfigApps.T_ERROR);
+                }
             }
         }, 900);
     }
