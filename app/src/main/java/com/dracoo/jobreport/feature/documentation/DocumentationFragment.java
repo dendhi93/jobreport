@@ -172,7 +172,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
                         Document document = new Document(PageSize.A4, 30, 30, 30, 30);
                         try{
-                            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
+                            PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/ImagePdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                             document.open();
                             if (al_image.size() > 0){
                                 arr_imgName = new String[al_image.size()];
