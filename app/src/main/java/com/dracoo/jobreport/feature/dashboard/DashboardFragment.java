@@ -377,101 +377,10 @@ public class DashboardFragment extends Fragment {
                     tblcontentDesc.addCell(JobReportUtils.borderlessCell("Pada Hari", titleFont));
                     tblcontentDesc.addCell(JobReportUtils.borderlessCell("_____________", titleFont));
                     //TODO BELUM SELESAI
-
-                    document.newPage();
-                    Paragraph titleParagraph = new Paragraph("RESULT REPORT");
-                    titleParagraph.setAlignment(Element.ALIGN_CENTER);
-                    titleParagraph.setSpacingAfter(6f);
-                    document.add(titleParagraph);
-
-                    PdfPTable mainTable = new PdfPTable(2);
-                    mainTable.setWidthPercentage(90.0f);
-                    mainTable.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    PdfPCell firstTableCell = new PdfPCell();
-                    firstTableCell.setBorder(PdfPCell.NO_BORDER);
-
-                    if (alJobDesc.size() > 0){
-                        PdfPTable table = new PdfPTable(2);
-                        table.addCell(headTitleCell("Maintenance Report", titleFont));
-                        table.addCell(createCell("Progress ", contentFont));
-                        table.addCell(new Paragraph(preference.getProgress().trim(), contentFont));
-                        table.addCell(createCell("TT / WO ", contentFont));
-                        table.addCell(new Paragraph(alInfSite.get(0).getTtwo().trim(), contentFont));
-                        table.addCell(createCell("Jenis Koneksi ", contentFont));
-                        table.addCell(new Paragraph(preference.getConnType(), contentFont));
-                        table.addCell(createCell("Nama Teknisi ", contentFont));
-                        table.addCell(new Paragraph(preference.getTechName(), contentFont));
-                        table.addCell(createCell("Service Point ", contentFont));
-                        table.addCell(new Paragraph(preference.getServicePoint().trim(), contentFont));
-                        table.addCell(createCell("Nama Lokasi ", contentFont));
-                        table.addCell(new Paragraph(alInfSite.get(0).getLocation_name().trim(), contentFont));
-                        table.addCell(createCell("Alamat ", contentFont));
-                        table.addCell(new Paragraph(alInfSite.get(0).getRemote_address().trim(), contentFont));
-                        table.addCell(createCell("Kota ", contentFont));
-                        table.addCell(new Paragraph(alInfSite.get(0).getCity().trim(), contentFont));
-                        table.addCell(createCell("Kabupaten ", contentFont));
-                        table.addCell(new Paragraph(alInfSite.get(0).getKabupaten().trim(), contentFont));
-                        table.addCell(createCell("Provinsi ", contentFont));
-                        table.addCell(new Paragraph(alInfSite.get(0).getProv().trim(), contentFont));
-                        table.addCell(createCell("Remote Name ", contentFont));
-                        table.addCell(new Paragraph(alInfSite.get(0).getRemote_name().trim(), contentFont));
-                        table.addCell(createCell("Latitude ", contentFont));
-                        table.addCell(new Paragraph(alInfSite.get(0).getLat().trim(), contentFont));
-                        table.addCell(createCell("Longitude ", contentFont));
-                        table.addCell(new Paragraph(alInfSite.get(0).getLongitude().trim(), contentFont));
-                        table.addCell(createCell("PIC", contentFont));
-                        table.addCell(new Paragraph(alJobDesc.get(0).getName_pic().trim() , contentFont));
-                        table.setHorizontalAlignment(Element.ALIGN_LEFT);
-                        float[] columnWidths = new float[]{40f, 100f};
-                        table.setWidths(columnWidths);
-                        table.setTotalWidth(170f);
-                        table.setLockedWidth(true);
-                        firstTableCell.addElement(table);
-                        mainTable.addCell(firstTableCell);
-                    }
-                    document.add(JobReportUtils.singleSpace(titleFont));
-
-                    if(alProblem.size() > 0){
-                        PdfPCell secondTableCell = new PdfPCell();
-                        secondTableCell.setBorder(PdfPCell.NO_BORDER);
-                        PdfPTable table2 = new PdfPTable(2);
-                        table2.addCell(headTitleCell(getActivity().getString(R.string.problemDesc_trans), titleFont));
-                        table2.addCell(createCell("Berangkat ", contentFont));
-                        table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()), contentFont));
-                        table2.addCell(createCell("Tiba ", contentFont));
-                        table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim()), contentFont));
-                        table2.addCell(createCell("Finish ", contentFont));
-                        table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
-                        table2.addCell(createCell("Delay ", contentFont));
-                        table2.addCell(new Paragraph(alProblem.get(0).getDelay_reason().trim(), contentFont));
-                        table2.addCell(createCell("Pending Kegiatan", contentFont));
-                        table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()), contentFont));
-                        table2.addCell(createCell("Reason Pending ", contentFont));
-                        table2.addCell(new Paragraph(alProblem.get(0).getReason().trim(), contentFont));
-                        table2.setHorizontalAlignment(Element.ALIGN_LEFT);
-                        float[] columnWidths = new float[]{40f, 100f};
-                        table2.setWidths(columnWidths);
-                        table2.setTotalWidth(170f);
-                        table2.setLockedWidth(true);
-
-                        secondTableCell.addElement(table2);
-                        mainTable.addCell(secondTableCell);
-                        Paragraph paragraph1 = new Paragraph();
-                        paragraph1.setAlignment(Element.ALIGN_LEFT);
-                        paragraph1.add(mainTable);
-                        document.add(paragraph1);
-                        document.add(JobReportUtils.singleSpace(titleFont));
-
-                        PdfPTable mainTable3 = new PdfPTable(2);
-                        mainTable3.setWidthPercentage(90.0f);
-                        mainTable3.setHorizontalAlignment(Element.ALIGN_LEFT);
-                        PdfPCell cell4 = new PdfPCell();
-                        cell4.setBorder(PdfPCell.NO_BORDER);
-                        if(alEnv.size() > 0){
-
-                        }
-
-                    }
+                    //TODO LGSG NEW DESIGN AJA
+                    document.close();
+                    prg_dash.setVisibility(View.GONE);
+                    choosePdf();
                 }catch (Exception e){
                     messageUtils.toastMessage("Err send Pdf " +e.toString(), ConfigApps.T_ERROR);
                     prg_dash.setVisibility(View.GONE);
