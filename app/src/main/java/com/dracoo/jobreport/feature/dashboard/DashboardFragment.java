@@ -460,6 +460,17 @@ public class DashboardFragment extends Fragment {
                         paragraph1.setAlignment(Element.ALIGN_LEFT);
                         paragraph1.add(mainTable);
                         document.add(paragraph1);
+                        document.add(JobReportUtils.singleSpace(titleFont));
+
+                        PdfPTable mainTable3 = new PdfPTable(2);
+                        mainTable3.setWidthPercentage(90.0f);
+                        mainTable3.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        PdfPCell cell4 = new PdfPCell();
+                        cell4.setBorder(PdfPCell.NO_BORDER);
+                        if(alEnv.size() > 0){
+
+                        }
+
                     }
                 }catch (Exception e){
                     messageUtils.toastMessage("Err send Pdf " +e.toString(), ConfigApps.T_ERROR);
