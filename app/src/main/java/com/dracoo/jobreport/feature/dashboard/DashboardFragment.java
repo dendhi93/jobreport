@@ -430,6 +430,37 @@ public class DashboardFragment extends Fragment {
                         mainTable.addCell(firstTableCell);
                     }
                     document.add(JobReportUtils.singleSpace(titleFont));
+
+                    if(alProblem.size() > 0){
+                        PdfPCell secondTableCell = new PdfPCell();
+                        secondTableCell.setBorder(PdfPCell.NO_BORDER);
+                        PdfPTable table2 = new PdfPTable(2);
+                        table2.addCell(headTitleCell(getActivity().getString(R.string.problemDesc_trans), titleFont));
+                        table2.addCell(createCell("Berangkat ", contentFont));
+                        table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getBerangkat().trim()), contentFont));
+                        table2.addCell(createCell("Tiba ", contentFont));
+                        table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getTiba().trim()), contentFont));
+                        table2.addCell(createCell("Finish ", contentFont));
+                        table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
+                        table2.addCell(createCell("Delay ", contentFont));
+                        table2.addCell(new Paragraph(alProblem.get(0).getDelay_reason().trim(), contentFont));
+                        table2.addCell(createCell("Pending Kegiatan", contentFont));
+                        table2.addCell(new Paragraph(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()), contentFont));
+                        table2.addCell(createCell("Reason Pending ", contentFont));
+                        table2.addCell(new Paragraph(alProblem.get(0).getReason().trim(), contentFont));
+                        table2.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        float[] columnWidths = new float[]{40f, 100f};
+                        table2.setWidths(columnWidths);
+                        table2.setTotalWidth(170f);
+                        table2.setLockedWidth(true);
+
+                        secondTableCell.addElement(table2);
+                        mainTable.addCell(secondTableCell);
+                        Paragraph paragraph1 = new Paragraph();
+                        paragraph1.setAlignment(Element.ALIGN_LEFT);
+                        paragraph1.add(mainTable);
+                        document.add(paragraph1);
+                    }
                 }catch (Exception e){
                     messageUtils.toastMessage("Err send Pdf " +e.toString(), ConfigApps.T_ERROR);
                     prg_dash.setVisibility(View.GONE);
