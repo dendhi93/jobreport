@@ -436,7 +436,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         stCopyClipBoard.append(maintenanceContent+"\n\n");
                     }
 
-
                     stCopyClipBoard.append(getActivity().getString(R.string.problemDesc_trans)+"\n");
                     String problemContent;
                     if (alProblem.size() > 0){
@@ -473,7 +472,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
 
                     if (preference.getConnType().equals("VSAT")){
-                        stCopyClipBoard.append("I/0 Equipment*\n");
+                        stCopyClipBoard.append("I/0 Equipment\n");
                         String vsatSetup;
                         if (alVsatSetup.size() > 0){
                             vsatSetup = "OLD\nS/N Modem = " +alVsatSetup.get(0).getSn_modem().trim()+"\n"+
@@ -562,10 +561,10 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             stCopyClipBoard.append(paramContent+"\n\n");
                         }
                     }else{
-                        stCopyClipBoard.append("*"+getActivity().getString(R.string.ioM2M_trans)+"*\n");
+                        stCopyClipBoard.append(getActivity().getString(R.string.ioM2M_trans)+"\n");
                         String m2mSetupContent;
                         if (alM2mSetup.size() > 0){
-                            m2mSetupContent = "_OLD_\nM2M\nBrand / Type = " +alM2mSetup.get(0).getBrand_type_m2m() +"\n"+
+                            m2mSetupContent = "OLD\nM2M\nBrand / Type = " +alM2mSetup.get(0).getBrand_type_m2m() +"\n"+
                                     "S/N = "+alM2mSetup.get(0).getSn_m2m().trim()+"\n"+
                                     "ADAPTOR\nBrand / Type = " +alM2mSetup.get(0).getBrand_type_adaptor().trim()+"\n"+
                                     "S/N = " +alM2mSetup.get(0).getSn_adaptor().trim() + "\n"+
@@ -578,21 +577,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             stCopyClipBoard.append(m2mSetupContent+"\n\n");
                         }
 
-                        String dataM2mContent;
-                        if (alM2mData.size() > 0){
-                            dataM2mContent = "Username = " +alM2mData.get(0).getUsername().trim()+ "\n"+
-                                    "Password = " +alM2mData.get(0).getPassword().trim() + "\n"+
-                                    "Ip machine = "+alM2mData.get(0).getIp_machine().trim() + "\n"+
-                                    "User = " +alM2mData.get(0).getUser().trim()+ "\n"+
-                                    "Remote = " +alM2mData.get(0).getRemote().trim()+"\n"+
-                                    "Tunnel ID 1 = " +alM2mData.get(0).getTunnel_id().trim()+"\n"+
-                                    "IP Bounding = " +alM2mData.get(0).getIp_bonding().trim()+"\n"+
-                                    "IP VLAN = " +alM2mData.get(0).getIp_vlan().trim()+"\n"+
-                                    "IP LAN = " +alM2mData.get(0).getIp_lan().trim()+"\n"+
-                                    "Subnetmask = " +alM2mData.get(0).getSubnet_mask().trim() +"\n"+
-                                    "AGG = " +alM2mData.get(0).getAgg().trim();
-                            stCopyClipBoard.append(dataM2mContent+"\n\n");
-                        }
 
                         String m2mType, m2mSn, adaptorType, adaptorSn, simCard1Type, simCard1SN, simcard1Puk, simCard2Type, simCard2SN, simcard2Puk;
                         if (alM2mReplace.size() > 0){
@@ -618,7 +602,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             simCard2SN = "";
                             simcard2Puk = "";
                         }
-                        String m2mReplace = "_NEW_\nM2M\nBrand / Type = " +m2mType.trim()+"\n"+
+
+                        String m2mReplace = "NEW\nM2M\nBrand / Type = " +m2mType.trim()+"\n"+
                                 "S/N = " +m2mSn.trim() +"\n"+
                                 "ADAPTOR\nBrand / Type = "+adaptorType.trim() +"\n"+
                                 "S/N = " +adaptorSn.trim() +"\n"+
@@ -631,6 +616,22 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         stCopyClipBoard.append(m2mReplace+"\n\n");
                     }
 
+                    String dataM2mContent;
+                    if (alM2mData.size() > 0){
+                        dataM2mContent = "Data Teknis\nUsername = " +alM2mData.get(0).getUsername().trim()+ "\n"+
+                                "Password = " +alM2mData.get(0).getPassword().trim() + "\n"+
+                                "Ip machine = "+alM2mData.get(0).getIp_machine().trim() + "\n"+
+                                "User = " +alM2mData.get(0).getUser().trim()+ "\n"+
+                                "Remote Address = " +alM2mData.get(0).getRemote().trim()+"\n"+
+                                "Tunnel ID 1 = " +alM2mData.get(0).getTunnel_id().trim()+"\n"+
+                                "IP Bounding = " +alM2mData.get(0).getIp_bonding().trim()+"\n"+
+                                "IP VLAN = " +alM2mData.get(0).getIp_vlan().trim()+"\n"+
+                                "IP LAN = " +alM2mData.get(0).getIp_lan().trim()+"\n"+
+                                "Subnetmask = " +alM2mData.get(0).getSubnet_mask().trim() +"\n"+
+                                "AGG = " +alM2mData.get(0).getAgg().trim();
+                        stCopyClipBoard.append(dataM2mContent+"\n\n");
+                    }
+
                     String machineData;
                     if (alMachine.size() > 0){
                         machineData = "ATM Machine\nLokasi ATM = " +alMachine.get(0).getMachine_type().trim() +"\n"+
@@ -638,6 +639,28 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                                 "ID ATM = " +alMachine.get(0).getId_machine() + "\n"+
                                 "Akses ATM = " +alMachine.get(0).getAccess_type().trim();
                         stCopyClipBoard.append(machineData+"\n\n");
+                    }
+
+                    if (alAction.size() > 0){
+                        int i = 0;
+                        String actionContent = "";
+                        for (MasterAction action : alAction){
+                            arr_actionDateTime[i] = action.getAction_date_time();
+                            arr_actionTrans[i] = action.getAction_desc();
+                            arr_actionEndTime[i] = action.getAction_end_time();
+                            String[] split = arr_actionDateTime[i].split(", ");
+                            String[] splitEndTime = arr_actionEndTime[i].split(", ");
+
+                            if (DateTimeUtils.getDateDiff(splitEndTime[0],split[0] ) > 1){
+                                if(i==0){ actionContent = split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i]; }
+                                else{ actionContent = actionContent +"\n"+split[0] + " -"+ splitEndTime[0]+ " | " + split[1] + "-" +splitEndTime[1]+ " : " +arr_actionTrans[i]; }
+                            }else{
+                                if (i==0){ actionContent = split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
+                                else{ actionContent = actionContent +"\n"+split[1]+ " -" +splitEndTime[1] + " : " + arr_actionTrans[i]; }
+                            }
+                            i++;
+                        }
+                        stCopyClipBoard.append(actionContent+"\n\n");
                     }
                     prg_dash.setVisibility(View.GONE);
                     chooseWA();
