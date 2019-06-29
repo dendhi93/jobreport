@@ -52,6 +52,7 @@ import com.dracoo.jobreport.database.master.MasterXpoll;
 import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.dashboard.contract.DashboardItemClickBack;
+import com.dracoo.jobreport.feature.replace.ReplaceActivity;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
@@ -753,26 +754,33 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     }
 
     @Override
-    public void listSelected(int pos) {
+    public void listSelected(String transType) {
         Intent intent = null;
-        if (pos == 0 || pos == 1){
+        if (transType.equals(getActivity().getString(R.string.infoSite_trans))
+            || transType.equals(getActivity().getString(R.string.jobDesc_trans))){
             intent = new Intent(getActivity(), UserActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
-        }else{
+        }else if (transType.equals(getActivity().getString(R.string.problemDesc_trans))) {
             intent = new Intent(getActivity(), MenuActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
-            if (pos == 2){
-                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_PROBLEM);
-            }else if (pos == 3){
-                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_LIGHTNING);
-            }else if (pos == 4){
-                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_MACHINE);
-            }else if (pos == 5){
-                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DOC);
-            }else if (pos == 6){
-                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_ACTION);
-            }
+            intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_PROBLEM);
+        }else if (transType.equals(getActivity().getString(R.string.electEnv_trans))){
+            intent = new Intent(getActivity(), MenuActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_LIGHTNING);
+        }else if (transType.equals(getActivity().getString(R.string.machine_trans))){
+            intent = new Intent(getActivity(), MenuActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_MACHINE);
+        }else if (transType.equals(getActivity().getString(R.string.ioVSAT_trans))){
+            intent = new Intent(getActivity(), MenuActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_CONN);
+        }else if (transType.equals(getActivity().getString(R.string.repVSAT_trans))){
+            intent = new Intent(getActivity(), ReplaceActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
         }
+        //TODO LANJUT 30 JUNE
         if (intent != null){ startActivity(intent); }
     }
 }

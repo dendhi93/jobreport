@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -22,6 +26,7 @@ import com.dracoo.jobreport.database.adapter.ProblemAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterProblem;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -40,7 +45,6 @@ import butterknife.OnClick;
 public class ProblemFragment extends Fragment {
 
     private MessageUtils messageUtils;
-
     @BindView(R.id.sp_prob_closedBy)
     Spinner sp_prob_closedBy;
     @BindView(R.id.txt_problem_berangkat)
@@ -74,6 +78,10 @@ public class ProblemFragment extends Fragment {
     EditText txt_prob_reasonPending;
     @BindView(R.id.txt_problem_closedBy)
     EditText txt_problem_closedBy;
+    @BindView(R.id.imgB_problem_submit)
+    ImageButton imgB_problem_submit;
+    @BindView(R.id.imgB_problem_cancel)
+    ImageButton imgB_problem_cancel;
 
     private String tempDate = "";
     private String selectedClosedBy  = "";
@@ -82,6 +90,8 @@ public class ProblemFragment extends Fragment {
     private Dao<MasterTransHistory, Integer> transAdapter;
     private Preference preference;
     private String[] arrClosedBy;
+    private String intentProbEdit;
+    private ArrayList<MasterProblem> al_problem;
 
 
     @Override
@@ -90,6 +100,7 @@ public class ProblemFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_problem, container, false);
         ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
 
         return view;
     }
@@ -105,6 +116,56 @@ public class ProblemFragment extends Fragment {
             problemAdapter = new ProblemAdapter(getActivity()).getAdapter();
             transAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){ Log.d("Err Problem adapter ","" +e.toString());}
+
+        try{
+            intentProbEdit = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            if (!intentProbEdit.equals("") || intentProbEdit != null){
+                al_problem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
+                if (al_problem.size() > 0){
+                    txt_prob_modemDisplay.setText(al_problem.get(0).getModem().trim());
+                    txt_problem_symptom.setText(al_problem.get(0).getSymptom().trim());
+                    txt_prob_action_text.setText(al_problem.get(0).getAction().trim());
+                    txt_problem_berangkat.setText(al_problem.get(0).getBerangkat().trim());
+                    txt_problem_tiba.setText(al_problem.get(0).getTiba().trim());
+                    txt_problem_start.setText(al_problem.get(0).getStart().trim());
+                    txt_problem_finish.setText(al_problem.get(0).getFinish().trim());
+                    txt_problem_online.setText(al_problem.get(0).getOnline().trim());
+                    txt_prob_reasonPending.setText(al_problem.get(0).getReason().trim());
+                    txt_problem_closedBy.setText(al_problem.get(0).getClosed_by().trim());
+                    txt_prob_delay.setText(al_problem.get(0).getDelay_reason().trim());
+                    txt_prob_actPending.setText(al_problem.get(0).getDelay_activity().trim());
+                    txt_problem_restart.setText(al_problem.get(0).getRestart().trim());
+
+                    imgB_problem_submit.setVisibility(View.GONE);
+                    imgB_problem_cancel.setVisibility(View.GONE);
+                }
+            }else{
+                imgB_problem_submit.setVisibility(View.VISIBLE);
+                imgB_problem_cancel.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            imgB_problem_submit.setVisibility(View.VISIBLE);
+            imgB_problem_cancel.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit_menu :
+                imgB_problem_cancel.setVisibility(View.VISIBLE);
+                imgB_problem_cancel.setVisibility(View.VISIBLE);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     @OnClick(R.id.imgB_problem_submit)
@@ -173,9 +234,7 @@ public class ProblemFragment extends Fragment {
         sp_prob_closedBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0){
-                    selectedClosedBy = adapter.getItem(position);
-                }
+                if (position > 0){ selectedClosedBy = adapter.getItem(position); }
             }
 
             @Override

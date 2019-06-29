@@ -223,7 +223,12 @@ public class MasterProblem implements Serializable {
     }
 
     public String getRestart() {
-        return restart;
+        if (restart == null || restart.equals("")){
+            return "";
+        }else{
+            return restart;
+        }
+
     }
 
     public void setRestart(String restart) {

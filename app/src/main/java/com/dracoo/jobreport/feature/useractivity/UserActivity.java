@@ -22,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -32,7 +31,6 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
 import com.dracoo.jobreport.database.adapter.JobDescAdapter;
-import com.dracoo.jobreport.database.adapter.ProblemAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
@@ -191,11 +189,11 @@ public class UserActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        try{
+            if (!intentEditUser.equals("") || intentEditUser != null){ getMenuInflater().inflate(R.menu.menu, menu); }
+        }catch (Exception e){}
         return true;
     }
-
-
 
     @Override
     protected void onResume() {

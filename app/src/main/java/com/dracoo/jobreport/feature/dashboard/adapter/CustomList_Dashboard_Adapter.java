@@ -59,12 +59,11 @@ public class CustomList_Dashboard_Adapter extends RecyclerView.Adapter<CustomLis
         cv_item_hist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dashCallBack.listSelected(listPosition);
+                dashCallBack.listSelected(list.get(listPosition).getTrans_step().trim());
             }
         });
 
     }
-
 
         @Override
     public int getItemCount() {
