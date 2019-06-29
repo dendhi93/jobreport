@@ -49,7 +49,9 @@ import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
 import com.dracoo.jobreport.database.master.MasterXpoll;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
+import com.dracoo.jobreport.feature.dashboard.contract.DashboardItemClickBack;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
@@ -84,7 +86,7 @@ import static com.dracoo.jobreport.util.JobReportUtils.createCell;
 import static com.dracoo.jobreport.util.JobReportUtils.headTitleCell;
 import static com.dracoo.jobreport.util.JobReportUtils.titleCell;
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements DashboardItemClickBack {
     @BindView(R.id.lbl_dash_locationName)
     TextView lbl_dash_locationName;
     @BindView(R.id.lbl_dash_technician_name)
@@ -126,7 +128,7 @@ public class DashboardFragment extends Fragment {
     private String stUn  = "";
     private String vsatTemp ="";
     private RequestQueue queue;
-    RecyclerView.Adapter adapter;
+    CustomList_Dashboard_Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -178,6 +180,7 @@ public class DashboardFragment extends Fragment {
             rc_dash_activity.setLayoutManager(layoutManager);
             List<MasterTransHistory> list = getList_TransHist();
             adapter = new CustomList_Dashboard_Adapter(getActivity(), list);
+            adapter.initCallBack(this);
             rc_dash_activity.setAdapter(adapter);
         }else{ Log.d("###","ke sama dengan 0"); }
     }
@@ -723,5 +726,29 @@ public class DashboardFragment extends Fragment {
         lbl_dash_technician_name.setText("");
         lbl_dash_customer.setText("");
         lbl_dash_picPhone.setText("");
+    }
+
+    @Override
+    public void listSelected(int pos) {
+        Intent intent = null;
+        if (pos == 0 || pos == 1){
+            intent = new Intent(getActivity(), UserActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+        }else{
+            intent = new Intent(getActivity(), MenuActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            if (pos == 2){
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_PROBLEM);
+            }else if (pos == 3){
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_LIGHTNING);
+            }else if (pos == 4){
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_MACHINE);
+            }else if (pos == 5){
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DOC);
+            }else if (pos == 6){
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_ACTION);
+            }
+        }
+        if (intent != null){ startActivity(intent); }
     }
 }

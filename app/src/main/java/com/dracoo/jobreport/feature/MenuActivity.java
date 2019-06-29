@@ -48,14 +48,13 @@ public class MenuActivity extends AppCompatActivity
 
     private Preference preference;
     private MessageUtils messageUtils;
-    public static int navItemIndex = 0;
-
     public static final String EXTRA_CALLER_ACTIVITY = "job.extra_caller_flag";
+    public static final String EXTRA_CALLER_VIEW = "job.extra_view_flag";
 
     public static final int EXTRA_FLAG_DASH = 11;
     public static final int EXTRA_FLAG_PROBLEM = 12;
     public static final int EXTRA_FLAG_LIGHTNING = 13;
-    public static final int EXTRA_FLAG_MACHINE_ = 14;
+    public static final int EXTRA_FLAG_MACHINE = 14;
     public static final int EXTRA_FLAG_DOC = 15;
     public static final int EXTRA_FLAG_ACTION = 16;
 
@@ -135,38 +134,23 @@ public class MenuActivity extends AppCompatActivity
 
         switch (flagMenu) {
             case EXTRA_FLAG_DASH:
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setSubtitle("Dashboard");
-
-                }
+                if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Dashboard"); }
                 transaction.replace(R.id.frame_nav_container, new DashboardFragment());
                 break;
             case EXTRA_FLAG_PROBLEM:
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setSubtitle("Problem Desc");
-
-                }
+                if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Problem Desc"); }
                 transaction.replace(R.id.frame_nav_container, new ProblemFragment());
                 break;
             case EXTRA_FLAG_LIGHTNING:
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setSubtitle("Electrical Environtment");
-
-                }
+                if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Electrical Environtment"); }
                 transaction.replace(R.id.frame_nav_container, new EnvirontmentFragment());
                 break;
-            case EXTRA_FLAG_MACHINE_:
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setSubtitle("Machine");
-
-                }
+            case EXTRA_FLAG_MACHINE:
+                if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Machine"); }
                 transaction.replace(R.id.frame_nav_container, new MachineFragment());
                 break;
             case EXTRA_FLAG_DOC :
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setSubtitle("Documentation");
-
-                }
+                if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Documentation"); }
                 transaction.replace(R.id.frame_nav_container, new DocumentationFragment());
                 break;
             case EXTRA_FLAG_ACTION :

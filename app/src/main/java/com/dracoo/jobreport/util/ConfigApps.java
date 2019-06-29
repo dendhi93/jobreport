@@ -22,6 +22,9 @@ public class ConfigApps {
     public static final int ALERT_WARNING = 1;
     public static final int ALERT_SUCCESS = 2;
 
+    //view type
+    public static final String VIEW_TYPE = "view";
+
     //send type
     public static final int EMAIL_TYPE = 1;
     public static final int WA_TYPE = 2;
