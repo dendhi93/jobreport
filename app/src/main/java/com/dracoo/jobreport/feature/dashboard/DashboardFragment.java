@@ -644,6 +644,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     if (alAction.size() > 0){
                         int i = 0;
                         String actionContent = "";
+                        stCopyClipBoard.append("ACTION\n");
                         for (MasterAction action : alAction){
                             arr_actionDateTime[i] = action.getAction_date_time();
                             arr_actionTrans[i] = action.getAction_desc();
