@@ -17,11 +17,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -29,10 +32,12 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.InfoSiteAdapter;
 import com.dracoo.jobreport.database.adapter.JobDescAdapter;
+import com.dracoo.jobreport.database.adapter.ProblemAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.Dialogs;
@@ -91,6 +96,10 @@ public class UserActivity extends AppCompatActivity
     EditText txt_userAct_ttwo;
     @BindView(R.id.sp_user_connType)
     Spinner sp_user_connType;
+    @BindView(R.id.imgB_userAct_cancel)
+    ImageButton imgB_userAct_cancel;
+    @BindView(R.id.imgB_userAct_submit)
+    ImageButton imgB_userAct_submit;
 
     private MessageUtils messageUtils;
     private Location mLastLocation;
@@ -106,6 +115,9 @@ public class UserActivity extends AppCompatActivity
     private Dao<MasterTransHistory, Integer> transHistAdapter;
     private String[] arrConnType;
     private String selectedConnType = "";
+    private String intentEditUser="";
+    private ArrayList<MasterInfoSite> al_infoSite;
+    private ArrayList<MasterJobDesc> al_jobDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,9 +144,7 @@ public class UserActivity extends AppCompatActivity
             txt_userAct_name.setText(preference.getUn().trim());
             txt_userAct_phone.setText(preference.getPhone().trim());
             txt_userAct_service.setText(preference.getServicePoint().trim());
-        }else{
-            Dialogs.showDismissDialog(this, "Warning", "Username terhapus, mohon keluar aplikasi dan login kembali" );
-        }
+        }else{ Dialogs.showDismissDialog(this, "Warning", "Username terhapus, mohon keluar aplikasi dan login kembali" ); }
 
         try{
             jobDescAdapter = new JobDescAdapter(getApplicationContext()).getAdapter();
@@ -144,7 +154,48 @@ public class UserActivity extends AppCompatActivity
 
         txt_userAct_lat.setText("0.0");
         txt_userAct_long.setText("0.0");
+
+        try{
+            intentEditUser = getIntent().getExtras().getString(MenuActivity.EXTRA_CALLER_VIEW);
+            if (intentEditUser.equals("") || intentEditUser == null){
+                imgB_userAct_cancel.setVisibility(View.VISIBLE);
+                imgB_userAct_submit.setVisibility(View.VISIBLE);
+            }else {
+                al_infoSite = new InfoSiteAdapter(getApplicationContext()).load_site(preference.getCustID(), preference.getUn());
+                al_jobDesc = new JobDescAdapter(getApplicationContext()).load_trans(preference.getCustID(), preference.getUn());
+                if (al_infoSite.size() > 0 && al_jobDesc.size() > 0 ){
+                    txt_userAct_ttwo.setText(al_infoSite.get(0).getTtwo().trim());
+                    txt_userAct_name_pic.setText(al_jobDesc.get(0).getName_pic().trim());
+                    txt_userAct_jabatan.setText(al_jobDesc.get(0).getJabatan_desc().trim());
+                    txt_userAct_picPhone.setText(al_jobDesc.get(0).getPic_phone().trim());
+                    txt_userAct_locationName.setText(al_infoSite.get(0).getLocation_name().trim());
+                    txt_userAct_customer.setText(al_infoSite.get(0).getCustomer_name().trim());
+                    txt_userAct_remoteAddress.setText(al_infoSite.get(0).getRemote_address().trim());
+                    txt_userAct_remoteName.setText(al_infoSite.get(0).getRemote_name().trim());
+                    txt_userAct_city.setText(al_infoSite.get(0).getCity().trim());
+                    txt_userAct_kabupaten.setText(al_infoSite.get(0).getKabupaten().trim());
+                    txt_userAct_proviency.setText(al_infoSite.get(0).getProv().trim());
+
+                    imgB_userAct_cancel.setVisibility(View.GONE);
+                    imgB_userAct_submit.setVisibility(View.GONE);
+                }else{
+                    imgB_userAct_cancel.setVisibility(View.VISIBLE);
+                    imgB_userAct_submit.setVisibility(View.VISIBLE);
+                }
+            }
+        }catch (Exception e){
+            imgB_userAct_cancel.setVisibility(View.VISIBLE);
+            imgB_userAct_submit.setVisibility(View.VISIBLE);
+        }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+
 
     @Override
     protected void onResume() {
@@ -445,6 +496,10 @@ public class UserActivity extends AppCompatActivity
 
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.edit_menu :
+                imgB_userAct_submit.setVisibility(View.VISIBLE);
+                imgB_userAct_cancel.setVisibility(View.VISIBLE);
                 break;
             default:
                 return super.onOptionsItemSelected(item);

@@ -36,6 +36,7 @@ public class JobDescAdapter extends DatabaseAdapter{
             mJobDesc.setName_user(cursor.getString(1));
             mJobDesc.setPic_phone(cursor.getString(2));
             mJobDesc.setName_pic(cursor.getString(3));
+            mJobDesc.setJabatan_desc(cursor.getString(4));
 
             jobDescs.add(mJobDesc);
         }
@@ -52,7 +53,8 @@ public class JobDescAdapter extends DatabaseAdapter{
                     "id_jobdesc, " + //0
                     "name_user, " + //1
                     "pic_phone, " + //2
-                    "name_pic " + //3
+                    "name_pic, " + //3
+                    "jabatan_desc " + //4
                 "from t_jobdesc " +
                 " where id_site = " + custId + " " +
                 " and name_user = '" +un+ "' ";
