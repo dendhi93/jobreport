@@ -385,6 +385,50 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentDesc.addCell(JobReportUtils.borderlessCell("_____________", titleFont));
                     //TODO BELUM SELESAI
                     //TODO LGSG NEW DESIGN AJA
+
+                    document.newPage();
+                    if (alAction.size() > 0){
+                        PdfPTable table7 = new PdfPTable(4);
+                        arr_actionDateTime = new String[alAction.size()];
+                        arr_actionTrans = new String[alAction.size()];
+                        arr_actionEndTime = new String[alAction.size()];
+
+                        int i = 0;
+                        table7.addCell(createCell("No", contentFont));
+                        table7.addCell(createCell("Tanggal", contentFont));
+                        table7.addCell(createCell("Jam", contentFont));
+                        table7.addCell(createCell("Kegiatan", contentFont));
+
+                        for (MasterAction action : alAction){
+                            arr_actionDateTime[i] = action.getAction_date_time();
+                            arr_actionTrans[i] = action.getAction_desc();
+                            arr_actionEndTime[i] = action.getAction_end_time();
+
+                            String[] split = arr_actionDateTime[i].split(",");
+                            String[] splitEndTime = arr_actionEndTime[i].split(",");
+                            if (DateTimeUtils.getDateDiff(splitEndTime[0],split[0] ) > 1){
+                                table7.addCell(createCell(String.valueOf(i), contentFont));
+                                table7.addCell(createCell(split[0] +" - " + splitEndTime[0] , contentFont));
+                                table7.addCell(createCell(split[1] + "-" +splitEndTime[1], contentFont));
+                                table7.addCell(createCell(arr_actionTrans[i].trim(), contentFont));
+                            }else{
+                                table7.addCell(createCell(String.valueOf(i), contentFont));
+                                table7.addCell(createCell(split[0], contentFont));
+                                table7.addCell(createCell(split[1]+ " -" +splitEndTime[1], contentFont));
+                                table7.addCell(createCell(arr_actionTrans[i].trim(), contentFont));
+                            }
+                            i++;
+                        }
+
+                        if (i == alAction.size()){
+                            table7.setHorizontalAlignment(Element.ALIGN_LEFT);
+                            float[] columnWidths7 = new float[]{20f, 40f, 60f,310f};
+                            table7.setWidths(columnWidths7);
+                            table7.setTotalWidth(420f);
+                            table7.setLockedWidth(true);
+                            document.add(table7);
+                        }
+                    }
                     document.close();
                     prg_dash.setVisibility(View.GONE);
                     choosePdf();
