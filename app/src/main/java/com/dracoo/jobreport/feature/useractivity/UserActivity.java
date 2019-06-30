@@ -152,7 +152,10 @@ public class UserActivity extends AppCompatActivity
 
         txt_userAct_lat.setText("0.0");
         txt_userAct_long.setText("0.0");
+        editValidation();
+    }
 
+    private void editValidation(){
         try{
             intentEditUser = getIntent().getExtras().getString(MenuActivity.EXTRA_CALLER_VIEW);
             if (intentEditUser.equals("") || intentEditUser == null){

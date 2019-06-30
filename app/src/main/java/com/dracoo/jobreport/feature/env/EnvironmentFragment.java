@@ -3,9 +3,13 @@ package com.dracoo.jobreport.feature.env;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.EnvAdapter;
@@ -26,7 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class EnvirontmentFragment extends Fragment {
+public class EnvironmentFragment extends Fragment {
     private MessageUtils messageUtils;
 
     @BindView(R.id.txt_env_plnTegangan)
@@ -43,6 +47,10 @@ public class EnvirontmentFragment extends Fragment {
     EditText txt_env_acSuhu;
     @BindView(R.id.txt_env_acNote)
     EditText txt_env_acNote;
+    @BindView(R.id.imgB_env_submit)
+    ImageButton imgB_env_submit;
+    @BindView(R.id.imgB_env_cancel)
+    ImageButton imgB_env_cancel;
 
     private Dao<MasterEnvirontment, Integer> envAdapter;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
@@ -54,7 +62,7 @@ public class EnvirontmentFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_environtment, container, false);
         ButterKnife.bind(this, view);
-
+        setHasOptionsMenu(true);
         return view;
 
     }
@@ -78,7 +86,25 @@ public class EnvirontmentFragment extends Fragment {
         }else{
             transEnv();
         }
+    }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit_menu :
+                imgB_env_submit.setVisibility(View.VISIBLE);
+                imgB_env_cancel.setVisibility(View.VISIBLE);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     private void transEnv(){

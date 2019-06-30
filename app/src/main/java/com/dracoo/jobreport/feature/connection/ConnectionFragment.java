@@ -7,12 +7,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -95,6 +98,10 @@ public class ConnectionFragment extends Fragment {
     EditText txt_conn_m2m_sc2puk;
     @BindView(R.id.txt_conn_m2m_sc1Brand)
     EditText txt_conn_m2m_sc1Brand;
+    @BindView(R.id.imgB_con_submit)
+    ImageButton imgB_con_submit;
+    @BindView(R.id.imgB_con_cancel)
+    ImageButton imgB_con_cancel;
 
     private MessageUtils messageUtils;
     private String selectedConn="";
@@ -116,6 +123,7 @@ public class ConnectionFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_connection, container, false);
         ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -131,6 +139,25 @@ public class ConnectionFragment extends Fragment {
             m2mSetupDao = new M2mSetupAdapter(getActivity()).getAdapter();
             transHistAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){}
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit_menu :
+                imgB_con_submit.setVisibility(View.VISIBLE);
+                imgB_con_cancel.setVisibility(View.VISIBLE);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     private void displayAllSpinner(){

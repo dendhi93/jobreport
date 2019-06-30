@@ -12,9 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -24,7 +22,7 @@ import com.dracoo.jobreport.feature.action.ActionFragment;
 import com.dracoo.jobreport.feature.connection.ConnectionFragment;
 import com.dracoo.jobreport.feature.dashboard.DashboardFragment;
 import com.dracoo.jobreport.feature.documentation.DocumentationFragment;
-import com.dracoo.jobreport.feature.env.EnvirontmentFragment;
+import com.dracoo.jobreport.feature.env.EnvironmentFragment;
 import com.dracoo.jobreport.feature.machine.MachineFragment;
 import com.dracoo.jobreport.feature.problem.ProblemFragment;
 import com.dracoo.jobreport.util.ConfigApps;
@@ -144,7 +142,7 @@ public class MenuActivity extends AppCompatActivity
                 break;
             case EXTRA_FLAG_LIGHTNING:
                 if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Electrical Environtment"); }
-                transaction.replace(R.id.frame_nav_container, new EnvirontmentFragment());
+                transaction.replace(R.id.frame_nav_container, new EnvironmentFragment());
                 break;
             case EXTRA_FLAG_MACHINE:
                 if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Machine"); }
@@ -188,7 +186,7 @@ public class MenuActivity extends AppCompatActivity
                 }
                 break;
             case R.id.nav_lightning :
-                fragment = new EnvirontmentFragment();
+                fragment = new EnvironmentFragment();
                 if (getSupportActionBar() != null) {
                     getSupportActionBar().setSubtitle("Electrical Environtment");
                 }

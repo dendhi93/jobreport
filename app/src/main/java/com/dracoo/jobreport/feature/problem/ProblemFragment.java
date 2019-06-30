@@ -116,7 +116,10 @@ public class ProblemFragment extends Fragment {
             problemAdapter = new ProblemAdapter(getActivity()).getAdapter();
             transAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){ Log.d("Err Problem adapter ","" +e.toString());}
+        probEditValidation();
+    }
 
+    private void probEditValidation(){
         try{
             intentProbEdit = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
             if (!intentProbEdit.equals("") || intentProbEdit != null){
@@ -151,7 +154,7 @@ public class ProblemFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
+        if (intentProbEdit.equals("") || intentProbEdit != null){ inflater.inflate(R.menu.menu, menu); }
         super.onCreateOptionsMenu(menu, inflater);
     }
 

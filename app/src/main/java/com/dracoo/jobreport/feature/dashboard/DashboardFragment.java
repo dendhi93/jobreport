@@ -52,8 +52,11 @@ import com.dracoo.jobreport.database.master.MasterXpoll;
 import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.feature.dashboard.adapter.CustomList_Dashboard_Adapter;
 import com.dracoo.jobreport.feature.dashboard.contract.DashboardItemClickBack;
+import com.dracoo.jobreport.feature.datam2m.DataM2mActivity;
 import com.dracoo.jobreport.feature.replace.ReplaceActivity;
 import com.dracoo.jobreport.feature.useractivity.UserActivity;
+import com.dracoo.jobreport.feature.vsatparameter.ParameterActivity;
+import com.dracoo.jobreport.feature.xpoll.XpollActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -756,31 +759,50 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     @Override
     public void listSelected(String transType) {
         Intent intent = null;
-        if (transType.equals(getActivity().getString(R.string.infoSite_trans))
+        if (transType.trim().equals(getActivity().getString(R.string.infoSite_trans))
             || transType.equals(getActivity().getString(R.string.jobDesc_trans))){
             intent = new Intent(getActivity(), UserActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
-        }else if (transType.equals(getActivity().getString(R.string.problemDesc_trans))) {
+        }else if (transType.trim().equals(getActivity().getString(R.string.problemDesc_trans))) {
             intent = new Intent(getActivity(), MenuActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_PROBLEM);
-        }else if (transType.equals(getActivity().getString(R.string.electEnv_trans))){
+        }else if (transType.trim().equals(getActivity().getString(R.string.electEnv_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_LIGHTNING);
-        }else if (transType.equals(getActivity().getString(R.string.machine_trans))){
+        }else if (transType.trim().equals(getActivity().getString(R.string.machine_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_MACHINE);
-        }else if (transType.equals(getActivity().getString(R.string.ioVSAT_trans))){
+        }else if (transType.trim().equals(getActivity().getString(R.string.ioVSAT_trans))||
+                transType.trim().equals(getActivity().getString(R.string.ioM2M_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_CONN);
-        }else if (transType.equals(getActivity().getString(R.string.repVSAT_trans))){
+        }else if (transType.trim().equals(getActivity().getString(R.string.repVSAT_trans)) ||
+                transType.trim().equals(getActivity().getString(R.string.repM2M_trans))){
             intent = new Intent(getActivity(), ReplaceActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+        }else if (transType.trim().equals("xpoll_trans")){
+            intent = new Intent(getActivity(), XpollActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+        }else if (transType.trim().equals("networkParam_trans")){
+            intent = new Intent(getActivity(), ParameterActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+        }else if (transType.trim().equals("dataM2m_trans")){
+            intent = new Intent(getActivity(), DataM2mActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+        }else if (transType.trim().equals("doc_trans")){
+            intent = new Intent(getActivity(), MenuActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DOC);
+        }else if (transType.trim().equals("action_trans")){
+            intent = new Intent(getActivity(), MenuActivity.class);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_ACTION);
         }
-        //TODO LANJUT 30 JUNE
+
         if (intent != null){ startActivity(intent); }
     }
 }

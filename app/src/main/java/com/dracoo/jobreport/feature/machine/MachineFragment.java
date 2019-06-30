@@ -5,11 +5,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -43,6 +47,8 @@ public class MachineFragment extends Fragment {
     Spinner sp_machine_24;
     @BindView(R.id.txt_machine_idMachine)
     EditText txt_machine_idMachine;
+    @BindView(R.id.imgB_machine_submit)
+    ImageButton imgB_machine_submit;
 
     private MessageUtils messageUtils;
     private Preference preference;
@@ -61,7 +67,7 @@ public class MachineFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_machine, container, false);
         ButterKnife.bind(this, view);
-
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -76,6 +82,24 @@ public class MachineFragment extends Fragment {
             machineAdapter = new MachineAdapter(getActivity()).getAdapter();
             transHistAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){}
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit_menu :
+                imgB_machine_submit.setVisibility(View.VISIBLE);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     private void displayAllMachineForm(){

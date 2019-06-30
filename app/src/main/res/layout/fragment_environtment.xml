@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@color/colorGray200"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".feature.env.EnvirontmentFragment">
+    tools:context=".feature.env.EnvironmentFragment">
 
 
     <LinearLayout
