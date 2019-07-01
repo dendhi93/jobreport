@@ -2,6 +2,7 @@ package com.dracoo.jobreport.feature.env;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,7 @@ import com.dracoo.jobreport.database.adapter.EnvAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterEnvirontment;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -55,6 +57,7 @@ public class EnvironmentFragment extends Fragment {
     private Dao<MasterEnvirontment, Integer> envAdapter;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
     private Preference preference;
+    private String intentEnvEdit = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +80,7 @@ public class EnvironmentFragment extends Fragment {
             envAdapter = new EnvAdapter(getActivity()).getAdapter();
             transHistAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){ }
+        editValidation();
     }
 
     @OnClick(R.id.imgB_env_submit)
@@ -105,6 +109,33 @@ public class EnvironmentFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    private void editValidation(){
+        try{
+            intentEnvEdit = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            if (!intentEnvEdit.equals("") || intentEnvEdit != null){
+                ArrayList<MasterEnvirontment> alValEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
+                if (alValEnv.size() > 0){
+                    txt_env_plnGrounding.setText(alValEnv.get(0).getGrounding_pln().trim());
+                    txt_env_upsGrounding.setText(alValEnv.get(0).getGrounding_ups().trim());
+                    txt_env_upsNote.setText(alValEnv.get(0).getNotes().trim());
+                    txt_env_acNote.setText(alValEnv.get(0).getNotes_ac().trim());
+                    txt_env_acSuhu.setText(alValEnv.get(0).getSuhu().trim());
+                    txt_env_plnTegangan.setText(alValEnv.get(0).getTegangan_pln().trim());
+                    txt_env_upsTegangan.setText(alValEnv.get(0).getTegangan_ups().trim());
+                    imgB_env_submit.setVisibility(View.GONE);
+                    imgB_env_cancel.setVisibility(View.GONE);
+                }
+            }else{
+                imgB_env_submit.setVisibility(View.VISIBLE);
+                imgB_env_cancel.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            Log.d("err edit ",""+e.toString());
+            imgB_env_submit.setVisibility(View.VISIBLE);
+            imgB_env_cancel.setVisibility(View.VISIBLE);
+        }
     }
 
     private void transEnv(){
