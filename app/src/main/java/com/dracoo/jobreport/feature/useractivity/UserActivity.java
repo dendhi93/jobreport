@@ -176,6 +176,12 @@ public class UserActivity extends AppCompatActivity
                     txt_userAct_city.setText(al_infoSite.get(0).getCity().trim());
                     txt_userAct_kabupaten.setText(al_infoSite.get(0).getKabupaten().trim());
                     txt_userAct_proviency.setText(al_infoSite.get(0).getProv().trim());
+                    String progresssType = preference.getProgress().trim();
+                    if (progresssType.trim().equals("CM")){
+                        sp_user_connType.setSelection(1);
+                    }else if(progresssType.trim().equals("PM")){
+                        sp_user_connType.setSelection(2);
+                    }
 
                     imgB_userAct_cancel.setVisibility(View.GONE);
                     imgB_userAct_submit.setVisibility(View.GONE);
@@ -211,9 +217,7 @@ public class UserActivity extends AppCompatActivity
         sp_user_connType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0){
-                    selectedConnType  = adapter.getItem(position);
-                }
+                if (position > 0){ selectedConnType  = adapter.getItem(position); }
             }
 
             @Override

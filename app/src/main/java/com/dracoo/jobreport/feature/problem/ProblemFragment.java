@@ -136,6 +136,9 @@ public class ProblemFragment extends Fragment {
                     txt_prob_delay.setText(al_problem.get(0).getDelay_reason().trim());
                     txt_prob_actPending.setText(al_problem.get(0).getDelay_activity().trim());
                     txt_problem_restart.setText(al_problem.get(0).getRestart().trim());
+                    String selectedClosed = al_problem.get(0).getClosed().trim();
+                    if (selectedClosed.trim().equals("EOS")){ sp_prob_closedBy.setSelection(1);
+                    }else if (selectedClosed.trim().equals("NOC")){ sp_prob_closedBy.setSelection(2); }
 
                     imgB_problem_submit.setVisibility(View.GONE);
                     imgB_problem_cancel.setVisibility(View.GONE);

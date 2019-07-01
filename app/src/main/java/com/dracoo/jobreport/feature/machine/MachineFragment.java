@@ -14,8 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.dracoo.jobreport.R;
@@ -60,6 +58,7 @@ public class MachineFragment extends Fragment {
     private String[] arrMachineLoc;
     private String[] arrMachineQty;
     private String[] arrMachine24;
+    private String intentEdit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +81,7 @@ public class MachineFragment extends Fragment {
             machineAdapter = new MachineAdapter(getActivity()).getAdapter();
             transHistAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){}
+        editMachineView();
     }
 
     @Override
@@ -100,6 +100,37 @@ public class MachineFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    private void editMachineView(){
+        try{
+            intentEdit = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            if (!intentEdit.trim().equals("") || intentEdit != null){
+                ArrayList<MasterMachine> alMachine = new MachineAdapter(getActivity()).val_machine(preference.getCustID(), preference.getUn());
+                if (alMachine.size() > 0){
+                    String item24 = alMachine.get(0).getAccess_type().trim();
+                    String machineLoc = alMachine.get(0).getMachine_type().trim();
+                    String machineQty = String.valueOf(alMachine.get(0).getMachine_qty());
+
+                    if (item24.trim().equals(getActivity().getString(R.string.rb_machine_24))){ sp_machine_24.setSelection(1);
+                    }else if (item24.trim().equals(getActivity().getString(R.string.rb_machine_not24))){ sp_machine_24.setSelection(2); }
+
+                    if (machineLoc.trim().equals(getActivity().getString(R.string.rb_sendiri))){ sp_machine_location.setSelection(1);
+                    }else if (machineLoc.trim().equals(getActivity().getString(R.string.rb_center))){ sp_machine_location.setSelection(2); }
+
+                    if (machineQty.trim().equals(getActivity().getString(R.string.rb_machine_1))){ sp_machine_qty.setSelection(1);
+                    }else if (machineQty.trim().equals(getActivity().getString(R.string.rb_machine_2))){ sp_machine_qty.setSelection(2);
+                    }else if (machineQty.trim().equals(getActivity().getString(R.string.rb_machine_3))){ sp_machine_qty.setSelection(3); }
+
+                    imgB_machine_submit.setVisibility(View.GONE);
+                }else{
+                    imgB_machine_submit.setVisibility(View.VISIBLE);
+                }
+            }
+        }catch (Exception e){
+            Log.d("###",""+e.toString());
+            imgB_machine_submit.setVisibility(View.VISIBLE);
+        }
     }
 
     private void displayAllMachineForm(){
