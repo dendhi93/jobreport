@@ -26,6 +26,7 @@ import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.feature.datam2m.DataM2mActivity;
 import com.dracoo.jobreport.feature.replace.ReplaceActivity;
 import com.dracoo.jobreport.feature.vsatparameter.ParameterActivity;
@@ -116,6 +117,7 @@ public class ConnectionFragment extends Fragment {
     private String[] arrAntenaType;
     private String[] arrPedestialType;
     private String[] arrAntenaAccess;
+    private String intentConnView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -139,6 +141,7 @@ public class ConnectionFragment extends Fragment {
             m2mSetupDao = new M2mSetupAdapter(getActivity()).getAdapter();
             transHistAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){}
+        viewValidation();
     }
 
     @Override
@@ -160,6 +163,24 @@ public class ConnectionFragment extends Fragment {
         return true;
     }
 
+    private void viewValidation(){
+        try{
+            intentConnView = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            if (!intentConnView.trim().matches("") || intentConnView != null){
+                if (preference.getConnType().equals("VSAT")){
+                    //TODO KE VSAT
+                }else if (preference.getConnType().equals("M2M")){
+                    //TODO KE M2M
+                }
+            }else{
+                imgB_con_submit.setVisibility(View.VISIBLE);
+                imgB_con_cancel.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            imgB_con_submit.setVisibility(View.VISIBLE);
+            imgB_con_cancel.setVisibility(View.VISIBLE);
+        }
+    }
     private void displayAllSpinner(){
         arrConnectionType  = new String[]{"Jenis Koneksi",getActivity().getString(R.string.vsat), getActivity().getString(R.string.m2m)};
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrConnectionType);
