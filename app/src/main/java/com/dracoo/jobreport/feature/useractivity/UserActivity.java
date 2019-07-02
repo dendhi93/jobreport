@@ -113,7 +113,7 @@ public class UserActivity extends AppCompatActivity
     private Dao<MasterTransHistory, Integer> transHistAdapter;
     private String[] arrConnType;
     private String selectedConnType = "";
-    private String intentEditUser="";
+    private String intentEditUser;
     private ArrayList<MasterInfoSite> al_infoSite;
     private ArrayList<MasterJobDesc> al_jobDesc;
 
@@ -158,6 +158,7 @@ public class UserActivity extends AppCompatActivity
     private void editValidation(){
         try{
             intentEditUser = getIntent().getExtras().getString(MenuActivity.EXTRA_CALLER_VIEW);
+            Log.d("###",""+intentEditUser);
             if (intentEditUser.equals("") || intentEditUser == null){
                 imgB_userAct_cancel.setVisibility(View.VISIBLE);
                 imgB_userAct_submit.setVisibility(View.VISIBLE);

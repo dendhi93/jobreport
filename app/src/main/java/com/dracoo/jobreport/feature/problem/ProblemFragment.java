@@ -155,7 +155,10 @@ public class ProblemFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (intentProbEdit.equals("") || intentProbEdit != null){ inflater.inflate(R.menu.menu, menu); }
+        try{
+            if (intentProbEdit.equals("") || intentProbEdit != null){ inflater.inflate(R.menu.menu, menu); }
+        }catch (Exception e){}
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 

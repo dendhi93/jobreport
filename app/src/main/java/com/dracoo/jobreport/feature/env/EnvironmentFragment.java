@@ -57,7 +57,7 @@ public class EnvironmentFragment extends Fragment {
     private Dao<MasterEnvirontment, Integer> envAdapter;
     private Dao<MasterTransHistory, Integer> transHistAdapter;
     private Preference preference;
-    private String intentEnvEdit = "";
+    private String intentEnvEdit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,7 +94,10 @@ public class EnvironmentFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
+        try{
+            if (!intentEnvEdit.trim().matches("") || intentEnvEdit != null){ inflater.inflate(R.menu.menu, menu); }
+        }catch (Exception e){}
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 

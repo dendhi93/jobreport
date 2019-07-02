@@ -250,11 +250,8 @@ public class MachineFragment extends Fragment {
                 mHist.setIs_submited(0);
 
                 transHistAdapter.update(mHist);
-                if (transType == ConfigApps.TRANS_HIST_UPDATE){
-                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
-                }else{
-                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-                }
+                if (transType == ConfigApps.TRANS_HIST_UPDATE){ messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
+                }else{ messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS); }
 
                 Intent intent = new Intent(getActivity(), MenuActivity.class);
                 intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
