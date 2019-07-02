@@ -44,6 +44,7 @@
 
     <TextView
         android:layout_margin="@dimen/spacing_semi_medium"
+        android:gravity="center"
         android:layout_below="@+id/lbl_splash_note1"
         android:id="@+id/lbl_splash_note1_2"
         android:layout_width="match_parent"
