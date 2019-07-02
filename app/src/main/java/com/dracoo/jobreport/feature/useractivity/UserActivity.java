@@ -158,7 +158,6 @@ public class UserActivity extends AppCompatActivity
     private void editValidation(){
         try{
             intentEditUser = getIntent().getExtras().getString(MenuActivity.EXTRA_CALLER_VIEW);
-            Log.d("###",""+intentEditUser);
             if (intentEditUser.equals("") || intentEditUser == null){
                 imgB_userAct_cancel.setVisibility(View.VISIBLE);
                 imgB_userAct_submit.setVisibility(View.VISIBLE);

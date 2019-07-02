@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -168,15 +169,62 @@ public class ConnectionFragment extends Fragment {
             intentConnView = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
             if (!intentConnView.trim().matches("") || intentConnView != null){
                 if (preference.getConnType().equals("VSAT")){
-                    //TODO KE VSAT
+                    ArrayList<MasterVsatSetup> al_vsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
+                    if (al_vsat.size() > 0){
+                        ln_conn_vsat.setVisibility(View.VISIBLE);
+                        ln_conn_m2m.setVisibility(View.GONE);
+                        txt_conn_vsatModem.setText(al_vsat.get(0).getSn_modem().trim());
+                        txt_conn_vsatAdaptor.setText(al_vsat.get(0).getSn_adaptor().trim());
+                        txt_conn_vsatFh.setText(al_vsat.get(0).getSn_fh().trim());
+                        txt_conn_vsatLnb.setText(al_vsat.get(0).getSn_lnb().trim());
+                        txt_conn_vsatRfu.setText(al_vsat.get(0).getSn_rfu().trim());
+                        txt_conn_vsatOdu.setText(al_vsat.get(0).getSn_dip_odu().trim());
+                        txt_conn_vsatIdu.setText(al_vsat.get(0).getSn_dip_idu().trim());
+                        String antennaSize = al_vsat.get(0).getAntena_size().trim();
+                        if (antennaSize.equals(getActivity().getString(R.string.conn_12m))){ sp_conn_antena.setSelection(1);
+                        }else if (antennaSize.equals(getActivity().getString(R.string.conn_18m))){ sp_conn_antena.setSelection(2);
+                        }else if (antennaSize.equals(getActivity().getString(R.string.conn_24m))){ sp_conn_antena.setSelection(3); }
+                        txt_conn_vsat_antenaBrand.setText(al_vsat.get(0).getAntena_brand().trim());
+                        txt_conn_vsat_antenaType.setText(al_vsat.get(0).getAntena_type().trim());
+                        String pedestialType = al_vsat.get(0).getPedestal_type().trim();
+                        if (pedestialType.equals(getActivity().getString(R.string.rb_nprm))){ sp_conn_pedestial.setSelection(1);
+                        }else if (pedestialType.equals(getActivity().getString(R.string.rb_wallmount))){ sp_conn_pedestial.setSelection(2);
+                        }else if (pedestialType.equals(getActivity().getString(R.string.rb_groundmount))){ sp_conn_pedestial.setSelection(3); }
+                        String setAccessType = al_vsat.get(0).getAccess_type().trim();
+                        if (setAccessType.equals(getActivity().getString(R.string.rb_machine_24))){ sp_conn_antenaAccess.setSelection(1);
+                        }else if (setAccessType.equals(getActivity().getString(R.string.rb_machine_24))){ sp_conn_antenaAccess.setSelection(2); }
+                        String setConnType = preference.getConnType().trim();
+                        if (setConnType.equals(getActivity().getString(R.string.vsat))){ sp_conn_connType.setSelection(1);
+                        }else if (setConnType.equals(getActivity().getString(R.string.m2m))){ sp_conn_connType.setSelection(2); }
+                    }
                 }else if (preference.getConnType().equals("M2M")){
-                    //TODO KE M2M
+                    ln_conn_vsat.setVisibility(View.GONE);
+                    ln_conn_m2m.setVisibility(View.VISIBLE);
+                    ArrayList<MasterM2mSetup> al_m2mSetup = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
+                    if (al_m2mSetup.size() > 0){
+                        String setConnType = preference.getConnType().trim();
+                        if (setConnType.equals(getActivity().getString(R.string.vsat))){ sp_conn_connType.setSelection(1);
+                        }else if (setConnType.equals(getActivity().getString(R.string.m2m))){ sp_conn_connType.setSelection(2); }
+                        txt_conn_m2m_brand.setText(al_m2mSetup.get(0).getBrand_type_m2m().trim());
+                        txt_conn_m2m_sn.setText(al_m2mSetup.get(0).getSn_m2m().trim());
+                        txt_conn_m2m_adaptorBrand.setText(al_m2mSetup.get(0).getBrand_type_adaptor().trim());
+                        txt_conn_m2m_adaptorSn.setText(al_m2mSetup.get(0).getSn_adaptor().trim());
+                        txt_conn_m2m_sc1Brand.setText(al_m2mSetup.get(0).getSim_card1_type().trim());
+                        txt_conn_m2m_sc1Sn.setText(al_m2mSetup.get(0).getSim_card1_sn().trim());
+                        txt_conn_m2m_sc1puk.setText(al_m2mSetup.get(0).getSim_card2_type().trim());
+                        txt_conn_m2m_sc2Brand.setText(al_m2mSetup.get(0).getSim_card2_type().trim());
+                        txt_conn_m2m_sc2puk.setText(al_m2mSetup.get(0).getSim_card2_puk().trim());
+                        txt_conn_m2m_sc2Sn.setText(al_m2mSetup.get(0).getSim_card2_sn().trim());
+                    }
                 }
+                imgB_con_submit.setVisibility(View.GONE);
+                imgB_con_cancel.setVisibility(View.GONE);
             }else{
                 imgB_con_submit.setVisibility(View.VISIBLE);
                 imgB_con_cancel.setVisibility(View.VISIBLE);
             }
         }catch (Exception e){
+            Log.d("###",""+e.toString());
             imgB_con_submit.setVisibility(View.VISIBLE);
             imgB_con_cancel.setVisibility(View.VISIBLE);
         }
@@ -253,17 +301,11 @@ public class ConnectionFragment extends Fragment {
         }else if (selectedConn.equals("")){
             messageUtils.snackBar_message("mohon dipilih jenis koneksi", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (selectedConn.equals("VSAT")){
-            if (!vsatValidation()){
-                messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            }else{
-                vsatTrans();
-            }
+            if (!vsatValidation()){ messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            }else{ vsatTrans(); }
         }else if(selectedConn.equals("M2M")){
-            if (!m2mValidation()){
-                messageUtils.snackBar_message(getActivity().getString(R.string.emptyString),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            }else {
-                m2mTrans();
-            }
+            if (!m2mValidation()){ messageUtils.snackBar_message(getActivity().getString(R.string.emptyString),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            }else { m2mTrans(); }
         }
     }
 
