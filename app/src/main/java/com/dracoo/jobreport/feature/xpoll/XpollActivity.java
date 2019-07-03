@@ -4,12 +4,14 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
@@ -50,6 +52,10 @@ public class XpollActivity extends AppCompatActivity {
     EditText txt_xpoll_asi;
     @BindView(R.id.txt_xpoll_op)
     EditText txt_xpoll_op;
+    @BindView(R.id.imgB_xpoll_submit)
+    ImageButton imgB_xpoll_submit;
+    @BindView(R.id.imgB_xpoll_cancel)
+    ImageButton imgB_xpoll_cancel;
 
     private String selectedRadio = "";
     private MessageUtils messageUtils;
@@ -84,6 +90,14 @@ public class XpollActivity extends AppCompatActivity {
         }catch (Exception e){
 
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        try{
+            getMenuInflater().inflate(R.menu.menu, menu);
+        }catch (Exception e){}
+        return true;
     }
 
     private void displaySpinnerXpoll(){
@@ -317,6 +331,10 @@ public class XpollActivity extends AppCompatActivity {
 
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.edit_menu:
+                imgB_xpoll_submit.setVisibility(View.VISIBLE);
+                imgB_xpoll_cancel.setVisibility(View.VISIBLE);
                 break;
             default:
                 return super.onOptionsItemSelected(item);

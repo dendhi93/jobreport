@@ -2,11 +2,13 @@ package com.dracoo.jobreport.feature.vsatparameter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.dracoo.jobreport.R;
@@ -57,6 +59,11 @@ public class ParameterActivity extends AppCompatActivity {
     EditText txt_parameter_esNo;
     @BindView(R.id.txt_parameter_cNo)
     EditText txt_parameter_cNo;
+    @BindView(R.id.imgB_par_submit)
+    ImageButton imgB_par_submit;
+    @BindView(R.id.imgB_par_cancel)
+    ImageButton imgB_par_cancel;
+
 
     private String selectedParameter = "";
     private MessageUtils messageUtils;
@@ -89,6 +96,14 @@ public class ParameterActivity extends AppCompatActivity {
             transHistAdapter = new TransHistoryAdapter(getApplicationContext()).getAdapter();
         }catch (Exception e){}
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        try{
+            getMenuInflater().inflate(R.menu.menu, menu);
+        }catch (Exception e){}
+        return true;
     }
 
     private void displaySpinnerSubnet(){
@@ -269,6 +284,10 @@ public class ParameterActivity extends AppCompatActivity {
 
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.edit_menu:
+                imgB_par_submit.setVisibility(View.VISIBLE);
+                imgB_par_cancel.setVisibility(View.VISIBLE);
                 break;
             default:
                 return super.onOptionsItemSelected(item);

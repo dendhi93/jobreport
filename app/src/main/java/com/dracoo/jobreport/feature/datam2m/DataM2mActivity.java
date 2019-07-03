@@ -2,8 +2,11 @@ package com.dracoo.jobreport.feature.datam2m;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mDataAdapter;
@@ -51,6 +54,10 @@ public class DataM2mActivity extends AppCompatActivity {
     EditText txt_dm2m_dataM2m_agg;
     @BindView(R.id.txt_dm2m_user)
     EditText txt_dm2m_user;
+    @BindView(R.id.imgB_dataM2m_submit)
+    ImageButton imgB_dataM2m_submit;
+    @BindView(R.id.imgB_dataM2m_cancel)
+    ImageButton imgB_dataM2m_cancel;
 
 
     @Override
@@ -85,6 +92,14 @@ public class DataM2mActivity extends AppCompatActivity {
     @OnClick(R.id.imgB_dataM2m_cancel)
     void cancelM2m(){
         setEmptyText();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        try{
+            getMenuInflater().inflate(R.menu.menu, menu);
+        }catch (Exception e){}
+        return true;
     }
 
     private void setEmptyText(){
@@ -218,6 +233,10 @@ public class DataM2mActivity extends AppCompatActivity {
 
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.edit_menu:
+                imgB_dataM2m_submit.setVisibility(View.VISIBLE);
+                imgB_dataM2m_cancel.setVisibility(View.VISIBLE);
                 break;
             default:
                 return super.onOptionsItemSelected(item);

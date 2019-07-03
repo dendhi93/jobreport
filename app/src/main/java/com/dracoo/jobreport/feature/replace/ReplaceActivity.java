@@ -3,9 +3,11 @@ package com.dracoo.jobreport.feature.replace;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.dracoo.jobreport.R;
@@ -70,6 +72,10 @@ public class ReplaceActivity extends AppCompatActivity {
     EditText txt_rep_m2m_sc2Sn;
     @BindView(R.id.txt_rep_m2m_sc2puk)
     EditText txt_rep_m2m_sc2puk;
+    @BindView(R.id.imgB_rep_submit)
+    ImageButton imgB_rep_submit;
+    @BindView(R.id.imgB_rep_cancel)
+    ImageButton imgB_rep_cancel;
 
     private MessageUtils messageUtils;
     private Preference preference;
@@ -147,6 +153,14 @@ public class ReplaceActivity extends AppCompatActivity {
     @OnClick(R.id.imgB_rep_cancel)
     void cancelRep(){
         setEmptyText();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        try{
+            getMenuInflater().inflate(R.menu.menu, menu);
+        }catch (Exception e){}
+        return true;
     }
 
     //vsat
@@ -343,6 +357,10 @@ public class ReplaceActivity extends AppCompatActivity {
 
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.edit_menu :
+                imgB_rep_submit.setVisibility(View.VISIBLE);
+                imgB_rep_cancel.setVisibility(View.VISIBLE);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
