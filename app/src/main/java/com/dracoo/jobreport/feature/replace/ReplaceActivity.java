@@ -17,6 +17,7 @@ import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mReplace;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -86,7 +87,7 @@ public class ReplaceActivity extends AppCompatActivity {
     private Dao<MasterVsatReplace, Integer> vsatReplaceDao;
     private Dao<MasterM2mReplace, Integer> m2mReplaceDao;
     private Dao<MasterTransHistory, Integer> transHistDao;
-    private String intentView;
+    private String intentReplaceView;
 
 
     @Override
@@ -157,13 +158,54 @@ public class ReplaceActivity extends AppCompatActivity {
     }
 
     private void viewReplace(){
-
+        try{
+            intentReplaceView = getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            if (!intentReplaceView.equals("") || intentReplaceView != null){
+                if (preference.getConnType().equals(getString(R.string.vsat))){
+                    ln_replace_vsat.setVisibility(View.VISIBLE);
+                    ln_replace_m2m.setVisibility(View.GONE);
+                    ArrayList<MasterVsatReplace> al_repVsat = new VsatReplaceAdapter(getApplicationContext()).val_vsatReplace(preference.getCustID(), preference.getUn());
+                    if (al_repVsat.size() > 0){
+                        txt_rep_vsatModem.setText(al_repVsat.get(0).getSn_modem().trim());
+                        txt_rep_vsatAdaptor.setText(al_repVsat.get(0).getSn_adaptor().trim());
+                        txt_rep_vsatFh.setText(al_repVsat.get(0).getSn_fh().trim());
+                        txt_rep_vsatLnb.setText(al_repVsat.get(0).getSn_lnb().trim());
+                        txt_rep_vsatRfu.setText(al_repVsat.get(0).getSn_rfu().trim());
+                        txt_rep_vsatDipOdu.setText(al_repVsat.get(0).getSn_dip_odu().trim());
+                        txt_rep_vsatDipIdu.setText(al_repVsat.get(0).getSn_dip_idu().trim());
+                    }
+                }else if (preference.getConnType().equals(getString(R.string.m2m))){
+                    ln_replace_vsat.setVisibility(View.GONE);
+                    ln_replace_m2m.setVisibility(View.VISIBLE);
+                    ArrayList<MasterM2mReplace> al_replaceM2m = new M2mReplaceAdapter(getApplicationContext()).val_m2mReplace(preference.getCustID(), preference.getUn());
+                    if (al_replaceM2m.size() > 0){
+                        txt_rep_m2m_brand.setText(al_replaceM2m.get(0).getBrand_type_replace().trim());
+                        txt_rep_m2m_sn.setText(al_replaceM2m.get(0).getSn_replace().trim());
+                        txt_rep_m2m_adaptorBrand.setText(al_replaceM2m.get(0).getBrand_type_adaptor().trim());
+                        txt_rep_m2m_adaptorSn.setText(al_replaceM2m.get(0).getSn_adaptor().trim());
+                        txt_rep_m2m_sc1Brand.setText(al_replaceM2m.get(0).getSim_card1_type().trim());
+                        txt_rep_m2m_sc1Sn.setText(al_replaceM2m.get(0).getSim_card1_sn().trim());
+                        txt_rep_m2m_sc1puk.setText(al_replaceM2m.get(0).getSim_card1_puk().trim());
+                        //TO DO LANJUT
+                    }
+                }
+                imgB_rep_submit.setVisibility(View.GONE);
+                imgB_rep_cancel.setVisibility(View.GONE);
+            }else{
+                imgB_rep_submit.setVisibility(View.VISIBLE);
+                imgB_rep_cancel.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            Log.d("###",""+e.toString());
+            imgB_rep_submit.setVisibility(View.VISIBLE);
+            imgB_rep_cancel.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         try{
-            getMenuInflater().inflate(R.menu.menu, menu);
+            if (!intentReplaceView.equals("") || intentReplaceView != null){getMenuInflater().inflate(R.menu.menu, menu); }
         }catch (Exception e){}
         return true;
     }
