@@ -257,7 +257,8 @@ public class ConnectionFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) { }
         });
 
-        arrAntenaType = new String[]{getActivity().getString(R.string.diameter_antena),"1.2", "1.8","2.4"};
+        arrAntenaType = new String[]{getActivity().getString(R.string.diameter_antena),getActivity().getString(R.string.conn_12m),
+                getActivity().getString(R.string.conn_18m),getActivity().getString(R.string.conn_24m)};
         final ArrayAdapter<String> adapterAntena = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrAntenaType);
         sp_conn_antena.setAdapter(adapterAntena);
         sp_conn_antena.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
