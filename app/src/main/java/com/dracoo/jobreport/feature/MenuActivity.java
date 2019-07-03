@@ -148,6 +148,10 @@ public class MenuActivity extends AppCompatActivity
                 if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Machine"); }
                 transaction.replace(R.id.frame_nav_container, new MachineFragment());
                 break;
+            case EXTRA_FLAG_CONN:
+                if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Connection"); }
+                transaction.replace(R.id.frame_nav_container, new ConnectionFragment());
+                break;
             case EXTRA_FLAG_DOC :
                 if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Documentation"); }
                 transaction.replace(R.id.frame_nav_container, new DocumentationFragment());

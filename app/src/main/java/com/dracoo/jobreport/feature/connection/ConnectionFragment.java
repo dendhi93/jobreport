@@ -147,7 +147,10 @@ public class ConnectionFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
+        try{
+            if (intentConnView.equals("") || intentConnView != null){ inflater.inflate(R.menu.menu, menu); }
+        }catch (Exception e){}
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -167,7 +170,7 @@ public class ConnectionFragment extends Fragment {
     private void viewValidation(){
         try{
             intentConnView = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
-            if (!intentConnView.trim().matches("") || intentConnView != null){
+            if (!intentConnView.trim().equals("") || intentConnView != null){
                 if (preference.getConnType().equals("VSAT")){
                     ArrayList<MasterVsatSetup> al_vsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
                     if (al_vsat.size() > 0){
@@ -369,7 +372,7 @@ public class ConnectionFragment extends Fragment {
                     mVsatSetup.setSn_dip_odu(txt_conn_vsatOdu.getText().toString().trim());
                     mVsatSetup.setSn_dip_idu(txt_conn_vsatIdu.getText().toString().trim());
                     mVsatSetup.setAntena_size(selectedAntena.trim());
-                    mVsatSetup.setAntena_brand(txt_conn_vsat_antenaBrand.toString().trim());
+                    mVsatSetup.setAntena_brand(txt_conn_vsat_antenaBrand.getText().toString().trim());
                     mVsatSetup.setAntena_type(txt_conn_vsat_antenaType.getText().toString().trim());
                     mVsatSetup.setPedestal_type(selectedPedestial.trim());
                     mVsatSetup.setAccess_type(selectedAccess.trim());
