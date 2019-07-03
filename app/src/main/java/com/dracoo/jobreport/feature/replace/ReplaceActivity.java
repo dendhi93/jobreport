@@ -86,6 +86,7 @@ public class ReplaceActivity extends AppCompatActivity {
     private Dao<MasterVsatReplace, Integer> vsatReplaceDao;
     private Dao<MasterM2mReplace, Integer> m2mReplaceDao;
     private Dao<MasterTransHistory, Integer> transHistDao;
+    private String intentView;
 
 
     @Override
@@ -126,7 +127,7 @@ public class ReplaceActivity extends AppCompatActivity {
             m2mReplaceDao = new M2mReplaceAdapter(getApplicationContext()).getAdapter();
             transHistDao = new TransHistoryAdapter(getApplicationContext()).getAdapter();
         }catch (Exception e){}
-
+        viewReplace();
     }
 
     @OnClick(R.id.imgB_rep_submit)
@@ -153,6 +154,10 @@ public class ReplaceActivity extends AppCompatActivity {
     @OnClick(R.id.imgB_rep_cancel)
     void cancelRep(){
         setEmptyText();
+    }
+
+    private void viewReplace(){
+
     }
 
     @Override
