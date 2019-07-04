@@ -186,7 +186,9 @@ public class ReplaceActivity extends AppCompatActivity {
                         txt_rep_m2m_sc1Brand.setText(al_replaceM2m.get(0).getSim_card1_type().trim());
                         txt_rep_m2m_sc1Sn.setText(al_replaceM2m.get(0).getSim_card1_sn().trim());
                         txt_rep_m2m_sc1puk.setText(al_replaceM2m.get(0).getSim_card1_puk().trim());
-                        //TO DO LANJUT
+                        txt_rep_m2m_sc2Brand.setText(al_replaceM2m.get(0).getSim_card2_type().trim());
+                        txt_rep_m2m_sc2Sn.setText(al_replaceM2m.get(0).getSim_card2_sn().trim());
+                        txt_rep_m2m_sc2puk.setText(al_replaceM2m.get(0).getSim_card2_puk().trim());
                     }
                 }
                 imgB_rep_submit.setVisibility(View.GONE);
