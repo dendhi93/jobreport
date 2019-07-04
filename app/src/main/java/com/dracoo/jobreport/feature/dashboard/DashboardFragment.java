@@ -29,7 +29,7 @@ import com.dracoo.jobreport.database.adapter.JobDescAdapter;
 import com.dracoo.jobreport.database.adapter.M2mDataAdapter;
 import com.dracoo.jobreport.database.adapter.M2mReplaceAdapter;
 import com.dracoo.jobreport.database.adapter.M2mSetupAdapter;
-import com.dracoo.jobreport.database.adapter.M2mXpollAdapter;
+import com.dracoo.jobreport.database.adapter.XpollAdapter;
 import com.dracoo.jobreport.database.adapter.MachineAdapter;
 import com.dracoo.jobreport.database.adapter.ProblemAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
@@ -62,7 +62,6 @@ import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
-import com.google.android.gms.dynamic.IFragmentWrapper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -70,7 +69,6 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.j256.ormlite.dao.Dao;
@@ -87,8 +85,6 @@ import butterknife.OnClick;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static com.dracoo.jobreport.util.JobReportUtils.createCell;
-import static com.dracoo.jobreport.util.JobReportUtils.headTitleCell;
-import static com.dracoo.jobreport.util.JobReportUtils.titleCell;
 
 public class DashboardFragment extends Fragment implements DashboardItemClickBack {
     @BindView(R.id.lbl_dash_locationName)
@@ -212,7 +208,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 //        else if (preference.getConnType().equals("VSAT") && !new VsatReplaceAdapter(getActivity()).isVsatReplaceEmpty(preference.getUn(), preference.getCustID())){
 //            messageUtils.toastMessage("Mohon diinput menu Vsat Replace terlebih dahulu", ConfigApps.T_INFO);
 //        }
-//        else if (preference.getConnType().equals("VSAT") && !new M2mXpollAdapter(getActivity()).isVsatXpollEmpty(preference.getUn(), preference.getCustID())){
+//        else if (preference.getConnType().equals("VSAT") && !new XpollAdapter(getActivity()).isVsatXpollEmpty(preference.getUn(), preference.getCustID())){
 //            messageUtils.toastMessage("Mohon diinput menu Xpoll terlebih dahulu", ConfigApps.T_INFO);
 //        }
         else if (preference.getConnType().equals("VSAT") && !new ConnectionParameterAdapter(getActivity()).isParamEmpty(preference.getUn(), preference.getCustID())){
@@ -243,7 +239,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     if(preference.getConnType().equals("VSAT")){
                         alVsatSetup = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
                         alVsatReplace = new VsatReplaceAdapter(getActivity()).val_vsatReplace(preference.getCustID(), preference.getUn());
-                        alXpoll = new M2mXpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
+                        alXpoll = new XpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
                         alConnParam = new ConnectionParameterAdapter(getActivity()).val_param(preference.getCustID(), preference.getUn());
                     }else{
                         alM2mSetup = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());

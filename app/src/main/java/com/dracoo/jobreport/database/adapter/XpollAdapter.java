@@ -9,10 +9,10 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class M2mXpollAdapter extends DatabaseAdapter {
+public class XpollAdapter extends DatabaseAdapter {
     private Dao<MasterXpoll, Integer> xpolL;
 
-    public M2mXpollAdapter(Context context) {
+    public XpollAdapter(Context context) {
         super(context);
     }
 

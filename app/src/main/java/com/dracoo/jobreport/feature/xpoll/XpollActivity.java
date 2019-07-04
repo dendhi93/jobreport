@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,10 +17,11 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import com.dracoo.jobreport.R;
-import com.dracoo.jobreport.database.adapter.M2mXpollAdapter;
+import com.dracoo.jobreport.database.adapter.XpollAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterXpoll;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -65,6 +67,8 @@ public class XpollActivity extends AppCompatActivity {
     private Dao<MasterXpoll, Integer> xpollAdapter;
     private Preference preference;
     private String[] arrXpoll;
+    private String intentXpollView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,6 @@ public class XpollActivity extends AppCompatActivity {
         setContentView(R.layout.activity_xpoll);
         ButterKnife.bind(this);
         if (getSupportActionBar() != null){ getSupportActionBar().setDisplayHomeAsUpEnabled(true); }
-
         if (getSupportActionBar() != null){ getSupportActionBar().setSubtitle(getString(R.string.vsat)); }
     }
 
@@ -83,13 +86,11 @@ public class XpollActivity extends AppCompatActivity {
         messageUtils = new MessageUtils(XpollActivity.this);
         preference = new Preference(XpollActivity.this);
         displaySpinnerXpoll();
-
         try{
             transHistAdapter = new TransHistoryAdapter(getApplicationContext()).getAdapter();
-            xpollAdapter = new M2mXpollAdapter(getApplicationContext()).getAdapter();
-        }catch (Exception e){
-
-        }
+            xpollAdapter = new XpollAdapter(getApplicationContext()).getAdapter();
+        }catch (Exception e){ }
+        viewXpoll();
     }
 
     @Override
@@ -100,6 +101,38 @@ public class XpollActivity extends AppCompatActivity {
         return true;
     }
 
+    private void viewXpoll(){
+        try{
+            intentXpollView = getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            if (intentXpollView.equals("") || intentXpollView != null){
+                ArrayList<MasterXpoll> al_xpoll = new XpollAdapter(getApplicationContext()).val_xpoll(preference.getCustID(), preference.getUn());
+                if (al_xpoll.size() > 0){
+                    String chooseSat = al_xpoll.get(0).getSat().trim();
+                    if (chooseSat.equals(getString(R.string.t3s))){sp_xpoll_choose.setSelection(1);
+                    }else if (chooseSat.equals(getString(R.string.apt6))){sp_xpoll_choose.setSelection(2);
+                    }else if (chooseSat.equals(getString(R.string.apt9))){ sp_xpoll_choose.setSelection(3); }
+                    txt_xpoll_dateTime.setText(al_xpoll.get(0).getInsert_time().trim());
+                    txt_xpoll_transponder.setText(al_xpoll.get(0).getTransponder().trim());
+                    txt_xpoll_lft.setText(al_xpoll.get(0).getLft().trim());
+                    txt_xpoll_cn.setText(al_xpoll.get(0).getCn().trim());
+                    txt_xpoll_cpi.setText(al_xpoll.get(0).getCpi().trim());
+                    txt_xpoll_asi.setText(al_xpoll.get(0).getAsi().trim());
+                    txt_xpoll_op.setText(al_xpoll.get(0).getOp().trim());
+
+                    imgB_xpoll_submit.setVisibility(View.GONE);
+                    imgB_xpoll_cancel.setVisibility(View.GONE);
+                }
+            }else{
+                imgB_xpoll_submit.setVisibility(View.VISIBLE);
+                imgB_xpoll_cancel.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            Log.d("###",""+e+toString());
+            imgB_xpoll_submit.setVisibility(View.VISIBLE);
+            imgB_xpoll_cancel.setVisibility(View.VISIBLE);
+        }
+
+    }
     private void displaySpinnerXpoll(){
         arrXpoll = new String[]{getString(R.string.sat),
                 getString(R.string.t3s),
@@ -145,7 +178,7 @@ public class XpollActivity extends AppCompatActivity {
     }
 
     private void xpollTrans(){
-        ArrayList<MasterXpoll> al_valXpoll = new M2mXpollAdapter(getApplicationContext()).val_xpoll(preference.getCustID(), preference.getUn());
+        ArrayList<MasterXpoll> al_valXpoll = new XpollAdapter(getApplicationContext()).val_xpoll(preference.getCustID(), preference.getUn());
         if (al_valXpoll.size() > 0){
             try{
                 MasterXpoll masterXpoll = xpollAdapter.queryForId(al_valXpoll.get(0).getId_xpoll());
