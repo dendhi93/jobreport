@@ -96,7 +96,7 @@ public class ParameterActivity extends AppCompatActivity {
             connParamAdapter = new ConnectionParameterAdapter(getApplicationContext()).getAdapter();
             transHistAdapter = new TransHistoryAdapter(getApplicationContext()).getAdapter();
         }catch (Exception e){}
-
+        viewParam();
     }
 
     @Override

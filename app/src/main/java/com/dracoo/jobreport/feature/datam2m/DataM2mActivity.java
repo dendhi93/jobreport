@@ -13,6 +13,7 @@ import com.dracoo.jobreport.database.adapter.M2mDataAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mData;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -31,6 +32,7 @@ public class DataM2mActivity extends AppCompatActivity {
     private Preference preference;
     private Dao<MasterTransHistory, Integer> transHistDao;
     private Dao<MasterM2mData, Integer> dataM2mDao;
+    private String intentDataM2m;
 
     @BindView(R.id.txt_dm2m_un)
     EditText txt_dm2m_un;
@@ -80,6 +82,7 @@ public class DataM2mActivity extends AppCompatActivity {
             transHistDao = new TransHistoryAdapter(getApplicationContext()).getAdapter();
             dataM2mDao = new M2mDataAdapter(getApplicationContext()).getAdapter();
         }catch (Exception e){}
+        viewDataM2m();
     }
 
     @OnClick(R.id.imgB_dataM2m_submit)
@@ -100,6 +103,21 @@ public class DataM2mActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.menu, menu);
         }catch (Exception e){}
         return true;
+    }
+
+    private void viewDataM2m(){
+        try{
+            intentDataM2m = getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            if (!intentDataM2m.equals("") || intentDataM2m != null){
+                //TO DO NOT DONE
+            }else{
+                imgB_dataM2m_submit.setVisibility(View.VISIBLE);
+                imgB_dataM2m_cancel.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            imgB_dataM2m_submit.setVisibility(View.VISIBLE);
+            imgB_dataM2m_cancel.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setEmptyText(){
