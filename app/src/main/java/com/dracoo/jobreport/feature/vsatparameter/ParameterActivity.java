@@ -16,6 +16,7 @@ import com.dracoo.jobreport.database.adapter.ConnectionParameterAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterConnectionParameter;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -64,8 +65,8 @@ public class ParameterActivity extends AppCompatActivity {
     @BindView(R.id.imgB_par_cancel)
     ImageButton imgB_par_cancel;
 
-
     private String selectedParameter = "";
+    private String intentParam;
     private MessageUtils messageUtils;
     private Preference preference;
     private Dao<MasterConnectionParameter, Integer> connParamAdapter;
@@ -101,11 +102,48 @@ public class ParameterActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         try{
-            getMenuInflater().inflate(R.menu.menu, menu);
+            if (!intentParam.equals("") || intentParam != null){ getMenuInflater().inflate(R.menu.menu, menu); }
         }catch (Exception e){}
         return true;
     }
 
+    private void viewParam(){
+        try{
+            intentParam = getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            if (!intentParam.equals("") || intentParam != null){
+                ArrayList<MasterConnectionParameter> al_connParam = new ConnectionParameterAdapter(getApplicationContext())
+                        .val_param(preference.getCustID(), preference.getUn());
+                if (al_connParam.size() > 0){
+                    txt_parameter_ipLLan.setText(al_connParam.get(0).getLan_parameter().trim());
+                    String subnet = al_connParam.get(0).getLan_subnetmask().trim();
+                    if (subnet.equals(getString(R.string.rb_lan_param_1))){ sp_param_subnet.setSelection(1);
+                    }else if (subnet.equals(getString(R.string.rb_lan_param_2))){ sp_param_subnet.setSelection(2);
+                    }else if (subnet.equals(getString(R.string.rb_lan_param_2))){ sp_param_subnet.setSelection(3); }
+                    txt_parameter_long.setText(al_connParam.get(0).getSat_parameter().trim());
+                    txt_parameter_symRate.setText(al_connParam.get(0).getSat_symrate().trim());
+                    txt_parameter_freq.setText(al_connParam.get(0).getSat_freq().trim());
+                    txt_parameter_esn.setText(al_connParam.get(0).getManagement_esnmodem().trim());
+                    txt_parameter_gateway.setText(al_connParam.get(0).getManagement_gateway().trim());
+                    txt_parameter_snmp.setText(al_connParam.get(0).getManagement_snmp().trim());
+                    txt_parameter_signal.setText(al_connParam.get(0).getRanging_signal().trim());
+                    txt_parameter_dataRate.setText(al_connParam.get(0).getRanging_data_rate().trim());
+                    txt_parameter_fec.setText(al_connParam.get(0).getRanging_fec().trim());
+                    txt_parameter_powSetting.setText(al_connParam.get(0).getRanging_power().trim());
+                    txt_parameter_esNo.setText(al_connParam.get(0).getRanging_esno().trim());
+                    txt_parameter_cNo.setText(al_connParam.get(0).getRanging_cno().trim());
+
+                    imgB_par_submit.setVisibility(View.GONE);
+                    imgB_par_cancel.setVisibility(View.GONE);
+                }
+            }else{
+                imgB_par_submit.setVisibility(View.VISIBLE);
+                imgB_par_cancel.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+            imgB_par_submit.setVisibility(View.VISIBLE);
+            imgB_par_cancel.setVisibility(View.VISIBLE);
+        }
+    }
     private void displaySpinnerSubnet(){
         arrParamSubnet = new String[]{getString(R.string.subnetMask),
                 getString(R.string.rb_lan_param_1),
