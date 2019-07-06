@@ -21,6 +21,7 @@ import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -100,7 +101,7 @@ public class DataM2mActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         try{
-            getMenuInflater().inflate(R.menu.menu, menu);
+            if (!intentDataM2m.equals("") || intentDataM2m != null){ getMenuInflater().inflate(R.menu.menu, menu); }
         }catch (Exception e){}
         return true;
     }
@@ -109,7 +110,23 @@ public class DataM2mActivity extends AppCompatActivity {
         try{
             intentDataM2m = getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
             if (!intentDataM2m.equals("") || intentDataM2m != null){
-                //TO DO NOT DONE
+                ArrayList<MasterM2mData> al_m2mData = new M2mDataAdapter(getApplicationContext()).val_dataM2m(preference.getCustID(), preference.getUn());
+                if (al_m2mData.size()> 0){
+                    txt_dm2m_un.setText(al_m2mData.get(0).getUsername().trim());
+                    txt_dm2m_password.setText(al_m2mData.get(0).getPassword().trim());
+                    txt_dm2m_ipMachine.setText(al_m2mData.get(0).getIp_machine().trim());
+                    txt_dm2m_user.setText(al_m2mData.get(0).getUser().trim());
+                    txt_dm2m_remote.setText(al_m2mData.get(0).getRemote().trim());
+                    txt_dm2m_tunnelId.setText(al_m2mData.get(0).getTunnel_id().trim());
+                    txt_dm2m_ipBouding.setText(al_m2mData.get(0).getIp_bonding().trim());
+                    txt_dm2m_ipLLan.setText(al_m2mData.get(0).getIp_lan().trim());
+                    txt_dm2m_ipVLan.setText(al_m2mData.get(0).getIp_vlan().trim());
+                    txt_dm2m_dataM2m_subnetMask.setText(al_m2mData.get(0).getSubnet_mask().trim());
+                    txt_dm2m_dataM2m_agg.setText(al_m2mData.get(0).getAgg().trim());
+
+                    imgB_dataM2m_submit.setVisibility(View.GONE);
+                    imgB_dataM2m_cancel.setVisibility(View.GONE);
+                }
             }else{
                 imgB_dataM2m_submit.setVisibility(View.VISIBLE);
                 imgB_dataM2m_cancel.setVisibility(View.VISIBLE);
@@ -155,7 +172,7 @@ public class DataM2mActivity extends AppCompatActivity {
         if (al_valDatam2m.size() > 0){
             try{
                 MasterM2mData m2mData = dataM2mDao.queryForId(al_valDatam2m.get(0).getId_data());
-                m2mData.setUsername(txt_dm2m_user.getText().toString().trim());
+                m2mData.setUsername(txt_dm2m_un.getText().toString().trim());
                 m2mData.setPassword(txt_dm2m_password.getText().toString().trim());
                 m2mData.setIp_machine(txt_dm2m_ipMachine.getText().toString().trim());
                 m2mData.setUser(txt_dm2m_user.getText().toString().trim());
@@ -164,7 +181,7 @@ public class DataM2mActivity extends AppCompatActivity {
                 m2mData.setIp_bonding(txt_dm2m_ipBouding.getText().toString().trim());
                 m2mData.setAgg(txt_dm2m_dataM2m_agg.getText().toString().trim());
                 m2mData.setIp_lan(txt_dm2m_ipLLan.getText().toString().trim());
-                m2mData.setIp_vlan(txt_dm2m_ipLLan.getText().toString().trim());
+                m2mData.setIp_vlan(txt_dm2m_ipVLan.getText().toString().trim());
                 m2mData.setUpdate_date(DateTimeUtils.getCurrentTime());
 
                 dataM2mDao.update(m2mData);
@@ -177,7 +194,7 @@ public class DataM2mActivity extends AppCompatActivity {
                 MasterM2mData m2mData = new MasterM2mData();
                 m2mData.setProgress_type(preference.getProgress());
                 m2mData.setId_site(preference.getCustID());
-                m2mData.setUsername(txt_dm2m_user.getText().toString().trim());
+                m2mData.setUsername(txt_dm2m_un.getText().toString().trim());
                 m2mData.setPassword(txt_dm2m_password.getText().toString().trim());
                 m2mData.setIp_machine(txt_dm2m_ipMachine.getText().toString().trim());
                 m2mData.setUser(txt_dm2m_user.getText().toString().trim());
@@ -185,7 +202,7 @@ public class DataM2mActivity extends AppCompatActivity {
                 m2mData.setTunnel_id(txt_dm2m_tunnelId.getText().toString().trim());
                 m2mData.setIp_bonding(txt_dm2m_ipBouding.getText().toString().trim());
                 m2mData.setIp_lan(txt_dm2m_ipLLan.getText().toString().trim());
-                m2mData.setIp_vlan(txt_dm2m_ipLLan.getText().toString().trim());
+                m2mData.setIp_vlan(txt_dm2m_ipVLan.getText().toString().trim());
                 m2mData.setSubnet_mask(txt_dm2m_dataM2m_subnetMask.getText().toString().trim());
                 m2mData.setAgg(txt_dm2m_dataM2m_agg.getText().toString().trim());
                 m2mData.setConnection_type(preference.getConnType().trim());
@@ -212,11 +229,8 @@ public class DataM2mActivity extends AppCompatActivity {
                 mHist.setIs_submited(0);
 
                 transHistDao.update(mHist);
-                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){
-                    messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
-                }else{
-                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-                }
+                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){ messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
+                }else{ messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS); }
                 setEmptyText();
                 JobReportUtils.hideKeyboard(DataM2mActivity.this);
             }catch (Exception e){
@@ -232,11 +246,8 @@ public class DataM2mActivity extends AppCompatActivity {
                 mHist.setIs_submited(0);
 
                 transHistDao.create(mHist);
-                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){
-                    messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
-                }else{
-                    messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-                }
+                if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){ messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
+                }else{ messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS); }
                 setEmptyText();
                 JobReportUtils.hideKeyboard(DataM2mActivity.this);
             }catch (Exception e){

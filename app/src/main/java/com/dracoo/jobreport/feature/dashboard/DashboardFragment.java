@@ -798,6 +798,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
     @Override
     public void listSelected(String transType) {
+//        messageUtils.toastMessage(transType, ConfigApps.T_INFO);
         Intent intent = null;
         if (transType.trim().equals(getActivity().getString(R.string.infoSite_trans))
             || transType.equals(getActivity().getString(R.string.jobDesc_trans))){
@@ -824,20 +825,20 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 transType.trim().equals(getActivity().getString(R.string.repM2M_trans))){
             intent = new Intent(getActivity(), ReplaceActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
-        }else if (transType.trim().equals("xpoll_trans")){
+        }else if (transType.trim().equals(getActivity().getString(R.string.xpoll_trans))){
             intent = new Intent(getActivity(), XpollActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
-        }else if (transType.trim().equals("networkParam_trans")){
+        }else if (transType.trim().equals(getActivity().getString(R.string.networkParam_trans))){
             intent = new Intent(getActivity(), ParameterActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
-        }else if (transType.trim().equals("dataM2m_trans")){
+        }else if (transType.trim().equals(getActivity().getString(R.string.dataM2m_trans))){
             intent = new Intent(getActivity(), DataM2mActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
-        }else if (transType.trim().equals("doc_trans")){
+        }else if (transType.trim().equals(getActivity().getString(R.string.doc_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DOC);
-        }else if (transType.trim().equals("action_trans")){
+        }else if (transType.trim().equals(getActivity().getString(R.string.action_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
             intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_ACTION);

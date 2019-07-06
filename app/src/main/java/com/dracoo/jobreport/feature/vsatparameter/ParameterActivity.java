@@ -2,6 +2,7 @@ package com.dracoo.jobreport.feature.vsatparameter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -118,7 +119,7 @@ public class ParameterActivity extends AppCompatActivity {
                     String subnet = al_connParam.get(0).getLan_subnetmask().trim();
                     if (subnet.equals(getString(R.string.rb_lan_param_1))){ sp_param_subnet.setSelection(1);
                     }else if (subnet.equals(getString(R.string.rb_lan_param_2))){ sp_param_subnet.setSelection(2);
-                    }else if (subnet.equals(getString(R.string.rb_lan_param_2))){ sp_param_subnet.setSelection(3); }
+                    }else if (subnet.equals(getString(R.string.rb_lan_param_3))){ sp_param_subnet.setSelection(3); }
                     txt_parameter_long.setText(al_connParam.get(0).getSat_parameter().trim());
                     txt_parameter_symRate.setText(al_connParam.get(0).getSat_symrate().trim());
                     txt_parameter_freq.setText(al_connParam.get(0).getSat_freq().trim());
@@ -135,13 +136,11 @@ public class ParameterActivity extends AppCompatActivity {
                     imgB_par_submit.setVisibility(View.GONE);
                     imgB_par_cancel.setVisibility(View.GONE);
                 }
-            }else{
-                imgB_par_submit.setVisibility(View.VISIBLE);
-                imgB_par_cancel.setVisibility(View.VISIBLE);
             }
         }catch (Exception e){
             imgB_par_submit.setVisibility(View.VISIBLE);
             imgB_par_cancel.setVisibility(View.VISIBLE);
+            Log.d("###",""+e.toString());
         }
     }
     private void displaySpinnerSubnet(){
