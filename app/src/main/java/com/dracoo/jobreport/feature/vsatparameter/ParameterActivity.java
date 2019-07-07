@@ -110,7 +110,7 @@ public class ParameterActivity extends AppCompatActivity {
 
     private void viewParam(){
         try{
-            intentParam = getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            intentParam = getIntent().getStringExtra(ConfigApps.EXTRA_CALLER_VIEW);
             if (!intentParam.equals("") || intentParam != null){
                 ArrayList<MasterConnectionParameter> al_connParam = new ConnectionParameterAdapter(getApplicationContext())
                         .val_param(preference.getCustID(), preference.getUn());

@@ -790,48 +790,46 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
         if (transType.trim().equals(getActivity().getString(R.string.infoSite_trans))
             || transType.equals(getActivity().getString(R.string.jobDesc_trans))){
             intent = new Intent(getActivity(), UserActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
         }else if (transType.trim().equals(getActivity().getString(R.string.problemDesc_trans))) {
             intent = new Intent(getActivity(), MenuActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_PROBLEM);
         }else if (transType.trim().equals(getActivity().getString(R.string.electEnv_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_LIGHTNING);
         }else if (transType.trim().equals(getActivity().getString(R.string.machine_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_MACHINE);
         }else if (transType.trim().equals(getActivity().getString(R.string.ioVSAT_trans))||
                 transType.trim().equals(getActivity().getString(R.string.ioM2M_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_CONN);
         }else if (transType.trim().equals(getActivity().getString(R.string.repVSAT_trans)) ||
                 transType.trim().equals(getActivity().getString(R.string.repM2M_trans))){
             intent = new Intent(getActivity(), ReplaceActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
         }else if (transType.trim().equals(getActivity().getString(R.string.xpoll_trans))){
             intent = new Intent(getActivity(), XpollActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
         }else if (transType.trim().equals(getActivity().getString(R.string.networkParam_trans))){
             intent = new Intent(getActivity(), ParameterActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
         }else if (transType.trim().equals(getActivity().getString(R.string.dataM2m_trans))){
             intent = new Intent(getActivity(), DataM2mActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
         }else if (transType.trim().equals(getActivity().getString(R.string.doc_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DOC);
         }else if (transType.trim().equals(getActivity().getString(R.string.action_trans))){
             intent = new Intent(getActivity(), MenuActivity.class);
-            intent.putExtra(MenuActivity.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_ACTION);
         }
-
         if (intent != null){ startActivity(intent); }
-        getActivity().finish();
     }
 }

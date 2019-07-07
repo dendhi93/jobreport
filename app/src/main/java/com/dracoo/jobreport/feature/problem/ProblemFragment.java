@@ -119,11 +119,8 @@ public class ProblemFragment extends Fragment {
 
     private void probEditValidation(){
         try{
-            intentProbEdit = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
-            if (intentProbEdit.equals("") || intentProbEdit == null){
-                imgB_problem_submit.setVisibility(View.VISIBLE);
-                imgB_problem_cancel.setVisibility(View.VISIBLE);
-            }else{
+            intentProbEdit = getArguments().getString(ConfigApps.EXTRA_CALLER_VIEW);
+            if (intentProbEdit.trim().equals(ConfigApps.VIEW_TYPE)){
                 al_problem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
                 if (al_problem.size() > 0){
                     txt_prob_modemDisplay.setText(al_problem.get(0).getModem().trim());

@@ -149,7 +149,7 @@ public class ConnectionFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         try{
-            if (!intentConnView.equals("") || intentConnView != null){ inflater.inflate(R.menu.menu, menu); }
+            if (intentConnView.trim().equals(ConfigApps.VIEW_TYPE)){ inflater.inflate(R.menu.menu, menu); }
         }catch (Exception e){}
 
         super.onCreateOptionsMenu(menu, inflater);
@@ -170,8 +170,9 @@ public class ConnectionFragment extends Fragment {
 
     private void viewValidation(){
         try{
-            intentConnView = Objects.requireNonNull(getActivity()).getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
-            if (!intentConnView.trim().equals("") || intentConnView != null){
+            intentConnView = getArguments().getString(ConfigApps.EXTRA_CALLER_VIEW);
+            messageUtils.toastMessage(intentConnView, ConfigApps.T_INFO);
+            if (intentConnView.trim().equals(ConfigApps.VIEW_TYPE)){
                 if (preference.getConnType().equals("VSAT")){
                     ArrayList<MasterVsatSetup> al_vsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
                     if (al_vsat.size() > 0){

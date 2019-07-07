@@ -47,7 +47,6 @@ public class MenuActivity extends AppCompatActivity
     private Preference preference;
     private MessageUtils messageUtils;
     public static final String EXTRA_CALLER_ACTIVITY = "job.extra_caller_flag";
-    public static final String EXTRA_CALLER_VIEW = "job.extra_view_flag";
 
     public static final int EXTRA_FLAG_DASH = 11;
     public static final int EXTRA_FLAG_PROBLEM = 12;
@@ -76,14 +75,10 @@ public class MenuActivity extends AppCompatActivity
 
             lblName.setText(prefUn.trim());
             lblPhone.setText("Phone " +prefPhone.trim());
-
-        }catch (Exception e){
-            Log.d("suram",""+e.toString());
-        }
+        }catch (Exception e){ Log.d("suram",""+e.toString()); }
 
         setupToolbarNavDrawer();
         loadFragment();
-
     }
 
 
@@ -97,9 +92,7 @@ public class MenuActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         navigationView.setNavigationItemSelectedListener(this);
-
         navigationView.setItemIconTintList(null);
 
     }
@@ -116,8 +109,6 @@ public class MenuActivity extends AppCompatActivity
             }
             this.doubleBackToExitPressedOnce = true;
             messageUtils.toastMessage("Tekan 'Back' sekali lagi untuk keluar", ConfigApps.T_INFO);
-
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -129,6 +120,15 @@ public class MenuActivity extends AppCompatActivity
 
     private void loadFragment(){
         int flagMenu = getIntent().getIntExtra(EXTRA_CALLER_ACTIVITY, 0);
+        String typeMenu;
+        try{
+            typeMenu = getIntent().getStringExtra(ConfigApps.EXTRA_CALLER_VIEW);
+//            messageUtils.toastMessage("menu type " +typeMenu, ConfigApps.T_INFO);
+        }catch (Exception e){
+            typeMenu = ConfigApps.NEW_TYPE;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putString(ConfigApps.EXTRA_CALLER_VIEW, typeMenu);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         switch (flagMenu) {
@@ -138,19 +138,27 @@ public class MenuActivity extends AppCompatActivity
                 break;
             case EXTRA_FLAG_PROBLEM:
                 if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Problem Desc"); }
-                transaction.replace(R.id.frame_nav_container, new ProblemFragment());
+                ProblemFragment problemFragment = new ProblemFragment();
+                transaction.replace(R.id.frame_nav_container, problemFragment);
+                problemFragment.setArguments(bundle);
                 break;
             case EXTRA_FLAG_LIGHTNING:
                 if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Electrical Environtment"); }
-                transaction.replace(R.id.frame_nav_container, new EnvironmentFragment());
+                EnvironmentFragment environmentFragment = new EnvironmentFragment();
+                transaction.replace(R.id.frame_nav_container, environmentFragment);
+                environmentFragment.setArguments(bundle);
                 break;
             case EXTRA_FLAG_MACHINE:
                 if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Machine"); }
-                transaction.replace(R.id.frame_nav_container, new MachineFragment());
+                MachineFragment machineFragment = new MachineFragment();
+                transaction.replace(R.id.frame_nav_container, machineFragment);
+                machineFragment.setArguments(bundle);
                 break;
             case EXTRA_FLAG_CONN:
                 if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Connection"); }
-                transaction.replace(R.id.frame_nav_container, new ConnectionFragment());
+                ConnectionFragment connectionFragment = new ConnectionFragment();
+                transaction.replace(R.id.frame_nav_container, connectionFragment);
+                connectionFragment.setArguments(bundle);
                 break;
             case EXTRA_FLAG_DOC :
                 if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Documentation"); }
@@ -159,7 +167,6 @@ public class MenuActivity extends AppCompatActivity
             case EXTRA_FLAG_ACTION :
                 if (getSupportActionBar() != null) {
                     getSupportActionBar().setSubtitle("Action");
-
                 }
                 transaction.replace(R.id.frame_nav_container, new ActionFragment());
                 break;
@@ -173,8 +180,6 @@ public class MenuActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-
         Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.nav_home :

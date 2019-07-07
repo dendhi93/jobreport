@@ -103,7 +103,7 @@ public class XpollActivity extends AppCompatActivity {
 
     private void viewXpoll(){
         try{
-            intentXpollView = getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            intentXpollView = getIntent().getStringExtra(ConfigApps.EXTRA_CALLER_VIEW);
             if (intentXpollView.equals("") || intentXpollView != null){
                 ArrayList<MasterXpoll> al_xpoll = new XpollAdapter(getApplicationContext()).val_xpoll(preference.getCustID(), preference.getUn());
                 if (al_xpoll.size() > 0){

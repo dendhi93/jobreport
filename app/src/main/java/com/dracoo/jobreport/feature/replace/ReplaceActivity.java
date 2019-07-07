@@ -159,7 +159,7 @@ public class ReplaceActivity extends AppCompatActivity {
 
     private void viewReplace(){
         try{
-            intentReplaceView = getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            intentReplaceView = getIntent().getStringExtra(ConfigApps.EXTRA_CALLER_VIEW);
             if (!intentReplaceView.equals("") || intentReplaceView != null){
                 if (preference.getConnType().equals(getString(R.string.vsat))){
                     ln_replace_vsat.setVisibility(View.VISIBLE);

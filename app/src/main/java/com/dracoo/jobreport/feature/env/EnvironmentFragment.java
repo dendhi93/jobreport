@@ -116,8 +116,8 @@ public class EnvironmentFragment extends Fragment {
 
     private void editValidation(){
         try{
-            intentEnvEdit = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
-            if (!intentEnvEdit.equals("") || intentEnvEdit != null){
+            intentEnvEdit = getArguments().getString(ConfigApps.EXTRA_CALLER_VIEW);
+            if (intentEnvEdit.trim().equals(ConfigApps.VIEW_TYPE)){
                 ArrayList<MasterEnvirontment> alValEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
                 if (alValEnv.size() > 0){
                     txt_env_plnGrounding.setText(alValEnv.get(0).getGrounding_pln().trim());

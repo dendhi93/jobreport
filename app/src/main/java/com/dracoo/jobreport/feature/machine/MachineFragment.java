@@ -87,7 +87,7 @@ public class MachineFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         try{
-            if (!intentEdit.matches("") || intentEdit != null){ inflater.inflate(R.menu.menu, menu); }
+            if (intentEdit.equals(ConfigApps.VIEW_TYPE)){ inflater.inflate(R.menu.menu, menu); }
         }catch (Exception e){}
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -106,8 +106,8 @@ public class MachineFragment extends Fragment {
 
     private void editMachineView(){
         try{
-            intentEdit = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
-            if (!intentEdit.trim().equals("") || intentEdit != null){
+            intentEdit = getArguments().getString(ConfigApps.EXTRA_CALLER_VIEW);
+            if (intentEdit.trim().equals(ConfigApps.VIEW_TYPE)){
                 ArrayList<MasterMachine> alMachine = new MachineAdapter(getActivity()).val_machine(preference.getCustID(), preference.getUn());
                 if (alMachine.size() > 0){
                     String item24 = alMachine.get(0).getAccess_type().trim();

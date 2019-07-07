@@ -108,7 +108,7 @@ public class DataM2mActivity extends AppCompatActivity {
 
     private void viewDataM2m(){
         try{
-            intentDataM2m = getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            intentDataM2m = getIntent().getStringExtra(ConfigApps.EXTRA_CALLER_VIEW);
             if (!intentDataM2m.equals("") || intentDataM2m != null){
                 ArrayList<MasterM2mData> al_m2mData = new M2mDataAdapter(getApplicationContext()).val_dataM2m(preference.getCustID(), preference.getUn());
                 if (al_m2mData.size()> 0){

@@ -24,6 +24,8 @@ public class ConfigApps {
 
     //view type
     public static final String VIEW_TYPE = "view";
+    public static final String NEW_TYPE = "new";
+    public static final String EXTRA_CALLER_VIEW = "job.extra_view_flag";
 
     //send type
     public static final int EMAIL_TYPE = 1;
