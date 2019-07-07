@@ -328,29 +328,16 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     paragraphNews.setSpacingAfter(1f);
                     document.add(paragraphNews);
 
-                    PdfPTable tblTitleNewsNo = new PdfPTable(7);
-                    tblTitleNewsNo.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                    tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("No  :", titleFont));
-                    tblTitleNewsNo.addCell(JobReportUtils.borderlessCell(" ______ / ", titleFont));
-                    tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("BA- ______ / ", titleFont));
-                    tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("______ / ", titleFont));
-                    tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("______ / ", titleFont));
-                    tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("______ / ", titleFont));
-                    tblTitleNewsNo.addCell(JobReportUtils.borderlessCell("______", titleFont));
-                    float[] columnWidthNewsNo = new float[]{40f,40f,50f,40f,40f,40,40f};
-                    tblTitleNewsNo.setWidths(columnWidthNewsNo);
-                    tblTitleNewsNo.setTotalWidth(300f);
-                    document.add(tblTitleNewsNo);
+                    Paragraph paragraphNewsNo = new Paragraph("No  : _______ / BA- ________ / ________ / ________ / _______ / _______", contentFont);
+                    paragraphNewsNo.setAlignment(Element.ALIGN_LEFT);
+                    paragraphNewsNo.setSpacingAfter(1f);
+                    document.add(paragraphNewsNo);
                     document.add(JobReportUtils.singleSpace(contentFont));
 
                     PdfPTable tblTypeNews = new PdfPTable(1);
                     tblTypeNews.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblTypeNews.addCell(JobReportUtils.bottomLineCell("JENIS KEGIATAN", titleFont));
                     document.add(tblTypeNews);
-                    paragraphNews = new Paragraph("\n", contentFont);
-                    paragraphNews.setAlignment(Element.ALIGN_LEFT);
-                    paragraphNews.setSpacingAfter(1f);
-                    document.add(paragraphNews);
 
                     PdfPTable tblTypeProgress = new PdfPTable(2);
                     tblTypeProgress.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -361,24 +348,26 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblTypeProgress.addCell(JobReportUtils.borderlessCell("CM ", titleFont));
                         tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) PM ", titleFont));
                     }
+
                     float[] columnWidthtypeProgress = new float[]{40f,40f};
-                    tblTitleNewsNo.setWidths(columnWidthtypeProgress);
-                    tblTitleNewsNo.setTotalWidth(90f);
+                    tblTypeProgress.setWidths(columnWidthtypeProgress);
+                    tblTypeProgress.setTotalWidth(90f);
                     document.add(tblTypeProgress);
+                    paragraphNews = new Paragraph("\n", contentFont);
+                    paragraphNews.setAlignment(Element.ALIGN_LEFT);
+                    paragraphNews.setSpacingAfter(0.5f);
+                    document.add(paragraphNews);
 
                     PdfPTable tblDescNews = new PdfPTable(1);
                     tblDescNews.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblDescNews.addCell(JobReportUtils.bottomLineCell("Deskripsi Kegiatan", titleFont));
                     document.add(tblDescNews);
-                    paragraphNews = new Paragraph("\n", contentFont);
-                    paragraphNews.setAlignment(Element.ALIGN_LEFT);
-                    paragraphNews.setSpacingAfter(1f);
-                    document.add(paragraphNews);
 
-                    PdfPTable tblcontentDesc = new PdfPTable(6);
+                    PdfPTable tblcontentDesc = new PdfPTable(2);
                     tblcontentDesc.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentDesc.addCell(JobReportUtils.borderlessCell("Pada Hari", titleFont));
                     tblcontentDesc.addCell(JobReportUtils.borderlessCell("_____________", titleFont));
+                    document.add(tblcontentDesc);
                     //TODO BELUM SELESAI
                     //TODO LGSG NEW DESIGN AJA
 
@@ -621,7 +610,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             stCopyClipBoard.append(m2mSetupContent+"\n\n");
                         }
 
-
                         String m2mType, m2mSn, adaptorType, adaptorSn, simCard1Type, simCard1SN, simcard1Puk, simCard2Type, simCard2SN, simcard2Puk;
                         if (alM2mReplace.size() > 0){
                             m2mType = alM2mReplace.get(0).getBrand_type_replace().trim();
@@ -798,7 +786,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
     @Override
     public void listSelected(String transType) {
-//        messageUtils.toastMessage(transType, ConfigApps.T_INFO);
         Intent intent = null;
         if (transType.trim().equals(getActivity().getString(R.string.infoSite_trans))
             || transType.equals(getActivity().getString(R.string.jobDesc_trans))){
@@ -845,5 +832,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
         }
 
         if (intent != null){ startActivity(intent); }
+        getActivity().finish();
     }
 }

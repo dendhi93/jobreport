@@ -40,6 +40,7 @@ import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -148,7 +149,7 @@ public class ConnectionFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         try{
-            if (intentConnView.equals("") || intentConnView != null){ inflater.inflate(R.menu.menu, menu); }
+            if (!intentConnView.equals("") || intentConnView != null){ inflater.inflate(R.menu.menu, menu); }
         }catch (Exception e){}
 
         super.onCreateOptionsMenu(menu, inflater);
@@ -169,7 +170,7 @@ public class ConnectionFragment extends Fragment {
 
     private void viewValidation(){
         try{
-            intentConnView = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
+            intentConnView = Objects.requireNonNull(getActivity()).getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
             if (!intentConnView.trim().equals("") || intentConnView != null){
                 if (preference.getConnType().equals("VSAT")){
                     ArrayList<MasterVsatSetup> al_vsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
@@ -242,14 +243,14 @@ public class ConnectionFragment extends Fragment {
                 if (position > 0){
                     selectedConn = adapter.getItem(position);
 
-                    if (selectedConn.equals("VSAT")){
+                    assert selectedConn != null;
+                    if (selectedConn.equals(getActivity().getString(R.string.vsat))){
                         ln_conn_vsat.setVisibility(View.VISIBLE);
                         ln_conn_m2m.setVisibility(View.GONE);
                     }else{
                         ln_conn_vsat.setVisibility(View.GONE);
                         ln_conn_m2m.setVisibility(View.VISIBLE);
                     }
-
                 }
             }
 
@@ -600,10 +601,6 @@ public class ConnectionFragment extends Fragment {
         txt_conn_m2m_sc2Sn.setText("");
         txt_conn_m2m_sc2puk.setText("");
         txt_conn_m2m_sc1Brand.setText("");
-
+        sp_conn_connType.setSelection(0);
     }
-
-
-
-
 }
