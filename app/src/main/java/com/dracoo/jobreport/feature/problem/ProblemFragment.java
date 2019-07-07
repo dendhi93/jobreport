@@ -120,7 +120,10 @@ public class ProblemFragment extends Fragment {
     private void probEditValidation(){
         try{
             intentProbEdit = getActivity().getIntent().getStringExtra(MenuActivity.EXTRA_CALLER_VIEW);
-            if (!intentProbEdit.equals("") || intentProbEdit != null){
+            if (intentProbEdit.equals("") || intentProbEdit == null){
+                imgB_problem_submit.setVisibility(View.VISIBLE);
+                imgB_problem_cancel.setVisibility(View.VISIBLE);
+            }else{
                 al_problem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
                 if (al_problem.size() > 0){
                     txt_prob_modemDisplay.setText(al_problem.get(0).getModem().trim());
@@ -143,9 +146,6 @@ public class ProblemFragment extends Fragment {
                     imgB_problem_submit.setVisibility(View.GONE);
                     imgB_problem_cancel.setVisibility(View.GONE);
                 }
-            }else{
-                imgB_problem_submit.setVisibility(View.VISIBLE);
-                imgB_problem_cancel.setVisibility(View.VISIBLE);
             }
         }catch (Exception e){
             imgB_problem_submit.setVisibility(View.VISIBLE);
@@ -156,7 +156,7 @@ public class ProblemFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         try{
-            if (intentProbEdit.equals("") || intentProbEdit != null){ inflater.inflate(R.menu.menu, menu); }
+            if (!intentProbEdit.equals("") || intentProbEdit != null){ inflater.inflate(R.menu.menu, menu); }
         }catch (Exception e){}
 
         super.onCreateOptionsMenu(menu, inflater);
