@@ -25,8 +25,23 @@ public class DateTimeUtils {
         }
     }
 
+    public static String getChangeMonthFormat(String dateTime){
+        try {
+            SimpleDateFormat source = new SimpleDateFormat("yyy-MM-dd, HH:mm:ss", java.util.Locale.getDefault());
+            Date dateSource = source.parse(dateTime);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MMMM-dd, HH:mm:ss", java.util.Locale.getDefault());
+            if (dateSource != null){
+                return dateFormat.format(dateSource);
+            }else{
+                return "";
+            }
+        }catch (Exception e){
+            return "";
+        }
+    }
+
     public static int getDateDiff(String beginDate, String endDate){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
 
         Date d1 = null;
         Date d2 = null;
@@ -49,7 +64,16 @@ public class DateTimeUtils {
         return 0;
     }
 
-
+    public static String nameOfDay(String datePick){
+        try{
+            SimpleDateFormat inFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
+            Date date = inFormat.parse(datePick);
+            SimpleDateFormat outFormat = new SimpleDateFormat("EEEE", java.util.Locale.getDefault());
+            return outFormat.format(date);
+        }catch (Exception e){
+            return "";
+        }
+    }
 
 
 

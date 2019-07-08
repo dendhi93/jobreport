@@ -359,8 +359,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblDescNews.addCell(JobReportUtils.bottomLineCell("Deskripsi Kegiatan", titleFont));
                     document.add(tblDescNews);
 
-                    Paragraph paragraphContentDays = new Paragraph("Pada Hari __________ tanggal __________________ bulan ___________ tahun _________________ " +
-                            "\n/( ______ - _______ - _______ ) , bertempat di ______________________________________ " +
+                    String finishDateTime = alProblem.get(0).getFinish().trim();
+                    String[] splitFinish = finishDateTime.split(",");
+                    String finishDate = splitFinish[0];
+                    String[] splitDate = finishDate.split("-");
+
+                    Paragraph paragraphContentDays = new Paragraph("Pada Hari "+DateTimeUtils.nameOfDay(finishDateTime)+" tanggal "+splitDate[2]+" bulan "+splitDate[2]+" tahun "+splitDate[0]+" " +
+                            "\n( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+") , bertempat di ______________________________________ " +
                             "\n Telah dilakukan penandatanganan berita acara antara : " +
                             "\n\n1. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
