@@ -373,11 +373,25 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentName.addCell(JobReportUtils.borderlessCell("Jabatan : " +alJobDesc.get(0).getJabatan_desc().trim(), titleFont));
                     document.add(tblcontentName);
 
-                    Paragraph paragraphContentUser1 = new Paragraph("\nYang selamjutnya disebut sebagai PIHAK 1\n" , contentFont);
+                    Paragraph paragraphContentUser1 = new Paragraph("\nYang selamjutnya disebut sebagai PIHAK I\n" , contentFont);
                     paragraphContentUser1.setAlignment(Element.ALIGN_LEFT);
                     paragraphContentUser1.setSpacingAfter(1f);
                     document.add(paragraphContentUser1);
 
+                    PdfPTable tblcontentCust = new PdfPTable(2);
+                    tblcontentCust.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Nama   : " +alJobDesc.get(0).getName_pic(), titleFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Alamat : " +alInfSite.get(0).getRemote_address().trim(), titleFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Jabatan : " +alJobDesc.get(0).getJabatan_desc().trim(), titleFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("", titleFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Perusahaan : PT Visionet Jayapura", titleFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Telepon : " +alJobDesc.get(0).getPic_phone(), titleFont));
+                    document.add(tblcontentCust);
+                    Paragraph paragraphContentUser2 = new Paragraph("\nYang selamjutnya disebut sebagai PIHAK II" +
+                            "\n\nDengan ini kedua belah pihak mengajukan setuju bahwa jaringan Sistem Komunikasi dengan spesifikasi :\n" , contentFont);
+                    paragraphContentUser2.setAlignment(Element.ALIGN_LEFT);
+                    paragraphContentUser2.setSpacingAfter(1f);
+                    document.add(paragraphContentUser2);
 
                     //TODO BELUM SELESAI
 

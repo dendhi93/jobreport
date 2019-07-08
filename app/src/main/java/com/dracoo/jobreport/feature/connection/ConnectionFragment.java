@@ -27,7 +27,6 @@ import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
-import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.feature.datam2m.DataM2mActivity;
 import com.dracoo.jobreport.feature.replace.ReplaceActivity;
 import com.dracoo.jobreport.feature.vsatparameter.ParameterActivity;
@@ -38,9 +37,7 @@ import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
