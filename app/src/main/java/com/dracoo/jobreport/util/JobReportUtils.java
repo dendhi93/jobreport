@@ -55,10 +55,11 @@ public class JobReportUtils {
         return cell;
     }
 
-    public static  PdfPCell borderlessCell(String title, Font fonType){
+    public static  PdfPCell borderlessCell(String title, Font fonType, float floatWidth){
         PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fonType)));
         cell.setBorder(Rectangle.NO_BORDER);
         cell.setVerticalAlignment(Element.ALIGN_LEFT);
+        cell.setBorderWidth(floatWidth);
 
         return cell;
     }
@@ -75,7 +76,7 @@ public class JobReportUtils {
     public static Paragraph singleSpace(Font font){
         Paragraph paragraph = new Paragraph("\n", font);
         paragraph.setAlignment(Element.ALIGN_LEFT);
-        paragraph.setSpacingAfter(0.1f);
+        paragraph.setSpacingAfter(10);
 
         return paragraph;
     }

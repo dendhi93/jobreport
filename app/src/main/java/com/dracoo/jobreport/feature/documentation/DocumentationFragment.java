@@ -191,8 +191,8 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
                                 document.add(JobReportUtils.singleSpace(contentFont));
                                 PdfPTable tableTitle2 = new PdfPTable(2);
                                 tableTitle2.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                tableTitle2.addCell(JobReportUtils.borderlessCell("Documentation : ______________________", contentFont));
-                                tableTitle2.addCell(JobReportUtils.borderlessCell("Date : _______ / _______ / ___________", contentFont));
+                                tableTitle2.addCell(JobReportUtils.borderlessCell("Documentation : ______________________", contentFont, 90f));
+                                tableTitle2.addCell(JobReportUtils.borderlessCell("Date : _______ / _______ / ___________", contentFont, 90f));
                                 document.add(tableTitle2);
                                 document.add(JobReportUtils.singleSpace(contentFont));
 

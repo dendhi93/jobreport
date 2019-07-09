@@ -341,20 +341,17 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable tblTypeProgress = new PdfPTable(2);
                     tblTypeProgress.setHorizontalAlignment(Element.ALIGN_LEFT);
                     if (preference.getProgress().equals("CM")){
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) CM ", titleFont));
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("PM ", titleFont));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) CM ", titleFont, 10f));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("PM ", titleFont, 10f));
                     }else{
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("CM ", titleFont));
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) PM ", titleFont));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("CM ", titleFont, 10f));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) PM ", titleFont, 10f));
                     }
 
-                    float[] columnWidthtypeProgress = new float[]{40f,40f};
-                    tblTypeProgress.setWidths(columnWidthtypeProgress);
-                    tblTypeProgress.setTotalWidth(90f);
                     document.add(tblTypeProgress);
                     paragraphNews = new Paragraph("\n", contentFont);
                     paragraphNews.setAlignment(Element.ALIGN_LEFT);
-                    paragraphNews.setSpacingAfter(0.5f);
+                    paragraphNews.setSpacingAfter(1);
                     document.add(paragraphNews);
                     PdfPTable tblDescNews = new PdfPTable(1);
                     tblDescNews.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -366,63 +363,52 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     String[] splitDate = finishDate.split("-");
 
                     Paragraph paragraphContentDays = new Paragraph("Pada Hari "+DateTimeUtils.nameOfDay(finishDateTime)+" tanggal "+splitDate[2]+" bulan "+splitDate[2]+" tahun "+splitDate[0]+" " +
-                            "\n( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+") , bertempat di ______________________________________ " +
-                            "\n Telah dilakukan penandatanganan berita acara antara : " +
-                            "\n\n1. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
+                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+") , bertempat di ______________________________________ " +
+                            "\nTelah dilakukan penandatanganan berita acara antara : " +
+                            "\n1.PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
                     paragraphContentDays.setSpacingAfter(1f);
                     document.add(paragraphContentDays);
                     PdfPTable tblcontentName = new PdfPTable(2);
                     tblcontentName.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblcontentName.addCell(JobReportUtils.borderlessCell("Nama   : " +preference.getTechName().trim(), titleFont));
-                    tblcontentName.addCell(JobReportUtils.borderlessCell("Jabatan : " +preference.getServicePoint().trim(), titleFont));
+                    tblcontentName.addCell(JobReportUtils.borderlessCell("Nama   : " +preference.getTechName().trim(), titleFont, 70f));
+                    tblcontentName.addCell(JobReportUtils.borderlessCell("Jabatan : " +preference.getServicePoint().trim(), titleFont, 70f));
                     document.add(tblcontentName);
-                    Paragraph paragraphContentUser1 = new Paragraph("\nYang selamjutnya disebut sebagai PIHAK I\n" , contentFont);
+                    Paragraph paragraphContentUser1 = new Paragraph("Yang selamjutnya disebut sebagai PIHAK I\n" , contentFont);
                     paragraphContentUser1.setAlignment(Element.ALIGN_LEFT);
                     paragraphContentUser1.setSpacingAfter(1f);
                     document.add(paragraphContentUser1);
 
                     PdfPTable tblcontentCust = new PdfPTable(2);
                     tblcontentCust.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Nama   : " +alJobDesc.get(0).getName_pic(), titleFont));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Alamat : " +alInfSite.get(0).getRemote_address().trim(), titleFont));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Jabatan : ______________________", titleFont));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("", titleFont));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Perusahaan : PT Visionet Jayapura", titleFont));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Telepon : " +alJobDesc.get(0).getPic_phone(), titleFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Nama   : " +alJobDesc.get(0).getName_pic(), titleFont, 70f));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Alamat : " +alInfSite.get(0).getRemote_address().trim(), titleFont, 70f));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Jabatan : ", titleFont, 10f));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("", titleFont, 10f));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Perusahaan : PT Visionet Jayapura", titleFont, 70f));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Telepon : " +alJobDesc.get(0).getPic_phone(), titleFont, 70f));
                     document.add(tblcontentCust);
-                    Paragraph paragraphContentUser2 = new Paragraph("\nYang selamjutnya disebut sebagai PIHAK II" +
-                            "\n\nDengan ini kedua belah pihak mengajukan setuju bahwa jaringan Sistem Komunikasi dengan spesifikasi :\n" , contentFont);
+                    Paragraph paragraphContentUser2 = new Paragraph("Yang selamjutnya disebut sebagai PIHAK II" +
+                            "\n  Dengan ini kedua belah pihak mengajukan setuju bahwa jaringan Sistem Komunikasi dengan spesifikasi :\n" , contentFont);
                     paragraphContentUser2.setAlignment(Element.ALIGN_LEFT);
                     paragraphContentUser2.setSpacingAfter(1f);
                     document.add(paragraphContentUser2);
 
-                    PdfPTable tblcontentTypeJasa = new PdfPTable(2);
+                    PdfPTable tblcontentTypeJasa = new PdfPTable(1);
                     tblcontentTypeJasa.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    PdfPCell cell1 = new PdfPCell(new Phrase(new Paragraph("Jenis Jasa ", contentFont)));
+                    PdfPCell cell1 = new PdfPCell(new Phrase(new Paragraph("Jenis Jasa : ___________________________", contentFont)));
                     cell1.setBorder(Rectangle.NO_BORDER);
                     cell1.setVerticalAlignment(Element.ALIGN_LEFT);
                     tblcontentTypeJasa.addCell(cell1);
-                    PdfPCell cell2 = new PdfPCell(new Phrase(new Paragraph(": ___________________________ ", contentFont)));
-                    cell2.setBorder(Rectangle.NO_BORDER);
-                    cell2.setVerticalAlignment(Element.ALIGN_LEFT);
-                    tblcontentTypeJasa.addCell(cell2);
-                    PdfPCell cell3 = new PdfPCell(new Phrase(new Paragraph("Hubungan Dari ", contentFont)));
+                    PdfPCell cell3 = new PdfPCell(new Phrase(new Paragraph("Hubungan Dari : ___________________________", contentFont)));
                     cell3.setBorder(Rectangle.NO_BORDER);
                     cell3.setVerticalAlignment(Element.ALIGN_LEFT);
                     tblcontentTypeJasa.addCell(cell3);
-                    PdfPCell cell4 = new PdfPCell(new Phrase(new Paragraph(" : ___________________________ ", contentFont)));
-                    cell4.setBorder(Rectangle.NO_BORDER);
-                    cell4.setVerticalAlignment(Element.ALIGN_LEFT);
-                    tblcontentTypeJasa.addCell(cell4);
-                    PdfPCell cell5 = new PdfPCell(new Phrase(new Paragraph("Ke ", contentFont)));
+                    PdfPCell cell5 = new PdfPCell(new Phrase(new Paragraph("Ke : _________________________________", contentFont)));
                     cell5.setBorder(Rectangle.NO_BORDER);
                     cell5.setVerticalAlignment(Element.ALIGN_LEFT);
                     tblcontentTypeJasa.addCell(cell5);
-                    PdfPCell cell6 = new PdfPCell(new Phrase(new Paragraph(" : ___________________________ ", contentFont)));
-                    cell6.setBorder(Rectangle.NO_BORDER);
-                    cell6.setVerticalAlignment(Element.ALIGN_LEFT);
-                    tblcontentTypeJasa.addCell(cell6);
+                    document.add(tblcontentTypeJasa);
                     Paragraph paragraphContentMove = new Paragraph("\nPindah Lokasi (Jika direlokasi)" , contentFont);
                     paragraphContentMove.setAlignment(Element.ALIGN_LEFT);
                     paragraphContentMove.setSpacingAfter(1f);
