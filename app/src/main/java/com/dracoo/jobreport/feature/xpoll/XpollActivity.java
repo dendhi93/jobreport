@@ -287,19 +287,13 @@ public class XpollActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String selectedMonth, selectedDay;
-                if (month < 10) {
-                    selectedMonth = "0"+month;
-                }else{
-                    selectedMonth = String.valueOf(month);
-                }
+                if (month < 10) { selectedMonth = "0"+(month+1);
+                }else{ selectedMonth = String.valueOf(month); }
 
-                if (dayOfMonth < 10) {
-                    selectedDay = "0"+dayOfMonth;
-                }else {
-                    selectedDay = String.valueOf(dayOfMonth);
-                }
+                if (dayOfMonth < 10) { selectedDay = "0"+dayOfMonth;
+                }else { selectedDay = String.valueOf(dayOfMonth); }
 
-                tempXpollDate = String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay;
+                tempXpollDate = year+"-"+ selectedMonth +"-"+selectedDay;
                 timePicker();
             }
         }, mYear, mMonth, mDay);

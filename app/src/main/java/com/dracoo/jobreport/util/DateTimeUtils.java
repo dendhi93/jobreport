@@ -66,11 +66,12 @@ public class DateTimeUtils {
 
     public static String nameOfDay(String datePick){
         try{
-            SimpleDateFormat inFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
+            SimpleDateFormat inFormat = new SimpleDateFormat("yyy-MM-dd, HH:mm:ss", java.util.Locale.getDefault());
             Date date = inFormat.parse(datePick);
             SimpleDateFormat outFormat = new SimpleDateFormat("EEEE", java.util.Locale.getDefault());
             return outFormat.format(date);
         }catch (Exception e){
+            Log.d("###",""+e.toString());
             return "";
         }
         //TO DO HRS DI CEK

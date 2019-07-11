@@ -176,7 +176,8 @@ public class ProblemFragment extends Fragment {
     void submitProblem (){
         try{
             if (!emptyValidation()){ messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity() ,ConfigApps.SNACKBAR_NO_BUTTON);
-            }   else if (selectedClosedBy.trim().equals("")){ } else { transProblem(); }
+            }   else if (selectedClosedBy.trim().equals("")){ }
+            else { transProblem(); }
         }catch (Exception e){ messageUtils.snackBar_message("Mohon dipilih pilihan pada kolom closed ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON); }
 
     }
@@ -359,7 +360,7 @@ public class ProblemFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String selectedMonth, selectedDay;
-                if (month < 10) { selectedMonth = "0"+month;
+                if (month < 10) { selectedMonth = "0"+(month+1);
                 }else{ selectedMonth = String.valueOf(month); }
 
                 if (dayOfMonth < 10) { selectedDay = "0"+dayOfMonth;

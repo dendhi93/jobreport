@@ -198,24 +198,18 @@ public class ActionFragment extends Fragment implements ActionItemCallback {
     private void datePicker(){
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
+        mMonth = c.get(Calendar.MONTH) + 1;
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String selectedMonth, selectedDay;
-                if (month < 10) {
-                    selectedMonth = "0"+month;
-                }else{
-                    selectedMonth = String.valueOf(month);
-                }
+                if (month < 10) { selectedMonth = "0" + (month + 1);
+                }else{ selectedMonth = String.valueOf(month); }
 
-                if (dayOfMonth < 10) {
-                    selectedDay = "0"+dayOfMonth;
-                }else {
-                    selectedDay = String.valueOf(dayOfMonth);
-                }
+                if (dayOfMonth < 10) { selectedDay = "0"+dayOfMonth; }
+                else { selectedDay = String.valueOf(dayOfMonth); }
 
                 tempDate = String.valueOf(year)+"-"+ selectedMonth +"-"+selectedDay;
                 timePicker();
