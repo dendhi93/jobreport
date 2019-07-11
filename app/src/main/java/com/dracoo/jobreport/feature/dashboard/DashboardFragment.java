@@ -341,11 +341,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable tblTypeProgress = new PdfPTable(2);
                     tblTypeProgress.setHorizontalAlignment(Element.ALIGN_LEFT);
                     if (preference.getProgress().equals("CM")){
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) CM ", titleFont, 10f));
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("PM ", titleFont, 10f));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) CM ", titleFont));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("PM ", titleFont));
                     }else{
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("CM ", titleFont, 10f));
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) PM ", titleFont, 10f));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("CM ", titleFont));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) PM ", titleFont));
                     }
 
                     document.add(tblTypeProgress);
@@ -364,15 +364,15 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
                     Paragraph paragraphContentDays = new Paragraph("Pada Hari "+DateTimeUtils.nameOfDay(finishDateTime)+" tanggal "+splitDate[2]+" bulan "+splitDate[2]+" tahun "+splitDate[0]+" " +
                             "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+") , bertempat di ______________________________________ " +
-                            "\nTelah dilakukan penandatanganan berita acara antara : " +
-                            "\n\n1.PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
+                            "Telah dilakukan penandatanganan\nberita acara antara lain : " +
+                            "\n\nI. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
                     paragraphContentDays.setSpacingAfter(1f);
                     document.add(paragraphContentDays);
                     PdfPTable tblcontentName = new PdfPTable(2);
                     tblcontentName.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblcontentName.addCell(JobReportUtils.borderlessCell("Nama   : " +preference.getTechName().trim(), contentFont, 70f));
-                    tblcontentName.addCell(JobReportUtils.borderlessCell("Jabatan : " +preference.getServicePoint().trim(), contentFont, 70f));
+                    tblcontentName.addCell(JobReportUtils.borderlessCell("   Nama   : " +preference.getTechName().trim(), contentFont));
+                    tblcontentName.addCell(JobReportUtils.borderlessCell("Jabatan : " +preference.getServicePoint().trim(), contentFont));
                     document.add(tblcontentName);
                     Paragraph paragraphContentUser1 = new Paragraph("Yang selamjutnya disebut sebagai PIHAK I\n" , contentFont);
                     paragraphContentUser1.setAlignment(Element.ALIGN_LEFT);
@@ -381,50 +381,58 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
                     PdfPTable tblcontentCust = new PdfPTable(2);
                     tblcontentCust.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Nama   : " +alJobDesc.get(0).getName_pic(), contentFont, 70f));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Alamat : " +alInfSite.get(0).getRemote_address().trim(), contentFont, 70f));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Jabatan : ", contentFont, 10f));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("", titleFont, 10f));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Perusahaan : PT Visionet Jayapura", contentFont, 70f));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("Telepon : " +alJobDesc.get(0).getPic_phone(), contentFont, 70f));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("II Nama   : " +alJobDesc.get(0).getName_pic(), contentFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("   Alamat : " +alInfSite.get(0).getRemote_address().trim(), contentFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("   Jabatan : ", contentFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("", titleFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("   Perusahaan : PT Visionet Jayapura", contentFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("   Telepon : " +alJobDesc.get(0).getPic_phone(), contentFont));
                     document.add(tblcontentCust);
-                    Paragraph paragraphContentUser2 = new Paragraph("Yang selamjutnya disebut sebagai PIHAK II" +
-                            "\n  Dengan ini kedua belah pihak mengajukan setuju bahwa jaringan Sistem Komunikasi dengan spesifikasi :\n" , contentFont);
+                    Paragraph paragraphContentUser2 = new Paragraph("Yang selanjutnya disebut sebagai PIHAK II" +
+                            "\nDengan ini kedua belah pihak mengajukan setuju bahwa jaringan Sistem Komunikasi dengan spesifikasi :\n" , contentFont);
                     paragraphContentUser2.setAlignment(Element.ALIGN_LEFT);
                     paragraphContentUser2.setSpacingAfter(1f);
                     document.add(paragraphContentUser2);
 
-                    PdfPTable tblcontentTypeJasa = new PdfPTable(1);
+                    PdfPTable tblcontentTypeJasa = new PdfPTable(2);
                     tblcontentTypeJasa.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell("Jenis Jasa : "+preference.getConnType().trim(), contentFont, 100f));
-                    tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell("Hubungan Dari : Hub PT VIsionet Jayapura", contentFont, 100f));
-                    tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell("Ke : " +alInfSite.get(0).getLocation_name().trim(), contentFont, 100f));
+                    tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell("Jenis Jasa ", contentFont));
+                    tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell(" : "+preference.getConnType().trim(), contentFont));
+                    tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell("Hubungan Dari ", contentFont));
+                    tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell(" : Hub PT VIsionet Jayapura", contentFont));
+                    tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell("Ke : " +alInfSite.get(0).getLocation_name().trim(), contentFont));
+                    tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell(" : " +alInfSite.get(0).getLocation_name().trim(), contentFont));
+                    float[] columnWidthTypeJasa = new float[]{50f, 180f};
+                    tblcontentTypeJasa.setWidths(columnWidthTypeJasa);
                     tblcontentTypeJasa.setSpacingAfter(1f);
+                    tblcontentTypeJasa.setTotalWidth(250f);
+                    tblcontentTypeJasa.setLockedWidth(true);
                     document.add(tblcontentTypeJasa);
 
                     PdfPTable tblcontentRelocate1 = new PdfPTable(2);
                     tblcontentRelocate1.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblcontentRelocate1.addCell(JobReportUtils.borderlessCell("Lokasi Lama : _______________________________", contentFont, 60f));
-                    tblcontentRelocate1.addCell(JobReportUtils.borderlessCell("Lokasi Baru : _______________________________", contentFont, 60f));
-                    tblcontentRelocate1.setTotalWidth(110f);
+                    tblcontentRelocate1.addCell(JobReportUtils.borderlessCell("Lokasi Lama : _________________________________", contentFont));
+                    tblcontentRelocate1.addCell(JobReportUtils.borderlessCell("Lokasi Baru : _________________________________", contentFont));
+                    tblcontentRelocate1.setTotalWidth(300f);
                     tblcontentRelocate1.setLockedWidth(true);
+                    tblcontentTypeJasa.setSpacingAfter(1f);
                     document.add(tblcontentRelocate1);
 
                     PdfPTable tblcontentRelocate2 = new PdfPTable(2);
                     tblcontentRelocate2.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell("Dinyatakan ", contentFont, 60f));
-                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell(": __________________________________________", contentFont, 60f));
-                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell("Catatan ", contentFont, 60f));
-                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell(": __________________________________________", contentFont, 60f));
-                    float[] columnWidthRelocate2 = new float[]{40f, 100f};
+                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell("Dinyatakan ", contentFont));
+                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell(": ________________________________________________________", contentFont));
+                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell("Catatan ", contentFont));
+                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell(": ________________________________________________________", contentFont));
+                    float[] columnWidthRelocate2 = new float[]{35f, 200f};
                     tblcontentRelocate2.setWidths(columnWidthRelocate2);
                     tblcontentRelocate2.setSpacingAfter(1f);
-                    tblcontentRelocate2.setTotalWidth(150f);
+                    tblcontentRelocate2.setTotalWidth(300f);
                     tblcontentRelocate2.setLockedWidth(true);
                     document.add(tblcontentRelocate2);
 
                     Paragraph paragraphClosed = new Paragraph("Demikian Bertia acara ini dibuat dan disetujui oleh kedua belah pihak yang tidak terpisahkan dari Perjanjian" +
-                            "\nKerja sama Penyediaan Jasa Jaringan Sistem Komunikasi " , contentFont);
+                            "Kerja sama Penyediaan Jasa Jaringan Sistem Komunikasi " , contentFont);
                     paragraphClosed.setAlignment(Element.ALIGN_LEFT);
                     paragraphClosed.setSpacingAfter(1f);
                     document.add(paragraphClosed);

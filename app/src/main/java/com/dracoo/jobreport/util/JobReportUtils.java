@@ -55,11 +55,10 @@ public class JobReportUtils {
         return cell;
     }
 
-    public static  PdfPCell borderlessCell(String title, Font fonType, float floatWidth){
+    public static  PdfPCell borderlessCell(String title, Font fonType){
         PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fonType)));
         cell.setBorder(Rectangle.NO_BORDER);
         cell.setVerticalAlignment(Element.ALIGN_LEFT);
-        cell.setBorderWidth(floatWidth);
 
         return cell;
     }
