@@ -74,7 +74,22 @@ public class DateTimeUtils {
             Log.d("###",""+e.toString());
             return "";
         }
-        //TO DO HRS DI CEK
+    }
+
+    public static String InaNameOfDay(String englishDay){
+        try{
+            if (englishDay.trim().equals("Sunday")){return "Minggu";
+            }else if (englishDay.trim().equals("Monday")){ return "Senin";
+            }else if (englishDay.trim().equals("Tuesday")){ return "Selasa";
+            }else if (englishDay.trim().equals("Wednesday")){ return "Rabu";
+            }else if (englishDay.trim().equals("Thursday")){ return "Kamis";
+            }else if (englishDay.trim().equals("Friday")){ return "Jumat";
+            }else if (englishDay.trim().equals("Saturday")){ return "Sabtu"; }
+        }catch(Exception e){
+            Log.d("###",""+e.toString());
+            return englishDay;
+        }
+        return englishDay;
     }
 
 
