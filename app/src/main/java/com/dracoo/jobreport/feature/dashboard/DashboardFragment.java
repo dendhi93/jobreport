@@ -360,10 +360,17 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     String[] splitFinish = finishDateTime.split(",");
                     String finishDate = splitFinish[0];
                     String[] splitDate = finishDate.split("-");
+                    String stNolDate = splitDate[2].substring(0,1);
+                    Long lngDate = 2019L;
+                    if (stNolDate.equals("0")){ lngDate = Long.parseLong(splitDate[2].substring(1,2));
+                    }else{ lngDate = Long.parseLong(splitDate[2]); }
 
-                    Paragraph paragraphContentDays = new Paragraph("Pada Hari "+DateTimeUtils.InaNameOfDay(DateTimeUtils.nameOfDay(finishDateTime))+" tanggal "+splitDate[2]+" bulan "+splitDate[1]+" tahun "+splitDate[0]+" " +
-                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+") , bertempat di ______________________________________ " +
-                            "Telah dilakukan penandatanganan\nberita acara antara lain : " +
+                    Paragraph paragraphContentDays = new Paragraph("Pada Hari "+DateTimeUtils.InaNameOfDay(DateTimeUtils.nameOfDay(finishDateTime))+
+                            " tanggal "+DateTimeUtils.TerbilangKonvert(lngDate)+
+                            " bulan "+DateTimeUtils.nameOfMonth(splitDate[1].trim())+
+                            " tahun "+DateTimeUtils.TerbilangKonvert(Long.parseLong(splitDate[0]))+" " +
+                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di ______________________________________ " +
+                            "\nTelah dilakukan penandatanganan\nberita acara antara lain : " +
                             "\n\nI. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
                     paragraphContentDays.setSpacingAfter(1f);
@@ -421,9 +428,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable tblcontentRelocate2 = new PdfPTable(2);
                     tblcontentRelocate2.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentRelocate2.addCell(JobReportUtils.borderlessCell("Dinyatakan ", contentFont));
-                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell(": ______________________________________________________________________________", contentFont));
+                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell(": _________________________________________________________________________", contentFont));
                     tblcontentRelocate2.addCell(JobReportUtils.borderlessCell("Catatan ", contentFont));
-                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell(": ______________________________________________________________________________", contentFont));
+                    tblcontentRelocate2.addCell(JobReportUtils.borderlessCell(": _________________________________________________________________________", contentFont));
                     float[] columnWidthRelocate2 = new float[]{35f, 200f};
                     tblcontentRelocate2.setWidths(columnWidthRelocate2);
                     tblcontentRelocate2.setSpacingAfter(2f);

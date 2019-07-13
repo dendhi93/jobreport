@@ -92,6 +92,48 @@ public class DateTimeUtils {
         return englishDay;
     }
 
+    public static String nameOfMonth(String stMonth){
+
+        if (stMonth.equals("01")){ return "Januari";
+        }else if (stMonth.equals("02")){ return "Februari"; }
+        else if (stMonth.equals("03")){ return "Maret"; }
+        else if (stMonth.equals("04")){ return "April"; }
+        else if (stMonth.equals("05")){ return "Mei"; }
+        else if (stMonth.equals("06")){ return "Juni"; }
+        else if (stMonth.equals("07")){ return "Juli"; }
+        else if (stMonth.equals("08")){ return "Agustus"; }
+        else if (stMonth.equals("09")){ return "September"; }
+        else if (stMonth.equals("10")){ return "Oktober"; }
+        else if (stMonth.equals("11")){ return "November"; }
+        else if (stMonth.equals("12")){ return "Desember"; }
+
+        return "";
+    }
+
+    public static String TerbilangKonvert(long lngTerbilang){
+        String[] bilangan = {" ", "Satu", "Dua", "Tiga", "Empat", "Lima",
+                "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"};
+
+        if (lngTerbilang < 12){
+            return "" + bilangan[(int)lngTerbilang];
+        }else if(lngTerbilang < 20){
+            return TerbilangKonvert(lngTerbilang - 10) + " Belas ";
+        }else if(lngTerbilang < 100){
+            return (TerbilangKonvert(lngTerbilang / 10) + " Puluh ") +  TerbilangKonvert(lngTerbilang % 10);
+        }else if(lngTerbilang < 200 ){
+            return "Seratus" + TerbilangKonvert(lngTerbilang - 100);
+        } else if(lngTerbilang < 1000){
+            return (TerbilangKonvert(lngTerbilang / 100) + " Ratus " ) + TerbilangKonvert(lngTerbilang % 100);
+        } else if(lngTerbilang < 2000){
+            return "Seribu" + TerbilangKonvert(lngTerbilang - 1000);
+        } else if(lngTerbilang < 1000000){
+            return (TerbilangKonvert(lngTerbilang /1000) + " Ribu ") + TerbilangKonvert(lngTerbilang % 1000);
+        }
+        return "";
+    }
+
+
+
 
 
 
