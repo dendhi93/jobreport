@@ -321,11 +321,10 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                     document.open();
 
-                    Paragraph paragraphNews = null;
                     PdfPTable tblTitleNews = new PdfPTable(1);
                     tblTitleNews.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblTitleNews.addCell(JobReportUtils.bottomLineCell("BERITA ACARA", titleFont));
-                    tblTitleNews.setSpacingAfter(1f);
+                    tblTitleNews.setSpacingAfter(4f);
                     document.add(tblTitleNews);
 
                     Paragraph paragraphNewsNo = new Paragraph("No  : _______ / BA- ________ / ________ / ________ / _______ / _______", contentFont);
@@ -336,7 +335,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable tblTypeNews = new PdfPTable(1);
                     tblTypeNews.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblTypeNews.addCell(JobReportUtils.bottomLineCell("JENIS KEGIATAN", titleFont));
-                    tblTitleNews.setSpacingAfter(1f);
+                    tblTitleNews.setSpacingAfter(4f);
                     document.add(tblTypeNews);
 
                     PdfPTable tblTypeProgress = new PdfPTable(2);
@@ -348,13 +347,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblTypeProgress.addCell(JobReportUtils.borderlessCell("CM ", titleFont));
                         tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) PM ", titleFont));
                     }
-                    tblTypeProgress.setSpacingAfter(5f);
+                    tblTypeProgress.setSpacingAfter(6f);
                     document.add(tblTypeProgress);
 
                     PdfPTable tblDescNews = new PdfPTable(1);
                     tblDescNews.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblDescNews.addCell(JobReportUtils.bottomLineCell("Deskripsi Kegiatan", titleFont));
-                    tblDescNews.setSpacingAfter(1f);
+                    tblDescNews.setSpacingAfter(4f);
                     document.add(tblDescNews);
                     String finishDateTime = alProblem.get(0).getFinish().trim();
                     String[] splitFinish = finishDateTime.split(",");
@@ -373,12 +372,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             "\nTelah dilakukan penandatanganan\nberita acara antara lain : " +
                             "\n\nI. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
-                    paragraphContentDays.setSpacingAfter(1f);
+                    paragraphContentDays.setSpacingAfter(4f);
                     document.add(paragraphContentDays);
                     PdfPTable tblcontentName = new PdfPTable(2);
                     tblcontentName.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentName.addCell(JobReportUtils.borderlessCell("   Nama   : " +preference.getTechName().trim(), contentFont));
                     tblcontentName.addCell(JobReportUtils.borderlessCell("Jabatan : " +preference.getServicePoint().trim(), contentFont));
+                    paragraphContentDays.setSpacingAfter(4f);
                     document.add(tblcontentName);
                     Paragraph paragraphContentUser1 = new Paragraph("Yang selanjutnya disebut sebagai PIHAK I\n" , contentFont);
                     paragraphContentUser1.setAlignment(Element.ALIGN_LEFT);
@@ -397,7 +397,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     Paragraph paragraphContentUser2 = new Paragraph("Yang selanjutnya disebut sebagai PIHAK II" +
                             "\n\nDengan ini kedua belah pihak mengajukan setuju bahwa jaringan Sistem Komunikasi dengan spesifikasi :\n" , contentFont);
                     paragraphContentUser2.setAlignment(Element.ALIGN_LEFT);
-                    paragraphContentUser2.setSpacingAfter(1f);
+                    paragraphContentUser2.setSpacingAfter(2f);
                     document.add(paragraphContentUser2);
 
                     PdfPTable tblcontentTypeJasa = new PdfPTable(2);
@@ -410,19 +410,18 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentTypeJasa.addCell(JobReportUtils.borderlessCell(" : " +alInfSite.get(0).getLocation_name().trim(), contentFont));
                     float[] columnWidthTypeJasa = new float[]{50f, 180f};
                     tblcontentTypeJasa.setWidths(columnWidthTypeJasa);
-                    tblcontentTypeJasa.setSpacingAfter(2f);
+                    tblcontentTypeJasa.setSpacingAfter(5f);
                     tblcontentTypeJasa.setTotalWidth(250f);
                     tblcontentTypeJasa.setLockedWidth(true);
                     document.add(tblcontentTypeJasa);
 
-                    //TO DO NAMBAH PARAGRAH PINDAH LOKASI
                     PdfPTable tblcontentRelocate1 = new PdfPTable(2);
                     tblcontentRelocate1.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentRelocate1.addCell(JobReportUtils.borderlessCell("Lokasi Lama : _________________________________", contentFont));
                     tblcontentRelocate1.addCell(JobReportUtils.borderlessCell("Lokasi Baru : _________________________________", contentFont));
                     tblcontentRelocate1.setTotalWidth(300f);
                     tblcontentRelocate1.setLockedWidth(true);
-                    tblcontentTypeJasa.setSpacingAfter(1f);
+                    tblcontentTypeJasa.setSpacingAfter(4f);
                     document.add(tblcontentRelocate1);
 
                     PdfPTable tblcontentRelocate2 = new PdfPTable(2);
@@ -433,12 +432,12 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentRelocate2.addCell(JobReportUtils.borderlessCell(": _________________________________________________________________________", contentFont));
                     float[] columnWidthRelocate2 = new float[]{35f, 200f};
                     tblcontentRelocate2.setWidths(columnWidthRelocate2);
-                    tblcontentRelocate2.setSpacingAfter(2f);
+                    tblcontentRelocate2.setSpacingAfter(4f);
                     tblcontentRelocate2.setTotalWidth(400f);
                     tblcontentRelocate2.setLockedWidth(true);
                     document.add(tblcontentRelocate2);
 
-                    Paragraph paragraphClosed = new Paragraph("Demikian Bertia acara ini dibuat dan disetujui oleh kedua belah pihak yang tidak terpisahkan dari Perjanjian" +
+                    Paragraph paragraphClosed = new Paragraph("\nDemikian Bertia acara ini dibuat dan disetujui oleh kedua belah pihak yang tidak terpisahkan dari Perjanjian" +
                             "Kerja sama Penyediaan Jasa Jaringan Sistem Komunikasi " , contentFont);
                     paragraphClosed.setAlignment(Element.ALIGN_LEFT);
                     paragraphClosed.setSpacingAfter(1f);
@@ -447,8 +446,26 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     //TODO BELUM SELESAI
 
                     document.newPage();
+                    PdfPTable tblActionTitle = new PdfPTable(1);
+                    tblActionTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblActionTitle.addCell(JobReportUtils.bottomLineCell("ACTIVITY REPORT", titleFont));
+                    tblActionTitle.setSpacingAfter(4f);
+                    document.add(tblActionTitle);
+
+                    PdfPTable tblActionName = new PdfPTable(2);
+                    tblActionName.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblActionName.addCell(JobReportUtils.borderlessCell("Nama ", contentFont));
+                    tblActionName.addCell(JobReportUtils.borderlessCell(": "+preference.getTechName().trim(), contentFont));
+                    float[] columnWidthActionName = new float[]{35f, 200f};
+                    tblActionName.setWidths(columnWidthActionName);
+                    tblActionName.setSpacingAfter(5f);
+                    tblActionName.setTotalWidth(400f);
+                    tblActionName.setLockedWidth(true);
+                    document.add(tblActionName);
+
                     if (alAction.size() > 0){
                         PdfPTable table7 = new PdfPTable(4);
+                        table7.setSpacingBefore(5f);
                         arr_actionDateTime = new String[alAction.size()];
                         arr_actionTrans = new String[alAction.size()];
                         arr_actionEndTime = new String[alAction.size()];
