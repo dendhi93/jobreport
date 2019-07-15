@@ -413,6 +413,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentTypeJasa.setLockedWidth(true);
                     document.add(tblcontentTypeJasa);
 
+                    Paragraph paragraphRelocate = new Paragraph("Pindah Lokasi ( jika direlokasi ) \n" , contentFont);
+                    paragraphRelocate.setAlignment(Element.ALIGN_LEFT);
+                    paragraphRelocate.setSpacingAfter(2f);
+                    document.add(paragraphRelocate);
+
                     PdfPTable tblcontentRelocate1 = new PdfPTable(2);
                     tblcontentRelocate1.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentRelocate1.addCell(JobReportUtils.borderlessCell("Lokasi Lama : _________________________________", contentFont));
