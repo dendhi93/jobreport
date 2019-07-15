@@ -312,22 +312,20 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     }
 
                     Document document = new Document(PageSize.A4, 30, 30, 30, 30);
-                    float mcontentFontSize = 5.7f;
-                    float mHeadingFontSize = 7.0f;
+                    float mcontentFontSize = 5.9f;
+                    float mHeadingFontSize = 7.5f;
                     BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
                     Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
                     Font titleFont = new Font(urName, mHeadingFontSize, Font.NORMAL, BaseColor.BLACK);
-
                     PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                     document.open();
-
                     PdfPTable tblTitleNews = new PdfPTable(1);
                     tblTitleNews.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblTitleNews.addCell(JobReportUtils.bottomLineCell("BERITA ACARA", titleFont));
                     tblTitleNews.setSpacingAfter(4f);
                     document.add(tblTitleNews);
 
-                    Paragraph paragraphNewsNo = new Paragraph("No  : _______ / BA- ________ / ________ / ________ / _______ / _______", contentFont);
+                    Paragraph paragraphNewsNo = new Paragraph("No  : _______ / BA- _________ / _________ / _________ / _________ / _________", contentFont);
                     paragraphNewsNo.setAlignment(Element.ALIGN_LEFT);
                     paragraphNewsNo.setSpacingAfter(7f);
                     document.add(paragraphNewsNo);
@@ -368,7 +366,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             " tanggal "+DateTimeUtils.TerbilangKonvert(lngDate)+
                             " bulan "+DateTimeUtils.nameOfMonth(splitDate[1].trim())+
                             " tahun "+DateTimeUtils.TerbilangKonvert(Long.parseLong(splitDate[0]))+" " +
-                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di ______________________________________ " +
+                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di _________________________________________ " +
                             "\nTelah dilakukan penandatanganan\nberita acara antara lain : " +
                             "\n\nI. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
@@ -443,7 +441,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     paragraphClosed.setSpacingAfter(1f);
                     document.add(paragraphClosed);
 
-                    //TODO BELUM SELESAI
+                    //TODO TECHINAL SUPPORT
 
                     document.newPage();
                     PdfPTable tblActionTitle = new PdfPTable(1);
@@ -455,7 +453,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable tblActionName = new PdfPTable(2);
                     tblActionName.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblActionName.addCell(JobReportUtils.borderlessCell("Nama ", contentFont));
-                    tblActionName.addCell(JobReportUtils.borderlessCell(": "+preference.getTechName().trim(), contentFont));
+                    tblActionName.addCell(JobReportUtils.borderlessCell(": "+alInfSite.get(0).getLocation_name().trim(), contentFont));
+                    tblActionName.addCell(JobReportUtils.borderlessCell("Aktivitas ", contentFont));
+                    tblActionName.addCell(JobReportUtils.borderlessCell(": "+preference.getProgress().trim(), contentFont));
                     float[] columnWidthActionName = new float[]{35f, 200f};
                     tblActionName.setWidths(columnWidthActionName);
                     tblActionName.setSpacingAfter(5f);
@@ -464,18 +464,18 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     document.add(tblActionName);
 
                     if (alAction.size() > 0){
-                        PdfPTable table7 = new PdfPTable(4);
+                        PdfPTable table7 = new PdfPTable(5);
                         table7.setSpacingBefore(5f);
                         arr_actionDateTime = new String[alAction.size()];
                         arr_actionTrans = new String[alAction.size()];
                         arr_actionEndTime = new String[alAction.size()];
-
                         int i = 0;
                         int j = 1;
                         table7.addCell(createCell("No", contentFont));
                         table7.addCell(createCell("Tanggal", contentFont));
                         table7.addCell(createCell("Jam", contentFont));
                         table7.addCell(createCell("Kegiatan", contentFont));
+                        table7.addCell(createCell("Status", contentFont));
 
                         for (MasterAction action : alAction){
                             arr_actionDateTime[i] = action.getAction_date_time();
@@ -487,22 +487,24 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             if (DateTimeUtils.getDateDiff(splitEndTime[0],split[0] ) > 1){
                                 table7.addCell(createCell(String.valueOf(j), contentFont));
                                 table7.addCell(createCell(split[0] +" - " + splitEndTime[0] , contentFont));
-                                table7.addCell(createCell(split[1] + "-" +splitEndTime[1], contentFont));
+                                table7.addCell(createCell(split[1] + " - " +splitEndTime[1], contentFont));
                                 table7.addCell(createCell(arr_actionTrans[i].trim(), contentFont));
+                                table7.addCell(createCell("", contentFont));
                             }else{
-                                table7.addCell(createCell(String.valueOf(i), contentFont));
+                                table7.addCell(createCell(String.valueOf(j), contentFont));
                                 table7.addCell(createCell(split[0], contentFont));
-                                table7.addCell(createCell(split[1]+ " -" +splitEndTime[1], contentFont));
+                                table7.addCell(createCell(split[1]+ " - " +splitEndTime[1], contentFont));
                                 table7.addCell(createCell(arr_actionTrans[i].trim(), contentFont));
+                                table7.addCell(createCell("", contentFont));
                             }
                             i++;
                             j++;
                         }
                         if (i == alAction.size()){
                             table7.setHorizontalAlignment(Element.ALIGN_LEFT);
-                            float[] columnWidths7 = new float[]{20f, 40f, 60f,310f};
+                            float[] columnWidths7 = new float[]{20f, 40f, 60f,270f, 40f};
                             table7.setWidths(columnWidths7);
-                            table7.setTotalWidth(420f);
+                            table7.setTotalWidth(430f);
                             table7.setLockedWidth(true);
                             document.add(table7);
                         }
