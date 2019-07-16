@@ -313,9 +313,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
                     Document document = new Document(PageSize.A4, 30, 30, 30, 30);
                     float mcontentFontSize = 5.9f;
+                    float mSubHeadingFontSize = 6.0f;
                     float mHeadingFontSize = 7.5f;
                     BaseFont urName = BaseFont.createFont("assets/Asap-Regular.ttf", "UTF-8", BaseFont.EMBEDDED);
                     Font contentFont = new Font(urName, mcontentFontSize, Font.NORMAL, BaseColor.BLACK);
+                    Font subtitleFont = new Font(urName, mSubHeadingFontSize, Font.NORMAL, BaseColor.BLACK);
                     Font titleFont = new Font(urName, mHeadingFontSize, Font.NORMAL, BaseColor.BLACK);
                     PdfWriter.getInstance(document, new FileOutputStream(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/ReportPdf/DataPdf/"+preference.getCustName() + "/"+preference.getCustName()+".pdf"));
                     document.open();
@@ -332,25 +334,25 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
                     PdfPTable tblTypeNews = new PdfPTable(1);
                     tblTypeNews.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblTypeNews.addCell(JobReportUtils.bottomLineCell("JENIS KEGIATAN", titleFont));
+                    tblTypeNews.addCell(JobReportUtils.bottomLineCell("JENIS KEGIATAN", subtitleFont));
                     tblTitleNews.setSpacingAfter(4f);
                     document.add(tblTypeNews);
 
                     PdfPTable tblTypeProgress = new PdfPTable(2);
                     tblTypeProgress.setHorizontalAlignment(Element.ALIGN_LEFT);
                     if (preference.getProgress().equals("CM")){
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) CM ", titleFont));
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("PM ", titleFont));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) CM ", contentFont));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("PM ", contentFont));
                     }else{
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("CM ", titleFont));
-                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) PM ", titleFont));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("CM ", contentFont));
+                        tblTypeProgress.addCell(JobReportUtils.borderlessCell("(v) PM ", contentFont));
                     }
                     tblTypeProgress.setSpacingAfter(6f);
                     document.add(tblTypeProgress);
 
                     PdfPTable tblDescNews = new PdfPTable(1);
                     tblDescNews.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblDescNews.addCell(JobReportUtils.bottomLineCell("Deskripsi Kegiatan", titleFont));
+                    tblDescNews.addCell(JobReportUtils.bottomLineCell("Deskripsi Kegiatan", subtitleFont));
                     tblDescNews.setSpacingAfter(4f);
                     document.add(tblDescNews);
                     String finishDateTime = alProblem.get(0).getFinish().trim();
@@ -446,7 +448,45 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     paragraphClosed.setSpacingAfter(1f);
                     document.add(paragraphClosed);
 
-                    //TODO TECHINAL SUPPORT
+                    //TODO TECHNICAL SUPPORT
+                    document.newPage();
+                    PdfPTable tblTitleTech = new PdfPTable(1);
+                    tblTitleTech.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblTitleTech.addCell(JobReportUtils.bottomLineCell("TECHNICAL REPORT", titleFont));
+                    tblTitleTech.setSpacingAfter(4f);
+                    document.add(tblTitleTech);
+                    PdfPTable tblSiteInfo = new PdfPTable(1);
+                    tblSiteInfo.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblSiteInfo.addCell(JobReportUtils.bottomLineCell("SITE INFORMATION", subtitleFont));
+                    tblTitleNews.setSpacingAfter(4f);
+                    document.add(tblSiteInfo);
+
+                    PdfPTable tblcontentSiteInf = new PdfPTable(6);
+                    tblcontentSiteInf.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Remote Name ", contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alInfSite.get(0).getRemote_name().trim(), contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("City/Proviency ", contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alInfSite.get(0).getCity().trim() +" / " +alInfSite.get(0).getProv().trim() , contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("PIC ", contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alJobDesc.get(0).getName_pic().trim() , contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Customer Name ", contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +preference.getCustName().trim() , contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Phone ", contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alJobDesc.get(0).getPic_phone().trim() , contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Jabatan ", contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alJobDesc.get(0).getJabatan_desc() , contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Remote Address ", contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alInfSite.get(0).getRemote_address() , contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Telefax ", contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " , contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Date ", contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": ____ / ____ / ____ " , contentFont));
+                    float[] columnWidthSiteInf = new float[]{35f, 100f, 35f, 100f, 35, 100f};
+                    tblcontentSiteInf.setWidths(columnWidthSiteInf);
+                    tblcontentSiteInf.setSpacingAfter(4f);
+                    tblcontentSiteInf.setTotalWidth(410f);
+                    tblcontentSiteInf.setLockedWidth(true);
+                    document.add(tblcontentSiteInf);
 
                     document.newPage();
                     PdfPTable tblActionTitle = new PdfPTable(1);
