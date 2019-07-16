@@ -352,7 +352,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
                     PdfPTable tblDescNews = new PdfPTable(1);
                     tblDescNews.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblDescNews.addCell(JobReportUtils.bottomLineCell("Deskripsi Kegiatan", subtitleFont));
+                    tblDescNews.addCell(JobReportUtils.bottomLineCell("DESKSRIPSI KEGIATAN", subtitleFont));
                     tblDescNews.setSpacingAfter(4f);
                     document.add(tblDescNews);
                     String finishDateTime = alProblem.get(0).getFinish().trim();
@@ -481,12 +481,45 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " , contentFont));
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Date ", contentFont));
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": ____ / ____ / ____ " , contentFont));
-                    float[] columnWidthSiteInf = new float[]{35f, 100f, 35f, 100f, 35, 100f};
+                    float[] columnWidthSiteInf = new float[]{50f, 85f, 45f, 100f, 40f, 100f};
                     tblcontentSiteInf.setWidths(columnWidthSiteInf);
                     tblcontentSiteInf.setSpacingAfter(4f);
-                    tblcontentSiteInf.setTotalWidth(410f);
+                    tblcontentSiteInf.setTotalWidth(440f);
                     tblcontentSiteInf.setLockedWidth(true);
                     document.add(tblcontentSiteInf);
+
+                    PdfPTable tblCoorSite = new PdfPTable(1);
+                    tblCoorSite.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblCoorSite.addCell(JobReportUtils.bottomLineCell("COORDINAT SITE", subtitleFont));
+                    tblCoorSite.setSpacingAfter(4f);
+                    document.add(tblCoorSite);
+
+                    PdfPTable tblcontentCoorSite = new PdfPTable(9);
+                    tblcontentCoorSite.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Latitude ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" :  Deg  " , contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min "  , contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" Sec "  , contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) N "  , contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) S ", contentFont));
+//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alJobDesc.get(0).getPic_phone().trim() , contentFont));
+//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Jabatan ", contentFont));
+//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alJobDesc.get(0).getJabatan_desc() , contentFont));
+//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Remote Address ", contentFont));
+//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alInfSite.get(0).getRemote_address() , contentFont));
+//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Telefax ", contentFont));
+//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " , contentFont));
+//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Date ", contentFont));
+//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": ____ / ____ / ____ " , contentFont));
+                    float[] columnWidthCoorSite = new float[]{35f, 25f, 80f, 25f, 80f, 25f, 80f, 17f, 17f};
+                    tblcontentCoorSite.setWidths(columnWidthCoorSite);
+                    tblcontentCoorSite.setSpacingAfter(4f);
+                    tblcontentCoorSite.setTotalWidth(390f);
+                    tblcontentCoorSite.setLockedWidth(true);
+                    document.add(tblcontentCoorSite);
 
                     document.newPage();
                     PdfPTable tblActionTitle = new PdfPTable(1);
