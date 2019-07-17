@@ -483,7 +483,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": ____ / ____ / ____ " , contentFont));
                     float[] columnWidthSiteInf = new float[]{50f, 85f, 45f, 100f, 40f, 100f};
                     tblcontentSiteInf.setWidths(columnWidthSiteInf);
-                    tblcontentSiteInf.setSpacingAfter(4f);
+                    tblcontentSiteInf.setSpacingAfter(3f);
                     tblcontentSiteInf.setTotalWidth(440f);
                     tblcontentSiteInf.setLockedWidth(true);
                     document.add(tblcontentSiteInf);
@@ -505,22 +505,59 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) N "  , contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) S ", contentFont));
-//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alJobDesc.get(0).getPic_phone().trim() , contentFont));
-//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Jabatan ", contentFont));
-//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alJobDesc.get(0).getJabatan_desc() , contentFont));
-//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Remote Address ", contentFont));
-//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " +alInfSite.get(0).getRemote_address() , contentFont));
-//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Telefax ", contentFont));
-//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " , contentFont));
-//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Date ", contentFont));
-//                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": ____ / ____ / ____ " , contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Longitude ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" :  Deg  " , contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min "  , contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" Sec "  , contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) E "  , contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) W ", contentFont));
                     float[] columnWidthCoorSite = new float[]{35f, 25f, 80f, 25f, 80f, 25f, 80f, 17f, 17f};
                     tblcontentCoorSite.setWidths(columnWidthCoorSite);
-                    tblcontentCoorSite.setSpacingAfter(4f);
+                    tblcontentCoorSite.setSpacingAfter(3f);
                     tblcontentCoorSite.setTotalWidth(390f);
                     tblcontentCoorSite.setLockedWidth(true);
                     document.add(tblcontentCoorSite);
 
+                    PdfPTable tblProbTitle = new PdfPTable(1);
+                    tblProbTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblProbTitle.addCell(JobReportUtils.bottomLineCell("PROBLEM DESCRIPTION", subtitleFont));
+                    tblProbTitle.setSpacingAfter(4f);
+                    document.add(tblProbTitle);
+
+                    PdfPTable tblcontentProbDesc = new PdfPTable(6);
+                    tblcontentProbDesc.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Display Modem ", contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getModem().trim(), contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Action Taken ", contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getAction().trim() +" / " +alInfSite.get(0).getProv().trim() , contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Stop Maintenance (time)", contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getFinish().trim() , contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Problem Symptoms ", contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getSymptom().trim() , contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Start Maintenance (time) ", contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getStart().trim() , contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Pending Maintenace (time) ", contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getPending().trim() , contentFont));
+                    float[] columnWidthProbDesc = new float[]{50f, 85f, 45f, 100f, 50f, 100f};
+                    tblcontentProbDesc.setWidths(columnWidthProbDesc);
+                    tblcontentProbDesc.setTotalWidth(450f);
+                    tblcontentProbDesc.setLockedWidth(true);
+                    document.add(tblcontentSiteInf);
+
+                    PdfPTable tblcontentProbReason = new PdfPTable(2);
+                    tblcontentProbReason.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblcontentProbReason.addCell(JobReportUtils.borderlessCell("Reason of Pending ", contentFont));
+                    tblcontentProbReason.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getReason().trim(), contentFont));
+                    float[] columnWidthProbReason = new float[]{50f, 350f};
+                    tblcontentProbReason.setWidths(columnWidthProbReason);
+                    tblcontentProbReason.setTotalWidth(440f);
+                    tblcontentProbReason.setLockedWidth(true);
+                    document.add(tblcontentProbReason);
+
+                    //TO DO TECH REPORT
                     document.newPage();
                     PdfPTable tblActionTitle = new PdfPTable(1);
                     tblActionTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
