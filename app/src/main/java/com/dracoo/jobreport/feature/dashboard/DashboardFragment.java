@@ -517,14 +517,14 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) W ", contentFont));
                     float[] columnWidthCoorSite = new float[]{35f, 25f, 80f, 25f, 80f, 25f, 80f, 20f, 20f};
                     tblcontentCoorSite.setWidths(columnWidthCoorSite);
-                    tblcontentCoorSite.setSpacingAfter(2f);
+                    tblcontentCoorSite.setSpacingAfter(4f);
                     tblcontentCoorSite.setTotalWidth(390f);
                     tblcontentCoorSite.setLockedWidth(true);
                     document.add(tblcontentCoorSite);
 
                     PdfPTable tblProbTitle = new PdfPTable(1);
                     tblProbTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblProbTitle.addCell(JobReportUtils.bottomLineCell("\nPROBLEM DESCRIPTION", subtitleFont));
+                    tblProbTitle.addCell(JobReportUtils.bottomLineCell("PROBLEM DESCRIPTION", subtitleFont));
                     tblProbTitle.setSpacingAfter(4f);
                     document.add(tblProbTitle);
 
