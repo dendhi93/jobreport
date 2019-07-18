@@ -482,7 +482,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Date ", contentFont));
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": "
                                     +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
-                    float[] columnWidthSiteInf = new float[]{50f, 85f, 45f, 100f, 40f, 100f};
+                    float[] columnWidthSiteInf = new float[]{50f, 85f,   45f, 100f, 40f, 100f};
                     tblcontentSiteInf.setWidths(columnWidthSiteInf);
                     tblcontentSiteInf.setSpacingAfter(3f);
                     tblcontentSiteInf.setTotalWidth(440f);
@@ -495,28 +495,36 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblCoorSite.setSpacingAfter(4f);
                     document.add(tblCoorSite);
 
-                    PdfPTable tblcontentCoorSite = new PdfPTable(9);
+                    PdfPTable tblcontentCoorSite = new PdfPTable(2);
                     tblcontentCoorSite.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Latitude ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" :  Deg  " , contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min "  , contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" Sec "  , contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) N "  , contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) S ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : " +alInfSite.get(0).getLat(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Longitude ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" :  Deg  " , contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min "  , contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" Sec "  , contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) E "  , contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) W ", contentFont));
-                    float[] columnWidthCoorSite = new float[]{35f, 25f, 80f, 25f, 80f, 25f, 80f, 20f, 20f};
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : " +alInfSite.get(0).getLongitude().trim(), contentFont));
+                    float[] columnWidthCoorSite = new float[]{45f, 325f};
                     tblcontentCoorSite.setWidths(columnWidthCoorSite);
+
+//                    tblcontentCoorSite.setHorizontalAlignment(Element.ALIGN_LEFT);
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Latitude ", contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" :  Deg  " , contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min "  , contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" Sec "  , contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) N "  , contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) S ", contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Longitude ", contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" :  Deg  " , contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min "  , contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" Sec "  , contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) E "  , contentFont));
+//                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) W ", contentFont));
+//                    float[] columnWidthCoorSite = new float[]{35f, 25f, 80f, 25f, 80f, 25f, 80f, 20f, 20f};
+//                    tblcontentCoorSite.setWidths(columnWidthCoorSite);
                     tblcontentCoorSite.setSpacingAfter(4f);
                     tblcontentCoorSite.setTotalWidth(390f);
                     tblcontentCoorSite.setLockedWidth(true);
@@ -552,7 +560,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentProbReason.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentProbReason.addCell(JobReportUtils.borderlessCell("Reason of Pending ", contentFont));
                     tblcontentProbReason.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getReason().trim(), contentFont));
-                    float[] columnWidthProbReason = new float[]{55f, 350f};
+                    float[] columnWidthProbReason = new float[]{57f, 350f};
                     tblcontentProbReason.setWidths(columnWidthProbReason);
                     tblcontentProbReason.setTotalWidth(440f);
                     tblcontentProbReason.setSpacingAfter(4f);
@@ -568,23 +576,35 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable tblcontentEnv = new PdfPTable(12);
                     tblcontentEnv.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell("Input Tegangan listrik  P - N (Vac) ", contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(":  " +alEnv.get(0).getTegangan_pln().trim(), contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(" P - G " , contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(" N - G " , contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": " +alEnv.get(0).getGrounding_pln().trim(), contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell("Input Tegangan UPS  P - N ", contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": " +alEnv.get(0).getTegangan_ups().trim(), contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(" P - G " , contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(" N - G " , contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": " +alEnv.get(0).getGrounding_ups().trim(), contentFont));
                     float[] columnWidthEnv = new float[]{90f, 23f, 23f, 23f, 23f, 23f, 80f, 23f, 23f, 23f, 23f, 23f};
                     tblcontentEnv.setWidths(columnWidthEnv);
                     tblcontentEnv.setTotalWidth(440f);
                     tblcontentEnv.setSpacingAfter(4f);
                     tblcontentEnv.setLockedWidth(true);
                     document.add(tblcontentEnv);
+
+                    PdfPTable tblIOEquip = new PdfPTable(1);
+                    tblIOEquip.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblIOEquip.addCell(JobReportUtils.bottomLineCell("INDOOR & OUTDOOR EQUIPMENT", subtitleFont));
+                    tblIOEquip.setSpacingAfter(4f);
+                    document.add(tblIOEquip);
+
+                    if (preference.getConnType().trim().equals("VSAT")){
+                        //TODO VSAT
+                    }else {
+                        //TODO m2m
+                    }
 
                     //TO DO TECH REPORT
                     document.newPage();
