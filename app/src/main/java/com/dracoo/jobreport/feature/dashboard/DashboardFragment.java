@@ -554,15 +554,36 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     float[] columnWidthProbReason = new float[]{55f, 350f};
                     tblcontentProbReason.setWidths(columnWidthProbReason);
                     tblcontentProbReason.setTotalWidth(440f);
-                    tblProbTitle.setSpacingAfter(4f);
+                    tblcontentProbReason.setSpacingAfter(4f);
                     tblcontentProbReason.setLockedWidth(true);
                     document.add(tblcontentProbReason);
 
                     PdfPTable tblEnvTitle = new PdfPTable(1);
                     tblEnvTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblEnvTitle.addCell(JobReportUtils.bottomLineCell("\nELECTRICAL ENVIRONTMENT", subtitleFont));
+                    tblEnvTitle.addCell(JobReportUtils.bottomLineCell("ELECTRICAL ENVIRONTMENT", subtitleFont));
                     tblEnvTitle.setSpacingAfter(4f);
                     document.add(tblEnvTitle);
+
+                    PdfPTable tblcontentEnv = new PdfPTable(12);
+                    tblcontentEnv.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell("Input Tegangan listrik  P - N (Vac) ", contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(" P - G " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(" N - G " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell("Input Tegangan UPS  P - N ", contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(" P - G " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(" N - G " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    float[] columnWidthEnv = new float[]{90f, 23f, 23f, 23f, 23f, 23f, 80f, 23f, 23f, 23f, 23f, 23f};
+                    tblcontentEnv.setWidths(columnWidthEnv);
+                    tblcontentEnv.setTotalWidth(440f);
+                    tblcontentEnv.setSpacingAfter(4f);
+                    tblcontentEnv.setLockedWidth(true);
+                    document.add(tblcontentEnv);
 
                     //TO DO TECH REPORT
                     document.newPage();
