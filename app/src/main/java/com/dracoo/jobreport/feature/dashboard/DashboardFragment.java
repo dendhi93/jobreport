@@ -480,7 +480,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Telefax ", contentFont));
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": " , contentFont));
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Date ", contentFont));
-                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": ____ / ____ / ____ " , contentFont));
+                    tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(": "
+                                    +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
                     float[] columnWidthSiteInf = new float[]{50f, 85f, 45f, 100f, 40f, 100f};
                     tblcontentSiteInf.setWidths(columnWidthSiteInf);
                     tblcontentSiteInf.setSpacingAfter(3f);
@@ -534,13 +535,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Action Taken ", contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getAction().trim() +" / " +alInfSite.get(0).getProv().trim() , contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Stop Maintenance (time)", contentFont));
-                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getFinish().trim() , contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()) , contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Problem Symptoms ", contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getSymptom().trim() , contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Start Maintenance (time) ", contentFont));
-                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getStart().trim() , contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getStart().trim()) , contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Pending Maintenace (time) ", contentFont));
-                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getDelay_activity().trim() , contentFont));
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) , contentFont));
                     float[] columnWidthProbDesc = new float[]{55f, 60f, 70f, 70f, 70f, 70f};
                     tblcontentProbDesc.setWidths(columnWidthProbDesc);
                     tblcontentProbDesc.setTotalWidth(455f);
