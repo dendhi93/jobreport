@@ -514,16 +514,16 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(" : ________________ ", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) E "  , contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(    ) W ", contentFont));
-                    float[] columnWidthCoorSite = new float[]{35f, 25f, 80f, 25f, 80f, 25f, 80f, 17f, 17f};
+                    float[] columnWidthCoorSite = new float[]{35f, 25f, 80f, 25f, 80f, 25f, 80f, 20f, 20f};
                     tblcontentCoorSite.setWidths(columnWidthCoorSite);
-                    tblcontentCoorSite.setSpacingAfter(3f);
+                    tblcontentCoorSite.setSpacingAfter(2f);
                     tblcontentCoorSite.setTotalWidth(390f);
                     tblcontentCoorSite.setLockedWidth(true);
                     document.add(tblcontentCoorSite);
 
                     PdfPTable tblProbTitle = new PdfPTable(1);
                     tblProbTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
-                    tblProbTitle.addCell(JobReportUtils.bottomLineCell("PROBLEM DESCRIPTION", subtitleFont));
+                    tblProbTitle.addCell(JobReportUtils.bottomLineCell("\nPROBLEM DESCRIPTION", subtitleFont));
                     tblProbTitle.setSpacingAfter(4f);
                     document.add(tblProbTitle);
 
@@ -540,22 +540,29 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Start Maintenance (time) ", contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getStart().trim() , contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Pending Maintenace (time) ", contentFont));
-                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getPending().trim() , contentFont));
-                    float[] columnWidthProbDesc = new float[]{50f, 85f, 45f, 100f, 50f, 100f};
+                    tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getDelay_activity().trim() , contentFont));
+                    float[] columnWidthProbDesc = new float[]{55f, 60f, 70f, 70f, 70f, 70f};
                     tblcontentProbDesc.setWidths(columnWidthProbDesc);
-                    tblcontentProbDesc.setTotalWidth(450f);
+                    tblcontentProbDesc.setTotalWidth(455f);
                     tblcontentProbDesc.setLockedWidth(true);
-                    document.add(tblcontentSiteInf);
+                    document.add(tblcontentProbDesc);
 
                     PdfPTable tblcontentProbReason = new PdfPTable(2);
                     tblcontentProbReason.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentProbReason.addCell(JobReportUtils.borderlessCell("Reason of Pending ", contentFont));
                     tblcontentProbReason.addCell(JobReportUtils.borderlessCell(": " +alProblem.get(0).getReason().trim(), contentFont));
-                    float[] columnWidthProbReason = new float[]{50f, 350f};
+                    float[] columnWidthProbReason = new float[]{55f, 350f};
                     tblcontentProbReason.setWidths(columnWidthProbReason);
                     tblcontentProbReason.setTotalWidth(440f);
+                    tblProbTitle.setSpacingAfter(4f);
                     tblcontentProbReason.setLockedWidth(true);
                     document.add(tblcontentProbReason);
+
+                    PdfPTable tblEnvTitle = new PdfPTable(1);
+                    tblEnvTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    tblEnvTitle.addCell(JobReportUtils.bottomLineCell("\nELECTRICAL ENVIRONTMENT", subtitleFont));
+                    tblEnvTitle.setSpacingAfter(4f);
+                    document.add(tblEnvTitle);
 
                     //TO DO TECH REPORT
                     document.newPage();
