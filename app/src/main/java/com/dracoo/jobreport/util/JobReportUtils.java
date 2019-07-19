@@ -55,6 +55,16 @@ public class JobReportUtils {
         return cell;
     }
 
+    public static  PdfPCell bottomLineCenterTextCell(String title, Font fonType){
+        Paragraph preface = new Paragraph(title, fonType);
+        preface.setAlignment(Element.ALIGN_CENTER);
+
+        PdfPCell cell = new PdfPCell(new Phrase(preface));
+        cell.setBorder(Rectangle.BOTTOM);
+
+        return cell;
+    }
+
     public static  PdfPCell borderlessCell(String title, Font fonType){
         PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fonType)));
         cell.setBorder(Rectangle.NO_BORDER);

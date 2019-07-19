@@ -602,6 +602,23 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
                     if (preference.getConnType().trim().equals("VSAT")){
                         //TODO VSAT
+                        PdfPTable mainVsatTable = new PdfPTable(2);
+                        mainVsatTable.setWidthPercentage(90.0f);
+                        mainVsatTable.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        PdfPCell firstVsatTableCell = new PdfPCell();
+                        firstVsatTableCell.setBorder(PdfPCell.NO_BORDER);
+
+                        PdfPTable vsatSetupTable = new PdfPTable(4);
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", subtitleFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCenterTextCell("OLD", subtitleFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCenterTextCell("NEW", subtitleFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("  ", subtitleFont));
+                        if (alVsatSetup.size() > 0 && alVsatReplace.size() > 0){
+                            //TODO KLO ADA DATA REPLACE
+                        }else if (alVsatSetup.size() > 0 && alVsatReplace.size() == 0){
+                            //TODO KLO GA ADA DATA REPLACE
+
+                        }
                     }else {
                         //TODO m2m
                     }
