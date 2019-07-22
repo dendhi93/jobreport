@@ -601,58 +601,73 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     document.add(tblIOEquip);
 
                     if (preference.getConnType().trim().equals("VSAT")){
-                        //TODO VSAT
+                        String snModem, snAdaptor, lnb, rfu, dipOdu, dipIdu;
+                        if (alVsatReplace.size() > 0){
+                            snModem = alVsatReplace.get(0).getSn_modem().trim();
+                            snAdaptor = alVsatReplace.get(0).getSn_adaptor().trim();
+                            lnb = alVsatReplace.get(0).getSn_lnb().trim();
+                            rfu = alVsatReplace.get(0).getSn_rfu().trim();
+                            dipOdu = alVsatReplace.get(0).getSn_dip_odu().trim();
+                            dipIdu = alVsatReplace.get(0).getSn_dip_idu().trim();
+                        }else{
+                            snModem = "";
+                            snAdaptor = "";
+                            lnb = "";
+                            rfu = "";
+                            dipOdu = "";
+                            dipIdu = "";
+                        }
+
                         PdfPTable mainVsatTable = new PdfPTable(2);
                         mainVsatTable.setWidthPercentage(90.0f);
                         mainVsatTable.setHorizontalAlignment(Element.ALIGN_LEFT);
                         PdfPCell firstVsatTableCell = new PdfPCell();
                         firstVsatTableCell.setBorder(PdfPCell.NO_BORDER);
-
                         PdfPTable vsatEquipTable = new PdfPTable(4);
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", subtitleFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCenterTextCell("OLD", subtitleFont));
                         vsatEquipTable.addCell(JobReportUtils.borderlessCell("  ", subtitleFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCenterTextCell("NEW", subtitleFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("Type Modem  ", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("S/N  ", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getSn_modem(), contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" " +snModem , contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("Power Supply  ", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("S/N  ", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getSn_adaptor().trim(), contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" " +snAdaptor, contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("Feed Horn  ", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("S/N  ", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("RF Unit  ", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("S/N  ", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getSn_rfu().trim(), contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" " +rfu.trim(), contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("LNB Unit  ", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("S/N  ", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getSn_lnb().trim(), contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" " +lnb.trim(), contentFont));
                         float[] vsatEquip = new float[]{35f, 70f, 5f, 70f};
                         vsatEquipTable.setWidths(vsatEquip);
                         vsatEquipTable.setTotalWidth(200f);
@@ -668,50 +683,108 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCenterTextCell("OLD", subtitleFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCenterTextCell("NEW", subtitleFont));
                         vsatSetupTable.addCell(JobReportUtils.borderlessCell("  ", subtitleFont));
-                        if (alVsatSetup.size() > 0 && alVsatReplace.size() > 0){
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Diameter Antena  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":" +alVsatSetup.get(0).getAntena_size().trim(), contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Tipe Antena  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":" +alVsatSetup.get(0).getAntena_type().trim(), contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Antena Brand  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":" +alVsatSetup.get(0).getAntena_brand().trim(), contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("S/N  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":"+alVsatSetup.get(0).getSn_modem(), contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Cable Branch  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Type  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Cable Length  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Unit  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Pedestial Type  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("F to F Jumper  ", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                            vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
-                        }else if (alVsatSetup.size() > 0 && alVsatReplace.size() == 0){
-                            //TODO KLO GA ADA DATA REPLACE
-                        }
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Diameter Antena  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":" +alVsatSetup.get(0).getAntena_size().trim(), contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Tipe Antena  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":" +alVsatSetup.get(0).getAntena_type().trim(), contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Antena Brand  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":" +alVsatSetup.get(0).getAntena_brand().trim(), contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("S/N  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(": N/A", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(" N/A", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Cable Branch  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Type  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getAntena_type().trim(), contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Cable Length  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getAntena_size().trim(), contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Unit  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Pedestial Type  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getPedestal_type().trim(), contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("F to F Jumper  ", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.setWidths(vsatEquip);
+                        vsatSetupTable.setTotalWidth(200f);
+                        vsatSetupTable.setSpacingAfter(4f);
+                        vsatSetupTable.setLockedWidth(true);
+                        secondVsatTableCell.addElement(vsatSetupTable);
+                        mainVsatTable.addCell(secondVsatTableCell);
+                        document.add(mainVsatTable);
+
+                        PdfPTable mainDipTitleTable = new PdfPTable(2);
+                        mainDipTitleTable.setWidthPercentage(90.0f);
+                        mainDipTitleTable.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        PdfPCell DipOldTitleTableCell = new PdfPCell();
+                        DipOldTitleTableCell.setBorder(PdfPCell.NO_BORDER);
+
+                        PdfPTable dipOldTitleTable = new PdfPTable(1);
+                        dipOldTitleTable.addCell(JobReportUtils.bottomLineCenterTextCell("OLD", subtitleFont));
+                        float[] fDipOldTitle = new float[]{200f};
+                        dipOldTitleTable.setWidths(fDipOldTitle);
+                        dipOldTitleTable.setTotalWidth(200f);
+                        dipOldTitleTable.setLockedWidth(true);
+                        DipOldTitleTableCell.addElement(dipOldTitleTable);
+                        mainDipTitleTable.addCell(DipOldTitleTableCell);
+                        PdfPCell DipNewTitleTableCell = new PdfPCell();
+                        DipNewTitleTableCell.setBorder(PdfPCell.NO_BORDER);
+                        PdfPTable dipNewTitleTable = new PdfPTable(1);
+                        dipNewTitleTable.addCell(JobReportUtils.bottomLineCenterTextCell("NEW", subtitleFont));
+                        DipNewTitleTableCell.addElement(dipNewTitleTable);
+                        mainDipTitleTable.addCell(DipNewTitleTableCell);
+                        document.add(mainDipTitleTable);
+
+                        PdfPTable mainDipContentTable = new PdfPTable(2);
+                        mainDipContentTable.setWidthPercentage(90.0f);
+                        mainDipContentTable.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        PdfPCell DipOldContentTableCell = new PdfPCell();
+                        DipOldContentTableCell.setBorder(PdfPCell.NO_BORDER);
+
+                        PdfPTable dipOldContentTable = new PdfPTable(3);
+                        dipOldContentTable.addCell(JobReportUtils.borderlessCell("Indoor (S/N)", contentFont));
+                        dipOldContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        dipOldContentTable.addCell(JobReportUtils.bottomLineCell(" " +alVsatSetup.get(0).getSn_dip_idu().trim(), contentFont));
+                        dipOldContentTable.addCell(JobReportUtils.borderlessCell("Outdoor (S/N)", contentFont));
+                        dipOldContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        dipOldContentTable.addCell(JobReportUtils.bottomLineCell(" " +alVsatSetup.get(0).getSn_dip_odu().trim(), contentFont));
+                        float[] fDipOldContent = new float[]{200f};
+                        dipOldContentTable.setWidths(fDipOldContent);
+                        dipOldContentTable.setTotalWidth(200f);
+                        dipOldContentTable.setLockedWidth(true);
+                        DipOldContentTableCell.addElement(dipOldContentTable);
+                        mainDipContentTable.addCell(DipOldContentTableCell);
+
+                        PdfPCell DipNewContentTableCell = new PdfPCell();
+                        DipNewContentTableCell.setBorder(PdfPCell.NO_BORDER);
+                        PdfPTable dipNewContentTable = new PdfPTable(1);
+                        dipNewContentTable.addCell(JobReportUtils.bottomLineCell("" +dipIdu, contentFont));
+                        dipNewContentTable.addCell(JobReportUtils.bottomLineCell("" +dipOdu, contentFont));
+                        DipNewContentTableCell.addElement(DipNewContentTableCell);
+                        mainDipContentTable.addCell(DipNewContentTableCell);
+                        document.add(mainDipContentTable);
+
+
+
+
                     }else {
                         //TODO m2m
                     }
