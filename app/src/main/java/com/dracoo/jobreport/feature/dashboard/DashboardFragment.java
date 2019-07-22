@@ -776,11 +776,17 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         PdfPCell DipNewContentTableCell = new PdfPCell();
                         DipNewContentTableCell.setBorder(PdfPCell.NO_BORDER);
                         PdfPTable dipNewContentTable = new PdfPTable(1);
-                        dipNewContentTable.addCell(JobReportUtils.bottomLineCell("" +dipIdu, contentFont));
-                        dipNewContentTable.addCell(JobReportUtils.bottomLineCell("" +dipOdu, contentFont));
+                        dipNewContentTable.addCell(JobReportUtils.bottomLineCell("" +dipIdu.trim(), contentFont));
+                        dipNewContentTable.addCell(JobReportUtils.bottomLineCell("" +dipOdu.trim(), contentFont));
                         DipNewContentTableCell.addElement(DipNewContentTableCell);
                         mainDipContentTable.addCell(DipNewContentTableCell);
                         document.add(mainDipContentTable);
+
+                        PdfPTable tblCrossPoleTitle = new PdfPTable(1);
+                        tblCrossPoleTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblCrossPoleTitle.addCell(JobReportUtils.bottomLineCell("CROSSPOLE ITEM", subtitleFont));
+                        tblCrossPoleTitle.setSpacingAfter(4f);
+                        document.add(tblCrossPoleTitle);
 
 
 
