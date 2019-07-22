@@ -782,6 +782,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         dipNewContentTable.setLockedWidth(true);
                         DipNewContentTableCell.addElement(dipNewContentTable);
                         mainDipContentTable.addCell(DipNewContentTableCell);
+                        mainDipContentTable.setSpacingAfter(4f);
                         document.add(mainDipContentTable);
 
                         PdfPTable tblCrossPoleTitle = new PdfPTable(1);
