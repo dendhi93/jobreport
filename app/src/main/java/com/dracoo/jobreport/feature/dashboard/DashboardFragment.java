@@ -615,7 +615,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         }
 
                         PdfPTable mainVsatTable = new PdfPTable(2);
-//                        mainVsatTable.setWidthPercentage(80.0f);
                         mainVsatTable.setHorizontalAlignment(Element.ALIGN_LEFT);
                         PdfPCell firstVsatTableCell = new PdfPCell();
                         firstVsatTableCell.setBorder(PdfPCell.NO_BORDER);
@@ -729,7 +728,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         document.add(mainVsatTable);
 
                         PdfPTable mainDipTitleTable = new PdfPTable(2);
-//                        mainDipTitleTable.setWidthPercentage(90.0f);
                         mainDipTitleTable.setHorizontalAlignment(Element.ALIGN_LEFT);
                         PdfPCell DipOldTitleTableCell = new PdfPCell();
                         DipOldTitleTableCell.setBorder(PdfPCell.NO_BORDER);
@@ -791,8 +789,44 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblCrossPoleTitle.setSpacingAfter(4f);
                         document.add(tblCrossPoleTitle);
 
+                        PdfPTable tblcontentPole = new PdfPTable(10);
+                        tblcontentPole.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("Satellite Name ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("Crosspole CW Uplink ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" " , contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("MHz (RF)", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("C/N", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("Satellite Longitude", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("CPI", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("db", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("Date", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell("     /     /    ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("Operator Name", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("Transponder Number", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("(  )H (   )V", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell("Time", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
 
-
+                        float[] columnWidthPole = new float[]{55f,5f,50f,55f,5f,50f,60f,40f,5f,50f};
+                        tblcontentPole.setWidths(columnWidthPole);
+                        tblcontentPole.setTotalWidth(420f);
+                        tblcontentPole.setLockedWidth(true);
+                        document.add(tblcontentPole);
 
                     }else {
                         //TODO m2m
