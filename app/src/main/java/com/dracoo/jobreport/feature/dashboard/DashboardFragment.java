@@ -795,6 +795,50 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblCrossPoleTitle.setSpacingAfter(4f);
                         document.add(tblCrossPoleTitle);
 
+                        PdfPTable tblcontentSatParam = new PdfPTable(9);
+                        tblcontentSatParam.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Satellite Longitude ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Receive Polaritation ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" " , contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("LNB 22 KHz Switch", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Symbol Rate", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("CPI", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("db", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Date", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell("     /     /    ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Operator Name", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Transponder Number", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("(  )H (   )V", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Time", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+
+                        float[] columnWidthSatParam = new float[]{55f,5f,60f,55f,5f,50f,40f,5f,60f};
+                        tblcontentSatParam.setWidths(columnWidthSatParam);
+                        tblcontentSatParam.setTotalWidth(420f);
+                        tblcontentSatParam.setLockedWidth(true);
+                        document.add(tblcontentSatParam);
+
+                        PdfPTable tblSatParamTitle = new PdfPTable(1);
+                        tblSatParamTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblSatParamTitle.addCell(JobReportUtils.bottomLineCell("SATTELITE PARAMETERS", subtitleFont));
+                        tblSatParamTitle.setSpacingAfter(4f);
+                        document.add(tblSatParamTitle);
+
                         PdfPTable tblcontentPole = new PdfPTable(10);
                         tblcontentPole.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("Satellite Name ", contentFont));
