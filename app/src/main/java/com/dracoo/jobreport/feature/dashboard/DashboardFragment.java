@@ -569,23 +569,29 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblEnvTitle.setSpacingAfter(4f);
                     document.add(tblEnvTitle);
 
-                    PdfPTable tblcontentEnv = new PdfPTable(12);
+                    PdfPTable tblcontentEnv = new PdfPTable(18);
                     tblcontentEnv.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell("Input Tegangan listrik  P - N (Vac) ", contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.bottomLineCell(":  " +alEnv.get(0).getTegangan_pln().trim(), contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.bottomLineCell(alEnv.get(0).getTegangan_pln().trim(), contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(" P - G " , contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.bottomLineCell(" " , contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(" N - G " , contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": " +alEnv.get(0).getGrounding_pln().trim(), contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.bottomLineCell(alEnv.get(0).getGrounding_pln().trim(), contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell("Input Tegangan UPS  P - N ", contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": " +alEnv.get(0).getTegangan_ups().trim(), contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.bottomLineCell(alEnv.get(0).getTegangan_ups().trim(), contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(" P - G " , contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": ____ " , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.bottomLineCell("  " , contentFont));
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell(" N - G " , contentFont));
-                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(": " +alEnv.get(0).getGrounding_ups().trim(), contentFont));
-                    float[] columnWidthEnv = new float[]{90f, 23f, 23f, 23f, 23f, 23f, 80f, 23f, 23f, 23f, 23f, 23f};
+                    tblcontentEnv.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                    tblcontentEnv.addCell(JobReportUtils.bottomLineCell(alEnv.get(0).getGrounding_ups().trim(), contentFont));
+                    float[] columnWidthEnv = new float[]{85f, 5f,20f,20f,5f,20f,20f,5f,20f,65f,5f,20f,20f, 5f,20f, 20f, 5f,20f};
                     tblcontentEnv.setWidths(columnWidthEnv);
-                    tblcontentEnv.setTotalWidth(440f);
+                    tblcontentEnv.setTotalWidth(425f);
                     tblcontentEnv.setSpacingAfter(4f);
                     tblcontentEnv.setLockedWidth(true);
                     document.add(tblcontentEnv);
@@ -822,7 +828,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
                         tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
 
-                        float[] columnWidthPole = new float[]{55f,5f,50f,55f,5f,50f,60f,40f,5f,50f};
+                        float[] columnWidthPole = new float[]{55f,5f,60f,55f,5f,50f,50f,40f,5f,60f};
                         tblcontentPole.setWidths(columnWidthPole);
                         tblcontentPole.setTotalWidth(420f);
                         tblcontentPole.setLockedWidth(true);
