@@ -140,7 +140,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         ButterKnife.bind(this, view);
-
         return view;
     }
 
@@ -455,12 +454,12 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblTitleTech.addCell(JobReportUtils.bottomLineCell("TECHNICAL REPORT", titleFont));
                     tblTitleTech.setSpacingAfter(4f);
                     document.add(tblTitleTech);
+
                     PdfPTable tblSiteInfo = new PdfPTable(1);
                     tblSiteInfo.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblSiteInfo.addCell(JobReportUtils.bottomLineCell("SITE INFORMATION", subtitleFont));
-                    tblTitleNews.setSpacingAfter(4f);
+                    tblTitleNews.setSpacingAfter(2f);
                     document.add(tblSiteInfo);
-
                     PdfPTable tblcontentSiteInf = new PdfPTable(9);
                     tblcontentSiteInf.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Remote Name ", contentFont));
@@ -501,9 +500,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable tblCoorSite = new PdfPTable(1);
                     tblCoorSite.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblCoorSite.addCell(JobReportUtils.bottomLineCell("COORDINAT SITE", subtitleFont));
-                    tblCoorSite.setSpacingAfter(4f);
+                    tblCoorSite.setSpacingAfter(2f);
                     document.add(tblCoorSite);
-
                     PdfPTable tblcontentCoorSite = new PdfPTable(3);
                     tblcontentCoorSite.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Latitude ", contentFont));
@@ -566,9 +564,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable tblEnvTitle = new PdfPTable(1);
                     tblEnvTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblEnvTitle.addCell(JobReportUtils.bottomLineCell("ELECTRICAL ENVIRONTMENT", subtitleFont));
-                    tblEnvTitle.setSpacingAfter(4f);
+                    tblEnvTitle.setSpacingAfter(2f);
                     document.add(tblEnvTitle);
-
                     PdfPTable tblcontentEnv = new PdfPTable(18);
                     tblcontentEnv.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentEnv.addCell(JobReportUtils.borderlessCell("Input Tegangan listrik  P - N (Vac) ", contentFont));
@@ -599,7 +596,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable tblIOEquip = new PdfPTable(1);
                     tblIOEquip.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblIOEquip.addCell(JobReportUtils.bottomLineCell("INDOOR & OUTDOOR EQUIPMENT", subtitleFont));
-                    tblIOEquip.setSpacingAfter(4f);
+                    tblIOEquip.setSpacingAfter(2f);
                     document.add(tblIOEquip);
 
                     if (preference.getConnType().trim().equals("VSAT")){
@@ -637,7 +634,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getSn_modem(), contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" " +snModem , contentFont));
-                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("Power Supply  ", contentFont));
+                        vsatEquipTable.addCell(JobReportUtils.bottomLineCell("Power Supply", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": N/A", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" N/A", contentFont));
@@ -669,7 +666,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getSn_lnb().trim(), contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" " +lnb.trim(), contentFont));
-                        float[] vsatEquip = new float[]{35f, 70f, 5f, 70f};
+                        float[] vsatEquip = new float[]{40f, 70f, 5f, 70f};
                         vsatEquipTable.setWidths(vsatEquip);
                         vsatEquipTable.setTotalWidth(200f);
                         vsatEquipTable.setSpacingAfter(4f);
@@ -701,19 +698,19 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell(" N/A", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Cable Branch  ", contentFont));
-                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(": Belden", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Belden", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Type  ", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getAntena_type().trim(), contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
-                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Cable Length  ", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell(": " +alVsatSetup.get(0).getAntena_size().trim(), contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Unit  ", contentFont));
-                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(": N/A", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("Pedestial Type  ", contentFont));
@@ -721,7 +718,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("F to F Jumper  ", contentFont));
-                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(":", contentFont));
+                        vsatSetupTable.addCell(JobReportUtils.bottomLineCell(": N/A", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell("", contentFont));
                         float[] vsatSetup = new float[]{55f, 60f, 5f, 60f};
@@ -773,7 +770,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         dipOldContentTable.setLockedWidth(true);
                         DipOldContentTableCell.addElement(dipOldContentTable);
                         mainDipContentTable.addCell(DipOldContentTableCell);
-
                         PdfPCell DipNewContentTableCell = new PdfPCell();
                         DipNewContentTableCell.setBorder(PdfPCell.NO_BORDER);
                         PdfPTable dipNewContentTable = new PdfPTable(1);
@@ -792,7 +788,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         PdfPTable tblCrossPoleTitle = new PdfPTable(1);
                         tblCrossPoleTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tblCrossPoleTitle.addCell(JobReportUtils.bottomLineCell("CROSSPOLE ITEM", subtitleFont));
-                        tblCrossPoleTitle.setSpacingAfter(4f);
+                        tblCrossPoleTitle.setSpacingAfter(2f);
                         document.add(tblCrossPoleTitle);
                         PdfPTable tblcontentPole = new PdfPTable(10);
                         tblcontentPole.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -828,6 +824,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentPole.addCell(JobReportUtils.bottomLineCell(splitXpollDate[1].trim(), contentFont));
                         float[] columnWidthPole = new float[]{55f,5f,60f,55f,5f,50f,50f,40f,5f,60f};
                         tblcontentPole.setWidths(columnWidthPole);
+                        tblcontentPole.setSpacingAfter(4f);
                         tblcontentPole.setTotalWidth(420f);
                         tblcontentPole.setLockedWidth(true);
                         document.add(tblcontentPole);
@@ -835,13 +832,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         PdfPTable tblSatParamTitle = new PdfPTable(1);
                         tblSatParamTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tblSatParamTitle.addCell(JobReportUtils.bottomLineCell("SATTELITE PARAMETERS", subtitleFont));
-                        tblSatParamTitle.setSpacingAfter(4f);
+                        tblSatParamTitle.setSpacingAfter(2f);
                         document.add(tblSatParamTitle);
                         PdfPTable tblcontentSatParam = new PdfPTable(9);
                         tblcontentSatParam.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Satellite Longitude ", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
-                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getSat_parameter().trim(), contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(alConnParam.get(0).getSat_parameter().trim(), contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Receive Polaritation ", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.bottomLineCell("Vertical" , contentFont));
@@ -869,13 +866,14 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         float[] columnWidthSatParam = new float[]{50f,5f,50f,70f,5f,50f,55f,5f,50f};
                         tblcontentSatParam.setWidths(columnWidthSatParam);
                         tblcontentSatParam.setTotalWidth(400f);
+                        tblcontentSatParam.setSpacingAfter(4f);
                         tblcontentSatParam.setLockedWidth(true);
                         document.add(tblcontentSatParam);
 
                         PdfPTable tblManParamTitle = new PdfPTable(1);
                         tblManParamTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tblManParamTitle.addCell(JobReportUtils.bottomLineCell("MANAGEMENT PARAMETERS", subtitleFont));
-                        tblManParamTitle.setSpacingAfter(4f);
+                        tblManParamTitle.setSpacingAfter(2f);
                         document.add(tblManParamTitle);
                         PdfPTable tblcontentManParam = new PdfPTable(6);
                         tblcontentManParam.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -906,16 +904,17 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentManParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
                         tblcontentManParam.addCell(JobReportUtils.borderlessCell(" " , contentFont));
                         tblcontentManParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
-                        float[] columnWidthManParam = new float[]{60f,5f,60f,75f,5f,65f};
+                        float[] columnWidthManParam = new float[]{60f,5f,60f,100f,5f,65f};
                         tblcontentManParam.setWidths(columnWidthManParam);
-                        tblcontentManParam.setTotalWidth(400f);
+                        tblcontentManParam.setTotalWidth(420f);
                         tblcontentManParam.setLockedWidth(true);
+                        tblcontentManParam.setSpacingAfter(4f);
                         document.add(tblcontentManParam);
 
                         PdfPTable tblLANParamTitle = new PdfPTable(1);
                         tblLANParamTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tblLANParamTitle.addCell(JobReportUtils.bottomLineCell("LAN PARAMETERS", subtitleFont));
-                        tblLANParamTitle.setSpacingAfter(4f);
+                        tblLANParamTitle.setSpacingAfter(2f);
                         document.add(tblLANParamTitle);
                         PdfPTable tblcontentLANParam = new PdfPTable(12);
                         tblcontentLANParam.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -931,16 +930,17 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentLANParam.addCell(JobReportUtils.borderlessCell("LAN 2 Subnet Mask", contentFont));
                         tblcontentLANParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
                         tblcontentLANParam.addCell(JobReportUtils.bottomLineCell("255.255.255.0", contentFont));
-                        float[] columnWidthLANParam = new float[]{40f,5f,55f,40f,5f,55f,55f,5f,45f,55f,5f,45f};
+                        float[] columnWidthLANParam = new float[]{45f,5f,55f,50f,5f,55f,55f,5f,50f,55f,5f,45f};
                         tblcontentLANParam.setWidths(columnWidthLANParam);
-                        tblcontentLANParam.setTotalWidth(420f);
+                        tblcontentLANParam.setTotalWidth(430f);
+                        tblcontentLANParam.setSpacingAfter(4f);
                         tblcontentLANParam.setLockedWidth(true);
                         document.add(tblcontentLANParam);
 
                         PdfPTable tblRangingParamTitle = new PdfPTable(1);
                         tblRangingParamTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tblRangingParamTitle.addCell(JobReportUtils.bottomLineCell("RANGING PARAMETERS (Data dari Force Ranging)", subtitleFont));
-                        tblRangingParamTitle.setSpacingAfter(4f);
+                        tblRangingParamTitle.setSpacingAfter(2f);
                         document.add(tblRangingParamTitle);
                         PdfPTable tblcontentRangingParam = new PdfPTable(9);
                         tblcontentRangingParam.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -972,7 +972,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         //TODO m2m
                     }
 
-                    //TO DO TECH REPORT
+                    //TODO TECH REPORT
                     document.newPage();
                     PdfPTable tblActionTitle = new PdfPTable(1);
                     tblActionTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -1114,7 +1114,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         stCopyClipBoard.append(problemContent+"\n\n");
                     }
 
-
                     stCopyClipBoard.append(getActivity().getString(R.string.electEnv_trans)+"\n");
                     String environtmentContent;
                     if (alEnv.size() > 0){
@@ -1201,7 +1200,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                                 "DATE, TIME = " +xpollDateTime+"\n"+
                                 "OP = " +xpollOp;
                         stCopyClipBoard.append(xpollContent+"\n\n");
-
                         String paramContent;
                         if (alConnParam.size() > 0){
                             paramContent = "LAN PARAMETER\nIP Lan = " +alConnParam.get(0).getLan_parameter().trim() +" \n"+
@@ -1321,7 +1319,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         stCopyClipBoard.append(actionContent+"\n\n");
                     }
                     prg_dash.setVisibility(View.GONE);
-                    chooseWA();
+                    //TODO HRS D CEK JIKA REPLACE KOSONG
+                    //chooseWA();
                 }catch (Exception e){
                     prg_dash.setVisibility(View.GONE);
                     messageUtils.toastMessage("err Send WA " +e.toString(), ConfigApps.T_ERROR);
