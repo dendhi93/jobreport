@@ -1297,6 +1297,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     }
 
                     if (alAction.size() > 0){
+                        arr_actionDateTime = new String[alAction.size()];
+                        arr_actionTrans = new String[alAction.size()];
+                        arr_actionEndTime = new String[alAction.size()];
                         int i = 0;
                         String actionContent = "";
                         stCopyClipBoard.append("ACTION\n");
@@ -1319,8 +1322,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         stCopyClipBoard.append(actionContent+"\n\n");
                     }
                     prg_dash.setVisibility(View.GONE);
-                    //TODO HRS D CEK JIKA REPLACE KOSONG
-                    //chooseWA();
+
+                    chooseWA();
                 }catch (Exception e){
                     prg_dash.setVisibility(View.GONE);
                     messageUtils.toastMessage("err Send WA " +e.toString(), ConfigApps.T_ERROR);
