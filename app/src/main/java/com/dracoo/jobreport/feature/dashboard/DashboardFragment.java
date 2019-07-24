@@ -1269,22 +1269,22 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                                 "S/N = " +simCard2SN.trim() + "\n" +
                                 "PUK = " +simcard2Puk.trim();
                         stCopyClipBoard.append(m2mReplace+"\n\n");
-                    }
 
-                    String dataM2mContent;
-                    if (alM2mData.size() > 0){
-                        dataM2mContent = "Data Teknis\nUsername = " +alM2mData.get(0).getUsername().trim()+ "\n"+
-                                "Password = " +alM2mData.get(0).getPassword().trim() + "\n"+
-                                "Ip machine = "+alM2mData.get(0).getIp_machine().trim() + "\n"+
-                                "User = " +alM2mData.get(0).getUser().trim()+ "\n"+
-                                "Remote Address = " +alM2mData.get(0).getRemote().trim()+"\n"+
-                                "Tunnel ID 1 = " +alM2mData.get(0).getTunnel_id().trim()+"\n"+
-                                "IP Bounding = " +alM2mData.get(0).getIp_bonding().trim()+"\n"+
-                                "IP VLAN = " +alM2mData.get(0).getIp_vlan().trim()+"\n"+
-                                "IP LAN = " +alM2mData.get(0).getIp_lan().trim()+"\n"+
-                                "Subnetmask = " +alM2mData.get(0).getSubnet_mask().trim() +"\n"+
-                                "AGG = " +alM2mData.get(0).getAgg().trim();
-                        stCopyClipBoard.append(dataM2mContent+"\n\n");
+                        String dataM2mContent;
+                        if (alM2mData.size() > 0){
+                            dataM2mContent = "Data Teknis\nUsername = " +alM2mData.get(0).getUsername().trim()+ "\n"+
+                                    "Password = " +alM2mData.get(0).getPassword().trim() + "\n"+
+                                    "Ip machine = "+alM2mData.get(0).getIp_machine().trim() + "\n"+
+                                    "User = " +alM2mData.get(0).getUser().trim()+ "\n"+
+                                    "Remote Address = " +alM2mData.get(0).getRemote().trim()+"\n"+
+                                    "Tunnel ID 1 = " +alM2mData.get(0).getTunnel_id().trim()+"\n"+
+                                    "IP Bounding = " +alM2mData.get(0).getIp_bonding().trim()+"\n"+
+                                    "IP VLAN = " +alM2mData.get(0).getIp_vlan().trim()+"\n"+
+                                    "IP LAN = " +alM2mData.get(0).getIp_lan().trim()+"\n"+
+                                    "Subnetmask = " +alM2mData.get(0).getSubnet_mask().trim() +"\n"+
+                                    "AGG = " +alM2mData.get(0).getAgg().trim();
+                            stCopyClipBoard.append(dataM2mContent+"\n\n");
+                        }
                     }
 
                     String machineData;
