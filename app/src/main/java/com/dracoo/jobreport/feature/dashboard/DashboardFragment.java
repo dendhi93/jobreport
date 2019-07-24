@@ -732,7 +732,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         secondVsatTableCell.addElement(vsatSetupTable);
                         mainVsatTable.addCell(secondVsatTableCell);
                         document.add(mainVsatTable);
-
                         PdfPTable mainDipTitleTable = new PdfPTable(2);
                         mainDipTitleTable.setHorizontalAlignment(Element.ALIGN_LEFT);
                         PdfPCell DipOldTitleTableCell = new PdfPCell();
@@ -761,7 +760,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         mainDipContentTable.setHorizontalAlignment(Element.ALIGN_LEFT);
                         PdfPCell DipOldContentTableCell = new PdfPCell();
                         DipOldContentTableCell.setBorder(PdfPCell.NO_BORDER);
-
                         PdfPTable dipOldContentTable = new PdfPTable(3);
                         dipOldContentTable.addCell(JobReportUtils.borderlessCell("Indoor (S/N)", contentFont));
                         dipOldContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
@@ -794,12 +792,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblCrossPoleTitle.addCell(JobReportUtils.bottomLineCell("CROSSPOLE ITEM", subtitleFont));
                         tblCrossPoleTitle.setSpacingAfter(4f);
                         document.add(tblCrossPoleTitle);
-
                         PdfPTable tblcontentPole = new PdfPTable(10);
                         tblcontentPole.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("Satellite Name ", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell(":", contentFont));
-                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" "+alXpoll.get(0).getSat().trim(), contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("Crosspole CW Uplink ", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell(":", contentFont));
                         tblcontentPole.addCell(JobReportUtils.bottomLineCell(" " , contentFont));
@@ -812,7 +809,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("CPI", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
-                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" " +alXpoll.get(0).getCpi().trim(), contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("db", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("Date", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
@@ -822,12 +819,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("Transponder Number", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
-                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" "+alXpoll.get(0).getTransponder().trim(), contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("(  )H (   )V", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("Time", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
-                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
-
+                        tblcontentPole.addCell(JobReportUtils.bottomLineCell(" "+alXpoll.get(0).getInsert_time(), contentFont));
                         float[] columnWidthPole = new float[]{55f,5f,60f,55f,5f,50f,50f,40f,5f,60f};
                         tblcontentPole.setWidths(columnWidthPole);
                         tblcontentPole.setTotalWidth(420f);
@@ -839,12 +835,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblSatParamTitle.addCell(JobReportUtils.bottomLineCell("SATTELITE PARAMETERS", subtitleFont));
                         tblSatParamTitle.setSpacingAfter(4f);
                         document.add(tblSatParamTitle);
-
                         PdfPTable tblcontentSatParam = new PdfPTable(9);
                         tblcontentSatParam.setHorizontalAlignment(Element.ALIGN_LEFT);
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Satellite Longitude ", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
-                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getSat_parameter().trim(), contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Receive Polaritation ", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" " , contentFont));
@@ -853,14 +848,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Symbol Rate (SPS)", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
-                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" "+alConnParam.get(0).getSat_symrate().trim(), contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Frequency (X 100 KHz)", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
-                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" "+alConnParam.get(0).getSat_freq().trim(), contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell("Transmit Polaritation", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.bottomLineCell("  ", contentFont));
-
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell("DV8 Mode", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
@@ -870,12 +864,107 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(" " , contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
-
                         float[] columnWidthSatParam = new float[]{50f,5f,50f,70f,5f,50f,55f,5f,50f};
                         tblcontentSatParam.setWidths(columnWidthSatParam);
                         tblcontentSatParam.setTotalWidth(400f);
                         tblcontentSatParam.setLockedWidth(true);
                         document.add(tblcontentSatParam);
+
+                        PdfPTable tblManParamTitle = new PdfPTable(1);
+                        tblManParamTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblManParamTitle.addCell(JobReportUtils.bottomLineCell("MANAGEMENT PARAMETERS", subtitleFont));
+                        tblManParamTitle.setSpacingAfter(4f);
+                        document.add(tblManParamTitle);
+                        PdfPTable tblcontentManParam = new PdfPTable(6);
+                        tblcontentManParam.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell("ESN MODEM ", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.bottomLineCell(" "+alConnParam.get(0).getManagement_esnmodem().trim(), contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell("DVB Program No. for User Data ", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.bottomLineCell(" " , contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell("IP Gateway Address", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getManagement_gateway().trim(), contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell("VSAT Management IP Address", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell("Transmit Radio", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell("SDL Kontrol Channel IP Address", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.bottomLineCell("  ", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell("VSAT Return Path", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell("Default Gateway IP Address (LAN Return Only)", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(" " , contentFont));
+                        tblcontentManParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
+                        float[] columnWidthManParam = new float[]{60f,5f,60f,75f,5f,65f};
+                        tblcontentManParam.setWidths(columnWidthManParam);
+                        tblcontentManParam.setTotalWidth(400f);
+                        tblcontentManParam.setLockedWidth(true);
+                        document.add(tblcontentManParam);
+
+                        PdfPTable tblLANParamTitle = new PdfPTable(1);
+                        tblLANParamTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblLANParamTitle.addCell(JobReportUtils.bottomLineCell("LAN PARAMETERS", subtitleFont));
+                        tblLANParamTitle.setSpacingAfter(4f);
+                        document.add(tblLANParamTitle);
+                        PdfPTable tblcontentLANParam = new PdfPTable(12);
+                        tblcontentLANParam.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblcontentLANParam.addCell(JobReportUtils.borderlessCell("LAN 1 IP Adress ", contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getLan_parameter().trim(), contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.borderlessCell("LAN 2 IP Address ", contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.bottomLineCell(" " , contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.borderlessCell("LAN 1 Subnet Mask", contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getLan_subnetmask().trim(), contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.borderlessCell("LAN 2 Subnet Mask", contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentLANParam.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        float[] columnWidthLANParam = new float[]{40f,5f,55f,40f,5f,55f,55f,5f,45f,55f,5f,45f};
+                        tblcontentLANParam.setWidths(columnWidthLANParam);
+                        tblcontentLANParam.setTotalWidth(420f);
+                        tblcontentLANParam.setLockedWidth(true);
+                        document.add(tblcontentLANParam);
+
+                        PdfPTable tblRangingParamTitle = new PdfPTable(1);
+                        tblRangingParamTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblRangingParamTitle.addCell(JobReportUtils.bottomLineCell("RANGING PARAMETERS (Data dari Force Ranging)", subtitleFont));
+                        tblRangingParamTitle.setSpacingAfter(4f);
+                        document.add(tblRangingParamTitle);
+                        PdfPTable tblcontentRangingParam = new PdfPTable(9);
+                        tblcontentRangingParam.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell("Signal Strength ", contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getRanging_signal().trim(), contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell("FEC ", contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getRanging_fec(), contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell("Final Received Es No", contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getRanging_esno().trim(), contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell("Data Rate", contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getRanging_data_rate().trim(), contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell("Final Power Setting", contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getRanging_power().trim(), contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell("Final Received C/ No", contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentRangingParam.addCell(JobReportUtils.bottomLineCell(" " +alConnParam.get(0).getRanging_cno().trim(), contentFont));
+                        float[] columnWidthRangingParam = new float[]{50f,5f,55f,50f,5f,55f,65f,5f,55};
+                        tblcontentRangingParam.setWidths(columnWidthRangingParam);
+                        tblcontentRangingParam.setTotalWidth(400f);
+                        tblcontentRangingParam.setLockedWidth(true);
+                        document.add(tblcontentRangingParam);
 
                     }else {
                         //TODO m2m
