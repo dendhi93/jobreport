@@ -25,11 +25,11 @@ public class DateTimeUtils {
         }
     }
 
-    public static String getChangeMonthFormat(String dateTime){
+    public static String getChangeTimeFormat(String dateTime){
         try {
-            SimpleDateFormat source = new SimpleDateFormat("yyy-MM-dd, HH:mm:ss", java.util.Locale.getDefault());
+            SimpleDateFormat source = new SimpleDateFormat("HH:mm:ss", java.util.Locale.getDefault());
             Date dateSource = source.parse(dateTime);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MMMM-dd, HH:mm:ss", java.util.Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", java.util.Locale.getDefault());
             if (dateSource != null){
                 return dateFormat.format(dateSource);
             }else{
