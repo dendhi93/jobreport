@@ -365,7 +365,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             " tanggal "+DateTimeUtils.TerbilangKonvert(lngDate)+
                             " bulan "+DateTimeUtils.nameOfMonth(splitDate[1].trim())+
                             " tahun "+DateTimeUtils.TerbilangKonvert(Long.parseLong(splitDate[0]))+" " +
-                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di ______________________________________________ " +
+                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di _________________________________________________ " +
                             "\nTelah dilakukan penandatanganan\nberita acara antara lain : " +
                             "\n\nI. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
@@ -543,7 +543,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Pending Maintenace (time) ", contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell(":", contentFont));
                     tblcontentProbDesc.addCell(JobReportUtils.bottomLineCell(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) , contentFont));
-                    float[] columnWidthProbDesc = new float[]{53f,5f,60f,57f,5f,53f,63f, 5f,47f};
+                    float[] columnWidthProbDesc = new float[]{53f,5f,60f,57f,5f,53f,63f, 5f,50f};
                     tblcontentProbDesc.setWidths(columnWidthProbDesc);
                     tblcontentProbDesc.setTotalWidth(425f);
                     tblcontentProbDesc.setLockedWidth(true);
@@ -556,7 +556,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentProbReason.addCell(JobReportUtils.bottomLineCell(alProblem.get(0).getReason().trim(), contentFont));
                     float[] columnWidthProbReason = new float[]{63f, 5f,335f};
                     tblcontentProbReason.setWidths(columnWidthProbReason);
-                    tblcontentProbReason.setTotalWidth(420f);
+                    tblcontentProbReason.setTotalWidth(430f);
                     tblcontentProbReason.setSpacingAfter(4f);
                     tblcontentProbReason.setLockedWidth(true);
                     document.add(tblcontentProbReason);
@@ -727,6 +727,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         vsatSetupTable.setLockedWidth(true);
                         secondVsatTableCell.addElement(vsatSetupTable);
                         mainVsatTable.addCell(secondVsatTableCell);
+                        mainVsatTable.setTotalWidth(430f);
+                        mainVsatTable.setLockedWidth(true);
                         document.add(mainVsatTable);
 
                         PdfPTable mainDipTitleTable = new PdfPTable(2);
@@ -779,6 +781,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         dipNewContentTable.setLockedWidth(true);
                         DipNewContentTableCell.addElement(dipNewContentTable);
                         mainDipContentTable.addCell(DipNewContentTableCell);
+                        mainDipContentTable.setTotalWidth(430f);
+                        mainDipContentTable.setLockedWidth(true);
                         mainDipContentTable.setSpacingAfter(4f);
                         document.add(mainDipContentTable);
 
@@ -929,7 +933,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentLANParam.addCell(JobReportUtils.borderlessCell("LAN 2 Subnet Mask", contentFont));
                         tblcontentLANParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
                         tblcontentLANParam.addCell(JobReportUtils.bottomLineCell("255.255.255.0", contentFont));
-                        float[] columnWidthLANParam = new float[]{45f,5f,55f,50f,5f,55f,55f,5f,50f,55f,5f,45f};
+                        float[] columnWidthLANParam = new float[]{45f,5f,55f,50f,5f,55f,55f,5f,50f,55f,5f,43f};
                         tblcontentLANParam.setWidths(columnWidthLANParam);
                         tblcontentLANParam.setTotalWidth(430f);
                         tblcontentLANParam.setSpacingAfter(4f);
