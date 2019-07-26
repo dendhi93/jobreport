@@ -365,7 +365,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             " tanggal "+DateTimeUtils.TerbilangKonvert(lngDate)+
                             " bulan "+DateTimeUtils.nameOfMonth(splitDate[1].trim())+
                             " tahun "+DateTimeUtils.TerbilangKonvert(Long.parseLong(splitDate[0]))+" " +
-                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di _________________________________________________ " +
+                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di ________________________________________________ " +
                             "\nTelah dilakukan penandatanganan\nberita acara antara lain : " +
                             "\n\nI. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
@@ -825,10 +825,10 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentPole.addCell(JobReportUtils.borderlessCell("Time", contentFont));
                         tblcontentPole.addCell(JobReportUtils.borderlessCell(":" , contentFont));
                         tblcontentPole.addCell(JobReportUtils.bottomLineCell(splitXpollDate[1].trim(), contentFont));
-                        float[] columnWidthPole = new float[]{55f,5f,60f,55f,5f,50f,50f,40f,5f,60f};
+                        float[] columnWidthPole = new float[]{55f,5f,60f,55f,5f,50f,50f,40f,5f,65f};
                         tblcontentPole.setWidths(columnWidthPole);
                         tblcontentPole.setSpacingAfter(4f);
-                        tblcontentPole.setTotalWidth(420f);
+                        tblcontentPole.setTotalWidth(425f);
                         tblcontentPole.setLockedWidth(true);
                         document.add(tblcontentPole);
 
@@ -1120,6 +1120,49 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentM2mLAN.setSpacingAfter(4f);
                         tblcontentM2mLAN.setLockedWidth(true);
                         document.add(tblcontentM2mLAN);
+
+                        PdfPTable tblM2mMANTitle = new PdfPTable(1);
+                        tblM2mMANTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblM2mMANTitle.addCell(JobReportUtils.bottomLineCell("MANAGEMENT PARAMETERS", subtitleFont));
+                        tblM2mMANTitle.setSpacingAfter(2f);
+                        document.add(tblM2mMANTitle);
+                        PdfPTable tblcontentM2mMAN = new PdfPTable(7);
+                        tblcontentM2mMAN.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell("User Name ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell("Tunnel ID ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell("Password ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.bottomLineCell(" " , contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell("IP Bounding", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell("User", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell("AGG", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell("Remote Address", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" ", contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" " , contentFont));
+                        tblcontentM2mMAN.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        float[] columnWidthM2mMAN = new float[]{55f,5f,75f,20f,55f,5f,75f};
+                        tblcontentM2mMAN.setWidths(columnWidthM2mMAN);
+                        tblcontentM2mMAN.setTotalWidth(430f);
+                        tblcontentM2mMAN.setSpacingAfter(4f);
+                        tblcontentM2mMAN.setLockedWidth(true);
+                        document.add(tblcontentM2mMAN);
+
 
 
                     }
