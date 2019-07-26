@@ -365,7 +365,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             " tanggal "+DateTimeUtils.TerbilangKonvert(lngDate)+
                             " bulan "+DateTimeUtils.nameOfMonth(splitDate[1].trim())+
                             " tahun "+DateTimeUtils.TerbilangKonvert(Long.parseLong(splitDate[0]))+" " +
-                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di _________________________________________ " +
+                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di ______________________________________________ " +
                             "\nTelah dilakukan penandatanganan\nberita acara antara lain : " +
                             "\n\nI. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
@@ -375,6 +375,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentName.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentName.addCell(JobReportUtils.borderlessCell("   Nama   : " +preference.getTechName().trim(), contentFont));
                     tblcontentName.addCell(JobReportUtils.borderlessCell("Jabatan : " +preference.getServicePoint().trim(), contentFont));
+                    tblcontentName.setTotalWidth(440f);
+                    tblcontentName.setLockedWidth(true);
                     paragraphContentDays.setSpacingAfter(4f);
                     document.add(tblcontentName);
                     Paragraph paragraphContentUser1 = new Paragraph("Yang selanjutnya disebut sebagai PIHAK I\n" , contentFont);
@@ -860,7 +862,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(" " , contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
-                        float[] columnWidthSatParam = new float[]{50f,5f,50f,70f,5f,50f,55f,5f,50f};
+                        float[] columnWidthSatParam = new float[]{50f,5f,50f,70f,5f,50f,55f,5f,60f};
                         tblcontentSatParam.setWidths(columnWidthSatParam);
                         tblcontentSatParam.setTotalWidth(400f);
                         tblcontentSatParam.setSpacingAfter(4f);
@@ -1104,7 +1106,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentM2mLAN.addCell(JobReportUtils.bottomLineCell(alM2mData.get(0).getIp_vlan().trim(), contentFont));
                         tblcontentM2mLAN.addCell(JobReportUtils.borderlessCell("GATEWAY ", contentFont));
                         tblcontentM2mLAN.addCell(JobReportUtils.borderlessCell(":" , contentFont));
-                        tblcontentM2mLAN.addCell(JobReportUtils.bottomLineCell(" " , contentFont));
+                        tblcontentM2mLAN.addCell(JobReportUtils.bottomLineCell(" "+alM2mData.get(0).getIp_bonding().trim() , contentFont));
                         tblcontentM2mLAN.addCell(JobReportUtils.borderlessCell("SUBNETMASK", contentFont));
                         tblcontentM2mLAN.addCell(JobReportUtils.borderlessCell(":" , contentFont));
                         tblcontentM2mLAN.addCell(JobReportUtils.bottomLineCell(alM2mData.get(0).getSubnet_mask().trim(), contentFont));
