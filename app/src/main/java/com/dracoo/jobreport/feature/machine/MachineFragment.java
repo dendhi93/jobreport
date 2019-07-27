@@ -140,6 +140,7 @@ public class MachineFragment extends Fragment {
                 getActivity().getString(R.string.rb_sendiri),
                 getActivity().getString(R.string.rb_center)};
         final ArrayAdapter<String> adapterMachineLoc = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrMachineLoc);
+        adapterMachineLoc.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_machine_location.setAdapter(adapterMachineLoc);
         sp_machine_location.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -157,6 +158,7 @@ public class MachineFragment extends Fragment {
                 getActivity().getString(R.string.rb_machine_3)};
 
         final ArrayAdapter<String> adapterMachineQty = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrMachineQty);
+        adapterMachineQty.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_machine_qty.setAdapter(adapterMachineQty);
         sp_machine_qty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -172,6 +174,7 @@ public class MachineFragment extends Fragment {
                 getActivity().getString(R.string.rb_machine_24),
                 getActivity().getString(R.string.rb_machine_not24)};
         final ArrayAdapter<String> adapterMachine24 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrMachine24);
+        adapterMachine24.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_machine_24.setAdapter(adapterMachine24);
         sp_machine_24.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -286,6 +289,4 @@ public class MachineFragment extends Fragment {
             }
         }
     }
-
-
 }

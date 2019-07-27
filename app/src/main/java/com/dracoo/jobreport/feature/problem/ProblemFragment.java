@@ -235,6 +235,7 @@ public class ProblemFragment extends Fragment {
     private void displayClosedSpinner(){
         arrClosedBy  = new String[]{"Closed By","EOS", "NOC"};
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrClosedBy);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_prob_closedBy.setAdapter(adapter);
         sp_prob_closedBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

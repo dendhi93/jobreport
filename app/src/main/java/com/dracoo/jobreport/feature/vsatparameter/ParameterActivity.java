@@ -17,7 +17,6 @@ import com.dracoo.jobreport.database.adapter.ConnectionParameterAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterConnectionParameter;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
-import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -149,6 +148,7 @@ public class ParameterActivity extends AppCompatActivity {
                 getString(R.string.rb_lan_param_2),
                 getString(R.string.rb_lan_param_3)};
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrParamSubnet);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_param_subnet.setAdapter(adapter);
         sp_param_subnet.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

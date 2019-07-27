@@ -213,6 +213,7 @@ public class UserActivity extends AppCompatActivity
     private void displaySpinner(){
         arrConnType  = new String[]{"Jenis Progress","CM", "PM"};
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrConnType);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_user_connType.setAdapter(adapter);
         sp_user_connType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

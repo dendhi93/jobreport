@@ -139,6 +139,7 @@ public class XpollActivity extends AppCompatActivity {
                 getString(R.string.apt6),
                 getString(R.string.apt9)};
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrXpoll);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_xpoll_choose.setAdapter(adapter);
         sp_xpoll_choose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -241,9 +242,7 @@ public class XpollActivity extends AppCompatActivity {
                 }
                 setEmptyText();
                 JobReportUtils.hideKeyboard(XpollActivity.this);
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
-            }
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR); }
         }else{
             try{
                 MasterTransHistory mHist = new MasterTransHistory();
@@ -261,9 +260,7 @@ public class XpollActivity extends AppCompatActivity {
                 }
                 setEmptyText();
                 JobReportUtils.hideKeyboard(XpollActivity.this);
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
-            }
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR); }
         }
     }
 
@@ -311,19 +308,19 @@ public class XpollActivity extends AppCompatActivity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 String selectedHour, selectedMinutes, selectedSecond;
                 if (hourOfDay < 10){
-                    selectedHour = "0"+String.valueOf(hourOfDay);
+                    selectedHour = "0"+hourOfDay;
                 }else{
                     selectedHour = String.valueOf(hourOfDay);
                 }
 
                 if (minute < 10){
-                    selectedMinutes = "0"+String.valueOf(minute);
+                    selectedMinutes = "0"+minute;
                 }else{
                     selectedMinutes = String.valueOf(minute);
                 }
 
                 if (mSecond < 10){
-                    selectedSecond = "0"+String.valueOf(mSecond);
+                    selectedSecond = "0"+mSecond;
                 }else{
                     selectedSecond = String.valueOf(mSecond);
                 }
@@ -338,7 +335,6 @@ public class XpollActivity extends AppCompatActivity {
             }
         }, mHour, mMinute, true);
         timePickerDialog.show();
-
     }
 
     private void setEmptyText(){
@@ -368,7 +364,4 @@ public class XpollActivity extends AppCompatActivity {
         }
         return true;
     }
-
-
-
 }
