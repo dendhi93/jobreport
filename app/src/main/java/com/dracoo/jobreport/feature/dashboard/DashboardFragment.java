@@ -365,8 +365,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             " tanggal "+DateTimeUtils.TerbilangKonvert(lngDate)+
                             " bulan "+DateTimeUtils.nameOfMonth(splitDate[1].trim())+
                             " tahun "+DateTimeUtils.TerbilangKonvert(Long.parseLong(splitDate[0]))+" " +
-                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di ________________________________________________ " +
-                            "\nTelah dilakukan penandatanganan\nberita acara antara lain : " +
+                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di _______________________________________ " +
+                            "\n________________________ Telah dilakukan penandatanganan berita acara antara lain : " +
                             "\n\nI. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
                     paragraphContentDays.setSpacingAfter(4f);
@@ -493,7 +493,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     float[] columnWidthSiteInf = new float[]{45f, 5f,80f, 45f,5f ,80f, 40f,5f, 80f};
                     tblcontentSiteInf.setWidths(columnWidthSiteInf);
                     tblcontentSiteInf.setSpacingAfter(3f);
-                    tblcontentSiteInf.setTotalWidth(410f);
+                    tblcontentSiteInf.setTotalWidth(428f);
                     tblcontentSiteInf.setLockedWidth(true);
                     document.add(tblcontentSiteInf);
 
@@ -522,7 +522,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblProbTitle.addCell(JobReportUtils.bottomLineCell("PROBLEM DESCRIPTION", subtitleFont));
                     tblProbTitle.setSpacingAfter(4f);
                     document.add(tblProbTitle);
-
                     PdfPTable tblcontentProbDesc = new PdfPTable(9);
                     tblcontentProbDesc.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentProbDesc.addCell(JobReportUtils.borderlessCell("Display Modem ", contentFont));
@@ -545,7 +544,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentProbDesc.addCell(JobReportUtils.bottomLineCell(DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) , contentFont));
                     float[] columnWidthProbDesc = new float[]{53f,5f,60f,57f,5f,53f,63f, 5f,50f};
                     tblcontentProbDesc.setWidths(columnWidthProbDesc);
-                    tblcontentProbDesc.setTotalWidth(425f);
+                    tblcontentProbDesc.setTotalWidth(427f);
                     tblcontentProbDesc.setLockedWidth(true);
                     document.add(tblcontentProbDesc);
 
@@ -556,7 +555,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentProbReason.addCell(JobReportUtils.bottomLineCell(alProblem.get(0).getReason().trim(), contentFont));
                     float[] columnWidthProbReason = new float[]{63f, 5f,335f};
                     tblcontentProbReason.setWidths(columnWidthProbReason);
-                    tblcontentProbReason.setTotalWidth(430f);
+                    tblcontentProbReason.setTotalWidth(427f);
                     tblcontentProbReason.setSpacingAfter(4f);
                     tblcontentProbReason.setLockedWidth(true);
                     document.add(tblcontentProbReason);
@@ -588,7 +587,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentEnv.addCell(JobReportUtils.bottomLineCell(alEnv.get(0).getGrounding_ups().trim(), contentFont));
                     float[] columnWidthEnv = new float[]{85f, 5f,20f,20f,5f,20f,20f,5f,20f,65f,5f,20f,20f, 5f,20f, 20f, 5f,20f};
                     tblcontentEnv.setWidths(columnWidthEnv);
-                    tblcontentEnv.setTotalWidth(425f);
+                    tblcontentEnv.setTotalWidth(427f);
                     tblcontentEnv.setSpacingAfter(4f);
                     tblcontentEnv.setLockedWidth(true);
                     document.add(tblcontentEnv);
@@ -667,7 +666,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         vsatEquipTable.addCell(JobReportUtils.bottomLineCell(" " +lnb.trim(), contentFont));
                         float[] vsatEquip = new float[]{40f, 70f, 5f, 70f};
                         vsatEquipTable.setWidths(vsatEquip);
-                        vsatEquipTable.setTotalWidth(200f);
+                        vsatEquipTable.setTotalWidth(207f);
                         vsatEquipTable.setSpacingAfter(4f);
                         vsatEquipTable.setLockedWidth(true);
                         firstVsatTableCell.addElement(vsatEquipTable);
@@ -722,12 +721,12 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         vsatSetupTable.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
                         float[] vsatSetup = new float[]{55f, 60f, 5f, 60f};
                         vsatSetupTable.setWidths(vsatSetup);
-                        vsatSetupTable.setTotalWidth(200f);
+                        vsatSetupTable.setTotalWidth(210f);
                         vsatSetupTable.setSpacingAfter(4f);
                         vsatSetupTable.setLockedWidth(true);
                         secondVsatTableCell.addElement(vsatSetupTable);
                         mainVsatTable.addCell(secondVsatTableCell);
-                        mainVsatTable.setTotalWidth(430f);
+                        mainVsatTable.setTotalWidth(427f);
                         mainVsatTable.setLockedWidth(true);
                         document.add(mainVsatTable);
 
@@ -1041,7 +1040,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         m2mEquipTable.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
                         float[] m2mEquip = new float[]{40f, 70f, 5f, 70f};
                         m2mEquipTable.setWidths(m2mEquip);
-                        m2mEquipTable.setTotalWidth(200f);
+                        m2mEquipTable.setTotalWidth(206f);
                         m2mEquipTable.setSpacingAfter(4f);
                         m2mEquipTable.setLockedWidth(true);
                         firstM2mTableCell.addElement(m2mEquipTable);
@@ -1088,11 +1087,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         m2mSetupTable.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
                         float[] m2mSetup = new float[]{55f, 60f, 5f, 60f};
                         m2mSetupTable.setWidths(m2mSetup);
-                        m2mSetupTable.setTotalWidth(200f);
+                        m2mSetupTable.setTotalWidth(210f);
                         m2mSetupTable.setSpacingAfter(4f);
                         m2mSetupTable.setLockedWidth(true);
                         secondM2mTableCell.addElement(m2mSetupTable);
                         mainM2mTable.addCell(secondM2mTableCell);
+                        mainM2mTable.setTotalWidth(426f);
+                        mainM2mTable.setLockedWidth(true);
                         document.add(mainM2mTable);
 
                         PdfPTable tblM2mLANTitle = new PdfPTable(1);
@@ -1116,7 +1117,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentM2mLAN.addCell(JobReportUtils.bottomLineCell(alM2mData.get(0).getSubnet_mask().trim(), contentFont));
                         float[] columnWidthM2mLAN = new float[]{45f,5f,55f,50f,5f,55f,55f,5f,50f,55f,5f,45f};
                         tblcontentM2mLAN.setWidths(columnWidthM2mLAN);
-                        tblcontentM2mLAN.setTotalWidth(430f);
+                        tblcontentM2mLAN.setTotalWidth(426f);
                         tblcontentM2mLAN.setSpacingAfter(4f);
                         tblcontentM2mLAN.setLockedWidth(true);
                         document.add(tblcontentM2mLAN);
@@ -1155,19 +1156,47 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" ", contentFont));
                         tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" ", contentFont));
                         tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" " , contentFont));
-                        tblcontentM2mMAN.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
-                        float[] columnWidthM2mMAN = new float[]{55f,5f,75f,20f,55f,5f,75f};
+                        tblcontentM2mMAN.addCell(JobReportUtils.borderlessCell(" ", contentFont));
+                        float[] columnWidthM2mMAN = new float[]{55f,5f,75f,20f,55f,5f,70f};
                         tblcontentM2mMAN.setWidths(columnWidthM2mMAN);
-                        tblcontentM2mMAN.setTotalWidth(430f);
+                        tblcontentM2mMAN.setTotalWidth(426f);
                         tblcontentM2mMAN.setSpacingAfter(4f);
                         tblcontentM2mMAN.setLockedWidth(true);
                         document.add(tblcontentM2mMAN);
 
-
-
+                        PdfPTable tblTechDataTitle = new PdfPTable(1);
+                        tblTechDataTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblTechDataTitle.addCell(JobReportUtils.bottomLineCell("DATA TEKNIS", subtitleFont));
+                        tblTechDataTitle.setSpacingAfter(2f);
+                        document.add(tblTechDataTitle);
+                        PdfPTable tblcontentTechData = new PdfPTable(9);
+                        tblcontentTechData.setHorizontalAlignment(Element.ALIGN_LEFT);
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell("RSRQ ", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell("SNR ", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell("RSRP", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell("Pulsa Terakhir", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell("Paket Data", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell("Masa Aktif Paket Data", contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.borderlessCell(":" , contentFont));
+                        tblcontentTechData.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
+                        float[] columnWidthTechData = new float[]{65f,5f,70f,50f,5f,65f,70f, 5f,65f};
+                        tblcontentTechData.setWidths(columnWidthTechData);
+                        tblcontentTechData.setTotalWidth(426f);
+                        tblcontentTechData.setSpacingAfter(4f);
+                        tblcontentTechData.setLockedWidth(true);
+                        document.add(tblcontentTechData);
                     }
 
-                    //TODO TECH REPORT
                     document.newPage();
                     PdfPTable tblActionTitle = new PdfPTable(1);
                     tblActionTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
