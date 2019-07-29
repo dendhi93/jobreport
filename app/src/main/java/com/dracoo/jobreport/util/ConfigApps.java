@@ -29,7 +29,7 @@ public class ConfigApps {
     public static final int SUBMIT_SEND = 1;
 
     //url gform v1
-    public static final String gformUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfL9LGNUtSCi_uh-cQjS644D1zpuzZahDwrXrGU8vA0Mbk-9w/viewform";
+    public static final String gformUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfL9LGNUtSCi_uh-cQjS644D1zpuzZahDwrXrGU8vA0Mbk-9w/formResponse";
 
     //customer input
     public static final String techNameInput = "entry.338960680";
@@ -44,6 +44,27 @@ public class ConfigApps {
     public static final String proviencyInput = "entry.1227901858";
     public static final String latInput = "entry.1593799458";
     public static final String longitudeInput = "entry.726970911";
+    public static final String connTypeInput = "entry.2032056659";
+    public static final String progressInput = "entry.651734487";
+    public static final String takeOffInput = "entry.2084920842";
+    public static final String landingInput = "entry.2082939153";
+    public static final String pendingStartInput = "entry.904556259";
+    public static final String reasonPendingStartInput = "entry.783700454";
+    public static final String startInput = "entry.2050121004";
+    public static final String activityPendingInput = "entry.1901692711";
+    public static final String reasonActivityPendingInput = "entry.800006749";
+    public static final String restartInput = "entry.1535730819";
+    public static final String picInput = "entry.230823196";
+    public static final String chooseDeviceInput = "entry.1547303458";
+
+
+
+
+
+
+
+
+
 
 //========================================
 
