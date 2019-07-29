@@ -234,6 +234,7 @@ public class ConnectionFragment extends Fragment {
     private void displayAllSpinner(){
         arrConnectionType  = new String[]{"Jenis Koneksi",getActivity().getString(R.string.vsat), getActivity().getString(R.string.m2m)};
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrConnectionType);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_conn_connType.setAdapter(adapter);
         sp_conn_connType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -259,6 +260,7 @@ public class ConnectionFragment extends Fragment {
         arrAntenaType = new String[]{getActivity().getString(R.string.diameter_antena),getActivity().getString(R.string.conn_12m),
                 getActivity().getString(R.string.conn_18m),getActivity().getString(R.string.conn_24m)};
         final ArrayAdapter<String> adapterAntena = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrAntenaType);
+        adapterAntena.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_conn_antena.setAdapter(adapterAntena);
         sp_conn_antena.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -272,6 +274,7 @@ public class ConnectionFragment extends Fragment {
 
         arrPedestialType = new String[]{getActivity().getString(R.string.pedestal_type),getActivity().getString(R.string.rb_nprm), getActivity().getString(R.string.rb_wallmount),getActivity().getString(R.string.rb_groundmount)};
         final ArrayAdapter<String> adapterPedestial = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrPedestialType);
+        adapterPedestial.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_conn_pedestial.setAdapter(adapterPedestial);
         sp_conn_pedestial.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -285,6 +288,7 @@ public class ConnectionFragment extends Fragment {
 
         arrAntenaAccess = new String[]{getActivity().getString(R.string.access_antena),getActivity().getString(R.string.rb_machine_24), getActivity().getString(R.string.rb_machine_not24)};
         final ArrayAdapter<String> adapterAccessAntena = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrAntenaAccess);
+        adapterAccessAntena.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         sp_conn_antenaAccess.setAdapter(adapterAccessAntena);
         sp_conn_antenaAccess.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

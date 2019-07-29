@@ -365,7 +365,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             " tanggal "+DateTimeUtils.TerbilangKonvert(lngDate)+
                             " bulan "+DateTimeUtils.nameOfMonth(splitDate[1].trim())+
                             " tahun "+DateTimeUtils.TerbilangKonvert(Long.parseLong(splitDate[0]))+" " +
-                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di _______________________________________ " +
+                            "( "+splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0]+" ) , bertempat di _____________________________________ " +
                             "\n________________________ Telah dilakukan penandatanganan berita acara antara lain : " +
                             "\n\nI. PT. Visionet Jayapura dalam hal ini diwakilkan oleh :\n", contentFont);
                     paragraphContentDays.setAlignment(Element.ALIGN_LEFT);
@@ -747,10 +747,12 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         PdfPTable dipNewTitleTable = new PdfPTable(1);
                         dipNewTitleTable.addCell(JobReportUtils.bottomLineCell("NEW", subtitleFont));
                         dipNewTitleTable.setWidths(fDipOldTitle);
-                        dipNewTitleTable.setTotalWidth(200f);
+                        dipNewTitleTable.setTotalWidth(209f);
                         dipNewTitleTable.setLockedWidth(true);
                         DipNewTitleTableCell.addElement(dipNewTitleTable);
                         mainDipTitleTable.addCell(DipNewTitleTableCell);
+                        mainDipTitleTable.setTotalWidth(426f);
+                        mainDipTitleTable.setLockedWidth(true);
                         document.add(mainDipTitleTable);
 
                         PdfPTable mainDipContentTable = new PdfPTable(2);
@@ -764,7 +766,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         dipOldContentTable.addCell(JobReportUtils.borderlessCell("Outdoor (S/N)", contentFont));
                         dipOldContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
                         dipOldContentTable.addCell(JobReportUtils.bottomLineCell(" " +alVsatSetup.get(0).getSn_dip_odu().trim(), contentFont));
-                        float[] fDipOldContent = new float[]{55f, 5f,140f};
+                        float[] fDipOldContent = new float[]{55f, 5f,150f};
                         dipOldContentTable.setWidths(fDipOldContent);
                         dipOldContentTable.setTotalWidth(200f);
                         dipOldContentTable.setLockedWidth(true);
@@ -776,11 +778,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         dipNewContentTable.addCell(JobReportUtils.bottomLineCell(" " +dipIdu.trim(), contentFont));
                         dipNewContentTable.addCell(JobReportUtils.bottomLineCell(" " +dipOdu.trim(), contentFont));
                         dipNewContentTable.setWidths(fDipOldTitle);
-                        dipNewContentTable.setTotalWidth(200f);
+                        dipNewContentTable.setTotalWidth(209f);
                         dipNewContentTable.setLockedWidth(true);
                         DipNewContentTableCell.addElement(dipNewContentTable);
                         mainDipContentTable.addCell(DipNewContentTableCell);
-                        mainDipContentTable.setTotalWidth(430f);
+                        mainDipContentTable.setTotalWidth(426f);
                         mainDipContentTable.setLockedWidth(true);
                         mainDipContentTable.setSpacingAfter(4f);
                         document.add(mainDipContentTable);
@@ -865,9 +867,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(" " , contentFont));
                         tblcontentSatParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
-                        float[] columnWidthSatParam = new float[]{50f,5f,50f,70f,5f,50f,55f,5f,60f};
+                        float[] columnWidthSatParam = new float[]{50f,5f,50f,70f,5f,55f,55f,5f,60f};
                         tblcontentSatParam.setWidths(columnWidthSatParam);
-                        tblcontentSatParam.setTotalWidth(400f);
+                        tblcontentSatParam.setTotalWidth(426f);
                         tblcontentSatParam.setSpacingAfter(4f);
                         tblcontentSatParam.setLockedWidth(true);
                         document.add(tblcontentSatParam);
@@ -906,9 +908,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentManParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
                         tblcontentManParam.addCell(JobReportUtils.borderlessCell(" " , contentFont));
                         tblcontentManParam.addCell(JobReportUtils.borderlessCell(" ", contentFont));
-                        float[] columnWidthManParam = new float[]{60f,5f,60f,100f,5f,65f};
+                        float[] columnWidthManParam = new float[]{60f,5f,65f,100f,5f,65f};
                         tblcontentManParam.setWidths(columnWidthManParam);
-                        tblcontentManParam.setTotalWidth(420f);
+                        tblcontentManParam.setTotalWidth(426f);
                         tblcontentManParam.setLockedWidth(true);
                         tblcontentManParam.setSpacingAfter(4f);
                         document.add(tblcontentManParam);
@@ -932,9 +934,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentLANParam.addCell(JobReportUtils.borderlessCell("LAN 2 Subnet Mask", contentFont));
                         tblcontentLANParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
                         tblcontentLANParam.addCell(JobReportUtils.bottomLineCell("255.255.255.0", contentFont));
-                        float[] columnWidthLANParam = new float[]{45f,5f,55f,50f,5f,55f,55f,5f,50f,55f,5f,43f};
+                        float[] columnWidthLANParam = new float[]{45f,5f,55f,50f,5f,45f,55f,5f,50f,55f,5f,44f};
                         tblcontentLANParam.setWidths(columnWidthLANParam);
-                        tblcontentLANParam.setTotalWidth(430f);
+                        tblcontentLANParam.setTotalWidth(426f);
                         tblcontentLANParam.setSpacingAfter(4f);
                         tblcontentLANParam.setLockedWidth(true);
                         document.add(tblcontentLANParam);
@@ -964,9 +966,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tblcontentRangingParam.addCell(JobReportUtils.borderlessCell("Final Received C/ No", contentFont));
                         tblcontentRangingParam.addCell(JobReportUtils.borderlessCell(":" , contentFont));
                         tblcontentRangingParam.addCell(JobReportUtils.bottomLineCell(alConnParam.get(0).getRanging_cno().trim(), contentFont));
-                        float[] columnWidthRangingParam = new float[]{50f,5f,55f,50f,5f,55f,65f,5f,55};
+                        float[] columnWidthRangingParam = new float[]{50f,5f,55f,50f,5f,65f,65f,5f,65f};
                         tblcontentRangingParam.setWidths(columnWidthRangingParam);
-                        tblcontentRangingParam.setTotalWidth(400f);
+                        tblcontentRangingParam.setTotalWidth(426f);
                         tblcontentRangingParam.setLockedWidth(true);
                         document.add(tblcontentRangingParam);
 
