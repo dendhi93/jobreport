@@ -25,6 +25,7 @@ import com.dracoo.jobreport.feature.documentation.DocumentationFragment;
 import com.dracoo.jobreport.feature.env.EnvironmentFragment;
 import com.dracoo.jobreport.feature.machine.MachineFragment;
 import com.dracoo.jobreport.feature.problem.ProblemFragment;
+import com.dracoo.jobreport.feature.signature.SignatureFragment;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
@@ -55,6 +56,7 @@ public class MenuActivity extends AppCompatActivity
     public static final int EXTRA_FLAG_CONN = 15;
     public static final int EXTRA_FLAG_DOC = 16;
     public static final int EXTRA_FLAG_ACTION = 17;
+    public static final int EXTRA_FLAG_SIGNATURE = 18;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,10 +167,12 @@ public class MenuActivity extends AppCompatActivity
                 transaction.replace(R.id.frame_nav_container, new DocumentationFragment());
                 break;
             case EXTRA_FLAG_ACTION :
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setSubtitle("Action");
-                }
+                if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Action"); }
                 transaction.replace(R.id.frame_nav_container, new ActionFragment());
+                break;
+            case EXTRA_FLAG_SIGNATURE :
+                if (getSupportActionBar() != null) { getSupportActionBar().setSubtitle("Signature"); }
+                transaction.replace(R.id.frame_nav_container, new SignatureFragment());
                 break;
             default:
                 break;
@@ -222,6 +226,12 @@ public class MenuActivity extends AppCompatActivity
                 fragment = new ActionFragment();
                 if (getSupportActionBar() != null) {
                     getSupportActionBar().setSubtitle("Action");
+                }
+                break;
+            case R.id.nav_signature :
+                fragment = new SignatureFragment();
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setSubtitle("Signature");
                 }
                 break;
             case R.id.nav_logout :
