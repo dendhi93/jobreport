@@ -57,14 +57,32 @@ public class ConfigApps {
     public static final String picInput = "entry.230823196";
     public static final String chooseDeviceInput = "entry.1547303458";
 
+    //vsat conn
+    public static final String vsatProbInput = "entry.839003990";
+    public static final String modemVsatInput = "entry.56164180";
+    public static final String adaptorVsatInput = "entry.1476324065";
+    public static final String dipIDUInput = "entry.1904588505";
+    public static final String rfuInput = "entry.107133898";
+    public static final String lnbInput = "entry.152202183";
+    public static final String xModemVsatInput = "entry.1314192515";
+    public static final String xAdaptorVsatInput = "entry.1248459208";
+    public static final String xDipIDUInput = "entry.1113739701";
+    public static final String xRFUInput = "entry.863282643";
+    public static final String xLNBInput = "entry.1280121308";
+    public static final String xDipODUInput = "entry.589072077";
 
 
-
-
-
-
-
-
+    //m2m conn
+    public static final String probM2mInput = "entry.997578387";
+    public static final String modemM2mInput = "entry.1888636074";
+    public static final String adaptorM2mInput = "entry.201572360";
+    public static final String sim1ProvM2mInput = "entry.367196654";
+    public static final String sim1NoM2mInput = "entry.1552421323";
+    public static final String sim1PUKM2mInput = "entry.2048173561";
+    public static final String sim2ProvM2mInput = "entry.2125918833";
+    public static final String sim2NoM2mInput = "entry.176684191";
+    public static final String sim2PUKM2mInput = "entry.398787598";
+    //todo blm selesai
 
 //========================================
 
