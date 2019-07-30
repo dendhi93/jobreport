@@ -70,7 +70,12 @@ public class ConfigApps {
     public static final String xRFUInput = "entry.863282643";
     public static final String xLNBInput = "entry.1280121308";
     public static final String xDipODUInput = "entry.589072077";
-
+    public static final String dateXpollInput = "entry.1214649736";
+    public static final String satteliteXpollInput = "entry.494581243";
+    public static final String cpiXpollInput = "entry.2129211258";
+    public static final String cnXpollInput = "entry.634103523";
+    public static final String asiXpollInput = "entry.1432626246";
+    public static final String picXpollInput = "entry.1364940602";
 
     //m2m conn
     public static final String probM2mInput = "entry.997578387";
@@ -82,7 +87,18 @@ public class ConfigApps {
     public static final String sim2ProvM2mInput = "entry.2125918833";
     public static final String sim2NoM2mInput = "entry.176684191";
     public static final String sim2PUKM2mInput = "entry.398787598";
-    //todo blm selesai
+    public static final String xModemM2mInput = "entry.490460726";
+    public static final String xAdaptorM2mInput = "entry.1724095430";
+    public static final String xSim1ProvM2mInput = "entry.1736752098";
+    public static final String xSim1NoM2mInput = "entry.1745621664";
+    public static final String xSim1PukM2mInput = "entry.2014361105";
+    public static final String xSim2ProvM2mInput = "entry.1324318973";
+    public static final String xSim2NoM2mInput = "entry.682073080";
+    public static final String xSim2PukM2mInput = "entry.1920465534";
+
+    public static final String xActionInput = "entry.353195564";
+    public static final String resultInput = "entry.1041449695";
+    public static final String notesInput = "entry.1620393634";
 
 //========================================
 
