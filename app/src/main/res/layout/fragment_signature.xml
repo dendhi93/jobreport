@@ -1,14 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorGray200"
     tools:context=".feature.signature.SignatureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="1dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Spinner
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:id="@+id/sp_user_connType"
+                android:layout_width="match_parent"
+                android:layout_height="45dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_tiny_2"
+                android:layout_margin="@dimen/spacing_tiny_2"
+                android:background="@drawable/border_bottom"
+                android:layout_below="@+id/sp_user_connType"/>
+
+            <LinearLayout
+                android:layout_below="@id/ln_userAct_17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_semi_medium"
+                android:gravity="right"
+                android:layout_marginBottom="@dimen/spacing_small_1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imgB_sign_submit"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="@dimen/spacing_small_1"
+                    android:background="@drawable/ic_circle_selector"
+                    android:src="@drawable/ic_save_24"/>
+
+                <ImageButton
+                    android:id="@+id/imgB_sign_cancel"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/ic_circle_transparent_selector"
+                    android:src="@drawable/ic_cancel"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView_sign_1"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_margin="4dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="1dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true">
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@color/colorBlueMantab"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="@dimen/alph_size_tiny"
+                android:text="@string/sign_here"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/alph_size_small_2"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/imgB_sign_arrow"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@color/colorBlueMantab"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|center_horizontal"
+                android:src="@drawable/ic_arrow_down_16" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/canvasLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/spacing_small"
+            android:background="@color/colorGray400"
+            android:orientation="vertical" />
+
+            </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/rl_sign_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rc_sign_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_margin="4dp" />
+
+        <TextView
+            android:id="@+id/lbl_sign_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/alph_size_small"
+            android:text="@string/empty_data" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

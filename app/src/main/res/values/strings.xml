@@ -218,4 +218,7 @@
     <string name="action_start">Dari tanggal</string>
     <string name="action_end">Sampai tanggal</string>
 
+    //sign content
+    <string name="sign_here">Tanda Tangan Disini</string>
+
 </resources>
