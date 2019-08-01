@@ -86,6 +86,16 @@ public class SignatureFragment extends Fragment {
         }
     }
 
+    @OnClick(R.id.imgB_sign_submit)
+    void onSignSubmit(){
+        try{
+            if (selectedUserType == null){ messageUtils.snackBar_message("Mohon dipilih jenis user ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            } else{
+                messageUtils.toastMessage("under maintenance", ConfigApps.T_INFO);
+            }
+        }catch (Exception e){ messageUtils.toastMessage("err submit " +e.toString(), ConfigApps.T_ERROR); }
+    }
+
     private void initUserSpinner(){
         try {
             if (preference.getCustID().equals("")){ messageUtils.toastMessage("Mohon diisi menu Customer terlebih dahulu", ConfigApps.T_WARNING);
