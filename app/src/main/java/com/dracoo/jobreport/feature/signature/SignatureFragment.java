@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class SignatureFragment extends Fragment {
@@ -48,10 +49,10 @@ public class SignatureFragment extends Fragment {
     @BindView(R.id.imgB_sign_submit)
     ImageButton imgB_sign_submit;
 
-
     private String selectedUserType;
     private MessageUtils messageUtils;
     private Preference preference;
+    private boolean isUp = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +69,21 @@ public class SignatureFragment extends Fragment {
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
         initUserSpinner();
+    }
+
+    @OnClick(R.id.imgB_sign_arrow)
+    void visibleView(){
+        if (!isUp){
+            isUp = true;
+            imgB_sign_arrow.setImageResource(R.drawable.ic_arrow_down_32);
+            cardView_sign_1.setVisibility(View.GONE);
+            rl_sign_list.setVisibility(View.VISIBLE);
+        }else{
+            isUp = false;
+            imgB_sign_arrow.setImageResource(R.drawable.ic_arrow_up_32);
+            cardView_sign_1.setVisibility(View.VISIBLE);
+            rl_sign_list.setVisibility(View.GONE);
+        }
     }
 
     private void initUserSpinner(){
@@ -91,10 +107,7 @@ public class SignatureFragment extends Fragment {
                     });
                 }
             }
-        }catch (Exception e){
-
-        }
-
+        }catch (Exception e){ messageUtils.toastMessage("err spinner " +e.toString(), ConfigApps.T_ERROR); }
     }
 
 
