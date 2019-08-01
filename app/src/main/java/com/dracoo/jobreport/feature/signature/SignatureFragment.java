@@ -57,7 +57,6 @@ public class SignatureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_signature, container, false);
         ButterKnife.bind(this, view);
         return view;
@@ -119,6 +118,4 @@ public class SignatureFragment extends Fragment {
             }
         }catch (Exception e){ messageUtils.toastMessage("err spinner " +e.toString(), ConfigApps.T_ERROR); }
     }
-
-
 }
