@@ -33,11 +33,7 @@ import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 
-import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,6 +66,7 @@ public class SignatureFragment extends Fragment {
     private Preference preference;
     private boolean isUp = false;
     private Bitmap bitmap;
+    private canvasView mCanvasView;
 
     // Creating Separate Directory for saving Generated Images
     String DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName();
@@ -89,6 +86,8 @@ public class SignatureFragment extends Fragment {
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
         initUserSpinner();
+        mCanvasView = new canvasView(getActivity(), null);
+        mCanvasView.setBackgroundColor(Color.WHITE);
     }
 
     @OnClick(R.id.imgB_sign_arrow)
@@ -116,6 +115,11 @@ public class SignatureFragment extends Fragment {
         }catch (Exception e){ messageUtils.toastMessage("err submit " +e.toString(), ConfigApps.T_ERROR); }
     }
 
+    @OnClick(R.id.imgB_xpoll_cancel)
+    void onCancel(){
+        mCanvasView.clear();
+    }
+
     private void initUserSpinner(){
         try {
             if (preference.getCustID().equals("")){ messageUtils.toastMessage("Mohon diisi menu Customer terlebih dahulu", ConfigApps.T_WARNING);
@@ -140,7 +144,7 @@ public class SignatureFragment extends Fragment {
         }catch (Exception e){ messageUtils.toastMessage("err spinner " +e.toString(), ConfigApps.T_ERROR); }
     }
 
-    public class signature extends View {
+    public class canvasView extends View {
 
         private static final float STROKE_WIDTH = 5f;
         private static final float HALF_STROKE_WIDTH = STROKE_WIDTH / 2;
@@ -151,7 +155,7 @@ public class SignatureFragment extends Fragment {
         private float lastTouchY;
         private final RectF dirtyRect = new RectF();
 
-        public signature(Context context, AttributeSet attrs) {
+        public canvasView(Context context, AttributeSet attrs) {
             super(context, attrs);
             paint.setAntiAlias(true);
             paint.setColor(Color.BLACK);
@@ -160,31 +164,32 @@ public class SignatureFragment extends Fragment {
             paint.setStrokeWidth(STROKE_WIDTH);
         }
 
-        public void save(View v, String StoredPath) {
-            Log.v("log_tag", "Width: " + v.getWidth());
-            Log.v("log_tag", "Height: " + v.getHeight());
-            if (bitmap == null) {
-                bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
-            }
-            Canvas canvas = new Canvas(bitmap);
-            try {
-                // Output the file
-                FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
-                v.draw(canvas);
-
-                // Convert the output file to Image such as .png hrs pke asyntask
-                bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
-                mFileOutStream.flush();
-                mFileOutStream.close();
-
-            } catch (Exception e) {
-                Log.v("log_tag", e.toString());
-            }
-
-        }
+//        public void save(View v, String StoredPath) {
+//            Log.v("log_tag", "Width: " + v.getWidth());
+//            Log.v("log_tag", "Height: " + v.getHeight());
+//            if (bitmap == null) {
+//                bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
+//            }
+//            Canvas canvas = new Canvas(bitmap);
+//            try {
+//                // Output the file
+//                FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
+//                v.draw(canvas);
+//
+//                // Convert the output file to Image such as .png hrs pke asyntask
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
+//                mFileOutStream.flush();
+//                mFileOutStream.close();
+//
+//            } catch (Exception e) {
+//                Log.v("log_tag", e.toString());
+//            }
+//
+//        }
 
         public void clear() {
             path.reset();
+            invalidate();
         }
 
         @Override
@@ -236,9 +241,7 @@ public class SignatureFragment extends Fragment {
         }
 
         private void debug(String string) {
-
             Log.v("log_tag", string);
-
         }
 
         private void expandDirtyRect(float historicalX, float historicalY) {
