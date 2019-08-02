@@ -6,9 +6,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -69,6 +70,7 @@ public class SignatureFragment extends Fragment {
     private boolean isUp = false;
     private Bitmap bitmap;
     private canvasView mCanvasView;
+    private Handler handler;
 
     // Creating Separate Directory for saving Generated Images
     String DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName();
@@ -90,7 +92,7 @@ public class SignatureFragment extends Fragment {
         initUserSpinner();
         mCanvasView = new canvasView(getActivity(), null);
         mCanvasView.setBackgroundColor(Color.WHITE);
-
+        handler = new Handler();
         File file = new File(DIRECTORY);
         if (!file.exists()) {
             file.mkdir();
@@ -171,7 +173,7 @@ public class SignatureFragment extends Fragment {
             paint.setStrokeWidth(STROKE_WIDTH);
         }
 
-        public void save(View v, String StoredPath) {
+        public void saveImage(View v, String StoredPath) {
             Log.v("log_tag", "Width: " + v.getWidth());
             Log.v("log_tag", "Height: " + v.getHeight());
             if (bitmap == null) {
@@ -179,18 +181,19 @@ public class SignatureFragment extends Fragment {
             }
             Canvas canvas = new Canvas(bitmap);
             try {
-                // Output the file
-                FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
+                final FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
                 v.draw(canvas);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
+                    }
+                }, 500);
 
-                // Convert the output file to Image such as .png hrs pke asyntask
-                final boolean compress = bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
                 mFileOutStream.flush();
                 mFileOutStream.close();
 
-            } catch (Exception e) {
-                Log.v("log_tag", e.toString());
-            }
+            } catch (Exception e) { Log.v("log_tag", e.toString()); }
 
         }
 

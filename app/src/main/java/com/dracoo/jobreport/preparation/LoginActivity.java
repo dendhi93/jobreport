@@ -146,7 +146,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             })
                             .show();
-
                 } else{
                     saveloginPref(un, servicePoint, handphone);
                 }
