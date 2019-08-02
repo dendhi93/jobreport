@@ -1,12 +1,12 @@
 package com.dracoo.jobreport.feature.signature;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -33,6 +33,8 @@ import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -88,6 +90,11 @@ public class SignatureFragment extends Fragment {
         initUserSpinner();
         mCanvasView = new canvasView(getActivity(), null);
         mCanvasView.setBackgroundColor(Color.WHITE);
+
+        File file = new File(DIRECTORY);
+        if (!file.exists()) {
+            file.mkdir();
+        }
     }
 
     @OnClick(R.id.imgB_sign_arrow)
@@ -164,28 +171,28 @@ public class SignatureFragment extends Fragment {
             paint.setStrokeWidth(STROKE_WIDTH);
         }
 
-//        public void save(View v, String StoredPath) {
-//            Log.v("log_tag", "Width: " + v.getWidth());
-//            Log.v("log_tag", "Height: " + v.getHeight());
-//            if (bitmap == null) {
-//                bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
-//            }
-//            Canvas canvas = new Canvas(bitmap);
-//            try {
-//                // Output the file
-//                FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
-//                v.draw(canvas);
-//
-//                // Convert the output file to Image such as .png hrs pke asyntask
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
-//                mFileOutStream.flush();
-//                mFileOutStream.close();
-//
-//            } catch (Exception e) {
-//                Log.v("log_tag", e.toString());
-//            }
-//
-//        }
+        public void save(View v, String StoredPath) {
+            Log.v("log_tag", "Width: " + v.getWidth());
+            Log.v("log_tag", "Height: " + v.getHeight());
+            if (bitmap == null) {
+                bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
+            }
+            Canvas canvas = new Canvas(bitmap);
+            try {
+                // Output the file
+                FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
+                v.draw(canvas);
+
+                // Convert the output file to Image such as .png hrs pke asyntask
+                final boolean compress = bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
+                mFileOutStream.flush();
+                mFileOutStream.close();
+
+            } catch (Exception e) {
+                Log.v("log_tag", e.toString());
+            }
+
+        }
 
         public void clear() {
             path.reset();
