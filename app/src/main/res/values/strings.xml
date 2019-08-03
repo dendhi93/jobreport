@@ -208,6 +208,7 @@
     <string name="networkParam_trans">Network Parameter</string>
     <string name="doc_trans">Documentation</string>
     <string name="action_trans">Action</string>
+    <string name="signature_trans">Signature</string>
 
     //doc_content
     <string name="imageType">Tipe Image</string>

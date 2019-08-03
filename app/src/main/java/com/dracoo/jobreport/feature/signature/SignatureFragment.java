@@ -1,5 +1,6 @@
 package com.dracoo.jobreport.feature.signature;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -29,10 +31,18 @@ import android.widget.TextView;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.JobDescAdapter;
+import com.dracoo.jobreport.database.adapter.SignatureAdapter;
+import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
+import com.dracoo.jobreport.database.master.MasterSignature;
+import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
+import com.dracoo.jobreport.util.DateTimeUtils;
+import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
+import com.j256.ormlite.dao.Dao;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -72,12 +82,16 @@ public class SignatureFragment extends Fragment {
     private canvasView mCanvasView;
     private Handler handler;
     private String DIRECTORY, StoredPath;
+    private Dao<MasterTransHistory, Integer> transHistoryAdapter;
+    private Dao<MasterSignature, Integer> signatureAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signature, container, false);
         ButterKnife.bind(this, view);
+        mCanvasView = new canvasView(getActivity(), null);
+        canvasLayout.addView(mCanvasView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         return view;
     }
 
@@ -87,21 +101,13 @@ public class SignatureFragment extends Fragment {
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
         initUserSpinner();
-        mCanvasView = new canvasView(getActivity(), null);
-        canvasLayout.addView(mCanvasView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         handler = new Handler();
         preference = new Preference(getActivity());
-        DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName();
-        File file = new File(DIRECTORY);
-        if (!file.exists()) { file.mkdir(); }
-        StoredPath = DIRECTORY + preference.getCustName() + ".png";
-        if (preference.getProgress().equals("")){
-            messageUtils.snackBar_message("Mohon diisi Menu Customer terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            controlView(ConfigApps.DISABLE_TYPE);
-        }else if (preference.getConnType().equals("")){
-            messageUtils.snackBar_message("Mohon diisi Menu Cuonnection terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            controlView(ConfigApps.DISABLE_TYPE);
-        }else{ controlView(ConfigApps.ENABLE_TYPE); }
+        initSign();
+        try{
+            transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
+            signatureAdapter = new SignatureAdapter(getActivity()).getAdapter();
+        }catch (Exception e){}
     }
 
     @OnClick(R.id.imgB_sign_arrow)
@@ -123,15 +129,27 @@ public class SignatureFragment extends Fragment {
     void onSignSubmit(){
         try{
             if (selectedUserType == null){ messageUtils.snackBar_message("Mohon dipilih jenis user ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            } else{
-                messageUtils.toastMessage("under maintenance", ConfigApps.T_INFO);
-            }
+            } else{ valSignature(); }
         }catch (Exception e){ messageUtils.toastMessage("err submit " +e.toString(), ConfigApps.T_ERROR); }
     }
 
     @OnClick(R.id.imgB_sign_cancel)
     void onCancel(){
         mCanvasView.clear();
+    }
+
+    private void initSign(){
+        DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName();
+        File file = new File(DIRECTORY);
+        if (!file.exists()) { file.mkdir(); }
+        StoredPath = DIRECTORY + preference.getCustName() + ".png";
+        if (preference.getProgress().equals("")){
+            messageUtils.snackBar_message("Mohon diisi Menu Customer terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            controlView(ConfigApps.DISABLE_TYPE);
+        }else if (preference.getConnType().equals("")){
+            messageUtils.snackBar_message("Mohon diisi Menu Cuonnection terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            controlView(ConfigApps.DISABLE_TYPE);
+        }else{ controlView(ConfigApps.ENABLE_TYPE); }
     }
 
     private void controlView(int intOptionView){
@@ -166,8 +184,75 @@ public class SignatureFragment extends Fragment {
         }catch (Exception e){ messageUtils.toastMessage("err spinner " +e.toString(), ConfigApps.T_ERROR); }
     }
 
-    public class canvasView extends View {
+    private void valSignature(){
+        new AlertDialog.Builder(getActivity(), R.style.AlertDialog)
+                .setTitle("Warning")
+                .setMessage("Mohon dipastikan anda sudah tanda tangan, Apakah anda ingin simpan transaksi ?")
+                .setIcon(R.drawable.ic_logo)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        submitSignature();
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
 
+    private void submitSignature(){
+        try{
+
+        }catch (Exception e){
+            messageUtils.toastMessage("err submit sign " +e.toString(), ConfigApps.T_ERROR);
+        }
+    }
+
+
+    private void transHistImage(){
+        ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
+                .val_trans(preference.getCustID(), preference.getUn(), getActivity().getString(R.string.doc_trans));
+        if (al_valTransHist.size() > 0){
+            try{
+                MasterTransHistory mHist = transHistoryAdapter.queryForId(al_valTransHist.get(0).getId_trans());
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getActivity().getString(R.string.doc_trans));
+                mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
+                mHist.setIs_submited(0);
+
+                transHistoryAdapter.update(mHist);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (getActivity() != null){
+                    JobReportUtils.hideKeyboard(getActivity());
+                }
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }else{
+            try{
+                MasterTransHistory mHist = new MasterTransHistory();
+                mHist.setId_site(preference.getCustID());
+                mHist.setUn_user(preference.getUn());
+                mHist.setInsert_date(DateTimeUtils.getCurrentTime());
+                mHist.setTrans_step(getActivity().getString(R.string.doc_trans));
+                mHist.setIs_submited(0);
+
+                transHistoryAdapter.create(mHist);
+                messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
+                if (getActivity() != null){
+                    JobReportUtils.hideKeyboard(getActivity());
+                }
+            }catch (Exception e){
+                messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
+            }
+        }
+    }
+
+    public class canvasView extends View {
         private static final float STROKE_WIDTH = 5f;
         private static final float HALF_STROKE_WIDTH = STROKE_WIDTH / 2;
         private Paint paint = new Paint();
@@ -189,6 +274,8 @@ public class SignatureFragment extends Fragment {
         public void saveImage(View v, String StoredPath) {
             Log.v("log_tag", "Width: " + v.getWidth());
             Log.v("log_tag", "Height: " + v.getHeight());
+            File fileDelete = new File(StoredPath);
+            if (fileDelete.exists()){ fileDelete.delete(); }
             if (bitmap == null) {
                 bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
             }
