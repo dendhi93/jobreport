@@ -84,14 +84,13 @@ public class SignatureFragment extends Fragment {
     private Dao<MasterTransHistory, Integer> transHistoryAdapter;
     private Dao<MasterSignature, Integer> signatureAdapter;
     private View viewCanves;
+    FileOutputStream mFileOutStream;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signature, container, false);
         ButterKnife.bind(this, view);
-        mCanvasView = new canvasView(getActivity(), null);
-        canvasLayout.addView(mCanvasView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         return view;
     }
 
@@ -102,8 +101,11 @@ public class SignatureFragment extends Fragment {
         preference = new Preference(getActivity());
         initUserSpinner();
         handler = new Handler();
-        viewCanves = view;
         preference = new Preference(getActivity());
+        mCanvasView = new canvasView(getActivity(), null);
+        mCanvasView.setBackgroundColor(Color.WHITE);
+        canvasLayout.addView(mCanvasView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        viewCanves = canvasLayout;
         initSign();
         try{
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
@@ -143,7 +145,7 @@ public class SignatureFragment extends Fragment {
         DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName();
         File file = new File(DIRECTORY);
         if (!file.exists()) { file.mkdir(); }
-        StoredPath = DIRECTORY + preference.getCustName() + ".png";
+        StoredPath = DIRECTORY +"/"+ preference.getCustName() + ".png";
         if (preference.getProgress().equals("")){
             messageUtils.snackBar_message("Mohon diisi Menu Customer terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             controlView(ConfigApps.DISABLE_TYPE);
@@ -210,7 +212,9 @@ public class SignatureFragment extends Fragment {
                 messageUtils.snackBar_message("Data tanda tangan sudah ada, mohon pilih tipe user lain",
                         getActivity(),ConfigApps.SNACKBAR_WITH_BUTTON);
             }else{
+                viewCanves.setDrawingCacheEnabled(true);
                 mCanvasView.saveImage(viewCanves,StoredPath);
+
                 MasterSignature mSign = new MasterSignature();
                 mSign.setT_user_type(selectedUserType.trim());
                 mSign.setId_site(preference.getCustID());
@@ -284,24 +288,20 @@ public class SignatureFragment extends Fragment {
         public void saveImage(View v, String StoredPath) {
             Log.v("log_tag", "Width: " + v.getWidth());
             Log.v("log_tag", "Height: " + v.getHeight());
-            File fileDelete = new File(StoredPath);
-            if (fileDelete.exists()){ fileDelete.delete(); }
             if (bitmap == null) {
+                Log.v("###", "ke if " + v.getHeight());
                 bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
+            }else {
+                Log.v("###", "ke else " );
             }
             Canvas canvas = new Canvas(bitmap);
             try {
-                final FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
+                mFileOutStream = new FileOutputStream(StoredPath);
                 v.draw(canvas);
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
-                    }
-                }, 500);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
                 mFileOutStream.flush();
                 mFileOutStream.close();
-            } catch (Exception e) { Log.v("log_tag", e.toString()); }
+            } catch (Exception e) { messageUtils.toastMessage("err " +e.toString(), ConfigApps.T_ERROR); }
 
         }
 
