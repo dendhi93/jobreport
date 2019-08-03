@@ -71,10 +71,7 @@ public class SignatureFragment extends Fragment {
     private Bitmap bitmap;
     private canvasView mCanvasView;
     private Handler handler;
-
-    // Creating Separate Directory for saving Generated Images
-    String DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName();
-    String StoredPath = DIRECTORY + preference.getCustName() + ".png";
+    private String DIRECTORY, StoredPath;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,12 +88,20 @@ public class SignatureFragment extends Fragment {
         preference = new Preference(getActivity());
         initUserSpinner();
         mCanvasView = new canvasView(getActivity(), null);
-        mCanvasView.setBackgroundColor(Color.WHITE);
+        canvasLayout.addView(mCanvasView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         handler = new Handler();
+        preference = new Preference(getActivity());
+        DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName();
         File file = new File(DIRECTORY);
-        if (!file.exists()) {
-            file.mkdir();
-        }
+        if (!file.exists()) { file.mkdir(); }
+        StoredPath = DIRECTORY + preference.getCustName() + ".png";
+        if (preference.getProgress().equals("")){
+            messageUtils.snackBar_message("Mohon diisi Menu Customer terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            controlView(ConfigApps.DISABLE_TYPE);
+        }else if (preference.getConnType().equals("")){
+            messageUtils.snackBar_message("Mohon diisi Menu Cuonnection terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
+            controlView(ConfigApps.DISABLE_TYPE);
+        }else{ controlView(ConfigApps.ENABLE_TYPE); }
     }
 
     @OnClick(R.id.imgB_sign_arrow)
@@ -124,9 +129,17 @@ public class SignatureFragment extends Fragment {
         }catch (Exception e){ messageUtils.toastMessage("err submit " +e.toString(), ConfigApps.T_ERROR); }
     }
 
-    @OnClick(R.id.imgB_xpoll_cancel)
+    @OnClick(R.id.imgB_sign_cancel)
     void onCancel(){
         mCanvasView.clear();
+    }
+
+    private void controlView(int intOptionView){
+        if (intOptionView == ConfigApps.DISABLE_TYPE){
+            imgB_sign_submit.setEnabled(false);
+        }else if (intOptionView == ConfigApps.ENABLE_TYPE){
+            imgB_sign_submit.setEnabled(true);
+        }
     }
 
     private void initUserSpinner(){
@@ -135,7 +148,7 @@ public class SignatureFragment extends Fragment {
             }else{
                 ArrayList<MasterJobDesc> al_JobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
                 if (al_JobDesc.size() > 0){
-                    String[] arrUserType = new String[]{"Jenis User",preference.getUn(), al_JobDesc.get(0).getName_pic()};
+                    String[] arrUserType = new String[]{"Jenis User",preference.getTechName(), al_JobDesc.get(0).getName_pic()};
                     final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrUserType);
                     adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
                     sp_sign_userType.setAdapter(adapter);
