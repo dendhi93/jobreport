@@ -50,6 +50,7 @@
             android:layout_marginTop="@dimen/icon_medium"
             android:layout_marginEnd="@dimen/spacing_small"
             android:id="@+id/imgB_item_trash"
+            android:background="@color/colorWhite"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:src="@drawable/ic_trash_24"
