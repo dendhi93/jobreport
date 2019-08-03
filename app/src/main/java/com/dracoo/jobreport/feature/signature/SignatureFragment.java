@@ -192,14 +192,12 @@ public class SignatureFragment extends Fragment {
                 .setIcon(R.drawable.ic_logo)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        submitSignature();
+                    public void onClick(DialogInterface dialog, int which) { submitSignature();
                     }
                 })
                 .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+                    public void onClick(DialogInterface dialog, int which) { dialog.dismiss();
                     }
                 })
                 .show();
@@ -222,9 +220,7 @@ public class SignatureFragment extends Fragment {
                 mSign.setInsert_date(DateTimeUtils.getCurrentTime());
                 transHistImage();
             }
-        }catch (Exception e){
-            messageUtils.toastMessage("err submit sign " +e.toString(), ConfigApps.T_ERROR);
-        }
+        }catch (Exception e){ messageUtils.toastMessage("err submit sign " +e.toString(), ConfigApps.T_ERROR); }
     }
 
     private void transHistImage(){
@@ -234,7 +230,7 @@ public class SignatureFragment extends Fragment {
             try{
                 MasterTransHistory mHist = transHistoryAdapter.queryForId(al_valTransHist.get(0).getId_trans());
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
-                mHist.setTrans_step(getActivity().getString(R.string.doc_trans));
+                mHist.setTrans_step(getActivity().getString(R.string.signature_trans));
                 mHist.setUpdate_date(DateTimeUtils.getCurrentTime());
                 mHist.setIs_submited(0);
 
@@ -252,7 +248,7 @@ public class SignatureFragment extends Fragment {
                 mHist.setId_site(preference.getCustID());
                 mHist.setUn_user(preference.getUn());
                 mHist.setInsert_date(DateTimeUtils.getCurrentTime());
-                mHist.setTrans_step(getActivity().getString(R.string.doc_trans));
+                mHist.setTrans_step(getActivity().getString(R.string.signature_trans));
                 mHist.setIs_submited(0);
 
                 transHistoryAdapter.create(mHist);
