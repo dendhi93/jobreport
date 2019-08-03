@@ -36,7 +36,6 @@ import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterSignature;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
-import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -84,6 +83,7 @@ public class SignatureFragment extends Fragment {
     private String DIRECTORY, StoredPath;
     private Dao<MasterTransHistory, Integer> transHistoryAdapter;
     private Dao<MasterSignature, Integer> signatureAdapter;
+    private View viewCanves;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,6 +102,7 @@ public class SignatureFragment extends Fragment {
         preference = new Preference(getActivity());
         initUserSpinner();
         handler = new Handler();
+        viewCanves = view;
         preference = new Preference(getActivity());
         initSign();
         try{
@@ -206,12 +207,25 @@ public class SignatureFragment extends Fragment {
 
     private void submitSignature(){
         try{
-
+            ArrayList<MasterSignature> al_valSign = new SignatureAdapter(getActivity()).val_dataSign(preference.getCustID(), preference.getUn(), selectedUserType);
+            if (al_valSign.size() > 0){
+                messageUtils.snackBar_message("Data tanda tangan sudah ada, mohon pilih tipe user lain",
+                        getActivity(),ConfigApps.SNACKBAR_WITH_BUTTON);
+            }else{
+                mCanvasView.saveImage(viewCanves,StoredPath);
+                MasterSignature mSign = new MasterSignature();
+                mSign.setT_user_type(selectedUserType.trim());
+                mSign.setId_site(preference.getCustID());
+                mSign.setConn_type(preference.getConnType().trim());
+                mSign.setProgress_type(preference.getProgress().trim());
+                mSign.setUn_user(preference.getUn().trim());
+                mSign.setInsert_date(DateTimeUtils.getCurrentTime());
+                transHistImage();
+            }
         }catch (Exception e){
             messageUtils.toastMessage("err submit sign " +e.toString(), ConfigApps.T_ERROR);
         }
     }
-
 
     private void transHistImage(){
         ArrayList<MasterTransHistory> al_valTransHist = new TransHistoryAdapter(getActivity())
@@ -289,10 +303,8 @@ public class SignatureFragment extends Fragment {
                         bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
                     }
                 }, 500);
-
                 mFileOutStream.flush();
                 mFileOutStream.close();
-
             } catch (Exception e) { Log.v("log_tag", e.toString()); }
 
         }
