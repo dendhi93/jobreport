@@ -89,10 +89,7 @@ public class CustomList_Doc_Adapter extends RecyclerView.Adapter<CustomList_Doc_
                 }
             });
 
-        }catch (Exception e){
-            Log.d("###", ""+e.toString());
-        }
-
+        }catch (Exception e){ Log.d("###", ""+e.toString()); }
     }
 
     @Override

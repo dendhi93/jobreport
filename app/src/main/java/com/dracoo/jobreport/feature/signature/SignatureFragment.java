@@ -86,6 +86,7 @@ public class SignatureFragment extends Fragment {
     private View viewCanves;
     FileOutputStream mFileOutStream;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -142,10 +143,6 @@ public class SignatureFragment extends Fragment {
     }
 
     private void initSign(){
-        DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName();
-        File file = new File(DIRECTORY);
-        if (!file.exists()) { file.mkdir(); }
-        StoredPath = DIRECTORY +"/"+ preference.getCustName() + ".png";
         if (preference.getProgress().equals("")){
             messageUtils.snackBar_message("Mohon diisi Menu Customer terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             controlView(ConfigApps.DISABLE_TYPE);
@@ -207,6 +204,11 @@ public class SignatureFragment extends Fragment {
 
     private void submitSignature(){
         try{
+            DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+selectedUserType;
+            File file = new File(DIRECTORY);
+            if (!file.exists()) { file.mkdir(); }
+            StoredPath = DIRECTORY +"/"+ selectedUserType + ".png";
+//            tempFile = "/JobReport/images/"+selectedUserType+"/"+ selectedUserType + ".png";
             ArrayList<MasterSignature> al_valSign = new SignatureAdapter(getActivity()).val_dataSign(preference.getCustID(), preference.getUn(), selectedUserType);
             if (al_valSign.size() > 0){
                 messageUtils.snackBar_message("Data tanda tangan sudah ada, mohon pilih tipe user lain",
@@ -219,6 +221,7 @@ public class SignatureFragment extends Fragment {
                 mSign.setT_user_type(selectedUserType.trim());
                 mSign.setId_site(preference.getCustID());
                 mSign.setConn_type(preference.getConnType().trim());
+                mSign.setT_sign_path(StoredPath.trim());
                 mSign.setProgress_type(preference.getProgress().trim());
                 mSign.setUn_user(preference.getUn().trim());
                 mSign.setInsert_date(DateTimeUtils.getCurrentTime());

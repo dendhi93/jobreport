@@ -1,8 +1,10 @@
 package com.dracoo.jobreport.feature.signature.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.master.MasterSignature;
 import com.dracoo.jobreport.feature.documentation.contract.ItemCallback;
 
+import java.io.File;
 import java.util.List;
 
 public class CustomList_Sign_Adapter extends RecyclerView.Adapter<CustomList_Sign_Adapter.MyViewHolder> {
@@ -26,18 +30,21 @@ public class CustomList_Sign_Adapter extends RecyclerView.Adapter<CustomList_Sig
         this.list = list;
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView lbl_item_image_title, lbl_item_image_desc;
-        ImageButton imgB_item_trash;
-        ImageView imgV_item_image;
+    public void signCallBack(ItemCallback callback){
+        this.callback = callback;
+    }
 
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView lbl_item_signature_title, lbl_item_signature_desc;
+        ImageButton imgB_signature_trash;
+        ImageView imgV_signature_image;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            this.lbl_item_image_title = itemView.findViewById(R.id.lbl_item_image_title);
-            this.imgB_item_trash = itemView.findViewById(R.id.imgB_item_trash);
-            this.imgV_item_image = itemView.findViewById(R.id.imgV_item_image);
-            this.lbl_item_image_desc = itemView.findViewById(R.id.lbl_item_image_desc);
+            this.lbl_item_signature_title = itemView.findViewById(R.id.lbl_item_image_title);
+            this.imgB_signature_trash = itemView.findViewById(R.id.imgB_item_trash);
+            this.imgV_signature_image = itemView.findViewById(R.id.imgV_item_image);
+            this.lbl_item_signature_desc = itemView.findViewById(R.id.lbl_item_image_desc);
         }
     }
 
@@ -52,7 +59,23 @@ public class CustomList_Sign_Adapter extends RecyclerView.Adapter<CustomList_Sig
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(final CustomList_Sign_Adapter.MyViewHolder holder , int position) {
+        TextView lbl_item_signature_title = holder.lbl_item_signature_title;
+        TextView lbl_item_signature_desc = holder.lbl_item_signature_desc;
+        ImageButton imgB_signature_trash = holder.imgB_signature_trash;
+        ImageView imgV_signature_image = holder.imgV_signature_image;
+
+        try{
+            lbl_item_signature_desc.setVisibility(View.GONE);
+            lbl_item_signature_title.setText(list.get(position).getT_user_type().trim());
+            String signImageUrl = list.get(position).getT_sign_path().trim();
+            File file = new File(signImageUrl);
+            Uri imageUri = Uri.fromFile(file);
+            Glide.with(mContext)
+                    .load(imageUri)
+                    .into(imgV_signature_image);
+
+        }catch (Exception e){ Log.d("###", ""+e.toString());}
 
     }
 
