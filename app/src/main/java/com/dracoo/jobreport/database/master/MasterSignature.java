@@ -15,8 +15,6 @@ public class MasterSignature implements Serializable {
     private String t_user_type;
     @DatabaseField(columnName = "t_sign_path")
     private String t_sign_path;
-    @DatabaseField(columnName = "t_cust_name")
-    private String t_cust_name;
     @DatabaseField(columnName = "progress_type")
     private String progress_type;
     @DatabaseField(columnName = "conn_type")
@@ -58,14 +56,6 @@ public class MasterSignature implements Serializable {
 
     public void setT_sign_path(String t_sign_path) {
         this.t_sign_path = t_sign_path;
-    }
-
-    public String getT_cust_name() {
-        return t_cust_name;
-    }
-
-    public void setT_cust_name(String t_cust_name) {
-        this.t_cust_name = t_cust_name;
     }
 
     public String getProgress_type() {
