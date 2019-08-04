@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -36,6 +37,8 @@ import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterJobDesc;
 import com.dracoo.jobreport.database.master.MasterSignature;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
+import com.dracoo.jobreport.feature.documentation.contract.ItemCallback;
+import com.dracoo.jobreport.feature.signature.adapter.CustomList_Sign_Adapter;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -46,13 +49,14 @@ import com.j256.ormlite.dao.Dao;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class SignatureFragment extends Fragment {
+public class SignatureFragment extends Fragment implements ItemCallback {
 
     @BindView(R.id.sp_sign_userType)
     Spinner sp_sign_userType;
@@ -85,7 +89,10 @@ public class SignatureFragment extends Fragment {
     private Dao<MasterSignature, Integer> signatureAdapter;
     private View viewCanves;
     FileOutputStream mFileOutStream;
-
+    private String tempFile;
+    private ArrayList<MasterSignature> al_dataSignature;
+    RecyclerView.LayoutManager layoutManager;
+    private CustomList_Sign_Adapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -121,6 +128,7 @@ public class SignatureFragment extends Fragment {
             imgB_sign_arrow.setImageResource(R.drawable.ic_arrow_down_32);
             cardView_sign_1.setVisibility(View.GONE);
             rl_sign_list.setVisibility(View.VISIBLE);
+            init_loadSignature();
         }else{
             isUp = false;
             imgB_sign_arrow.setImageResource(R.drawable.ic_arrow_up_32);
@@ -204,11 +212,11 @@ public class SignatureFragment extends Fragment {
 
     private void submitSignature(){
         try{
-            DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+selectedUserType;
+            DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName()+"/"+selectedUserType;
             File file = new File(DIRECTORY);
             if (!file.exists()) { file.mkdir(); }
             StoredPath = DIRECTORY +"/"+ selectedUserType + ".png";
-//            tempFile = "/JobReport/images/"+selectedUserType+"/"+ selectedUserType + ".png";
+            tempFile = "/JobReport/images/"+preference.getCustName()+"/"+selectedUserType+"/"+ selectedUserType + ".png";
             ArrayList<MasterSignature> al_valSign = new SignatureAdapter(getActivity()).val_dataSign(preference.getCustID(), preference.getUn(), selectedUserType);
             if (al_valSign.size() > 0){
                 messageUtils.snackBar_message("Data tanda tangan sudah ada, mohon pilih tipe user lain",
@@ -221,10 +229,11 @@ public class SignatureFragment extends Fragment {
                 mSign.setT_user_type(selectedUserType.trim());
                 mSign.setId_site(preference.getCustID());
                 mSign.setConn_type(preference.getConnType().trim());
-                mSign.setT_sign_path(StoredPath.trim());
+                mSign.setT_sign_path(tempFile.trim());
                 mSign.setProgress_type(preference.getProgress().trim());
                 mSign.setUn_user(preference.getUn().trim());
                 mSign.setInsert_date(DateTimeUtils.getCurrentTime());
+                signatureAdapter.create(mSign);
                 transHistImage();
             }
         }catch (Exception e){ messageUtils.toastMessage("err submit sign " +e.toString(), ConfigApps.T_ERROR); }
@@ -266,6 +275,42 @@ public class SignatureFragment extends Fragment {
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
             }
+        }
+    }
+
+    @Override
+    public void itemSelected(int pos, String imageUrl) {
+
+    }
+
+    @Override
+    public void selectedImage(String imageUrl) {
+
+    }
+
+    public List<MasterSignature> init_dataSignature(){
+        List<MasterSignature> list = new ArrayList<>();
+        al_dataSignature = new SignatureAdapter(getActivity()).init_dataSign(preference.getCustID(), preference.getUn());
+        if (al_dataSignature.size() > 0){
+            list = al_dataSignature;
+            rc_sign_activity.setVisibility(View.VISIBLE);
+            lbl_sign_empty.setVisibility(View.GONE);
+        }else{
+            rc_sign_activity.setVisibility(View.GONE);
+            lbl_sign_empty.setVisibility(View.VISIBLE);
+        }
+        return list;
+    }
+
+    private void init_loadSignature(){
+        if (preference.getCustID() != 0 || !preference.getConnType().equals("")){
+            rc_sign_activity.setHasFixedSize(true);
+            layoutManager = new LinearLayoutManager(getActivity());
+            rc_sign_activity.setLayoutManager(layoutManager);
+            List<MasterSignature> list = init_dataSignature();
+            adapter = new CustomList_Sign_Adapter(getActivity(), list);
+            adapter.signCallBack(this);
+            rc_sign_activity.setAdapter(adapter);
         }
     }
 

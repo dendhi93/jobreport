@@ -59,21 +59,35 @@ public class CustomList_Sign_Adapter extends RecyclerView.Adapter<CustomList_Sig
     }
 
     @Override
-    public void onBindViewHolder(final CustomList_Sign_Adapter.MyViewHolder holder , int position) {
+    public void onBindViewHolder(final CustomList_Sign_Adapter.MyViewHolder holder , final int position) {
         TextView lbl_item_signature_title = holder.lbl_item_signature_title;
         TextView lbl_item_signature_desc = holder.lbl_item_signature_desc;
         ImageButton imgB_signature_trash = holder.imgB_signature_trash;
         ImageView imgV_signature_image = holder.imgV_signature_image;
 
         try{
-            lbl_item_signature_desc.setVisibility(View.GONE);
-            lbl_item_signature_title.setText(list.get(position).getT_user_type().trim());
+            lbl_item_signature_title.setVisibility(View.INVISIBLE);
+            lbl_item_signature_desc.setText(list.get(position).getT_user_type().trim());
             String signImageUrl = list.get(position).getT_sign_path().trim();
-            File file = new File(signImageUrl);
+            File file = new File(android.os.Environment.getExternalStorageDirectory().getPath(),signImageUrl);
             Uri imageUri = Uri.fromFile(file);
             Glide.with(mContext)
                     .load(imageUri)
                     .into(imgV_signature_image);
+
+            imgV_signature_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.selectedImage(list.get(position).getT_sign_path());
+                }
+            });
+            imgB_signature_trash.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.itemSelected
+                            (list.get(position).getId_sign(), list.get(position).getT_sign_path());
+                }
+            });
 
         }catch (Exception e){ Log.d("###", ""+e.toString());}
 

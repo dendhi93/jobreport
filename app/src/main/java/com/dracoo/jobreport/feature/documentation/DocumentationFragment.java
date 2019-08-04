@@ -265,14 +265,14 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
             String[] split = selectedImgFolder.split(" ");
             selectedImgFolder = split[0]+""+split[1];
         }
-        File imagesFolder =new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+selectedImgFolder);
+        File imagesFolder =new File(android.os.Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName()+"/"+selectedImgFolder);
         if (!imagesFolder.exists()) {
             if (imagesFolder.mkdirs()) {
                 Log.d("Direktori Sukses ", "ok");
             }
         }
 
-        filePath = "/JobReport/images/"
+        filePath = "/JobReport/images/"+preference.getCustName()+"/"
                 + selectedImgFolder + "/"
                 + selectedImgFolder +"_"+preference.getCustID()+ ".jpg";
         imageToSave = new File(android.os.Environment.getExternalStorageDirectory().getPath(), filePath);
