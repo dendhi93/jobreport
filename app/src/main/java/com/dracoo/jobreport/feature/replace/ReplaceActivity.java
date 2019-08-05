@@ -352,8 +352,9 @@ public class ReplaceActivity extends AppCompatActivity {
                 }else{
                     messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
-                setEmptyText();
+
                 JobReportUtils.hideKeyboard(ReplaceActivity.this);
+                finish();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -372,8 +373,9 @@ public class ReplaceActivity extends AppCompatActivity {
                 }else{
                     messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
-                setEmptyText();
+
                 JobReportUtils.hideKeyboard(ReplaceActivity.this);
+                finish();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
             }
