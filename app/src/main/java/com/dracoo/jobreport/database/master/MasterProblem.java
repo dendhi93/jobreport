@@ -199,7 +199,11 @@ public class MasterProblem implements Serializable {
     }
 
     public String getDelay_reason() {
-        return delay_reason;
+        if (delay_reason == null || delay_reason.equals("-")){
+            return "";
+        }else{
+            return delay_reason;
+        }
     }
 
     public void setDelay_reason(String delay_reason) {
@@ -207,7 +211,11 @@ public class MasterProblem implements Serializable {
     }
 
     public String getDelay_activity() {
-        return delay_activity;
+        if (delay_activity == null || delay_activity.equals("-")){
+            return "";
+        }else{
+            return delay_activity;
+        }
     }
 
     public void setDelay_activity(String delay_activity) {
@@ -223,7 +231,7 @@ public class MasterProblem implements Serializable {
     }
 
     public String getRestart() {
-        if (restart == null || restart.equals("")){
+        if (restart == null || restart.equals("-")){
             return "";
         }else{
             return restart;

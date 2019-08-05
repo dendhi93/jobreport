@@ -252,10 +252,16 @@ public class ProblemFragment extends Fragment {
         if (preference.getCustID() == 0){
             messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else{
-            String stRestart;
-            if (txt_problem_restart.getText().toString().trim().equals("")){
-                stRestart = "-";
-            }else{stRestart = txt_problem_restart.getText().toString().trim();}
+            String stRestart, delayReason, delayActivity, reasonDesc;
+            if (txt_problem_restart.getText().toString().trim().equals("")){ stRestart = "-"; }
+            else{stRestart = txt_problem_restart.getText().toString().trim();}
+            if (txt_prob_delay.getText().toString().trim().isEmpty()){delayReason = "-";}
+            else{delayReason = txt_prob_delay.getText().toString().trim();}
+            if (txt_prob_actPending.getText().toString().trim().isEmpty()){delayActivity ="=";}
+            else{delayActivity = txt_prob_actPending.getText().toString().trim();}
+            if (txt_prob_reasonPending.getText().toString().trim().isEmpty()){reasonDesc ="=";}
+            else{reasonDesc = txt_prob_reasonPending.getText().toString().trim();}
+
             ArrayList<MasterProblem> al_valProb = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
             if (al_valProb.size() > 0){
                 try{
@@ -270,14 +276,14 @@ public class ProblemFragment extends Fragment {
 //                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
                     mProb.setOnline(txt_problem_online.getText().toString().trim());
 //                    mProb.setPending(txt_prob_pending.getText().toString().trim());
-                    mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
+                    mProb.setReason(reasonDesc.trim());
                     mProb.setClosed(selectedClosedBy.trim());
                     mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
                     mProb.setProgress_type(preference.getProgress().trim());
                     mProb.setUpdate_date(DateTimeUtils.getCurrentTime());
                     mProb.setUn_user(preference.getUn().trim());
-                    mProb.setDelay_reason(txt_prob_delay.getText().toString().trim());
-                    mProb.setDelay_activity(txt_prob_actPending.getText().toString().trim());
+                    mProb.setDelay_reason(delayReason.trim());
+                    mProb.setDelay_activity(delayActivity.trim());
                     mProb.setRestart(stRestart.trim());
 
                     problemAdapter.update(mProb);
@@ -296,15 +302,15 @@ public class ProblemFragment extends Fragment {
 //                    mProb.setUpline(txt_problem_upline.getText().toString().trim());
                     mProb.setOnline(txt_problem_online.getText().toString().trim());
 //                    mProb.setPending(txt_prob_pending.getText().toString().trim());
-                    mProb.setReason(txt_prob_reasonPending.getText().toString().trim());
+                    mProb.setReason(reasonDesc.trim());
                     mProb.setClosed(selectedClosedBy.trim());
                     mProb.setClosed_by(txt_problem_closedBy.getText().toString().trim());
                     mProb.setProgress_type(preference.getProgress().trim());
                     mProb.setInsert_date(DateTimeUtils.getCurrentTime());
                     mProb.setUn_user(preference.getUn().trim());
                     mProb.setId_site(preference.getCustID());
-                    mProb.setDelay_reason(txt_prob_delay.getText().toString().trim());
-                    mProb.setDelay_activity(txt_prob_actPending.getText().toString().trim());
+                    mProb.setDelay_reason(delayReason.trim());
+                    mProb.setDelay_activity(delayActivity.trim());
                     mProb.setRestart(stRestart.trim());
 
                     problemAdapter.create(mProb);
@@ -421,10 +427,11 @@ public class ProblemFragment extends Fragment {
             txt_problem_online.getText().toString().trim().equals("") ||
             txt_problem_start.getText().toString().trim().equals("") ||
             txt_problem_symptom.getText().toString().trim().equals("") ||
-            txt_problem_tiba.getText().toString().trim().equals("") ||
+            txt_problem_tiba.getText().toString().trim().equals("")
 //            txt_problem_upline.getText().toString().trim().equals("") ||
-            txt_prob_delay.getText().toString().trim().equals("") ||
-            txt_prob_actPending.getText().toString().trim().equals("")){
+//            txt_prob_delay.getText().toString().trim().equals("") ||
+//            txt_prob_actPending.getText().toString().trim().equals("")
+        ){
             return false;
         }
         return true;
