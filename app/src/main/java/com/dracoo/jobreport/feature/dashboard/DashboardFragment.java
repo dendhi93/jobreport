@@ -85,7 +85,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
-import static com.dracoo.jobreport.util.JobReportUtils.createCell;
 
 public class DashboardFragment extends Fragment implements DashboardItemClickBack {
     @BindView(R.id.lbl_dash_locationName)
@@ -1696,6 +1695,10 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
             intent = new Intent(getActivity(), MenuActivity.class);
             intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
             intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_ACTION);
+        }else if (transType.trim().equals(getActivity().getString(R.string.signature_trans))){
+            intent = new Intent(getActivity(), MenuActivity.class);
+            intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
+            intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_SIGNATURE);
         }
         if (intent != null){ startActivity(intent); }
     }
