@@ -267,6 +267,7 @@ public class ParameterActivity extends AppCompatActivity {
 
                 setEmptyText();
                 JobReportUtils.hideKeyboard(ParameterActivity.this);
+                finish();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -287,6 +288,7 @@ public class ParameterActivity extends AppCompatActivity {
                 }
                 setEmptyText();
                 JobReportUtils.hideKeyboard(ParameterActivity.this);
+                finish();
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
             }

@@ -242,6 +242,7 @@ public class XpollActivity extends AppCompatActivity {
                 }
                 setEmptyText();
                 JobReportUtils.hideKeyboard(XpollActivity.this);
+                finish();
             }catch (Exception e){ messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR); }
         }else{
             try{
@@ -260,6 +261,7 @@ public class XpollActivity extends AppCompatActivity {
                 }
                 setEmptyText();
                 JobReportUtils.hideKeyboard(XpollActivity.this);
+                finish();
             }catch (Exception e){ messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR); }
         }
     }
