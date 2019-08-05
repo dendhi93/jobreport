@@ -103,6 +103,7 @@ public class ReplaceActivity extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
+        //todo dip odu dan ido ga hrs diisi
         messageUtils = new MessageUtils(ReplaceActivity.this);
         preference = new Preference(ReplaceActivity.this);
         try{
