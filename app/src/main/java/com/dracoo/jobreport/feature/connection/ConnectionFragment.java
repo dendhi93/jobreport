@@ -132,7 +132,6 @@ public class ConnectionFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        //todo txt_conn_vsatOdu dan ido ga hrus harus diisi
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
         displayAllSpinner();
@@ -324,8 +323,8 @@ public class ConnectionFragment extends Fragment {
                 txt_conn_vsatFh.getText().toString().trim().equals("") ||
                 txt_conn_vsatLnb.getText().toString().trim().equals("") ||
                 txt_conn_vsatRfu.getText().toString().trim().equals("") ||
-                txt_conn_vsatOdu.getText().toString().trim().equals("") ||
-                txt_conn_vsatIdu.getText().toString().trim().equals("") ||
+//                txt_conn_vsatOdu.getText().toString().trim().equals("") ||
+//                txt_conn_vsatIdu.getText().toString().trim().equals("") ||
                 txt_conn_vsat_antenaType.getText().toString().trim().equals("") ||
                 txt_conn_vsat_antenaBrand.getText().toString().trim().equals("") ||
                 selectedAntena.equals("") || selectedAccess.equals("") ||
@@ -337,6 +336,9 @@ public class ConnectionFragment extends Fragment {
     }
 
     private void vsatTrans(){
+        String valOdu, valIdu;
+        if (txt_conn_vsatOdu.getText().toString().trim().isEmpty()){valOdu="-";}else{valOdu=txt_conn_vsatOdu.getText().toString().trim();}
+        if (txt_conn_vsatIdu.getText().toString().trim().isEmpty()){valIdu="-";}else{valIdu=txt_conn_vsatIdu.getText().toString().trim();}
         ArrayList<MasterM2mSetup> al_valM2mSetup = new M2mSetupAdapter(getActivity()).val_m2mSetup(preference.getCustID(), preference.getUn());
         if (al_valM2mSetup.size() > 0){
             messageUtils.toastMessage("Tipe koneksi M2M sudah diinput, transaksi dibatalkan", ConfigApps.T_INFO);
@@ -351,8 +353,8 @@ public class ConnectionFragment extends Fragment {
                     mVsatSetup.setSn_fh(txt_conn_vsatFh.getText().toString().trim());
                     mVsatSetup.setSn_lnb(txt_conn_vsatLnb.getText().toString().trim());
                     mVsatSetup.setSn_rfu(txt_conn_vsatRfu.getText().toString().trim());
-                    mVsatSetup.setSn_dip_odu(txt_conn_vsatOdu.getText().toString().trim());
-                    mVsatSetup.setSn_dip_idu(txt_conn_vsatIdu.getText().toString().trim());
+                    mVsatSetup.setSn_dip_odu(valOdu.trim());
+                    mVsatSetup.setSn_dip_idu(valIdu.trim());
                     mVsatSetup.setAntena_size(selectedAntena.trim());
                     mVsatSetup.setAntena_brand(txt_conn_vsat_antenaBrand.getText().toString().trim());
                     mVsatSetup.setAntena_type(txt_conn_vsat_antenaType.getText().toString().trim());
