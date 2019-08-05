@@ -258,9 +258,9 @@ public class ProblemFragment extends Fragment {
             else{stRestart = txt_problem_restart.getText().toString().trim();}
             if (txt_prob_delay.getText().toString().trim().isEmpty()){delayReason = "-";}
             else{delayReason = txt_prob_delay.getText().toString().trim();}
-            if (txt_prob_actPending.getText().toString().trim().isEmpty()){delayActivity ="=";}
+            if (txt_prob_actPending.getText().toString().trim().isEmpty()){delayActivity ="-";}
             else{delayActivity = txt_prob_actPending.getText().toString().trim();}
-            if (txt_prob_reasonPending.getText().toString().trim().isEmpty()){reasonDesc ="=";}
+            if (txt_prob_reasonPending.getText().toString().trim().isEmpty()){reasonDesc ="-";}
             else{reasonDesc = txt_prob_reasonPending.getText().toString().trim();}
 
             ArrayList<MasterProblem> al_valProb = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
@@ -423,8 +423,7 @@ public class ProblemFragment extends Fragment {
 
     private boolean emptyValidation(){
 //        if (txt_prob_pending.getText().toString().trim().equals("")||
-        if (txt_prob_reasonPending.getText().toString().trim().equals("") ||
-            txt_prob_action_text.getText().toString().trim().equals("") ||
+        if (txt_prob_action_text.getText().toString().trim().equals("") ||
             txt_prob_modemDisplay.getText().toString().trim().equals("") ||
             txt_problem_berangkat.getText().toString().trim().equals("") ||
             txt_problem_closedBy.getText().toString().trim().equals("") ||
@@ -433,8 +432,6 @@ public class ProblemFragment extends Fragment {
             txt_problem_start.getText().toString().trim().equals("") ||
             txt_problem_symptom.getText().toString().trim().equals("") ||
             txt_problem_tiba.getText().toString().trim().equals("")
-//            txt_problem_upline.getText().toString().trim().equals("") ||
-//            txt_prob_delay.getText().toString().trim().equals("") ||
 //            txt_prob_actPending.getText().toString().trim().equals("")
         ){
             return false;

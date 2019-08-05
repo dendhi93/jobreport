@@ -211,9 +211,7 @@ public class EnvironmentFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MenuActivity.class);
                 intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
                 startActivity(intent);
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
-            }
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR); }
         }else{
             try{
                 MasterTransHistory mHist = new MasterTransHistory();
@@ -226,16 +224,13 @@ public class EnvironmentFragment extends Fragment {
                 transHistAdapter.create(mHist);
                 if (typeTrans == ConfigApps.TRANS_HIST_UPDATE){
                     messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
-                }else{
-                    messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
-                }
+                }else{ messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS); }
                 setEmptyText();
-                if (getActivity() != null){
-                    JobReportUtils.hideKeyboard(getActivity());
-                }
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR);
-            }
+                if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+                startActivity(intent);
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR); }
         }
     }
 

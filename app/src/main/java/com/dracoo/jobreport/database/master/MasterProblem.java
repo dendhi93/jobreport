@@ -127,7 +127,11 @@ public class MasterProblem implements Serializable {
     }
 
     public String getReason() {
-        return reason;
+        if (reason == null || reason.equals("-")){
+            return "";
+        }else{
+            return reason;
+        }
     }
 
     public void setReason(String reason) {
