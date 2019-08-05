@@ -285,9 +285,7 @@ public class UserActivity extends AppCompatActivity
             } else if (txt_userAct_picPhone.getText().length() < 10){
                 messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
                         UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-            } else{
-                infoSiteTrans();
-            }
+            } else{ infoSiteTrans(); }
         }catch (Exception e){
             messageUtils.snackBar_message("Mohon dipilih tipe progress", UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
         }
@@ -365,6 +363,9 @@ public class UserActivity extends AppCompatActivity
 
             }
         }
+        Intent intent = new Intent(UserActivity.this, MenuActivity.class);
+        intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+        startActivity(intent);
     }
     private void jobDescTrans(int custId){
         try{

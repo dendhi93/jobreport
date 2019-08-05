@@ -193,12 +193,8 @@ public class MachineFragment extends Fragment {
             if (selectedMachineLoc.equals("") || selectedMachineQty.equals("") ||
                 txt_machine_idMachine.getText().toString().trim().equals("") || selectedMachine24.equals("")){
                 messageUtils.toastMessage("Mohon dipilih pilihan yang belum dipilih", ConfigApps.T_WARNING);
-            }else{
-                machineTrans();
-            }
-        }catch (Exception e){
-            messageUtils.toastMessage("Mohon dipilh pilihan ", ConfigApps.T_WARNING);
-        }
+            }else{ machineTrans(); }
+        }catch (Exception e){ messageUtils.toastMessage("Mohon dipilh pilihan ", ConfigApps.T_WARNING); }
     }
 
 
