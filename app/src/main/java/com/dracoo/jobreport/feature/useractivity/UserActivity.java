@@ -354,14 +354,8 @@ public class UserActivity extends AppCompatActivity
                     preference.saveProgress(selectedConnType.trim());
                     transHistoryUser(al_maxSite.get(0).getId_site(), getString(R.string.infoSite_trans));
                     jobDescTrans(al_maxSite.get(0).getId_site());
-                }else{
-                    messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
-                }
-            }catch (Exception e2){
-                messageUtils.toastMessage("err insert info" +e2.toString(), ConfigApps.T_ERROR);
-                Log.d("###",""+e2.toString());
-
-            }
+                }else{ messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
+            }catch (Exception e2){ messageUtils.toastMessage("err insert info" +e2.toString(), ConfigApps.T_ERROR); }
         }
         finish();
     }
@@ -417,9 +411,7 @@ public class UserActivity extends AppCompatActivity
                 mHist.setIs_submited(0);
 
                 transHistAdapter.update(mHist);
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
-            }
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR); }
         }else{
             try{
                 MasterTransHistory mHist = new MasterTransHistory();
