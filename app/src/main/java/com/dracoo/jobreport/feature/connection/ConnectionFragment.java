@@ -132,7 +132,7 @@ public class ConnectionFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-
+        //todo txt_conn_vsatOdu dan ido ga hrus harus diisi
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
         displayAllSpinner();
