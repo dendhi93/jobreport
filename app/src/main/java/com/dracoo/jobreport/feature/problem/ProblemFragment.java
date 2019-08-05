@@ -2,6 +2,7 @@ package com.dracoo.jobreport.feature.problem;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -351,8 +352,12 @@ public class ProblemFragment extends Fragment {
                 if (transType == ConfigApps.TRANS_HIST_UPDATE){ messageUtils.toastMessage(getActivity().getString(R.string.transaction_success) + " diupdate", ConfigApps.T_SUCCESS);
                 }else{ messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS); }
 
-                emptyProblemText();
+//                emptyProblemText();
                 if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+                startActivity(intent);
+
             }catch (Exception e){ messageUtils.toastMessage("err trans Hist 2 " +e.toString(), ConfigApps.T_ERROR); }
         }
     }

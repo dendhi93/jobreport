@@ -1,5 +1,6 @@
 package com.dracoo.jobreport.feature.env;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -205,10 +206,11 @@ public class EnvironmentFragment extends Fragment {
                 }else{
                     messageUtils.toastMessage(getActivity().getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
-                setEmptyText();
-                if (getActivity() != null){
-                    JobReportUtils.hideKeyboard(getActivity());
-                }
+//                setEmptyText();
+                if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+                startActivity(intent);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist 1 " +e.toString(), ConfigApps.T_ERROR);
             }

@@ -27,6 +27,7 @@ import com.dracoo.jobreport.database.adapter.VsatSetupAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
+import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.feature.datam2m.DataM2mActivity;
 import com.dracoo.jobreport.feature.replace.ReplaceActivity;
 import com.dracoo.jobreport.feature.vsatparameter.ParameterActivity;
@@ -482,10 +483,10 @@ public class ConnectionFragment extends Fragment {
                     messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
 
-               setEmptyConText();
-                if (getActivity() != null){
-                    JobReportUtils.hideKeyboard(getActivity());
-                }
+                if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+                startActivity(intent);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -504,10 +505,11 @@ public class ConnectionFragment extends Fragment {
                 }else{
                     messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
-                setEmptyConText();
-                if (getActivity() != null){
-                    JobReportUtils.hideKeyboard(getActivity());
-                }
+
+                if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+                startActivity(intent);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
             }

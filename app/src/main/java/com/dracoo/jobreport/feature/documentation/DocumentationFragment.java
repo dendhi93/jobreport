@@ -257,9 +257,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
     }
 
     private void getImageCamera(){
-        if (getActivity() != null){
-            JobReportUtils.hideKeyboard(getActivity());
-        }
+        if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
 
         if (selectedImgFolder.contains(" ")){
             String[] split = selectedImgFolder.split(" ");
