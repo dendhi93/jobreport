@@ -86,7 +86,11 @@ public class MasterVsatReplace implements Serializable {
     }
 
     public String getSn_dip_odu() {
-        return sn_dip_odu;
+        if (sn_dip_odu == null || sn_dip_odu.equals("-")){
+            return "";
+        }else{
+            return sn_dip_odu;
+        }
     }
 
     public void setSn_dip_odu(String sn_dip_odu) {
@@ -94,7 +98,11 @@ public class MasterVsatReplace implements Serializable {
     }
 
     public String getSn_dip_idu() {
-        return sn_dip_idu;
+        if (sn_dip_idu == null || sn_dip_idu.equals("-")){
+            return "";
+        }else{
+            return sn_dip_idu;
+        }
     }
 
     public void setSn_dip_idu(String sn_dip_idu) {
