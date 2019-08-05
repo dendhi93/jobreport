@@ -71,6 +71,11 @@ public class LoginActivity extends AppCompatActivity {
         lbl_login_version.setText(BuildConfig.VERSION_NAME);
         preference = new Preference(LoginActivity.this);
 
+        if (!preference.getUn().isEmpty() && !preference.getPhone().isEmpty() && !preference.getServicePoint().isEmpty()){
+            txt_login_un.setText(preference.getUn().trim());
+            txt_login_handphone.setText(preference.getPhone().trim());
+            txt_login_servicePoint.setText(preference.getServicePoint().trim());
+        }
     }
 
     public void actClick(View view){
