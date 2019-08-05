@@ -363,9 +363,7 @@ public class UserActivity extends AppCompatActivity
 
             }
         }
-        Intent intent = new Intent(UserActivity.this, MenuActivity.class);
-        intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
-        startActivity(intent);
+        finish();
     }
     private void jobDescTrans(int custId){
         try{
