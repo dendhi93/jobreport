@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -277,7 +279,11 @@ public class DocumentationFragment extends Fragment implements ItemCallback {
 
         Intent capIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File image = new File(imageToSave.getAbsolutePath());
-        Uri uriSavedImage = Uri.fromFile(image);
+        Uri uriSavedImage;
+        if (Build.VERSION.SDK_INT >= 24) {
+            uriSavedImage = FileProvider.getUriForFile(getActivity(), getActivity().getPackageName() + ".provider", image);
+            capIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } else { uriSavedImage = Uri.fromFile(image); }
         capIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
         capIntent.putExtra("return-data", true);
         startActivityForResult(capIntent, 1);
