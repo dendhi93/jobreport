@@ -264,7 +264,6 @@ public class ParameterActivity extends AppCompatActivity {
                 }else{
                     messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS);
                 }
-
                 setEmptyText();
                 JobReportUtils.hideKeyboard(ParameterActivity.this);
                 finish();

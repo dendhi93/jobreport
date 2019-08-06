@@ -211,9 +211,7 @@ public class DataM2mActivity extends AppCompatActivity {
 
                 dataM2mDao.create(m2mData);
                 transHist(ConfigApps.TRANS_HIST_INSERT);
-            }catch (Exception e){
-                messageUtils.toastMessage("Err datam2m insert " +e.toString(), ConfigApps.T_ERROR);
-            }
+            }catch (Exception e){ messageUtils.toastMessage("Err datam2m insert " +e.toString(), ConfigApps.T_ERROR);}
         }
     }
 
@@ -231,12 +229,10 @@ public class DataM2mActivity extends AppCompatActivity {
                 transHistDao.update(mHist);
                 if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){ messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
                 }else{ messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS); }
-//                setEmptyText();
+                setEmptyText();
                 JobReportUtils.hideKeyboard(DataM2mActivity.this);
                 finish();
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
-            }
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR); }
         }else{
             try{
                 MasterTransHistory mHist = new MasterTransHistory();
@@ -249,19 +245,16 @@ public class DataM2mActivity extends AppCompatActivity {
                 transHistDao.create(mHist);
                 if (trsnsType == ConfigApps.TRANS_HIST_UPDATE){ messageUtils.toastMessage(getString(R.string.transaction_success) +" diupdate", ConfigApps.T_SUCCESS);
                 }else{ messageUtils.toastMessage(getString(R.string.transaction_success), ConfigApps.T_SUCCESS); }
-//                setEmptyText();
+                setEmptyText();
                 JobReportUtils.hideKeyboard(DataM2mActivity.this);
                 finish();
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
-            }
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR); }
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case android.R.id.home:
                 finish();
                 break;
