@@ -288,9 +288,7 @@ public class ParameterActivity extends AppCompatActivity {
                 setEmptyText();
                 JobReportUtils.hideKeyboard(ParameterActivity.this);
                 finish();
-            }catch (Exception e){
-                messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
-            }
+            }catch (Exception e){ messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR); }
         }
     }
 
