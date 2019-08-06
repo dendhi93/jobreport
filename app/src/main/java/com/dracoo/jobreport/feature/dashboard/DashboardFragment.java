@@ -446,7 +446,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     paragraphClosed.setSpacingAfter(1f);
                     document.add(paragraphClosed);
 
-                    //TODO TECHNICAL SUPPORT
+                    //TECHNICAL SUPPORT
                     document.newPage();
                     PdfPTable tblTitleTech = new PdfPTable(1);
                     tblTitleTech.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -972,7 +972,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         document.add(tblcontentRangingParam);
 
                     }else {
-                        //TODO m2m
+                        // m2m
                         String m2mType, m2mSn, adaptorType, adaptorSn, simCard1Type, simCard1SN, simcard1Puk, simCard2Type, simCard2SN, simcard2Puk;
                         if (alM2mReplace.size() > 0){
                             m2mType = alM2mReplace.get(0).getBrand_type_replace().trim();
