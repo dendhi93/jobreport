@@ -1,149 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".preparation.PermissionActivity">
 
-    <ImageView
-        android:layout_marginTop="40dp"
-        android:id="@+id/imgV_persmision"
-        android:layout_centerHorizontal="true"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_logo" />
-
-    <TextView
-        android:layout_below="@id/imgV_persmision"
-        android:id="@+id/permission_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="Untuk menggunakan seluruh fitur aplikasi Job Report, anda harus mengizinkan aplikasi MUF Survey mengakses fitur berikut pada ponsel Android anda :"
-        android:textColor="#2b2b2b"
-        android:textSize="17sp" />
-
-
     <RelativeLayout
-        android:layout_below="@+id/permission_title"
-        android:id="@+id/permission_list_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/alph_size_medium"
-        android:layout_centerHorizontal="true">
-
-        <LinearLayout
-            android:id="@+id/permission_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/spacing_small">
-
-            <ImageView
-                android:id="@+id/permission_ic_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_camera_alt" />
-
-            <TextView
-                android:id="@+id/permission_txt_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
-                android:text="Camera"
-                android:textColor="@color/colorBlack"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/permission_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/permission_camera"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/spacing_small">
-
-            <ImageView
-                android:id="@+id/permission_ic_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_location_on" />
-
-            <TextView
-                android:id="@+id/permission_txt_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
-                android:text="Location"
-                android:textColor="@color/colorBlack"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/permission_storage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/permission_location"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/spacing_small">
-
-            <ImageView
-                android:id="@+id/permission_ic_storage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_folder" />
-
-            <TextView
-                android:id="@+id/permission_txt_storage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
-                android:text="Storage"
-                android:textColor="@color/colorBlack"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/permission_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/permission_storage"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/spacing_small">
-
-            <ImageView
-                android:id="@+id/permission_ic_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_action_phone_android" />
-
-            <TextView
-                android:id="@+id/permission_txt_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
-                android:text="Phone"
-                android:textColor="@color/colorBlack"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <Button
-        android:layout_margin="@dimen/spacing_semi_medium"
-        android:layout_below="@+id/permission_list_container"
         android:layout_width="match_parent"
-        android:text="@string/persmission_button"
-        android:onClick="actClick"
-        android:id="@+id/all_permissions_button"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/ic_blue_button"
-        android:layout_height="45dp" />
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+        <ImageView
+            android:layout_marginTop="40dp"
+            android:id="@+id/imgV_persmision"
+            android:layout_centerHorizontal="true"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_logo" />
+
+        <TextView
+            android:layout_below="@id/imgV_persmision"
+            android:id="@+id/permission_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Untuk menggunakan seluruh fitur aplikasi Job Report, anda harus mengizinkan aplikasi MUF Survey mengakses fitur berikut pada ponsel Android anda :"
+            android:textColor="#2b2b2b"
+            android:textSize="17sp" />
+
+
+        <RelativeLayout
+            android:layout_below="@+id/permission_title"
+            android:id="@+id/permission_list_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/alph_size_medium"
+            android:layout_centerHorizontal="true">
+
+            <LinearLayout
+                android:id="@+id/permission_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/spacing_small">
+
+                <ImageView
+                    android:id="@+id/permission_ic_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_camera_alt" />
+
+                <TextView
+                    android:id="@+id/permission_txt_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:text="Camera"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/permission_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/permission_camera"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/spacing_small">
+
+                <ImageView
+                    android:id="@+id/permission_ic_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_location_on" />
+
+                <TextView
+                    android:id="@+id/permission_txt_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:text="Location"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/permission_storage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/permission_location"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/spacing_small">
+
+                <ImageView
+                    android:id="@+id/permission_ic_storage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_folder" />
+
+                <TextView
+                    android:id="@+id/permission_txt_storage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:text="Storage"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/permission_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/permission_storage"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/spacing_small">
+
+                <ImageView
+                    android:id="@+id/permission_ic_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_action_phone_android" />
+
+                <TextView
+                    android:id="@+id/permission_txt_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:text="Phone"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <Button
+            android:layout_margin="@dimen/spacing_semi_medium"
+            android:layout_below="@+id/permission_list_container"
+            android:layout_width="match_parent"
+            android:text="@string/persmission_button"
+            android:onClick="actClick"
+            android:id="@+id/all_permissions_button"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/ic_blue_button"
+            android:layout_height="45dp" />
+    </RelativeLayout>
+</ScrollView>
