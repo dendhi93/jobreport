@@ -443,8 +443,81 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     Paragraph paragraphClosed = new Paragraph("\nDemikian Bertia acara ini dibuat dan disetujui oleh kedua belah pihak yang tidak terpisahkan dari Perjanjian" +
                             " Kerja sama Penyediaan Jasa Jaringan Sistem Komunikasi " , contentFont);
                     paragraphClosed.setAlignment(Element.ALIGN_LEFT);
-                    paragraphClosed.setSpacingAfter(1f);
+                    paragraphClosed.setSpacingAfter(10f);
                     document.add(paragraphClosed);
+
+                    //todo sign
+                    PdfPTable mainSignTable1 = new PdfPTable(2);
+                    mainSignTable1.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    mainSignTable1.setTotalWidth(426f);
+                    mainSignTable1.setLockedWidth(true);
+                    PdfPCell visionetSignTableCell = new PdfPCell();
+                    visionetSignTableCell.setBorder(PdfPCell.NO_BORDER);
+                    PdfPTable visionSignTable = new PdfPTable(1);
+                    visionSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK I", contentFont));
+                    visionSignTable.addCell(JobReportUtils.borderlessCell("PT Visionet Jayapura", contentFont));
+                    float[] visionSignfloat = new float[]{120f};
+                    visionSignTable.setWidths(visionSignfloat);
+                    visionSignTable.setSpacingAfter(15f);
+                    visionSignTable.setTotalWidth(120f);
+                    visionSignTable.setLockedWidth(true);
+                    visionetSignTableCell.addElement(visionSignTable);
+                    mainSignTable1.addCell(visionetSignTableCell);
+
+                    PdfPCell userSignTableCell = new PdfPCell();
+                    userSignTableCell.setBorder(PdfPCell.NO_BORDER);
+                    PdfPTable userSignTable = new PdfPTable(1);
+                    userSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK II", contentFont));
+                    userSignTable.addCell(JobReportUtils.borderlessCell("PIC", contentFont));
+                    userSignTable.setWidths(visionSignfloat);
+                    userSignTable.setSpacingAfter(15f);
+                    userSignTable.setTotalWidth(120f);
+                    userSignTable.setLockedWidth(true);
+                    userSignTableCell.addElement(userSignTable);
+                    mainSignTable1.addCell(userSignTable);
+                    document.add(mainSignTable1);
+
+                    PdfPTable mainContentSignTable = new PdfPTable(2);
+                    mainContentSignTable.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    mainContentSignTable.setTotalWidth(426f);
+                    mainContentSignTable.setLockedWidth(true);
+                    PdfPCell visionContentTableCell = new PdfPCell();
+                    visionContentTableCell.setBorder(PdfPCell.NO_BORDER);
+                    PdfPTable visionContentTable = new PdfPTable(3);
+                    visionContentTable.addCell(JobReportUtils.borderlessCell("NAMA", contentFont));
+                    visionContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                    visionContentTable.addCell(JobReportUtils.bottomLineCell(preference.getTechName(), contentFont));
+                    visionContentTable.addCell(JobReportUtils.borderlessCell("NIK/JABATAN", contentFont));
+                    visionContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                    visionContentTable.addCell(JobReportUtils.bottomLineCell(preference.getServicePoint(), contentFont));
+                    visionContentTable.addCell(JobReportUtils.borderlessCell("TANGGAL", contentFont));
+                    visionContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                    visionContentTable.addCell(JobReportUtils.bottomLineCell(splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0], contentFont));
+                    float[] visionContentFloat = new float[]{45f, 5f, 100f};
+                    visionContentTable.setWidths(visionContentFloat);
+                    visionContentTable.setTotalWidth(150f);
+                    visionContentTable.setLockedWidth(true);
+                    visionContentTableCell.addElement(visionContentTable);
+                    mainContentSignTable.addCell(visionContentTableCell);
+
+                    PdfPCell picContentTableCell = new PdfPCell();
+                    picContentTableCell.setBorder(PdfPCell.NO_BORDER);
+                    PdfPTable picContentTable = new PdfPTable(3);
+                    picContentTable.addCell(JobReportUtils.borderlessCell("NAMA", contentFont));
+                    picContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                    picContentTable.addCell(JobReportUtils.bottomLineCell(alJobDesc.get(0).getName_pic().trim(), contentFont));
+                    picContentTable.addCell(JobReportUtils.borderlessCell("NIK/JABATAN", contentFont));
+                    picContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                    picContentTable.addCell(JobReportUtils.bottomLineCell(alJobDesc.get(0).getJabatan_desc(), contentFont));
+                    picContentTable.addCell(JobReportUtils.borderlessCell("TANGGAL", contentFont));
+                    picContentTable.addCell(JobReportUtils.borderlessCell(":", contentFont));
+                    picContentTable.addCell(JobReportUtils.bottomLineCell(splitDate[2]+" - "+splitDate[1]+" - "+splitDate[0], contentFont));
+                    picContentTable.setWidths(visionContentFloat);
+                    picContentTable.setTotalWidth(150f);
+                    picContentTable.setLockedWidth(true);
+                    picContentTableCell.addElement(picContentTable);
+                    mainContentSignTable.addCell(picContentTableCell);
+                    document.add(mainContentSignTable);
 
                     //TECHNICAL SUPPORT
                     document.newPage();
