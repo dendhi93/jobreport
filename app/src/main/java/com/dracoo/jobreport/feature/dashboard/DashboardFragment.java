@@ -29,6 +29,7 @@ import com.dracoo.jobreport.database.adapter.JobDescAdapter;
 import com.dracoo.jobreport.database.adapter.M2mDataAdapter;
 import com.dracoo.jobreport.database.adapter.M2mReplaceAdapter;
 import com.dracoo.jobreport.database.adapter.M2mSetupAdapter;
+import com.dracoo.jobreport.database.adapter.SignatureAdapter;
 import com.dracoo.jobreport.database.adapter.XpollAdapter;
 import com.dracoo.jobreport.database.adapter.MachineAdapter;
 import com.dracoo.jobreport.database.adapter.ProblemAdapter;
@@ -45,6 +46,7 @@ import com.dracoo.jobreport.database.master.MasterM2mReplace;
 import com.dracoo.jobreport.database.master.MasterM2mSetup;
 import com.dracoo.jobreport.database.master.MasterMachine;
 import com.dracoo.jobreport.database.master.MasterProblem;
+import com.dracoo.jobreport.database.master.MasterSignature;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
 import com.dracoo.jobreport.database.master.MasterVsatSetup;
@@ -118,6 +120,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     private ArrayList<MasterM2mData> alM2mData;
     private ArrayList<MasterMachine> alMachine;
     private ArrayList<MasterAction> alAction;
+    private ArrayList<MasterSignature> alSignature;
 
     private Dao<MasterTransHistory, Integer> transHistoryAdapter;
     private String[] arr_actionDateTime;
@@ -223,8 +226,12 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
         } else if (!preference.getConnType().equals("") && !new ActionAdapter(getActivity()).isActionEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Action terlebih dahulu", ConfigApps.T_INFO);
         } else if (MessageUtils.isConnected()){
-            prg_dash.setVisibility(View.VISIBLE);
-            runQueryForConvert();
+            alSignature = new SignatureAdapter(getActivity()).init_dataSign(preference.getCustID(), preference.getUn());
+            if (alSignature.size() > 0 && alSignature.size() > 1){
+                prg_dash.setVisibility(View.VISIBLE);
+                runQueryForConvert();
+            }else{messageUtils.toastMessage("Mohon diinput atau dilengkapi menu Signature terlebih dahulu", ConfigApps.T_INFO); }
+
         } else{ messageUtils.toastMessage("Tidak terkoneksi dengan internet", ConfigApps.T_INFO); }
     }
 
@@ -254,7 +261,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     messageUtils.toastMessage("err run query "+e.toString(), ConfigApps.T_ERROR);
                 }
             }
-        }, 500);
+        }, 700);
     }
 
     private boolean isSubmitReport(){
@@ -446,7 +453,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     paragraphClosed.setSpacingAfter(10f);
                     document.add(paragraphClosed);
 
-                    //todo sign
                     PdfPTable mainSignTable1 = new PdfPTable(2);
                     mainSignTable1.setHorizontalAlignment(Element.ALIGN_LEFT);
                     mainSignTable1.setTotalWidth(426f);
@@ -458,24 +464,27 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     visionSignTable.addCell(JobReportUtils.borderlessCell("PT Visionet Jayapura", contentFont));
                     float[] visionSignfloat = new float[]{120f};
                     visionSignTable.setWidths(visionSignfloat);
-                    visionSignTable.setSpacingAfter(15f);
+                    visionSignTable.setSpacingAfter(3f);
                     visionSignTable.setTotalWidth(120f);
                     visionSignTable.setLockedWidth(true);
                     visionetSignTableCell.addElement(visionSignTable);
                     mainSignTable1.addCell(visionetSignTableCell);
 
-                    PdfPCell userSignTableCell = new PdfPCell();
-                    userSignTableCell.setBorder(PdfPCell.NO_BORDER);
-                    PdfPTable userSignTable = new PdfPTable(1);
-                    userSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK II", contentFont));
-                    userSignTable.addCell(JobReportUtils.borderlessCell("PIC", contentFont));
-                    userSignTable.setWidths(visionSignfloat);
-                    userSignTable.setSpacingAfter(15f);
-                    userSignTable.setTotalWidth(120f);
-                    userSignTable.setLockedWidth(true);
-                    userSignTableCell.addElement(userSignTable);
-                    mainSignTable1.addCell(userSignTable);
+                    PdfPCell PICSignTableCell = new PdfPCell();
+                    PICSignTableCell.setBorder(PdfPCell.NO_BORDER);
+                    PdfPTable PICSignTable = new PdfPTable(1);
+                    PICSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK II", contentFont));
+                    PICSignTable.addCell(JobReportUtils.borderlessCell("PIC", contentFont));
+                    float[] picfloat = new float[]{120f};
+                    PICSignTable.setWidths(picfloat);
+                    PICSignTable.setSpacingAfter(3f);
+                    PICSignTable.setTotalWidth(120f);
+                    PICSignTable.setLockedWidth(true);
+                    PICSignTableCell.addElement(PICSignTable);
+                    mainSignTable1.addCell(PICSignTableCell);
                     document.add(mainSignTable1);
+
+                    //todo img
 
                     PdfPTable mainContentSignTable = new PdfPTable(2);
                     mainContentSignTable.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -1359,7 +1368,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     prg_dash.setVisibility(View.GONE);
                 }
             }
-        }, 1000);
+        }, 1200);
 
     }
 
