@@ -219,9 +219,9 @@ public class SignatureFragment extends Fragment implements ItemCallback {
             tempFile = "/JobReport/images/"+preference.getCustName()+"/"+selectedUserType+"/"+ selectedUserType + ".png";
             ArrayList<MasterSignature> al_valSign = new SignatureAdapter(getActivity()).val_dataSign(preference.getCustID(), preference.getUn(), selectedUserType);
             if (al_valSign.size() > 0){
-                messageUtils.snackBar_message("Data tanda tangan sudah ada, mohon pilih tipe user lain",
+                messageUtils.snackBar_message("Tandatangan sudah ada, mohon pilih tipe lain",
                         getActivity(),ConfigApps.SNACKBAR_WITH_BUTTON);
-            }else{
+            } else{
                 viewCanves.setDrawingCacheEnabled(true);
                 mCanvasView.saveImage(viewCanves,StoredPath);
 

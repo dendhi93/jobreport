@@ -130,6 +130,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     private String stCustname = "";
     private String stUn  = "";
     private String vsatTemp ="";
+    private String visionSignType, picSignType;
     private RequestQueue queue;
     CustomList_Dashboard_Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
@@ -453,6 +454,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     paragraphClosed.setSpacingAfter(10f);
                     document.add(paragraphClosed);
 
+                    String signType1 = alSignature.get(0).getT_user_type();
+                    String signType2 = alSignature.get(1).getT_user_type();
+                    if (signType1.trim().equals(preference.getTechName().trim())){ visionSignType = alSignature.get(0).getT_sign_path(); }
+                    if (signType2.trim().equals(preference.getTechName().trim())){ visionSignType = alSignature.get(1).getT_sign_path(); }
+                    if (signType1.trim().equals(alJobDesc.get(0).getName_pic().trim())){ picSignType = alSignature.get(1).getT_sign_path(); }
+                    if (signType2.trim().equals(alJobDesc.get(0).getName_pic().trim())){ picSignType = alSignature.get(1).getT_sign_path(); }
+
                     PdfPTable mainSignTable1 = new PdfPTable(2);
                     mainSignTable1.setHorizontalAlignment(Element.ALIGN_LEFT);
                     mainSignTable1.setTotalWidth(426f);
@@ -462,6 +470,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable visionSignTable = new PdfPTable(1);
                     visionSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK I", contentFont));
                     visionSignTable.addCell(JobReportUtils.borderlessCell("PT Visionet Jayapura", contentFont));
+                    visionSignTable.addCell(JobReportUtils.createImageCell(visionSignType.trim()));
                     float[] visionSignfloat = new float[]{120f};
                     visionSignTable.setWidths(visionSignfloat);
                     visionSignTable.setSpacingAfter(3f);
@@ -475,6 +484,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable PICSignTable = new PdfPTable(1);
                     PICSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK II", contentFont));
                     PICSignTable.addCell(JobReportUtils.borderlessCell("PIC", contentFont));
+                    PICSignTable.addCell(JobReportUtils.createImageCell(picSignType.trim()));
                     float[] picfloat = new float[]{120f};
                     PICSignTable.setWidths(picfloat);
                     PICSignTable.setSpacingAfter(3f);

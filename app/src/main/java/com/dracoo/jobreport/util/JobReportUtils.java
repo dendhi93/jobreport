@@ -5,12 +5,16 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
+
+import java.io.IOException;
 
 
 public class JobReportUtils {
@@ -52,6 +56,12 @@ public class JobReportUtils {
         PdfPCell cell = new PdfPCell(new Phrase(new Paragraph(title, fonType)));
         cell.setBorder(Rectangle.BOTTOM);
 
+        return cell;
+    }
+
+    public static PdfPCell createImageCell(String path) throws DocumentException, IOException {
+        Image img = Image.getInstance(path);
+        PdfPCell cell = new PdfPCell(img, true);
         return cell;
     }
 
