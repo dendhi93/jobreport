@@ -59,9 +59,11 @@ public class JobReportUtils {
         return cell;
     }
 
-    public static PdfPCell createImageCell(String path) throws DocumentException, IOException {
+    public static PdfPCell createImageCell(String path, float imgWidth, float imgHeight) throws DocumentException, IOException {
         Image img = Image.getInstance(path);
+        img.scaleToFit(imgWidth, imgHeight);
         PdfPCell cell = new PdfPCell(img, true);
+        cell.setBorder(Rectangle.NO_BORDER);
         return cell;
     }
 

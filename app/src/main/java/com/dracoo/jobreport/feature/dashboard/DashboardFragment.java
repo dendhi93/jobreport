@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -451,16 +452,15 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     Paragraph paragraphClosed = new Paragraph("\nDemikian Bertia acara ini dibuat dan disetujui oleh kedua belah pihak yang tidak terpisahkan dari Perjanjian" +
                             " Kerja sama Penyediaan Jasa Jaringan Sistem Komunikasi " , contentFont);
                     paragraphClosed.setAlignment(Element.ALIGN_LEFT);
-                    paragraphClosed.setSpacingAfter(10f);
+                    paragraphClosed.setSpacingAfter(20f);
                     document.add(paragraphClosed);
 
                     String signType1 = alSignature.get(0).getT_user_type();
                     String signType2 = alSignature.get(1).getT_user_type();
-                    if (signType1.trim().equals(preference.getTechName().trim())){ visionSignType = alSignature.get(0).getT_sign_path(); }
-                    if (signType2.trim().equals(preference.getTechName().trim())){ visionSignType = alSignature.get(1).getT_sign_path(); }
-                    if (signType1.trim().equals(alJobDesc.get(0).getName_pic().trim())){ picSignType = alSignature.get(1).getT_sign_path(); }
-                    if (signType2.trim().equals(alJobDesc.get(0).getName_pic().trim())){ picSignType = alSignature.get(1).getT_sign_path(); }
-
+                    if (signType1.trim().equals(preference.getTechName().trim())){ visionSignType = Environment.getExternalStorageDirectory()+alSignature.get(0).getT_sign_path(); }
+                    if (signType2.trim().equals(preference.getTechName().trim())){ visionSignType = Environment.getExternalStorageDirectory()+alSignature.get(1).getT_sign_path(); }
+                    if (signType1.trim().equals(alJobDesc.get(0).getName_pic().trim())){ picSignType = Environment.getExternalStorageDirectory()+ alSignature.get(1).getT_sign_path(); }
+                    if (signType2.trim().equals(alJobDesc.get(0).getName_pic().trim())){ picSignType = Environment.getExternalStorageDirectory()+ alSignature.get(1).getT_sign_path(); }
                     PdfPTable mainSignTable1 = new PdfPTable(2);
                     mainSignTable1.setHorizontalAlignment(Element.ALIGN_LEFT);
                     mainSignTable1.setTotalWidth(426f);
@@ -470,7 +470,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable visionSignTable = new PdfPTable(1);
                     visionSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK I", contentFont));
                     visionSignTable.addCell(JobReportUtils.borderlessCell("PT Visionet Jayapura", contentFont));
-                    visionSignTable.addCell(JobReportUtils.createImageCell(visionSignType.trim()));
+                    visionSignTable.addCell(JobReportUtils.createImageCell(visionSignType.trim(), 70f, 70f));
                     float[] visionSignfloat = new float[]{120f};
                     visionSignTable.setWidths(visionSignfloat);
                     visionSignTable.setSpacingAfter(3f);
@@ -484,7 +484,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable PICSignTable = new PdfPTable(1);
                     PICSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK II", contentFont));
                     PICSignTable.addCell(JobReportUtils.borderlessCell("PIC", contentFont));
-                    PICSignTable.addCell(JobReportUtils.createImageCell(picSignType.trim()));
+                    PICSignTable.addCell(JobReportUtils.createImageCell(picSignType.trim(), 70f, 70f));
                     float[] picfloat = new float[]{120f};
                     PICSignTable.setWidths(picfloat);
                     PICSignTable.setSpacingAfter(3f);
@@ -493,8 +493,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PICSignTableCell.addElement(PICSignTable);
                     mainSignTable1.addCell(PICSignTableCell);
                     document.add(mainSignTable1);
-
-                    //todo img
 
                     PdfPTable mainContentSignTable = new PdfPTable(2);
                     mainContentSignTable.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -1365,10 +1363,14 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             table7.setHorizontalAlignment(Element.ALIGN_LEFT);
                             float[] columnWidths7 = new float[]{18f,7f,38f,7f,58f,7f,268f,7f,38f};
                             table7.setWidths(columnWidths7);
+                            table7.setSpacingAfter(15f);
                             table7.setTotalWidth(430f);
                             table7.setLockedWidth(true);
                             document.add(table7);
                         }
+
+                        document.add(mainSignTable1);
+                        document.add(mainContentSignTable);
                     }
                     document.close();
                     prg_dash.setVisibility(View.GONE);
