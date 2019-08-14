@@ -2,6 +2,7 @@ package com.dracoo.jobreport.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.location.Location;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -59,7 +60,7 @@ public class JobReportUtils {
         return cell;
     }
 
-    public static PdfPCell createImageCell(String path, float imgWidth, float imgHeight) throws DocumentException, IOException {
+    public PdfPCell createImageCell(String path, float imgWidth, float imgHeight) throws DocumentException, IOException {
         Image img = Image.getInstance(path);
         img.scaleToFit(imgWidth, imgHeight);
         PdfPCell cell = new PdfPCell(img, true);
@@ -94,12 +95,50 @@ public class JobReportUtils {
         return cell;
     }
 
-    public static Paragraph singleSpace(Font font){
+    public Paragraph singleSpace(Font font){
         Paragraph paragraph = new Paragraph("\n", font);
         paragraph.setAlignment(Element.ALIGN_LEFT);
         paragraph.setSpacingAfter(10);
 
         return paragraph;
+    }
+
+    public String convertCoordinat(double latitude, double longitude) {
+        StringBuilder builder = new StringBuilder();
+
+        if (latitude < 0) {
+            builder.append("S ");
+        } else {
+            builder.append("N ");
+        }
+
+        String latitudeDegrees = Location.convert(Math.abs(latitude), Location.FORMAT_SECONDS);
+        String[] latitudeSplit = latitudeDegrees.split(":");
+        builder.append(latitudeSplit[0]);
+        builder.append("°");
+        builder.append(latitudeSplit[1]);
+        builder.append("'");
+        builder.append(latitudeSplit[2]);
+        builder.append("\"");
+
+        builder.append(" ");
+
+        if (longitude < 0) {
+            builder.append("W ");
+        } else {
+            builder.append("E ");
+        }
+
+        String longitudeDegrees = Location.convert(Math.abs(longitude), Location.FORMAT_SECONDS);
+        String[] longitudeSplit = longitudeDegrees.split(":");
+        builder.append(longitudeSplit[0]);
+        builder.append("°");
+        builder.append(longitudeSplit[1]);
+        builder.append("'");
+        builder.append(longitudeSplit[2]);
+        builder.append("\"");
+
+        return builder.toString();
     }
 
 }

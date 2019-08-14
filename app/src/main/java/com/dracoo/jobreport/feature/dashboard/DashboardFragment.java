@@ -107,6 +107,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
     private MessageUtils messageUtils;
     private Preference preference;
+    private JobReportUtils jobUtils;
     private ArrayList<MasterJobDesc> alJobDesc;
     private ArrayList<MasterInfoSite> alInfSite;
     private ArrayList<MasterTransHistory> alListTrans;
@@ -151,6 +152,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
         messageUtils = new MessageUtils(getActivity());
         preference = new Preference(getActivity());
+        jobUtils = new JobReportUtils();
         prg_dash.setVisibility(View.GONE);
         try{
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
@@ -470,7 +472,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable visionSignTable = new PdfPTable(1);
                     visionSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK I", contentFont));
                     visionSignTable.addCell(JobReportUtils.borderlessCell("PT Visionet Jayapura", contentFont));
-                    visionSignTable.addCell(JobReportUtils.createImageCell(visionSignType.trim(), 70f, 70f));
+                    visionSignTable.addCell(jobUtils.createImageCell(visionSignType.trim(), 70f, 70f));
                     float[] visionSignfloat = new float[]{120f};
                     visionSignTable.setWidths(visionSignfloat);
                     visionSignTable.setSpacingAfter(3f);
@@ -484,7 +486,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     PdfPTable PICSignTable = new PdfPTable(1);
                     PICSignTable.addCell(JobReportUtils.bottomLineCell("PIHAK II", contentFont));
                     PICSignTable.addCell(JobReportUtils.borderlessCell("PIC", contentFont));
-                    PICSignTable.addCell(JobReportUtils.createImageCell(picSignType.trim(), 70f, 70f));
+                    PICSignTable.addCell(jobUtils.createImageCell(picSignType.trim(), 70f, 70f));
                     float[] picfloat = new float[]{120f};
                     PICSignTable.setWidths(picfloat);
                     PICSignTable.setSpacingAfter(3f);

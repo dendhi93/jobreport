@@ -467,10 +467,14 @@ public class UserActivity extends AppCompatActivity
     private LocationCallback callback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
+            String stringLat,stringLong;
             for (Location location : locationResult.getLocations()) {
                 mLastLocation = location;
                 txt_userAct_lat.setText(String.valueOf(mLastLocation.getLatitude()));
                 txt_userAct_long.setText(String.valueOf(mLastLocation.getLongitude()));
+                JobReportUtils jobUtils = new JobReportUtils();
+                String convertCoor = jobUtils.convertCoordinat(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                messageUtils.toastMessage(" convert " +convertCoor, ConfigApps.T_INFO);
             }
         }
     };
