@@ -306,8 +306,8 @@ public class UserActivity extends AppCompatActivity
             mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
             mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
             mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
-            mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
-            mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
+            mInfoSite.setLat(String.valueOf(mLastLocation.getLatitude()));
+            mInfoSite.setLongitude(String.valueOf(mLastLocation.getLongitude()));
             mInfoSite.setProgress_type(selectedConnType.trim());
             mInfoSite.setTtwo(txt_userAct_ttwo.getText().toString().trim());
             mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
@@ -336,8 +336,8 @@ public class UserActivity extends AppCompatActivity
                 mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
                 mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
                 mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
-                mInfoSite.setLat(txt_userAct_lat.getText().toString().trim());
-                mInfoSite.setLongitude(txt_userAct_long.getText().toString().trim());
+                mInfoSite.setLat(String.valueOf(mLastLocation.getLatitude()));
+                mInfoSite.setLongitude(String.valueOf(mLastLocation.getLongitude()));
                 mInfoSite.setProgress_type(selectedConnType.trim());
                 mInfoSite.setTtwo(txt_userAct_ttwo.getText().toString().trim());
                 mInfoSite.setUn_user(preference.getUn().trim());
