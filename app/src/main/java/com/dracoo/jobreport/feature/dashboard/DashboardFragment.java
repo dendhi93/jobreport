@@ -300,7 +300,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     }
                 })
                 .show();
-
     }
 
     private void sendViaPdf(){
@@ -593,14 +592,33 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblCoorSite.addCell(JobReportUtils.bottomLineCell("COORDINAT SITE", subtitleFont));
                     tblCoorSite.setSpacingAfter(2f);
                     document.add(tblCoorSite);
+
+                    //todo convert into decimal
+                    String convertLatlong;
+                    String[] splitDecimalLatLng;
+                    String resultConvertLat = "0,0";
+                    String resultConvertLong = "0,0";
+                    if (!alInfSite.get(0).getLat().contains("0,0") || !alInfSite.get(0).getLongitude().contains("0,0")){
+                        convertLatlong = jobUtils.convertCoordinat(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
+                        if (convertLatlong.contains("W ")){
+                            splitDecimalLatLng = convertLatlong.split("W ");
+                            resultConvertLat = splitDecimalLatLng[0];
+                            resultConvertLong = splitDecimalLatLng[1];
+                        }else if(convertLatlong.contains("E ")){
+                            splitDecimalLatLng = convertLatlong.split("E ");
+                            resultConvertLat = splitDecimalLatLng[0];
+                            resultConvertLong = splitDecimalLatLng[1];
+                        }
+                    }
+
                     PdfPTable tblcontentCoorSite = new PdfPTable(3);
                     tblcontentCoorSite.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Latitude ", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(alInfSite.get(0).getLat(), contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(resultConvertLat.trim(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Longitude ", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(alInfSite.get(0).getLongitude().trim(), contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(resultConvertLong.trim(), contentFont));
                     float[] columnWidthCoorSite = new float[]{45f, 7f,113f};
                     tblcontentCoorSite.setWidths(columnWidthCoorSite);
                     tblcontentCoorSite.setSpacingAfter(4f);
