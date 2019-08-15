@@ -467,14 +467,27 @@ public class UserActivity extends AppCompatActivity
     private LocationCallback callback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
-            String stringLat,stringLong;
+            String splitConvertLat = "0.0";
+            String splitConvertLong = "0.0";
+            String[] splitDecimalCoor;
             for (Location location : locationResult.getLocations()) {
                 mLastLocation = location;
-                txt_userAct_lat.setText(String.valueOf(mLastLocation.getLatitude()));
-                txt_userAct_long.setText(String.valueOf(mLastLocation.getLongitude()));
+//                txt_userAct_lat.setText(String.valueOf(mLastLocation.getLatitude()));
+//                txt_userAct_long.setText(String.valueOf(mLastLocation.getLongitude()));
                 JobReportUtils jobUtils = new JobReportUtils();
                 String convertCoor = jobUtils.convertCoordinat(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-                messageUtils.toastMessage(" convert " +convertCoor, ConfigApps.T_INFO);
+                if (convertCoor.contains("W ")){
+                    splitDecimalCoor = convertCoor.split("W ");
+                    splitConvertLat = splitDecimalCoor[0];
+                    splitConvertLong = splitDecimalCoor[1];
+                }else if(convertCoor.contains("E ")){
+                    splitDecimalCoor = convertCoor.split("E ");
+                    splitConvertLat = splitDecimalCoor[0];
+                    splitConvertLong = splitDecimalCoor[1];
+                }
+                txt_userAct_lat.setText(splitConvertLat.trim());
+                txt_userAct_long.setText(splitConvertLong.trim());
+//                messageUtils.toastMessage(" convert " +convertCoor, ConfigApps.T_INFO);
             }
         }
     };
