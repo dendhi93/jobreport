@@ -479,11 +479,11 @@ public class UserActivity extends AppCompatActivity
                 if (convertCoor.contains("W ")){
                     splitDecimalCoor = convertCoor.split("W ");
                     splitConvertLat = splitDecimalCoor[0];
-                    splitConvertLong = splitDecimalCoor[1];
+                    splitConvertLong = "W "+splitDecimalCoor[1];
                 }else if(convertCoor.contains("E ")){
                     splitDecimalCoor = convertCoor.split("E ");
                     splitConvertLat = splitDecimalCoor[0];
-                    splitConvertLong = splitDecimalCoor[1];
+                    splitConvertLong = "E "+splitDecimalCoor[1];
                 }
                 txt_userAct_lat.setText(splitConvertLat.trim());
                 txt_userAct_long.setText(splitConvertLong.trim());

@@ -603,11 +603,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         if (convertLatlong.contains("W ")){
                             splitDecimalLatLng = convertLatlong.split("W ");
                             resultConvertLat = splitDecimalLatLng[0];
-                            resultConvertLong = splitDecimalLatLng[1];
+                            resultConvertLong = "W " +splitDecimalLatLng[1];
                         }else if(convertLatlong.contains("E ")){
                             splitDecimalLatLng = convertLatlong.split("E ");
                             resultConvertLat = splitDecimalLatLng[0];
-                            resultConvertLong = splitDecimalLatLng[1];
+                            resultConvertLong = "E " +splitDecimalLatLng[1];
                         }
                     }
 
