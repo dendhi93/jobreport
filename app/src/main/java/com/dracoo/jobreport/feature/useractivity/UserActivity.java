@@ -306,8 +306,13 @@ public class UserActivity extends AppCompatActivity
             mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
             mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
             mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
-            mInfoSite.setLat(String.valueOf(mLastLocation.getLatitude()));
-            mInfoSite.setLongitude(String.valueOf(mLastLocation.getLongitude()));
+            if(mLastLocation != null){
+                mInfoSite.setLat(String.valueOf(mLastLocation.getLatitude()));
+                mInfoSite.setLongitude(String.valueOf(mLastLocation.getLongitude()));
+            }else{
+                mInfoSite.setLat("0.0");
+                mInfoSite.setLongitude("0.0");
+            }
             mInfoSite.setProgress_type(selectedConnType.trim());
             mInfoSite.setTtwo(txt_userAct_ttwo.getText().toString().trim());
             mInfoSite.setUpdate_date(DateTimeUtils.getCurrentTime());
@@ -336,8 +341,13 @@ public class UserActivity extends AppCompatActivity
                 mInfoSite.setCity(txt_userAct_city.getText().toString().trim());
                 mInfoSite.setKabupaten(txt_userAct_kabupaten.getText().toString().trim());
                 mInfoSite.setProv(txt_userAct_proviency.getText().toString().trim());
-                mInfoSite.setLat(String.valueOf(mLastLocation.getLatitude()));
-                mInfoSite.setLongitude(String.valueOf(mLastLocation.getLongitude()));
+                if(mLastLocation != null){
+                    mInfoSite.setLat(String.valueOf(mLastLocation.getLatitude()));
+                    mInfoSite.setLongitude(String.valueOf(mLastLocation.getLongitude()));
+                }else{
+                    mInfoSite.setLat("0.0");
+                    mInfoSite.setLongitude("0.0");
+                }
                 mInfoSite.setProgress_type(selectedConnType.trim());
                 mInfoSite.setTtwo(txt_userAct_ttwo.getText().toString().trim());
                 mInfoSite.setUn_user(preference.getUn().trim());
