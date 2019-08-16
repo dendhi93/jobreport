@@ -1019,7 +1019,7 @@ public class DashboardFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         Log.d("###", "Response: " + response);
-                        if (response.length() > 0) {
+                        if (response.length() > 0 && !response.contains("<!DOCTYPE html>")) {
                               prg_dash.setVisibility(View.GONE);
                               messageUtils.toastMessage("Transaksi berhasil diinput", ConfigApps.T_SUCCESS);
                         } else {
