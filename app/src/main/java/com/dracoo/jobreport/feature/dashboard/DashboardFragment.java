@@ -299,21 +299,15 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 .setItems(listItems, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (i == 0){
-                            sendViaPdf();
-                        }else if (i == 1){
-                            //send via WA
-                            sendViaWA();
-                        }else if (i == 2){
-                            sendData();
-                        }
+                        if (i == 0){ sendViaPdf();
+                        }else if (i == 1){ sendViaWA();
+                        }else if (i == 2){ sendDataToGform(); }
                     }
                 })
                 .show();
     }
 
-    //TODO POST GFORM
-    private void sendData(){
+    private void sendDataToGform(){
         prg_dash.setVisibility(View.VISIBLE);
         queue = Volley.newRequestQueue(getActivity());
         StringRequest request = new StringRequest(
@@ -323,7 +317,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     @Override
                     public void onResponse(String response) {
                         Log.d("###", "Response: " + response);
-                        //todo choose gform
+                        prg_dash.setVisibility(View.GONE);
+                        if (response.length() > 0){ chooseGform(); }
+                        else{ messageUtils.toastMessage("please try again ", ConfigApps.T_INFO); }
                     }
                 }, new Response.ErrorListener() {
 
@@ -349,6 +345,18 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 params.put(ConfigApps.latInput, alInfSite.get(0).getLat().trim());
                 params.put(ConfigApps.longitudeInput, alInfSite.get(0).getLongitude().trim());
                 params.put(ConfigApps.connTypeInput, preference.getConnType().trim().trim());
+                params.put(ConfigApps.progressInput, preference.getProgress().trim());
+                params.put(ConfigApps.takeOffInput, alProblem.get(0).getBerangkat().trim());
+                params.put(ConfigApps.landingInput, alProblem.get(0).getTiba().trim());
+                params.put(ConfigApps.startInput, alProblem.get(0).getStart().trim());
+                params.put(ConfigApps.activityPendingInput, alProblem.get(0).getDelay_activity().trim());
+                params.put(ConfigApps.reasonActivityPendingInput, alProblem.get(0).getDelay_reason().trim());
+                params.put(ConfigApps.restartInput, alProblem.get(0).getRestart().trim());
+                params.put(ConfigApps.onlineInput, alProblem.get(0).getOnline().trim());
+                params.put(ConfigApps.finishInput, alProblem.get(0).getFinish().trim());
+                params.put(ConfigApps.picInput, alProblem.get(0).getClosed().trim());
+
+                //todo terus params
                 return params;
             }
         };
@@ -357,6 +365,16 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(request);
+    }
+
+    private void chooseGform(){
+        if (preference.getSendEmail() == ConfigApps.SUBMIT_SEND && preference.getSendWA() == ConfigApps.SUBMIT_SEND){
+            if (isSubmitReport()){
+                emptyView(1);
+                preference.clearDataTrans();
+            }else{ messageUtils.toastMessage("data selesai transaksi tidak terupdate", ConfigApps.T_ERROR); }
+        }else{ preference.saveSend(ConfigApps.GFORM_TYPE); }
+        messageUtils.toastMessage("Transaksi berhasil diinput", ConfigApps.T_SUCCESS);
     }
 
     private void sendViaPdf(){
@@ -1468,7 +1486,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
             if (isSubmitReport()) {
                 preference.clearDataTrans();
                 emptyView(1);
-            }else{ messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR); }
+            }else{ messageUtils.toastMessage("data selesai transaksi tidak terupdate", ConfigApps.T_ERROR); }
         }else{ preference.saveSend(ConfigApps.EMAIL_TYPE); }
         submitReport();
     }
@@ -1744,7 +1762,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
             if (isSubmitReport()){
                 emptyView(1);
                 preference.clearDataTrans();
-            }else{ messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR); }
+            }else{ messageUtils.toastMessage("data selesai transaksi tidak terupdatee", ConfigApps.T_ERROR); }
         }else{
             preference.saveSend(ConfigApps.WA_TYPE);
             messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_SUCCESS);

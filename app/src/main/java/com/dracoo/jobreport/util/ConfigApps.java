@@ -55,12 +55,14 @@ public class ConfigApps {
     public static final String progressInput = "entry.651734487";
     public static final String takeOffInput = "entry.2084920842";
     public static final String landingInput = "entry.2082939153";
-    public static final String pendingStartInput = "entry.904556259";
-    public static final String reasonPendingStartInput = "entry.783700454";
+//    public static final String pendingStartInput = "entry.904556259";
+//    public static final String reasonPendingStartInput = "entry.783700454";
     public static final String startInput = "entry.2050121004";
     public static final String activityPendingInput = "entry.1901692711";
     public static final String reasonActivityPendingInput = "entry.800006749";
     public static final String restartInput = "entry.1535730819";
+    public static final String onlineInput = "entry.2094001846";
+    public static final String finishInput = "entry.1884429671";
     public static final String picInput = "entry.230823196";
     public static final String chooseDeviceInput = "entry.1547303458";
 
