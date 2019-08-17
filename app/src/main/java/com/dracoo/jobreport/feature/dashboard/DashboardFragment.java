@@ -1050,7 +1050,7 @@ public class DashboardFragment extends Fragment {
                 params.put(ConfigApps.proviencyInput, alInfSite.get(0).getProv().trim());
                 params.put(ConfigApps.latInput, alInfSite.get(0).getLat().trim());
                 params.put(ConfigApps.longitudeInput, alInfSite.get(0).getLongitude().trim());
-                params.put(ConfigApps.connTypeInput, alInfSite.get(0).getCustomer_name().trim());
+                params.put(ConfigApps.connTypeInput, preference.getConnType().trim().trim());
                 return params;
             }
         };
