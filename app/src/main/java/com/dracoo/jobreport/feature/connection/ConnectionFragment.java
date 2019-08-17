@@ -168,7 +168,6 @@ public class ConnectionFragment extends Fragment {
     private void viewValidation(){
         try{
             intentConnView = getArguments().getString(ConfigApps.EXTRA_CALLER_VIEW);
-            messageUtils.toastMessage(intentConnView, ConfigApps.T_INFO);
             if (intentConnView.trim().equals(ConfigApps.VIEW_TYPE)){
                 if (preference.getConnType().equals("VSAT")){
                     ArrayList<MasterVsatSetup> al_vsat = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());

@@ -472,7 +472,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentCust.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentCust.addCell(JobReportUtils.borderlessCell("II Nama   : " +alJobDesc.get(0).getName_pic(), contentFont));
                     tblcontentCust.addCell(JobReportUtils.borderlessCell("   Alamat : " +alInfSite.get(0).getRemote_address().trim(), contentFont));
-                    tblcontentCust.addCell(JobReportUtils.borderlessCell("   Jabatan : ", contentFont));
+                    tblcontentCust.addCell(JobReportUtils.borderlessCell("   Jabatan : " + alJobDesc.get(0).getJabatan_desc().trim(), contentFont));
                     tblcontentCust.addCell(JobReportUtils.borderlessCell("", titleFont));
                     tblcontentCust.addCell(JobReportUtils.borderlessCell("   Perusahaan : PT Visionet Jayapura", contentFont));
                     tblcontentCust.addCell(JobReportUtils.borderlessCell("   Telepon : " +alJobDesc.get(0).getPic_phone(), contentFont));
@@ -674,7 +674,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     String resultConvertLat = "0,0";
                     String resultConvertLong = "0,0";
                     if (!alInfSite.get(0).getLat().contains("0,0") || !alInfSite.get(0).getLongitude().contains("0,0")){
-                        convertLatlong = jobUtils.convertCoordinat(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
+                        convertLatlong = jobUtils.convertCoordinatForPdf(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
                         if (convertLatlong.contains("W ")){
                             splitDecimalLatLng = convertLatlong.split("W ");
                             resultConvertLat = splitDecimalLatLng[0];
