@@ -19,7 +19,13 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.ActionAdapter;
 import com.dracoo.jobreport.database.adapter.ConnectionParameterAdapter;
@@ -81,7 +87,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -284,7 +292,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     }
 
     private void alertChoose(){
-        String[] listItems = {"Send File Pdf", "Copy into whatsapp"};
+        String[] listItems = {"Send File Pdf", "Copy into whatsapp", "Post data into google form"};
         new AlertDialog.Builder(getActivity())
                 .setTitle("Send via")
                 .setCancelable(false)
@@ -296,10 +304,59 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         }else if (i == 1){
                             //send via WA
                             sendViaWA();
+                        }else if (i == 2){
+                            sendData();
                         }
                     }
                 })
                 .show();
+    }
+
+    //TODO POST GFORM
+    private void sendData(){
+        prg_dash.setVisibility(View.VISIBLE);
+        queue = Volley.newRequestQueue(getActivity());
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                ConfigApps.gformUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("###", "Response: " + response);
+                        //todo choose gform
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                prg_dash.setVisibility(View.GONE);
+                messageUtils.toastMessage("failed post Data ", ConfigApps.T_ERROR);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put(ConfigApps.techNameInput, preference.getUn().trim());
+                params.put(ConfigApps.serviceInput, preference.getServicePoint().trim());
+                params.put(ConfigApps.ttwoInput, alInfSite.get(0).getTtwo().trim());
+                params.put(ConfigApps.remoteNameInput, alInfSite.get(0).getRemote_name().trim());
+                params.put(ConfigApps.customerInput, alInfSite.get(0).getCustomer_name().trim());
+                params.put(ConfigApps.remoteLocationInput, alInfSite.get(0).getRemote_name().trim());
+                params.put(ConfigApps.addressInput, alInfSite.get(0).getRemote_address().trim());
+                params.put(ConfigApps.cityInput, alInfSite.get(0).getCity().trim());
+                params.put(ConfigApps.kabupatenInput, alInfSite.get(0).getKabupaten().trim());
+                params.put(ConfigApps.proviencyInput, alInfSite.get(0).getProv().trim());
+                params.put(ConfigApps.latInput, alInfSite.get(0).getLat().trim());
+                params.put(ConfigApps.longitudeInput, alInfSite.get(0).getLongitude().trim());
+                params.put(ConfigApps.connTypeInput, preference.getConnType().trim().trim());
+                return params;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                50000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(request);
     }
 
     private void sendViaPdf(){
@@ -1407,16 +1464,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     private void choosePdf(){
         stCustname = preference.getCustName().trim();
         stUn = preference.getTechName().trim();
-        if (preference.getSendWA() == ConfigApps.SUBMIT_SEND){
+        if (preference.getSendWA() == ConfigApps.SUBMIT_SEND && preference.getSendGform() == ConfigApps.SUBMIT_SEND){
             if (isSubmitReport()) {
                 preference.clearDataTrans();
                 emptyView(1);
-                submitReport();
             }else{ messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR); }
-        }else{
-            preference.saveSend(ConfigApps.EMAIL_TYPE);
-            submitReport();
-        }
+        }else{ preference.saveSend(ConfigApps.EMAIL_TYPE); }
+        submitReport();
     }
 
     private void sendViaWA(){
@@ -1686,22 +1740,19 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     }
 
     private void chooseWA(){
-        if (preference.getSendEmail() == ConfigApps.SUBMIT_SEND){
+        if (preference.getSendEmail() == ConfigApps.SUBMIT_SEND && preference.getSendGform() == ConfigApps.SUBMIT_SEND){
             if (isSubmitReport()){
                 emptyView(1);
-                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
-                clipboard.setPrimaryClip(clip);
-                messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_SUCCESS);
                 preference.clearDataTrans();
             }else{ messageUtils.toastMessage("tidak terupdate", ConfigApps.T_ERROR); }
         }else{
             preference.saveSend(ConfigApps.WA_TYPE);
-            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
-            clipboard.setPrimaryClip(clip);
             messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_SUCCESS);
         }
+        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("label", stCopyClipBoard);
+        clipboard.setPrimaryClip(clip);
+        messageUtils.toastMessage("Data Sukses tercopy, silahkan paste ke whatsapp ", ConfigApps.T_SUCCESS);
     }
 
     private void submitReport(){

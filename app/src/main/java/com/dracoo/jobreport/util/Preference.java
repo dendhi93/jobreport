@@ -56,13 +56,9 @@ public class Preference {
     }
 
     public void saveSend(int sendType){
-        if (sendType == ConfigApps.EMAIL_TYPE){
-            editor.putInt(KEY_SEND_EMAIL, ConfigApps.SUBMIT_SEND);
-        }else if (sendType == ConfigApps.WA_TYPE){
-            editor.putInt(KEY_SEND_WA, ConfigApps.SUBMIT_SEND);
-        }else if (sendType == ConfigApps.GFORM_TYPE){
-            editor.putInt(KEY_SEND_GFORM, ConfigApps.SUBMIT_SEND);
-        }
+        if (sendType == ConfigApps.EMAIL_TYPE){ editor.putInt(KEY_SEND_EMAIL, ConfigApps.SUBMIT_SEND);
+        }else if (sendType == ConfigApps.WA_TYPE){ editor.putInt(KEY_SEND_WA, ConfigApps.SUBMIT_SEND);
+        }else if (sendType == ConfigApps.GFORM_TYPE){ editor.putInt(KEY_SEND_GFORM, ConfigApps.SUBMIT_SEND); }
         editor.apply();
     }
 
@@ -83,6 +79,7 @@ public class Preference {
     public String getConnType(){return sharedPreferences.getString(KEY_CONNECTION_TYPE, "");}
     public Integer getSendEmail(){return sharedPreferences.getInt(KEY_SEND_EMAIL, 0);}
     public Integer getSendWA(){return sharedPreferences.getInt(KEY_SEND_WA, 0);}
+    public Integer getSendGform(){return sharedPreferences.getInt(KEY_SEND_GFORM, 0);}
     public String getTechName(){return sharedPreferences.getString(KEY_TECH_NAME, "");}
 
     //after submit
