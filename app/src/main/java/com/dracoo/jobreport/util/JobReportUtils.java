@@ -141,6 +141,57 @@ public class JobReportUtils {
         return builder.toString();
     }
 
+    public String convertCoordinatToDegree(double latitude, double longitude) {
+        StringBuilder builder = new StringBuilder();
+
+        if (latitude < 0) {
+            builder.append("S ");
+        } else {
+            builder.append("N ");
+        }
+
+        String latitudeDegrees = Location.convert(Math.abs(latitude), Location.FORMAT_SECONDS);
+        String[] latitudeSplit = latitudeDegrees.split(":");
+        builder.append(latitudeSplit[0]);
+
+        if (longitude < 0) {
+            builder.append("W ");
+        } else {
+            builder.append("E ");
+        }
+
+        String longitudeDegrees = Location.convert(Math.abs(longitude), Location.FORMAT_SECONDS);
+        String[] longitudeSplit = longitudeDegrees.split(":");
+        builder.append(longitudeSplit[0]);
+
+        return builder.toString();
+    }
+
+    public String convertCoordinatToMinutesSecond(double latitude, double longitude) {
+        //todo di split aj per derajat, per menit, per detik
+        StringBuilder builder = new StringBuilder();
+        if (latitude < 0) { builder.append("S ");
+        } else { builder.append("N "); }
+        String latitudeDegrees = Location.convert(Math.abs(latitude), Location.FORMAT_SECONDS);
+        String[] latitudeSplit = latitudeDegrees.split(":");
+        builder.append(latitudeSplit[1]);
+        builder.append("'");
+        builder.append(latitudeSplit[2]);
+        builder.append("\"");
+        builder.append(" ");
+
+        if (longitude < 0) { builder.append("W ");
+        } else { builder.append("E "); }
+        String longitudeDegrees = Location.convert(Math.abs(longitude), Location.FORMAT_SECONDS);
+        String[] longitudeSplit = longitudeDegrees.split(":");
+        builder.append(longitudeSplit[1]);
+        builder.append("'");
+        builder.append(longitudeSplit[2]);
+        builder.append("\"");
+
+        return builder.toString();
+    }
+
     public String convertCoordinatForPdf(double latitude, double longitude) {
         //todo di split aj per derajat, per menit, per detik
         StringBuilder builder = new StringBuilder();
