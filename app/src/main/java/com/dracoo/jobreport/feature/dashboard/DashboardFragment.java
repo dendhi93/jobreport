@@ -670,20 +670,41 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
                     //todo convert into decimal
                     String convertLatlong;
+                    String convertLatlongMinSec;
                     String[] splitDecimalLatLng;
+                    String[] splitDecimalLatLngMinSec;
+                    String tempLatDegree = "";
+                    String tempLngDegree = "";
+                    String tempLatMinSecond, tempLngMinSecond;
                     String resultConvertLat = "0,0";
                     String resultConvertLong = "0,0";
                     if (!alInfSite.get(0).getLat().contains("0,0") || !alInfSite.get(0).getLongitude().contains("0,0")){
-                        convertLatlong = jobUtils.convertCoordinat(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
+                        convertLatlong = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
+                        convertLatlongMinSec = jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
+//                        if (convertLatlong.contains("W ")){
+//                            splitDecimalLatLng = convertLatlong.split("W ");
+//                            resultConvertLat = splitDecimalLatLng[0];
+//                            resultConvertLong = "W " +splitDecimalLatLng[1];
+//                        }else if(convertLatlong.contains("E ")){
+//                            splitDecimalLatLng = convertLatlong.split("E ");
+//                            resultConvertLat = splitDecimalLatLng[0];
+//                            resultConvertLong = "E " +splitDecimalLatLng[1];
+//                        }
                         if (convertLatlong.contains("W ")){
                             splitDecimalLatLng = convertLatlong.split("W ");
-                            resultConvertLat = splitDecimalLatLng[0];
-                            resultConvertLong = "W " +splitDecimalLatLng[1];
+                            tempLatDegree = splitDecimalLatLng[0];
+                            tempLngDegree = "W " +splitDecimalLatLng[1];
                         }else if(convertLatlong.contains("E ")){
                             splitDecimalLatLng = convertLatlong.split("E ");
-                            resultConvertLat = splitDecimalLatLng[0];
-                            resultConvertLong = "E " +splitDecimalLatLng[1];
+                            tempLatDegree = splitDecimalLatLng[0];
+                            tempLngDegree = "E " +splitDecimalLatLng[1];
                         }
+                        splitDecimalLatLngMinSec = convertLatlongMinSec.split("~");
+                        tempLatMinSecond = splitDecimalLatLngMinSec[0];
+                        tempLngMinSecond = splitDecimalLatLngMinSec[1];
+
+                        resultConvertLat = tempLatDegree +" \u00B0 " +tempLatMinSecond;
+                        resultConvertLong = tempLngDegree + " \u00B0 " +tempLngMinSecond;
                     }
 
                     PdfPTable tblcontentCoorSite = new PdfPTable(3);

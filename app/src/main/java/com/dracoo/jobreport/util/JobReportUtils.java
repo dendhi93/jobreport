@@ -123,11 +123,8 @@ public class JobReportUtils {
 
         builder.append(" ");
 
-        if (longitude < 0) {
-            builder.append("W ");
-        } else {
-            builder.append("E ");
-        }
+        if (longitude < 0) { builder.append("W ");
+        } else { builder.append("E "); }
 
         String longitudeDegrees = Location.convert(Math.abs(longitude), Location.FORMAT_SECONDS);
         String[] longitudeSplit = longitudeDegrees.split(":");
@@ -144,21 +141,16 @@ public class JobReportUtils {
     public String convertCoordinatToDegree(double latitude, double longitude) {
         StringBuilder builder = new StringBuilder();
 
-        if (latitude < 0) {
-            builder.append("S ");
-        } else {
-            builder.append("N ");
-        }
+        if (latitude < 0) { builder.append("S "); }
+        else { builder.append("N "); }
 
         String latitudeDegrees = Location.convert(Math.abs(latitude), Location.FORMAT_SECONDS);
         String[] latitudeSplit = latitudeDegrees.split(":");
         builder.append(latitudeSplit[0]);
+        builder.append(" ");
 
-        if (longitude < 0) {
-            builder.append("W ");
-        } else {
-            builder.append("E ");
-        }
+        if (longitude < 0) { builder.append("W ");
+        } else { builder.append("E "); }
 
         String longitudeDegrees = Location.convert(Math.abs(longitude), Location.FORMAT_SECONDS);
         String[] longitudeSplit = longitudeDegrees.split(":");
@@ -168,10 +160,7 @@ public class JobReportUtils {
     }
 
     public String convertCoordinatToMinutesSecond(double latitude, double longitude) {
-        //todo di split aj per derajat, per menit, per detik
         StringBuilder builder = new StringBuilder();
-        if (latitude < 0) { builder.append("S ");
-        } else { builder.append("N "); }
         String latitudeDegrees = Location.convert(Math.abs(latitude), Location.FORMAT_SECONDS);
         String[] latitudeSplit = latitudeDegrees.split(":");
         builder.append(latitudeSplit[1]);
@@ -179,9 +168,8 @@ public class JobReportUtils {
         builder.append(latitudeSplit[2]);
         builder.append("\"");
         builder.append(" ");
+        builder.append("~");
 
-        if (longitude < 0) { builder.append("W ");
-        } else { builder.append("E "); }
         String longitudeDegrees = Location.convert(Math.abs(longitude), Location.FORMAT_SECONDS);
         String[] longitudeSplit = longitudeDegrees.split(":");
         builder.append(longitudeSplit[1]);
