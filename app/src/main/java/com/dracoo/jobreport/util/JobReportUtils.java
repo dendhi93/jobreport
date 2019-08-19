@@ -106,11 +106,8 @@ public class JobReportUtils {
     public String convertCoordinat(double latitude, double longitude) {
         StringBuilder builder = new StringBuilder();
 
-        if (latitude < 0) {
-            builder.append("S ");
-        } else {
-            builder.append("N ");
-        }
+        if (latitude < 0) { builder.append("S ");
+        } else { builder.append("N "); }
 
         String latitudeDegrees = Location.convert(Math.abs(latitude), Location.FORMAT_SECONDS);
         String[] latitudeSplit = latitudeDegrees.split(":");
@@ -166,7 +163,6 @@ public class JobReportUtils {
         builder.append(latitudeSplit[1]);
         builder.append("'");
         builder.append(latitudeSplit[2]);
-        builder.append("\"");
         builder.append(" ");
         builder.append("~");
 
@@ -175,7 +171,6 @@ public class JobReportUtils {
         builder.append(longitudeSplit[1]);
         builder.append("'");
         builder.append(longitudeSplit[2]);
-        builder.append("\"");
 
         return builder.toString();
     }

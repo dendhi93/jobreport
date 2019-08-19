@@ -669,56 +669,83 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     document.add(tblCoorSite);
 
                     //todo convert into decimal
-                    String convertLatlong;
-                    String convertLatlongMinSec;
-                    String[] splitDecimalLatLng;
-                    String[] splitDecimalLatLngMinSec;
-                    String tempLatDegree = "";
-                    String tempLngDegree = "";
-                    String tempLatMinSecond, tempLngMinSecond;
-                    String resultConvertLat = "0,0";
-                    String resultConvertLong = "0,0";
-                    if (!alInfSite.get(0).getLat().contains("0,0") || !alInfSite.get(0).getLongitude().contains("0,0")){
-                        convertLatlong = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
-                        convertLatlongMinSec = jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
+//                    String convertLatlong;
+//                    String convertLatlongMinSec;
+//                    String[] splitDecimalLatLng;
+//                    String[] splitDecimalLatLngMinSec;
+//                    String[] splitDirectionLat;
+//                    String[] splitDecimalLatMinSec;
+//                    String[] splitDecimalLngMinSec;
+//                    String tempLatDegree = "0.0";
+//                    String tempLngDegree = "0.0";
+//                    String directionLong = "";
+//                    String directionLat = "";
+//                    String tempLatMin = "";
+//                    String tempLngMin = "";
+//                    String tempLatSec = "";
+//                    String tempLngSec = "";
+//
+//                    if (!alInfSite.get(0).getLat().contains("0,0") || !alInfSite.get(0).getLongitude().contains("0,0")){
+//                        convertLatlong = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
+//                        convertLatlongMinSec = jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
 //                        if (convertLatlong.contains("W ")){
 //                            splitDecimalLatLng = convertLatlong.split("W ");
-//                            resultConvertLat = splitDecimalLatLng[0];
-//                            resultConvertLong = "W " +splitDecimalLatLng[1];
+//                            tempLatDegree = splitDecimalLatLng[0];
+//                            tempLngDegree = splitDecimalLatLng[1];
+//                            directionLong = "W";
 //                        }else if(convertLatlong.contains("E ")){
 //                            splitDecimalLatLng = convertLatlong.split("E ");
-//                            resultConvertLat = splitDecimalLatLng[0];
-//                            resultConvertLong = "E " +splitDecimalLatLng[1];
+//                            tempLatDegree = splitDecimalLatLng[0];
+//                            tempLngDegree = splitDecimalLatLng[1];
+//                            directionLong = "E";
 //                        }
-                        if (convertLatlong.contains("W ")){
-                            splitDecimalLatLng = convertLatlong.split("W ");
-                            tempLatDegree = splitDecimalLatLng[0];
-                            tempLngDegree = "W " +splitDecimalLatLng[1];
-                        }else if(convertLatlong.contains("E ")){
-                            splitDecimalLatLng = convertLatlong.split("E ");
-                            tempLatDegree = splitDecimalLatLng[0];
-                            tempLngDegree = "E " +splitDecimalLatLng[1];
-                        }
-                        splitDecimalLatLngMinSec = convertLatlongMinSec.split("~");
-                        tempLatMinSecond = splitDecimalLatLngMinSec[0];
-                        tempLngMinSecond = splitDecimalLatLngMinSec[1];
+//                        if (tempLatDegree.contains("S ")){
+//                            splitDirectionLat = tempLatDegree.split("S ");
+//                            directionLat = splitDirectionLat[0];
+//                            tempLatDegree = splitDirectionLat[1];
+//                        }else if(tempLatDegree.contains("N ")){
+//                            splitDirectionLat = tempLatDegree.split("N ");
+//                            directionLat = splitDirectionLat[0];
+//                            tempLatDegree = splitDirectionLat[1];
+//                        }
+//                        splitDecimalLatLngMinSec = convertLatlongMinSec.split("~");
+//                        splitDecimalLatMinSec = splitDecimalLatLngMinSec[0].split("'");
+//                        splitDecimalLngMinSec = splitDecimalLatLngMinSec[1].split("'");
+//                    }
 
-                        resultConvertLat = tempLatDegree +" \u00B0 " +tempLatMinSecond;
-                        resultConvertLong = tempLngDegree + " \u00B0 " +tempLngMinSecond;
-                    }
-
-                    PdfPTable tblcontentCoorSite = new PdfPTable(3);
+                    //TODO ROMBAK TABEL
+                    PdfPTable tblcontentCoorSite = new PdfPTable(13);
                     tblcontentCoorSite.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Latitude ", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(resultConvertLat.trim(), contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Deg.", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min.", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Sec.", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Longitude ", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(resultConvertLong.trim(), contentFont));
-                    float[] columnWidthCoorSite = new float[]{45f, 7f,113f};
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Deg.", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min.", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Sec.", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    float[] columnWidthCoorSite = new float[]{45f,5f,25f,5f,70f,25f,5f,50f,25f,5f,60f, 15f, 15f};
                     tblcontentCoorSite.setWidths(columnWidthCoorSite);
                     tblcontentCoorSite.setSpacingAfter(4f);
-                    tblcontentCoorSite.setTotalWidth(170f);
+                    tblcontentCoorSite.setTotalWidth(427f);
                     tblcontentCoorSite.setLockedWidth(true);
                     document.add(tblcontentCoorSite);
 
