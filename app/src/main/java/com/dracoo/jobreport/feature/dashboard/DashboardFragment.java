@@ -717,15 +717,20 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Deg.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLatDegree.trim(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLatMin.trim(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Sec.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLatSec.trim(), contentFont));
+                    if (directionLat.equals("N")){
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) N", contentFont));
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("S", contentFont));
+                    }else if (directionLat.equals("S")){
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("N", contentFont));
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) S", contentFont));
+                    }
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Longitude ", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Deg.", contentFont));
