@@ -137,7 +137,7 @@ public class JobReportUtils {
 
     public String convertCoordinatToDegree(double coordinat, int typeCoordinat) {
         StringBuilder builder = new StringBuilder();
-        if (typeCoordinat == 1){
+        if (typeCoordinat == ConfigApps.LATITUDE_TYPE){
             if (coordinat < 0) { builder.append("S "); }
             else { builder.append("N "); }
 
@@ -147,7 +147,7 @@ public class JobReportUtils {
             builder.append(" ");
         }
 
-        if (typeCoordinat == 2){
+        if (typeCoordinat == ConfigApps.LONGITUDE_TYPE){
             if (coordinat < 0) { builder.append("W ");
             } else { builder.append("E "); }
 
