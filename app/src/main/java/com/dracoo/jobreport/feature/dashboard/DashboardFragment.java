@@ -671,9 +671,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     //todo convert into decimal
                     String convertLat;
                     String convertLongitude;
-//                    String convertLatlongMinSec;
-//                    String[] splitDecimalLatLng;
-//                    String[] splitDecimalLatLngMinSec;
+                    String convertLatMinSec;
+                    String convertLngMinSec;
                     String[] splitDirectionLat;
                     String[] splitDirectionLongitude;
                     String[] splitDecimalLatMinSec;
@@ -688,47 +687,28 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     String tempLngSec = "";
 
                     if (!alInfSite.get(0).getLat().contains("0,0") || !alInfSite.get(0).getLongitude().contains("0,0")){
-                        convertLat = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat()), ConfigApps.LATITUDE_TYPE);
+                        convertLat = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat().trim()), ConfigApps.LATITUDE_TYPE);
                         if (convertLat.contains("S ")){ directionLat = "S";
                         }else if (convertLat.contains("N ")){ directionLat = "N"; }
                         splitDirectionLat = convertLat.split(" ");
                         tempLatDegree = splitDirectionLat[1];
 
-                        convertLongitude = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat()), ConfigApps.LONGITUDE_TYPE);
-                        if (convertLongitude.contains("W ")){
-                            directionLong = "W";
-                        }else if (convertLongitude.contains("E ")){
-                            directionLong = "E";
-                        }
+                        convertLongitude = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLongitude().trim()), ConfigApps.LONGITUDE_TYPE);
+                        if (convertLongitude.contains("W ")){ directionLong = "W";
+                        }else if (convertLongitude.contains("E ")){ directionLong = "E"; }
+                        splitDirectionLongitude = convertLongitude.split(" ");
+                        tempLngDegree = splitDirectionLongitude[1];
 
+                        convertLatMinSec = jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(alInfSite.get(0).getLat().trim()), ConfigApps.LATITUDE_TYPE);
+                        splitDecimalLatMinSec = convertLatMinSec.split("'");
+                        tempLatMin = splitDecimalLatMinSec[0];
+                        tempLatSec = splitDecimalLatMinSec[1];
+
+                        convertLngMinSec = jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(alInfSite.get(0).getLongitude().trim()), ConfigApps.LONGITUDE_TYPE);
+                        splitDecimalLngMinSec = convertLngMinSec.split("'");
+                        tempLngMin = splitDecimalLngMinSec[0];
+                        tempLngSec = splitDecimalLngMinSec[1];
                     }
-//                    if (!alInfSite.get(0).getLat().contains("0,0") || !alInfSite.get(0).getLongitude().contains("0,0")){
-//                        convertLatlong = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
-//                        convertLatlongMinSec = jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
-//                        if (convertLatlong.contains("W ")){
-//                            splitDecimalLatLng = convertLatlong.split("W ");
-//                            tempLatDegree = splitDecimalLatLng[0];
-//                            tempLngDegree = splitDecimalLatLng[1];
-//                            directionLong = "W";
-//                        }else if(convertLatlong.contains("E ")){
-//                            splitDecimalLatLng = convertLatlong.split("E ");
-//                            tempLatDegree = splitDecimalLatLng[0];
-//                            tempLngDegree = splitDecimalLatLng[1];
-//                            directionLong = "E";
-//                        }
-//                        if (tempLatDegree.contains("S ")){
-//                            splitDirectionLat = tempLatDegree.split("S ");
-//                            directionLat = splitDirectionLat[0];
-//                            tempLatDegree = splitDirectionLat[1];
-//                        }else if(tempLatDegree.contains("N ")){
-//                            splitDirectionLat = tempLatDegree.split("N ");
-//                            directionLat = splitDirectionLat[0];
-//                            tempLatDegree = splitDirectionLat[1];
-//                        }
-//                        splitDecimalLatLngMinSec = convertLatlongMinSec.split("~");
-//                        splitDecimalLatMinSec = splitDecimalLatLngMinSec[0].split("'");
-//                        splitDecimalLngMinSec = splitDecimalLatLngMinSec[1].split("'");
-//                    }
 
                     //TODO ROMBAK TABEL
                     PdfPTable tblcontentCoorSite = new PdfPTable(13);
