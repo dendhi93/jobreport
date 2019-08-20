@@ -716,13 +716,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Deg.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLatDegree.trim(), contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLatDegree.trim(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLatMin.trim(), contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLatMin.trim(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Sec.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLatSec.trim(), contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLatSec.trim(), contentFont));
                     if (directionLat.equals("N")){
                         tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) N", contentFont));
                         tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("S", contentFont));
@@ -734,24 +734,21 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Deg.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLngDegree.trim(), contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLngDegree, contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLatMin.trim(), contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLngMin, contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Sec.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLngSec.trim(), contentFont));
-                    if (directionLong.equals("W")){
-                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) W", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLngSec, contentFont));
+                    if (directionLat.equals("E")){
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) E", contentFont));
                         tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("E", contentFont));
-                    }else if (directionLong.equals("E")){
+                    }else if (directionLat.equals("E")){
                         tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("W", contentFont));
                         tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) E", contentFont));
-                    }else {
-                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
-                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
                     }
-                    float[] columnWidthCoorSite = new float[]{45f,5f,25f,5f,70f,25f,5f,50f,25f,5f,60f,15f,15f};
+                    float[] columnWidthCoorSite = new float[]{45f,5f,25f,5f,70f,25f,5f,50f,25f,5f,60f, 15f, 15f};
                     tblcontentCoorSite.setWidths(columnWidthCoorSite);
                     tblcontentCoorSite.setSpacingAfter(4f);
                     tblcontentCoorSite.setTotalWidth(427f);
