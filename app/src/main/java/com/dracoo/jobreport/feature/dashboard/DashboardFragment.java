@@ -280,10 +280,10 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
         try{
             transHistoryAdapter
                     .updateRaw("update t_trans_history " +
-                                  "set is_submited = 1, " +
-                                  "update_date = '"+ DateTimeUtils.getCurrentTime() +"' " +
-                                    " where id_site = "+preference.getCustID()+" " +
-                                    " and un_user = '"+preference.getUn()+"' ");
+                            "set is_submited = 1, " +
+                            "update_date = '"+ DateTimeUtils.getCurrentTime() +"' " +
+                            " where id_site = "+preference.getCustID()+" " +
+                            " and un_user = '"+preference.getUn()+"' ");
             return true;
         }catch (SQLException e){
             Log.d("err update ","" +e.toString());
@@ -654,7 +654,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell("Date ", contentFont));
                     tblcontentSiteInf.addCell(JobReportUtils.borderlessCell(":", contentFont));
                     tblcontentSiteInf.addCell(JobReportUtils.bottomLineCell(" "
-                                    +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
+                            +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getFinish().trim()), contentFont));
                     float[] columnWidthSiteInf = new float[]{45f, 5f,80f, 45f,5f ,80f, 40f,5f, 80f};
                     tblcontentSiteInf.setWidths(columnWidthSiteInf);
                     tblcontentSiteInf.setSpacingAfter(3f);
@@ -692,7 +692,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         }else if (convertLat.contains("N ")){ directionLat = "N"; }
                         splitDirectionLat = convertLat.split(" ");
                         tempLatDegree = splitDirectionLat[1];
-
                         convertLongitude = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLongitude().trim()), ConfigApps.LONGITUDE_TYPE);
                         if (convertLongitude.contains("W ")){ directionLong = "W";
                         }else if (convertLongitude.contains("E ")){ directionLong = "E"; }
@@ -717,29 +716,42 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Deg.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLatDegree.trim(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLatMin.trim(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Sec.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLatSec.trim(), contentFont));
+                    if (directionLat.equals("N")){
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) N", contentFont));
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("S", contentFont));
+                    }else if (directionLat.equals("S")){
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("N", contentFont));
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) S", contentFont));
+                    }
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Longitude ", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(":", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Deg.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLngDegree.trim(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Min.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLatMin.trim(), contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Sec.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
-                    tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
-                    float[] columnWidthCoorSite = new float[]{45f,5f,25f,5f,70f,25f,5f,50f,25f,5f,60f, 15f, 15f};
+                    tblcontentCoorSite.addCell(JobReportUtils.bottomLineCell(tempLngSec.trim(), contentFont));
+                    if (directionLong.equals("W")){
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) W", contentFont));
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("E", contentFont));
+                    }else if (directionLong.equals("E")){
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("W", contentFont));
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) E", contentFont));
+                    }else {
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("", contentFont));
+                    }
+                    float[] columnWidthCoorSite = new float[]{45f,5f,25f,5f,70f,25f,5f,50f,25f,5f,60f,15f,15f};
                     tblcontentCoorSite.setWidths(columnWidthCoorSite);
                     tblcontentCoorSite.setSpacingAfter(4f);
                     tblcontentCoorSite.setTotalWidth(427f);
@@ -1855,14 +1867,14 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
         if (preference.getCustID() != 0){
             alJobDesc = new JobDescAdapter(getActivity()).load_trans(preference.getCustID(), preference.getUn());
             if (alJobDesc.size() > 0){
-                    alInfSite = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
-                    if (alInfSite.size() > 0){
-                        lbl_dash_locationName.setText(alInfSite.get(0).getLocation_name().trim());
-                        lbl_dash_customer.setText(alInfSite.get(0).getCustomer_name().trim());
+                alInfSite = new InfoSiteAdapter(getActivity()).load_site(preference.getCustID(), preference.getUn());
+                if (alInfSite.size() > 0){
+                    lbl_dash_locationName.setText(alInfSite.get(0).getLocation_name().trim());
+                    lbl_dash_customer.setText(alInfSite.get(0).getCustomer_name().trim());
 
-                        lbl_dash_technician_name.setText(alJobDesc.get(0).getName_user().trim());
-                        lbl_dash_picPhone.setText(alJobDesc.get(0).getPic_phone().trim());
-                    }
+                    lbl_dash_technician_name.setText(alJobDesc.get(0).getName_user().trim());
+                    lbl_dash_picPhone.setText(alJobDesc.get(0).getPic_phone().trim());
+                }
             }
         }else{ emptyView(0); }
     }
@@ -1882,7 +1894,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     public void listSelected(String transType) {
         Intent intent = null;
         if (transType.trim().equals(getActivity().getString(R.string.infoSite_trans))
-            || transType.equals(getActivity().getString(R.string.jobDesc_trans))){
+                || transType.equals(getActivity().getString(R.string.jobDesc_trans))){
             intent = new Intent(getActivity(), UserActivity.class);
             intent.putExtra(ConfigApps.EXTRA_CALLER_VIEW, ConfigApps.VIEW_TYPE);
         }else if (transType.trim().equals(getActivity().getString(R.string.problemDesc_trans))) {
