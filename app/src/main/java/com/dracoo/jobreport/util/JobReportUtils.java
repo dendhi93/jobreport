@@ -135,83 +135,48 @@ public class JobReportUtils {
         return builder.toString();
     }
 
-    public String convertCoordinatToDegree(double latitude, double longitude) {
+    public String convertCoordinatToDegree(double coordinat, int typeCoordinat) {
         StringBuilder builder = new StringBuilder();
+        if (typeCoordinat == 1){
+            if (coordinat < 0) { builder.append("S "); }
+            else { builder.append("N "); }
 
-        if (latitude < 0) { builder.append("S "); }
-        else { builder.append("N "); }
-
-        String latitudeDegrees = Location.convert(Math.abs(latitude), Location.FORMAT_SECONDS);
-        String[] latitudeSplit = latitudeDegrees.split(":");
-        builder.append(latitudeSplit[0]);
-        builder.append(" ");
-
-        if (longitude < 0) { builder.append("W ");
-        } else { builder.append("E "); }
-
-        String longitudeDegrees = Location.convert(Math.abs(longitude), Location.FORMAT_SECONDS);
-        String[] longitudeSplit = longitudeDegrees.split(":");
-        builder.append(longitudeSplit[0]);
-
-        return builder.toString();
-    }
-
-    public String convertCoordinatToMinutesSecond(double latitude, double longitude) {
-        StringBuilder builder = new StringBuilder();
-        String latitudeDegrees = Location.convert(Math.abs(latitude), Location.FORMAT_SECONDS);
-        String[] latitudeSplit = latitudeDegrees.split(":");
-        builder.append(latitudeSplit[1]);
-        builder.append("'");
-        builder.append(latitudeSplit[2]);
-        builder.append(" ");
-        builder.append("~");
-
-        String longitudeDegrees = Location.convert(Math.abs(longitude), Location.FORMAT_SECONDS);
-        String[] longitudeSplit = longitudeDegrees.split(":");
-        builder.append(longitudeSplit[1]);
-        builder.append("'");
-        builder.append(longitudeSplit[2]);
-
-        return builder.toString();
-    }
-
-    public String convertCoordinatForPdf(double latitude, double longitude) {
-        //todo di split aj per derajat, per menit, per detik
-        StringBuilder builder = new StringBuilder();
-
-        if (latitude < 0) {
-            builder.append("S ");
-        } else {
-            builder.append("N ");
+            String latitudeDegrees = Location.convert(Math.abs(coordinat), Location.FORMAT_SECONDS);
+            String[] latitudeSplit = latitudeDegrees.split(":");
+            builder.append(latitudeSplit[0]);
+            builder.append(" ");
         }
 
-        String latitudeDegrees = Location.convert(Math.abs(latitude), Location.FORMAT_SECONDS);
-        String[] latitudeSplit = latitudeDegrees.split(":");
-        builder.append(latitudeSplit[0]);
-        builder.append("\u00B0");
-        builder.append(latitudeSplit[1]);
-        builder.append("'");
-        builder.append(latitudeSplit[2]);
-        builder.append("\"");
+        if (typeCoordinat == 2){
+            if (coordinat < 0) { builder.append("W ");
+            } else { builder.append("E "); }
 
-        builder.append(" ");
-
-        if (longitude < 0) {
-            builder.append("W ");
-        } else {
-            builder.append("E ");
+            String longitudeDegrees = Location.convert(Math.abs(coordinat), Location.FORMAT_SECONDS);
+            String[] longitudeSplit = longitudeDegrees.split(":");
+            builder.append(longitudeSplit[0]);
         }
-
-        String longitudeDegrees = Location.convert(Math.abs(longitude), Location.FORMAT_SECONDS);
-        String[] longitudeSplit = longitudeDegrees.split(":");
-        builder.append(longitudeSplit[0]);
-        builder.append("\u00B0");
-        builder.append(longitudeSplit[1]);
-        builder.append("'");
-        builder.append(longitudeSplit[2]);
-        builder.append("\"");
-
         return builder.toString();
     }
 
+    public String convertCoordinatToMinutesSecond(double coor, int typeCoordinat) {
+        StringBuilder builder = new StringBuilder();
+
+        if (typeCoordinat == ConfigApps.LATITUDE_TYPE){
+            String latitudeDegrees = Location.convert(Math.abs(coor), Location.FORMAT_SECONDS);
+            String[] latitudeSplit = latitudeDegrees.split(":");
+            builder.append(latitudeSplit[1]);
+            builder.append("'");
+            builder.append(latitudeSplit[2]);
+        }
+
+        if (typeCoordinat == ConfigApps.LONGITUDE_TYPE){
+            String longitudeDegrees = Location.convert(Math.abs(coor), Location.FORMAT_SECONDS);
+            String[] longitudeSplit = longitudeDegrees.split(":");
+            builder.append(longitudeSplit[1]);
+            builder.append("'");
+            builder.append(longitudeSplit[2]);
+        }
+
+        return builder.toString();
+    }
 }

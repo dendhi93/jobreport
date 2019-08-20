@@ -29,6 +29,10 @@ public class ConfigApps {
     public static final Integer DISABLE_TYPE = 1;
     public static final Integer ENABLE_TYPE = 0;
 
+    //coordinat type
+    public static final Integer LATITUDE_TYPE = 1;
+    public static final Integer LONGITUDE_TYPE = 2;
+
     //send type
     public static final int EMAIL_TYPE = 1;
     public static final int WA_TYPE = 2;
