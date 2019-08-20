@@ -669,22 +669,39 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     document.add(tblCoorSite);
 
                     //todo convert into decimal
-//                    String convertLatlong;
+                    String convertLat;
+                    String convertLongitude;
 //                    String convertLatlongMinSec;
 //                    String[] splitDecimalLatLng;
 //                    String[] splitDecimalLatLngMinSec;
-//                    String[] splitDirectionLat;
-//                    String[] splitDecimalLatMinSec;
-//                    String[] splitDecimalLngMinSec;
-//                    String tempLatDegree = "0.0";
-//                    String tempLngDegree = "0.0";
-//                    String directionLong = "";
-//                    String directionLat = "";
-//                    String tempLatMin = "";
-//                    String tempLngMin = "";
-//                    String tempLatSec = "";
-//                    String tempLngSec = "";
-//
+                    String[] splitDirectionLat;
+                    String[] splitDirectionLongitude;
+                    String[] splitDecimalLatMinSec;
+                    String[] splitDecimalLngMinSec;
+                    String tempLatDegree = "0.0";
+                    String tempLngDegree = "0.0";
+                    String directionLong = "";
+                    String directionLat = "";
+                    String tempLatMin = "";
+                    String tempLngMin = "";
+                    String tempLatSec = "";
+                    String tempLngSec = "";
+
+                    if (!alInfSite.get(0).getLat().contains("0,0") || !alInfSite.get(0).getLongitude().contains("0,0")){
+                        convertLat = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat()), ConfigApps.LATITUDE_TYPE);
+                        if (convertLat.contains("S ")){ directionLat = "S";
+                        }else if (convertLat.contains("N ")){ directionLat = "N"; }
+                        splitDirectionLat = convertLat.split(" ");
+                        tempLatDegree = splitDirectionLat[1];
+
+                        convertLongitude = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat()), ConfigApps.LONGITUDE_TYPE);
+                        if (convertLongitude.contains("W ")){
+                            directionLong = "W";
+                        }else if (convertLongitude.contains("E ")){
+                            directionLong = "E";
+                        }
+
+                    }
 //                    if (!alInfSite.get(0).getLat().contains("0,0") || !alInfSite.get(0).getLongitude().contains("0,0")){
 //                        convertLatlong = jobUtils.convertCoordinatToDegree(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
 //                        convertLatlongMinSec = jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(alInfSite.get(0).getLat()), Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
