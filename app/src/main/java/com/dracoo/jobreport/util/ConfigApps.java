@@ -71,7 +71,6 @@ public class ConfigApps {
     public static final String chooseDeviceInput = "entry.1547303458";
     public static final String pageHistory = "pageHistory";
 
-
     //vsat conn
     public static final String vsatProbInput = "entry.839003990";
     public static final String modemVsatInput = "entry.56164180";
