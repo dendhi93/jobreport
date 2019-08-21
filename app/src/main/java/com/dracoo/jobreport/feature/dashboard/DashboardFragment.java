@@ -741,10 +741,10 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Sec.", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(": ", contentFont));
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell(tempLngSec, contentFont));
-                    if (directionLat.equals("E")){
-                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) E", contentFont));
+                    if (directionLong.equals("W")){
+                        tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) W", contentFont));
                         tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("E", contentFont));
-                    }else if (directionLat.equals("E")){
+                    }else if (directionLong.equals("E")){
                         tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("W", contentFont));
                         tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("(v) E", contentFont));
                     }
