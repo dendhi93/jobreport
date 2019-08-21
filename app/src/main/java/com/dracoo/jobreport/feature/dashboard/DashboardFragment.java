@@ -369,8 +369,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.pageHistory, "0,1,2,4");
                 }
 
-
-
                 //todo terus params
                 return params;
             }
