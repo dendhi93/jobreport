@@ -25,7 +25,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:padding="16dp"
-            android:text="Untuk menggunakan seluruh fitur aplikasi Job Report, anda harus mengizinkan aplikasi MUF Survey mengakses fitur berikut pada ponsel Android anda :"
+            android:text="Untuk menggunakan seluruh fitur aplikasi Job Report, anda harus mengizinkan aplikasi Job Report mengakses fitur berikut pada ponsel Android anda :"
             android:textColor="#2b2b2b"
             android:textSize="17sp" />
 
@@ -143,7 +143,6 @@
             android:layout_below="@+id/permission_list_container"
             android:layout_width="match_parent"
             android:text="@string/persmission_button"
-            android:onClick="actClick"
             android:id="@+id/all_permissions_button"
             android:textColor="@color/colorWhite"
             android:background="@drawable/ic_blue_button"
