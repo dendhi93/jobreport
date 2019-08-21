@@ -355,6 +355,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 params.put(ConfigApps.onlineInput, alProblem.get(0).getOnline().trim());
                 params.put(ConfigApps.finishInput, alProblem.get(0).getFinish().trim());
                 params.put(ConfigApps.picInput, alProblem.get(0).getClosed().trim());
+                params.put(ConfigApps.pageHistory, "0,1");
 
                 //todo terus params
                 return params;
@@ -709,7 +710,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         tempLngSec = splitDecimalLngMinSec[1];
                     }
 
-                    //TODO ROMBAK TABEL
                     PdfPTable tblcontentCoorSite = new PdfPTable(13);
                     tblcontentCoorSite.setHorizontalAlignment(Element.ALIGN_LEFT);
                     tblcontentCoorSite.addCell(JobReportUtils.borderlessCell("Latitude ", contentFont));

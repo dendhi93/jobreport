@@ -69,6 +69,8 @@ public class ConfigApps {
     public static final String finishInput = "entry.1884429671";
     public static final String picInput = "entry.230823196";
     public static final String chooseDeviceInput = "entry.1547303458";
+    public static final String pageHistory = "pageHistory";
+
 
     //vsat conn
     public static final String vsatProbInput = "entry.839003990";
