@@ -78,6 +78,7 @@ public class ConfigApps {
     public static final String dipIDUInput = "entry.1904588505";
     public static final String rfuInput = "entry.107133898";
     public static final String lnbInput = "entry.152202183";
+    public static final String dipODUInput = "entry.555820118";
     public static final String xModemVsatInput = "entry.1314192515";
     public static final String xAdaptorVsatInput = "entry.1248459208";
     public static final String xDipIDUInput = "entry.1113739701";
