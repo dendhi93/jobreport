@@ -355,7 +355,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 params.put(ConfigApps.onlineInput, alProblem.get(0).getOnline().trim());
                 params.put(ConfigApps.finishInput, alProblem.get(0).getFinish().trim());
                 params.put(ConfigApps.picInput, alProblem.get(0).getClosed().trim());
-                params.put(ConfigApps.chooseDeviceInput, "");
+                params.put(ConfigApps.chooseDeviceInput, preference.getConnType().trim());
                 if (preference.getConnType().equals("VSAT")){
                     params.put(ConfigApps.vsatProbInput, "");
                     params.put(ConfigApps.modemVsatInput, alVsatSetup.get(0).getSn_modem().trim());
@@ -363,9 +363,12 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.dipIDUInput, alVsatSetup.get(0).getSn_dip_idu().trim());
                     params.put(ConfigApps.rfuInput, alVsatSetup.get(0).getSn_rfu().trim());
                     params.put(ConfigApps.lnbInput, alVsatSetup.get(0).getSn_lnb().trim());
+                    params.put(ConfigApps.xDipODUInput, alVsatSetup.get(0).getSn_dip_odu().trim());
                     params.put(ConfigApps.pageHistory, "0,1,2,3");
                 }else{
                     params.put(ConfigApps.probM2mInput, "");
+                    params.put(ConfigApps.modemM2mInput, alM2mSetup.get(0).getBrand_type_m2m());
+                    params.put(ConfigApps.adaptorM2mInput, alM2mSetup.get(0).getBrand_type_adaptor());
                     params.put(ConfigApps.pageHistory, "0,1,2,4");
                 }
 
