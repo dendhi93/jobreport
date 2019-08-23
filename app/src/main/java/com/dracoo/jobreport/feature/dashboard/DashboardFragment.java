@@ -142,6 +142,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     private String vsatTemp ="";
     private String stAction = "";
     private String visionSignType, picSignType;
+    private StringBuilder stringBuilder;
     private RequestQueue queue;
     CustomList_Dashboard_Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
@@ -310,6 +311,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
     private void sendDataToGform(){
         prg_dash.setVisibility(View.VISIBLE);
+        convertActionIntoString();
         queue = Volley.newRequestQueue(getActivity());
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -358,16 +360,23 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 params.put(ConfigApps.picInput, alProblem.get(0).getClosed().trim());
                 params.put(ConfigApps.chooseDeviceInput, preference.getConnType().trim());
                 if (preference.getConnType().equals("VSAT")){
-                    params.put(ConfigApps.vsatProbInput, "");
+                    params.put(ConfigApps.vsatProbInput, alProblem.get(0).getSymptom().trim());
                     params.put(ConfigApps.modemVsatInput, alVsatSetup.get(0).getSn_modem().trim());
                     params.put(ConfigApps.adaptorVsatInput, alVsatSetup.get(0).getSn_adaptor().trim());
                     params.put(ConfigApps.dipIDUInput, alVsatSetup.get(0).getSn_dip_idu().trim());
                     params.put(ConfigApps.rfuInput, alVsatSetup.get(0).getSn_rfu().trim());
                     params.put(ConfigApps.lnbInput, alVsatSetup.get(0).getSn_lnb().trim());
                     params.put(ConfigApps.dipODUInput, alVsatSetup.get(0).getSn_dip_odu().trim());
-                    params.put(ConfigApps.pageHistory, "0,1,2,3");
+                    params.put(ConfigApps.xActionInput, stringBuilder.toString());
+                    params.put(ConfigApps.dateXpollInput, alXpoll.get(0).getInsert_time());
+                    params.put(ConfigApps.satteliteXpollInput, alXpoll.get(0).getSat().trim());
+                    params.put(ConfigApps.cpiXpollInput, alXpoll.get(0).getCpi().trim());
+                    params.put(ConfigApps.cnXpollInput, alXpoll.get(0).getCn().trim());
+                    params.put(ConfigApps.asiXpollInput, alXpoll.get(0).getAsi().trim());
+                    params.put(ConfigApps.picXpollInput, alXpoll.get(0).getOp().trim());
+                    params.put(ConfigApps.pageHistory, "0,1,2,3,5,6");
                 }else{
-                    params.put(ConfigApps.probM2mInput, "");
+                    params.put(ConfigApps.probM2mInput, alProblem.get(0).getSymptom().trim());
                     params.put(ConfigApps.modemM2mInput, alM2mSetup.get(0).getBrand_type_m2m());
                     params.put(ConfigApps.adaptorM2mInput, alM2mSetup.get(0).getBrand_type_adaptor());
                     params.put(ConfigApps.sim1ProvM2mInput, alM2mSetup.get(0).getSim_card1_type().trim());
@@ -376,8 +385,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.sim2ProvM2mInput, alM2mSetup.get(0).getSim_card2_type().trim());
                     params.put(ConfigApps.sim2NoM2mInput, alM2mSetup.get(0).getSim_card2_sn().trim());
                     params.put(ConfigApps.sim2PUKM2mInput, alM2mSetup.get(0).getSim_card2_puk().trim());
+                    params.put(ConfigApps.xActionInput, stringBuilder.toString());
 
-                    params.put(ConfigApps.pageHistory, "0,1,2,4");
+                    params.put(ConfigApps.pageHistory, "0,1,2,4,5");
                 }
 
                 //todo terus params
@@ -1965,15 +1975,48 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 
     private void convertActionIntoString(){
         try{
-            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder = new StringBuilder();
             if (alAction.size() > 0){
-                for(int i = 0; i < alAction.size(); i++){
-                    if (i == 0){
-                        stringBuilder.append(alAction.get(i).getAction_desc());
-                    }
-                        stringBuilder.append(", "+alAction.get(i).getAction_desc());
+                int x = 0;
+                arr_actionDateTime = new String[alAction.size()];
+                arr_actionTrans = new String[alAction.size()];
+                arr_actionEndTime = new String[alAction.size()];
+                for (MasterAction action : alAction){
+                    arr_actionDateTime[x] = action.getAction_date_time();
+                    arr_actionTrans[x] = action.getAction_desc();
+                    arr_actionEndTime[x] = action.getAction_end_time();
+                    String[] arrSplit = arr_actionDateTime[x].split(",");
+                    String[] arrSplitEndTime = arr_actionEndTime[x].split(",");
+                    if (DateTimeUtils.getDateDiff(arrSplitEndTime[0],arrSplit[0] ) > 1){
+                        if (x == 0){
+                            stringBuilder.append(arrSplit[0] +"-" + arrSplitEndTime[0]
+                                    + ";"+DateTimeUtils.getChangeTimeFormat(arrSplit[1])
+                                    + "-" +DateTimeUtils.getChangeTimeFormat(arrSplitEndTime[1])
+                                    +";"+arr_actionTrans[x]);
+                        }else{
+                            stringBuilder.append("," +arrSplit[0] +"-" + arrSplitEndTime[0]
+                                    + ";"+DateTimeUtils.getChangeTimeFormat(arrSplit[1])
+                                    + "-" +DateTimeUtils.getChangeTimeFormat(arrSplitEndTime[1])
+                                    +";"+arr_actionTrans[x]);
+                        }
+                    }else{
+                        if (x == 0){
+                            stringBuilder.append(arrSplit[0] + ";"
+                                    + DateTimeUtils.getChangeTimeFormat(arrSplit[1])
+                                    + "-" + DateTimeUtils.getChangeTimeFormat(arrSplitEndTime[1]
+                                    + ";"+arr_actionTrans[x]));
+                        }else{
+                            stringBuilder.append(", " +arrSplit[0] + ";"
+                                    + DateTimeUtils.getChangeTimeFormat(arrSplit[1])
+                                    + "-" + DateTimeUtils.getChangeTimeFormat(arrSplitEndTime[1]
+                                    + ";"+arr_actionTrans[x]));
+                        }
                     }
                 }
-        }catch (Exception e){ messageUtils.toastMessage("failed action convert ", ConfigApps.T_ERROR); }
+            }
+        }catch (Exception e){
+            messageUtils.toastMessage("failed action convert ", ConfigApps.T_ERROR);
+            stringBuilder.append("kosong");
+        }
     }
 }
