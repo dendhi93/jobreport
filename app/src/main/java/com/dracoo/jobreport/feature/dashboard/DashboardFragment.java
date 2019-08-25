@@ -392,7 +392,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.sim2PUKM2mInput, alM2mSetup.get(0).getSim_card2_puk().trim());
                     params.put(ConfigApps.xActionInput, stringBuilder.toString());
 
-                    params.put(ConfigApps.pageHistory, "0,1,2,4,5");
+                    params.put(ConfigApps.pageHistory, "0,1,2,4,5,8");
                 }
 
                 //todo terus params

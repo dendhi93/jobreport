@@ -91,7 +91,6 @@ public class ConfigApps {
     public static final String cnXpollInput = "entry.634103523";
     public static final String asiXpollInput = "entry.1432626246";
     public static final String picXpollInput = "entry.1364940602";
-
     public static final String satParamInput = "entry.1543127753";
     public static final String ssInput = "entry.1428898765";
     public static final String mountingInput = "entry.1710460388";
@@ -100,12 +99,6 @@ public class ConfigApps {
     public static final String snmpParamInput = "entry.2088927900";
     public static final String gatewayParamInput = "entry.476213184";
     public static final String esnModemParamInput = "entry.1049173997";
-
-
-
-
-
-
 
     //m2m conn
     public static final String probM2mInput = "entry.997578387";
@@ -127,8 +120,6 @@ public class ConfigApps {
     public static final String xSim2PukM2mInput = "entry.1920465534";
 
     public static final String xActionInput = "entry.353195564";
-    public static final String resultInput = "entry.1041449695";
-    public static final String notesInput = "entry.1620393634";
 
 
 }
