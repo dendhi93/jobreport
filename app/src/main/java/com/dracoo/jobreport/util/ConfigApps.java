@@ -95,6 +95,17 @@ public class ConfigApps {
     public static final String satParamInput = "entry.1543127753";
     public static final String ssInput = "entry.1428898765";
     public static final String mountingInput = "entry.1710460388";
+    public static final String idATMInput = "entry.1437655441";
+    public static final String ipLanParamInput = "entry.885539463";
+    public static final String snmpParamInput = "entry.2088927900";
+    public static final String gatewayParamInput = "entry.476213184";
+    public static final String esnModemParamInput = "entry.1049173997";
+
+
+
+
+
+
 
     //m2m conn
     public static final String probM2mInput = "entry.997578387";

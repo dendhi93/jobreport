@@ -374,7 +374,12 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.cnXpollInput, alXpoll.get(0).getCn().trim());
                     params.put(ConfigApps.asiXpollInput, alXpoll.get(0).getAsi().trim());
                     params.put(ConfigApps.picXpollInput, alXpoll.get(0).getOp().trim());
-                    params.put(ConfigApps.pageHistory, "0,1,2,3,5,6");
+                    params.put(ConfigApps.ipLanParamInput, alConnParam.get(0).getLan_parameter().trim());
+                    params.put(ConfigApps.snmpParamInput, alConnParam.get(0).getManagement_snmp().trim());
+                    params.put(ConfigApps.gatewayParamInput, alConnParam.get(0).getManagement_gateway().trim());
+                    params.put(ConfigApps.esnModemParamInput, alConnParam.get(0).getManagement_esnmodem().trim());
+
+                    params.put(ConfigApps.pageHistory, "0,1,2,3,5,6,8");
                 }else{
                     params.put(ConfigApps.probM2mInput, alProblem.get(0).getSymptom().trim());
                     params.put(ConfigApps.modemM2mInput, alM2mSetup.get(0).getBrand_type_m2m());
@@ -2003,13 +2008,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         if (x == 0){
                             stringBuilder.append(arrSplit[0] + ";"
                                     + DateTimeUtils.getChangeTimeFormat(arrSplit[1])
-                                    + "-" + DateTimeUtils.getChangeTimeFormat(arrSplitEndTime[1]
-                                    + ";"+arr_actionTrans[x]));
+                                    + "-" + DateTimeUtils.getChangeTimeFormat(arrSplitEndTime[1])
+                                    + ";"+arr_actionTrans[x]);
                         }else{
                             stringBuilder.append(", " +arrSplit[0] + ";"
                                     + DateTimeUtils.getChangeTimeFormat(arrSplit[1])
-                                    + "-" + DateTimeUtils.getChangeTimeFormat(arrSplitEndTime[1]
-                                    + ";"+arr_actionTrans[x]));
+                                    + "-" + DateTimeUtils.getChangeTimeFormat(arrSplitEndTime[1])
+                                    + ";"+arr_actionTrans[x]);
                         }
                     }
                 }
