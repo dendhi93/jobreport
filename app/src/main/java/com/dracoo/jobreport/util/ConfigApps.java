@@ -118,8 +118,12 @@ public class ConfigApps {
     public static final String xSim2ProvM2mInput = "entry.1324318973";
     public static final String xSim2NoM2mInput = "entry.682073080";
     public static final String xSim2PukM2mInput = "entry.1920465534";
-
+    public static final String user1M2mInput = "entry.1664100032";
+    public static final String remote1M2mInput = "entry.695136195";
+    public static final String tunnelId1M2mInput = "entry.1581221512";
+    public static final String aggregat1M2mInput = "entry.289137078";
+    public static final String ipLan1M2mInput = "entry.496499935";
+    public static final String boundingM2mInput = "entry.1055987999";
     public static final String xActionInput = "entry.353195564";
-
 
 }

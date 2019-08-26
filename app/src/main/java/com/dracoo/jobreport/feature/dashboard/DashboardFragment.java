@@ -391,11 +391,15 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.sim2NoM2mInput, alM2mSetup.get(0).getSim_card2_sn().trim());
                     params.put(ConfigApps.sim2PUKM2mInput, alM2mSetup.get(0).getSim_card2_puk().trim());
                     params.put(ConfigApps.xActionInput, stringBuilder.toString());
-
+                    params.put(ConfigApps.user1M2mInput, alM2mData.get(0).getUsername().trim());
+                    params.put(ConfigApps.remote1M2mInput, alM2mData.get(0).getRemote().trim());
+                    params.put(ConfigApps.tunnelId1M2mInput, alM2mData.get(0).getTunnel_id().trim());
+                    params.put(ConfigApps.aggregat1M2mInput, alM2mData.get(0).getAgg().trim());
+                    params.put(ConfigApps.ipLan1M2mInput, alM2mData.get(0).getIp_lan().trim());
+                    params.put(ConfigApps.boundingM2mInput, alM2mData.get(0).getIp_bonding().trim());
                     params.put(ConfigApps.pageHistory, "0,1,2,4,5,8");
                 }
 
-                //todo terus params
                 return params;
             }
         };
