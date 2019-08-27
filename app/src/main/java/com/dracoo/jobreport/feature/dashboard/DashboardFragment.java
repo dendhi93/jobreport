@@ -141,6 +141,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
     private String stUn  = "";
     private String vsatTemp ="";
     private String stAction = "";
+    String splitConvertLat = "0.0";
+    String splitConvertLong = "0.0";
     private String visionSignType, picSignType;
     private StringBuilder stringBuilder;
     private RequestQueue queue;
@@ -345,8 +347,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 params.put(ConfigApps.cityInput, alInfSite.get(0).getCity().trim());
                 params.put(ConfigApps.kabupatenInput, alInfSite.get(0).getKabupaten().trim());
                 params.put(ConfigApps.proviencyInput, alInfSite.get(0).getProv().trim());
-                params.put(ConfigApps.latInput, alInfSite.get(0).getLat().trim());
-                params.put(ConfigApps.longitudeInput, alInfSite.get(0).getLongitude().trim());
+                params.put(ConfigApps.latInput, splitConvertLat.trim());
+                params.put(ConfigApps.longitudeInput, splitConvertLong.trim());
                 params.put(ConfigApps.connTypeInput, preference.getConnType().trim().trim());
                 params.put(ConfigApps.progressInput, preference.getProgress().trim());
                 params.put(ConfigApps.takeOffInput, alProblem.get(0).getBerangkat().trim());
@@ -2022,6 +2024,19 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         }
                     }
                 }
+            }
+
+            String[] splitDecimalCoor;
+            String convertCoor = jobUtils.convertCoordinat(Double.parseDouble(alInfSite.get(0).getLat().trim()),
+                    Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
+            if (convertCoor.contains("W ")){
+                splitDecimalCoor = convertCoor.split("W ");
+                splitConvertLat = splitDecimalCoor[0];
+                splitConvertLong = "W "+splitDecimalCoor[1];
+            }else if(convertCoor.contains("E ")){
+                splitDecimalCoor = convertCoor.split("E ");
+                splitConvertLat = splitDecimalCoor[0];
+                splitConvertLong = "E "+splitDecimalCoor[1];
             }
         }catch (Exception e){
             messageUtils.toastMessage("failed action convert ", ConfigApps.T_ERROR);

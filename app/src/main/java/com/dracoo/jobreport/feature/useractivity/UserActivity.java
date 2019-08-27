@@ -325,9 +325,7 @@ public class UserActivity extends AppCompatActivity
             if (al_verifyInfoSite.size() > 0){
                 transHistoryUser(al_verifyInfoSite.get(0).getId_site(), getString(R.string.infoSite_trans));
                 jobDescTrans(al_verifyInfoSite.get(0).getId_site());
-            }else{
-                messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON);
-            }
+            }else{ messageUtils.snackBar_message("Mohon hubungi Support team", UserActivity.this, ConfigApps.SNACKBAR_WITH_BUTTON); }
         }catch (Exception e){
             String custName = txt_userAct_customer.getText().toString().trim();
             if (custName.contains(" ")){
