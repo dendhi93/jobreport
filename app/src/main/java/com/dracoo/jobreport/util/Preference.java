@@ -90,6 +90,8 @@ public class Preference {
         editor.remove(KEY_CUST_NAME);
         editor.remove(KEY_SEND_WA);
         editor.remove(KEY_SEND_EMAIL);
+        editor.remove(KEY_SEND_GFORM);
+        editor.remove(KEY_CUST_NAME);
 
         editor.apply();
     }
