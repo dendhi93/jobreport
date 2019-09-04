@@ -131,8 +131,6 @@ public class ConfigApps {
     public static final String upsVACInput = "entry.384784041";
     public static final String groundingUPSInput = "entry.268092999";
     public static final String fanBoxServerInput = "entry.929696924";
-
-
-
+    public static final String suhuInput = "entry.121016634";
 
 }
