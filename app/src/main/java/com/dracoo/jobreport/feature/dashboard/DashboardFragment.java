@@ -381,7 +381,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.gatewayParamInput, alConnParam.get(0).getManagement_gateway().trim());
                     params.put(ConfigApps.esnModemParamInput, alConnParam.get(0).getManagement_esnmodem().trim());
 
-                    params.put(ConfigApps.pageHistory, "0,1,2,3,5,6,8");
+                    params.put(ConfigApps.pageHistory, "0,1,2,3,5,6,8,9");
                 }else{
                     params.put(ConfigApps.probM2mInput, alProblem.get(0).getSymptom().trim());
                     params.put(ConfigApps.modemM2mInput, alM2mSetup.get(0).getBrand_type_m2m());
@@ -399,7 +399,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.aggregat1M2mInput, alM2mData.get(0).getAgg().trim());
                     params.put(ConfigApps.ipLan1M2mInput, alM2mData.get(0).getIp_lan().trim());
                     params.put(ConfigApps.boundingM2mInput, alM2mData.get(0).getIp_bonding().trim());
-                    params.put(ConfigApps.pageHistory, "0,1,2,4,5,8");
+                    params.put(ConfigApps.pageHistory, "0,1,2,4,5,8,9");
                 }
 
                 return params;
@@ -1599,6 +1599,17 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 try{
                     String maintenanceContent;
                     if (alJobDesc.size() > 0){
+                        String tempWALat = alInfSite.get(0).getLat().trim();
+                        String tempWALng = alInfSite.get(0).getLongitude().trim();
+                        String tempWAConvertLat = "";
+                        String tempWAConvertLng = "";
+                        if (tempWALat.equals("0.0") && tempWALng.equals("0.0")){
+                            tempWAConvertLat = "0.0,";
+                            tempWAConvertLng = "0.0";
+                        }else{
+                            tempWAConvertLat = jobUtils.convertCoordinatToDegree(Double.parseDouble(tempWALat), ConfigApps.LATITUDE_TYPE);
+                            tempWAConvertLng = jobUtils.convertCoordinatToDegree(Double.parseDouble(tempWAConvertLng), ConfigApps.LONGITUDE_TYPE);
+                        }
                         maintenanceContent = "Progress = " +preference.getProgress().trim() +"\n" +
                                 "TT / WO = " +alInfSite.get(0).getTtwo().trim() + "\n"+
                                 "Jenis Koneksi = " +preference.getConnType() + "\n"+
@@ -1610,8 +1621,8 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                                 "Kabupaten = " +alInfSite.get(0).getKabupaten().trim()+ "\n"+
                                 "Provinsi = " +alInfSite.get(0).getProv().trim() + "\n" +
                                 "Remote Name = " +alInfSite.get(0).getRemote_name().trim() + "\n" +
-                                "Latitude = " +alInfSite.get(0).getLat().trim()+ "\n"+
-                                "Longitude = " + alInfSite.get(0).getLongitude().trim() + "\n"+
+                                "Latitude = " +tempWAConvertLat.trim()+ "\n"+
+                                "Longitude = " + tempWAConvertLng.trim() + "\n"+
                                 "PIC = " +alJobDesc.get(0).getName_pic() + "\n"+
                                 "No PIC = " +alJobDesc.get(0).getPic_phone();
                         stCopyClipBoard.append(maintenanceContent+"\n\n");
@@ -1632,6 +1643,10 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                                 "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
                                 "Start Ulang = " +stProbRestart +"\n" +
                                 "Online = " +alProblem.get(0).getOnline().trim() +"\n"+
+                                "Start Ulang = " +alProblem.get(0).getRestart().trim() +"\n"+
+                                "Delay = " +alProblem.get(0).getDelay_reason().trim() +"\n"+
+                                "Pending Kegiatan = " +alProblem.get(0).getDelay_activity().trim() +"\n"+
+                                "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
                                 "Closed = " +alProblem.get(0).getClosed().trim() +"\n"+
                                 "By = " +alProblem.get(0).getClosed_by().trim();
                         stCopyClipBoard.append(problemContent+"\n\n");

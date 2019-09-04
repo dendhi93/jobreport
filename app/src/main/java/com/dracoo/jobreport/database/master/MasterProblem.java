@@ -240,7 +240,6 @@ public class MasterProblem implements Serializable {
         }else{
             return restart;
         }
-
     }
 
     public void setRestart(String restart) {

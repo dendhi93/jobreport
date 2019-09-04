@@ -124,6 +124,15 @@ public class ConfigApps {
     public static final String aggregat1M2mInput = "entry.289137078";
     public static final String ipLan1M2mInput = "entry.496499935";
     public static final String boundingM2mInput = "entry.1055987999";
+
     public static final String xActionInput = "entry.353195564";
+    public static final String plnVACInput = "entry.262358750";
+    public static final String groundingVACInput = "entry.2075033225";
+    public static final String upsVACInput = "entry.384784041";
+    public static final String groundingUPSInput = "entry.268092999";
+    public static final String fanBoxServerInput = "entry.929696924";
+
+
+
 
 }
