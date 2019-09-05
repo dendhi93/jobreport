@@ -1375,7 +1375,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         m2mSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         m2mSetupTable.addCell(JobReportUtils.bottomLineCell(" "+simCard2SN, contentFont));
                         m2mSetupTable.addCell(JobReportUtils.bottomLineCell("PUK  ", contentFont));
-                        m2mSetupTable.addCell(JobReportUtils.bottomLineCell(": " +alM2mSetup.get(0).getSim_card2_puk().trim(), contentFont));
+                        m2mSetupTable.addCell(JobReportUtils.bottomLineCell(": " +simcard2Puk.trim(), contentFont));
                         m2mSetupTable.addCell(JobReportUtils.bottomLineCell("|", contentFont));
                         m2mSetupTable.addCell(JobReportUtils.bottomLineCell(" ", contentFont));
                         float[] m2mSetup = new float[]{55f, 60f, 5f, 60f};
