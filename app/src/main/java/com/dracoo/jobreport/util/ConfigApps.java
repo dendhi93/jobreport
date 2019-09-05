@@ -132,5 +132,7 @@ public class ConfigApps {
     public static final String groundingUPSInput = "entry.268092999";
     public static final String fanBoxServerInput = "entry.929696924";
     public static final String suhuInput = "entry.121016634";
+    public static final String suhuBoxInput = "entry.1133084960";
+    public static final String suhuPerangkatInput = "entry.398583765";
 
 }

@@ -380,7 +380,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.snmpParamInput, alConnParam.get(0).getManagement_snmp().trim());
                     params.put(ConfigApps.gatewayParamInput, alConnParam.get(0).getManagement_gateway().trim());
                     params.put(ConfigApps.esnModemParamInput, alConnParam.get(0).getManagement_esnmodem().trim());
-
+                    params.put(ConfigApps.plnVACInput, alEnv.get(0).getTegangan_pln().trim());
+                    params.put(ConfigApps.groundingVACInput, alEnv.get(0).getGrounding_pln().trim());
+                    params.put(ConfigApps.upsVACInput, alEnv.get(0).getTegangan_ups().trim());
+                    params.put(ConfigApps.groundingUPSInput, alEnv.get(0).getGrounding_ups().trim());
+                    params.put(ConfigApps.suhuInput, alEnv.get(0).getSuhu().trim());
                     params.put(ConfigApps.pageHistory, "0,1,2,3,5,6,8,9");
                 }else{
                     params.put(ConfigApps.probM2mInput, alProblem.get(0).getSymptom().trim());
@@ -399,6 +403,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     params.put(ConfigApps.aggregat1M2mInput, alM2mData.get(0).getAgg().trim());
                     params.put(ConfigApps.ipLan1M2mInput, alM2mData.get(0).getIp_lan().trim());
                     params.put(ConfigApps.boundingM2mInput, alM2mData.get(0).getIp_bonding().trim());
+                    params.put(ConfigApps.plnVACInput, alEnv.get(0).getTegangan_pln().trim());
+                    params.put(ConfigApps.groundingVACInput, alEnv.get(0).getGrounding_pln().trim());
+                    params.put(ConfigApps.upsVACInput, alEnv.get(0).getTegangan_ups().trim());
+                    params.put(ConfigApps.groundingUPSInput, alEnv.get(0).getGrounding_ups().trim());
+                    params.put(ConfigApps.suhuInput, alEnv.get(0).getSuhu().trim());
                     params.put(ConfigApps.pageHistory, "0,1,2,4,5,8,9");
                 }
 
