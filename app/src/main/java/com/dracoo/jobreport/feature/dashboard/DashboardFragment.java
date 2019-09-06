@@ -1610,12 +1610,9 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     if (alJobDesc.size() > 0){
                         String tempWALat = alInfSite.get(0).getLat().trim();
                         String tempWALng = alInfSite.get(0).getLongitude().trim();
-                        String tempWAConvertLat = "";
-                        String tempWAConvertLng = "";
-                        if (tempWALat.equals("0.0") && tempWALng.equals("0.0")){
-                            tempWAConvertLat = "0.0,";
-                            tempWAConvertLng = "0.0";
-                        }else{
+                        String tempWAConvertLat = "0.0";
+                        String tempWAConvertLng = "0.0";
+                        if (!tempWALat.trim().equals("0.0") && !tempWALng.trim().equals("0.0")){
                             tempWAConvertLat = jobUtils.convertCoordinatToDegree(Double.parseDouble(tempWALat), ConfigApps.LATITUDE_TYPE)+"\u00b0 "
                                                 +jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(tempWALat), ConfigApps.LATITUDE_TYPE)+ "\"";
                             tempWAConvertLng = jobUtils.convertCoordinatToDegree(Double.parseDouble(tempWALng), ConfigApps.LONGITUDE_TYPE)+"\u00b0 "
