@@ -1616,8 +1616,10 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                             tempWAConvertLat = "0.0,";
                             tempWAConvertLng = "0.0";
                         }else{
-                            tempWAConvertLat = jobUtils.convertCoordinatToDegree(Double.parseDouble(tempWALat), ConfigApps.LATITUDE_TYPE);
-                            tempWAConvertLng = jobUtils.convertCoordinatToDegree(Double.parseDouble(tempWAConvertLng), ConfigApps.LONGITUDE_TYPE);
+                            tempWAConvertLat = jobUtils.convertCoordinatToDegree(Double.parseDouble(tempWALat), ConfigApps.LATITUDE_TYPE)+"\u00b0 "
+                                                +jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(tempWALat), ConfigApps.LATITUDE_TYPE)+ "\"";
+                            tempWAConvertLng = jobUtils.convertCoordinatToDegree(Double.parseDouble(tempWALng), ConfigApps.LONGITUDE_TYPE)+"\u00b0 "
+                                                +jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(tempWALng), ConfigApps.LONGITUDE_TYPE) + "\"";
                         }
                         maintenanceContent = "Progress = " +preference.getProgress().trim() +"\n" +
                                 "TT / WO = " +alInfSite.get(0).getTtwo().trim() + "\n"+
@@ -1651,7 +1653,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                                 "Pending Kegiatan  = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getDelay_activity().trim()) +"\n"+
                                 "Reason Pending = " +alProblem.get(0).getReason().trim() +"\n"+
                                 "Start Ulang = " +stProbRestart +"\n" +
-                                "Online = " +alProblem.get(0).getOnline().trim() +"\n"+
+                                "Online = " +DateTimeUtils.getChangeDateFormat(alProblem.get(0).getOnline().trim()) +"\n"+
                                 "Start Ulang = " +alProblem.get(0).getRestart().trim() +"\n"+
                                 "Delay = " +alProblem.get(0).getDelay_reason().trim() +"\n"+
                                 "Pending Kegiatan = " +alProblem.get(0).getDelay_activity().trim() +"\n"+
@@ -1673,7 +1675,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                                 "Catatan = " +alEnv.get(0).getNotes_ac().trim();
                         stCopyClipBoard.append(environtmentContent+"\n\n");
                     }
-
 
                     if (preference.getConnType().equals("VSAT")){
                         stCopyClipBoard.append("I/0 Equipment\n");
