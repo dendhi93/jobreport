@@ -229,13 +229,13 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
 //        else if (preference.getConnType().equals("VSAT") && !new XpollAdapter(getActivity()).isVsatXpollEmpty(preference.getUn(), preference.getCustID())){
 //            messageUtils.toastMessage("Mohon diinput menu Xpoll terlebih dahulu", ConfigApps.T_INFO);
 //        }
-        else if (preference.getConnType().equals("VSAT") && !new ConnectionParameterAdapter(getActivity()).isParamEmpty(preference.getUn(), preference.getCustID())){
+        else if (preference.getConnType().equals(getActivity().getString(R.string.vsat)) && !new ConnectionParameterAdapter(getActivity()).isParamEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Connection Parameter terlebih dahulu", ConfigApps.T_INFO);
         }
 //        else if (preference.getConnType().equals("M2M") && !new M2mReplaceAdapter(getActivity()).isM2mReplaceEmpty(preference.getUn(), preference.getCustID())){
 //            messageUtils.toastMessage("Mohon diinput menu M2m Replace terlebih dahulu", ConfigApps.T_INFO);
 //        }
-        else if (preference.getConnType().equals("M2M") && !new M2mDataAdapter(getActivity()).isM2mDataEmpty(preference.getUn(), preference.getCustID())){
+        else if (preference.getConnType().equals(getActivity().getString(R.string.m2m)) && !new M2mDataAdapter(getActivity()).isM2mDataEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Data M2M terlebih dahulu", ConfigApps.T_INFO);
         }else if (!preference.getConnType().equals("") && !new ImageAdapter(getActivity()).isImageEmpty(preference.getUn(), preference.getCustID())){
             messageUtils.toastMessage("Mohon diinput menu Document terlebih dahulu", ConfigApps.T_INFO);
@@ -258,7 +258,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 try{
                     alProblem = new ProblemAdapter(getActivity()).val_prob(preference.getCustID(), preference.getUn());
                     alEnv = new EnvAdapter(getActivity()).val_env(preference.getCustID(), preference.getUn());
-                    if(preference.getConnType().equals("VSAT")){
+                    if(preference.getConnType().equals(getActivity().getString(R.string.vsat))){
                         alVsatSetup = new VsatSetupAdapter(getActivity()).val_vsatSetup(preference.getCustID(), preference.getUn());
                         alVsatReplace = new VsatReplaceAdapter(getActivity()).val_vsatReplace(preference.getCustID(), preference.getUn());
                         alXpoll = new XpollAdapter(getActivity()).val_xpoll(preference.getCustID(), preference.getUn());
@@ -361,7 +361,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                 params.put(ConfigApps.finishInput, alProblem.get(0).getFinish().trim());
                 params.put(ConfigApps.picInput, alProblem.get(0).getClosed().trim());
                 params.put(ConfigApps.chooseDeviceInput, preference.getConnType().trim());
-                if (preference.getConnType().equals("VSAT")){
+                if (preference.getConnType().equals(getActivity().getString(R.string.vsat))){
                     params.put(ConfigApps.vsatProbInput, alProblem.get(0).getSymptom().trim());
                     params.put(ConfigApps.modemVsatInput, alVsatSetup.get(0).getSn_modem().trim());
                     params.put(ConfigApps.adaptorVsatInput, alVsatSetup.get(0).getSn_adaptor().trim());
@@ -888,7 +888,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblIOEquip.setSpacingAfter(2f);
                     document.add(tblIOEquip);
 
-                    if (preference.getConnType().trim().equals("VSAT")){
+                    if (preference.getConnType().trim().equals(getActivity().getString(R.string.vsat))){
                         String snModem, snAdaptor, lnb, rfu, dipOdu, dipIdu;
                         if (alVsatReplace.size() > 0){
                             snModem = alVsatReplace.get(0).getSn_modem().trim();
@@ -1673,7 +1673,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         stCopyClipBoard.append(environtmentContent+"\n\n");
                     }
 
-                    if (preference.getConnType().equals("VSAT")){
+                    if (preference.getConnType().equals(getActivity().getString(R.string.vsat))){
                         stCopyClipBoard.append("I/0 Equipment\n");
                         String vsatSetup;
                         if (alVsatSetup.size() > 0){

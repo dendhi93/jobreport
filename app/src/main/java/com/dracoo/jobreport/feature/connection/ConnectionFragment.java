@@ -306,7 +306,7 @@ public class ConnectionFragment extends Fragment {
             messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
         }else if (selectedConn.equals("")){
             messageUtils.snackBar_message("mohon dipilih jenis koneksi", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-        }else if (selectedConn.equals("VSAT")){
+        }else if (selectedConn.equals(getActivity().getString(R.string.vsat))){
             if (!vsatValidation()){ messageUtils.snackBar_message(getActivity().getString(R.string.emptyString), getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             }else{ vsatTrans(); }
         }else if(selectedConn.equals("M2M")){
@@ -524,12 +524,12 @@ public class ConnectionFragment extends Fragment {
         PopupMenu popup = new PopupMenu(wrapper, view);
         if (selectedConn.equals("")){
             messageUtils.snackBar_message("Mohon dipilih jenis koneksi", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-        } else if(selectedConn.equals("VSAT")){
+        } else if(selectedConn.equals(getActivity().getString(R.string.vsat))){
             if (preference.getCustID() == 0){
                 messageUtils.snackBar_message(getActivity().getString(R.string.customer_validation),getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             }else if (preference.getConnType().equals("")){
                 messageUtils.snackBar_message("Mohon diinput dahulu Menu Connection ", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
-            } else if (!preference.getConnType().equals("") && !preference.getConnType().equals("VSAT") ){
+            } else if (!preference.getConnType().equals("") && !preference.getConnType().equals(getActivity().getString(R.string.vsat)) ){
                 messageUtils.snackBar_message("Transaksi M2M sudah diinput, mohon pilih jenis koneksi M2M", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             } else{
                 popup.getMenuInflater().inflate(R.menu.vsat_menu, popup.getMenu());

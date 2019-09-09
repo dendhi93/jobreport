@@ -118,7 +118,7 @@ public class ReplaceActivity extends AppCompatActivity {
         }
 
         if (getSupportActionBar() != null && intentConnectionType == EXTRA_CALLER_VSATCONN){
-            getSupportActionBar().setSubtitle("VSAT");
+            getSupportActionBar().setSubtitle(getString(R.string.vsat));
         }else if (getSupportActionBar() != null && intentConnectionType == EXTRA_CALLER_M2MCONN){
             getSupportActionBar().setSubtitle("M2M");
         }
