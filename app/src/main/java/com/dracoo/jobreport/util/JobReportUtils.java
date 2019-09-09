@@ -17,7 +17,6 @@ import com.itextpdf.text.pdf.PdfPCell;
 
 import java.io.IOException;
 
-
 public class JobReportUtils {
 
     //hide keyboard
@@ -166,7 +165,9 @@ public class JobReportUtils {
             String[] latitudeSplit = latitudeDegrees.split(":");
             builder.append(latitudeSplit[1]);
             builder.append("'");
-            builder.append(latitudeSplit[2]);
+//            builder.append(latitudeSplit[2]);
+            Double dbLatSeconds = Double.parseDouble(latitudeSplit[2]);
+            builder.append(Math.round(dbLatSeconds));
         }
 
         if (typeCoordinat == ConfigApps.LONGITUDE_TYPE){
@@ -174,7 +175,9 @@ public class JobReportUtils {
             String[] longitudeSplit = longitudeDegrees.split(":");
             builder.append(longitudeSplit[1]);
             builder.append("'");
-            builder.append(longitudeSplit[2]);
+//            builder.append(longitudeSplit[2]);
+            Double dbLngSeconds = Double.parseDouble(longitudeSplit[2]);
+            builder.append(Math.round(dbLngSeconds));
         }
 
         return builder.toString();
