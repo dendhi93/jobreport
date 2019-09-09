@@ -114,9 +114,8 @@ public class JobReportUtils {
         builder.append("°");
         builder.append(latitudeSplit[1]);
         builder.append("'");
-        builder.append(latitudeSplit[2]);
+        builder.append(Math.round(Double.parseDouble(latitudeSplit[2])));
         builder.append("\"");
-
         builder.append(" ");
 
         if (longitude < 0) { builder.append("W ");
@@ -128,7 +127,7 @@ public class JobReportUtils {
         builder.append("°");
         builder.append(longitudeSplit[1]);
         builder.append("'");
-        builder.append(longitudeSplit[2]);
+        builder.append(Math.round(Double.parseDouble(longitudeSplit[2])));
         builder.append("\"");
 
         return builder.toString();
@@ -165,9 +164,7 @@ public class JobReportUtils {
             String[] latitudeSplit = latitudeDegrees.split(":");
             builder.append(latitudeSplit[1]);
             builder.append("'");
-//            builder.append(latitudeSplit[2]);
-            Double dbLatSeconds = Double.parseDouble(latitudeSplit[2]);
-            builder.append(Math.round(dbLatSeconds));
+            builder.append(Math.round(Double.parseDouble(latitudeSplit[2])));
         }
 
         if (typeCoordinat == ConfigApps.LONGITUDE_TYPE){
@@ -175,9 +172,7 @@ public class JobReportUtils {
             String[] longitudeSplit = longitudeDegrees.split(":");
             builder.append(longitudeSplit[1]);
             builder.append("'");
-//            builder.append(longitudeSplit[2]);
-            Double dbLngSeconds = Double.parseDouble(longitudeSplit[2]);
-            builder.append(Math.round(dbLngSeconds));
+            builder.append(Math.round(Double.parseDouble(longitudeSplit[2])));
         }
 
         return builder.toString();

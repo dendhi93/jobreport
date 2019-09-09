@@ -484,7 +484,6 @@ public class UserActivity extends AppCompatActivity
 //                txt_userAct_long.setText(String.valueOf(mLastLocation.getLongitude()));
                 JobReportUtils jobUtils = new JobReportUtils();
                 String convertCoor = jobUtils.convertCoordinat(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-                //todo hilangkan bilangan dibelakang koma
                 if (convertCoor.contains("W ")){
                     splitDecimalCoor = convertCoor.split("W ");
                     splitConvertLat = splitDecimalCoor[0];

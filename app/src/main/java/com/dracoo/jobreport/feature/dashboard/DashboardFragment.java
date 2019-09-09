@@ -722,7 +722,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                     tblCoorSite.setSpacingAfter(2f);
                     document.add(tblCoorSite);
 
-                    //todo convert into decimal
+                    //convert into decimal
                     String convertLat;
                     String convertLongitude;
                     String convertLatMinSec;
@@ -756,13 +756,11 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                         splitDecimalLatMinSec = convertLatMinSec.split("'");
                         tempLatMin = splitDecimalLatMinSec[0];
                         tempLatSec = splitDecimalLatMinSec[1];
-                        //todo hilangkan dibelakang koma
 
                         convertLngMinSec = jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(alInfSite.get(0).getLongitude().trim()), ConfigApps.LONGITUDE_TYPE);
                         splitDecimalLngMinSec = convertLngMinSec.split("'");
                         tempLngMin = splitDecimalLngMinSec[0];
                         tempLngSec = splitDecimalLngMinSec[1];
-                        //todo hilangkan dibelakang koma
                     }
 
                     PdfPTable tblcontentCoorSite = new PdfPTable(13);
@@ -1619,7 +1617,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
                                                 +jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(tempWALat), ConfigApps.LATITUDE_TYPE)+ "\"";
                             tempWAConvertLng = jobUtils.convertCoordinatToDegree(Double.parseDouble(tempWALng), ConfigApps.LONGITUDE_TYPE)+"\u00b0 "
                                                 +jobUtils.convertCoordinatToMinutesSecond(Double.parseDouble(tempWALng), ConfigApps.LONGITUDE_TYPE) + "\"";
-                            //todo split dan hilangkan koma dibelakang
                         }
                         maintenanceContent = "Progress = " +preference.getProgress().trim() +"\n" +
                                 "TT / WO = " +alInfSite.get(0).getTtwo().trim() + "\n"+
@@ -2054,7 +2051,6 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
             String[] splitDecimalCoor;
             String convertCoor = jobUtils.convertCoordinat(Double.parseDouble(alInfSite.get(0).getLat().trim()),
                     Double.parseDouble(alInfSite.get(0).getLongitude().trim()));
-            //todo split dan hilangkan bilangan dibelakang koma
             if (convertCoor.contains("W ")){
                 splitDecimalCoor = convertCoor.split("W ");
                 splitConvertLat = splitDecimalCoor[0];
