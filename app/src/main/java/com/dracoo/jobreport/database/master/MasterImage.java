@@ -27,7 +27,12 @@ public class MasterImage implements Serializable {
     private String un_user;
     @DatabaseField(columnName = "image_description")
     private String image_description;
-
+    @DatabaseField(columnName = "t_image_lat")
+    private String t_image_lat;
+    @DatabaseField(columnName = "t_image_lng")
+    private String t_image_lng;
+    @DatabaseField(columnName = "t_image_address")
+    private String t_image_address;
 
     public Integer getId_image() {
         return id_image;
@@ -108,5 +113,29 @@ public class MasterImage implements Serializable {
 
     public void setImage_description(String image_description) {
         this.image_description = image_description;
+    }
+
+    public String getT_image_lat() {
+        return t_image_lat;
+    }
+
+    public void setT_image_lat(String t_image_lat) {
+        this.t_image_lat = t_image_lat;
+    }
+
+    public String getT_image_lng() {
+        return t_image_lng;
+    }
+
+    public void setT_image_lng(String t_image_lng) {
+        this.t_image_lng = t_image_lng;
+    }
+
+    public String getT_image_address() {
+        return t_image_address;
+    }
+
+    public void setT_image_address(String t_image_address) {
+        this.t_image_address = t_image_address;
     }
 }

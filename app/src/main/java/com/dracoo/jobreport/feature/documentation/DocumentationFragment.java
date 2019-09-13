@@ -603,6 +603,17 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
 
+    @Override
+    public void onPause(){
+        try{
+            if (mGoogleApiClient != null  &&  mGoogleApiClient.isConnected()) {
+                mFusedLocation.removeLocationUpdates(callback);
+                mGoogleApiClient.disconnect();
+            }
+        }catch (Exception e){}
+        super.onPause();
+    }
+
 }
 
 

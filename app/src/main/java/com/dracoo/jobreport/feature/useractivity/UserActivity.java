@@ -285,10 +285,7 @@ public class UserActivity extends AppCompatActivity
                 messageUtils.snackBar_message("No handphone pic kurang dari 10 angka",
                         UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
             } else{ infoSiteTrans(); }
-        }catch (Exception e){
-            messageUtils.snackBar_message("Mohon dipilih tipe progress", UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON);
-        }
-
+        }catch (Exception e){ messageUtils.snackBar_message("Mohon dipilih tipe progress", UserActivity.this, ConfigApps.SNACKBAR_NO_BUTTON); }
     }
 
     @OnClick(R.id.imgB_userAct_cancel)
