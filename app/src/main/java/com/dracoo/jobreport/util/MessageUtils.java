@@ -65,16 +65,4 @@ public class MessageUtils {
         return false;
     }
 
-    public String convertToAddress(Location location){
-        try{
-            Geocoder geo = new Geocoder(context, Locale.getDefault());
-            if (location != null){
-                List<Address> addresses = geo.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                if (!addresses.isEmpty()){
-                    return addresses.get(0).getLocality();
-                }
-            }
-        }catch (Exception e){ Log.d("###",""+e.toString()); }
-        return "";
-    }
 }

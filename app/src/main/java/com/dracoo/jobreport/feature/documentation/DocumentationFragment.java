@@ -13,12 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.provider.MediaStore;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -50,13 +45,8 @@ import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -80,7 +70,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class DocumentationFragment extends Fragment implements ItemCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class DocumentationFragment extends Fragment implements ItemCallback {
     private MessageUtils messageUtils;
     private Preference preference;
     private JobReportUtils jobUtils;
@@ -89,7 +79,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
     private String selectedImgTitle;
     private String selectedImgFolder;
     private String customerName = "";
-    private String captureAddress = "";
     private String filePath;
     private File imageToSave;
     private Dao<MasterImage, Integer> imageDao;
@@ -98,12 +87,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
     RecyclerView.LayoutManager layoutManager;
     private CustomList_Doc_Adapter adapter;
     private Handler handler;
-    private Location mLastLocation;
-    private GoogleApiClient mGoogleApiClient;
-    private boolean isGPSEnabled = false;
-    private boolean isNetworkEnabled = false;
-    private LocationManager locationManager;
-    private FusedLocationProviderClient mFusedLocation;
 
     @BindView(R.id. imgV_doc_1)
     ImageView imgV_doc_1;
@@ -137,8 +120,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
         preference = new Preference(getActivity());
         jobUtils = new JobReportUtils();
         prd_doc.setVisibility(View.GONE);
-        mFusedLocation = LocationServices.getFusedLocationProviderClient(getActivity());
-        setupMAPAPI();
+
         if (preference.getConnType().equals("")){
             messageUtils.snackBar_message("Mohon diinput Menu Connection terlebih dahulu", getActivity(), ConfigApps.SNACKBAR_NO_BUTTON);
             imgB_doc_confirm.setEnabled(false);
@@ -152,40 +134,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
             imageDao = new ImageAdapter(getActivity()).getAdapter();
             transHistoryAdapter = new TransHistoryAdapter(getActivity()).getAdapter();
         }catch (Exception e){}
-    }
-
-    private void setupMAPAPI() {
-        // initialize Google API Client
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(getActivity())
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
-    }
-
-    private void checkGps() {
-        locationManager = (LocationManager)  getActivity().getSystemService(Context.LOCATION_SERVICE);
-        assert locationManager != null;
-        isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        if (!isGPSEnabled && !isNetworkEnabled) {
-            new AlertDialog.Builder(getActivity())
-                    .setTitle("GPS Off")
-                    .setMessage("Mohon aktifkan GPS terlebih dahulu")
-                    .setIcon(R.drawable.ic_check)
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                            startActivity(intent);
-                        }
-                    })
-                    .show();
-        } else {
-            mGoogleApiClient.connect();
-        }
     }
 
     @OnClick(R.id.imgV_doc_1)
@@ -396,13 +344,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
                 mImage.setProgress_type(preference.getProgress().trim());
                 mImage.setUn_user(preference.getUn().trim());
                 mImage.setImage_description(txt_doc_docDescription.getText().toString().trim());
-                if (mLastLocation != null){
-                    mImage.setT_image_lat(String.valueOf(mLastLocation.getLatitude()));
-                    mImage.setT_image_lng(String.valueOf(mLastLocation.getLongitude()));
-                }else{
-                    mImage.setT_image_lat("0,0");
-                    mImage.setT_image_lng("0,0");
-                }
+
                 imageDao.create(mImage);
                 filePath = "";
                 imageToSave = null;
@@ -497,7 +439,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
     public void onResume(){
         super.onResume();
         loadRcImage();
-        checkGps();
         prd_doc.setVisibility(View.GONE);
     }
 
@@ -563,63 +504,6 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
             }
         }catch (Exception e){ messageUtils.toastMessage("failed to delete image " +e.toString(), ConfigApps.T_ERROR); }
     }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        LocationRequest request = new LocationRequest();
-        request.setInterval(7 * 1000);
-        request.setFastestInterval(3 * 1000);
-        request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        if (ActivityCompat.checkSelfPermission(
-                this.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        mFusedLocation.requestLocationUpdates(request, callback, Looper.myLooper());
-    }
-
-    private LocationCallback callback = new LocationCallback() {
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
-            String splitConvertLat = "0.0";
-            String splitConvertLong = "0.0";
-            String[] splitDecimalCoor;
-            for (Location location : locationResult.getLocations()) {
-                mLastLocation = location;
-                JobReportUtils jobUtils = new JobReportUtils();
-                String convertCoor = jobUtils.convertCoordinat(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-                if (convertCoor.contains("W ")){
-                    splitDecimalCoor = convertCoor.split("W ");
-                    splitConvertLat = splitDecimalCoor[0];
-                    splitConvertLong = "W "+splitDecimalCoor[1];
-                }else if(convertCoor.contains("E ")){
-                    splitDecimalCoor = convertCoor.split("E ");
-                    splitConvertLat = splitDecimalCoor[0];
-                    splitConvertLong = "E "+splitDecimalCoor[1];
-                }
-
-                messageUtils.toastMessage(" convertLat " +splitConvertLat.trim() +"\nconvertLong " +splitConvertLong, ConfigApps.T_INFO);
-            }
-        }
-    };
-
-    @Override
-    public void onConnectionSuspended(int i) { }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
-
-    @Override
-    public void onPause(){
-        try{
-            if (mGoogleApiClient != null  &&  mGoogleApiClient.isConnected()) {
-                mFusedLocation.removeLocationUpdates(callback);
-                mGoogleApiClient.disconnect();
-            }
-        }catch (Exception e){}
-        super.onPause();
-    }
-
 }
 
 
