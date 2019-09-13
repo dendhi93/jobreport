@@ -45,7 +45,6 @@ import com.dracoo.jobreport.database.master.MasterInfoSite;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.feature.documentation.adapter.CustomList_Doc_Adapter;
 import com.dracoo.jobreport.feature.documentation.contract.ItemCallback;
-import com.dracoo.jobreport.feature.useractivity.UserActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -90,6 +89,7 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
     private String selectedImgTitle;
     private String selectedImgFolder;
     private String customerName = "";
+    private String captureAddress = "";
     private String filePath;
     private File imageToSave;
     private Dao<MasterImage, Integer> imageDao;
@@ -396,7 +396,13 @@ public class DocumentationFragment extends Fragment implements ItemCallback,Goog
                 mImage.setProgress_type(preference.getProgress().trim());
                 mImage.setUn_user(preference.getUn().trim());
                 mImage.setImage_description(txt_doc_docDescription.getText().toString().trim());
-
+                if (mLastLocation != null){
+                    mImage.setT_image_lat(String.valueOf(mLastLocation.getLatitude()));
+                    mImage.setT_image_lng(String.valueOf(mLastLocation.getLongitude()));
+                }else{
+                    mImage.setT_image_lat("0,0");
+                    mImage.setT_image_lng("0,0");
+                }
                 imageDao.create(mImage);
                 filePath = "";
                 imageToSave = null;
