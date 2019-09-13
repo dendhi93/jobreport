@@ -16,7 +16,6 @@ public class MessageUtils {
         context = c;
     }
 
-
     public void toastMessage(String message, int type) {
         TastyToast.makeText(context, message, TastyToast.LENGTH_LONG, type);
     }

@@ -235,7 +235,7 @@ public class UserActivity extends AppCompatActivity
         if (!isGPSEnabled && !isNetworkEnabled) {
             new AlertDialog.Builder(UserActivity.this)
                     .setTitle("GPS Off")
-                    .setMessage("Mohon aktifka GPS terlebih dahulu")
+                    .setMessage("Mohon aktifkan GPS terlebih dahulu")
                     .setIcon(R.drawable.ic_check)
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -260,7 +260,6 @@ public class UserActivity extends AppCompatActivity
                 .addOnConnectionFailedListener(this)
                 .build();
     }
-
 
     @OnClick(R.id.imgB_userAct_submit)
     void submitUser() {
