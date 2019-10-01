@@ -2,19 +2,13 @@ package com.dracoo.jobreport.util;
 
 import android.app.Activity;
 import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 
 import com.sdsmdg.tastytoast.TastyToast;
 
-import java.util.List;
-import java.util.Locale;
 
 public class MessageUtils {
 
