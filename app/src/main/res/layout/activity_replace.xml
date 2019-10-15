@@ -44,174 +44,145 @@
                     android:focusableInTouchMode="true"
                     android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_modem"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/sn_modem"
                             android:id="@+id/txt_rep_vsatModem"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_adaptor"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/sn_adaptor"
                             android:id="@+id/txt_rep_vsatAdaptor"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColor="@color/colorBlack"/>
 
-                    </android.support.design.widget.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_fh"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/sn_fh"
                             android:id="@+id/txt_rep_vsatFh"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_lnb"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/sn_lnb"
                             android:id="@+id/txt_rep_vsatLnb"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_rfu"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/sn_rfu"
                             android:id="@+id/txt_rep_vsatRfu"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_diplexer_odu"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/sn_diplexer_odu"
                             android:id="@+id/txt_rep_vsatDipOdu"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/sn_diplexer_idu"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/sn_diplexer_idu"
                             android:id="@+id/txt_rep_vsatDipIdu"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
