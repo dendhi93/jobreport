@@ -51,8 +51,6 @@ import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -76,7 +74,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class DocumentationFragment extends Fragment implements ItemCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class DocumentationFragment extends Fragment implements ItemCallback{
     private MessageUtils messageUtils;
     private Preference preference;
     private JobReportUtils jobUtils;

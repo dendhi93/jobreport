@@ -45,20 +45,18 @@ public class MessageUtils {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(
                 Context.CONNECTIVITY_SERVICE);
 
-        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifiNetwork != null && wifiNetwork.isConnected()) {
-            return true;
-        }
-
-        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (mobileNetwork != null && mobileNetwork.isConnected()) {
-            return true;
-        }
-
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork != null && activeNetwork.isConnected()) {
-            return true;
+        if (activeNetwork != null) {
+            // connected to the internet
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                return true;
+                // connected to wifi
+            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                // connected to mobile data
+                return true;
+            }
         }
+
         return false;
     }
 
