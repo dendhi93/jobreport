@@ -223,7 +223,7 @@
                             android:id="@+id/imgBtn_xpoll_timer"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:layout_marginTop="@dimen/spacing_small_1"
+                            android:layout_marginTop="@dimen/spacing_tiny_2"
                             android:background="@drawable/ic_blue_button"
                             android:src="@drawable/ic_white_time_24"
                             android:layout_marginEnd="@dimen/spacing_tiny"

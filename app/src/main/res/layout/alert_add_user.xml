@@ -23,41 +23,37 @@
         android:layout_marginEnd="@dimen/spacing_tiny_2"
         android:layout_marginBottom="@dimen/spacing_tiny_2">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border_bottom"
-            android:hint="@string/username"
-            android:textColorHint="@color/colorBlack">
+            android:layout_height="wrap_content">
 
             <EditText
+                android:hint="@string/username"
                 android:id="@+id/txt_alert_un"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:backgroundTint="@android:color/transparent"
                 android:drawableLeft="@drawable/ic_user_16"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="2"
                 android:textColor="@color/colorBlack"
-                android:textColorLink="@color/colorWhite"
-                android:background="@drawable/noborder"/>
+                android:textColorLink="@color/colorWhite"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_huge"
-            custom:passwordToggleEnabled="true"
-            android:textColorHint="@color/colorBlack"
-            android:layout_marginTop="@dimen/spacing_tiny_2"
-            android:hint="@string/password"
-            android:background="@drawable/border_bottom">
+            android:layout_height="wrap_content">
 
             <EditText
+                custom:passwordToggleEnabled="true"
+                android:layout_marginTop="@dimen/spacing_tiny_2"
+                android:hint="@string/password"
                 android:id="@+id/txt_alert_pass"
+                android:drawableLeft="@drawable/ic_user_16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -65,34 +61,30 @@
                 android:maxLength="15"
                 android:textColorHighlight="@color/colorWhite"
                 android:textColor="@color/colorBlack"
-                android:textColorLink="@color/colorPrimary"
-                android:background="@drawable/noborder"/>
-        </android.support.design.widget.TextInputLayout>
+                android:textColorLink="@color/colorPrimary" />
 
-        <android.support.design.widget.TextInputLayout
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/spacing_tiny_2"
-            android:background="@drawable/border_bottom"
-            android:hint="@string/name_user"
-            android:textColorHint="@color/colorBlack">
+            android:layout_height="wrap_content">
 
             <EditText
+                android:hint="@string/name_user"
                 android:id="@+id/txt_alert_name"
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/spacing_tiny_2"
                 android:layout_height="45dp"
-                android:backgroundTint="@android:color/transparent"
                 android:drawableLeft="@drawable/ic_user_16"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="2"
                 android:textColor="@color/colorBlack"
-                android:textColorLink="@color/colorWhite"
-                android:background="@drawable/noborder"/>
+                android:textColorLink="@color/colorWhite"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
 </LinearLayout>
