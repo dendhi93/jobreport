@@ -86,125 +86,104 @@
                     android:focusableInTouchMode="true"
                     android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/transponder"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/transponder"
                             android:id="@+id/txt_xpoll_transponder"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_*,.()!? "
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/lft"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/lft"
                             android:id="@+id/txt_xpoll_lft"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_*,.()!? "
                             android:inputType="text"
                             android:maxLength="15"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/cn"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/cn"
                             android:id="@+id/txt_xpoll_cn"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_*,.()!? "
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/cpi"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/cpi"
                             android:id="@+id/txt_xpoll_cpi"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_*,.()!? "
                             android:inputType="text"
                             android:maxLength="15"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/ASI"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/ASI"
                             android:id="@+id/txt_xpoll_asi"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_*,.()!? "
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <LinearLayout
                         android:baselineAligned="false"
@@ -216,19 +195,17 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/date_time"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
+                            android:layout_weight="1">
 
                             <EditText
+                                android:hint="@string/date_time"
                                 android:id="@+id/txt_xpoll_dateTime"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:clickable="false"
                                 android:drawableLeft="@drawable/ic_truck"
                                 android:enabled="false"
@@ -240,7 +217,7 @@
                                 android:textColor="@color/colorBlack"
                                 android:textColorLink="@color/colorWhite" />
 
-                        </android.support.design.widget.TextInputLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
                         <ImageButton
                             android:id="@+id/imgBtn_xpoll_timer"
@@ -253,30 +230,25 @@
                             android:layout_alignParentRight="true"/>
                     </LinearLayout>
 
-
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/op"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/op"
                             android:id="@+id/txt_xpoll_op"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!?"
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:background="@drawable/noborder"
                             android:textColorLink="@color/colorWhite" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
