@@ -46,10 +46,10 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
+            custom:passwordToggleEnabled="true"
             android:layout_height="wrap_content">
 
             <EditText
-                custom:passwordToggleEnabled="true"
                 android:layout_marginTop="@dimen/spacing_tiny_2"
                 android:hint="@string/password"
                 android:id="@+id/txt_alert_pass"
