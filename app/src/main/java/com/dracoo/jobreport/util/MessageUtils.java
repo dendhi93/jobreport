@@ -2,9 +2,6 @@ package com.dracoo.jobreport.util;
 
 import android.app.Activity;
 import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -65,16 +62,4 @@ public class MessageUtils {
         return false;
     }
 
-    public String convertToAddress(Location location){
-        try{
-            Geocoder geo = new Geocoder(context, Locale.getDefault());
-            if (location != null){
-                List<Address> addresses = geo.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                if (!addresses.isEmpty()){
-                    return addresses.get(0).getLocality();
-                }
-            }
-        }catch (Exception e){ Log.d("###",""+e.toString()); }
-        return "";
-    }
 }
