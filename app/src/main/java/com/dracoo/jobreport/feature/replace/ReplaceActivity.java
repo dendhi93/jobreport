@@ -1,6 +1,5 @@
 package com.dracoo.jobreport.feature.replace;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mReplaceAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
@@ -17,7 +18,6 @@ import com.dracoo.jobreport.database.adapter.VsatReplaceAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mReplace;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
 import com.dracoo.jobreport.database.master.MasterVsatReplace;
-import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;

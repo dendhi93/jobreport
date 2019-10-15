@@ -1,6 +1,5 @@
 package com.dracoo.jobreport.feature.datam2m;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,12 +7,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mDataAdapter;
 import com.dracoo.jobreport.database.adapter.TransHistoryAdapter;
 import com.dracoo.jobreport.database.master.MasterM2mData;
 import com.dracoo.jobreport.database.master.MasterTransHistory;
-import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
 import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.JobReportUtils;
@@ -21,7 +21,6 @@ import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import butterknife.BindView;

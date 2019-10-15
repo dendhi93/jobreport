@@ -3,9 +3,6 @@ package com.dracoo.jobreport.feature.connection;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.view.ContextThemeWrapper;
-import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.fragment.app.Fragment;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.M2mSetupAdapter;

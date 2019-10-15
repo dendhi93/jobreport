@@ -16,7 +16,7 @@
         android:focusableInTouchMode="true"
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/cardView_vsat_replace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,29 +45,25 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/username"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_un"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:drawableLeft="@drawable/ic_user_16"
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
+                            android:hint="@string/username"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -80,30 +76,25 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/password"
-                        android:textColorHint="@color/colorBlack"
-                        custom:passwordToggleEnabled="true">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_password"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
+                            android:hint="@string/password"
                             android:drawableStart="@drawable/ic_user_16"
                             android:inputType="textPassword"
                             android:maxLength="25"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -116,29 +107,25 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/ip_machine"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_ipMachine"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
+                            android:hint="@string/ip_machine"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,29 +137,26 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/m2m_user"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_user"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
+                            android:hint="@string/m2m_user"
                             android:drawableLeft="@drawable/ic_user_16"
                             android:inputType="text"
                             android:maxLength="50"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:maxLines="2"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                 </LinearLayout>
 
@@ -185,29 +169,26 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/m2m_remote"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_remote"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
+                            android:hint="@string/m2m_remote"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
                             android:maxLines="2"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -219,29 +200,25 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/tunnel_id"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_tunnelId"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
+                            android:hint="@string/tunnel_id"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColor="@color/colorBlack" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -253,29 +230,26 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/ip_bounding"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_ipBouding"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
+                            android:hint="@string/ip_bounding"
                             android:maxLines="2"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColorLink="@color/colorWhite" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -287,29 +261,24 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/ip_vlan"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_ipVLan"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
+                            android:hint="@string/ip_vlan"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:inputType="text"
                             android:maxLength="15"
                             android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColor="@color/colorBlack" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -321,29 +290,24 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/ip_lan"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_ipLLan"
                             android:layout_width="match_parent"
+                            android:hint="@string/ip_lan"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColor="@color/colorBlack"/>
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -354,14 +318,10 @@
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
-
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/subnetMask"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_dataM2m_subnetMask"
@@ -373,11 +333,10 @@
                             android:maxLength="20"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:hint="@string/subnetMask"
+                            android:textColor="@color/colorBlack" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -391,13 +350,10 @@
                     android:orientation="horizontal">
 
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/agg"
-                        android:textColorHint="@color/colorBlack">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/txt_dm2m_dataM2m_agg"
@@ -407,13 +363,12 @@
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
+                            android:hint="@string/agg"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:maxLines="2"
-                            android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
+                            android:textColor="@color/colorBlack" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -444,7 +399,7 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </ScrollView>

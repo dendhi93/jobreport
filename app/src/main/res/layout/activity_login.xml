@@ -46,26 +46,26 @@
                 android:textStyle="bold"
                 android:typeface="monospace" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/layout_un"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom"
-                android:hint="@string/username">
+                android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/txt_login_un"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/spacing_huge"
+                    android:hint="@string/username"
                     android:inputType="text"
                     android:maxLength="15"
                     android:textColorHighlight="@color/colorWhite"
                     android:textColor="@color/colorBlack"
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                     android:textColorLink="@color/colorPrimary"
-                    android:background="@drawable/noborder"
                     android:gravity="center_vertical"/>
-            </android.support.design.widget.TextInputLayout>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <View
                 android:layout_width="match_parent"
@@ -80,64 +80,58 @@
                 android:focusableInTouchMode="true"
                 android:orientation="horizontal">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:hint="@string/password"
-                    custom:passwordToggleEnabled="true">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/txt_login_pass"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:backgroundTint="@android:color/transparent"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:maxLength="25"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
-                        android:textColorLink="@color/colorWhite"
-                        android:background="@drawable/noborder"/>
+                        android:textColorLink="@color/colorWhite" />
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/layout_service_point"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom"
-                android:hint="@string/servicePoint">
+                android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/txt_login_servicePoint"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/spacing_huge"
                     android:inputType="text"
+                    android:hint="@string/servicePoint"
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                     android:maxLength="20"
                     android:textColorHighlight="@color/colorWhite"
                     android:textColor="@color/colorBlack"
                     android:textColorLink="@color/colorPrimary"
-                    android:background="@drawable/noborder"
                     android:gravity="center_vertical"/>
-            </android.support.design.widget.TextInputLayout>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/layout_hp"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom"
-                android:hint="@string/no_handphone">
+                android:layout_height="wrap_content">
 
                 <EditText
+                    android:hint="@string/no_handphone"
                     android:id="@+id/txt_login_handphone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/spacing_huge"
@@ -147,9 +141,9 @@
                     android:textColor="@color/colorBlack"
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                     android:textColorLink="@color/colorPrimary"
-                    android:background="@drawable/noborder"
                     android:gravity="center_vertical"/>
-            </android.support.design.widget.TextInputLayout>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <Button

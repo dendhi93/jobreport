@@ -1,6 +1,5 @@
 package com.dracoo.jobreport.feature.vsatparameter;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.ConnectionParameterAdapter;

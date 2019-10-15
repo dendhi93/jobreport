@@ -3,8 +3,9 @@ package com.dracoo.jobreport.util;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.dracoo.jobreport.R;
 
