@@ -107,29 +107,24 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/sn_modem"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/sn_modem"
                                 android:id="@+id/txt_conn_vsatModem"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -141,29 +136,23 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/sn_adaptor"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/sn_adaptor"
                                 android:id="@+id/txt_conn_vsatAdaptor"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -175,29 +164,23 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/border_bottom"
-                            android:layout_weight="1"
-                            android:hint="@string/sn_fh"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/sn_fh"
                                 android:id="@+id/txt_conn_vsatFh"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -209,29 +192,24 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/sn_lnb"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/sn_lnb"
                                 android:id="@+id/txt_conn_vsatLnb"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -243,29 +221,23 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/sn_rfu"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/sn_rfu"
                                 android:id="@+id/txt_conn_vsatRfu"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -277,29 +249,23 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/border_bottom"
-                            android:hint="@string/sn_diplexer_odu"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/sn_diplexer_odu"
                                 android:id="@+id/txt_conn_vsatOdu"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -311,29 +277,23 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/border_bottom"
-                            android:hint="@string/sn_diplexer_idu"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/sn_diplexer_idu"
                                 android:id="@+id/txt_conn_vsatIdu"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -364,29 +324,23 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/antena_type"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/antena_type"
                                 android:id="@+id/txt_conn_vsat_antenaType"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite" />
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -398,29 +352,23 @@
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/antena_brand"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/antena_brand"
                                 android:id="@+id/txt_conn_vsat_antenaBrand"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout

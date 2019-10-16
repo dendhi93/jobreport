@@ -88,7 +88,6 @@
                     custom:passwordToggleEnabled="true">
 
                 <EditText
-
                         android:id="@+id/txt_login_pass"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
@@ -99,6 +98,17 @@
                         android:maxLines="2"
                         android:textColor="@color/colorBlack"
                         android:textColorLink="@color/colorWhite" />
+                    <!--<com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText-->
+                            <!--android:id="@+id/txt_login_pass"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="45dp"-->
+                            <!--android:hint="@string/password"-->
+                            <!--android:inputType="textPassword"-->
+                            <!--android:maxLength="25"-->
+                            <!--android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "-->
+                            <!--android:maxLines="2"-->
+                            <!--android:textColor="@color/colorBlack"-->
+                            <!--android:textColorLink="@color/colorWhite" />-->
 
                 </com.google.android.material.textfield.TextInputLayout>
 
