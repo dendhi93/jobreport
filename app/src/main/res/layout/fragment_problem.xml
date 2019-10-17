@@ -44,29 +44,24 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/display_modem">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:hint="@string/display_modem"
                             android:id="@+id/txt_prob_modemDisplay"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_user_16"
                             android:textColorLink="@color/colorWhite"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:inputType="text"
                             android:maxLength="50"
-                            android:maxLines="2"
-                            android:background="@drawable/noborder"/>
-
-                    </android.support.design.widget.TextInputLayout>
+                            android:maxLines="2"/>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
 
@@ -79,30 +74,25 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack"
-                        android:hint="@string/problem_symtoms">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:hint="@string/problem_symtoms"
                             android:id="@+id/txt_problem_symptom"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:layout_weight="1"
-                            android:backgroundTint="@android:color/transparent"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_text"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="textMultiLine"
                             android:maxLength="100"
-                            android:maxLines="4"
-                            android:background="@drawable/noborder"/>
-
-                    </android.support.design.widget.TextInputLayout>
+                            android:maxLines="4"/>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -114,30 +104,25 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/action_taken">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:hint="@string/action_taken"
                             android:id="@+id/txt_prob_action_text"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:layout_weight="1"
-                            android:backgroundTint="@android:color/transparent"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_text"
                             android:textColorLink="@color/colorWhite"
                             android:inputType="textMultiLine"
                             android:maxLength="100"
-                            android:maxLines="4"
-                            android:background="@drawable/noborder"/>
-
-                    </android.support.design.widget.TextInputLayout>
+                            android:maxLines="4"/>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,19 +135,16 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/berangkat"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:hint="@string/berangkat"
                             android:id="@+id/txt_problem_berangkat"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:clickable="false"
                             android:drawableLeft="@drawable/ic_truck"
                             android:enabled="false"
@@ -172,16 +154,14 @@
                             android:maxLines="2"
                             android:layout_marginEnd="@dimen/spacing_tiny_3"
                             android:textColor="@color/colorBlack"
-                            android:textColorLink="@color/colorWhite"
-                            android:background="@drawable/noborder"/>
-
-                    </android.support.design.widget.TextInputLayout>
+                            android:textColorLink="@color/colorWhite"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <ImageButton
                         android:id="@+id/imgBtn_timer1"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:layout_marginTop="@dimen/spacing_tiny_4"
                         android:background="@drawable/ic_blue_button"
                         android:src="@drawable/ic_white_time_24"
                         android:layout_marginEnd="@dimen/spacing_tiny"
@@ -194,24 +174,19 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:focusable="true"
-                    android:layout_toLeftOf="@+id/imgBtn_timer2"
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/ln_problem_1"
-                        android:layout_weight="1"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/tiba"
-                        android:textColorHint="@color/colorBlack">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:hint="@string/tiba"
                             android:id="@+id/txt_problem_tiba"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:clickable="false"
                             android:drawableLeft="@drawable/ic_truck"
                             android:enabled="false"
@@ -222,15 +197,14 @@
                             android:layout_marginEnd="@dimen/spacing_tiny_3"
                             android:textColor="@color/colorBlack"
                             android:textColorLink="@color/colorWhite" />
-
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <ImageButton
                         android:id="@+id/imgBtn_timer2"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginEnd="@dimen/spacing_tiny"
-                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:layout_marginTop="@dimen/spacing_tiny_4"
                         android:background="@drawable/ic_blue_button"
                         android:src="@drawable/ic_white_time_24"
                         android:layout_alignParentRight="true"/>
@@ -247,19 +221,16 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/start"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:hint="@string/start"
                             android:id="@+id/txt_problem_start"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:clickable="false"
                             android:drawableLeft="@drawable/ic_truck"
                             android:enabled="false"
@@ -270,14 +241,13 @@
                             android:layout_marginEnd="@dimen/spacing_tiny_3"
                             android:textColor="@color/colorBlack"
                             android:textColorLink="@color/colorWhite" />
-
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <ImageButton
                         android:id="@+id/imgBtn_timer3"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:layout_marginTop="@dimen/spacing_tiny_4"
                         android:background="@drawable/ic_blue_button"
                         android:layout_marginEnd="@dimen/spacing_tiny"
                         android:src="@drawable/ic_white_time_24"
@@ -290,23 +260,20 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:focusable="true"
-                    android:layout_toLeftOf="@+id/imgBtn_timer4"
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/finish"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:hint="@string/finish"
                             android:id="@+id/txt_problem_finish"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:clickable="false"
                             android:drawableLeft="@drawable/ic_truck"
                             android:enabled="false"
@@ -317,15 +284,14 @@
                             android:layout_marginEnd="@dimen/spacing_tiny_3"
                             android:textColor="@color/colorBlack"
                             android:textColorLink="@color/colorWhite" />
-
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <ImageButton
                         android:id="@+id/imgBtn_timer4"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginEnd="@dimen/spacing_tiny"
-                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:layout_marginTop="@dimen/spacing_tiny_4"
                         android:background="@drawable/ic_blue_button"
                         android:src="@drawable/ic_white_time_24"
                         android:layout_alignParentRight="true"/>
@@ -339,23 +305,19 @@
                     android:layout_margin="3dp"
                     android:visibility="gone"
                     android:focusable="true"
-                    android:layout_toLeftOf="@+id/imgBtn_timer5"
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/upline"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:hint="@string/upline"
                             android:id="@+id/txt_problem_upline"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:clickable="false"
                             android:drawableLeft="@drawable/ic_truck"
                             android:enabled="false"
@@ -366,8 +328,7 @@
                             android:layout_marginEnd="@dimen/spacing_tiny_3"
                             android:textColor="@color/colorBlack"
                             android:textColorLink="@color/colorWhite" />
-
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <ImageButton
                         android:id="@+id/imgBtn_timer5"
@@ -387,23 +348,19 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:focusable="true"
-                    android:layout_toLeftOf="@+id/imgBtn_timer6"
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/online"
-                        android:background="@drawable/border_bottom"
-                        android:textColorHint="@color/colorBlack">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:hint="@string/online"
                             android:id="@+id/txt_problem_online"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:clickable="false"
                             android:drawableLeft="@drawable/ic_truck"
                             android:enabled="false"
@@ -414,14 +371,13 @@
                             android:layout_marginRight="@dimen/spacing_tiny"
                             android:textColor="@color/colorBlack"
                             android:textColorLink="@color/colorWhite" />
-
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <ImageButton
                         android:id="@+id/imgBtn_timer6"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:layout_marginTop="@dimen/spacing_small_1"
+                        android:layout_marginTop="@dimen/spacing_tiny_4"
                         android:background="@drawable/ic_blue_button"
                         android:src="@drawable/ic_white_time_24"
                         android:layout_marginEnd="@dimen/spacing_tiny_3"
