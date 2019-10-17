@@ -73,6 +73,7 @@ public class MenuActivity extends AppCompatActivity
         lblPhone = header.findViewById(R.id.lbl_header_phone);
         preference = new Preference(MenuActivity.this);
         messageUtils = new MessageUtils(MenuActivity.this);
+        drawer.setScrimColor(getResources().getColor(android.R.color.transparent));
         try{
             String prefUn = preference.getTechName();
             String prefPhone = preference.getPhone();
