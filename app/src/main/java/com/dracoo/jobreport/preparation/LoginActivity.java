@@ -3,6 +3,7 @@ package com.dracoo.jobreport.preparation;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         try{
             userAccessAdapter = new UserAccessAdapter(getApplicationContext()).getAdapter();
-        }catch (Exception e){}
+        }catch (Exception e){ Log.d("###",""+e.toString()); }
     }
 
     @Override

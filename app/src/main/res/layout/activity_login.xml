@@ -48,6 +48,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_marginTop="60dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -89,7 +90,7 @@
                 <EditText
                         android:id="@+id/txt_login_pass"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="50dp"
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:maxLength="25"
