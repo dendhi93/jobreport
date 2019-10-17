@@ -192,6 +192,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
+            tools:listitem="@layout/custom_list_history"
             android:layout_marginStart="@dimen/spacing_tiny"
             android:layout_marginEnd="@dimen/spacing_tiny" />
 

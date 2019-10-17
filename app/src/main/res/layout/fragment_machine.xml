@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".feature.machine.MachineFragment">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -66,30 +66,25 @@
                 android:focusableInTouchMode="true"
                 android:orientation="horizontal">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom"
-                    android:textColorHint="@color/colorBlack"
-                    android:hint="@string/machine_id">
-
+                    android:layout_weight="1">
                     <EditText
+                        android:hint="@string/machine_id"
                         android:id="@+id/txt_machine_idMachine"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_weight="1"
-                        android:backgroundTint="@android:color/transparent"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                         android:textColor="@color/colorBlack"
                         android:drawableLeft="@drawable/ic_black_setting_16"
                         android:textColorLink="@color/colorWhite"
                         android:inputType="text"
                         android:maxLength="45"
-                        android:maxLines="2"
-                        android:background="@drawable/noborder"/>
-
-                </android.support.design.widget.TextInputLayout>
+                        android:maxLines="2"/>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -157,7 +152,7 @@
 
             </LinearLayout>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 
