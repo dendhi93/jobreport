@@ -58,12 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         try{
             userAccessAdapter = new UserAccessAdapter(getApplicationContext()).getAdapter();
-            ArrayList<MasterAction> alAction = new ActionAdapter(getApplicationContext()).load_dataAction(1,"");
-            if (alAction.size() > 0){
-                Log.d("###","sip");
-            }else{
-                Log.d("###","suram");
-            }
         }catch (Exception e){ Log.d("###",""+e.toString()); }
     }
 
