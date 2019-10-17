@@ -60,29 +60,24 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
-                        android:hint="@string/tegangan">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <EditText
+                            android:hint="@string/tegangan"
                             android:id="@+id/txt_env_plnTegangan"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_lightning_16"
                             android:textColorLink="@color/colorWhite"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:inputType="text"
                             android:maxLength="15"
-                            android:maxLines="2"
-                            android:background="@drawable/noborder"/>
-
-                    </android.support.design.widget.TextInputLayout>
+                            android:maxLines="2"/>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -94,30 +89,26 @@
                     android:focusableInTouchMode="true"
                     android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputLayout
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorBlack"
-                        android:background="@drawable/border_bottom"
-                        android:layout_marginBottom="@dimen/spacing_small"
-                        android:hint="@string/grounding">
-
+                        android:layout_weight="1">
                         <EditText
+                            android:layout_marginBottom="@dimen/spacing_small"
+                            android:hint="@string/grounding"
                             android:id="@+id/txt_env_plnGrounding"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:textColor="@color/colorBlack"
                             android:drawableLeft="@drawable/ic_lightning_16"
                             android:textColorLink="@color/colorWhite"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:inputType="text"
                             android:maxLength="10"
-                            android:maxLines="2"
-                            android:background="@drawable/noborder"/>
-
-                    </android.support.design.widget.TextInputLayout>
+                            android:maxLines="2"/>
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>
 
