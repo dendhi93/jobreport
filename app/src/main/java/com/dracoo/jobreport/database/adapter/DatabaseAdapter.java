@@ -14,6 +14,7 @@ import android.util.Log;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 
+
 public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
     private static String DB_PATH = "/data/data/com.dracoo.jobreport/databases/";
     private static final String DB_NAME = "db_report.db";
@@ -121,15 +122,15 @@ public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
         copyDatabase();
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase arg0, ConnectionSource arg1) {
-
-    }
 
     @Override
     public void onUpgrade(SQLiteDatabase arg0, ConnectionSource arg1, int arg2,int arg3) {
 
     }
 
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
+
+    }
 }
 

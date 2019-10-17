@@ -17,7 +17,9 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.dracoo.jobreport.BuildConfig;
 import com.dracoo.jobreport.R;
+import com.dracoo.jobreport.database.adapter.ActionAdapter;
 import com.dracoo.jobreport.database.adapter.UserAccessAdapter;
+import com.dracoo.jobreport.database.master.MasterAction;
 import com.dracoo.jobreport.database.master.MasterUserAccess;
 import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
@@ -25,8 +27,6 @@ import com.dracoo.jobreport.util.DateTimeUtils;
 import com.dracoo.jobreport.util.MessageUtils;
 import com.dracoo.jobreport.util.Preference;
 import com.j256.ormlite.dao.Dao;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -58,6 +58,12 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         try{
             userAccessAdapter = new UserAccessAdapter(getApplicationContext()).getAdapter();
+            ArrayList<MasterAction> alAction = new ActionAdapter(getApplicationContext()).load_dataAction(1,"");
+            if (alAction.size() > 0){
+                Log.d("###","sip");
+            }else{
+                Log.d("###","suram");
+            }
         }catch (Exception e){ Log.d("###",""+e.toString()); }
     }
 
