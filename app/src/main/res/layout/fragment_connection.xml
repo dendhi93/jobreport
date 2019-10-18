@@ -468,53 +468,41 @@
                         android:focusableInTouchMode="true"
                         android:orientation="vertical">
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/brand_type"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/brand_type"
                                 android:id="@+id/txt_conn_m2m_brand"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/m2m_sn"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/m2m_sn"
                                 android:id="@+id/txt_conn_m2m_sn"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
 
@@ -537,54 +525,41 @@
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:orientation="vertical">
-
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/brand_type"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/brand_type"
                                 android:id="@+id/txt_conn_m2m_adaptorBrand"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/m2m_sn"
-                            android:background="@drawable/border_bottom"
-                            android:textColorHint="@color/colorBlack">
-
+                            android:layout_height="wrap_content">
                             <EditText
+                                android:hint="@string/m2m_sn"
                                 android:id="@+id/txt_conn_m2m_adaptorSn"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:backgroundTint="@android:color/transparent"
                                 android:drawableLeft="@drawable/ic_black_setting_16"
                                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm-/_,.()!? "
                                 android:inputType="text"
                                 android:maxLength="25"
                                 android:maxLines="2"
                                 android:textColor="@color/colorBlack"
-                                android:textColorLink="@color/colorWhite"
-                                android:background="@drawable/noborder"/>
-
-                        </android.support.design.widget.TextInputLayout>
+                                android:textColorLink="@color/colorWhite"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
 
