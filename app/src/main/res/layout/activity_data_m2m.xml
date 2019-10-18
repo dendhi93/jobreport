@@ -53,7 +53,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_un"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
                             android:drawableLeft="@drawable/ic_user_16"
                             android:inputType="text"
@@ -84,7 +84,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_password"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:hint="@string/password"
                             android:drawableStart="@drawable/ic_user_16"
                             android:inputType="textPassword"
@@ -115,7 +115,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_ipMachine"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:hint="@string/ip_machine"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
@@ -145,7 +145,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_user"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:hint="@string/m2m_user"
                             android:drawableLeft="@drawable/ic_user_16"
                             android:inputType="text"
@@ -177,7 +177,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_remote"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:hint="@string/m2m_remote"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
@@ -208,7 +208,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_tunnelId"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:hint="@string/tunnel_id"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
@@ -238,7 +238,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_ipBouding"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
@@ -269,7 +269,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_ipVLan"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:hint="@string/ip_vlan"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm/_,.()!? "
@@ -299,7 +299,7 @@
                             android:id="@+id/txt_dm2m_ipLLan"
                             android:layout_width="match_parent"
                             android:hint="@string/ip_lan"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="25"
@@ -326,7 +326,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_dataM2m_subnetMask"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
@@ -358,7 +358,7 @@
                         <EditText
                             android:id="@+id/txt_dm2m_dataM2m_agg"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="50dp"
                             android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
