@@ -327,7 +327,6 @@
                             android:id="@+id/txt_dm2m_dataM2m_subnetMask"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:backgroundTint="@android:color/transparent"
                             android:drawableLeft="@drawable/ic_black_setting_16"
                             android:inputType="text"
                             android:maxLength="20"

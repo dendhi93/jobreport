@@ -453,7 +453,6 @@
                             android:textColorLink="@color/colorWhite"
                             android:inputType="textMultiLine"
                             android:maxLength="70"
-                            android:background="@drawable/noborder"
                             android:maxLines="3" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
