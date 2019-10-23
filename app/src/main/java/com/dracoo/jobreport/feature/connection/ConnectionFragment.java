@@ -486,9 +486,9 @@ public class ConnectionFragment extends Fragment {
                 }
 
                 if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
-                Intent intent = new Intent(getActivity(), MenuActivity.class);
-                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), MenuActivity.class);
+//                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+//                startActivity(intent);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist update " +e.toString(), ConfigApps.T_ERROR);
             }
@@ -509,9 +509,9 @@ public class ConnectionFragment extends Fragment {
                 }
 
                 if (getActivity() != null){ JobReportUtils.hideKeyboard(getActivity()); }
-                Intent intent = new Intent(getActivity(), MenuActivity.class);
-                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), MenuActivity.class);
+//                intent.putExtra(MenuActivity.EXTRA_CALLER_ACTIVITY, MenuActivity.EXTRA_FLAG_DASH);
+//                startActivity(intent);
             }catch (Exception e){
                 messageUtils.toastMessage("err trans Hist insert " +e.toString(), ConfigApps.T_ERROR);
             }
