@@ -282,7 +282,7 @@ public class SignatureFragment extends Fragment implements ItemCallback {
 
     @Override
     public void itemSelected(int pos, String imageUrl) {
-
+        //todo hapus file belum
     }
 
     @Override
