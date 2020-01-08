@@ -211,11 +211,12 @@ public class SignatureFragment extends Fragment implements ItemCallback {
                 .show();
     }
 
+    @SuppressWarnings("deprecation")
     private void submitSignature(){
         try{
             DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/JobReport/images/"+preference.getCustName()+"/"+selectedUserType;
             File file = new File(DIRECTORY);
-            if (!file.exists()) { file.mkdir(); }
+            if (!file.exists()) { file.mkdirs(); }
             StoredPath = DIRECTORY +"/"+ selectedUserType + ".png";
             tempFile = "/JobReport/images/"+preference.getCustName()+"/"+selectedUserType+"/"+ selectedUserType + ".png";
             ArrayList<MasterSignature> al_valSign = new SignatureAdapter(getActivity()).val_dataSign(preference.getCustID(), preference.getUn(), selectedUserType);
@@ -351,7 +352,6 @@ public class SignatureFragment extends Fragment implements ItemCallback {
                 mFileOutStream.flush();
                 mFileOutStream.close();
             } catch (Exception e) { messageUtils.toastMessage("err " +e.toString(), ConfigApps.T_ERROR); }
-
         }
 
         public void clear() {

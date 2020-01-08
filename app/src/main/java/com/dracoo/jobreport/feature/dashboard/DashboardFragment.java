@@ -432,6 +432,7 @@ public class DashboardFragment extends Fragment implements DashboardItemClickBac
         messageUtils.toastMessage("Transaksi berhasil diinput", ConfigApps.T_SUCCESS);
     }
 
+    @SuppressWarnings("deprecation")
     private void sendViaPdf(){
         prg_dash.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {

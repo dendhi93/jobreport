@@ -132,5 +132,6 @@ public class DatabaseAdapter extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
 
     }
+
 }
 
