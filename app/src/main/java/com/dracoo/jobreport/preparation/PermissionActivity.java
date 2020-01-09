@@ -44,6 +44,7 @@ public class PermissionActivity extends AppCompatActivity {
 
         createPermissionListeners();
         checkPermission();
+        if (getSupportActionBar() != null){ getSupportActionBar().hide(); }
     }
 
 
