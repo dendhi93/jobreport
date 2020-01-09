@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -31,6 +33,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.dracoo.jobreport.R;
 import com.dracoo.jobreport.database.adapter.JobDescAdapter;
 import com.dracoo.jobreport.database.adapter.SignatureAdapter;
@@ -200,8 +203,7 @@ public class SignatureFragment extends Fragment implements ItemCallback {
                 .setIcon(R.drawable.ic_logo)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) { submitSignature();
-                    }
+                    public void onClick(DialogInterface dialog, int which) { submitSignature(); }
                 })
                 .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override
@@ -226,17 +228,6 @@ public class SignatureFragment extends Fragment implements ItemCallback {
             } else{
                 viewCanves.setDrawingCacheEnabled(true);
                 mCanvasView.saveImage(viewCanves,StoredPath);
-
-                MasterSignature mSign = new MasterSignature();
-                mSign.setT_user_type(selectedUserType.trim());
-                mSign.setId_site(preference.getCustID());
-                mSign.setConn_type(preference.getConnType().trim());
-                mSign.setT_sign_path(tempFile.trim());
-                mSign.setProgress_type(preference.getProgress().trim());
-                mSign.setUn_user(preference.getUn().trim());
-                mSign.setInsert_date(DateTimeUtils.getCurrentTime());
-                signatureAdapter.create(mSign);
-                transHistImage();
             }
         }catch (Exception e){ messageUtils.toastMessage("err submit sign " +e.toString(), ConfigApps.T_ERROR); }
     }
@@ -282,15 +273,68 @@ public class SignatureFragment extends Fragment implements ItemCallback {
 
     @Override
     public void itemSelected(int pos, String imageUrl) {
-        //todo hapus file belum
+        if (getActivity() != null){
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Warning")
+                    .setMessage("Apakah anda yakin ingin hapus gambar ?")
+                    .setIcon(R.drawable.ic_exclamation_32)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteSignatureImage(pos, imageUrl);
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
+        }
     }
 
     @Override
     public void selectedImage(String imageUrl) {
+        AlertDialog.Builder alertShow = new AlertDialog.Builder(getActivity());
+        final ImageView imgV = new ImageView(getActivity());
 
+        File file = new File(android.os.Environment.getExternalStorageDirectory().getPath(),imageUrl);
+        Uri imageUri = Uri.fromFile(file);
+        Glide.with(getActivity())
+                .load(imageUri)
+                .into(imgV);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(2, 2, 2, 2);
+        LinearLayout linearImg = new LinearLayout(getActivity());
+        linearImg.setOrientation(LinearLayout.VERTICAL);
+        linearImg.addView(imgV,layoutParams);
+        alertShow.setView(linearImg);
+        alertShow.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = alertShow.create();
+        alert.show();
     }
 
-    public List<MasterSignature> init_dataSignature(){
+    private void deleteSignatureImage(int pos, String imageUrl){
+        try{
+            File file = new File(android.os.Environment.getExternalStorageDirectory().getPath(),imageUrl);
+            if (file.exists()){
+                file.delete();
+                signatureAdapter.deleteById(pos);
+                messageUtils.toastMessage("Image sukses dihapus", ConfigApps.T_SUCCESS);
+                init_loadSignature();
+            }
+        }catch (Exception e){ messageUtils.toastMessage("failed to delete image " +e.toString(), ConfigApps.T_ERROR); }
+    }
+
+    private List<MasterSignature> init_dataSignature(){
         List<MasterSignature> list = new ArrayList<>();
         al_dataSignature = new SignatureAdapter(getActivity()).init_dataSign(preference.getCustID(), preference.getUn());
         if (al_dataSignature.size() > 0){
@@ -336,22 +380,33 @@ public class SignatureFragment extends Fragment implements ItemCallback {
         }
 
         public void saveImage(View v, String StoredPath) {
-            Log.v("log_tag", "Width: " + v.getWidth());
-            Log.v("log_tag", "Height: " + v.getHeight());
-            if (bitmap == null) {
-                Log.v("###", "ke if " + v.getHeight());
-                bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
-            }else {
-                Log.v("###", "ke else " );
-            }
-            Canvas canvas = new Canvas(bitmap);
-            try {
-                mFileOutStream = new FileOutputStream(StoredPath);
-                v.draw(canvas);
-                bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
-                mFileOutStream.flush();
-                mFileOutStream.close();
-            } catch (Exception e) { messageUtils.toastMessage("err " +e.toString(), ConfigApps.T_ERROR); }
+            new Thread(() -> {
+                Log.v("log_tag", "Width: " + v.getWidth());
+                Log.v("log_tag", "Height: " + v.getHeight());
+                if (bitmap == null) {
+                    Log.v("###", "ke if " + v.getHeight());
+                    bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
+                }
+                Canvas canvas = new Canvas(bitmap);
+                try {
+                    mFileOutStream = new FileOutputStream(StoredPath);
+                    v.draw(canvas);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
+                    mFileOutStream.flush();
+                    mFileOutStream.close();
+
+                    MasterSignature mSign = new MasterSignature();
+                    mSign.setT_user_type(selectedUserType.trim());
+                    mSign.setId_site(preference.getCustID());
+                    mSign.setConn_type(preference.getConnType().trim());
+                    mSign.setT_sign_path(tempFile.trim());
+                    mSign.setProgress_type(preference.getProgress().trim());
+                    mSign.setUn_user(preference.getUn().trim());
+                    mSign.setInsert_date(DateTimeUtils.getCurrentTime());
+                    signatureAdapter.create(mSign);
+                    transHistImage();
+                } catch (Exception e) { messageUtils.toastMessage("err " +e.toString(), ConfigApps.T_ERROR); }
+            });
         }
 
         public void clear() {
