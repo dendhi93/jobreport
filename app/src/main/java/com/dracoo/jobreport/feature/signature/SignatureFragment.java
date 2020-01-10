@@ -228,6 +228,7 @@ public class SignatureFragment extends Fragment implements ItemCallback {
             } else{
                 viewCanves.setDrawingCacheEnabled(true);
                 mCanvasView.saveImage(viewCanves,StoredPath);
+                //todo add asynch
             }
         }catch (Exception e){ messageUtils.toastMessage("err submit sign " +e.toString(), ConfigApps.T_ERROR); }
     }
@@ -380,33 +381,31 @@ public class SignatureFragment extends Fragment implements ItemCallback {
         }
 
         public void saveImage(View v, String StoredPath) {
-            new Thread(() -> {
-                Log.v("log_tag", "Width: " + v.getWidth());
-                Log.v("log_tag", "Height: " + v.getHeight());
-                if (bitmap == null) {
-                    Log.v("###", "ke if " + v.getHeight());
-                    bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
-                }
-                Canvas canvas = new Canvas(bitmap);
-                try {
-                    mFileOutStream = new FileOutputStream(StoredPath);
-                    v.draw(canvas);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
-                    mFileOutStream.flush();
-                    mFileOutStream.close();
+            Log.v("log_tag", "Width: " + v.getWidth());
+            Log.v("log_tag", "Height: " + v.getHeight());
+            if (bitmap == null) {
+                Log.v("###", "ke if " + v.getHeight());
+                bitmap = Bitmap.createBitmap(canvasLayout.getWidth(), canvasLayout.getHeight(), Bitmap.Config.RGB_565);
+            }
+            Canvas canvas = new Canvas(bitmap);
+            try {
+                mFileOutStream = new FileOutputStream(StoredPath);
+                v.draw(canvas);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
+                mFileOutStream.flush();
+                mFileOutStream.close();
 
-                    MasterSignature mSign = new MasterSignature();
-                    mSign.setT_user_type(selectedUserType.trim());
-                    mSign.setId_site(preference.getCustID());
-                    mSign.setConn_type(preference.getConnType().trim());
-                    mSign.setT_sign_path(tempFile.trim());
-                    mSign.setProgress_type(preference.getProgress().trim());
-                    mSign.setUn_user(preference.getUn().trim());
-                    mSign.setInsert_date(DateTimeUtils.getCurrentTime());
-                    signatureAdapter.create(mSign);
-                    transHistImage();
-                } catch (Exception e) { messageUtils.toastMessage("err " +e.toString(), ConfigApps.T_ERROR); }
-            });
+                MasterSignature mSign = new MasterSignature();
+                mSign.setT_user_type(selectedUserType.trim());
+                mSign.setId_site(preference.getCustID());
+                mSign.setConn_type(preference.getConnType().trim());
+                mSign.setT_sign_path(tempFile.trim());
+                mSign.setProgress_type(preference.getProgress().trim());
+                mSign.setUn_user(preference.getUn().trim());
+                mSign.setInsert_date(DateTimeUtils.getCurrentTime());
+                signatureAdapter.create(mSign);
+                transHistImage();
+            } catch (Exception e) { messageUtils.toastMessage("err " +e.toString(), ConfigApps.T_ERROR); }
         }
 
         public void clear() {
