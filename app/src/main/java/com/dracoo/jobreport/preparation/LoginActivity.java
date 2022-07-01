@@ -17,9 +17,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.dracoo.jobreport.BuildConfig;
 import com.dracoo.jobreport.R;
-import com.dracoo.jobreport.database.adapter.ActionAdapter;
 import com.dracoo.jobreport.database.adapter.UserAccessAdapter;
-import com.dracoo.jobreport.database.master.MasterAction;
 import com.dracoo.jobreport.database.master.MasterUserAccess;
 import com.dracoo.jobreport.feature.MenuActivity;
 import com.dracoo.jobreport.util.ConfigApps;
@@ -58,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         try{
             userAccessAdapter = new UserAccessAdapter(getApplicationContext()).getAdapter();
-        }catch (Exception e){ Log.d("###",""+e.toString()); }
+        }catch (Exception e){ Log.d("###",""+e); }
     }
 
     @Override
@@ -221,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                             messageUtils.toastMessage("Add user Success",ConfigApps.T_SUCCESS);
                             setEmptyText();
                         }
-                    }catch (Exception e){ messageUtils.toastMessage("failed to save user " +e.toString(), ConfigApps.T_ERROR); }
+                    }catch (Exception e){ messageUtils.toastMessage("failed to save user " +e, ConfigApps.T_ERROR); }
                     dialog.dismiss();
                 }
             }
